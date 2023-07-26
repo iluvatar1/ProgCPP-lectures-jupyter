@@ -1,0 +1,6 @@
+*.out
+*.x
+*.cpp
+*.py
+*.txt
+*.ipynb_checkpoints*
