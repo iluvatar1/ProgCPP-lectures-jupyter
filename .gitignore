@@ -1,5 +1,5 @@
-*.out
-*.x
+*.out*
+*.x*
 *.cpp
 *.py
 *.txt
