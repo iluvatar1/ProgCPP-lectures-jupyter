@@ -1,0 +1,1184 @@
+
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+    <title>Linear Systems : Matrices, Vectors, eigen systems &#8212; Introduction to C++ and Numerical Methods</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=bd9e20870c6007c4c509" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=bd9e20870c6007c4c509" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=bd9e20870c6007c4c509" rel="stylesheet" />
+
+  
+  <link href="../_static/vendor/fontawesome/6.5.1/css/all.min.css?digest=bd9e20870c6007c4c509" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.1/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.1/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.1/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=bd9e20870c6007c4c509" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=bd9e20870c6007c4c509" />
+  <script src="../_static/vendor/fontawesome/6.5.1/js/all.min.js?digest=bd9e20870c6007c4c509"></script>
+
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = '07-LinearAlgebra/LinearAlgebraEigen';</script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Ordinary differential equations (and initial value problems)" href="../08-ODE-IVP/InitialValueProblem.html" />
+    <link rel="prev" title="Vector operations: Coefficient-wise" href="../06-ArrayComputing/ArrayComputing-Valarray.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a id="pst-skip-link" class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>
+    Back to top
+  </button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <header>
+  
+    <div class="bd-header navbar navbar-expand-lg bd-navbar">
+    </div>
+  
+  </header>
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+        
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+
+<a class="navbar-brand logo" href="../intro.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="https://upload.wikimedia.org/wikipedia/commons/1/18/ISO_C%2B%2B_Logo.svg" class="logo__image only-light" alt="Introduction to C++ and Numerical Methods - Home"/>
+    <script>document.write(`<img src="https://upload.wikimedia.org/wikipedia/commons/1/18/ISO_C%2B%2B_Logo.svg" class="logo__image only-dark" alt="Introduction to C++ and Numerical Methods - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../intro.html">
+                    Introduction to C++ and Numerical Methods
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Introduction to C++</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../01-IntroCPP/BasicCPP.html">Introduction to C++</a></li>
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="../01-IntroCPP/CPP-FastPacedIntro.html">Very short intro to the basics of c++</a></li>
+
+
+
+
+
+
+
+
+
+
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Numerical Calculus</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../02-derivatives/NumericalDifferentiation.html">Numerical differentiation</a></li>
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="../03-integration/NumericalIntegration_Basics.html">Common Numerical Integration Algorithms</a></li>
+
+
+
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Modern and primitive arrays, and basic Linear Algebra</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../04-vector-containers/ModernArrays.html">Modern arrays</a></li>
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="../05-matrixI/2D-matrices-to-1D-arrays.html">1D Arrays for 2D Matrices</a></li>
+
+<li class="toctree-l1"><a class="reference internal" href="../06-ArrayComputing/ArrayComputing-Valarray.html">Vector operations: Coefficient-wise</a></li>
+
+
+
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Linear Algebra and Numerical Libraries</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Linear Systems : Matrices, Vectors, eigen systems</a></li>
+
+
+
+
+
+
+
+
+
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Ordinary differential equations: Initial value problems</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../08-ODE-IVP/InitialValueProblem.html">Ordinary differential equations (and initial value problems)</a></li>
+
+
+
+
+
+
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="../09-ODE-IVP-OOP/IntroMolecularDynamics.html">Introduction to molecular dynamics through OOP</a></li>
+
+
+
+
+
+
+
+
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/iluvatar1/ProgCPP-lectures-jupyter" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/iluvatar1/ProgCPP-lectures-jupyter/issues/new?title=Issue%20on%20page%20%2F07-LinearAlgebra/LinearAlgebraEigen.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/07-LinearAlgebra/LinearAlgebraEigen.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Linear Systems : Matrices, Vectors, eigen systems</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Linear Systems : Matrices, Vectors, eigen systems</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#eigen-c">Eigen c++</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#solving-ax-b">Solving <span class="math notranslate nohighlight">\(Ax = b\)</span></a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#qr-decomposition">QR decomposition</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#installation-and-compilation-tips">Installation and compilation tips</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise">Exercise</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Exercise</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#lu-decomposition">LU decomposition</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#exercises">Exercises</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#solving-simple-system">Solving simple system</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#performance-between-qr-and-lu">Performance between QR and LU</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#solve-simple-system">Solve simple system</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#simulating-temperature">Simulating temperature</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#laplace-equation-in-2d">Laplace equation in 2D</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#vandermonde-determinant">Vandermonde determinant</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#condition-number">Condition number</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#rotation-matrix">Rotation matrix</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#coupled-oscillators">Coupled oscillators</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#thick-lens-boas-3-15-9">Thick lens (Boas, 3.15.9)</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#products-production">Products production</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#teaching-distribution">Teaching distribution</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#payments">Payments</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#eigen-vectors-and-eigen-values">Eigen vectors and eigen values</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#solving-a-general-eigen-value-problem-with-eigen-c">Solving a general eigen value problem with eigen c++</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#exercises-for-eigen-systems">Exercises for eigen systems</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#eigen-values-hilbert-matrix">Eigen values Hilbert matrix</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#power-method-and-eigen-values">Power method and eigen values</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#power-of-a-matrix">Power of a matrix</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#checking-stability-heath-scientific-computing">Checking stability (Heath, scientific computing)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#markov-chain-heath-scientific-computing">Markov chain (Heath, Scientific Computing)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#todo-matrix-exponential-from-taylor-expansion">TODO Matrix exponential from taylor expansion</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#todo-normal-modes">TODO Normal modes</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#other-eigen-tools">Other eigen tools</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#eigen-arrays-coefficient-wise-computation">Eigen arrays: coefficient wise computation</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">Exercises</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#filtering-data">Filtering data</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#md-simulation">MD simulation</a></li>
+</ul>
+</li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="linear-systems-matrices-vectors-eigen-systems">
+<h1>Linear Systems : Matrices, Vectors, eigen systems<a class="headerlink" href="#linear-systems-matrices-vectors-eigen-systems" title="Permalink to this heading">#</a></h1>
+<p>In this module we will learn how to solve linear systems which are very common in engineering and applied physics.</p>
+<p>Applications are numerous:</p>
+<ul class="simple">
+<li><p>Civil, chemical, electrical, mechanical, …, engineering</p></li>
+<li><p>In biology by using linear algebra to analyze huge data sets regarding protein folding. <a class="reference external" href="https://math.stackexchange.com/questions/571109/any-application-of-vector-spaces-in-biology-or-biotechnology">https://math.stackexchange.com/questions/571109/any-application-of-vector-spaces-in-biology-or-biotechnology</a></p></li>
+<li><p>In genetics to model the evolution of genes.</p></li>
+<li><p>Markov chains on industrial processes with applications of matrices and eigen systems.</p></li>
+<li><p>Population dynamics.</p></li>
+<li><p>Perception of colors.</p></li>
+<li><p>Adjacency graphs: <a class="reference external" href="https://en.wikipedia.org/wiki/Adjacency_matrix">https://en.wikipedia.org/wiki/Adjacency_matrix</a> , <a class="reference external" href="https://towardsdatascience.com/matrices-are-graphs-c9034f79cfd8">https://towardsdatascience.com/matrices-are-graphs-c9034f79cfd8</a></p></li>
+<li><p>Why is linear algebra useful? <a class="reference external" href="https://www.youtube.com/watch?v=X0HXnHKPXSo">https://www.youtube.com/watch?v=X0HXnHKPXSo</a></p></li>
+</ul>
+<p>One particular common operation, the matrix multiplication, is still the subject of ongoing research:</p>
+<div style="text-align: center;">
+    <img src="https://d2r55xnwy6nx47.cloudfront.net/uploads/2021/03/Matrix_multiplication_2880x1620_Lede.jpg" alt="Image Description" width="900">
+    <figcaption>From: "https://d2r55xnwy6nx47.cloudfront.net/uploads/2021/03/Matrix_multiplication_2880x1620_Lede.jpg"</figcaption>
+</div>
+<ul class="simple">
+<li><p><a class="reference external" href="https://www.quantamagazine.org/mathematicians-inch-closer-to-matrix-multiplication-goal-20210323/">https://www.quantamagazine.org/mathematicians-inch-closer-to-matrix-multiplication-goal-20210323/</a></p></li>
+<li><p><a class="reference external" href="https://www.quantamagazine.org/ai-reveals-new-possibilities-in-matrix-multiplication-20221123/">https://www.quantamagazine.org/ai-reveals-new-possibilities-in-matrix-multiplication-20221123/</a></p></li>
+</ul>
+<p>Tips about matrix computing:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://nhigham.com/2022/10/11/seven-sins-of-numerical-linear-algebra/">https://nhigham.com/2022/10/11/seven-sins-of-numerical-linear-algebra/</a></p></li>
+<li><p><a class="reference external" href="http://gregorygundersen.com/blog/2020/12/09/matrix-inversion/">http://gregorygundersen.com/blog/2020/12/09/matrix-inversion/</a></p></li>
+<li><p><a class="reference external" href="https://gamemath.com/book/intro.html">https://gamemath.com/book/intro.html</a></p></li>
+<li><p><a class="reference external" href="https://docs.godotengine.org/en/stable/tutorials/math/vector_math.html">https://docs.godotengine.org/en/stable/tutorials/math/vector_math.html</a></p></li>
+<li><p><a class="reference external" href="https://www.youtube.com/watch?v=fDAPJ7rvcUw">https://www.youtube.com/watch?v=fDAPJ7rvcUw</a></p></li>
+</ul>
+<p>Furthermore, for eigen values, please check
+<a class="reference external" href="https://www.youtube.com/watch?v=PFDu9oVAE-g&amp;amp;t=0s">https://www.youtube.com/watch?v=PFDu9oVAE-g&amp;t=0s</a></p>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="eigen-c">
+<h1>Eigen c++<a class="headerlink" href="#eigen-c" title="Permalink to this heading">#</a></h1>
+<p>Eigen is a C++ template library for linear algebra: matrices, vectors, numerical solvers, and related algorithms.</p>
+<ul class="simple">
+<li><p><a class="reference external" href="http://eigen.tuxfamily.org/index.php?title=Main_Page">http://eigen.tuxfamily.org/index.php?title=Main_Page</a></p></li>
+<li><p><a class="reference external" href="http://eigen.tuxfamily.org/dox/GettingStarted.html">http://eigen.tuxfamily.org/dox/GettingStarted.html</a></p></li>
+</ul>
+<p>Quick reference: <a class="reference external" href="https://eigen.tuxfamily.org/dox/group__QuickRefPage.html">https://eigen.tuxfamily.org/dox/group__QuickRefPage.html</a></p>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="solving-ax-b">
+<h1>Solving <span class="math notranslate nohighlight">\(Ax = b\)</span><a class="headerlink" href="#solving-ax-b" title="Permalink to this heading">#</a></h1>
+<p>This is one of the archetypical problems in numerical algebra. You migh try to implement it by hand, but it will probable be not efficient, stable, etc (Remember <a class="reference external" href="https://nhigham.com/2022/10/11/seven-sins-of-numerical-linear-algebra/">https://nhigham.com/2022/10/11/seven-sins-of-numerical-linear-algebra/</a>). Better to use a numerical library to do the heavy task for you.</p>
+<section id="qr-decomposition">
+<h2>QR decomposition<a class="headerlink" href="#qr-decomposition" title="Permalink to this heading">#</a></h2>
+<p>In this example we are going to use eigen to solve the system using HouseHolder QR decomposition as done in <a class="reference external" href="http://eigen.tuxfamily.org/dox/group__TutorialLinearAlgebra.html">http://eigen.tuxfamily.org/dox/group__TutorialLinearAlgebra.html</a> . Please create a file with the following code, compile it and run it. You are supposed to have already installed eigen (the computer room and the binder machine both have it).</p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp">#</span><span class="w"> </span><span class="cp">include</span><span class="w"> </span><span class="cpf">&lt;iostream&gt;</span>
+<span class="cp">#</span><span class="w"> </span><span class="cp">include</span><span class="w"> </span><span class="cpf">&lt;Eigen/Dense&gt;</span>
+
+<span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">()</span>
+<span class="p">{</span>
+<span class="w">   </span><span class="n">Eigen</span><span class="o">::</span><span class="n">Matrix3d</span><span class="w"> </span><span class="n">A</span><span class="p">;</span>
+<span class="w">   </span><span class="n">Eigen</span><span class="o">::</span><span class="n">Vector3d</span><span class="w"> </span><span class="n">b</span><span class="p">;</span>
+<span class="w">   </span><span class="c1">//std::cout.precision(16);</span>
+<span class="w">   </span><span class="c1">//std::cout.setf(std::ios::scientific);</span>
+<span class="w">   </span>
+<span class="w">   </span><span class="n">A</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="w">  </span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">6</span><span class="p">,</span><span class="w">  </span><span class="mi">7</span><span class="p">,</span><span class="mi">8</span><span class="p">,</span><span class="mi">10</span><span class="p">;</span>
+<span class="w">   </span><span class="n">b</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w"> </span><span class="mi">4</span><span class="p">;</span>
+<span class="w">   </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;Here is the matrix A:</span><span class="se">\n</span><span class="s">&quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">A</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+<span class="w">   </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;Here is the vector b:</span><span class="se">\n</span><span class="s">&quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">b</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+<span class="w">   </span><span class="n">Eigen</span><span class="o">::</span><span class="n">Vector3d</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">A</span><span class="p">.</span><span class="n">colPivHouseholderQr</span><span class="p">().</span><span class="n">solve</span><span class="p">(</span><span class="n">b</span><span class="p">);</span>
+<span class="w">   </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;The solution is:</span><span class="se">\n</span><span class="s">&quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+<span class="w">   </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="p">(</span><span class="n">A</span><span class="o">*</span><span class="n">x</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">b</span><span class="p">).</span><span class="n">norm</span><span class="p">()</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">;</span>
+<span class="w">   </span><span class="k">return</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>If the library is installed on system paths, just compile it as</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>g++<span class="w"> </span>-std<span class="o">=</span>c++17<span class="w"> </span>qr.cpp<span class="w"> </span>-o<span class="w"> </span>qr.x
+</pre></div>
+</div>
+<p>or compile it optimized as</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>g++<span class="w"> </span>-std<span class="o">=</span>c++17<span class="w"> </span>-O3<span class="w"> </span>qr.cpp<span class="w"> </span>-o<span class="w"> </span>qr.x
+</pre></div>
+</div>
+<p>and then run it</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>./qr.x
+</pre></div>
+</div>
+<p>What do you get? is the optimized code faster than the original one? why? why not?</p>
+</section>
+<section id="installation-and-compilation-tips">
+<h2>Installation and compilation tips<a class="headerlink" href="#installation-and-compilation-tips" title="Permalink to this heading">#</a></h2>
+<p>Try the following:</p>
+<ul>
+<li><p>Library installed at <code class="docutils literal notranslate"><span class="pre">/usr/include/eigen3</span></code> or <code class="docutils literal notranslate"><span class="pre">/usr/local/include/eigen3</span></code>: Then you need to tell the compiler where to find the headers</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>g++<span class="w"> </span>-std<span class="o">=</span>c++17<span class="w"> </span>-O3<span class="w"> </span>-I<span class="w"> </span>/usr/include/eigen3<span class="w"> </span>qr.cpp<span class="w"> </span>-o<span class="w"> </span>qr.x
+</pre></div>
+</div>
+<p>or, if you installed it on a specific path</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>g++<span class="w"> </span>-std<span class="o">=</span>c++17<span class="w"> </span>-O3<span class="w"> </span>-I<span class="w"> </span>/path/to/installdir/<span class="w"> </span>qr.cpp<span class="w"> </span>-o<span class="w"> </span>qr.x
+</pre></div>
+</div>
+</li>
+<li><p>Install it : On systems like ubuntu, you could use</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>apt<span class="w"> </span>install<span class="w"> </span>libeigen3-dev
+</pre></div>
+</div>
+<p>In collab,</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>apt<span class="w"> </span>install<span class="w"> </span>libeigen3-dev
+</pre></div>
+</div>
+<p>In the course provisioned binder, you do not need to install, it is already installed.</p>
+</li>
+</ul>
+<section id="exercise">
+<h3>Exercise<a class="headerlink" href="#exercise" title="Permalink to this heading">#</a></h3>
+<p>How to know that the solution is actuallya. solution of the original problem? design a criteria .</p>
+</section>
+<section id="id1">
+<h3>Exercise<a class="headerlink" href="#id1" title="Permalink to this heading">#</a></h3>
+<p>Now create a random matrix and vector, of arbitrary size <code class="docutils literal notranslate"><span class="pre">N</span></code>, and measure the time to compute the solution as a function of <code class="docutils literal notranslate"><span class="pre">N</span></code>. Use <code class="docutils literal notranslate"><span class="pre">Eigen::MatrixXd</span> <span class="pre">A</span> <span class="pre">=</span> <span class="pre">Eigen::MatrixXd::Random(N,</span> <span class="pre">N);</span></code> and <code class="docutils literal notranslate"><span class="pre">std::chrono</span></code></p>
+</section>
+</section>
+<section id="lu-decomposition">
+<h2>LU decomposition<a class="headerlink" href="#lu-decomposition" title="Permalink to this heading">#</a></h2>
+<p>THe LU decomposition os another tool we can use to solve the system (advantages? disadvantages?)</p>
+<p>Now implement the following solution and compare with the previous one? The only change you need is</p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">Eigen</span><span class="o">::</span><span class="n">MatrixXd</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">A</span><span class="p">.</span><span class="n">fullPivLu</span><span class="p">().</span><span class="n">solve</span><span class="p">(</span><span class="n">b</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%writefile</span> lu.cpp
+<span class="c1">### BEGIN SOLUTION</span>
+<span class="c1">### END SOLUTION</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Writing lu.cpp
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="exercises">
+<h1>Exercises<a class="headerlink" href="#exercises" title="Permalink to this heading">#</a></h1>
+<section id="solving-simple-system">
+<h2>Solving simple system<a class="headerlink" href="#solving-simple-system" title="Permalink to this heading">#</a></h2>
+<p>Solve the system</p>
+<img src="fig/linear-example-01.png" width=300>
+</section>
+<section id="performance-between-qr-and-lu">
+<h2>Performance between QR and LU<a class="headerlink" href="#performance-between-qr-and-lu" title="Permalink to this heading">#</a></h2>
+<p>Compare the time between LU and QR decompositions on random matrices.</p>
+</section>
+<section id="solve-simple-system">
+<h2>Solve simple system<a class="headerlink" href="#solve-simple-system" title="Permalink to this heading">#</a></h2>
+<img src="fig/linear-example-03.png" width=600>
+</section>
+<section id="simulating-temperature">
+<h2>Simulating temperature<a class="headerlink" href="#simulating-temperature" title="Permalink to this heading">#</a></h2>
+<ul class="simple">
+<li><p>Temperature discretized <img src="fig/linear-example-04-T.png" width=300></p></li>
+<li><p>System of equations <img src="fig/linear-example-04-T-B.png" width=300></p></li>
+</ul>
+</section>
+<section id="laplace-equation-in-2d">
+<h2>Laplace equation in 2D<a class="headerlink" href="#laplace-equation-in-2d" title="Permalink to this heading">#</a></h2>
+<p>When solving the laplace equation <span class="math notranslate nohighlight">\(\nabla V = 0\)</span> to compute the electrostatic potential on a planar region, you can discretize the derivatives on a grid   and then arrive to the following equation
+\begin{equation}
+V_{i+1,j} + V_{i-1,j} + V_{i,j+1} + V_{i,j-1} - 4V_{i,j} = 0.0.
+\end{equation}
+This can be written as a matrix problem. Solve the matrix problem for a
+square plate of lenght <span class="math notranslate nohighlight">\(L\)</span>, with <span class="math notranslate nohighlight">\(N\)</span> points on each side. The boundary
+conditions, of Dirichlet type, are <span class="math notranslate nohighlight">\(V(x, 0) = 5\sin(\pi x/L)\)</span>, <span class="math notranslate nohighlight">\(V(x, L) =
+   V(0, y) = V(L, y) = 0.0\)</span>.</p>
+</section>
+<section id="vandermonde-determinant">
+<h2>Vandermonde determinant<a class="headerlink" href="#vandermonde-determinant" title="Permalink to this heading">#</a></h2>
+<p>Compute the determinant of the [[<a class="reference external" href="https://en.wikipedia.org/wiki/Vandermonde_matrix">https://en.wikipedia.org/wiki/Vandermonde_matrix</a>][Vandermonde matrix]] of size <span class="math notranslate nohighlight">\(N\times N\)</span>.
+Measure the time as a function of <span class="math notranslate nohighlight">\(N\)</span>.</p>
+</section>
+<section id="condition-number">
+<h2>Condition number<a class="headerlink" href="#condition-number" title="Permalink to this heading">#</a></h2>
+<p>Compute the condition number for an arbitrary matrix <span class="math notranslate nohighlight">\(A\)</span>. Apply it for the
+Vandermonde matrix. The condition number is defined as <span class="math notranslate nohighlight">\(\kappa(A)
+   = |A^{-1}| |A|\)</span></p>
+</section>
+<section id="rotation-matrix">
+<h2>Rotation matrix<a class="headerlink" href="#rotation-matrix" title="Permalink to this heading">#</a></h2>
+<p>Define a rotation matrix in 2d by an angle <span class="math notranslate nohighlight">\(\theta\)</span>. Apply it to a given
+vector and check that it is actually rotated.</p>
+</section>
+<section id="coupled-oscillators">
+<h2>Coupled oscillators<a class="headerlink" href="#coupled-oscillators" title="Permalink to this heading">#</a></h2>
+<p>Imagine that you have two masses <span class="math notranslate nohighlight">\(m_1, m_2\)</span>, coupled through springs in the
+form wall-spring-mass-spring-mass-spring-wall. All spring are linear with
+constant <span class="math notranslate nohighlight">\(k\)</span>. Write the equations of motion, replace each solution with
+<span class="math notranslate nohighlight">\(x_i(t) =  A_i e^{i\omega t}\)</span>, and obtain a matrix representation to get the
+amplitudes. Compute the eigen values and eigen-vectors. Those are the [[<a class="reference external" href="https://en.wikipedia.org/wiki/Normal_mode">https://en.wikipedia.org/wiki/Normal_mode</a>][normal
+modes]] . Extend to n oscillators of the same mass.</p>
+</section>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="thick-lens-boas-3-15-9">
+<h1>Thick lens (Boas, 3.15.9)<a class="headerlink" href="#thick-lens-boas-3-15-9" title="Permalink to this heading">#</a></h1>
+<p>The next matrix is used when discussing a thick lens in air
+\begin{equation}
+A =
+\begin{pmatrix}
+1 &amp; (n-1)/R_2\
+0 &amp; 1
+\end{pmatrix}
+\begin{pmatrix}
+1 &amp; 0\
+d/n &amp; 1
+\end{pmatrix}
+\begin{pmatrix}
+1 &amp; -(n-1)/R_1\
+0 &amp; 1
+\end{pmatrix},
+\end{equation}
+where <span class="math notranslate nohighlight">\(d\)</span> is the thickness of the lens, <span class="math notranslate nohighlight">\(n\)</span> is the refraction index, and <span class="math notranslate nohighlight">\(R_1\)</span> and <span class="math notranslate nohighlight">\(R_2\)</span> are the curvature radius. Element <span class="math notranslate nohighlight">\(A_{12}\)</span> is equal to <span class="math notranslate nohighlight">\(-1/f\)</span>, where <span class="math notranslate nohighlight">\(f\)</span> is the focal distance. Evaluate <span class="math notranslate nohighlight">\(\det A\)</span> and <span class="math notranslate nohighlight">\(1/f\)</span> as functions of <span class="math notranslate nohighlight">\(n \in [1, 3]\)</span>.</p>
+<section id="products-production">
+<h2>Products production<a class="headerlink" href="#products-production" title="Permalink to this heading">#</a></h2>
+<img src="fig/problem-05.png" width=300>
+</section>
+<section id="teaching-distribution">
+<h2>Teaching distribution<a class="headerlink" href="#teaching-distribution" title="Permalink to this heading">#</a></h2>
+<img src="fig/problem-06.png" width=300>
+</section>
+<section id="payments">
+<h2>Payments<a class="headerlink" href="#payments" title="Permalink to this heading">#</a></h2>
+<img src="fig/problem-08.png" width=300>
+</section>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="eigen-vectors-and-eigen-values">
+<h1>Eigen vectors and eigen values<a class="headerlink" href="#eigen-vectors-and-eigen-values" title="Permalink to this heading">#</a></h1>
+<p>Eigen-values (<span class="math notranslate nohighlight">\(\lambda\)</span>) and eigen-vectors (<span class="math notranslate nohighlight">\(\vec v\)</span>) of a matrix <span class="math notranslate nohighlight">\(A\)</span> fulfill the following equation
+\begin{equation}
+A\vec v = \lambda \vec v,
+\end{equation}
+and are extensively use in physics, statistics, computational methods, etc (see <a class="reference external" href="https://en.wikipedia.org/wiki/Eigenvalues_and_eigenvectors?useskin=vector">https://en.wikipedia.org/wiki/Eigenvalues_and_eigenvectors?useskin=vector</a>). For example, they are use to compute (<a class="reference external" href="https://en.wikipedia.org/wiki/Eigenvalues_and_eigenvectors?useskin=vector#Applications">https://en.wikipedia.org/wiki/Eigenvalues_and_eigenvectors?useskin=vector#Applications</a>):</p>
+<ul>
+<li><p>Eigen values of the Schroedinger equation</p>
+  <div style="text-align: center;">
+  <img src="https://upload.wikimedia.org/wikipedia/commons/c/cf/HAtomOrbitals.png" alt="Image Description" width="200">
+  <figcaption>From: "https://upload.wikimedia.org/wikipedia/commons/c/cf/HAtomOrbitals.png"</figcaption>
+</li>
+</ul>
+</div>
+- Diagonalization basis for matrices: Given a matrix $A$, and the matrix $P$ whose column vectors are the eigenvectors of $A$, then one can apply a basis trnasformation, to move to the eigen-vector matrices, and obtain a diagonal matrix $D$ (whose elements are the eigen values of $A$), as 
+    \begin{equation}
+    D = P^{-1}AP
+    \end{equation}
+    <div style="text-align: center;">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/4/4e/Diagonalization_as_rotation.gif" alt="Image Description" width="300">
+    <figcaption>From: "https://upload.wikimedia.org/wikipedia/commons/4/4e/Diagonalization_as_rotation.gif"</figcaption>
+</div>
+<ul>
+<li><p>Normal mode of oscillatory systems</p>
+  <div style="text-align: center;">
+  <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/82/Mode_Shape_of_a_Tuning_Fork_at_Eigenfrequency_440.09_Hz.gif/440px-Mode_Shape_of_a_Tuning_Fork_at_Eigenfrequency_440.09_Hz.gif" alt="Image Description" width="300">
+  <figcaption>From: "https://upload.wikimedia.org/wikipedia/commons/thumb/8/82/Mode_Shape_of_a_Tuning_Fork_at_Eigenfrequency_440.09_Hz.gif/440px-Mode_Shape_of_a_Tuning_Fork_at_Eigenfrequency_440.09_Hz.gif"</figcaption>
+</li>
+</ul>
+</div>
+- Principal component analysis in data science
+    <div style="text-align: center;">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/15/GaussianScatterPCA.png/440px-GaussianScatterPCA.png" alt="Image Description" width="300">
+    <figcaption>From: "https://upload.wikimedia.org/wikipedia/commons/thumb/1/15/GaussianScatterPCA.png/440px-GaussianScatterPCA.png"</figcaption>
+</div>
+- Image analysis
+    <div style="text-align: center;">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/6/67/Eigenfaces.png" alt="Image Description" width="200">
+    <figcaption>From: "https://upload.wikimedia.org/wikipedia/commons/6/67/Eigenfaces.png"</figcaption>
+</div>
+- Moment of inertia
+    <div style="text-align: center;">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/6d/Triaxial_Ellipsoid.jpg/440px-Triaxial_Ellipsoid.jpg" alt="Image Description" width="300">
+    <figcaption>From: "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6d/Triaxial_Ellipsoid.jpg/440px-Triaxial_Ellipsoid.jpg"</figcaption>
+</div>
+- Stress tensor principal axis
+    <div style="text-align: center;">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e4/Plastic_Protractor_Polarized_05375.jpg/440px-Plastic_Protractor_Polarized_05375.jpg" alt="Image Description" width="300">
+    <figcaption>From: "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e4/Plastic_Protractor_Polarized_05375.jpg/440px-Plastic_Protractor_Polarized_05375.jpg"</figcaption>
+</div><section id="solving-a-general-eigen-value-problem-with-eigen-c">
+<h2>Solving a general eigen value problem with eigen c++<a class="headerlink" href="#solving-a-general-eigen-value-problem-with-eigen-c" title="Permalink to this heading">#</a></h2>
+<p>Following the documentation of the general eigen solver,
+<a class="reference external" href="https://eigen.tuxfamily.org/dox/classEigen_1_1EigenSolver.html">https://eigen.tuxfamily.org/dox/classEigen_1_1EigenSolver.html</a>, we can use the
+example to show how it works:</p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;iostream&gt;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;string&gt;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;Eigen/Dense&gt;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;complex&gt;</span>
+
+<span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">argc</span><span class="p">,</span><span class="w"> </span><span class="kt">char</span><span class="w"> </span><span class="o">**</span><span class="n">argv</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="k">const</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">N</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">stoi</span><span class="p">(</span><span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">]);</span>
+
+<span class="w">  </span><span class="n">Eigen</span><span class="o">::</span><span class="n">MatrixXd</span><span class="w"> </span><span class="n">A</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Eigen</span><span class="o">::</span><span class="n">MatrixXd</span><span class="o">::</span><span class="n">Random</span><span class="p">(</span><span class="n">N</span><span class="p">,</span><span class="n">N</span><span class="p">);</span>
+<span class="w">  </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;Here is a random matrix, A:&quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="w"> </span>
+<span class="w">            </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">A</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+
+<span class="w">  </span><span class="n">Eigen</span><span class="o">::</span><span class="n">EigenSolver</span><span class="o">&lt;</span><span class="n">Eigen</span><span class="o">::</span><span class="n">MatrixXd</span><span class="o">&gt;</span><span class="w"> </span><span class="n">es</span><span class="p">(</span><span class="n">A</span><span class="p">);</span>
+<span class="w">  </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;The eigenvalues of A are:&quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="w"> </span>
+<span class="w">            </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">es</span><span class="p">.</span><span class="n">eigenvalues</span><span class="p">()</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+<span class="w">  </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;The matrix of eigenvectors, V, is:&quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="w"> </span>
+<span class="w">            </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">es</span><span class="p">.</span><span class="n">eigenvectors</span><span class="p">()</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+
+<span class="w">  </span><span class="n">std</span><span class="o">::</span><span class="n">complex</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;</span><span class="w"> </span><span class="n">lambda</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">es</span><span class="p">.</span><span class="n">eigenvalues</span><span class="p">()[</span><span class="mi">0</span><span class="p">];</span>
+<span class="w">  </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;Consider the first eigenvalue, lambda = &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">lambda</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+<span class="w">  </span><span class="n">Eigen</span><span class="o">::</span><span class="n">VectorXcd</span><span class="w"> </span><span class="n">v</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">es</span><span class="p">.</span><span class="n">eigenvectors</span><span class="p">().</span><span class="n">col</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span>
+<span class="w">  </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;If v is the corresponding eigenvector, then lambda * v = &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="w"> </span>
+<span class="w">            </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">lambda</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">v</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+<span class="w">  </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;... and A * v = &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="w"> </span>
+<span class="w">            </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">A</span><span class="p">.</span><span class="n">cast</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">complex</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;</span><span class="w"> </span><span class="o">&gt;</span><span class="p">()</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">v</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+
+<span class="w">  </span><span class="n">Eigen</span><span class="o">::</span><span class="n">MatrixXcd</span><span class="w"> </span><span class="n">D</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">es</span><span class="p">.</span><span class="n">eigenvalues</span><span class="p">().</span><span class="n">asDiagonal</span><span class="p">();</span>
+<span class="w">  </span><span class="n">Eigen</span><span class="o">::</span><span class="n">MatrixXcd</span><span class="w"> </span><span class="n">V</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">es</span><span class="p">.</span><span class="n">eigenvectors</span><span class="p">();</span>
+<span class="w">  </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;Finally, V * D * V^(-1) = &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="w"> </span>
+<span class="w">            </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">V</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">D</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">V</span><span class="p">.</span><span class="n">inverse</span><span class="p">()</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+
+<span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Please compile and run it. This is a very general example and cam be simplified for specific matrices (hermitian) to improve efficiency.</p>
+</section>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="exercises-for-eigen-systems">
+<h1>Exercises for eigen systems<a class="headerlink" href="#exercises-for-eigen-systems" title="Permalink to this heading">#</a></h1>
+<section id="eigen-values-hilbert-matrix">
+<h2>Eigen values Hilbert matrix<a class="headerlink" href="#eigen-values-hilbert-matrix" title="Permalink to this heading">#</a></h2>
+<p>Compute the eigen values and the condition number for the <a class="reference external" href="https://en.wikipedia.org/wiki/Hilbert_matrix">https://en.wikipedia.org/wiki/Hilbert_matrix</a>.</p>
+</section>
+<section id="power-method-and-eigen-values">
+<h2>Power method and eigen values<a class="headerlink" href="#power-method-and-eigen-values" title="Permalink to this heading">#</a></h2>
+<p>Apply the <a class="reference external" href="https://en.wikipedia.org/wiki/Power_iteration">https://en.wikipedia.org/wiki/Power_iteration</a> to compute the maximum eigen value of the Vandermonde
+matrix (or any other matrix).</p>
+</section>
+<section id="power-of-a-matrix">
+<h2>Power of a matrix<a class="headerlink" href="#power-of-a-matrix" title="Permalink to this heading">#</a></h2>
+<p>Given a matrix <span class="math notranslate nohighlight">\(A\)</span>, one can compute easily <span class="math notranslate nohighlight">\(A^k\)</span> using diagonalization: <span class="math notranslate nohighlight">\(A^k = (PDP^{-1})^k = PDP^{-1}PDP^{-1} ... PDP^{-1} = PD^{k}P^{-1}\)</span>, where <span class="math notranslate nohighlight">\(D^k\)</span> is just raising the eigen values to the given k power. Implement this in a function that receives an eigen matrix and a power k and returns the corresponding result.</p>
+</section>
+<section id="checking-stability-heath-scientific-computing">
+<h2>Checking stability (Heath, scientific computing)<a class="headerlink" href="#checking-stability-heath-scientific-computing" title="Permalink to this heading">#</a></h2>
+<p>Compute the eigen values of the matrix
+\begin{equation}
+A =
+\begin{pmatrix}
+9 &amp; 4.5 &amp; 3\
+-56 &amp; -28 &amp; -18\
+60 &amp; 30 &amp; 19
+\end{pmatrix}
+\end{equation}
+Then do it again, but change the 19 to 18.95. What is the relative change in the eigen values magnitudes? Do the same changing it to 19.05. Can you draw any conclusion about this? can you devise a condition number to characterize this?</p>
+</section>
+<section id="markov-chain-heath-scientific-computing">
+<h2>Markov chain (Heath, Scientific Computing)<a class="headerlink" href="#markov-chain-heath-scientific-computing" title="Permalink to this heading">#</a></h2>
+<p>A Markov chain is a representation of a Markov process, which, in turns, is a random process with no memory: the current state depends only on the previous one and no more. The probability of a transition from state j to state i is given by <span class="math notranslate nohighlight">\(a_{ij}\)</span>,where <span class="math notranslate nohighlight">\(0 \le a_{ij} \le 1\)</span> and <span class="math notranslate nohighlight">\(\sum_{i=1}^n a_{ij} =1\)</span>. Let <span class="math notranslate nohighlight">\(A\)</span> denote the matrix of transition probabilities, and let <span class="math notranslate nohighlight">\(x^{(k)}\)</span> denote the probability that the system is  in state <span class="math notranslate nohighlight">\(i\)</span> after transition <span class="math notranslate nohighlight">\(k\)</span>. If the initial probability distribution vector is <span class="math notranslate nohighlight">\(x^{(0)}\)</span>, then the probability distribution vector after <span class="math notranslate nohighlight">\(k\)</span> steps is given by
+\begin{equation}
+x^{(k)} = A x^{(k-1)} = A^k x^{(0)}.
+\end{equation}</p>
+<p>Consider the matrix
+\begin{equation}
+A =
+\begin{pmatrix}
+0.8 &amp; 0.2 &amp; 0.1\
+0.1 &amp; 0.7 &amp; 0.3\
+0.1 &amp; 0.1 &amp; 0.6\
+\end{pmatrix},
+\end{equation}
+and suposse the system is initially in state 1.</p>
+<ul class="simple">
+<li><p>What is the probability distribution vector after three steps?</p></li>
+<li><p>What is the long-term value of the probability distribution vector?</p></li>
+<li><p>Does the long-term value of the probability distribution vector depend on the particular starting value ?</p></li>
+<li><p>What is the value of <span class="math notranslate nohighlight">\(\lim_{k \to \infty} A^k\)</span> , and what is the rank of this matrix?</p></li>
+<li><p>Explain your previous results in terms of the eigenvalues and eigenvectors of A</p></li>
+<li><p>Must 1 always be an eigenvalue of the transition matrix of a Markov chain? Why?</p></li>
+<li><p>A probability distribution vector x is said to be stationary if Ax = x. How can you determine such a stationary value x using the eigenvalues and eigenvectors of A?</p></li>
+<li><p>How can you determine a stationary value x without knowledge of the eigenvalues and eigen- vectors of A?</p></li>
+</ul>
+<!-- 
+
+A singular matrix has at least a null eigen value. But what about a "very small" eigen value? Consider a matrix of the form
+\begin{equation}
+A = 
+\begin{pmatrix}
+1 & -1 & -1 & -1 & -1\\
+0 &  1 & -1 & -1 & -1\\
+0 &  0 & 1 & -1 & -1\\
+0 &  0 & 0 & 1 & -1\\
+0 &  0 & 0 & 0 & 1
+\end{pmatrix}
+\end{equation}
+whose eigen values are 1 --></section>
+<section id="todo-matrix-exponential-from-taylor-expansion">
+<h2>TODO Matrix exponential from taylor expansion<a class="headerlink" href="#todo-matrix-exponential-from-taylor-expansion" title="Permalink to this heading">#</a></h2>
+</section>
+<section id="todo-normal-modes">
+<h2>TODO Normal modes<a class="headerlink" href="#todo-normal-modes" title="Permalink to this heading">#</a></h2>
+</section>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="other-eigen-tools">
+<h1>Other eigen tools<a class="headerlink" href="#other-eigen-tools" title="Permalink to this heading">#</a></h1>
+<ul class="simple">
+<li><p><a class="reference external" href="http://eigen.tuxfamily.org/dox/group__Sparse__chapter.html">http://eigen.tuxfamily.org/dox/group__Sparse__chapter.html</a></p></li>
+<li><p><a class="reference external" href="http://eigen.tuxfamily.org/dox/group__Geometry__chapter.html">http://eigen.tuxfamily.org/dox/group__Geometry__chapter.html</a></p></li>
+</ul>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="eigen-arrays-coefficient-wise-computation">
+<h1>Eigen arrays: coefficient wise computation<a class="headerlink" href="#eigen-arrays-coefficient-wise-computation" title="Permalink to this heading">#</a></h1>
+<p>This library also implements element-wise operations and data structs,
+<a class="reference external" href="https://eigen.tuxfamily.org/dox/group__TutorialArrayClass.html">https://eigen.tuxfamily.org/dox/group__TutorialArrayClass.html</a> ,
+<a class="reference external" href="https://eigen.tuxfamily.org/dox/group__QuickRefPage.html#title6">https://eigen.tuxfamily.org/dox/group__QuickRefPage.html#title6</a> . There are many
+overloaded operations that you can use. Plase check the docs.</p>
+<p>This is an example of a sum, element-wise</p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;eigen3/Eigen/Dense&gt;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;iostream&gt;</span>
+
+<span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">()</span>
+<span class="p">{</span>
+<span class="w">  </span><span class="n">Eigen</span><span class="o">::</span><span class="n">ArrayXXf</span><span class="w"> </span><span class="n">a</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="mi">3</span><span class="p">);</span>
+<span class="w">  </span><span class="n">Eigen</span><span class="o">::</span><span class="n">ArrayXXf</span><span class="w"> </span><span class="n">b</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="mi">3</span><span class="p">);</span>
+<span class="w">  </span><span class="n">a</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span>
+<span class="w">       </span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">6</span><span class="p">,</span>
+<span class="w">       </span><span class="mi">7</span><span class="p">,</span><span class="mi">8</span><span class="p">,</span><span class="mi">9</span><span class="p">;</span>
+<span class="w">  </span><span class="n">b</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span>
+<span class="w">       </span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span>
+<span class="w">       </span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">;</span>
+
+<span class="w">  </span><span class="c1">// Adding two arrays</span>
+<span class="w">  </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;a + b = &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">b</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+
+<span class="w">  </span><span class="c1">// Subtracting a scalar from an array</span>
+<span class="w">  </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;a - 2 = &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">2</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>and this an example for vector product</p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;eigen3/Eigen/Dense&gt;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;iostream&gt;</span>
+
+<span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">()</span>
+<span class="p">{</span>
+<span class="w">  </span><span class="n">Eigen</span><span class="o">::</span><span class="n">ArrayXXf</span><span class="w"> </span><span class="n">a</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">);</span>
+<span class="w">  </span><span class="n">Eigen</span><span class="o">::</span><span class="n">ArrayXXf</span><span class="w"> </span><span class="n">b</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">);</span>
+<span class="w">  </span><span class="n">a</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span>
+<span class="w">       </span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">;</span>
+<span class="w">  </span><span class="n">b</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="mi">6</span><span class="p">,</span>
+<span class="w">       </span><span class="mi">7</span><span class="p">,</span><span class="mi">8</span><span class="p">;</span>
+<span class="w">  </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;a * b = &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">b</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>More operations:</p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;eigen3/Eigen/Dense&gt;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;iostream&gt;</span>
+
+<span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">()</span>
+<span class="p">{</span>
+<span class="w">  </span><span class="n">Eigen</span><span class="o">::</span><span class="n">ArrayXf</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Eigen</span><span class="o">::</span><span class="n">ArrayXf</span><span class="o">::</span><span class="n">Random</span><span class="p">(</span><span class="mi">5</span><span class="p">);</span>
+<span class="w">  </span><span class="n">a</span><span class="w"> </span><span class="o">*=</span><span class="w"> </span><span class="mi">2</span><span class="p">;</span>
+<span class="w">  </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;a =&quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span>
+<span class="w">            </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+<span class="w">  </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;a.abs() =&quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span>
+<span class="w">            </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">a</span><span class="p">.</span><span class="n">abs</span><span class="p">()</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+<span class="w">  </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;a.abs().sqrt() =&quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span>
+<span class="w">            </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">a</span><span class="p">.</span><span class="n">abs</span><span class="p">().</span><span class="n">sqrt</span><span class="p">()</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+<span class="w">  </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;a.min(a.abs().sqrt()) =&quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span>
+<span class="w">            </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">a</span><span class="p">.</span><span class="n">min</span><span class="p">(</span><span class="n">a</span><span class="p">.</span><span class="n">abs</span><span class="p">().</span><span class="n">sqrt</span><span class="p">())</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="id2">
+<h1>Exercises<a class="headerlink" href="#id2" title="Permalink to this heading">#</a></h1>
+<section id="filtering-data">
+<h2>Filtering data<a class="headerlink" href="#filtering-data" title="Permalink to this heading">#</a></h2>
+<p>Create N=1000 points between 0
+and <span class="math notranslate nohighlight">\(2\pi\)</span>, then compute the <span class="math notranslate nohighlight">\(\sin\)</span> of those numbers, and finally print only the values that fulfill that
+<span class="math notranslate nohighlight">\(|\sin x| \le 0.5\)</span>. All of this without using loops.</p>
+</section>
+<section id="md-simulation">
+<h2>MD simulation<a class="headerlink" href="#md-simulation" title="Permalink to this heading">#</a></h2>
+<p>If you discretize time in steps of size <span class="math notranslate nohighlight">\(\delta t\)</span>, and you have the forces on
+a given ideal particle, you can compute the next position using the Euler
+algorithm,
+\begin{align}
+\vec R(t+\delta t) &amp;= \vec R(t) + \delta t \vec V(t),\
+\vec V(t + \delta t) &amp;= \vec V(t) + \delta t \vec F(t)/m.\
+\end{align}
+Use valarrays to model the vectors. Compute the trayectory of a
+particle of mass <span class="math notranslate nohighlight">\(m=0.987\)</span>, with initial conditions <span class="math notranslate nohighlight">\(\vec R(0) = (0, 0, 4.3),
+   V(0) = (0.123, 0.0, 0.98)\)</span>, under the influence of gravity. Plot it. Later add
+some damping. Later add some interaction with the ground.</p>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./07-LinearAlgebra"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="../06-ArrayComputing/ArrayComputing-Valarray.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Vector operations: Coefficient-wise</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="../08-ODE-IVP/InitialValueProblem.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Ordinary differential equations (and initial value problems)</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Linear Systems : Matrices, Vectors, eigen systems</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#eigen-c">Eigen c++</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#solving-ax-b">Solving <span class="math notranslate nohighlight">\(Ax = b\)</span></a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#qr-decomposition">QR decomposition</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#installation-and-compilation-tips">Installation and compilation tips</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise">Exercise</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Exercise</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#lu-decomposition">LU decomposition</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#exercises">Exercises</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#solving-simple-system">Solving simple system</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#performance-between-qr-and-lu">Performance between QR and LU</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#solve-simple-system">Solve simple system</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#simulating-temperature">Simulating temperature</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#laplace-equation-in-2d">Laplace equation in 2D</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#vandermonde-determinant">Vandermonde determinant</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#condition-number">Condition number</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#rotation-matrix">Rotation matrix</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#coupled-oscillators">Coupled oscillators</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#thick-lens-boas-3-15-9">Thick lens (Boas, 3.15.9)</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#products-production">Products production</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#teaching-distribution">Teaching distribution</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#payments">Payments</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#eigen-vectors-and-eigen-values">Eigen vectors and eigen values</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#solving-a-general-eigen-value-problem-with-eigen-c">Solving a general eigen value problem with eigen c++</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#exercises-for-eigen-systems">Exercises for eigen systems</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#eigen-values-hilbert-matrix">Eigen values Hilbert matrix</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#power-method-and-eigen-values">Power method and eigen values</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#power-of-a-matrix">Power of a matrix</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#checking-stability-heath-scientific-computing">Checking stability (Heath, scientific computing)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#markov-chain-heath-scientific-computing">Markov chain (Heath, Scientific Computing)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#todo-matrix-exponential-from-taylor-expansion">TODO Matrix exponential from taylor expansion</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#todo-normal-modes">TODO Normal modes</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#other-eigen-tools">Other eigen tools</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#eigen-arrays-coefficient-wise-computation">Eigen arrays: coefficient wise computation</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">Exercises</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#filtering-data">Filtering data</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#md-simulation">MD simulation</a></li>
+</ul>
+</li>
+</ul>
+
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By William Oquendo
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2024.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=bd9e20870c6007c4c509"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=bd9e20870c6007c4c509"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

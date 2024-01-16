@@ -1,7 +1,0 @@
-*.out*
-*.x*
-*.cpp
-*.py
-*.txt
-*.ipynb_checkpoints*
-*.virtual_documents
