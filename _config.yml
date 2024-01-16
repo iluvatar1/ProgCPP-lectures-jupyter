@@ -7,6 +7,7 @@
 # Book settings
 title                       : Introduction to C++ and Numerical Methods  # The title of the book. Will be placed in the left navbar.
 author                      : William Oquendo  # The author of the book
+email                       : wfoquendop@unal.edu.co  # An email address to contact the author
 copyright                   : "2024"  # Copyright year to be placed in the footer
 logo                        : https://upload.wikimedia.org/wikipedia/commons/1/18/ISO_C%2B%2B_Logo.svg  # A path to the book logo
 # Patterns to skip when building the book. Can be glob-style (e.g. "*skip.ipynb")
@@ -39,11 +40,17 @@ latex:
 #######################################################################################
 # Launch button settings
 launch_buttons:
+  use_binder_button         : true  # Add a binder button to pages (requires the repository to run on Binder)
   notebook_interface        : jupyterlab  # The interface interactive links will activate ["classic", "jupyterlab"]
-  binderhub_url             : ""  # The URL of the BinderHub (e.g., https://mybinder.org)
+  binderhub_url             : "https://mybinder.org"  # The URL of the BinderHub (e.g., https://mybinder.org)
+  binder_repo_base          : "https://github.com/"  # The site on which the textbook repository is hosted
+  binder_repo_org           : "iluvatar1"  # The username or organization that owns this repository
+  binder_repo_name          : "ProgCPP-lectures-jupyter"  # The name of the repository on the web
+  binder_repo_branch        : "gh-pages"  # The branch on which your textbook is hosted.
+  binderhub_interact_text   : "Interact"  # The text that interact buttons will contain.
   jupyterhub_url            : ""  # The URL of the JupyterHub (e.g., https://datahub.berkeley.edu)
   thebe                     : false  # Add a thebe button to pages (requires the repository to run on Binder)
-  colab_url                 : "" # The URL of Google Colab (https://colab.research.google.com)
+  colab_url                 : "https://colab.research.google.com/github/iluvatar1/ProgCPP-lectures-jupyter/blob/master" # The URL of Google Colab (https://colab.research.google.com)
 # Information about where the book exists on the web
 repository:
   url: https://github.com/iluvatar1/ProgCPP-lectures-jupyter  # Online location of your book
@@ -55,3 +62,12 @@ repository:
 html:
   use_issues_button: true
   use_repository_button: true
+
+# Parsing math blocks
+parse:
+  myst_enable_extensions: ["dollarmath", "amsmath"]
+# Displaying interactive plotly figures
+sphinx:
+  config:
+    html_js_files:
+    - https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js
