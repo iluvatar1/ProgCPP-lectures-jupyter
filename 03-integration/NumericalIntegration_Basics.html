@@ -578,8 +578,8 @@ where \)</span>x_k = x_0 + k \Delta x<span class="math notranslate nohighlight">
 <section id="exercise">
 <h2><strong>Exercise</strong><a class="headerlink" href="#exercise" title="Permalink to this heading">#</a></h2>
 <p>Now use your implementation to compute the error function as a function of <span class="math notranslate nohighlight">\(x\)</span>, using the partition shown. Your program must print also the relative error, comparing with the “exact” value from https://en.cppreference.com/w/cpp/numeric/math/erf . Print your data to <code class="docutils literal notranslate"><span class="pre">erf_data.txt</span></code> (print the x value, the numerical value of the integral, and the relative error)</p>
-<div class="amsmath math notranslate nohighlight" id="equation-c3b6e922-3fab-4ca9-a8bf-8ef7fa51bd2f">
-<span class="eqno">(1)<a class="headerlink" href="#equation-c3b6e922-3fab-4ca9-a8bf-8ef7fa51bd2f" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-8fd61b2d-5fac-4d74-840b-bc9659014e0f">
+<span class="eqno">(1)<a class="headerlink" href="#equation-8fd61b2d-5fac-4d74-840b-bc9659014e0f" title="Permalink to this equation">#</a></span>\[\begin{equation}
 f(x) = \frac{2}{\sqrt{\pi}}\int_0^x e^{-t^2} dt
 \end{equation}\]</div>
 <p><span class="math notranslate nohighlight">\(x \in [0, 10]\)</span>, <span class="math notranslate nohighlight">\(\Delta x = 0.1\)</span></p>
@@ -631,8 +631,8 @@ f(x) = \frac{2}{\sqrt{\pi}}\int_0^x e^{-t^2} dt
 </tbody>
 </table>
 <p>Now you compute the integral as</p>
-<div class="amsmath math notranslate nohighlight" id="equation-de0e4eaf-b78c-4d11-931a-25b2f7d5f47e">
-<span class="eqno">(2)<a class="headerlink" href="#equation-de0e4eaf-b78c-4d11-931a-25b2f7d5f47e" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-9ba755bb-704d-49f4-b2cb-7758d9248498">
+<span class="eqno">(2)<a class="headerlink" href="#equation-9ba755bb-704d-49f4-b2cb-7758d9248498" title="Permalink to this equation">#</a></span>\[\begin{equation}
 \int_a^b f(x) dx \simeq \frac{\Delta x}{3}\left( f(x_0) + 4 \sum_{k=1}^{N/2} f(x_{2k-1}) + 2\sum_{k=1}^{N/2-1} f(x_{2k}) + f(x_N)\right) + O(N^{-3}).
 \end{equation}\]</div>
 <p>Notice that <span class="math notranslate nohighlight">\(N\)</span> must be even.</p>
@@ -729,8 +729,8 @@ using the \)</span>w_i$ from the method.</p>
 very powerful method to compute integrals, where the points and weights are
 wisely chosen to improve the algorithm precision. The method is formulated in
 the range [-1, 1], so maybe the general integral must be scaled as</p>
-<div class="amsmath math notranslate nohighlight" id="equation-42d91761-ec45-494d-bc28-68502a264f30">
-<span class="eqno">(3)<a class="headerlink" href="#equation-42d91761-ec45-494d-bc28-68502a264f30" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-06d57161-4f10-479e-a57d-531f8adce3ee">
+<span class="eqno">(3)<a class="headerlink" href="#equation-06d57161-4f10-479e-a57d-531f8adce3ee" title="Permalink to this equation">#</a></span>\[\begin{equation}
 \int_a^b f(x) dx = \frac{b-a}{2} \sum_{j=1}^{n} w_j f\left(\frac{b-a}{2} x_j + \frac{a+b}{2} \right) + O((b-a)^{2n+1}).
 \end{equation}\]</div>
 <p>The next table shows the points positions and weights for the Gaussian integral
@@ -843,14 +843,14 @@ and compute the velocity as a function of time by integrating at each time step.
 <section id="cumulative-probability">
 <h2>Cumulative probability<a class="headerlink" href="#cumulative-probability" title="Permalink to this heading">#</a></h2>
 <p>The probability density function for the <a class="reference external" href="https://en.wikipedia.org/wiki/Gamma_distribution">Gamma distribution</a> is</p>
-<div class="amsmath math notranslate nohighlight" id="equation-b8ba8363-ba34-4bc6-9395-2accb4a786bf">
-<span class="eqno">(4)<a class="headerlink" href="#equation-b8ba8363-ba34-4bc6-9395-2accb4a786bf" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-11cdfed1-3005-4980-8b0e-708a7336415a">
+<span class="eqno">(4)<a class="headerlink" href="#equation-11cdfed1-3005-4980-8b0e-708a7336415a" title="Permalink to this equation">#</a></span>\[\begin{equation}
 f(x; \alpha, \beta) = \frac{\beta^\alpha}{\Gamma(\alpha) x^{\alpha -1} e^{-\beta x} },
 \end{equation}\]</div>
 <p>para <span class="math notranslate nohighlight">\(0 &lt; x &lt; \infty\)</span>. Compute and plot the cumulative density function, using
 both the simpson method and the gaussian <span class="math notranslate nohighlight">\(g_7\)</span>, defined as</p>
-<div class="amsmath math notranslate nohighlight" id="equation-52808e67-db8e-4c03-9071-85f3cd421a17">
-<span class="eqno">(5)<a class="headerlink" href="#equation-52808e67-db8e-4c03-9071-85f3cd421a17" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-61f444ce-d5cb-4b4e-9ff9-19795792436d">
+<span class="eqno">(5)<a class="headerlink" href="#equation-61f444ce-d5cb-4b4e-9ff9-19795792436d" title="Permalink to this equation">#</a></span>\[\begin{equation}
 F(x; \alpha, \beta) = \int_0^x dt f(t; \alpha, \beta),
 \end{equation}\]</div>
 <p>for <span class="math notranslate nohighlight">\(x \in [0.0, 20.0]\)</span>, with <span class="math notranslate nohighlight">\(\alpha = 7.5, \beta = 1.0\)</span>.</p>
@@ -858,8 +858,8 @@ F(x; \alpha, \beta) = \int_0^x dt f(t; \alpha, \beta),
 <section id="di-logarithm-function">
 <h2>Di-logarithm function<a class="headerlink" href="#di-logarithm-function" title="Permalink to this heading">#</a></h2>
 <p>The di-logarithm function is defined as</p>
-<div class="amsmath math notranslate nohighlight" id="equation-85cd082c-1bb3-411a-8522-d7ce20397811">
-<span class="eqno">(6)<a class="headerlink" href="#equation-85cd082c-1bb3-411a-8522-d7ce20397811" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-6daac106-f672-4d17-bc7a-906e5317b6c8">
+<span class="eqno">(6)<a class="headerlink" href="#equation-6daac106-f672-4d17-bc7a-906e5317b6c8" title="Permalink to this equation">#</a></span>\[\begin{equation}
 \mathrm{Li}_2(x) = -\int_0^x \frac{\ln(1-t)}{t} dt.
 \end{equation}\]</div>
 <p>Plot the di-logarithm function for <span class="math notranslate nohighlight">\(x \in (0.0, 1.0)\)</span>. If you use simpson,
@@ -869,31 +869,31 @@ transform the variable and/or split the integral to avoid numerical problems.</p
 <section id="moment-distribution">
 <h2>Moment distribution<a class="headerlink" href="#moment-distribution" title="Permalink to this heading">#</a></h2>
 <p>The kth moment for a probability distribution is</p>
-<div class="amsmath math notranslate nohighlight" id="equation-fd3cd991-3780-4b45-9da3-6d608feaf630">
-<span class="eqno">(7)<a class="headerlink" href="#equation-fd3cd991-3780-4b45-9da3-6d608feaf630" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-7dd35bc8-d36a-4e91-9a10-11d7e151d19a">
+<span class="eqno">(7)<a class="headerlink" href="#equation-7dd35bc8-d36a-4e91-9a10-11d7e151d19a" title="Permalink to this equation">#</a></span>\[\begin{equation}
 \lt x^k \gt = \int x^k f(x) dx,
 \end{equation}\]</div>
 <p>Compute the first ten moments for the  <a class="reference external" href="https://en.wikipedia.org/wiki/Gamma_distribution">Gamma distribution</a> ,</p>
-<div class="amsmath math notranslate nohighlight" id="equation-cf77a0b5-d54d-41cc-8fcd-b14e1d8f5cf6">
-<span class="eqno">(8)<a class="headerlink" href="#equation-cf77a0b5-d54d-41cc-8fcd-b14e1d8f5cf6" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-59f158d5-950c-4bd0-a305-47dc2fae741d">
+<span class="eqno">(8)<a class="headerlink" href="#equation-59f158d5-950c-4bd0-a305-47dc2fae741d" title="Permalink to this equation">#</a></span>\[\begin{equation}
 f(x; \alpha, \beta) = \frac{\beta^\alpha}{\Gamma(\alpha) x^{\alpha -1} e^{-\beta x} }.
 \end{equation}\]</div>
 </section>
 <section id="arch-lenght-mass-centroid">
 <h2>Arch lenght, mass, centroid<a class="headerlink" href="#arch-lenght-mass-centroid" title="Permalink to this heading">#</a></h2>
 <p>The arc length of a curve <span class="math notranslate nohighlight">\(y(x)\)</span> is given by</p>
-<div class="amsmath math notranslate nohighlight" id="equation-bf7fb689-fe43-40e6-afdb-4185204dc9c6">
-<span class="eqno">(9)<a class="headerlink" href="#equation-bf7fb689-fe43-40e6-afdb-4185204dc9c6" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-6a80995e-f20a-4324-84cd-2d9538a4f325">
+<span class="eqno">(9)<a class="headerlink" href="#equation-6a80995e-f20a-4324-84cd-2d9538a4f325" title="Permalink to this equation">#</a></span>\[\begin{equation}
 s = \int_a^b dx \sqrt{1 + \left(\frac{dy}{dx}  \right)^2}.
 \end{equation}\]</div>
 <p>If a linear body has a density <span class="math notranslate nohighlight">\(\rho(x)\)</span>, the total mass would be</p>
-<div class="amsmath math notranslate nohighlight" id="equation-9bba5ed4-2075-4333-8f5e-c333c69efef4">
-<span class="eqno">(10)<a class="headerlink" href="#equation-9bba5ed4-2075-4333-8f5e-c333c69efef4" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-487fb573-1dba-49f6-a832-dce0b9f30e57">
+<span class="eqno">(10)<a class="headerlink" href="#equation-487fb573-1dba-49f6-a832-dce0b9f30e57" title="Permalink to this equation">#</a></span>\[\begin{equation}
 M = \int \rho(x) ds.
 \end{equation}\]</div>
 <p>The <span class="math notranslate nohighlight">\(x\)</span> position of the centroid can also be computed as</p>
-<div class="amsmath math notranslate nohighlight" id="equation-b1e81ac9-a113-4ea2-8ae2-1f5c5a982904">
-<span class="eqno">(11)<a class="headerlink" href="#equation-b1e81ac9-a113-4ea2-8ae2-1f5c5a982904" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-036d5f8a-9139-4d73-b531-89793578608a">
+<span class="eqno">(11)<a class="headerlink" href="#equation-036d5f8a-9139-4d73-b531-89793578608a" title="Permalink to this equation">#</a></span>\[\begin{equation}
 \overline x = \frac{\int x\rho ds}{\int \rho ds}
 \end{equation}\]</div>
 <ol class="arabic simple">

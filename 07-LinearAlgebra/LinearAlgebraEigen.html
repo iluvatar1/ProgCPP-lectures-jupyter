@@ -731,8 +731,8 @@ https://www.youtube.com/watch?v=PFDu9oVAE-g&amp;t=0s</p>
 <section id="laplace-equation-in-2d">
 <h2>Laplace equation in 2D<a class="headerlink" href="#laplace-equation-in-2d" title="Permalink to this heading">#</a></h2>
 <p>When solving the laplace equation <span class="math notranslate nohighlight">\(\nabla V = 0\)</span> to compute the electrostatic potential on a planar region, you can discretize the derivatives on a grid   and then arrive to the following equation</p>
-<div class="amsmath math notranslate nohighlight" id="equation-2fe08612-c145-4100-8034-373997f899ac">
-<span class="eqno">(20)<a class="headerlink" href="#equation-2fe08612-c145-4100-8034-373997f899ac" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-315502f0-283d-4895-8b8a-cbbaada3adc2">
+<span class="eqno">(20)<a class="headerlink" href="#equation-315502f0-283d-4895-8b8a-cbbaada3adc2" title="Permalink to this equation">#</a></span>\[\begin{equation}
    V_{i+1,j} + V_{i-1,j} + V_{i,j+1} + V_{i,j-1} - 4V_{i,j} = 0.0.
    \end{equation}\]</div>
 <p>This can be written as a matrix problem. Solve the matrix problem for a
@@ -769,8 +769,8 @@ modes]] . Extend to n oscillators of the same mass.</p>
 <section class="tex2jax_ignore mathjax_ignore" id="thick-lens-boas-3-15-9">
 <h1>Thick lens (Boas, 3.15.9)<a class="headerlink" href="#thick-lens-boas-3-15-9" title="Permalink to this heading">#</a></h1>
 <p>The next matrix is used when discussing a thick lens in air</p>
-<div class="amsmath math notranslate nohighlight" id="equation-b4b59072-ff5e-4f19-a4e3-a3f8c5996621">
-<span class="eqno">(21)<a class="headerlink" href="#equation-b4b59072-ff5e-4f19-a4e3-a3f8c5996621" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-ba1223ea-2a48-47ee-b5c8-77004a12c918">
+<span class="eqno">(21)<a class="headerlink" href="#equation-ba1223ea-2a48-47ee-b5c8-77004a12c918" title="Permalink to this equation">#</a></span>\[\begin{equation}
 A = 
 \begin{pmatrix}
 1 &amp; (n-1)/R_2\\
@@ -802,8 +802,8 @@ d/n &amp; 1
 <section class="tex2jax_ignore mathjax_ignore" id="eigen-vectors-and-eigen-values">
 <h1>Eigen vectors and eigen values<a class="headerlink" href="#eigen-vectors-and-eigen-values" title="Permalink to this heading">#</a></h1>
 <p>Eigen-values (<span class="math notranslate nohighlight">\(\lambda\)</span>) and eigen-vectors (<span class="math notranslate nohighlight">\(\vec v\)</span>) of a matrix <span class="math notranslate nohighlight">\(A\)</span> fulfill the following equation</p>
-<div class="amsmath math notranslate nohighlight" id="equation-5028dfe5-5734-4963-b6cd-af0bb928fc1d">
-<span class="eqno">(22)<a class="headerlink" href="#equation-5028dfe5-5734-4963-b6cd-af0bb928fc1d" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-3e9bd949-e807-4cf2-83e8-4e4b9db3d2b8">
+<span class="eqno">(22)<a class="headerlink" href="#equation-3e9bd949-e807-4cf2-83e8-4e4b9db3d2b8" title="Permalink to this equation">#</a></span>\[\begin{equation}
 A\vec v = \lambda \vec v,
 \end{equation}\]</div>
 <p>and are extensively use in physics, statistics, computational methods, etc (see https://en.wikipedia.org/wiki/Eigenvalues_and_eigenvectors?useskin=vector). For example, they are use to compute (https://en.wikipedia.org/wiki/Eigenvalues_and_eigenvectors?useskin=vector#Applications):</p>
@@ -911,8 +911,8 @@ matrix (or any other matrix).</p>
 <section id="checking-stability-heath-scientific-computing">
 <h2>Checking stability (Heath, scientific computing)<a class="headerlink" href="#checking-stability-heath-scientific-computing" title="Permalink to this heading">#</a></h2>
 <p>Compute the eigen values of the matrix</p>
-<div class="amsmath math notranslate nohighlight" id="equation-80cd5f79-80f3-4924-87bf-6d9439633275">
-<span class="eqno">(23)<a class="headerlink" href="#equation-80cd5f79-80f3-4924-87bf-6d9439633275" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-295a18ef-882e-44eb-9ac2-7bc12ded26bd">
+<span class="eqno">(23)<a class="headerlink" href="#equation-295a18ef-882e-44eb-9ac2-7bc12ded26bd" title="Permalink to this equation">#</a></span>\[\begin{equation}
 A = 
 \begin{pmatrix}
 9 &amp; 4.5 &amp; 3\\
@@ -925,13 +925,13 @@ A =
 <section id="markov-chain-heath-scientific-computing">
 <h2>Markov chain (Heath, Scientific Computing)<a class="headerlink" href="#markov-chain-heath-scientific-computing" title="Permalink to this heading">#</a></h2>
 <p>A Markov chain is a representation of a Markov process, which, in turns, is a random process with no memory: the current state depends only on the previous one and no more. The probability of a transition from state j to state i is given by <span class="math notranslate nohighlight">\(a_{ij}\)</span>,where <span class="math notranslate nohighlight">\(0 \le a_{ij} \le 1\)</span> and <span class="math notranslate nohighlight">\(\sum_{i=1}^n a_{ij} =1\)</span>. Let <span class="math notranslate nohighlight">\(A\)</span> denote the matrix of transition probabilities, and let <span class="math notranslate nohighlight">\(x^{(k)}\)</span> denote the probability that the system is  in state <span class="math notranslate nohighlight">\(i\)</span> after transition <span class="math notranslate nohighlight">\(k\)</span>. If the initial probability distribution vector is <span class="math notranslate nohighlight">\(x^{(0)}\)</span>, then the probability distribution vector after <span class="math notranslate nohighlight">\(k\)</span> steps is given by</p>
-<div class="amsmath math notranslate nohighlight" id="equation-f018d803-8db5-4b2e-87de-f3365be1b9f7">
-<span class="eqno">(24)<a class="headerlink" href="#equation-f018d803-8db5-4b2e-87de-f3365be1b9f7" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-3b297661-a88d-4a0a-bed5-f74a8a22753a">
+<span class="eqno">(24)<a class="headerlink" href="#equation-3b297661-a88d-4a0a-bed5-f74a8a22753a" title="Permalink to this equation">#</a></span>\[\begin{equation}
 x^{(k)} = A x^{(k-1)} = A^k x^{(0)}.
 \end{equation}\]</div>
 <p>Consider the matrix</p>
-<div class="amsmath math notranslate nohighlight" id="equation-8a21ff2b-9cd9-49fe-b9b1-c02634161d83">
-<span class="eqno">(25)<a class="headerlink" href="#equation-8a21ff2b-9cd9-49fe-b9b1-c02634161d83" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-e80cd764-c839-4495-a3fc-b05859285bca">
+<span class="eqno">(25)<a class="headerlink" href="#equation-e80cd764-c839-4495-a3fc-b05859285bca" title="Permalink to this equation">#</a></span>\[\begin{equation}
 A = 
 \begin{pmatrix}
 0.8 &amp; 0.2 &amp; 0.1\\
@@ -1056,8 +1056,8 @@ and <span class="math notranslate nohighlight">\(2\pi\)</span>, then compute the
 <p>If you discretize time in steps of size <span class="math notranslate nohighlight">\(\delta t\)</span>, and you have the forces on
 a given ideal particle, you can compute the next position using the Euler
 algorithm,</p>
-<div class="amsmath math notranslate nohighlight" id="equation-7558d0b2-6d69-47ea-8e95-b3aa79340d95">
-<span class="eqno">(26)<a class="headerlink" href="#equation-7558d0b2-6d69-47ea-8e95-b3aa79340d95" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-e1e73801-d487-446e-ba0c-9c5f34b3b439">
+<span class="eqno">(26)<a class="headerlink" href="#equation-e1e73801-d487-446e-ba0c-9c5f34b3b439" title="Permalink to this equation">#</a></span>\[\begin{align}
     \vec R(t+\delta t) &amp;= \vec R(t) + \delta t \vec V(t),\\
     \vec V(t + \delta t) &amp;= \vec V(t) + \delta t \vec F(t)/m.\\
    \end{align}\]</div>
