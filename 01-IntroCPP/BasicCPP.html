@@ -54,6 +54,7 @@
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
     <script src="../_static/togglebutton.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
     <script src="../_static/design-tabs.js"></script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
@@ -302,6 +303,55 @@ const thebe_selector_output = ".output, .cell_output"
 
 
 
+<div class="dropdown dropdown-launch-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Launch interactive content">
+    <i class="fas fa-rocket"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://mybinder.org/v2/gh/iluvatar1/ProgCPP-lectures-jupyter/main?urlpath=lab/tree/01-IntroCPP/BasicCPP.ipynb" target="_blank"
+   class="btn btn-sm dropdown-item"
+   title="Launch onBinder"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  
+    <img src="../_static/images/logo_binder.svg">
+  </span>
+<span class="btn__text-container">Binder</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://colab.research.google.com/github/iluvatar1/ProgCPP-lectures-jupyter/blob/master/github/iluvatar1/ProgCPP-lectures-jupyter/blob/main/01-IntroCPP/BasicCPP.ipynb" target="_blank"
+   class="btn btn-sm dropdown-item"
+   title="Launch onColab"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  
+    <img src="../_static/images/logo_colab.png">
+  </span>
+<span class="btn__text-container">Colab</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
 <div class="dropdown dropdown-source-buttons">
   <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
     <i class="fab fa-github"></i>
@@ -501,12 +551,12 @@ document.write(`
 <li><p>A powerful, battle tested language (old), with new standards every 3 years.</p></li>
 <li><p>A multiparadigm language (we will learn only a subset)</p></li>
 <li><p>A compiled language (using compilers like <code class="docutils literal notranslate"><span class="pre">g++</span></code> or <code class="docutils literal notranslate"><span class="pre">icc</span></code>)</p></li>
-<li><p>Highly performant, used vastly on scientific and many other applications: <a class="reference external" href="http://amazon.com">amazon.com</a>, intel, IBM, facebook, Google, Microsoft, Apple, Adobe, …</p></li>
+<li><p>Highly performant, used vastly on scientific and many other applications: amazon.com, intel, IBM, facebook, Google, Microsoft, Apple, Adobe, …</p></li>
 <li><p>Games written in c++: Assasins creed, Call of Duty, Mass Effect, World of Warcraft, Starcraft, Halo, Among Us, …</p></li>
 </ul>
-<p>The main idea at the end of this course is to be able to program something like <a class="reference external" href="https://www.youtube.com/watch?v=lS_qeBy3aQI">https://www.youtube.com/watch?v=lS_qeBy3aQI</a>, where more complex systems are available <a class="reference external" href="https://flyover.github.io/box2d.ts/testbed/">https://flyover.github.io/box2d.ts/testbed/</a></p>
+<p>The main idea at the end of this course is to be able to program something like https://www.youtube.com/watch?v=lS_qeBy3aQI, where more complex systems are available https://flyover.github.io/box2d.ts/testbed/</p>
 <p>C++ allows you to really exploit your computational resources:
-<a class="reference external" href="https://computers-are-fast.github.io/">https://computers-are-fast.github.io/</a></p>
+https://computers-are-fast.github.io/</p>
 <div style="text-align: center;">
     <img src="https://global-uploads.webflow.com/5d0dc87aac109e1ffdbe379c/60c747b9e5f372c3bc2cfb12_pieT5veoNqVqJjagsCTj8_Cg1zDJTJDUF5mlKj0SaHM4MHCp2EGw6TwkBWEQEFd5qg0GAbAIBgJss6tjDvvng_Tk6gse8dRQrstEBaL9lq8BdZ54523gEQPROzireFIDMMRk20k.png" alt="Image Description" width="600">
     <figcaption>From: "https://global-uploads.webflow.com/5d0dc87aac109e1ffdbe379c/60c747b9e5f372c3bc2cfb12_pieT5veoNqVqJjagsCTj8_Cg1zDJTJDUF5mlKj0SaHM4MHCp2EGw6TwkBWEQEFd5qg0GAbAIBgJss6tjDvvng_Tk6gse8dRQrstEBaL9lq8BdZ54523gEQPROzireFIDMMRk20k.png"</figcaption>
@@ -720,7 +770,7 @@ To execute, we need to specify the path to the executable. We are going to use t
 </section>
 <section class="tex2jax_ignore mathjax_ignore" id="some-useful-tools">
 <h1>Some useful tools<a class="headerlink" href="#some-useful-tools" title="Permalink to this heading">#</a></h1>
-<p>As you learn more and your apps grow in complexity, you might need to use tools to easy the developer work so to focus on the analysis and results, while mantaining  readability and good practices. Please also focus in this in <strong>learning linux</strong>, is the environment that scientist use. You can find many online resources, like <a class="reference external" href="http://www.ee.surrey.ac.uk/Teaching/Unix/">http://www.ee.surrey.ac.uk/Teaching/Unix/</a> or <a class="reference external" href="https://swcarpentry.github.io/shell-novice/">https://swcarpentry.github.io/shell-novice/</a>. For a general overview of what it means to be  a modern c++ developer, see <a class="reference external" href="https://roadmap.sh/cpp">https://roadmap.sh/cpp</a></p>
+<p>As you learn more and your apps grow in complexity, you might need to use tools to easy the developer work so to focus on the analysis and results, while mantaining  readability and good practices. Please also focus in this in <strong>learning linux</strong>, is the environment that scientist use. You can find many online resources, like http://www.ee.surrey.ac.uk/Teaching/Unix/ or https://swcarpentry.github.io/shell-novice/. For a general overview of what it means to be  a modern c++ developer, see https://roadmap.sh/cpp</p>
 <section id="ide">
 <h2>IDE<a class="headerlink" href="#ide" title="Permalink to this heading">#</a></h2>
 <p>An IDE is not just an editor but also gives you an environment with debuggers, refactoring, etc. You might use</p>
@@ -780,7 +830,7 @@ Sometimes it is useful to try several compilers to find possible bugs in the cod
 <li><p><a class="reference external" href="https://gcc.godbolt.org/">Compiler Explorer</a></p></li>
 <li><p><a class="reference external" href="https://replit.com/">Repl.it</a></p></li>
 </ul>
-<p>As your code grows in complexity (but even in the case of simple projects), the constant compilation, debugging, linting, etc could transform into a repetitive task that might be automatized. For simple projects you can use gnu make, using tutorials like <a class="reference external" href="https://makefiletutorial.com/">https://makefiletutorial.com/</a> or <a class="reference external" href="https://www.cs.colby.edu/maxwell/courses/tutorials/maketutor/">https://www.cs.colby.edu/maxwell/courses/tutorials/maketutor/</a> or <a class="reference external" href="http://swcarpentry.github.io/make-novice/">http://swcarpentry.github.io/make-novice/</a>. For more complex projects and multiplatform support, you might use <a class="reference external" href="https://www.google.com/search?client=firefox-b-d&amp;q=cmake+tutorial+modern">cmake</a>.</p>
+<p>As your code grows in complexity (but even in the case of simple projects), the constant compilation, debugging, linting, etc could transform into a repetitive task that might be automatized. For simple projects you can use gnu make, using tutorials like https://makefiletutorial.com/ or https://www.cs.colby.edu/maxwell/courses/tutorials/maketutor/ or http://swcarpentry.github.io/make-novice/. For more complex projects and multiplatform support, you might use <a class="reference external" href="https://www.google.com/search?client=firefox-b-d&amp;q=cmake+tutorial+modern">cmake</a>.</p>
 </section>
 <section id="package-managers">
 <h2>Package managers<a class="headerlink" href="#package-managers" title="Permalink to this heading">#</a></h2>
@@ -788,11 +838,11 @@ Sometimes it is useful to try several compilers to find possible bugs in the cod
 </section>
 <section id="version-control">
 <h2>Version control<a class="headerlink" href="#version-control" title="Permalink to this heading">#</a></h2>
-<p>It is ALWAYS advisable to use version control. Please use git, so you will be able to rollback changes, create, merge and delete branches, activate continuous integration, and so on. You can also sync with remote repositories in portals like <a class="github reference external" href="https://github.com/"></a>, or <a class="reference external" href="https://about.gitlab.com/why-gitlab/">https://about.gitlab.com/why-gitlab/</a> . There are many tutorials, like <a class="reference external" href="https://swcarpentry.github.io/git-novice/">https://swcarpentry.github.io/git-novice/</a> or <a class="reference external" href="https://learngitbranching.js.org/">https://learngitbranching.js.org/</a></p>
+<p>It is ALWAYS advisable to use version control. Please use git, so you will be able to rollback changes, create, merge and delete branches, activate continuous integration, and so on. You can also sync with remote repositories in portals like https://github.com/, or https://about.gitlab.com/why-gitlab/ . There are many tutorials, like https://swcarpentry.github.io/git-novice/ or https://learngitbranching.js.org/</p>
 </section>
 <section id="testing">
 <h2>Testing<a class="headerlink" href="#testing" title="Permalink to this heading">#</a></h2>
-<p>It is very important to write code that is testable, and to test constantly specially when introducing new changes To do so, you can use <a class="github reference external" href="https://github.com/catchorg/Catch2">catchorg/Catch2</a>, <a class="github reference external" href="https://github.com/google/googletest">google/googletest</a> , etc</p>
+<p>It is very important to write code that is testable, and to test constantly specially when introducing new changes To do so, you can use https://github.com/catchorg/Catch2, https://github.com/google/googletest , etc</p>
 </section>
 <section id="reproducible-environments">
 <h2>Reproducible environments<a class="headerlink" href="#reproducible-environments" title="Permalink to this heading">#</a></h2>

@@ -54,6 +54,7 @@
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
     <script src="../_static/togglebutton.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
     <script src="../_static/design-tabs.js"></script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
@@ -304,6 +305,55 @@ const thebe_selector_output = ".output, .cell_output"
 
 
 
+<div class="dropdown dropdown-launch-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Launch interactive content">
+    <i class="fas fa-rocket"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://mybinder.org/v2/gh/iluvatar1/ProgCPP-lectures-jupyter/main?urlpath=lab/tree/03-integration/NumericalIntegration_Basics.ipynb" target="_blank"
+   class="btn btn-sm dropdown-item"
+   title="Launch onBinder"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  
+    <img src="../_static/images/logo_binder.svg">
+  </span>
+<span class="btn__text-container">Binder</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://colab.research.google.com/github/iluvatar1/ProgCPP-lectures-jupyter/blob/master/github/iluvatar1/ProgCPP-lectures-jupyter/blob/main/03-integration/NumericalIntegration_Basics.ipynb" target="_blank"
+   class="btn btn-sm dropdown-item"
+   title="Launch onColab"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  
+    <img src="../_static/images/logo_colab.png">
+  </span>
+<span class="btn__text-container">Colab</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
 <div class="dropdown dropdown-source-buttons">
   <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
     <i class="fab fa-github"></i>
@@ -492,10 +542,10 @@ document.write(`
 <h1>Common Numerical Integration Algorithms<a class="headerlink" href="#common-numerical-integration-algorithms" title="Permalink to this heading">#</a></h1>
 <p>Computing a numerical integral (or quadrature) is a typical problem that appears everywhere in numerical computing. The simple task of computing the error function, <span class="math notranslate nohighlight">\(f(x) = \int_{0}^x e^{-t^2}\)</span>, requires the application of numerical techniques to calculate this (improper integral) over an arbitrary range.</p>
 <p>In any numerical computing course you will start by exploring the trapezoidal and the simpsons rule. Here we are jus going to give the general formulation and then go directly to the functions given by scipy</p>
-<p>Let’s compare several of the typical algorithms: <a class="reference external" href="https://www.geogebra.org/m/WsZgaJcc">https://www.geogebra.org/m/WsZgaJcc</a>, and a beautiful visualization at <a class="reference external" href="https://www.youtube.com/watch?v=FnJqaIESC2s">https://www.youtube.com/watch?v=FnJqaIESC2s</a></p>
+<p>Let’s compare several of the typical algorithms: https://www.geogebra.org/m/WsZgaJcc, and a beautiful visualization at https://www.youtube.com/watch?v=FnJqaIESC2s</p>
 <section id="trapezoidal-rule">
 <h2>Trapezoidal rule<a class="headerlink" href="#trapezoidal-rule" title="Permalink to this heading">#</a></h2>
-<p>Here the function between two points is approximated by a straight line and the te area covered by the trapezoid is added up. See: <a class="reference external" href="https://en.wikipedia.org/wiki/Trapezoidal_rule">https://en.wikipedia.org/wiki/Trapezoidal_rule</a></p>
+<p>Here the function between two points is approximated by a straight line and the te area covered by the trapezoid is added up. See: https://en.wikipedia.org/wiki/Trapezoidal_rule</p>
 <table class="table">
 <thead>
 <tr class="row-odd"><th class="head"><p><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d1/Integration_num_trapezes_notation.svg/330px-Integration_num_trapezes_notation.svg.png" /></p></th>
@@ -527,10 +577,11 @@ where \)</span>x_k = x_0 + k \Delta x<span class="math notranslate nohighlight">
 </section>
 <section id="exercise">
 <h2><strong>Exercise</strong><a class="headerlink" href="#exercise" title="Permalink to this heading">#</a></h2>
-<p>Now use your implementation to compute the error function as a function of <span class="math notranslate nohighlight">\(x\)</span>, using the partition shown. Your program must print also the relative error, comparing with the “exact” value from <a class="reference external" href="https://en.cppreference.com/w/cpp/numeric/math/erf">https://en.cppreference.com/w/cpp/numeric/math/erf</a> . Print your data to <code class="docutils literal notranslate"><span class="pre">erf_data.txt</span></code> (print the x value, the numerical value of the integral, and the relative error)</p>
-<p>\begin{equation}
+<p>Now use your implementation to compute the error function as a function of <span class="math notranslate nohighlight">\(x\)</span>, using the partition shown. Your program must print also the relative error, comparing with the “exact” value from https://en.cppreference.com/w/cpp/numeric/math/erf . Print your data to <code class="docutils literal notranslate"><span class="pre">erf_data.txt</span></code> (print the x value, the numerical value of the integral, and the relative error)</p>
+<div class="amsmath math notranslate nohighlight" id="equation-c3b6e922-3fab-4ca9-a8bf-8ef7fa51bd2f">
+<span class="eqno">(1)<a class="headerlink" href="#equation-c3b6e922-3fab-4ca9-a8bf-8ef7fa51bd2f" title="Permalink to this equation">#</a></span>\[\begin{equation}
 f(x) = \frac{2}{\sqrt{\pi}}\int_0^x e^{-t^2} dt
-\end{equation}</p>
+\end{equation}\]</div>
 <p><span class="math notranslate nohighlight">\(x \in [0, 10]\)</span>, <span class="math notranslate nohighlight">\(\Delta x = 0.1\)</span></p>
 <p><span class="math notranslate nohighlight">\(f(x=0), f(x=0+0.1), f(x=0+2\times 0.1), f(x=0+3\times 0.1), \ldots\)</span></p>
 <div class="cell docutils container">
@@ -566,7 +617,7 @@ f(x) = \frac{2}{\sqrt{\pi}}\int_0^x e^{-t^2} dt
 </section>
 <section id="simpsons-rule">
 <h2>Simpsons rule<a class="headerlink" href="#simpsons-rule" title="Permalink to this heading">#</a></h2>
-<p>In this case, the method uses three discrete points and approximate the function as a parabola (second order polynomial), to improve the numerical integral computation. See: <a class="reference external" href="https://en.wikipedia.org/wiki/Simpson%27s_rule">https://en.wikipedia.org/wiki/Simpson’s_rule</a></p>
+<p>In this case, the method uses three discrete points and approximate the function as a parabola (second order polynomial), to improve the numerical integral computation. See: https://en.wikipedia.org/wiki/Simpson%27s_rule</p>
 <table class="table">
 <thead>
 <tr class="row-odd"><th class="head"><p><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/ca/Simpsons_method_illustration.svg/440px-Simpsons_method_illustration.svg.png" width=300 /></p></th>
@@ -579,11 +630,12 @@ f(x) = \frac{2}{\sqrt{\pi}}\int_0^x e^{-t^2} dt
 </tr>
 </tbody>
 </table>
-<p>Now you compute the integral as
-\begin{equation}
+<p>Now you compute the integral as</p>
+<div class="amsmath math notranslate nohighlight" id="equation-de0e4eaf-b78c-4d11-931a-25b2f7d5f47e">
+<span class="eqno">(2)<a class="headerlink" href="#equation-de0e4eaf-b78c-4d11-931a-25b2f7d5f47e" title="Permalink to this equation">#</a></span>\[\begin{equation}
 \int_a^b f(x) dx \simeq \frac{\Delta x}{3}\left( f(x_0) + 4 \sum_{k=1}^{N/2} f(x_{2k-1}) + 2\sum_{k=1}^{N/2-1} f(x_{2k}) + f(x_N)\right) + O(N^{-3}).
-\end{equation}
-Notice that <span class="math notranslate nohighlight">\(N\)</span> must be even.</p>
+\end{equation}\]</div>
+<p>Notice that <span class="math notranslate nohighlight">\(N\)</span> must be even.</p>
 <p>Now let’s implement it. Please add a new function to the <code class="docutils literal notranslate"><span class="pre">integration.*</span></code> files , that implements the simpsons rule.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -624,7 +676,7 @@ where \)</span>x_i<span class="math notranslate nohighlight">\( are the evaluati
     <figcaption>From: "https://upload.wikimedia.org/wikipedia/commons/thumb/9/93/Comparison_Gaussquad_trapezoidal.svg/660px-Comparison_Gaussquad_trapezoidal.svg.png"</figcaption>
 </div>
 In this image, it is illustrated that although the Gaussian method uses only two points, it is exact since the integration is done on a 3-degree polynomial.
-<p>For the Gauss-Legendre formulation, you can check the weights at <a class="reference external" href="https://en.wikipedia.org/wiki/Gaussian_quadrature?useskin=vector#Gauss%E2%80%93Legendre_quadrature">https://en.wikipedia.org/wiki/Gaussian_quadrature?useskin=vector#Gauss–Legendre_quadrature</a></p>
+<p>For the Gauss-Legendre formulation, you can check the weights at https://en.wikipedia.org/wiki/Gaussian_quadrature?useskin=vector#Gauss%E2%80%93Legendre_quadrature</p>
 <p>To succesfully apply the Gaussian quadrature technique to a general integral on the interval [a, b], we need to map it to the interval [-1, 1], so we can use the mapping
 $<span class="math notranslate nohighlight">\(
 x = \frac{b-a}{2}x' + \frac{b+a}{2},
@@ -677,9 +729,10 @@ using the \)</span>w_i$ from the method.</p>
 very powerful method to compute integrals, where the points and weights are
 wisely chosen to improve the algorithm precision. The method is formulated in
 the range [-1, 1], so maybe the general integral must be scaled as</p>
-<p>\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-42d91761-ec45-494d-bc28-68502a264f30">
+<span class="eqno">(3)<a class="headerlink" href="#equation-42d91761-ec45-494d-bc28-68502a264f30" title="Permalink to this equation">#</a></span>\[\begin{equation}
 \int_a^b f(x) dx = \frac{b-a}{2} \sum_{j=1}^{n} w_j f\left(\frac{b-a}{2} x_j + \frac{a+b}{2} \right) + O((b-a)^{2n+1}).
-\end{equation}</p>
+\end{equation}\]</div>
 <p>The next table shows the points positions and weights for the Gaussian integral
 of order 7, <span class="math notranslate nohighlight">\(G_7\)</span>,</p>
 <table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
@@ -790,22 +843,25 @@ and compute the velocity as a function of time by integrating at each time step.
 <section id="cumulative-probability">
 <h2>Cumulative probability<a class="headerlink" href="#cumulative-probability" title="Permalink to this heading">#</a></h2>
 <p>The probability density function for the <a class="reference external" href="https://en.wikipedia.org/wiki/Gamma_distribution">Gamma distribution</a> is</p>
-<p>\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-b8ba8363-ba34-4bc6-9395-2accb4a786bf">
+<span class="eqno">(4)<a class="headerlink" href="#equation-b8ba8363-ba34-4bc6-9395-2accb4a786bf" title="Permalink to this equation">#</a></span>\[\begin{equation}
 f(x; \alpha, \beta) = \frac{\beta^\alpha}{\Gamma(\alpha) x^{\alpha -1} e^{-\beta x} },
-\end{equation}</p>
+\end{equation}\]</div>
 <p>para <span class="math notranslate nohighlight">\(0 &lt; x &lt; \infty\)</span>. Compute and plot the cumulative density function, using
 both the simpson method and the gaussian <span class="math notranslate nohighlight">\(g_7\)</span>, defined as</p>
-<p>\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-52808e67-db8e-4c03-9071-85f3cd421a17">
+<span class="eqno">(5)<a class="headerlink" href="#equation-52808e67-db8e-4c03-9071-85f3cd421a17" title="Permalink to this equation">#</a></span>\[\begin{equation}
 F(x; \alpha, \beta) = \int_0^x dt f(t; \alpha, \beta),
-\end{equation}</p>
+\end{equation}\]</div>
 <p>for <span class="math notranslate nohighlight">\(x \in [0.0, 20.0]\)</span>, with <span class="math notranslate nohighlight">\(\alpha = 7.5, \beta = 1.0\)</span>.</p>
 </section>
 <section id="di-logarithm-function">
 <h2>Di-logarithm function<a class="headerlink" href="#di-logarithm-function" title="Permalink to this heading">#</a></h2>
 <p>The di-logarithm function is defined as</p>
-<p>\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-85cd082c-1bb3-411a-8522-d7ce20397811">
+<span class="eqno">(6)<a class="headerlink" href="#equation-85cd082c-1bb3-411a-8522-d7ce20397811" title="Permalink to this equation">#</a></span>\[\begin{equation}
 \mathrm{Li}_2(x) = -\int_0^x \frac{\ln(1-t)}{t} dt.
-\end{equation}</p>
+\end{equation}\]</div>
 <p>Plot the di-logarithm function for <span class="math notranslate nohighlight">\(x \in (0.0, 1.0)\)</span>. If you use simpson,
 always make sure that the error is less than <span class="math notranslate nohighlight">\(10^{-6}\)</span>. You might need to
 transform the variable and/or split the integral to avoid numerical problems.</p>
@@ -813,28 +869,33 @@ transform the variable and/or split the integral to avoid numerical problems.</p
 <section id="moment-distribution">
 <h2>Moment distribution<a class="headerlink" href="#moment-distribution" title="Permalink to this heading">#</a></h2>
 <p>The kth moment for a probability distribution is</p>
-<p>\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-fd3cd991-3780-4b45-9da3-6d608feaf630">
+<span class="eqno">(7)<a class="headerlink" href="#equation-fd3cd991-3780-4b45-9da3-6d608feaf630" title="Permalink to this equation">#</a></span>\[\begin{equation}
 \lt x^k \gt = \int x^k f(x) dx,
-\end{equation}</p>
+\end{equation}\]</div>
 <p>Compute the first ten moments for the  <a class="reference external" href="https://en.wikipedia.org/wiki/Gamma_distribution">Gamma distribution</a> ,</p>
-<p>\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-cf77a0b5-d54d-41cc-8fcd-b14e1d8f5cf6">
+<span class="eqno">(8)<a class="headerlink" href="#equation-cf77a0b5-d54d-41cc-8fcd-b14e1d8f5cf6" title="Permalink to this equation">#</a></span>\[\begin{equation}
 f(x; \alpha, \beta) = \frac{\beta^\alpha}{\Gamma(\alpha) x^{\alpha -1} e^{-\beta x} }.
-\end{equation}</p>
+\end{equation}\]</div>
 </section>
 <section id="arch-lenght-mass-centroid">
 <h2>Arch lenght, mass, centroid<a class="headerlink" href="#arch-lenght-mass-centroid" title="Permalink to this heading">#</a></h2>
 <p>The arc length of a curve <span class="math notranslate nohighlight">\(y(x)\)</span> is given by</p>
-<p>\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-bf7fb689-fe43-40e6-afdb-4185204dc9c6">
+<span class="eqno">(9)<a class="headerlink" href="#equation-bf7fb689-fe43-40e6-afdb-4185204dc9c6" title="Permalink to this equation">#</a></span>\[\begin{equation}
 s = \int_a^b dx \sqrt{1 + \left(\frac{dy}{dx}  \right)^2}.
-\end{equation}</p>
+\end{equation}\]</div>
 <p>If a linear body has a density <span class="math notranslate nohighlight">\(\rho(x)\)</span>, the total mass would be</p>
-<p>\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-9bba5ed4-2075-4333-8f5e-c333c69efef4">
+<span class="eqno">(10)<a class="headerlink" href="#equation-9bba5ed4-2075-4333-8f5e-c333c69efef4" title="Permalink to this equation">#</a></span>\[\begin{equation}
 M = \int \rho(x) ds.
-\end{equation}</p>
+\end{equation}\]</div>
 <p>The <span class="math notranslate nohighlight">\(x\)</span> position of the centroid can also be computed as</p>
-<p>\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-b1e81ac9-a113-4ea2-8ae2-1f5c5a982904">
+<span class="eqno">(11)<a class="headerlink" href="#equation-b1e81ac9-a113-4ea2-8ae2-1f5c5a982904" title="Permalink to this equation">#</a></span>\[\begin{equation}
 \overline x = \frac{\int x\rho ds}{\int \rho ds}
-\end{equation}</p>
+\end{equation}\]</div>
 <ol class="arabic simple">
 <li><p>(Boas, Mathematical Physics) Compute the arch length for the catenary <span class="math notranslate nohighlight">\(y =
    \cosh x\)</span> between <span class="math notranslate nohighlight">\(x=-1\)</span> and <span class="math notranslate nohighlight">\(x=1\)</span>.</p></li>

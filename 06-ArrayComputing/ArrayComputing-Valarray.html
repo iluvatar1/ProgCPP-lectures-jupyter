@@ -54,6 +54,7 @@
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
     <script src="../_static/togglebutton.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
     <script src="../_static/design-tabs.js"></script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
@@ -304,6 +305,55 @@ const thebe_selector_output = ".output, .cell_output"
 
 
 
+<div class="dropdown dropdown-launch-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Launch interactive content">
+    <i class="fas fa-rocket"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://mybinder.org/v2/gh/iluvatar1/ProgCPP-lectures-jupyter/main?urlpath=lab/tree/06-ArrayComputing/ArrayComputing-Valarray.ipynb" target="_blank"
+   class="btn btn-sm dropdown-item"
+   title="Launch onBinder"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  
+    <img src="../_static/images/logo_binder.svg">
+  </span>
+<span class="btn__text-container">Binder</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://colab.research.google.com/github/iluvatar1/ProgCPP-lectures-jupyter/blob/master/github/iluvatar1/ProgCPP-lectures-jupyter/blob/main/06-ArrayComputing/ArrayComputing-Valarray.ipynb" target="_blank"
+   class="btn btn-sm dropdown-item"
+   title="Launch onColab"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  
+    <img src="../_static/images/logo_colab.png">
+  </span>
+<span class="btn__text-container">Colab</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
 <div class="dropdown dropdown-source-buttons">
   <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
     <i class="fab fa-github"></i>
@@ -516,14 +566,16 @@ vectors. You have two options: using the standard library valarray, or using
 </div>
 <section id="function-evaluation">
 <h2>Function evaluation<a class="headerlink" href="#function-evaluation" title="Permalink to this heading">#</a></h2>
-<p>Furthermore , mathematical function evaluated in this array computing approach means evaluating the function on each component, such as
-\begin{equation}
+<p>Furthermore , mathematical function evaluated in this array computing approach means evaluating the function on each component, such as</p>
+<div class="amsmath math notranslate nohighlight" id="equation-b6511629-d859-4d39-bdca-bd85d004b20c">
+<span class="eqno">(15)<a class="headerlink" href="#equation-b6511629-d859-4d39-bdca-bd85d004b20c" title="Permalink to this equation">#</a></span>\[\begin{equation}
 \vec y = \sin (\vec x)
-\end{equation}
-means
-\begin{equation}
+\end{equation}\]</div>
+<p>means</p>
+<div class="amsmath math notranslate nohighlight" id="equation-703a7f7b-436e-4658-bbc1-e9f258208652">
+<span class="eqno">(16)<a class="headerlink" href="#equation-703a7f7b-436e-4658-bbc1-e9f258208652" title="Permalink to this equation">#</a></span>\[\begin{equation}
 y_i = \sin x_i.
-\end{equation}</p>
+\end{equation}\]</div>
 <p><a id="org8ea9979"></a></p>
 </section>
 </section>
@@ -549,7 +601,7 @@ y_i = \sin x_i.
 </div>
 <section id="example-using-apply">
 <h2>Example: Using apply<a class="headerlink" href="#example-using-apply" title="Permalink to this heading">#</a></h2>
-<p>Cómo usar la utilidad apply para multiplicar todos los elementos por 2 si el numero es impar y por 3 si el numero es par? Piense en la solución usando for e if y luego puede mirar a <a class="reference external" href="https://en.cppreference.com/w/cpp/numeric/valarray/apply">https://en.cppreference.com/w/cpp/numeric/valarray/apply</a></p>
+<p>Cómo usar la utilidad apply para multiplicar todos los elementos por 2 si el numero es impar y por 3 si el numero es par? Piense en la solución usando for e if y luego puede mirar a https://en.cppreference.com/w/cpp/numeric/valarray/apply</p>
 </section>
 <section id="indexing">
 <h2>Indexing<a class="headerlink" href="#indexing" title="Permalink to this heading">#</a></h2>
@@ -665,10 +717,11 @@ a another valarray, and finally print only the values that fulfill that
 <p>If you discretize time in steps of size <span class="math notranslate nohighlight">\(\delta t\)</span>, and you have the forces on
 a given ideal particle, you can compute the next position using the Euler
 algorithm,</p>
-<p>\begin{align}
-\vec R(t+\delta t) &amp;= \vec R(t) + \delta t \vec V(t),\
-\vec V(t + \delta t) &amp;= \vec V(t) + \delta t \vec F(t)/m.\
-\end{align}</p>
+<div class="amsmath math notranslate nohighlight" id="equation-fef22ed1-f9b0-4b0a-ad8a-45a55a0399d5">
+<span class="eqno">(17)<a class="headerlink" href="#equation-fef22ed1-f9b0-4b0a-ad8a-45a55a0399d5" title="Permalink to this equation">#</a></span>\[\begin{align}
+\vec R(t+\delta t) &amp;= \vec R(t) + \delta t \vec V(t),\\
+\vec V(t + \delta t) &amp;= \vec V(t) + \delta t \vec F(t)/m.\\
+\end{align}\]</div>
 <p>Use valarrays to model the vectors. Compute the trayectory of a
 particle of mass <span class="math notranslate nohighlight">\(m=0.987\)</span>, with initial conditions <span class="math notranslate nohighlight">\(\vec R(0) = (0, 0, 4.3),
    V(0) = (0.123, 0.0, 0.98)\)</span>, under the influence of gravity. Plot it. Later add
@@ -680,11 +733,12 @@ some damping. Later add some interaction with the ground.</p>
 </section>
 <section id="cross-product">
 <h2>Cross product<a class="headerlink" href="#cross-product" title="Permalink to this heading">#</a></h2>
-<p>Implement a function to compute the cross product between two 3d vectors. Using it, implement a function to compute the angle between the vectors. Remember that
-\begin{equation}
+<p>Implement a function to compute the cross product between two 3d vectors. Using it, implement a function to compute the angle between the vectors. Remember that</p>
+<div class="amsmath math notranslate nohighlight" id="equation-6faa1088-5891-4bb1-b0e6-bff8c9494481">
+<span class="eqno">(18)<a class="headerlink" href="#equation-6faa1088-5891-4bb1-b0e6-bff8c9494481" title="Permalink to this equation">#</a></span>\[\begin{equation}
 |\vec A \times \vec B| = A B \sin\theta.
-\end{equation}
-Check test cases like <span class="math notranslate nohighlight">\(\vec A \times \vec A  = \vec 0, \hat i \times \hat j = \hat k, \ldots\)</span></p>
+\end{equation}\]</div>
+<p>Check test cases like <span class="math notranslate nohighlight">\(\vec A \times \vec A  = \vec 0, \hat i \times \hat j = \hat k, \ldots\)</span></p>
 </section>
 <section id="perpendicular-vector">
 <h2>Perpendicular vector<a class="headerlink" href="#perpendicular-vector" title="Permalink to this heading">#</a></h2>
@@ -697,10 +751,11 @@ Check test cases like <span class="math notranslate nohighlight">\(\vec A \times
 </section>
 <section class="tex2jax_ignore mathjax_ignore" id="vector-product">
 <h1>Vector product<a class="headerlink" href="#vector-product" title="Permalink to this heading">#</a></h1>
-<p>Write a function that returns the vector product
-\begin{equation}
+<p>Write a function that returns the vector product</p>
+<div class="amsmath math notranslate nohighlight" id="equation-2dadca5b-4a4b-479b-966f-c06ef1758a26">
+<span class="eqno">(19)<a class="headerlink" href="#equation-2dadca5b-4a4b-479b-966f-c06ef1758a26" title="Permalink to this equation">#</a></span>\[\begin{equation}
 \vec A \cdot (\vec B \times \vec C)
-\end{equation}</p>
+\end{equation}\]</div>
 <section id="classical-angular-momentum-and-centripetal-acceleration">
 <h2>Classical angular momentum and centripetal acceleration<a class="headerlink" href="#classical-angular-momentum-and-centripetal-acceleration" title="Permalink to this heading">#</a></h2>
 <p>Given a mass <span class="math notranslate nohighlight">\(m\)</span>, a position <span class="math notranslate nohighlight">\(\vec r\)</span>, and a velocity <span class="math notranslate nohighlight">\(\vec v = \omega \times \vec r \)</span>, compute both the angular momentum <span class="math notranslate nohighlight">\(\vec L = m \vec r \times (\vec r \times \vec \omega)\)</span> and the centripetal acceleration <span class="math notranslate nohighlight">\(\vec a = \vec \omega \times (\vec \omega \times \vec  r)\)</span>, using two different functions</p>

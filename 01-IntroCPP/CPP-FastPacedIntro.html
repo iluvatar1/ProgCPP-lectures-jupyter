@@ -54,6 +54,7 @@
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
     <script src="../_static/togglebutton.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
     <script src="../_static/design-tabs.js"></script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
@@ -304,6 +305,55 @@ const thebe_selector_output = ".output, .cell_output"
 
 
 
+<div class="dropdown dropdown-launch-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Launch interactive content">
+    <i class="fas fa-rocket"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://mybinder.org/v2/gh/iluvatar1/ProgCPP-lectures-jupyter/main?urlpath=lab/tree/01-IntroCPP/CPP-FastPacedIntro.ipynb" target="_blank"
+   class="btn btn-sm dropdown-item"
+   title="Launch onBinder"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  
+    <img src="../_static/images/logo_binder.svg">
+  </span>
+<span class="btn__text-container">Binder</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://colab.research.google.com/github/iluvatar1/ProgCPP-lectures-jupyter/blob/master/github/iluvatar1/ProgCPP-lectures-jupyter/blob/main/01-IntroCPP/CPP-FastPacedIntro.ipynb" target="_blank"
+   class="btn btn-sm dropdown-item"
+   title="Launch onColab"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  
+    <img src="../_static/images/logo_colab.png">
+  </span>
+<span class="btn__text-container">Colab</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
 <div class="dropdown dropdown-source-buttons">
   <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
     <i class="fab fa-github"></i>
@@ -527,10 +577,10 @@ document.write(`
                   
   <section class="tex2jax_ignore mathjax_ignore" id="very-short-intro-to-the-basics-of-c">
 <h1>Very short intro to the basics of c++<a class="headerlink" href="#very-short-intro-to-the-basics-of-c" title="Permalink to this heading">#</a></h1>
-<p>Although the c++ standard is really large, for this course we need to handle well a small subset of it. What is more important is to learn how to THINK like a programmer, not to memorize the actual syntax, which can actually obtained from google bard or chatGPT. In this section, we will learn the very basics and then we start practicing. Practice is the key in everything. For more details, see <a class="reference external" href="https://www.learncpp.com/">https://www.learncpp.com/</a> or a reference book.</p>
+<p>Although the c++ standard is really large, for this course we need to handle well a small subset of it. What is more important is to learn how to THINK like a programmer, not to memorize the actual syntax, which can actually obtained from google bard or chatGPT. In this section, we will learn the very basics and then we start practicing. Practice is the key in everything. For more details, see https://www.learncpp.com/ or a reference book.</p>
 <section id="minimal-example">
 <h2>Minimal example<a class="headerlink" href="#minimal-example" title="Permalink to this heading">#</a></h2>
-<p>This a minimal valid cpp program. It does “nothing”. But when you compile, a lot of things happen. For more info see <a class="reference external" href="https://hackingcpp.com/cpp/hello_world.html">https://hackingcpp.com/cpp/hello_world.html</a></p>
+<p>This a minimal valid cpp program. It does “nothing”. But when you compile, a lot of things happen. For more info see https://hackingcpp.com/cpp/hello_world.html</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%writefile</span> minimal.cpp
@@ -568,13 +618,13 @@ document.write(`
 </pre></div>
 </div>
 </li>
-<li><p>Look for some other standard library at <a class="reference external" href="https://en.cppreference.com/w/">https://en.cppreference.com/w/</a> . Choose one and try to describe, in general words, its use.</p></li>
+<li><p>Look for some other standard library at https://en.cppreference.com/w/ . Choose one and try to describe, in general words, its use.</p></li>
 </ul>
 </section>
 </section>
 <section class="tex2jax_ignore mathjax_ignore" id="variables-and-types">
 <h1>Variables and types<a class="headerlink" href="#variables-and-types" title="Permalink to this heading">#</a></h1>
-<p>C++ is a typed lang. It means that you have to specify the type of the variable you are going to use. You have booleans, char, integers, float and double, arrays/vectors, structs, …. See <a class="reference external" href="https://hackingcpp.com/cpp/lang/fundamental_types.html">https://hackingcpp.com/cpp/lang/fundamental_types.html</a></p>
+<p>C++ is a typed lang. It means that you have to specify the type of the variable you are going to use. You have booleans, char, integers, float and double, arrays/vectors, structs, …. See https://hackingcpp.com/cpp/lang/fundamental_types.html</p>
 <div style="text-align: center;">
     <img src="https://hackingcpp.com/cpp/lang/variables_crop.svg" alt="Image Description" width="600">
     <figcaption>From: "https://hackingcpp.com/cpp/lang/variables_crop.svg"</figcaption>
@@ -635,7 +685,7 @@ document.write(`
 </section>
 <section id="precedence">
 <h2>Precedence<a class="headerlink" href="#precedence" title="Permalink to this heading">#</a></h2>
-<p>Operators have a defined precedence: <a class="reference external" href="https://en.cppreference.com/w/cpp/language/operator_precedence">https://en.cppreference.com/w/cpp/language/operator_precedence</a></p>
+<p>Operators have a defined precedence: https://en.cppreference.com/w/cpp/language/operator_precedence</p>
 </section>
 <section id="id1">
 <h2>Exercise<a class="headerlink" href="#id1" title="Permalink to this heading">#</a></h2>
@@ -776,7 +826,7 @@ graph LR
 <ul class="simple">
 <li><p>You have to write a program that reads a number. If the number is smaller or equal than 10, verify if it is prime (you might need to write several if or if/else). If it is larger, write the message <code class="docutils literal notranslate"><span class="pre">Too</span> <span class="pre">large</span> <span class="pre">to</span> <span class="pre">verify</span> <span class="pre">manually</span></code>. To do so:</p>
 <ul>
-<li><p>Use <a class="reference external" href="https://draw.io">https://draw.io</a> to design the flow chart of the program</p></li>
+<li><p>Use https://draw.io to design the flow chart of the program</p></li>
 <li><p>Write the program and test it with several inputs.</p></li>
 </ul>
 </li>
@@ -800,7 +850,7 @@ graph LR
 </section>
 <section class="tex2jax_ignore mathjax_ignore" id="loops">
 <h1>Loops<a class="headerlink" href="#loops" title="Permalink to this heading">#</a></h1>
-<p>See <a class="reference external" href="https://hackingcpp.com/cpp/lang/control_flow_basics.html">https://hackingcpp.com/cpp/lang/control_flow_basics.html</a></p>
+<p>See https://hackingcpp.com/cpp/lang/control_flow_basics.html</p>
 <section id="range-based-loops">
 <h2>Range based loops<a class="headerlink" href="#range-based-loops" title="Permalink to this heading">#</a></h2>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span>for (variable : range) { … }
@@ -912,7 +962,7 @@ while (condition) { … ; step; }
 </section>
 <section class="tex2jax_ignore mathjax_ignore" id="functions">
 <h1>Functions<a class="headerlink" href="#functions" title="Permalink to this heading">#</a></h1>
-<p>See: <a class="reference external" href="https://hackingcpp.com/cpp/lang/function_basics.html">https://hackingcpp.com/cpp/lang/function_basics.html</a></p>
+<p>See: https://hackingcpp.com/cpp/lang/function_basics.html</p>
 <p>Functions are of fundamental importance. They allow to encapsulate the implementation details and to create modular and more maintainable programs. Each function must do one thing well. Using functions also allows the program to be tested, profiled, and extended. Form now on, will keep clean the <code class="docutils literal notranslate"><span class="pre">main</span></code> function, and use it to call other functions.</p>
 <div style="text-align: center;">
     <img src="https://hackingcpp.com/cpp/lang/function_terminology.svg" alt="Image Description" width="800">
@@ -976,12 +1026,12 @@ while (condition) { … ; step; }
 </div>
 <p>Some very useful functions for us:</p>
 <ul class="simple">
-<li><p>Math standard library: <a class="reference external" href="https://en.cppreference.com/w/cpp/header/cmath">https://en.cppreference.com/w/cpp/header/cmath</a></p></li>
-<li><p>Special functions: <a class="reference external" href="https://en.cppreference.com/w/cpp/numeric/special_functions">https://en.cppreference.com/w/cpp/numeric/special_functions</a></p></li>
-<li><p>Pseudo random numbers: <a class="reference external" href="https://en.cppreference.com/w/cpp/numeric/random">https://en.cppreference.com/w/cpp/numeric/random</a></p></li>
-<li><p>Complex numbers: <a class="reference external" href="https://en.cppreference.com/w/cpp/numeric/complex">https://en.cppreference.com/w/cpp/numeric/complex</a></p></li>
-<li><p>Valarray (to emulate math vectors): <a class="reference external" href="https://en.cppreference.com/w/cpp/numeric/valarray">https://en.cppreference.com/w/cpp/numeric/valarray</a></p></li>
-<li><p>Numerics algorithms: <a class="reference external" href="https://en.cppreference.com/w/cpp/numeric#Numeric_algorithms">https://en.cppreference.com/w/cpp/numeric#Numeric_algorithms</a></p></li>
+<li><p>Math standard library: https://en.cppreference.com/w/cpp/header/cmath</p></li>
+<li><p>Special functions: https://en.cppreference.com/w/cpp/numeric/special_functions</p></li>
+<li><p>Pseudo random numbers: https://en.cppreference.com/w/cpp/numeric/random</p></li>
+<li><p>Complex numbers: https://en.cppreference.com/w/cpp/numeric/complex</p></li>
+<li><p>Valarray (to emulate math vectors): https://en.cppreference.com/w/cpp/numeric/valarray</p></li>
+<li><p>Numerics algorithms: https://en.cppreference.com/w/cpp/numeric#Numeric_algorithms</p></li>
 </ul>
 <section id="id3">
 <h2>Exercises<a class="headerlink" href="#id3" title="Permalink to this heading">#</a></h2>
@@ -992,7 +1042,7 @@ while (condition) { … ; step; }
 <li><p>Prints the <a class="reference external" href="https://en.wikipedia.org/wiki/Cousin_prime?useskin=vector">cousin primes</a> between 300 and 400.</p></li>
 <li><p>Prints the <a class="reference external" href="https://en.wikipedia.org/wiki/Sexy_prime?useskin=vector">sexy primes</a> tuples between 300 and 450.</p></li>
 <li><p>Prints the <a class="reference external" href="https://en.wikipedia.org/wiki/Sexy_prime?useskin=vector">sexy primes</a> triplets between 300 and 490.</p></li>
-<li><p>Read <a class="reference external" href="https://hackingcpp.com/cpp/lang/command_line_arguments.html">https://hackingcpp.com/cpp/lang/command_line_arguments.html</a> to be able to read command line arguments after processing <code class="docutils literal notranslate"><span class="pre">argc</span></code> and <code class="docutils literal notranslate"><span class="pre">argv</span></code>. Rewrite your previous programs to read the limits from the command line. You can also check <a class="reference external" href="https://faculty.cs.niu.edu/~mcmahon/CS241/Notes/command_line_arguments.html">https://faculty.cs.niu.edu/~mcmahon/CS241/Notes/command_line_arguments.html</a></p></li>
+<li><p>Read https://hackingcpp.com/cpp/lang/command_line_arguments.html to be able to read command line arguments after processing <code class="docutils literal notranslate"><span class="pre">argc</span></code> and <code class="docutils literal notranslate"><span class="pre">argv</span></code>. Rewrite your previous programs to read the limits from the command line. You can also check https://faculty.cs.niu.edu/~mcmahon/CS241/Notes/command_line_arguments.html</p></li>
 </ul>
 </section>
 </section>
@@ -1213,7 +1263,7 @@ $<span class="math notranslate nohighlight">\(x \leftarrow \dfrac{x+2/x}{x}\)</s
 <span class="m">10</span><span class="w"> </span><span class="m">1</span>.414213562373095e+00
 </pre></div>
 </div>
-<p>To print in that format you can also use a modern construct, <code class="docutils literal notranslate"><span class="pre">std::format</span></code>, available in the c++23 standard. Check <a class="reference external" href="https://en.cppreference.com/w/cpp/io/print">https://en.cppreference.com/w/cpp/io/print</a> . Or , if it is installed, you can use <a class="reference external" href="https://fmt.dev/latest/index.html">https://fmt.dev/latest/index.html</a>  (also see <a class="reference external" href="https://hackingcpp.com/cpp/libs/fmt.html">https://hackingcpp.com/cpp/libs/fmt.html</a>). Or if you prefer to be classic, you can use <code class="docutils literal notranslate"><span class="pre">printf</span></code>.</p>
+<p>To print in that format you can also use a modern construct, <code class="docutils literal notranslate"><span class="pre">std::format</span></code>, available in the c++23 standard. Check https://en.cppreference.com/w/cpp/io/print . Or , if it is installed, you can use https://fmt.dev/latest/index.html  (also see https://hackingcpp.com/cpp/libs/fmt.html). Or if you prefer to be classic, you can use <code class="docutils literal notranslate"><span class="pre">printf</span></code>.</p>
 </section>
 <section id="uncertainty">
 <h2>Uncertainty<a class="headerlink" href="#uncertainty" title="Permalink to this heading">#</a></h2>

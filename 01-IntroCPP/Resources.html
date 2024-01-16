@@ -54,6 +54,7 @@
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
     <script src="../_static/togglebutton.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
     <script src="../_static/design-tabs.js"></script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
@@ -302,6 +303,55 @@ const thebe_selector_output = ".output, .cell_output"
 
 
 
+<div class="dropdown dropdown-launch-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Launch interactive content">
+    <i class="fas fa-rocket"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://mybinder.org/v2/gh/iluvatar1/ProgCPP-lectures-jupyter/main?urlpath=lab/tree/01-IntroCPP/Resources.ipynb" target="_blank"
+   class="btn btn-sm dropdown-item"
+   title="Launch onBinder"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  
+    <img src="../_static/images/logo_binder.svg">
+  </span>
+<span class="btn__text-container">Binder</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://colab.research.google.com/github/iluvatar1/ProgCPP-lectures-jupyter/blob/master/github/iluvatar1/ProgCPP-lectures-jupyter/blob/main/01-IntroCPP/Resources.ipynb" target="_blank"
+   class="btn btn-sm dropdown-item"
+   title="Launch onColab"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  
+    <img src="../_static/images/logo_colab.png">
+  </span>
+<span class="btn__text-container">Colab</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
 <div class="dropdown dropdown-source-buttons">
   <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
     <i class="fab fa-github"></i>
@@ -458,47 +508,47 @@ document.write(`
 <ol class="arabic simple">
 <li><p>Presentations and resources</p>
 <ul class="simple">
-<li><p><a class="reference external" href="https://tinyurl.com/2022-I-Prog-Presentations">https://tinyurl.com/2022-I-Prog-Presentations</a></p></li>
-<li><p><a class="reference external" href="https://www.learncpp.com/">https://www.learncpp.com/</a></p></li>
-<li><p><a class="reference external" href="https://en.cppreference.com/w/">https://en.cppreference.com/w/</a></p></li>
-<li><p><a class="reference external" href="https://hackingcpp.com/cpp/cheat_sheets.html">https://hackingcpp.com/cpp/cheat_sheets.html</a></p></li>
-<li><p><a class="reference external" href="https://quickref.me/cpp">https://quickref.me/cpp</a></p></li>
-<li><p><a class="reference external" href="https://www.udacity.com/course/c-for-programmers--ud210">https://www.udacity.com/course/c-for-programmers–ud210</a></p></li>
-<li><p><a class="reference external" href="https://iluvatar.bitbucket.io/ProgCPP/">https://iluvatar.bitbucket.io/ProgCPP/</a></p></li>
-<li><p><a class="github reference external" href="https://github.com/federico-busato/Modern-CPP-Programming">federico-busato/Modern-CPP-Programming</a></p></li>
-<li><p><a class="reference external" href="https://nick-black.com/dankwiki/index.php/Book_list_for_streetfighting_computer_scientists">https://nick-black.com/dankwiki/index.php/Book_list_for_streetfighting_computer_scientists</a></p></li>
+<li><p>https://tinyurl.com/2022-I-Prog-Presentations</p></li>
+<li><p>https://www.learncpp.com/</p></li>
+<li><p>https://en.cppreference.com/w/</p></li>
+<li><p>https://hackingcpp.com/cpp/cheat_sheets.html</p></li>
+<li><p>https://quickref.me/cpp</p></li>
+<li><p>https://www.udacity.com/course/c-for-programmers–ud210</p></li>
+<li><p>https://iluvatar.bitbucket.io/ProgCPP/</p></li>
+<li><p>https://github.com/federico-busato/Modern-CPP-Programming</p></li>
+<li><p>https://nick-black.com/dankwiki/index.php/Book_list_for_streetfighting_computer_scientists</p></li>
 </ul>
 </li>
 <li><p>Shell/bash/terminal</p>
 <ul class="simple">
-<li><p><a class="reference external" href="https://swcarpentry.github.io/shell-novice/">https://swcarpentry.github.io/shell-novice/</a></p></li>
-<li><p><a class="reference external" href="http://swcarpentry.github.io/shell-novice-es">http://swcarpentry.github.io/shell-novice-es</a></p></li>
-<li><p><a class="github reference external" href="https://github.com/phyver/GameShell">phyver/GameShell</a></p></li>
-<li><p><a class="reference external" href="https://overthewire.org/wargames/bandit/">https://overthewire.org/wargames/bandit/</a></p></li>
-<li><p><a class="github reference external" href="https://github.com/learnbyexample/TUI-apps/tree/main">learnbyexample/TUI-apps</a></p></li>
+<li><p>https://swcarpentry.github.io/shell-novice/</p></li>
+<li><p>http://swcarpentry.github.io/shell-novice-es</p></li>
+<li><p>https://github.com/phyver/GameShell</p></li>
+<li><p>https://overthewire.org/wargames/bandit/</p></li>
+<li><p>https://github.com/learnbyexample/TUI-apps/tree/main</p></li>
 </ul>
 </li>
 <li><p>git</p>
 <ul class="simple">
-<li><p><a class="reference external" href="https://swcarpentry.github.io/git-novice/">https://swcarpentry.github.io/git-novice/</a></p></li>
-<li><p><a class="reference external" href="http://swcarpentry.github.io/git-novice-es">http://swcarpentry.github.io/git-novice-es</a></p></li>
-<li><p><a class="reference external" href="https://ohmygit.org/">https://ohmygit.org/</a></p></li>
+<li><p>https://swcarpentry.github.io/git-novice/</p></li>
+<li><p>http://swcarpentry.github.io/git-novice-es</p></li>
+<li><p>https://ohmygit.org/</p></li>
 </ul>
 </li>
 <li><p>About c++</p>
 <ul class="simple">
-<li><p><a class="reference external" href="https://survey.stackoverflow.co/2022/#technology-top-paying-technologies">https://survey.stackoverflow.co/2022/#technology-top-paying-technologies</a></p></li>
-<li><p><a class="reference external" href="https://survey.stackoverflow.co/2022/#most-popular-technologies-language-prof">https://survey.stackoverflow.co/2022/#most-popular-technologies-language-prof</a></p></li>
-<li><p><a class="reference external" href="https://www.codecademy.com/resources/blog/what-is-c-plus-plus-used-for/">https://www.codecademy.com/resources/blog/what-is-c-plus-plus-used-for/</a></p></li>
-<li><p><a class="github reference external" href="https://github.com/fffaraz/awesome-cpp">fffaraz/awesome-cpp</a></p></li>
-<li><p><a class="reference external" href="https://theartofhpc.com/">https://theartofhpc.com/</a></p></li>
+<li><p>https://survey.stackoverflow.co/2022/#technology-top-paying-technologies</p></li>
+<li><p>https://survey.stackoverflow.co/2022/#most-popular-technologies-language-prof</p></li>
+<li><p>https://www.codecademy.com/resources/blog/what-is-c-plus-plus-used-for/</p></li>
+<li><p>https://github.com/fffaraz/awesome-cpp</p></li>
+<li><p>https://theartofhpc.com/</p></li>
 </ul>
 </li>
 <li><p>Videos recorded from clases</p>
 <ul class="simple">
-<li><p>2022-II: <a class="reference external" href="https://www.youtube.com/playlist?list=PLxbXsIEaf05ricPYZeuALrf0ciMVtdiZM">https://www.youtube.com/playlist?list=PLxbXsIEaf05ricPYZeuALrf0ciMVtdiZM</a></p></li>
-<li><p>2022-I: <a class="reference external" href="https://www.youtube.com/playlist?list=PLxbXsIEaf05pGTi6XjiByO8LfJwxiHMyy">https://www.youtube.com/playlist?list=PLxbXsIEaf05pGTi6XjiByO8LfJwxiHMyy</a></p></li>
-<li><p>2021-II: <a class="reference external" href="https://www.youtube.com/playlist?list=PLxbXsIEaf05pTOL8lRUY6lgV9w5DVkMwi">https://www.youtube.com/playlist?list=PLxbXsIEaf05pTOL8lRUY6lgV9w5DVkMwi</a></p></li>
+<li><p>2022-II: https://www.youtube.com/playlist?list=PLxbXsIEaf05ricPYZeuALrf0ciMVtdiZM</p></li>
+<li><p>2022-I: https://www.youtube.com/playlist?list=PLxbXsIEaf05pGTi6XjiByO8LfJwxiHMyy</p></li>
+<li><p>2021-II: https://www.youtube.com/playlist?list=PLxbXsIEaf05pTOL8lRUY6lgV9w5DVkMwi</p></li>
 </ul>
 </li>
 </ol>

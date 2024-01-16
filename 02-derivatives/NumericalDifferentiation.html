@@ -54,6 +54,7 @@
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
     <script src="../_static/togglebutton.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
     <script src="../_static/design-tabs.js"></script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
@@ -304,6 +305,55 @@ const thebe_selector_output = ".output, .cell_output"
 
 
 
+<div class="dropdown dropdown-launch-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Launch interactive content">
+    <i class="fas fa-rocket"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://mybinder.org/v2/gh/iluvatar1/ProgCPP-lectures-jupyter/main?urlpath=lab/tree/02-derivatives/NumericalDifferentiation.ipynb" target="_blank"
+   class="btn btn-sm dropdown-item"
+   title="Launch onBinder"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  
+    <img src="../_static/images/logo_binder.svg">
+  </span>
+<span class="btn__text-container">Binder</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://colab.research.google.com/github/iluvatar1/ProgCPP-lectures-jupyter/blob/master/github/iluvatar1/ProgCPP-lectures-jupyter/blob/main/02-derivatives/NumericalDifferentiation.ipynb" target="_blank"
+   class="btn btn-sm dropdown-item"
+   title="Launch onColab"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  
+    <img src="../_static/images/logo_colab.png">
+  </span>
+<span class="btn__text-container">Colab</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
 <div class="dropdown dropdown-source-buttons">
   <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
     <i class="fab fa-github"></i>
@@ -497,7 +547,7 @@ document.write(`
 <p>Computing derivatives is the core of many of the numerical work done in computational physics. But it is not a trivial problem to do so with good accuracy. Numerical derivatives are the core computation in finite difference methods, optimization problems, interpolations and many more.</p>
 <section id="first-approach-forward-difference">
 <h2>First approach: forward difference<a class="headerlink" href="#first-approach-forward-difference" title="Permalink to this heading">#</a></h2>
-<p>This is based on either the a Taylor expansion for a given function, or in the actual definition of the derivative (see <a class="reference external" href="https://en.wikipedia.org/wiki/Numerical_differentiation">https://en.wikipedia.org/wiki/Numerical_differentiation</a>)</p>
+<p>This is based on either the a Taylor expansion for a given function, or in the actual definition of the derivative (see https://en.wikipedia.org/wiki/Numerical_differentiation)</p>
 <table class="table">
 <thead>
 <tr class="row-odd"><th class="head"><p>Definition</p></th>
@@ -520,7 +570,7 @@ and a backward (\)</span>-h<span class="math notranslate nohighlight">\() Taylor
 \)</span><span class="math notranslate nohighlight">\(f(x-h) = f(x) - f'(x) h + f''(x) h^2/2 - f'''(x) h^3/6 + O(h^4) - O(h^5),\)</span><span class="math notranslate nohighlight">\(
 and then you subtract the second from the first (notice that adding then allows you to compute the second order derivative), you get
 \)</span><span class="math notranslate nohighlight">\(f'(x) \simeq \frac{f(x+h) - f(x-h)}{2h} + O(h^2)\)</span>$
-which is called the central difference. The order is improved and this version is better than the simple forward difference. See: <a class="reference external" href="https://en.wikipedia.org/wiki/Finite_difference">https://en.wikipedia.org/wiki/Finite_difference</a></p>
+which is called the central difference. The order is improved and this version is better than the simple forward difference. See: https://en.wikipedia.org/wiki/Finite_difference</p>
 <table class="table">
 <thead>
 <tr class="row-odd"><th class="head"><p>Comparison among methods</p></th>
@@ -583,7 +633,7 @@ Compute the derivative as a function of <span class="math notranslate nohighligh
 </section>
 <section class="tex2jax_ignore mathjax_ignore" id="implementing-richardson-extrapolation">
 <h1>Implementing Richardson extrapolation<a class="headerlink" href="#implementing-richardson-extrapolation" title="Permalink to this heading">#</a></h1>
-<p>Now, use the general expression for Richardson extrapolation applied to an algorithm of order <span class="math notranslate nohighlight">\(O(h^\alpha)\)</span>, and also plot its relative differences for fixed <span class="math notranslate nohighlight">\(x\)</span>, (see <a class="reference external" href="https://en.wikipedia.org/wiki/Richardson_extrapolation?useskin=vector">https://en.wikipedia.org/wiki/Richardson_extrapolation?useskin=vector</a>)
+<p>Now, use the general expression for Richardson extrapolation applied to an algorithm of order <span class="math notranslate nohighlight">\(O(h^\alpha)\)</span>, and also plot its relative differences for fixed <span class="math notranslate nohighlight">\(x\)</span>, (see https://en.wikipedia.org/wiki/Richardson_extrapolation?useskin=vector)
 $<span class="math notranslate nohighlight">\(
 I \simeq \dfrac{t^\alpha I(\frac{h}{t}) - I(h)}{t^\alpha - 1},
 \)</span><span class="math notranslate nohighlight">\(

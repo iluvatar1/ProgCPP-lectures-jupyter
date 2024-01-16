@@ -54,6 +54,7 @@
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
     <script src="../_static/togglebutton.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
     <script src="../_static/design-tabs.js"></script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
@@ -304,6 +305,55 @@ const thebe_selector_output = ".output, .cell_output"
 
 
 
+<div class="dropdown dropdown-launch-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Launch interactive content">
+    <i class="fas fa-rocket"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://mybinder.org/v2/gh/iluvatar1/ProgCPP-lectures-jupyter/main?urlpath=lab/tree/05-matrixI/2D-matrices-to-1D-arrays.ipynb" target="_blank"
+   class="btn btn-sm dropdown-item"
+   title="Launch onBinder"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  
+    <img src="../_static/images/logo_binder.svg">
+  </span>
+<span class="btn__text-container">Binder</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://colab.research.google.com/github/iluvatar1/ProgCPP-lectures-jupyter/blob/master/github/iluvatar1/ProgCPP-lectures-jupyter/blob/main/05-matrixI/2D-matrices-to-1D-arrays.ipynb" target="_blank"
+   class="btn btn-sm dropdown-item"
+   title="Launch onColab"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  
+    <img src="../_static/images/logo_colab.png">
+  </span>
+<span class="btn__text-container">Colab</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
 <div class="dropdown dropdown-source-buttons">
   <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
     <i class="fab fa-github"></i>
@@ -521,12 +571,12 @@ For 2D arrays, you have basically two options:</p>
 <p><strong>row-major</strong>
 <div style="text-align: center;">
 <img src="https://eli.thegreenplace.net/images/2015/row-major-2D.png" alt="Image Description" width="800">
-<figcaption>From: “<a class="reference external" href="https://eli.thegreenplace.net/images/2015/row-major-2D.png">https://eli.thegreenplace.net/images/2015/row-major-2D.png</a>”</figcaption></p>
+<figcaption>From: “https://eli.thegreenplace.net/images/2015/row-major-2D.png”</figcaption></p>
 </div>
 <p><strong>column-major</strong>
 <div style="text-align: center;">
 <img src="https://eli.thegreenplace.net/images/2015/column-major-2D.png" alt="Image Description" width="800">
-<figcaption>From: “<a class="reference external" href="https://eli.thegreenplace.net/images/2015/column-major-2D.png">https://eli.thegreenplace.net/images/2015/column-major-2D.png</a>”</figcaption></p>
+<figcaption>From: “https://eli.thegreenplace.net/images/2015/column-major-2D.png”</figcaption></p>
 </div><p>For instance, the following code shows the row-major ordering in c/c++, using
 old/primitive arrays:</p>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="w">    </span><span class="c1">// REF: https://scicomp.stackexchange.com/questions/37264/how-much-space-store-a-matrix-of-numbers</span>
@@ -638,15 +688,17 @@ inside each cell correspond to indexes)</p>
     <figcaption>From: "https://eli.thegreenplace.net/images/2015/row-major-2D.png"</figcaption>
 </div>
 <p>As you can see, in the 1d array in memory, the first element (1d index 0) has the coordinates (0, 0), the second element (1d index 1) corresponds to (0, 1), and so on. The sixth 1d element, with 1d index 5, has 2D coordinates (1, 2). Can you devise a rule to relate the 1d and the 2d indexes?</p>
-<p>For a general matrix of size <code class="docutils literal notranslate"><span class="pre">MxN</span></code>, you have the following mapping from 2D to 1D
-\begin{equation}
+<p>For a general matrix of size <code class="docutils literal notranslate"><span class="pre">MxN</span></code>, you have the following mapping from 2D to 1D</p>
+<div class="amsmath math notranslate nohighlight" id="equation-b2fe6668-5253-4bad-aa51-e0f5e70bf364">
+<span class="eqno">(13)<a class="headerlink" href="#equation-b2fe6668-5253-4bad-aa51-e0f5e70bf364" title="Permalink to this equation">#</a></span>\[\begin{equation}
 id = iN + j,
-\end{equation}
-while , from 1D to 2D
-\begin{align}
-i &amp;= id/N,\
+\end{equation}\]</div>
+<p>while , from 1D to 2D</p>
+<div class="amsmath math notranslate nohighlight" id="equation-b6fd18e0-ccb6-4aeb-8ffc-02c1664e993f">
+<span class="eqno">(14)<a class="headerlink" href="#equation-b6fd18e0-ccb6-4aeb-8ffc-02c1664e993f" title="Permalink to this equation">#</a></span>\[\begin{align}
+i &amp;= id/N,\\
 j &amp;= id%N.
-\end{align}</p>
+\end{align}\]</div>
 <div style="text-align: center;">
     <img src="fig/1d-2d-mapping.png" alt="Image Description" width="600">
     <figcaption>From: "1d-2d-mapping.png"</figcaption>

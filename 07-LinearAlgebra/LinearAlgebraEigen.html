@@ -54,6 +54,7 @@
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
     <script src="../_static/togglebutton.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
     <script src="../_static/design-tabs.js"></script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
@@ -304,6 +305,55 @@ const thebe_selector_output = ".output, .cell_output"
 
 
 
+<div class="dropdown dropdown-launch-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Launch interactive content">
+    <i class="fas fa-rocket"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://mybinder.org/v2/gh/iluvatar1/ProgCPP-lectures-jupyter/main?urlpath=lab/tree/07-LinearAlgebra/LinearAlgebraEigen.ipynb" target="_blank"
+   class="btn btn-sm dropdown-item"
+   title="Launch onBinder"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  
+    <img src="../_static/images/logo_binder.svg">
+  </span>
+<span class="btn__text-container">Binder</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://colab.research.google.com/github/iluvatar1/ProgCPP-lectures-jupyter/blob/master/github/iluvatar1/ProgCPP-lectures-jupyter/blob/main/07-LinearAlgebra/LinearAlgebraEigen.ipynb" target="_blank"
+   class="btn btn-sm dropdown-item"
+   title="Launch onColab"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  
+    <img src="../_static/images/logo_colab.png">
+  </span>
+<span class="btn__text-container">Colab</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
 <div class="dropdown dropdown-source-buttons">
   <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
     <i class="fab fa-github"></i>
@@ -522,13 +572,13 @@ document.write(`
 <p>Applications are numerous:</p>
 <ul class="simple">
 <li><p>Civil, chemical, electrical, mechanical, …, engineering</p></li>
-<li><p>In biology by using linear algebra to analyze huge data sets regarding protein folding. <a class="reference external" href="https://math.stackexchange.com/questions/571109/any-application-of-vector-spaces-in-biology-or-biotechnology">https://math.stackexchange.com/questions/571109/any-application-of-vector-spaces-in-biology-or-biotechnology</a></p></li>
+<li><p>In biology by using linear algebra to analyze huge data sets regarding protein folding. https://math.stackexchange.com/questions/571109/any-application-of-vector-spaces-in-biology-or-biotechnology</p></li>
 <li><p>In genetics to model the evolution of genes.</p></li>
 <li><p>Markov chains on industrial processes with applications of matrices and eigen systems.</p></li>
 <li><p>Population dynamics.</p></li>
 <li><p>Perception of colors.</p></li>
-<li><p>Adjacency graphs: <a class="reference external" href="https://en.wikipedia.org/wiki/Adjacency_matrix">https://en.wikipedia.org/wiki/Adjacency_matrix</a> , <a class="reference external" href="https://towardsdatascience.com/matrices-are-graphs-c9034f79cfd8">https://towardsdatascience.com/matrices-are-graphs-c9034f79cfd8</a></p></li>
-<li><p>Why is linear algebra useful? <a class="reference external" href="https://www.youtube.com/watch?v=X0HXnHKPXSo">https://www.youtube.com/watch?v=X0HXnHKPXSo</a></p></li>
+<li><p>Adjacency graphs: https://en.wikipedia.org/wiki/Adjacency_matrix , https://towardsdatascience.com/matrices-are-graphs-c9034f79cfd8</p></li>
+<li><p>Why is linear algebra useful? https://www.youtube.com/watch?v=X0HXnHKPXSo</p></li>
 </ul>
 <p>One particular common operation, the matrix multiplication, is still the subject of ongoing research:</p>
 <div style="text-align: center;">
@@ -536,35 +586,35 @@ document.write(`
     <figcaption>From: "https://d2r55xnwy6nx47.cloudfront.net/uploads/2021/03/Matrix_multiplication_2880x1620_Lede.jpg"</figcaption>
 </div>
 <ul class="simple">
-<li><p><a class="reference external" href="https://www.quantamagazine.org/mathematicians-inch-closer-to-matrix-multiplication-goal-20210323/">https://www.quantamagazine.org/mathematicians-inch-closer-to-matrix-multiplication-goal-20210323/</a></p></li>
-<li><p><a class="reference external" href="https://www.quantamagazine.org/ai-reveals-new-possibilities-in-matrix-multiplication-20221123/">https://www.quantamagazine.org/ai-reveals-new-possibilities-in-matrix-multiplication-20221123/</a></p></li>
+<li><p>https://www.quantamagazine.org/mathematicians-inch-closer-to-matrix-multiplication-goal-20210323/</p></li>
+<li><p>https://www.quantamagazine.org/ai-reveals-new-possibilities-in-matrix-multiplication-20221123/</p></li>
 </ul>
 <p>Tips about matrix computing:</p>
 <ul class="simple">
-<li><p><a class="reference external" href="https://nhigham.com/2022/10/11/seven-sins-of-numerical-linear-algebra/">https://nhigham.com/2022/10/11/seven-sins-of-numerical-linear-algebra/</a></p></li>
-<li><p><a class="reference external" href="http://gregorygundersen.com/blog/2020/12/09/matrix-inversion/">http://gregorygundersen.com/blog/2020/12/09/matrix-inversion/</a></p></li>
-<li><p><a class="reference external" href="https://gamemath.com/book/intro.html">https://gamemath.com/book/intro.html</a></p></li>
-<li><p><a class="reference external" href="https://docs.godotengine.org/en/stable/tutorials/math/vector_math.html">https://docs.godotengine.org/en/stable/tutorials/math/vector_math.html</a></p></li>
-<li><p><a class="reference external" href="https://www.youtube.com/watch?v=fDAPJ7rvcUw">https://www.youtube.com/watch?v=fDAPJ7rvcUw</a></p></li>
+<li><p>https://nhigham.com/2022/10/11/seven-sins-of-numerical-linear-algebra/</p></li>
+<li><p>http://gregorygundersen.com/blog/2020/12/09/matrix-inversion/</p></li>
+<li><p>https://gamemath.com/book/intro.html</p></li>
+<li><p>https://docs.godotengine.org/en/stable/tutorials/math/vector_math.html</p></li>
+<li><p>https://www.youtube.com/watch?v=fDAPJ7rvcUw</p></li>
 </ul>
 <p>Furthermore, for eigen values, please check
-<a class="reference external" href="https://www.youtube.com/watch?v=PFDu9oVAE-g&amp;amp;t=0s">https://www.youtube.com/watch?v=PFDu9oVAE-g&amp;t=0s</a></p>
+https://www.youtube.com/watch?v=PFDu9oVAE-g&amp;t=0s</p>
 </section>
 <section class="tex2jax_ignore mathjax_ignore" id="eigen-c">
 <h1>Eigen c++<a class="headerlink" href="#eigen-c" title="Permalink to this heading">#</a></h1>
 <p>Eigen is a C++ template library for linear algebra: matrices, vectors, numerical solvers, and related algorithms.</p>
 <ul class="simple">
-<li><p><a class="reference external" href="http://eigen.tuxfamily.org/index.php?title=Main_Page">http://eigen.tuxfamily.org/index.php?title=Main_Page</a></p></li>
-<li><p><a class="reference external" href="http://eigen.tuxfamily.org/dox/GettingStarted.html">http://eigen.tuxfamily.org/dox/GettingStarted.html</a></p></li>
+<li><p>http://eigen.tuxfamily.org/index.php?title=Main_Page</p></li>
+<li><p>http://eigen.tuxfamily.org/dox/GettingStarted.html</p></li>
 </ul>
-<p>Quick reference: <a class="reference external" href="https://eigen.tuxfamily.org/dox/group__QuickRefPage.html">https://eigen.tuxfamily.org/dox/group__QuickRefPage.html</a></p>
+<p>Quick reference: https://eigen.tuxfamily.org/dox/group__QuickRefPage.html</p>
 </section>
 <section class="tex2jax_ignore mathjax_ignore" id="solving-ax-b">
 <h1>Solving <span class="math notranslate nohighlight">\(Ax = b\)</span><a class="headerlink" href="#solving-ax-b" title="Permalink to this heading">#</a></h1>
-<p>This is one of the archetypical problems in numerical algebra. You migh try to implement it by hand, but it will probable be not efficient, stable, etc (Remember <a class="reference external" href="https://nhigham.com/2022/10/11/seven-sins-of-numerical-linear-algebra/">https://nhigham.com/2022/10/11/seven-sins-of-numerical-linear-algebra/</a>). Better to use a numerical library to do the heavy task for you.</p>
+<p>This is one of the archetypical problems in numerical algebra. You migh try to implement it by hand, but it will probable be not efficient, stable, etc (Remember https://nhigham.com/2022/10/11/seven-sins-of-numerical-linear-algebra/). Better to use a numerical library to do the heavy task for you.</p>
 <section id="qr-decomposition">
 <h2>QR decomposition<a class="headerlink" href="#qr-decomposition" title="Permalink to this heading">#</a></h2>
-<p>In this example we are going to use eigen to solve the system using HouseHolder QR decomposition as done in <a class="reference external" href="http://eigen.tuxfamily.org/dox/group__TutorialLinearAlgebra.html">http://eigen.tuxfamily.org/dox/group__TutorialLinearAlgebra.html</a> . Please create a file with the following code, compile it and run it. You are supposed to have already installed eigen (the computer room and the binder machine both have it).</p>
+<p>In this example we are going to use eigen to solve the system using HouseHolder QR decomposition as done in http://eigen.tuxfamily.org/dox/group__TutorialLinearAlgebra.html . Please create a file with the following code, compile it and run it. You are supposed to have already installed eigen (the computer room and the binder machine both have it).</p>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp">#</span><span class="w"> </span><span class="cp">include</span><span class="w"> </span><span class="cpf">&lt;iostream&gt;</span>
 <span class="cp">#</span><span class="w"> </span><span class="cp">include</span><span class="w"> </span><span class="cpf">&lt;Eigen/Dense&gt;</span>
 
@@ -680,18 +730,19 @@ document.write(`
 </section>
 <section id="laplace-equation-in-2d">
 <h2>Laplace equation in 2D<a class="headerlink" href="#laplace-equation-in-2d" title="Permalink to this heading">#</a></h2>
-<p>When solving the laplace equation <span class="math notranslate nohighlight">\(\nabla V = 0\)</span> to compute the electrostatic potential on a planar region, you can discretize the derivatives on a grid   and then arrive to the following equation
-\begin{equation}
-V_{i+1,j} + V_{i-1,j} + V_{i,j+1} + V_{i,j-1} - 4V_{i,j} = 0.0.
-\end{equation}
-This can be written as a matrix problem. Solve the matrix problem for a
+<p>When solving the laplace equation <span class="math notranslate nohighlight">\(\nabla V = 0\)</span> to compute the electrostatic potential on a planar region, you can discretize the derivatives on a grid   and then arrive to the following equation</p>
+<div class="amsmath math notranslate nohighlight" id="equation-2fe08612-c145-4100-8034-373997f899ac">
+<span class="eqno">(20)<a class="headerlink" href="#equation-2fe08612-c145-4100-8034-373997f899ac" title="Permalink to this equation">#</a></span>\[\begin{equation}
+   V_{i+1,j} + V_{i-1,j} + V_{i,j+1} + V_{i,j-1} - 4V_{i,j} = 0.0.
+   \end{equation}\]</div>
+<p>This can be written as a matrix problem. Solve the matrix problem for a
 square plate of lenght <span class="math notranslate nohighlight">\(L\)</span>, with <span class="math notranslate nohighlight">\(N\)</span> points on each side. The boundary
 conditions, of Dirichlet type, are <span class="math notranslate nohighlight">\(V(x, 0) = 5\sin(\pi x/L)\)</span>, <span class="math notranslate nohighlight">\(V(x, L) =
    V(0, y) = V(L, y) = 0.0\)</span>.</p>
 </section>
 <section id="vandermonde-determinant">
 <h2>Vandermonde determinant<a class="headerlink" href="#vandermonde-determinant" title="Permalink to this heading">#</a></h2>
-<p>Compute the determinant of the [[<a class="reference external" href="https://en.wikipedia.org/wiki/Vandermonde_matrix">https://en.wikipedia.org/wiki/Vandermonde_matrix</a>][Vandermonde matrix]] of size <span class="math notranslate nohighlight">\(N\times N\)</span>.
+<p>Compute the determinant of the [[https://en.wikipedia.org/wiki/Vandermonde_matrix][Vandermonde matrix]] of size <span class="math notranslate nohighlight">\(N\times N\)</span>.
 Measure the time as a function of <span class="math notranslate nohighlight">\(N\)</span>.</p>
 </section>
 <section id="condition-number">
@@ -711,29 +762,30 @@ vector and check that it is actually rotated.</p>
 form wall-spring-mass-spring-mass-spring-wall. All spring are linear with
 constant <span class="math notranslate nohighlight">\(k\)</span>. Write the equations of motion, replace each solution with
 <span class="math notranslate nohighlight">\(x_i(t) =  A_i e^{i\omega t}\)</span>, and obtain a matrix representation to get the
-amplitudes. Compute the eigen values and eigen-vectors. Those are the [[<a class="reference external" href="https://en.wikipedia.org/wiki/Normal_mode">https://en.wikipedia.org/wiki/Normal_mode</a>][normal
+amplitudes. Compute the eigen values and eigen-vectors. Those are the [[https://en.wikipedia.org/wiki/Normal_mode][normal
 modes]] . Extend to n oscillators of the same mass.</p>
 </section>
 </section>
 <section class="tex2jax_ignore mathjax_ignore" id="thick-lens-boas-3-15-9">
 <h1>Thick lens (Boas, 3.15.9)<a class="headerlink" href="#thick-lens-boas-3-15-9" title="Permalink to this heading">#</a></h1>
-<p>The next matrix is used when discussing a thick lens in air
-\begin{equation}
-A =
+<p>The next matrix is used when discussing a thick lens in air</p>
+<div class="amsmath math notranslate nohighlight" id="equation-b4b59072-ff5e-4f19-a4e3-a3f8c5996621">
+<span class="eqno">(21)<a class="headerlink" href="#equation-b4b59072-ff5e-4f19-a4e3-a3f8c5996621" title="Permalink to this equation">#</a></span>\[\begin{equation}
+A = 
 \begin{pmatrix}
-1 &amp; (n-1)/R_2\
+1 &amp; (n-1)/R_2\\
 0 &amp; 1
 \end{pmatrix}
 \begin{pmatrix}
-1 &amp; 0\
+1 &amp; 0\\
 d/n &amp; 1
 \end{pmatrix}
 \begin{pmatrix}
-1 &amp; -(n-1)/R_1\
+1 &amp; -(n-1)/R_1\\
 0 &amp; 1
 \end{pmatrix},
-\end{equation}
-where <span class="math notranslate nohighlight">\(d\)</span> is the thickness of the lens, <span class="math notranslate nohighlight">\(n\)</span> is the refraction index, and <span class="math notranslate nohighlight">\(R_1\)</span> and <span class="math notranslate nohighlight">\(R_2\)</span> are the curvature radius. Element <span class="math notranslate nohighlight">\(A_{12}\)</span> is equal to <span class="math notranslate nohighlight">\(-1/f\)</span>, where <span class="math notranslate nohighlight">\(f\)</span> is the focal distance. Evaluate <span class="math notranslate nohighlight">\(\det A\)</span> and <span class="math notranslate nohighlight">\(1/f\)</span> as functions of <span class="math notranslate nohighlight">\(n \in [1, 3]\)</span>.</p>
+\end{equation}\]</div>
+<p>where <span class="math notranslate nohighlight">\(d\)</span> is the thickness of the lens, <span class="math notranslate nohighlight">\(n\)</span> is the refraction index, and <span class="math notranslate nohighlight">\(R_1\)</span> and <span class="math notranslate nohighlight">\(R_2\)</span> are the curvature radius. Element <span class="math notranslate nohighlight">\(A_{12}\)</span> is equal to <span class="math notranslate nohighlight">\(-1/f\)</span>, where <span class="math notranslate nohighlight">\(f\)</span> is the focal distance. Evaluate <span class="math notranslate nohighlight">\(\det A\)</span> and <span class="math notranslate nohighlight">\(1/f\)</span> as functions of <span class="math notranslate nohighlight">\(n \in [1, 3]\)</span>.</p>
 <section id="products-production">
 <h2>Products production<a class="headerlink" href="#products-production" title="Permalink to this heading">#</a></h2>
 <img src="fig/problem-05.png" width=300>
@@ -749,11 +801,12 @@ where <span class="math notranslate nohighlight">\(d\)</span> is the thickness o
 </section>
 <section class="tex2jax_ignore mathjax_ignore" id="eigen-vectors-and-eigen-values">
 <h1>Eigen vectors and eigen values<a class="headerlink" href="#eigen-vectors-and-eigen-values" title="Permalink to this heading">#</a></h1>
-<p>Eigen-values (<span class="math notranslate nohighlight">\(\lambda\)</span>) and eigen-vectors (<span class="math notranslate nohighlight">\(\vec v\)</span>) of a matrix <span class="math notranslate nohighlight">\(A\)</span> fulfill the following equation
-\begin{equation}
+<p>Eigen-values (<span class="math notranslate nohighlight">\(\lambda\)</span>) and eigen-vectors (<span class="math notranslate nohighlight">\(\vec v\)</span>) of a matrix <span class="math notranslate nohighlight">\(A\)</span> fulfill the following equation</p>
+<div class="amsmath math notranslate nohighlight" id="equation-5028dfe5-5734-4963-b6cd-af0bb928fc1d">
+<span class="eqno">(22)<a class="headerlink" href="#equation-5028dfe5-5734-4963-b6cd-af0bb928fc1d" title="Permalink to this equation">#</a></span>\[\begin{equation}
 A\vec v = \lambda \vec v,
-\end{equation}
-and are extensively use in physics, statistics, computational methods, etc (see <a class="reference external" href="https://en.wikipedia.org/wiki/Eigenvalues_and_eigenvectors?useskin=vector">https://en.wikipedia.org/wiki/Eigenvalues_and_eigenvectors?useskin=vector</a>). For example, they are use to compute (<a class="reference external" href="https://en.wikipedia.org/wiki/Eigenvalues_and_eigenvectors?useskin=vector#Applications">https://en.wikipedia.org/wiki/Eigenvalues_and_eigenvectors?useskin=vector#Applications</a>):</p>
+\end{equation}\]</div>
+<p>and are extensively use in physics, statistics, computational methods, etc (see https://en.wikipedia.org/wiki/Eigenvalues_and_eigenvectors?useskin=vector). For example, they are use to compute (https://en.wikipedia.org/wiki/Eigenvalues_and_eigenvectors?useskin=vector#Applications):</p>
 <ul>
 <li><p>Eigen values of the Schroedinger equation</p>
   <div style="text-align: center;">
@@ -800,7 +853,7 @@ and are extensively use in physics, statistics, computational methods, etc (see 
 </div><section id="solving-a-general-eigen-value-problem-with-eigen-c">
 <h2>Solving a general eigen value problem with eigen c++<a class="headerlink" href="#solving-a-general-eigen-value-problem-with-eigen-c" title="Permalink to this heading">#</a></h2>
 <p>Following the documentation of the general eigen solver,
-<a class="reference external" href="https://eigen.tuxfamily.org/dox/classEigen_1_1EigenSolver.html">https://eigen.tuxfamily.org/dox/classEigen_1_1EigenSolver.html</a>, we can use the
+https://eigen.tuxfamily.org/dox/classEigen_1_1EigenSolver.html, we can use the
 example to show how it works:</p>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;iostream&gt;</span>
 <span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;string&gt;</span>
@@ -844,11 +897,11 @@ example to show how it works:</p>
 <h1>Exercises for eigen systems<a class="headerlink" href="#exercises-for-eigen-systems" title="Permalink to this heading">#</a></h1>
 <section id="eigen-values-hilbert-matrix">
 <h2>Eigen values Hilbert matrix<a class="headerlink" href="#eigen-values-hilbert-matrix" title="Permalink to this heading">#</a></h2>
-<p>Compute the eigen values and the condition number for the <a class="reference external" href="https://en.wikipedia.org/wiki/Hilbert_matrix">https://en.wikipedia.org/wiki/Hilbert_matrix</a>.</p>
+<p>Compute the eigen values and the condition number for the https://en.wikipedia.org/wiki/Hilbert_matrix.</p>
 </section>
 <section id="power-method-and-eigen-values">
 <h2>Power method and eigen values<a class="headerlink" href="#power-method-and-eigen-values" title="Permalink to this heading">#</a></h2>
-<p>Apply the <a class="reference external" href="https://en.wikipedia.org/wiki/Power_iteration">https://en.wikipedia.org/wiki/Power_iteration</a> to compute the maximum eigen value of the Vandermonde
+<p>Apply the https://en.wikipedia.org/wiki/Power_iteration to compute the maximum eigen value of the Vandermonde
 matrix (or any other matrix).</p>
 </section>
 <section id="power-of-a-matrix">
@@ -857,33 +910,36 @@ matrix (or any other matrix).</p>
 </section>
 <section id="checking-stability-heath-scientific-computing">
 <h2>Checking stability (Heath, scientific computing)<a class="headerlink" href="#checking-stability-heath-scientific-computing" title="Permalink to this heading">#</a></h2>
-<p>Compute the eigen values of the matrix
-\begin{equation}
-A =
+<p>Compute the eigen values of the matrix</p>
+<div class="amsmath math notranslate nohighlight" id="equation-80cd5f79-80f3-4924-87bf-6d9439633275">
+<span class="eqno">(23)<a class="headerlink" href="#equation-80cd5f79-80f3-4924-87bf-6d9439633275" title="Permalink to this equation">#</a></span>\[\begin{equation}
+A = 
 \begin{pmatrix}
-9 &amp; 4.5 &amp; 3\
--56 &amp; -28 &amp; -18\
+9 &amp; 4.5 &amp; 3\\
+-56 &amp; -28 &amp; -18\\
 60 &amp; 30 &amp; 19
 \end{pmatrix}
-\end{equation}
-Then do it again, but change the 19 to 18.95. What is the relative change in the eigen values magnitudes? Do the same changing it to 19.05. Can you draw any conclusion about this? can you devise a condition number to characterize this?</p>
+\end{equation}\]</div>
+<p>Then do it again, but change the 19 to 18.95. What is the relative change in the eigen values magnitudes? Do the same changing it to 19.05. Can you draw any conclusion about this? can you devise a condition number to characterize this?</p>
 </section>
 <section id="markov-chain-heath-scientific-computing">
 <h2>Markov chain (Heath, Scientific Computing)<a class="headerlink" href="#markov-chain-heath-scientific-computing" title="Permalink to this heading">#</a></h2>
-<p>A Markov chain is a representation of a Markov process, which, in turns, is a random process with no memory: the current state depends only on the previous one and no more. The probability of a transition from state j to state i is given by <span class="math notranslate nohighlight">\(a_{ij}\)</span>,where <span class="math notranslate nohighlight">\(0 \le a_{ij} \le 1\)</span> and <span class="math notranslate nohighlight">\(\sum_{i=1}^n a_{ij} =1\)</span>. Let <span class="math notranslate nohighlight">\(A\)</span> denote the matrix of transition probabilities, and let <span class="math notranslate nohighlight">\(x^{(k)}\)</span> denote the probability that the system is  in state <span class="math notranslate nohighlight">\(i\)</span> after transition <span class="math notranslate nohighlight">\(k\)</span>. If the initial probability distribution vector is <span class="math notranslate nohighlight">\(x^{(0)}\)</span>, then the probability distribution vector after <span class="math notranslate nohighlight">\(k\)</span> steps is given by
-\begin{equation}
+<p>A Markov chain is a representation of a Markov process, which, in turns, is a random process with no memory: the current state depends only on the previous one and no more. The probability of a transition from state j to state i is given by <span class="math notranslate nohighlight">\(a_{ij}\)</span>,where <span class="math notranslate nohighlight">\(0 \le a_{ij} \le 1\)</span> and <span class="math notranslate nohighlight">\(\sum_{i=1}^n a_{ij} =1\)</span>. Let <span class="math notranslate nohighlight">\(A\)</span> denote the matrix of transition probabilities, and let <span class="math notranslate nohighlight">\(x^{(k)}\)</span> denote the probability that the system is  in state <span class="math notranslate nohighlight">\(i\)</span> after transition <span class="math notranslate nohighlight">\(k\)</span>. If the initial probability distribution vector is <span class="math notranslate nohighlight">\(x^{(0)}\)</span>, then the probability distribution vector after <span class="math notranslate nohighlight">\(k\)</span> steps is given by</p>
+<div class="amsmath math notranslate nohighlight" id="equation-f018d803-8db5-4b2e-87de-f3365be1b9f7">
+<span class="eqno">(24)<a class="headerlink" href="#equation-f018d803-8db5-4b2e-87de-f3365be1b9f7" title="Permalink to this equation">#</a></span>\[\begin{equation}
 x^{(k)} = A x^{(k-1)} = A^k x^{(0)}.
-\end{equation}</p>
-<p>Consider the matrix
-\begin{equation}
-A =
+\end{equation}\]</div>
+<p>Consider the matrix</p>
+<div class="amsmath math notranslate nohighlight" id="equation-8a21ff2b-9cd9-49fe-b9b1-c02634161d83">
+<span class="eqno">(25)<a class="headerlink" href="#equation-8a21ff2b-9cd9-49fe-b9b1-c02634161d83" title="Permalink to this equation">#</a></span>\[\begin{equation}
+A = 
 \begin{pmatrix}
-0.8 &amp; 0.2 &amp; 0.1\
-0.1 &amp; 0.7 &amp; 0.3\
-0.1 &amp; 0.1 &amp; 0.6\
+0.8 &amp; 0.2 &amp; 0.1\\
+0.1 &amp; 0.7 &amp; 0.3\\
+0.1 &amp; 0.1 &amp; 0.6\\
 \end{pmatrix},
-\end{equation}
-and suposse the system is initially in state 1.</p>
+\end{equation}\]</div>
+<p>and suposse the system is initially in state 1.</p>
 <ul class="simple">
 <li><p>What is the probability distribution vector after three steps?</p></li>
 <li><p>What is the long-term value of the probability distribution vector?</p></li>
@@ -918,15 +974,15 @@ whose eigen values are 1 --></section>
 <section class="tex2jax_ignore mathjax_ignore" id="other-eigen-tools">
 <h1>Other eigen tools<a class="headerlink" href="#other-eigen-tools" title="Permalink to this heading">#</a></h1>
 <ul class="simple">
-<li><p><a class="reference external" href="http://eigen.tuxfamily.org/dox/group__Sparse__chapter.html">http://eigen.tuxfamily.org/dox/group__Sparse__chapter.html</a></p></li>
-<li><p><a class="reference external" href="http://eigen.tuxfamily.org/dox/group__Geometry__chapter.html">http://eigen.tuxfamily.org/dox/group__Geometry__chapter.html</a></p></li>
+<li><p>http://eigen.tuxfamily.org/dox/group__Sparse__chapter.html</p></li>
+<li><p>http://eigen.tuxfamily.org/dox/group__Geometry__chapter.html</p></li>
 </ul>
 </section>
 <section class="tex2jax_ignore mathjax_ignore" id="eigen-arrays-coefficient-wise-computation">
 <h1>Eigen arrays: coefficient wise computation<a class="headerlink" href="#eigen-arrays-coefficient-wise-computation" title="Permalink to this heading">#</a></h1>
 <p>This library also implements element-wise operations and data structs,
-<a class="reference external" href="https://eigen.tuxfamily.org/dox/group__TutorialArrayClass.html">https://eigen.tuxfamily.org/dox/group__TutorialArrayClass.html</a> ,
-<a class="reference external" href="https://eigen.tuxfamily.org/dox/group__QuickRefPage.html#title6">https://eigen.tuxfamily.org/dox/group__QuickRefPage.html#title6</a> . There are many
+https://eigen.tuxfamily.org/dox/group__TutorialArrayClass.html ,
+https://eigen.tuxfamily.org/dox/group__QuickRefPage.html#title6 . There are many
 overloaded operations that you can use. Plase check the docs.</p>
 <p>This is an example of a sum, element-wise</p>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;eigen3/Eigen/Dense&gt;</span>
@@ -999,12 +1055,13 @@ and <span class="math notranslate nohighlight">\(2\pi\)</span>, then compute the
 <h2>MD simulation<a class="headerlink" href="#md-simulation" title="Permalink to this heading">#</a></h2>
 <p>If you discretize time in steps of size <span class="math notranslate nohighlight">\(\delta t\)</span>, and you have the forces on
 a given ideal particle, you can compute the next position using the Euler
-algorithm,
-\begin{align}
-\vec R(t+\delta t) &amp;= \vec R(t) + \delta t \vec V(t),\
-\vec V(t + \delta t) &amp;= \vec V(t) + \delta t \vec F(t)/m.\
-\end{align}
-Use valarrays to model the vectors. Compute the trayectory of a
+algorithm,</p>
+<div class="amsmath math notranslate nohighlight" id="equation-7558d0b2-6d69-47ea-8e95-b3aa79340d95">
+<span class="eqno">(26)<a class="headerlink" href="#equation-7558d0b2-6d69-47ea-8e95-b3aa79340d95" title="Permalink to this equation">#</a></span>\[\begin{align}
+    \vec R(t+\delta t) &amp;= \vec R(t) + \delta t \vec V(t),\\
+    \vec V(t + \delta t) &amp;= \vec V(t) + \delta t \vec F(t)/m.\\
+   \end{align}\]</div>
+<p>Use valarrays to model the vectors. Compute the trayectory of a
 particle of mass <span class="math notranslate nohighlight">\(m=0.987\)</span>, with initial conditions <span class="math notranslate nohighlight">\(\vec R(0) = (0, 0, 4.3),
    V(0) = (0.123, 0.0, 0.98)\)</span>, under the influence of gravity. Plot it. Later add
 some damping. Later add some interaction with the ground.</p>

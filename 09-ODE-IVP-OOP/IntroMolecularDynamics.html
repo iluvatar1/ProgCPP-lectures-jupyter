@@ -54,6 +54,7 @@
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
     <script src="../_static/togglebutton.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
     <script src="../_static/design-tabs.js"></script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
@@ -303,6 +304,55 @@ const thebe_selector_output = ".output, .cell_output"
 
 
 
+<div class="dropdown dropdown-launch-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Launch interactive content">
+    <i class="fas fa-rocket"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://mybinder.org/v2/gh/iluvatar1/ProgCPP-lectures-jupyter/main?urlpath=lab/tree/09-ODE-IVP-OOP/IntroMolecularDynamics.ipynb" target="_blank"
+   class="btn btn-sm dropdown-item"
+   title="Launch onBinder"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  
+    <img src="../_static/images/logo_binder.svg">
+  </span>
+<span class="btn__text-container">Binder</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://colab.research.google.com/github/iluvatar1/ProgCPP-lectures-jupyter/blob/master/github/iluvatar1/ProgCPP-lectures-jupyter/blob/main/09-ODE-IVP-OOP/IntroMolecularDynamics.ipynb" target="_blank"
+   class="btn btn-sm dropdown-item"
+   title="Launch onColab"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  
+    <img src="../_static/images/logo_colab.png">
+  </span>
+<span class="btn__text-container">Colab</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
 <div class="dropdown dropdown-source-buttons">
   <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
     <i class="fab fa-github"></i>
@@ -535,7 +585,7 @@ and from the forces. Each of these procedures will be on different files. Let’
 start with the particle.</p>
 <p>To learn more about classes, check
 <a class="reference external" href="https://www.learncpp.com/cpp-tutorial/classes-and-class-members/">https://www.learncpp.com/cpp-tutorial/classes-and-class-members/</a> .</p>
-<p>Our goal now will be to be able to simulate a particle bouncing on the floor, with possibly more particles and walls. This could be easily applicable to more complex systems. This a basic physics engine, and we could later play to get something like <a class="reference external" href="https://www.youtube.com/watch?v=lS_qeBy3aQI&amp;amp;t=0s">https://www.youtube.com/watch?v=lS_qeBy3aQI&amp;t=0s</a></p>
+<p>Our goal now will be to be able to simulate a particle bouncing on the floor, with possibly more particles and walls. This could be easily applicable to more complex systems. This a basic physics engine, and we could later play to get something like https://www.youtube.com/watch?v=lS_qeBy3aQI&amp;t=0s</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%html</span>
@@ -650,23 +700,26 @@ optimized velocity verlet and so on. They try to integrate the evolution with a
 high order while reducing the number of force evaluations per time step. In
 particular, the leap-frog algorithm can be written as
 (<a class="reference external" href="https://en.wikipedia.org/wiki/Leapfrog_integration">https://en.wikipedia.org/wiki/Leapfrog_integration</a>)</p>
-<p>\begin{align}
-\vec V (t + \delta t/2) &amp;= \vec V (t - \delta t/2) + \vec F(t) \delta t/m + O(\delta t^3),\
+<div class="amsmath math notranslate nohighlight" id="equation-e52e4c8b-9bf6-4166-add9-606ba72d515c">
+<span class="eqno">(37)<a class="headerlink" href="#equation-e52e4c8b-9bf6-4166-add9-606ba72d515c" title="Permalink to this equation">#</a></span>\[\begin{align}
+\vec V (t + \delta t/2) &amp;= \vec V (t - \delta t/2) + \vec F(t) \delta t/m + O(\delta t^3),\\
 \vec R(t+\delta t) &amp;= \vec R(t) + \vec V (t + \delta t/2) \delta t + O(\delta t^3).
-\end{align}</p>
+\end{align}\]</div>
 <p>As you can see, the velocity is now in half-steps. This algorithm is very stable
 and symplectic. One important detail for the implementation: To perform the
 first step, you need to put your variables in the correct time. If we put t=0,
 the next step would be</p>
-<p>\begin{align}
-\vec V (0 + \delta t/2) &amp;= \vec V (0 - \delta t/2) + \vec F(0) \delta t/m + O(\delta t^3),\
+<div class="amsmath math notranslate nohighlight" id="equation-d0cc4626-67b8-4f86-a05b-cec090646aa1">
+<span class="eqno">(38)<a class="headerlink" href="#equation-d0cc4626-67b8-4f86-a05b-cec090646aa1" title="Permalink to this equation">#</a></span>\[\begin{align}
+\vec V (0 + \delta t/2) &amp;= \vec V (0 - \delta t/2) + \vec F(0) \delta t/m + O(\delta t^3),\\
 \vec R(0+\delta t) &amp;= \vec R(0) + \vec V (0 + \delta t/2) \delta t + O(\delta t^3).
-\end{align}</p>
+\end{align}\]</div>
 <p>Therefore, we will need first to move the velocity from time 0 to time <span class="math notranslate nohighlight">\(0 -
 \delta t\)</span>. We could do that as follows</p>
-<p>\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-fb2e6898-b1fb-473a-96e9-66e98498eb9f">
+<span class="eqno">(39)<a class="headerlink" href="#equation-fb2e6898-b1fb-473a-96e9-66e98498eb9f" title="Permalink to this equation">#</a></span>\[\begin{equation}
 \vec V(0 - \delta t/2) = \vec V(0) - \delta t \vec F(0)/2m.
-\end{equation}</p>
+\end{equation}\]</div>
 <p><a id="orgd0444a6"></a></p>
 <section id="id1">
 <h2>Exercise<a class="headerlink" href="#id1" title="Permalink to this heading">#</a></h2>
@@ -829,18 +882,21 @@ many other particles and visualize their collisions. How does the cpu time
 scales with the number of particles?</p>
 <p>If two particles are colliding, with interpenetration <span class="math notranslate nohighlight">\(\delta\)</span>, then we can
 model the force that particle <span class="math notranslate nohighlight">\(i\)</span> exerts on particle <span class="math notranslate nohighlight">\(j\)</span> as,</p>
-<p>\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-2f69af49-1ac0-4f57-8561-c2b863a25b9c">
+<span class="eqno">(40)<a class="headerlink" href="#equation-2f69af49-1ac0-4f57-8561-c2b863a25b9c" title="Permalink to this equation">#</a></span>\[\begin{equation}
 \vec F_{ij} = k \delta \hat n_{ij},
-\end{equation}</p>
+\end{equation}\]</div>
 <p>where <span class="math notranslate nohighlight">\(k\)</span> is a constant proportional to the effective Young modulus, and <span class="math notranslate nohighlight">\(\hat
 n_{ij}\)</span> is the normal vector from particle <span class="math notranslate nohighlight">\(i\)</span> to <span class="math notranslate nohighlight">\(j\)</span>, that is</p>
-<p>\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-04f3064a-8c0e-4ff0-9c28-5f0878f6ceaa">
+<span class="eqno">(41)<a class="headerlink" href="#equation-04f3064a-8c0e-4ff0-9c28-5f0878f6ceaa" title="Permalink to this equation">#</a></span>\[\begin{equation}
 \hat n_{ij} = \frac{\vec R_{ij}}{|\vec R_{ij}|},
-\end{equation}</p>
+\end{equation}\]</div>
 <p>with <span class="math notranslate nohighlight">\(\vec R_{ij} = \vec R_j - \vec R_i\)</span>, and</p>
-<p>\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-e102fd3d-89f7-4843-bd94-d2b925675577">
+<span class="eqno">(42)<a class="headerlink" href="#equation-e102fd3d-89f7-4843-bd94-d2b925675577" title="Permalink to this equation">#</a></span>\[\begin{equation}
 \delta = r_i + r_j - |\vec R_{ij}|.
-\end{equation}</p>
+\end{equation}\]</div>
 <p>For a more realistic force model, check
 <a class="reference external" href="https://www.cfdem.com/media/DEM/docu/gran_model_hertz.html">https://www.cfdem.com/media/DEM/docu/gran_model_hertz.html</a> and references
 therein.</p>
@@ -860,17 +916,17 @@ therein.</p>
 <h2>Modeling a complex number <code>[7/10]</code><a class="headerlink" href="#modeling-a-complex-number-code-7-10-code" title="Permalink to this heading">#</a></h2>
 <p>Let’s model a complex number. The program should able to print the
 number and also to compute</p>
-<ul class="contains-task-list simple">
-<li class="task-list-item"><p><input class="task-list-item-checkbox" checked="checked" disabled="disabled" type="checkbox"> the real part.</p></li>
-<li class="task-list-item"><p><input class="task-list-item-checkbox" checked="checked" disabled="disabled" type="checkbox"> the imaginary part.</p></li>
-<li class="task-list-item"><p><input class="task-list-item-checkbox" checked="checked" disabled="disabled" type="checkbox"> the norm.</p></li>
-<li class="task-list-item"><p><input class="task-list-item-checkbox" checked="checked" disabled="disabled" type="checkbox"> the angle.</p></li>
-<li class="task-list-item"><p><input class="task-list-item-checkbox" checked="checked" disabled="disabled" type="checkbox"> the operator + .</p></li>
-<li class="task-list-item"><p><input class="task-list-item-checkbox" checked="checked" disabled="disabled" type="checkbox"> the operator - .</p></li>
-<li class="task-list-item"><p><input class="task-list-item-checkbox" disabled="disabled" type="checkbox"> the operator / .</p></li>
-<li class="task-list-item"><p><input class="task-list-item-checkbox" disabled="disabled" type="checkbox"> the operator * .</p></li>
-<li class="task-list-item"><p><input class="task-list-item-checkbox" checked="checked" disabled="disabled" type="checkbox"> the sin.</p></li>
-<li class="task-list-item"><p><input class="task-list-item-checkbox" disabled="disabled" type="checkbox"> the cos.</p></li>
+<ul class="simple">
+<li><p>[X] the real part.</p></li>
+<li><p>[X] the imaginary part.</p></li>
+<li><p>[X] the norm.</p></li>
+<li><p>[X] the angle.</p></li>
+<li><p>[X] the operator + .</p></li>
+<li><p>[X] the operator - .</p></li>
+<li><p>[ ] the operator / .</p></li>
+<li><p>[ ] the operator * .</p></li>
+<li><p>[X] the sin.</p></li>
+<li><p>[ ] the cos.</p></li>
 </ul>
 <p>Header file</p>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="w">    </span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;iostream&gt;</span>

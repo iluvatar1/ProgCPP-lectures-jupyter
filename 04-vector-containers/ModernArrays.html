@@ -54,6 +54,7 @@
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
     <script src="../_static/togglebutton.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
     <script src="../_static/design-tabs.js"></script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
@@ -62,6 +63,8 @@ const thebe_selector_input = "pre"
 const thebe_selector_output = ".output, .cell_output"
 </script>
     <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = '04-vector-containers/ModernArrays';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
@@ -302,6 +305,55 @@ const thebe_selector_output = ".output, .cell_output"
 
 
 
+<div class="dropdown dropdown-launch-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Launch interactive content">
+    <i class="fas fa-rocket"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://mybinder.org/v2/gh/iluvatar1/ProgCPP-lectures-jupyter/main?urlpath=lab/tree/04-vector-containers/ModernArrays.ipynb" target="_blank"
+   class="btn btn-sm dropdown-item"
+   title="Launch onBinder"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  
+    <img src="../_static/images/logo_binder.svg">
+  </span>
+<span class="btn__text-container">Binder</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://colab.research.google.com/github/iluvatar1/ProgCPP-lectures-jupyter/blob/master/github/iluvatar1/ProgCPP-lectures-jupyter/blob/main/04-vector-containers/ModernArrays.ipynb" target="_blank"
+   class="btn btn-sm dropdown-item"
+   title="Launch onColab"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  
+    <img src="../_static/images/logo_colab.png">
+  </span>
+<span class="btn__text-container">Colab</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
 <div class="dropdown dropdown-source-buttons">
   <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
     <i class="fab fa-github"></i>
@@ -501,7 +553,7 @@ automatically the memory. Although there are two analog structures, <a class="re
 and <a class="reference external" href="https://en.cppreference.com/w/cpp/container/vector">std::vector</a> (and in the future we will use <a class="reference external" href="https://en.cppreference.com/w/cpp/numeric/valarray">std::valarray</a>), we will focus
 mainly on the <code class="docutils literal notranslate"><span class="pre">std::vector</span></code> since it handles dynamic memory (<code class="docutils literal notranslate"><span class="pre">std::array</span></code> is for
 static arrays). The key here is that these data structures create a continuous
-block memory block that can be accessed very fast: <a class="reference external" href="https://hackingcpp.com/cpp/std/sequence_containers.html">https://hackingcpp.com/cpp/std/sequence_containers.html</a></p>
+block memory block that can be accessed very fast: https://hackingcpp.com/cpp/std/sequence_containers.html</p>
 <div style="text-align: center;">
     <img src="https://hackingcpp.com/cpp/std/vector.png" alt="Image Description" width="900">
     <figcaption>From: "https://hackingcpp.com/cpp/std/vector.png"</figcaption>
@@ -740,9 +792,10 @@ newdata = {3, 9.0}; // 0 + 3*x^0 + 2*4.5*x^1
 <li><p>Compute the argmin (index of the min) of a vector</p></li>
 <li><p>Compute the argmax (index of the max) of a vector</p></li>
 <li><p>Compute the pnorm</p>
-<p>\begin{equation}
-\left(\sum_{i} x_{i}^{p}\right)^{1/p} \ .
-\end{equation}</p>
+<div class="amsmath math notranslate nohighlight" id="equation-59abe5a3-b957-4138-addf-7f9065cc19cf">
+<span class="eqno">(12)<a class="headerlink" href="#equation-59abe5a3-b957-4138-addf-7f9065cc19cf" title="Permalink to this equation">#</a></span>\[\begin{equation}
+    \left(\sum_{i} x_{i}^{p}\right)^{1/p} \ .
+    \end{equation}\]</div>
 </li>
 <li><p>Read the contents of a large file into a vector. Compute and print the mean,
 the median, the 25, 50, 75 percentiles, the min value, and the max value.</p></li>
