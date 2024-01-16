@@ -44,5 +44,6 @@ jobs:
       - name: GitHub Pages action
         uses: peaceiris/actions-gh-pages@v3.5.9
         with:
-          token: ${{ secrets.ACTIONS_FOR_BOOK_ACCESS_TOKEN }}
+          personal_token: ${{ secrets.ACTIONS_FOR_BOOK_ACCESS_TOKEN }}
           publish_dir: ./_build/html
+          publish_branch: gh-pages
