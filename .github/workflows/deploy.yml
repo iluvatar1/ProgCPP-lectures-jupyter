@@ -4,7 +4,7 @@ on:
   # Trigger the workflow on push to main branch
   push:
     branches:
-      - main
+      - master
 
 env:
   BASE_URL: /${{ github.event.repository.name }}
