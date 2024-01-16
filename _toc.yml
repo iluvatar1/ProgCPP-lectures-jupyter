@@ -1,0 +1,37 @@
+# Table of contents
+# Learn more at https://jupyterbook.org/customize/toc.html
+# 
+
+format: jb-book
+root: intro
+title: Introduction to C++ and Numerical Methods
+
+parts:    
+  - caption: "Introduction to C++"
+    numbered: false
+    chapters:
+    - file: 01-IntroCPP/BasicCPP.ipynb
+      sections:
+      - file: 01-IntroCPP/Resources.ipynb
+    - file: 01-IntroCPP/CPP-FastPacedIntro.ipynb
+  - caption: "Numerical Calculus"
+    numbered: false
+    chapters:
+    - file: 02-derivatives/NumericalDifferentiation.ipynb
+    - file: 03-integration/NumericalIntegration_Basics.ipynb
+  - caption: "Modern and primitive arrays, and basic Linear Algebra"
+    numbered: false
+    chapters:
+    - file: 04-vector-containers/ModernArrays.ipynb
+    - file: 05-matrixI/2D-matrices-to-1D-arrays.ipynb
+    - file: 06-ArrayComputing/ArrayComputing-Valarray.ipynb
+  - caption: "Linear Algebra and Numerical Libraries"
+    numbered: false
+    chapters:
+    - file: 07-LinearAlgebra/LinearAlgebraEigen.ipynb
+  - caption: "Ordinary differential equations: Initial value problems"
+    numbered: false
+    chapters:
+    - file: 08-ODE-IVP/InitialValueProblem.ipynb
+    - file: 09-ODE-IVP-OOP/IntroMolecularDynamics.ipynb
+  
