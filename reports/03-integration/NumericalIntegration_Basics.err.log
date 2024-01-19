@@ -33,12 +33,13 @@ ax[1].loglog()
 
 
 [0;31m---------------------------------------------------------------------------[0m
-[0;31mModuleNotFoundError[0m                       Traceback (most recent call last)
-Cell [0;32mIn[1], line 2[0m
-[1;32m      1[0m [38;5;28;01mimport[39;00m [38;5;21;01mmatplotlib[39;00m[38;5;21;01m.[39;00m[38;5;21;01mpyplot[39;00m [38;5;28;01mas[39;00m [38;5;21;01mplt[39;00m
-[0;32m----> 2[0m [38;5;28;01mimport[39;00m [38;5;21;01mseaborn[39;00m [38;5;28;01mas[39;00m [38;5;21;01msns[39;00m
+[0;31mNameError[0m                                 Traceback (most recent call last)
+Cell [0;32mIn[1], line 5[0m
+[1;32m      2[0m [38;5;28;01mimport[39;00m [38;5;21;01mseaborn[39;00m [38;5;28;01mas[39;00m [38;5;21;01msns[39;00m
 [1;32m      3[0m sns[38;5;241m.[39mset_context([38;5;124m'[39m[38;5;124mposter[39m[38;5;124m'[39m)
-[1;32m      5[0m x, erf, error [38;5;241m=[39m np[38;5;241m.[39mgetfromtxt([38;5;124m'[39m[38;5;124merf_data.txt[39m[38;5;124m'[39m, unpack[38;5;241m=[39m[38;5;28;01mTrue[39;00m)
+[0;32m----> 5[0m x, erf, error [38;5;241m=[39m [43mnp[49m[38;5;241m.[39mgetfromtxt([38;5;124m'[39m[38;5;124merf_data.txt[39m[38;5;124m'[39m, unpack[38;5;241m=[39m[38;5;28;01mTrue[39;00m)
+[1;32m      6[0m fig, ax [38;5;241m=[39m plt[38;5;241m.[39msubplots([38;5;241m1[39m, [38;5;241m2[39m)
+[1;32m      7[0m ax[[38;5;241m0[39m][38;5;241m.[39mplot(x, erf, [38;5;124m'[39m[38;5;124m-o[39m[38;5;124m'[39m, label[38;5;241m=[39m[38;5;124m"[39m[38;5;124merr function[39m[38;5;124m"[39m)
 
-[0;31mModuleNotFoundError[0m: No module named 'seaborn'
+[0;31mNameError[0m: name 'np' is not defined
 
