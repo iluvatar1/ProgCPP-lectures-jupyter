@@ -10,7 +10,7 @@
 	},
 	"features": {
 		"ghcr.io/devcontainers-contrib/features/gdbgui:2": {}
-	}
+	},
 
 	// Features to add to the dev container. More info: https://containers.dev/features.
 	// "features": {},
@@ -22,8 +22,28 @@
 	// "postCreateCommand": "cat /etc/os-release",
 
 	// Configure tool-specific properties.
-	// "customizations": {},
+	"customizations": {
+		"vscode": {
+			"extensions": [
+				"ms-vsliveshare.vsliveshare-pack",
+				"ms-vscode.cpptools",
+				"ms-python.python",
+				"ms-toolsai.jupyter",
+				"ms-vscode-remote.remote-containers", 
+				"ms-vscode-remote.remote-ssh",
+				"ms-vscode-remote.vscode-remote-extensionpack", 
+				"ms-vscode.cpptools-extension-pack"
+			]
+		}
+	},
 
 	// Uncomment to connect as an existing user other than the container default. More info: https://aka.ms/dev-containers-non-root.
 	// "remoteUser": "devcontainer"
+
+	"hostRequirements": {
+		"cpus": 8,
+		"memory": "8gb",
+		"storage": "32gb"
+	 }
+	 
 }
