@@ -25,14 +25,16 @@
 	"customizations": {
 		"vscode": {
 			"extensions": [
-				"ms-vsliveshare.vsliveshare-pack",
+				"MS-vsliveshare.vsliveshare",
 				"ms-vscode.cpptools",
 				"ms-python.python",
 				"ms-toolsai.jupyter",
 				"ms-vscode-remote.remote-containers", 
 				"ms-vscode-remote.remote-ssh",
 				"ms-vscode-remote.vscode-remote-extensionpack", 
-				"ms-vscode.cpptools-extension-pack"
+				"ms-vscode.cpptools-extension-pack",
+				"tootone.org-mode",
+				"ms-vscode.makefile-tools"
 			]
 		}
 	},
