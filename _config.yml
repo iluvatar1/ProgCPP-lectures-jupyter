@@ -65,7 +65,7 @@ html:
 
 # Parsing math blocks
 parse:
-  myst_enable_extensions: ["dollarmath", "amsmath"]
+  myst_enable_extensions: ["dollarmath", "amsmath", "html_image"]
 # Displaying interactive plotly figures
 sphinx:
   config:

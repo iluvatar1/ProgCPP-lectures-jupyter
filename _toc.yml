@@ -11,8 +11,7 @@ parts:
     numbered: false
     chapters:
     - file: 01-IntroCPP/BasicCPP.ipynb
-      sections:
-      - file: 01-IntroCPP/Resources.ipynb
+    - file: 01-IntroCPP/Resources.ipynb
     - file: 01-IntroCPP/CPP-FastPacedIntro.ipynb
   - caption: "Numerical Calculus"
     numbered: false
