@@ -35,6 +35,7 @@
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles.css" />
     <link rel="stylesheet" type="text/css" href="../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
   
   <!-- Pre-loaded scripts that we'll load fully later -->
@@ -175,60 +176,24 @@ const thebe_selector_output = ".output, .cell_output"
         </ul>
         <p aria-level="2" class="caption" role="heading"><span class="caption-text">Introduction to C++</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="../01-IntroCPP/BasicCPP.html">Introduction to C++</a></li>
-
-
-
-<li class="toctree-l1"><a class="reference internal" href="../01-IntroCPP/CPP-FastPacedIntro.html">Very short intro to the basics of c++</a></li>
-
-
-
-
-
-
-
-
-
-
+<li class="toctree-l1"><a class="reference internal" href="../01-IntroCPP/BasicCPP.html">Introduction to Programming and C++</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../01-IntroCPP/Resources.html">Resources</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../01-IntroCPP/CPP-FastPacedIntro.html">Very fast intro to the basics of c++</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Numerical Calculus</span></p>
 <ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="../02-derivatives/NumericalDifferentiation.html">Numerical differentiation</a></li>
-
-
-
 <li class="toctree-l1"><a class="reference internal" href="../03-integration/NumericalIntegration_Basics.html">Common Numerical Integration Algorithms</a></li>
-
-
-
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Modern and primitive arrays, and basic Linear Algebra</span></p>
 <ul class="current nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="../04-vector-containers/ModernArrays.html">Modern arrays</a></li>
-
-
-
-
-
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">1D Arrays for 2D Matrices</a></li>
-
 <li class="toctree-l1"><a class="reference internal" href="../06-ArrayComputing/ArrayComputing-Valarray.html">Vector operations: Coefficient-wise</a></li>
-
-
-
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Linear Algebra and Numerical Libraries</span></p>
 <ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="../07-LinearAlgebra/LinearAlgebraEigen.html">Linear Systems : Matrices, Vectors, eigen systems</a></li>
-
-
-
-
-
-
-
-
-
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Ordinary differential equations: Initial value problems</span></p>
 <ul class="nav bd-sidenav">
@@ -497,32 +462,28 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">1D Arrays for 2D Matrices</a><ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#representing-a-matrix">Representing a matrix</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#defining-matrices-from-primitives-in-c">Defining matrices from primitives in C++</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#d-and-2d-view">1D and 2D view</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#exercises">Exercises</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#trace-of-a-matrix">Trace of a matrix</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#hilbert-matrix">Hilbert matrix</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#implement-matrix-matrix-multiplication">Implement matrix-matrix multiplication</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#a-times-a-t"><span class="math notranslate nohighlight">\(A \times A^t\)</span></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#a-p"><span class="math notranslate nohighlight">\(A^p\)</span></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#idempotent-matrix">Idempotent matrix</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#checking-inverse">Checking inverse</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#matrix-commute">Matrix commute</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#orthogonal-matrix">Orthogonal matrix</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#matrix-of-complex-numbers">Matrix of complex numbers</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pauli-matrix">Pauli matrix</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#complex-matmul-and-pauli-matrices">Complex matmul and Pauli matrices</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#vandermonde-matrix">Vandermonde matrix</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#matrix-polynomial">Matrix polynomial</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#matmul-time-performance">Matmul time performance</a></li>
 </ul>
 </li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#exercises">Exercises</a><ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#trace-of-a-matrix">Trace of a matrix</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#hilbert-matrix">Hilbert matrix</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#implement-matrix-matrix-multiplication">Implement matrix-matrix multiplication</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#a-times-a-t"><span class="math notranslate nohighlight">\(A \times A^t\)</span></a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#a-p"><span class="math notranslate nohighlight">\(A^p\)</span></a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#idempotent-matrix">Idempotent matrix</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#checking-inverse">Checking inverse</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#matrix-commute">Matrix commute</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#orthogonal-matrix">Orthogonal matrix</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#matrix-of-complex-numbers">Matrix of complex numbers</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pauli-matrix">Pauli matrix</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#complex-matmul-and-pauli-matrices">Complex matmul and Pauli matrices</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#vandermonde-matrix">Vandermonde matrix</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#matrix-polynomial">Matrix polynomial</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#matmul-time-performance">Matmul time performance</a></li>
 </ul>
-</li>
-</ul>
-
             </nav>
         </div>
     </div>
@@ -564,12 +525,12 @@ of arrays in memory given that the ram memory is linear, as shown in
 For 2D arrays, you have basically two options:</p>
 <p><strong>row-major</strong>
 <div style="text-align: center;">
-<img src="https://eli.thegreenplace.net/images/2015/row-major-2D.png" alt="Image Description" width="800">
+<a class="reference internal" href="https://eli.thegreenplace.net/images/2015/row-major-2D.png"><img alt="Image Description" src="https://eli.thegreenplace.net/images/2015/row-major-2D.png" style="width: 800px;" /></a>
 <figcaption>From: “https://eli.thegreenplace.net/images/2015/row-major-2D.png”</figcaption></p>
 </div>
 <p><strong>column-major</strong>
 <div style="text-align: center;">
-<img src="https://eli.thegreenplace.net/images/2015/column-major-2D.png" alt="Image Description" width="800">
+<a class="reference internal" href="https://eli.thegreenplace.net/images/2015/column-major-2D.png"><img alt="Image Description" src="https://eli.thegreenplace.net/images/2015/column-major-2D.png" style="width: 800px;" /></a>
 <figcaption>From: “https://eli.thegreenplace.net/images/2015/column-major-2D.png”</figcaption></p>
 </div><p>For instance, the following code shows the row-major ordering in c/c++, using
 old/primitive arrays:</p>
@@ -683,13 +644,13 @@ inside each cell correspond to indexes)</p>
 </div>
 <p>As you can see, in the 1d array in memory, the first element (1d index 0) has the coordinates (0, 0), the second element (1d index 1) corresponds to (0, 1), and so on. The sixth 1d element, with 1d index 5, has 2D coordinates (1, 2). Can you devise a rule to relate the 1d and the 2d indexes?</p>
 <p>For a general matrix of size <code class="docutils literal notranslate"><span class="pre">MxN</span></code>, you have the following mapping from 2D to 1D</p>
-<div class="amsmath math notranslate nohighlight" id="equation-9ee10a5f-6fa0-4c36-98b7-5dbf3b9cf139">
-<span class="eqno">(13)<a class="headerlink" href="#equation-9ee10a5f-6fa0-4c36-98b7-5dbf3b9cf139" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-5df4fec3-0124-4e40-971f-6db742a92ce8">
+<span class="eqno">(13)<a class="headerlink" href="#equation-5df4fec3-0124-4e40-971f-6db742a92ce8" title="Permalink to this equation">#</a></span>\[\begin{equation}
 id = iN + j,
 \end{equation}\]</div>
 <p>while , from 1D to 2D</p>
-<div class="amsmath math notranslate nohighlight" id="equation-203dd01e-935f-44df-b82c-b4ad73c0bbae">
-<span class="eqno">(14)<a class="headerlink" href="#equation-203dd01e-935f-44df-b82c-b4ad73c0bbae" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-a9201eb6-f004-40a6-993a-2c480fb64fb1">
+<span class="eqno">(14)<a class="headerlink" href="#equation-a9201eb6-f004-40a6-993a-2c480fb64fb1" title="Permalink to this equation">#</a></span>\[\begin{align}
 i &amp;= id/N,\\
 j &amp;= id%N.
 \end{align}\]</div>
@@ -844,9 +805,8 @@ j &amp;= id%N.
 </table>
 <p><a id="org1bead7e"></a></p>
 </section>
-</section>
-<section class="tex2jax_ignore mathjax_ignore" id="exercises">
-<h1>Exercises<a class="headerlink" href="#exercises" title="Permalink to this heading">#</a></h1>
+<section id="exercises">
+<h2>Exercises<a class="headerlink" href="#exercises" title="Permalink to this heading">#</a></h2>
 <p>For the following exercises, and unless stated otherwise, the size of the matrices
 must be read from the command line and also the matrices must be filled randomly
 using a uniform random distribution in [-1, 1]. Also, the random seed must be
@@ -938,81 +898,81 @@ functions.</p>
 </pre></div>
 </div>
 <section id="trace-of-a-matrix">
-<h2>Trace of a matrix<a class="headerlink" href="#trace-of-a-matrix" title="Permalink to this heading">#</a></h2>
+<h3>Trace of a matrix<a class="headerlink" href="#trace-of-a-matrix" title="Permalink to this heading">#</a></h3>
 <p>Compute the trace of a random matrix using 1D indexing.</p>
 </section>
 <section id="hilbert-matrix">
-<h2>Hilbert matrix<a class="headerlink" href="#hilbert-matrix" title="Permalink to this heading">#</a></h2>
+<h3>Hilbert matrix<a class="headerlink" href="#hilbert-matrix" title="Permalink to this heading">#</a></h3>
 <p>Create a function to compute the trace of that matrix. Fill the matrix as the Hilbert Matrix, <span class="math notranslate nohighlight">\(A_{ij} = 1/(i +j +1)\)</span></p>
 </section>
 <section id="implement-matrix-matrix-multiplication">
-<h2>Implement matrix-matrix multiplication<a class="headerlink" href="#implement-matrix-matrix-multiplication" title="Permalink to this heading">#</a></h2>
+<h3>Implement matrix-matrix multiplication<a class="headerlink" href="#implement-matrix-matrix-multiplication" title="Permalink to this heading">#</a></h3>
 <p>A function must received the two input matrices and an output matrix and write there the result.</p>
 </section>
 <section id="a-times-a-t">
-<h2><span class="math notranslate nohighlight">\(A \times A^t\)</span><a class="headerlink" href="#a-times-a-t" title="Permalink to this heading">#</a></h2>
+<h3><span class="math notranslate nohighlight">\(A \times A^t\)</span><a class="headerlink" href="#a-times-a-t" title="Permalink to this heading">#</a></h3>
 <p>Implement a function to compute the matrix multiplication of matrix with its transpose.</p>
 </section>
 <section id="a-p">
-<h2><span class="math notranslate nohighlight">\(A^p\)</span><a class="headerlink" href="#a-p" title="Permalink to this heading">#</a></h2>
+<h3><span class="math notranslate nohighlight">\(A^p\)</span><a class="headerlink" href="#a-p" title="Permalink to this heading">#</a></h3>
 <p>Implement a function to compute the power of a matrix performing successive multiplications.</p>
 </section>
 <section id="idempotent-matrix">
-<h2>Idempotent matrix<a class="headerlink" href="#idempotent-matrix" title="Permalink to this heading">#</a></h2>
+<h3>Idempotent matrix<a class="headerlink" href="#idempotent-matrix" title="Permalink to this heading">#</a></h3>
 <p>Implement a function that receives a matrix and a power and checks if it is
 idempotent under some precision, that is, if <span class="math notranslate nohighlight">\(|A^p - A| &lt; \epsilon\)</span>, where the
 norm is evaluated checking the inequality element-by-element.</p>
 </section>
 <section id="checking-inverse">
-<h2>Checking inverse<a class="headerlink" href="#checking-inverse" title="Permalink to this heading">#</a></h2>
+<h3>Checking inverse<a class="headerlink" href="#checking-inverse" title="Permalink to this heading">#</a></h3>
 <p>Implement a function that receives two matrices and check if they are inverse
 of each other, that is , if <span class="math notranslate nohighlight">\(|AB - I| &lt; \epsilon\)</span> and <span class="math notranslate nohighlight">\(|BA - I| &lt; \epsilon\)</span>, where the check is done on each element.</p>
 </section>
 <section id="matrix-commute">
-<h2>Matrix commute<a class="headerlink" href="#matrix-commute" title="Permalink to this heading">#</a></h2>
+<h3>Matrix commute<a class="headerlink" href="#matrix-commute" title="Permalink to this heading">#</a></h3>
 <p>Write a function that receives two matrices and checks if they commute under
 a given precision, that is , <span class="math notranslate nohighlight">\(|AB - BA| &lt; \epsilon\)</span>.</p>
 </section>
 <section id="orthogonal-matrix">
-<h2>Orthogonal matrix<a class="headerlink" href="#orthogonal-matrix" title="Permalink to this heading">#</a></h2>
+<h3>Orthogonal matrix<a class="headerlink" href="#orthogonal-matrix" title="Permalink to this heading">#</a></h3>
 <p>Implement a function that receives a matrix and checks if it is orthogonal,
 that is, if <span class="math notranslate nohighlight">\(|A A^T - I| &lt; \epsilon\)</span>, where the norm is evaluated checking the
 inequality element-by-element.</p>
 </section>
 <section id="matrix-of-complex-numbers">
-<h2>Matrix of complex numbers<a class="headerlink" href="#matrix-of-complex-numbers" title="Permalink to this heading">#</a></h2>
+<h3>Matrix of complex numbers<a class="headerlink" href="#matrix-of-complex-numbers" title="Permalink to this heading">#</a></h3>
 <p>Implement a function that receives a matrix OF COMPLEX NUMBERS and checks if it is hermitian,
 that is, if <span class="math notranslate nohighlight">\(|A A^\dagger - I| &lt; \epsilon\)</span>, where the norm is evaluated checking the
 inequality element-by-element. Use the <code class="docutils literal notranslate"><span class="pre">&lt;complex&gt;</span></code> header. <span class="math notranslate nohighlight">\(A^\dagger\)</span> means the
 transpose conjugate.</p>
 </section>
 <section id="pauli-matrix">
-<h2>Pauli matrix<a class="headerlink" href="#pauli-matrix" title="Permalink to this heading">#</a></h2>
+<h3>Pauli matrix<a class="headerlink" href="#pauli-matrix" title="Permalink to this heading">#</a></h3>
 <p>Write a function that receives three components of a vectors and saves the
 corresponding Pauli-vector-matrix:
 <a class="reference external" href="https://en.wikipedia.org/wiki/Pauli_matrices#Pauli_vector">https://en.wikipedia.org/wiki/Pauli_matrices#Pauli_vector</a></p>
 </section>
 <section id="complex-matmul-and-pauli-matrices">
-<h2>Complex matmul and Pauli matrices<a class="headerlink" href="#complex-matmul-and-pauli-matrices" title="Permalink to this heading">#</a></h2>
+<h3>Complex matmul and Pauli matrices<a class="headerlink" href="#complex-matmul-and-pauli-matrices" title="Permalink to this heading">#</a></h3>
 <p>Extend your multiplication routine to use complex numbers and check the
 Pauli matrix commutation relations:
 <a class="reference external" href="https://en.wikipedia.org/wiki/Pauli_matrices#(Anti-)Commutation_relations">https://en.wikipedia.org/wiki/Pauli_matrices#(Anti-)Commutation_relations</a></p>
 </section>
 <section id="vandermonde-matrix">
-<h2>Vandermonde matrix<a class="headerlink" href="#vandermonde-matrix" title="Permalink to this heading">#</a></h2>
+<h3>Vandermonde matrix<a class="headerlink" href="#vandermonde-matrix" title="Permalink to this heading">#</a></h3>
 <p>Write a routine to fill a matrix as a Vandermonde matrix,
 <a class="reference external" href="https://en.wikipedia.org/wiki/Vandermonde_matrix">https://en.wikipedia.org/wiki/Vandermonde_matrix</a> , and then compute and
 print its trace Read the number of rows from the command line</p>
 </section>
 <section id="matrix-polynomial">
-<h2>Matrix polynomial<a class="headerlink" href="#matrix-polynomial" title="Permalink to this heading">#</a></h2>
+<h3>Matrix polynomial<a class="headerlink" href="#matrix-polynomial" title="Permalink to this heading">#</a></h3>
 <p>Implement a function that receives a matrix and an array representing the
 coefficients of a polynomial, <span class="math notranslate nohighlight">\(a_0, a_1, \ldots, a_n\)</span>, and evaluates that
 polynomial on the given matrix, <span class="math notranslate nohighlight">\(a_0 I + a_1 A + a_2 A^2 + \ldots + a_n A^n\)</span>,
 and stores the result in an output matrix.</p>
 </section>
 <section id="matmul-time-performance">
-<h2>Matmul time performance<a class="headerlink" href="#matmul-time-performance" title="Permalink to this heading">#</a></h2>
+<h3>Matmul time performance<a class="headerlink" href="#matmul-time-performance" title="Permalink to this heading">#</a></h3>
 <p>Matrix multiplication time:
 Explore how the total multiplication time grows with the matrix size. The
 following code is a template. You should read it and understand it carefully.
@@ -1093,6 +1053,7 @@ range <span class="math notranslate nohighlight">\(N \in \{4, 8, 16, 32, 64, 128
 the time at <span class="math notranslate nohighlight">\(N = 4\)</span>.</p>
 </section>
 </section>
+</section>
 
     <script type="text/x-thebe-config">
     {
@@ -1158,32 +1119,28 @@ the time at <span class="math notranslate nohighlight">\(N = 4\)</span>.</p>
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">1D Arrays for 2D Matrices</a><ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#representing-a-matrix">Representing a matrix</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#defining-matrices-from-primitives-in-c">Defining matrices from primitives in C++</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#d-and-2d-view">1D and 2D view</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#exercises">Exercises</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#trace-of-a-matrix">Trace of a matrix</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#hilbert-matrix">Hilbert matrix</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#implement-matrix-matrix-multiplication">Implement matrix-matrix multiplication</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#a-times-a-t"><span class="math notranslate nohighlight">\(A \times A^t\)</span></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#a-p"><span class="math notranslate nohighlight">\(A^p\)</span></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#idempotent-matrix">Idempotent matrix</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#checking-inverse">Checking inverse</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#matrix-commute">Matrix commute</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#orthogonal-matrix">Orthogonal matrix</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#matrix-of-complex-numbers">Matrix of complex numbers</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pauli-matrix">Pauli matrix</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#complex-matmul-and-pauli-matrices">Complex matmul and Pauli matrices</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#vandermonde-matrix">Vandermonde matrix</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#matrix-polynomial">Matrix polynomial</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#matmul-time-performance">Matmul time performance</a></li>
 </ul>
 </li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#exercises">Exercises</a><ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#trace-of-a-matrix">Trace of a matrix</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#hilbert-matrix">Hilbert matrix</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#implement-matrix-matrix-multiplication">Implement matrix-matrix multiplication</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#a-times-a-t"><span class="math notranslate nohighlight">\(A \times A^t\)</span></a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#a-p"><span class="math notranslate nohighlight">\(A^p\)</span></a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#idempotent-matrix">Idempotent matrix</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#checking-inverse">Checking inverse</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#matrix-commute">Matrix commute</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#orthogonal-matrix">Orthogonal matrix</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#matrix-of-complex-numbers">Matrix of complex numbers</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pauli-matrix">Pauli matrix</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#complex-matmul-and-pauli-matrices">Complex matmul and Pauli matrices</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#vandermonde-matrix">Vandermonde matrix</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#matrix-polynomial">Matrix polynomial</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#matmul-time-performance">Matmul time performance</a></li>
 </ul>
-</li>
-</ul>
-
   </nav></div>
 
 </div></div>

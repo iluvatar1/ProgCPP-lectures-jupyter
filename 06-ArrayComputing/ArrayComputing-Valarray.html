@@ -35,6 +35,7 @@
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles.css" />
     <link rel="stylesheet" type="text/css" href="../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
   
   <!-- Pre-loaded scripts that we'll load fully later -->
@@ -175,60 +176,24 @@ const thebe_selector_output = ".output, .cell_output"
         </ul>
         <p aria-level="2" class="caption" role="heading"><span class="caption-text">Introduction to C++</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="../01-IntroCPP/BasicCPP.html">Introduction to C++</a></li>
-
-
-
-<li class="toctree-l1"><a class="reference internal" href="../01-IntroCPP/CPP-FastPacedIntro.html">Very short intro to the basics of c++</a></li>
-
-
-
-
-
-
-
-
-
-
+<li class="toctree-l1"><a class="reference internal" href="../01-IntroCPP/BasicCPP.html">Introduction to Programming and C++</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../01-IntroCPP/Resources.html">Resources</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../01-IntroCPP/CPP-FastPacedIntro.html">Very fast intro to the basics of c++</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Numerical Calculus</span></p>
 <ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="../02-derivatives/NumericalDifferentiation.html">Numerical differentiation</a></li>
-
-
-
 <li class="toctree-l1"><a class="reference internal" href="../03-integration/NumericalIntegration_Basics.html">Common Numerical Integration Algorithms</a></li>
-
-
-
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Modern and primitive arrays, and basic Linear Algebra</span></p>
 <ul class="current nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="../04-vector-containers/ModernArrays.html">Modern arrays</a></li>
-
-
-
-
-
 <li class="toctree-l1"><a class="reference internal" href="../05-matrixI/2D-matrices-to-1D-arrays.html">1D Arrays for 2D Matrices</a></li>
-
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">Vector operations: Coefficient-wise</a></li>
-
-
-
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Linear Algebra and Numerical Libraries</span></p>
 <ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="../07-LinearAlgebra/LinearAlgebraEigen.html">Linear Systems : Matrices, Vectors, eigen systems</a></li>
-
-
-
-
-
-
-
-
-
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Ordinary differential equations: Initial value problems</span></p>
 <ul class="nav bd-sidenav">
@@ -497,33 +462,27 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Vector operations: Coefficient-wise</a><ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#function-evaluation">Function evaluation</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#c-valarray">C++ <code class="docutils literal notranslate"><span class="pre">valarray</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#example-using-apply">Example: Using apply</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#indexing">Indexing</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#masks">Masks</a></li>
 </ul>
 </li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#c-valarray">C++ <code class="docutils literal notranslate"><span class="pre">valarray</span></code></a><ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#example-using-apply">Example: Using apply</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#indexing">Indexing</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#masks">Masks</a></li>
-</ul>
-</li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#exercises">Exercises</a><ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#dot-product">Dot product</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#heap-or-stack">Heap or stack?</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#filter-data">Filter data</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#simulation">Simulation</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#extract-odd-values">Extract odd values</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#cross-product">Cross product</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#perpendicular-vector">Perpendicular vector</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#plane-equation">Plane equation</a></li>
-</ul>
-</li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#vector-product">Vector product</a><ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#classical-angular-momentum-and-centripetal-acceleration">Classical angular momentum and centripetal acceleration</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#exercises">Exercises</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dot-product">Dot product</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#heap-or-stack">Heap or stack?</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#filter-data">Filter data</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#simulation">Simulation</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#extract-odd-values">Extract odd values</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#cross-product">Cross product</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#perpendicular-vector">Perpendicular vector</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#plane-equation">Plane equation</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#vector-product">Vector product</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#classical-angular-momentum-and-centripetal-acceleration">Classical angular momentum and centripetal acceleration</a></li>
 </ul>
 </li>
 </ul>
-
             </nav>
         </div>
     </div>
@@ -561,20 +520,19 @@ vectors. You have two options: using the standard library valarray, or using
 <section id="function-evaluation">
 <h2>Function evaluation<a class="headerlink" href="#function-evaluation" title="Permalink to this heading">#</a></h2>
 <p>Furthermore , mathematical function evaluated in this array computing approach means evaluating the function on each component, such as</p>
-<div class="amsmath math notranslate nohighlight" id="equation-db2746c8-0f4e-4b78-9139-dca4df23a882">
-<span class="eqno">(15)<a class="headerlink" href="#equation-db2746c8-0f4e-4b78-9139-dca4df23a882" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-d291adbd-72ee-4379-bbfd-ea860486f12e">
+<span class="eqno">(15)<a class="headerlink" href="#equation-d291adbd-72ee-4379-bbfd-ea860486f12e" title="Permalink to this equation">#</a></span>\[\begin{equation}
 \vec y = \sin (\vec x)
 \end{equation}\]</div>
 <p>means</p>
-<div class="amsmath math notranslate nohighlight" id="equation-4bf117bb-ef24-4d1e-bc16-903a0b9cc5c8">
-<span class="eqno">(16)<a class="headerlink" href="#equation-4bf117bb-ef24-4d1e-bc16-903a0b9cc5c8" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-b856a41e-dea0-4d74-8abe-4c37b7c454a2">
+<span class="eqno">(16)<a class="headerlink" href="#equation-b856a41e-dea0-4d74-8abe-4c37b7c454a2" title="Permalink to this equation">#</a></span>\[\begin{equation}
 y_i = \sin x_i.
 \end{equation}\]</div>
 <p><a id="org8ea9979"></a></p>
 </section>
-</section>
-<section class="tex2jax_ignore mathjax_ignore" id="c-valarray">
-<h1>C++ <code class="docutils literal notranslate"><span class="pre">valarray</span></code><a class="headerlink" href="#c-valarray" title="Permalink to this heading">#</a></h1>
+<section id="c-valarray">
+<h2>C++ <code class="docutils literal notranslate"><span class="pre">valarray</span></code><a class="headerlink" href="#c-valarray" title="Permalink to this heading">#</a></h2>
 <p>You can find the reference implementation at
 <a class="reference external" href="https://en.cppreference.com/w/cpp/numeric/valarray">https://en.cppreference.com/w/cpp/numeric/valarray</a> .</p>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;iostream&gt;</span>
@@ -594,11 +552,11 @@ y_i = \sin x_i.
 </pre></div>
 </div>
 <section id="example-using-apply">
-<h2>Example: Using apply<a class="headerlink" href="#example-using-apply" title="Permalink to this heading">#</a></h2>
+<h3>Example: Using apply<a class="headerlink" href="#example-using-apply" title="Permalink to this heading">#</a></h3>
 <p>Cómo usar la utilidad apply para multiplicar todos los elementos por 2 si el numero es impar y por 3 si el numero es par? Piense en la solución usando for e if y luego puede mirar a https://en.cppreference.com/w/cpp/numeric/valarray/apply</p>
 </section>
 <section id="indexing">
-<h2>Indexing<a class="headerlink" href="#indexing" title="Permalink to this heading">#</a></h2>
+<h3>Indexing<a class="headerlink" href="#indexing" title="Permalink to this heading">#</a></h3>
 <p>A simple example for indexing,
 is the following (<a class="reference external" href="https://en.cppreference.com/w/cpp/numeric/valarray/operator%3D">https://en.cppreference.com/w/cpp/numeric/valarray/operator%3D</a>)</p>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;iomanip&gt;</span>
@@ -639,7 +597,7 @@ is the following (<a class="reference external" href="https://en.cppreference.co
 </div>
 </section>
 <section id="masks">
-<h2>Masks<a class="headerlink" href="#masks" title="Permalink to this heading">#</a></h2>
+<h3>Masks<a class="headerlink" href="#masks" title="Permalink to this heading">#</a></h3>
 <p>As you can see, all operations are done at the element level. You can also
 define masks:</p>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;iostream&gt;</span>
@@ -686,33 +644,33 @@ each element:</p>
 <p><a id="orga73b2bf"></a></p>
 </section>
 </section>
-<section class="tex2jax_ignore mathjax_ignore" id="exercises">
-<h1>Exercises<a class="headerlink" href="#exercises" title="Permalink to this heading">#</a></h1>
+<section id="exercises">
+<h2>Exercises<a class="headerlink" href="#exercises" title="Permalink to this heading">#</a></h2>
 <section id="dot-product">
-<h2>Dot product<a class="headerlink" href="#dot-product" title="Permalink to this heading">#</a></h2>
+<h3>Dot product<a class="headerlink" href="#dot-product" title="Permalink to this heading">#</a></h3>
 <p>Create a program that computes the dot product among two math vectors using
 valarray. Your program must read the vector size from the command line. Fill
 them using any function you want.</p>
 </section>
 <section id="heap-or-stack">
-<h2>Heap or stack?<a class="headerlink" href="#heap-or-stack" title="Permalink to this heading">#</a></h2>
+<h3>Heap or stack?<a class="headerlink" href="#heap-or-stack" title="Permalink to this heading">#</a></h3>
 <p>Is a valarray in the heap or the stack? Verify (check
 <a class="reference external" href="https://en.cppreference.com/w/cpp/numeric/valarray/resize">https://en.cppreference.com/w/cpp/numeric/valarray/resize</a>)</p>
 </section>
 <section id="filter-data">
-<h2>Filter data<a class="headerlink" href="#filter-data" title="Permalink to this heading">#</a></h2>
+<h3>Filter data<a class="headerlink" href="#filter-data" title="Permalink to this heading">#</a></h3>
 <p>Using the overloaded operators create a valarray for N=1000 points between 0
 and <span class="math notranslate nohighlight">\(2\pi\)</span>, then compute the <span class="math notranslate nohighlight">\(\sin\)</span> of those numbers and assing the result to
 a another valarray, and finally print only the values that fulfill that
 <span class="math notranslate nohighlight">\(|\sin x| \le 0.5\)</span>. All of this without using loops.</p>
 </section>
 <section id="simulation">
-<h2>Simulation<a class="headerlink" href="#simulation" title="Permalink to this heading">#</a></h2>
+<h3>Simulation<a class="headerlink" href="#simulation" title="Permalink to this heading">#</a></h3>
 <p>If you discretize time in steps of size <span class="math notranslate nohighlight">\(\delta t\)</span>, and you have the forces on
 a given ideal particle, you can compute the next position using the Euler
 algorithm,</p>
-<div class="amsmath math notranslate nohighlight" id="equation-827d8c2c-0aff-4339-b6bf-b8ea14a91f20">
-<span class="eqno">(17)<a class="headerlink" href="#equation-827d8c2c-0aff-4339-b6bf-b8ea14a91f20" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-978a1879-ce3c-4a0b-9e0c-65bfaad0b500">
+<span class="eqno">(17)<a class="headerlink" href="#equation-978a1879-ce3c-4a0b-9e0c-65bfaad0b500" title="Permalink to this equation">#</a></span>\[\begin{align}
 \vec R(t+\delta t) &amp;= \vec R(t) + \delta t \vec V(t),\\
 \vec V(t + \delta t) &amp;= \vec V(t) + \delta t \vec F(t)/m.\\
 \end{align}\]</div>
@@ -722,37 +680,38 @@ particle of mass <span class="math notranslate nohighlight">\(m=0.987\)</span>, 
 some damping. Later add some interaction with the ground.</p>
 </section>
 <section id="extract-odd-values">
-<h2>Extract odd values<a class="headerlink" href="#extract-odd-values" title="Permalink to this heading">#</a></h2>
+<h3>Extract odd values<a class="headerlink" href="#extract-odd-values" title="Permalink to this heading">#</a></h3>
 <p>Fill an <code class="docutils literal notranslate"><span class="pre">std::valarray</span></code> with random integers numbers uniformly distributed in [1000, 2500], and then extract the even values and compute their mean.</p>
 </section>
 <section id="cross-product">
-<h2>Cross product<a class="headerlink" href="#cross-product" title="Permalink to this heading">#</a></h2>
+<h3>Cross product<a class="headerlink" href="#cross-product" title="Permalink to this heading">#</a></h3>
 <p>Implement a function to compute the cross product between two 3d vectors. Using it, implement a function to compute the angle between the vectors. Remember that</p>
-<div class="amsmath math notranslate nohighlight" id="equation-1ccaebf4-0bee-4a69-8672-0b4b72f9dc67">
-<span class="eqno">(18)<a class="headerlink" href="#equation-1ccaebf4-0bee-4a69-8672-0b4b72f9dc67" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-71f041f6-bc19-435b-b395-cc6f5921ff7a">
+<span class="eqno">(18)<a class="headerlink" href="#equation-71f041f6-bc19-435b-b395-cc6f5921ff7a" title="Permalink to this equation">#</a></span>\[\begin{equation}
 |\vec A \times \vec B| = A B \sin\theta.
 \end{equation}\]</div>
 <p>Check test cases like <span class="math notranslate nohighlight">\(\vec A \times \vec A  = \vec 0, \hat i \times \hat j = \hat k, \ldots\)</span></p>
 </section>
 <section id="perpendicular-vector">
-<h2>Perpendicular vector<a class="headerlink" href="#perpendicular-vector" title="Permalink to this heading">#</a></h2>
+<h3>Perpendicular vector<a class="headerlink" href="#perpendicular-vector" title="Permalink to this heading">#</a></h3>
 <p>Use the previous cross product function to find a unit vector perpendicular to two vectors.</p>
 </section>
 <section id="plane-equation">
-<h2>Plane equation<a class="headerlink" href="#plane-equation" title="Permalink to this heading">#</a></h2>
+<h3>Plane equation<a class="headerlink" href="#plane-equation" title="Permalink to this heading">#</a></h3>
 <p>Find the equation of the plane in the form <span class="math notranslate nohighlight">\(ax + by + cz + d = 0\)</span>, saving the result in a 4d <code class="docutils literal notranslate"><span class="pre">std::vector</span></code>, given three 3D points represented using <code class="docutils literal notranslate"><span class="pre">std::valarray</span></code>.</p>
 </section>
-</section>
-<section class="tex2jax_ignore mathjax_ignore" id="vector-product">
-<h1>Vector product<a class="headerlink" href="#vector-product" title="Permalink to this heading">#</a></h1>
+<section id="vector-product">
+<h3>Vector product<a class="headerlink" href="#vector-product" title="Permalink to this heading">#</a></h3>
 <p>Write a function that returns the vector product</p>
-<div class="amsmath math notranslate nohighlight" id="equation-e4aa4de9-5b00-4825-a711-e1189324552b">
-<span class="eqno">(19)<a class="headerlink" href="#equation-e4aa4de9-5b00-4825-a711-e1189324552b" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-ab042b4f-ac48-4186-a400-05d32a38259a">
+<span class="eqno">(19)<a class="headerlink" href="#equation-ab042b4f-ac48-4186-a400-05d32a38259a" title="Permalink to this equation">#</a></span>\[\begin{equation}
 \vec A \cdot (\vec B \times \vec C)
 \end{equation}\]</div>
+</section>
 <section id="classical-angular-momentum-and-centripetal-acceleration">
-<h2>Classical angular momentum and centripetal acceleration<a class="headerlink" href="#classical-angular-momentum-and-centripetal-acceleration" title="Permalink to this heading">#</a></h2>
+<h3>Classical angular momentum and centripetal acceleration<a class="headerlink" href="#classical-angular-momentum-and-centripetal-acceleration" title="Permalink to this heading">#</a></h3>
 <p>Given a mass <span class="math notranslate nohighlight">\(m\)</span>, a position <span class="math notranslate nohighlight">\(\vec r\)</span>, and a velocity <span class="math notranslate nohighlight">\(\vec v = \omega \times \vec r \)</span>, compute both the angular momentum <span class="math notranslate nohighlight">\(\vec L = m \vec r \times (\vec r \times \vec \omega)\)</span> and the centripetal acceleration <span class="math notranslate nohighlight">\(\vec a = \vec \omega \times (\vec \omega \times \vec  r)\)</span>, using two different functions</p>
+</section>
 </section>
 </section>
 
@@ -820,33 +779,27 @@ some damping. Later add some interaction with the ground.</p>
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Vector operations: Coefficient-wise</a><ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#function-evaluation">Function evaluation</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#c-valarray">C++ <code class="docutils literal notranslate"><span class="pre">valarray</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#example-using-apply">Example: Using apply</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#indexing">Indexing</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#masks">Masks</a></li>
 </ul>
 </li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#c-valarray">C++ <code class="docutils literal notranslate"><span class="pre">valarray</span></code></a><ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#example-using-apply">Example: Using apply</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#indexing">Indexing</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#masks">Masks</a></li>
-</ul>
-</li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#exercises">Exercises</a><ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#dot-product">Dot product</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#heap-or-stack">Heap or stack?</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#filter-data">Filter data</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#simulation">Simulation</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#extract-odd-values">Extract odd values</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#cross-product">Cross product</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#perpendicular-vector">Perpendicular vector</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#plane-equation">Plane equation</a></li>
-</ul>
-</li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#vector-product">Vector product</a><ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#classical-angular-momentum-and-centripetal-acceleration">Classical angular momentum and centripetal acceleration</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#exercises">Exercises</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dot-product">Dot product</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#heap-or-stack">Heap or stack?</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#filter-data">Filter data</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#simulation">Simulation</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#extract-odd-values">Extract odd values</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#cross-product">Cross product</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#perpendicular-vector">Perpendicular vector</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#plane-equation">Plane equation</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#vector-product">Vector product</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#classical-angular-momentum-and-centripetal-acceleration">Classical angular momentum and centripetal acceleration</a></li>
 </ul>
 </li>
 </ul>
-
   </nav></div>
 
 </div></div>

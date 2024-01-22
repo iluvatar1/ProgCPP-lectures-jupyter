@@ -9,7 +9,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
-    <title>Introduction to C++ &#8212; Introduction to C++ and Numerical Methods</title>
+    <title>Introduction to Programming and C++ &#8212; Introduction to C++ and Numerical Methods</title>
   
   
   
@@ -35,6 +35,7 @@
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles.css" />
     <link rel="stylesheet" type="text/css" href="../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
   
   <!-- Pre-loaded scripts that we'll load fully later -->
@@ -173,60 +174,24 @@ const thebe_selector_output = ".output, .cell_output"
         </ul>
         <p aria-level="2" class="caption" role="heading"><span class="caption-text">Introduction to C++</span></p>
 <ul class="current nav bd-sidenav">
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">Introduction to C++</a></li>
-
-
-
-<li class="toctree-l1"><a class="reference internal" href="CPP-FastPacedIntro.html">Very short intro to the basics of c++</a></li>
-
-
-
-
-
-
-
-
-
-
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Introduction to Programming and C++</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Resources.html">Resources</a></li>
+<li class="toctree-l1"><a class="reference internal" href="CPP-FastPacedIntro.html">Very fast intro to the basics of c++</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Numerical Calculus</span></p>
 <ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="../02-derivatives/NumericalDifferentiation.html">Numerical differentiation</a></li>
-
-
-
 <li class="toctree-l1"><a class="reference internal" href="../03-integration/NumericalIntegration_Basics.html">Common Numerical Integration Algorithms</a></li>
-
-
-
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Modern and primitive arrays, and basic Linear Algebra</span></p>
 <ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="../04-vector-containers/ModernArrays.html">Modern arrays</a></li>
-
-
-
-
-
 <li class="toctree-l1"><a class="reference internal" href="../05-matrixI/2D-matrices-to-1D-arrays.html">1D Arrays for 2D Matrices</a></li>
-
 <li class="toctree-l1"><a class="reference internal" href="../06-ArrayComputing/ArrayComputing-Valarray.html">Vector operations: Coefficient-wise</a></li>
-
-
-
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Linear Algebra and Numerical Libraries</span></p>
 <ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="../07-LinearAlgebra/LinearAlgebraEigen.html">Linear Systems : Matrices, Vectors, eigen systems</a></li>
-
-
-
-
-
-
-
-
-
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Ordinary differential equations: Initial value problems</span></p>
 <ul class="nav bd-sidenav">
@@ -485,7 +450,7 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Introduction to C++</h1>
+    <h1>Introduction to Programming and C++</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -495,35 +460,31 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Introduction to C++</a><ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#typical-basic-workflow">Typical basic workflow</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#understanding-helloworld">Understanding helloworld</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#comments">Comments</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pre-processor">Pre-processor</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-main-function">The main function</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#std-cout-to-print"><code class="docutils literal notranslate"><span class="pre">std::cout</span></code> to print</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#return-statement">Return statement</a></li>
 </ul>
 </li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#understanding-helloworld">Understanding helloworld</a><ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#comments">Comments</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pre-processor">Pre-processor</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-main-function">The main function</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#std-cout-to-print"><code class="docutils literal notranslate"><span class="pre">std::cout</span></code> to print</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#return-statement">Return statement</a></li>
-</ul>
-</li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#practice-exercise">Practice exercise</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#some-useful-tools">Some useful tools</a><ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ide">IDE</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#sanitizers">Sanitizers</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#debuggers">Debuggers</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#linters">Linters</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#formatting">Formatting</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#compilation">Compilation</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#package-managers">Package managers</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#version-control">Version control</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#testing">Testing</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#reproducible-environments">Reproducible environments</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#documentation">Documentation</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#practical-exercise">Practical exercise</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#some-useful-tools">Some useful tools</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ide">IDE</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#sanitizers">Sanitizers</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#debuggers">Debuggers</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#linters">Linters</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#formatting">Formatting</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#compilation">Compilation</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#package-managers">Package managers</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#version-control">Version control</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#testing">Testing</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#reproducible-environments">Reproducible environments</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#documentation">Documentation</a></li>
 </ul>
 </li>
 </ul>
-
             </nav>
         </div>
     </div>
@@ -534,8 +495,8 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="introduction-to-c">
-<h1>Introduction to C++<a class="headerlink" href="#introduction-to-c" title="Permalink to this heading">#</a></h1>
+  <section class="tex2jax_ignore mathjax_ignore" id="introduction-to-programming-and-c">
+<h1>Introduction to Programming and C++<a class="headerlink" href="#introduction-to-programming-and-c" title="Permalink to this heading">#</a></h1>
 <div style="text-align: center;">
     <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/18/ISO_C%2B%2B_Logo.svg/612px-ISO_C%2B%2B_Logo.svg.png" alt="Image Description" width="200">
 </div>
@@ -564,34 +525,49 @@ https://computers-are-fast.github.io/</p>
 <h2>Typical basic workflow<a class="headerlink" href="#typical-basic-workflow" title="Permalink to this heading">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#%load_ext nb_js_diagrammers</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">load_ext</span> nb_js_diagrammers
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#%%mermaid_magic -h 500 </span>
-<span class="n">graph</span> <span class="n">TD</span><span class="p">;</span>
-    <span class="n">A</span><span class="p">[</span><span class="n">Understand</span> <span class="n">the</span> <span class="n">problem</span><span class="p">]</span> <span class="o">--&gt;</span> <span class="n">B</span><span class="p">[</span><span class="n">Edit</span> <span class="n">the</span> <span class="n">code</span><span class="p">:</span> <span class="n">vscode</span><span class="p">,</span> <span class="n">emacs</span><span class="p">,</span> <span class="n">vim</span><span class="p">,</span> <span class="o">...</span><span class="p">]</span>
-    <span class="n">B</span> <span class="o">--&gt;</span> <span class="n">C</span><span class="p">[</span><span class="n">Compile</span> <span class="n">your</span> <span class="n">code</span><span class="p">:</span> <span class="n">g</span><span class="o">++</span> <span class="n">filename</span><span class="o">.</span><span class="n">cpp</span><span class="p">]</span>
-    <span class="n">C</span> <span class="o">--</span> <span class="n">Yes</span> <span class="o">--&gt;</span> <span class="n">D</span><span class="p">[</span><span class="n">Execute</span> <span class="n">the</span> <span class="n">executable</span><span class="p">:</span> <span class="o">./</span><span class="n">a</span><span class="o">.</span><span class="n">out</span><span class="p">]</span>
-    <span class="n">C</span> <span class="o">--</span> <span class="n">No</span> <span class="o">--&gt;</span> <span class="n">B</span>
-    <span class="n">D</span> <span class="o">--</span> <span class="n">Yes</span> <span class="o">--&gt;</span> <span class="n">E</span><span class="p">[</span><span class="n">Analyze</span> <span class="n">results</span><span class="p">:</span> <span class="n">Plot</span><span class="p">,</span> <span class="n">fit</span><span class="p">,</span> <span class="n">etc</span><span class="o">.</span> <span class="n">Maybe</span> <span class="n">use</span> <span class="n">python</span><span class="p">]</span>
-    <span class="n">D</span> <span class="o">--</span> <span class="n">No</span> <span class="o">--&gt;</span> <span class="n">B</span>
-    <span class="n">E</span> <span class="o">--</span> <span class="n">No</span><span class="p">,</span> <span class="ow">or</span> <span class="n">improvement</span> <span class="o">--&gt;</span> <span class="n">B</span>
-    <span class="n">E</span> <span class="o">--</span> <span class="n">More</span> <span class="n">thinking</span> <span class="n">needed</span> <span class="o">--&gt;</span> <span class="n">A</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="k">mermaid_magic</span> -h 500 
+graph TD;
+    A[Understand the problem] --&gt; B[Edit the code: vscode, emacs, vim, ...]
+    B --&gt; C[Compile your code: g++ filename.cpp]
+    C -- Yes --&gt; D[Execute the executable: ./a.out]
+    C -- No --&gt; B
+    D -- Yes --&gt; E[Analyze results: Plot, fit, etc. Maybe use python]
+    D -- No --&gt; B
+    E -- No, or improvement --&gt; B
+    E -- More thinking needed --&gt; A
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span>  <span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="n">line</span> <span class="mi">2</span>
-    <span class="n">graph</span> <span class="n">TD</span><span class="p">;</span>
-          <span class="o">^</span>
-<span class="ne">SyntaxError</span>: invalid syntax
-</pre></div>
-</div>
-</div>
+<div class="output text_html"><iframe srcdoc="&lt;html&gt;
+    &lt;body&gt;
+        &lt;script src=&quot;https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js&quot;&gt;&lt;/script&gt;
+        &lt;script&gt;
+            mermaid.initialize({ startOnLoad: true });
+        &lt;/script&gt;
+ 
+        &lt;div class=&quot;mermaid&quot;&gt;
+            graph TD;
+    A[Understand the problem] --&gt; B[Edit the code: vscode, emacs, vim, ...]
+    B --&gt; C[Compile your code: g++ filename.cpp]
+    C -- Yes --&gt; D[Execute the executable: ./a.out]
+    C -- No --&gt; B
+    D -- Yes --&gt; E[Analyze results: Plot, fit, etc. Maybe use python]
+    D -- No --&gt; B
+    E -- No, or improvement --&gt; B
+    E -- More thinking needed --&gt; A
+        &lt;/div&gt;
+ 
+    &lt;/body&gt;
+&lt;/html&gt;
+" width="100%" height="500"style="border:none !important;" "allowfullscreen" "webkitallowfullscreen" "mozallowfullscreen"></iframe></div></div>
 </div>
 <ol class="arabic simple" start="0">
 <li><p><strong>Understand the problem</strong>. Think about the tasks you need as a high level version.</p></li>
@@ -603,33 +579,38 @@ https://computers-are-fast.github.io/</p>
 <p>The following shows the workflow for a helloworld program.</p>
 <p><strong>Step 0: Think</strong>
 We want a program that prints the message “Hello world” to the standard output (the screen, normally). So we need a standard header like <code class="docutils literal notranslate"><span class="pre">iostream</span></code>, and use <code class="docutils literal notranslate"><span class="pre">std::cout</span></code>. Therefore our general program flow would be</p>
-<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">include</span><span class="w"> </span><span class="n">iostream</span>
-<span class="n">in</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">main</span><span class="w"> </span><span class="n">function</span>
-<span class="w">  </span><span class="n">use</span><span class="w"> </span><span class="n">cout</span><span class="w"> </span><span class="n">to</span><span class="w"> </span><span class="n">write</span><span class="w"> </span><span class="s">&quot;Hellow world&quot;</span>
+<div class="highlight-conf notranslate"><div class="highlight"><pre><span></span>library to print to the screen: include iostream
+in the main function
+  use cout or print or println or printf to write &quot;Hellow world&quot;
 </pre></div>
 </div>
 <p><strong>Step 1: Edit</strong>
-We will edit the code now. We choose to do it here in the notebook, using the %%writefile … magic. But we can also use emacs, vim, nano, etc. Or a local install of vscode.</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%writefile</span> helloworld.cpp
-<span class="o">//</span> <span class="n">This</span> <span class="n">prints</span> <span class="n">a</span> <span class="n">greeting</span>
-<span class="c1">#include &lt;iostream&gt;</span>
+We will edit the code now. Please use an editor and write the following code</p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="c1">// This prints a comment</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;iostream&gt;</span>
 
-<span class="nb">int</span> <span class="n">main</span><span class="p">(</span><span class="n">void</span><span class="p">)</span>
+<span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span>
 <span class="p">{</span>
-    <span class="n">std</span><span class="p">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s2">&quot;Hello world</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">;</span>
-    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;Hello world</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">;</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
 <span class="p">}</span>
 </pre></div>
 </div>
-</div>
-</div>
 <p><strong>Step 2: Compile</strong>
-Now we will compile with the compiler <code class="docutils literal notranslate"><span class="pre">g++</span></code> (there are a <a class="reference external" href="https://en.wikipedia.org/w/index.php?title=List_of_compilers&amp;useskin=vector#C++_compilers">lot more</a>). We can do it directly in the terminal, or here using the prefix ‘!’ to force a command in the notebook to run in the ‘terminal’.</p>
+Now we will compile with the compiler <code class="docutils literal notranslate"><span class="pre">g++</span></code> (there are a <a class="reference external" href="https://en.wikipedia.org/w/index.php?title=List_of_compilers&amp;useskin=vector#C++_compilers">lot more</a>). In a terminal, in the same directory where the fie was saved, just run</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>g++<span class="w"> </span>helloworld.cpp
+</pre></div>
+</div>
+<p>You have terminals available in a local or remote linux installation, in vscode in a code space, in binder, but not in google collab. There you need to either pay to have a terminal (is not that expensive), or just run a cell prepending <code class="docutils literal notranslate"><span class="pre">!</span></code> as the following</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span>g++<span class="w"> </span>helloworld.cpp
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class=" -Color -Color-Bold">cc1plus:</span> <span class=" -Color -Color-Bold -Color-Bold-Red">fatal error: </span>helloworld.cpp: No such file or directory
+compilation terminated.
 </pre></div>
 </div>
 </div>
@@ -638,6 +619,11 @@ Now we will compile with the compiler <code class="docutils literal notranslate"
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span>ls
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>BasicCPP.ipynb	CPP-FastPacedIntro.ipynb  Resources.ipynb
 </pre></div>
 </div>
 </div>
@@ -650,6 +636,15 @@ Now we will compile with the compiler <code class="docutils literal notranslate"
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class=" -Color -Color-Bold">cc1plus:</span> <span class=" -Color -Color-Bold -Color-Bold-Red">fatal error: </span>helloworld.cpp: No such file or directory
+compilation terminated.
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>BasicCPP.ipynb	CPP-FastPacedIntro.ipynb  Resources.ipynb
+</pre></div>
+</div>
+</div>
 </div>
 <p><strong>Step 3: Execute</strong>
 To execute, we need to specify the path to the executable. We are going to use the symbol ‘./’, which means the current directory</p>
@@ -659,15 +654,19 @@ To execute, we need to specify the path to the executable. We are going to use t
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/usr/bin/sh: 1: ./hello.x: not found
+</pre></div>
+</div>
+</div>
 </div>
 <p>Congratulation! Now you are a c++ developer … not so fast!</p>
 </section>
-</section>
-<section class="tex2jax_ignore mathjax_ignore" id="understanding-helloworld">
-<h1>Understanding helloworld<a class="headerlink" href="#understanding-helloworld" title="Permalink to this heading">#</a></h1>
+<section id="understanding-helloworld">
+<h2>Understanding helloworld<a class="headerlink" href="#understanding-helloworld" title="Permalink to this heading">#</a></h2>
 <p>There are a lot of things under the hood for the simple helloworld program.</p>
 <section id="comments">
-<h2>Comments<a class="headerlink" href="#comments" title="Permalink to this heading">#</a></h2>
+<h3>Comments<a class="headerlink" href="#comments" title="Permalink to this heading">#</a></h3>
 <p>You can add comments, ignored by the compiler, using either <code class="docutils literal notranslate"><span class="pre">//</span></code>, for single line comments, or</p>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cm">/* </span>
 <span class="cm">  large multiline </span>
@@ -678,7 +677,7 @@ To execute, we need to specify the path to the executable. We are going to use t
 <p>for multiline comments.</p>
 </section>
 <section id="pre-processor">
-<h2>Pre-processor<a class="headerlink" href="#pre-processor" title="Permalink to this heading">#</a></h2>
+<h3>Pre-processor<a class="headerlink" href="#pre-processor" title="Permalink to this heading">#</a></h3>
 <p>The line</p>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;iostream&gt;</span>
 </pre></div>
@@ -688,7 +687,7 @@ To execute, we need to specify the path to the executable. We are going to use t
 <p>Do not use <code class="docutils literal notranslate"><span class="pre">.h</span></code> headers. Those come from C , are not using the <code class="docutils literal notranslate"><span class="pre">std</span></code> namespace, and are a bad practice.</p>
 </section>
 <section id="the-main-function">
-<h2>The main function<a class="headerlink" href="#the-main-function" title="Permalink to this heading">#</a></h2>
+<h3>The main function<a class="headerlink" href="#the-main-function" title="Permalink to this heading">#</a></h3>
 <p>Good programming is based on splitting a daunting task into several smaller tasks that are isolated from each other and perform one thing well. Therefore, the concept of a <em>function</em> is of paramount importance. In c++, a function has a name, a set of arguments (parameters that it receives, like the domain, although the parameter number and type can be any), and a result type (a range) if it returns something. The typical function prototype is</p>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">return_type</span><span class="w"> </span><span class="nf">function_name</span><span class="p">(</span><span class="n">type1</span><span class="w"> </span><span class="n">par1</span><span class="p">,</span><span class="w"> </span><span class="n">type2</span><span class="w"> </span><span class="n">par2</span><span class="p">);</span>
 </pre></div>
@@ -724,7 +723,7 @@ To execute, we need to specify the path to the executable. We are going to use t
 </div>
 </section>
 <section id="std-cout-to-print">
-<h2><code class="docutils literal notranslate"><span class="pre">std::cout</span></code> to print<a class="headerlink" href="#std-cout-to-print" title="Permalink to this heading">#</a></h2>
+<h3><code class="docutils literal notranslate"><span class="pre">std::cout</span></code> to print<a class="headerlink" href="#std-cout-to-print" title="Permalink to this heading">#</a></h3>
 <p>The instruction <code class="docutils literal notranslate"><span class="pre">std::cout</span></code> allows to print to the standard output. The <code class="docutils literal notranslate"><span class="pre">\n</span></code> prints a new line. <strong>Warning:</strong> Do not use</p>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">using</span><span class="w"> </span><span class="k">namespace</span><span class="w"> </span><span class="nn">std</span><span class="p">;</span><span class="w"> </span><span class="c1">// DO NOT DO THIS</span>
 </pre></div>
@@ -732,21 +731,13 @@ To execute, we need to specify the path to the executable. We are going to use t
 <p>it is a bad practice, frowned upon. You can use a linter or static analysis tool, like cpplint, to chech for advice and errors.</p>
 </section>
 <section id="return-statement">
-<h2>Return statement<a class="headerlink" href="#return-statement" title="Permalink to this heading">#</a></h2>
+<h3>Return statement<a class="headerlink" href="#return-statement" title="Permalink to this heading">#</a></h3>
 <p>The <code class="docutils literal notranslate"><span class="pre">return</span></code> statement allows to exit the function, returning something or nothing. It depends on your use case if you need it or not.</p>
 </section>
 </section>
-<section class="tex2jax_ignore mathjax_ignore" id="practice-exercise">
-<h1>Practice exercise<a class="headerlink" href="#practice-exercise" title="Permalink to this heading">#</a></h1>
+<section id="practical-exercise">
+<h2>Practical exercise<a class="headerlink" href="#practical-exercise" title="Permalink to this heading">#</a></h2>
 <p>Now please write a program that reads your name, and then prints <code class="docutils literal notranslate"><span class="pre">Hello,</span> <span class="pre">your-name-here</span></code> . Check if it is better to use <code class="docutils literal notranslate"><span class="pre">std::cin</span></code> or <code class="docutils literal notranslate"><span class="pre">std::getline</span></code>.  Compile it and test it.</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Write the code here</span>
-<span class="o">%%writefile</span> myname.cpp
-</pre></div>
-</div>
-</div>
-</div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Compilation</span>
@@ -762,11 +753,11 @@ To execute, we need to specify the path to the executable. We are going to use t
 </div>
 </div>
 </section>
-<section class="tex2jax_ignore mathjax_ignore" id="some-useful-tools">
-<h1>Some useful tools<a class="headerlink" href="#some-useful-tools" title="Permalink to this heading">#</a></h1>
+<section id="some-useful-tools">
+<h2>Some useful tools<a class="headerlink" href="#some-useful-tools" title="Permalink to this heading">#</a></h2>
 <p>As you learn more and your apps grow in complexity, you might need to use tools to easy the developer work so to focus on the analysis and results, while mantaining  readability and good practices. Please also focus in this in <strong>learning linux</strong>, is the environment that scientist use. You can find many online resources, like http://www.ee.surrey.ac.uk/Teaching/Unix/ or https://swcarpentry.github.io/shell-novice/. For a general overview of what it means to be  a modern c++ developer, see https://roadmap.sh/cpp</p>
 <section id="ide">
-<h2>IDE<a class="headerlink" href="#ide" title="Permalink to this heading">#</a></h2>
+<h3>IDE<a class="headerlink" href="#ide" title="Permalink to this heading">#</a></h3>
 <p>An IDE is not just an editor but also gives you an environment with debuggers, refactoring, etc. You might use</p>
 <ul class="simple">
 <li><p><a class="reference external" href="https://code.visualstudio.com/">Visual studio code</a> . Very famous right now. Runs on electron. Can connect remotely, but cannot run in the terminal. A lot of metrics sent to servers.</p></li>
@@ -777,14 +768,14 @@ To execute, we need to specify the path to the executable. We are going to use t
 </ul>
 </section>
 <section id="sanitizers">
-<h2>Sanitizers<a class="headerlink" href="#sanitizers" title="Permalink to this heading">#</a></h2>
+<h3>Sanitizers<a class="headerlink" href="#sanitizers" title="Permalink to this heading">#</a></h3>
 <p>When compiling, use sanitizers to allow for runtime error detections</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>g++<span class="w"> </span>-fsanitize<span class="o">=</span>address,undefined,leak<span class="w"> </span>filename.cpp<span class="w"> </span>-o<span class="w"> </span>...
 </pre></div>
 </div>
 </section>
 <section id="debuggers">
-<h2>Debuggers<a class="headerlink" href="#debuggers" title="Permalink to this heading">#</a></h2>
+<h3>Debuggers<a class="headerlink" href="#debuggers" title="Permalink to this heading">#</a></h3>
 <p>A programmer spent 80% of the time debugging and fixing its code, and 20% programming. To track errors, it is useful to use something more advanced than printing messages (poor’s man debugger). You can use tools like:</p>
 <ul class="simple">
 <li><p><a class="reference external" href="https://www.sourceware.org/gdb/">gdb</a></p></li>
@@ -795,7 +786,7 @@ To execute, we need to specify the path to the executable. We are going to use t
 </ul>
 </section>
 <section id="linters">
-<h2>Linters<a class="headerlink" href="#linters" title="Permalink to this heading">#</a></h2>
+<h3>Linters<a class="headerlink" href="#linters" title="Permalink to this heading">#</a></h3>
 <p>Sometimes you need tools that tell some possible errors in your code without actually running it. You can use</p>
 <ul class="simple">
 <li><p><a class="reference external" href="https://github.com/cpplint/cpplint">cpplint</a></p></li>
@@ -805,11 +796,11 @@ To execute, we need to specify the path to the executable. We are going to use t
 </ul>
 </section>
 <section id="formatting">
-<h2>Formatting<a class="headerlink" href="#formatting" title="Permalink to this heading">#</a></h2>
+<h3>Formatting<a class="headerlink" href="#formatting" title="Permalink to this heading">#</a></h3>
 <p>Formatting the code is key for readability of one self and others. You can use something like <a class="reference external" href="https://clang.llvm.org/docs/ClangFormat.html">clang-format</a> to format your ugly and unreadable code.</p>
 </section>
 <section id="compilation">
-<h2>Compilation<a class="headerlink" href="#compilation" title="Permalink to this heading">#</a></h2>
+<h3>Compilation<a class="headerlink" href="#compilation" title="Permalink to this heading">#</a></h3>
 <p>There are several compilers that you can use, like:</p>
 <ul class="simple">
 <li><p><a class="reference external" href="https://gcc.gnu.org/">gnu gcc/g++ compilers</a></p></li>
@@ -827,27 +818,26 @@ Sometimes it is useful to try several compilers to find possible bugs in the cod
 <p>As your code grows in complexity (but even in the case of simple projects), the constant compilation, debugging, linting, etc could transform into a repetitive task that might be automatized. For simple projects you can use gnu make, using tutorials like https://makefiletutorial.com/ or https://www.cs.colby.edu/maxwell/courses/tutorials/maketutor/ or http://swcarpentry.github.io/make-novice/. For more complex projects and multiplatform support, you might use <a class="reference external" href="https://www.google.com/search?client=firefox-b-d&amp;q=cmake+tutorial+modern">cmake</a>.</p>
 </section>
 <section id="package-managers">
-<h2>Package managers<a class="headerlink" href="#package-managers" title="Permalink to this heading">#</a></h2>
+<h3>Package managers<a class="headerlink" href="#package-managers" title="Permalink to this heading">#</a></h3>
 <p>Besides the typical operating system package manager, you can also use tools like <a class="reference external" href="https://spack.readthedocs.io/en/latest/">spack</a>, <a class="reference external" href="https://mesonbuild.com/">meson</a>, <a class="reference external" href="https://github.com/microsoft/vcpkg">vcpkg</a>, <a class="reference external" href="https://conan.io/">conan</a>, …</p>
 </section>
 <section id="version-control">
-<h2>Version control<a class="headerlink" href="#version-control" title="Permalink to this heading">#</a></h2>
+<h3>Version control<a class="headerlink" href="#version-control" title="Permalink to this heading">#</a></h3>
 <p>It is ALWAYS advisable to use version control. Please use git, so you will be able to rollback changes, create, merge and delete branches, activate continuous integration, and so on. You can also sync with remote repositories in portals like https://github.com/, or https://about.gitlab.com/why-gitlab/ . There are many tutorials, like https://swcarpentry.github.io/git-novice/ or https://learngitbranching.js.org/</p>
 </section>
 <section id="testing">
-<h2>Testing<a class="headerlink" href="#testing" title="Permalink to this heading">#</a></h2>
+<h3>Testing<a class="headerlink" href="#testing" title="Permalink to this heading">#</a></h3>
 <p>It is very important to write code that is testable, and to test constantly specially when introducing new changes To do so, you can use https://github.com/catchorg/Catch2, https://github.com/google/googletest , etc</p>
 </section>
 <section id="reproducible-environments">
-<h2>Reproducible environments<a class="headerlink" href="#reproducible-environments" title="Permalink to this heading">#</a></h2>
+<h3>Reproducible environments<a class="headerlink" href="#reproducible-environments" title="Permalink to this heading">#</a></h3>
 <p>When you write a new program and want to distribute it, or run it on another machine, you must ensure that it runs as in the original development machine. To do so, the modern solution is to use containers. Learn how to use <a class="reference external" href="https://www.docker.com/">docker</a> or <a class="reference external" href="https://podman.io/">Podman</a>. This will be required for the final project.</p>
 </section>
 <section id="documentation">
-<h2>Documentation<a class="headerlink" href="#documentation" title="Permalink to this heading">#</a></h2>
+<h3>Documentation<a class="headerlink" href="#documentation" title="Permalink to this heading">#</a></h3>
 <p>Use comments, and better, use something like <a class="reference external" href="https://www.doxygen.nl/">doxygen</a></p>
 </section>
-<div class="toctree-wrapper compound">
-</div>
+</section>
 </section>
 
     <script type="text/x-thebe-config">
@@ -914,35 +904,31 @@ Sometimes it is useful to try several compilers to find possible bugs in the cod
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Introduction to C++</a><ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#typical-basic-workflow">Typical basic workflow</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#understanding-helloworld">Understanding helloworld</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#comments">Comments</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pre-processor">Pre-processor</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-main-function">The main function</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#std-cout-to-print"><code class="docutils literal notranslate"><span class="pre">std::cout</span></code> to print</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#return-statement">Return statement</a></li>
 </ul>
 </li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#understanding-helloworld">Understanding helloworld</a><ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#comments">Comments</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pre-processor">Pre-processor</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-main-function">The main function</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#std-cout-to-print"><code class="docutils literal notranslate"><span class="pre">std::cout</span></code> to print</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#return-statement">Return statement</a></li>
-</ul>
-</li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#practice-exercise">Practice exercise</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#some-useful-tools">Some useful tools</a><ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ide">IDE</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#sanitizers">Sanitizers</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#debuggers">Debuggers</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#linters">Linters</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#formatting">Formatting</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#compilation">Compilation</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#package-managers">Package managers</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#version-control">Version control</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#testing">Testing</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#reproducible-environments">Reproducible environments</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#documentation">Documentation</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#practical-exercise">Practical exercise</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#some-useful-tools">Some useful tools</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ide">IDE</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#sanitizers">Sanitizers</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#debuggers">Debuggers</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#linters">Linters</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#formatting">Formatting</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#compilation">Compilation</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#package-managers">Package managers</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#version-control">Version control</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#testing">Testing</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#reproducible-environments">Reproducible environments</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#documentation">Documentation</a></li>
 </ul>
 </li>
 </ul>
-
   </nav></div>
 
 </div></div>

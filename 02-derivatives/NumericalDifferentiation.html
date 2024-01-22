@@ -35,6 +35,7 @@
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles.css" />
     <link rel="stylesheet" type="text/css" href="../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
   
   <!-- Pre-loaded scripts that we'll load fully later -->
@@ -69,7 +70,7 @@ const thebe_selector_output = ".output, .cell_output"
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="Common Numerical Integration Algorithms" href="../03-integration/NumericalIntegration_Basics.html" />
-    <link rel="prev" title="Very short intro to the basics of c++" href="../01-IntroCPP/CPP-FastPacedIntro.html" />
+    <link rel="prev" title="Very fast intro to the basics of c++" href="../01-IntroCPP/CPP-FastPacedIntro.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -175,60 +176,24 @@ const thebe_selector_output = ".output, .cell_output"
         </ul>
         <p aria-level="2" class="caption" role="heading"><span class="caption-text">Introduction to C++</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="../01-IntroCPP/BasicCPP.html">Introduction to C++</a></li>
-
-
-
-<li class="toctree-l1"><a class="reference internal" href="../01-IntroCPP/CPP-FastPacedIntro.html">Very short intro to the basics of c++</a></li>
-
-
-
-
-
-
-
-
-
-
+<li class="toctree-l1"><a class="reference internal" href="../01-IntroCPP/BasicCPP.html">Introduction to Programming and C++</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../01-IntroCPP/Resources.html">Resources</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../01-IntroCPP/CPP-FastPacedIntro.html">Very fast intro to the basics of c++</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Numerical Calculus</span></p>
 <ul class="current nav bd-sidenav">
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">Numerical differentiation</a></li>
-
-
-
 <li class="toctree-l1"><a class="reference internal" href="../03-integration/NumericalIntegration_Basics.html">Common Numerical Integration Algorithms</a></li>
-
-
-
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Modern and primitive arrays, and basic Linear Algebra</span></p>
 <ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="../04-vector-containers/ModernArrays.html">Modern arrays</a></li>
-
-
-
-
-
 <li class="toctree-l1"><a class="reference internal" href="../05-matrixI/2D-matrices-to-1D-arrays.html">1D Arrays for 2D Matrices</a></li>
-
 <li class="toctree-l1"><a class="reference internal" href="../06-ArrayComputing/ArrayComputing-Valarray.html">Vector operations: Coefficient-wise</a></li>
-
-
-
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Linear Algebra and Numerical Libraries</span></p>
 <ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="../07-LinearAlgebra/LinearAlgebraEigen.html">Linear Systems : Matrices, Vectors, eigen systems</a></li>
-
-
-
-
-
-
-
-
-
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Ordinary differential equations: Initial value problems</span></p>
 <ul class="nav bd-sidenav">
@@ -497,22 +462,18 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Numerical differentiation</a><ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#first-approach-forward-difference">First approach: forward difference</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#a-better-estimation-central-difference">A better estimation: Central difference</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#other-important-cases">Other important cases</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#implementing-forward-and-central-derivatives">Implementing forward and central derivatives</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#file-modularization">File modularization</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#error-a-as-function-of-h">Error a as function of <span class="math notranslate nohighlight">\(h\)</span></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#error-as-a-function-of-both-h-and-x">Error as a function of both <span class="math notranslate nohighlight">\(h\)</span> and <span class="math notranslate nohighlight">\(x\)</span></a></li>
 </ul>
 </li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#implementing-forward-and-central-derivatives">Implementing forward and central derivatives</a><ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#file-modularization">File modularization</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#error-a-as-function-of-h">Error a as function of <span class="math notranslate nohighlight">\(h\)</span></a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#error-as-a-function-of-both-h-and-x">Error as a function of both <span class="math notranslate nohighlight">\(h\)</span> and <span class="math notranslate nohighlight">\(x\)</span></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#implementing-richardson-extrapolation">Implementing Richardson extrapolation</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#testing">Testing</a></li>
 </ul>
-</li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#implementing-richardson-extrapolation">Implementing Richardson extrapolation</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#testing">Testing</a></li>
-</ul>
-
             </nav>
         </div>
     </div>
@@ -523,15 +484,7 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">NAME</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
-<span class="n">COLLABORATORS</span> <span class="o">=</span> <span class="s2">&quot;NONE&quot;</span>
-</pre></div>
-</div>
-</div>
-</div>
-<section class="tex2jax_ignore mathjax_ignore" id="numerical-differentiation">
+  <section class="tex2jax_ignore mathjax_ignore" id="numerical-differentiation">
 <h1>Numerical differentiation<a class="headerlink" href="#numerical-differentiation" title="Permalink to this heading">#</a></h1>
 <p>REFS:</p>
 <ul class="simple">
@@ -550,7 +503,7 @@ document.write(`
 </thead>
 <tbody>
 <tr class="row-even"><td><p>$<span class="math notranslate nohighlight">\(f'(x) \simeq \frac{f(x+h) - f(x)}{h} + O(h)\)</span>$</p></td>
-<td><p><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/18/Derivative.svg/460px-Derivative.svg.png" width=300 /></p></td>
+<td><p><a class="reference internal" href="https://upload.wikimedia.org/wikipedia/commons/thumb/1/18/Derivative.svg/460px-Derivative.svg.png"><img alt="https://upload.wikimedia.org/wikipedia/commons/thumb/1/18/Derivative.svg/460px-Derivative.svg.png" src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/18/Derivative.svg/460px-Derivative.svg.png" style="width: 300px;" /></a></p></td>
 </tr>
 </tbody>
 </table>
@@ -572,8 +525,8 @@ which is called the central difference. The order is improved and this version i
 </tr>
 </thead>
 <tbody>
-<tr class="row-even"><td><p><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/90/Finite_difference_method.svg/614px-Finite_difference_method.svg.png" width=400 /></p></td>
-<td><p><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/41/AbsoluteErrorNumericalDifferentiationExample.png/600px-AbsoluteErrorNumericalDifferentiationExample.png" width=400/></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="https://upload.wikimedia.org/wikipedia/commons/thumb/9/90/Finite_difference_method.svg/614px-Finite_difference_method.svg.png"><img alt="https://upload.wikimedia.org/wikipedia/commons/thumb/9/90/Finite_difference_method.svg/614px-Finite_difference_method.svg.png" src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/90/Finite_difference_method.svg/614px-Finite_difference_method.svg.png" style="width: 400px;" /></a></p></td>
+<td><p></p></td>
 </tr>
 </tbody>
 </table>
@@ -590,9 +543,8 @@ where \)</span>\phi(h)<span class="math notranslate nohighlight">\( is the deriv
 <li><p>N-dimensional derivatives.</p></li>
 </ul>
 </section>
-</section>
-<section class="tex2jax_ignore mathjax_ignore" id="implementing-forward-and-central-derivatives">
-<h1>Implementing forward and central derivatives<a class="headerlink" href="#implementing-forward-and-central-derivatives" title="Permalink to this heading">#</a></h1>
+<section id="implementing-forward-and-central-derivatives">
+<h2>Implementing forward and central derivatives<a class="headerlink" href="#implementing-forward-and-central-derivatives" title="Permalink to this heading">#</a></h2>
 <p>Implement functions to compute both the forward and central derivatives. Explore the following case:
 Compute the derivative as a function of <span class="math notranslate nohighlight">\(x\)</span>, with fixed <span class="math notranslate nohighlight">\(h = 0.01\)</span>. Use <span class="math notranslate nohighlight">\(f(x) = \sin(x^2)\)</span>. Compare with the exact derivative. Plot the relative difference.</p>
 <p>The prototypes might be</p>
@@ -601,7 +553,7 @@ Compute the derivative as a function of <span class="math notranslate nohighligh
 </pre></div>
 </div>
 <section id="file-modularization">
-<h2>File modularization<a class="headerlink" href="#file-modularization" title="Permalink to this heading">#</a></h2>
+<h3>File modularization<a class="headerlink" href="#file-modularization" title="Permalink to this heading">#</a></h3>
 <p>Now try to modularize the code. Create headers and implementation files called <code class="docutils literal notranslate"><span class="pre">derivatives.h</span></code> and <code class="docutils literal notranslate"><span class="pre">derivatives.cpp</span></code>, where you are going to put declarations and implementations for both the forward and the central derivative methods. What happens now? where should the function to be derived go? We need a more generic approach. Use <code class="docutils literal notranslate"><span class="pre">using</span> <span class="pre">fptr</span> <span class="pre">=</span> <span class="pre">double(double)</span></code> as a function pointer, which is a construct that represents what a function returns and receives. The ideal is to use the functions as parameters</p>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">double</span><span class="w"> </span><span class="nf">forward_diff</span><span class="p">(</span><span class="kt">double</span><span class="w"> </span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="n">h</span><span class="p">,</span><span class="w"> </span><span class="n">fptr</span><span class="w"> </span><span class="n">fun</span><span class="p">);</span>
 <span class="kt">double</span><span class="w"> </span><span class="nf">central_diff</span><span class="p">(</span><span class="kt">double</span><span class="w"> </span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="n">h</span><span class="p">,</span><span class="w"> </span><span class="n">fptr</span><span class="w"> </span><span class="n">fun</span><span class="p">);</span>
@@ -617,16 +569,16 @@ Compute the derivative as a function of <span class="math notranslate nohighligh
 <p>Or even use functors or std::function. For now let’s just keep this simple with <code class="docutils literal notranslate"><span class="pre">using</span></code>.</p>
 </section>
 <section id="error-a-as-function-of-h">
-<h2>Error a as function of <span class="math notranslate nohighlight">\(h\)</span><a class="headerlink" href="#error-a-as-function-of-h" title="Permalink to this heading">#</a></h2>
+<h3>Error a as function of <span class="math notranslate nohighlight">\(h\)</span><a class="headerlink" href="#error-a-as-function-of-h" title="Permalink to this heading">#</a></h3>
 <p>Now fix <span class="math notranslate nohighlight">\( = 1.454335\)</span>, and compute (using another main function) the relative error as a function of <span class="math notranslate nohighlight">\(h \in [10^{-16}, 10^{-15}, 10^{-14}, \ldots, 10^{-3}, 10^{-2}, 10^{-1}]\)</span>. Plot it. Explain the differences among forward and central results.</p>
 </section>
 <section id="error-as-a-function-of-both-h-and-x">
-<h2>Error as a function of both <span class="math notranslate nohighlight">\(h\)</span> and <span class="math notranslate nohighlight">\(x\)</span><a class="headerlink" href="#error-as-a-function-of-both-h-and-x" title="Permalink to this heading">#</a></h2>
+<h3>Error as a function of both <span class="math notranslate nohighlight">\(h\)</span> and <span class="math notranslate nohighlight">\(x\)</span><a class="headerlink" href="#error-as-a-function-of-both-h-and-x" title="Permalink to this heading">#</a></h3>
 <p>Is the error dependent on <span class="math notranslate nohighlight">\(x\)</span> also? explore variations for both <span class="math notranslate nohighlight">\(x\)</span> and <span class="math notranslate nohighlight">\(y\)</span> and plot in a 3d picture.</p>
 </section>
 </section>
-<section class="tex2jax_ignore mathjax_ignore" id="implementing-richardson-extrapolation">
-<h1>Implementing Richardson extrapolation<a class="headerlink" href="#implementing-richardson-extrapolation" title="Permalink to this heading">#</a></h1>
+<section id="implementing-richardson-extrapolation">
+<h2>Implementing Richardson extrapolation<a class="headerlink" href="#implementing-richardson-extrapolation" title="Permalink to this heading">#</a></h2>
 <p>Now, use the general expression for Richardson extrapolation applied to an algorithm of order <span class="math notranslate nohighlight">\(O(h^\alpha)\)</span>, and also plot its relative differences for fixed <span class="math notranslate nohighlight">\(x\)</span>, (see https://en.wikipedia.org/wiki/Richardson_extrapolation?useskin=vector)
 $<span class="math notranslate nohighlight">\(
 I \simeq \dfrac{t^\alpha I(\frac{h}{t}) - I(h)}{t^\alpha - 1},
@@ -634,10 +586,11 @@ I \simeq \dfrac{t^\alpha I(\frac{h}{t}) - I(h)}{t^\alpha - 1},
 where \)</span>t<span class="math notranslate nohighlight">\( is a factor larger than 1 (tipically \)</span>t=2<span class="math notranslate nohighlight">\(), \)</span>\alpha<span class="math notranslate nohighlight">\( is the algorithm order, and \)</span>I$ is the value you are computing. This implies additions to both headers and implementation files, and a new main.</p>
 <p>As you can see, the Richardson implementation is very similar for both the central and the forward algorithms. Maybe there is some hope to decrease this duplication. Think about a new <code class="docutils literal notranslate"><span class="pre">using</span> <span class="pre">...</span></code> construct. Implement it and plot all errors as a function of <span class="math notranslate nohighlight">\(h\)</span></p>
 </section>
-<section class="tex2jax_ignore mathjax_ignore" id="testing">
-<h1>Testing<a class="headerlink" href="#testing" title="Permalink to this heading">#</a></h1>
+<section id="testing">
+<h2>Testing<a class="headerlink" href="#testing" title="Permalink to this heading">#</a></h2>
 <p>Can you of some test to write for your derivatives?
 Implement some</p>
+</section>
 </section>
 
     <script type="text/x-thebe-config">
@@ -676,7 +629,7 @@ Implement some</p>
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">Very short intro to the basics of c++</p>
+        <p class="prev-next-title">Very fast intro to the basics of c++</p>
       </div>
     </a>
     <a class="right-next"
@@ -704,22 +657,18 @@ Implement some</p>
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Numerical differentiation</a><ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#first-approach-forward-difference">First approach: forward difference</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#a-better-estimation-central-difference">A better estimation: Central difference</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#other-important-cases">Other important cases</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#implementing-forward-and-central-derivatives">Implementing forward and central derivatives</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#file-modularization">File modularization</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#error-a-as-function-of-h">Error a as function of <span class="math notranslate nohighlight">\(h\)</span></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#error-as-a-function-of-both-h-and-x">Error as a function of both <span class="math notranslate nohighlight">\(h\)</span> and <span class="math notranslate nohighlight">\(x\)</span></a></li>
 </ul>
 </li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#implementing-forward-and-central-derivatives">Implementing forward and central derivatives</a><ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#file-modularization">File modularization</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#error-a-as-function-of-h">Error a as function of <span class="math notranslate nohighlight">\(h\)</span></a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#error-as-a-function-of-both-h-and-x">Error as a function of both <span class="math notranslate nohighlight">\(h\)</span> and <span class="math notranslate nohighlight">\(x\)</span></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#implementing-richardson-extrapolation">Implementing Richardson extrapolation</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#testing">Testing</a></li>
 </ul>
-</li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#implementing-richardson-extrapolation">Implementing Richardson extrapolation</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#testing">Testing</a></li>
-</ul>
-
   </nav></div>
 
 </div></div>

@@ -35,6 +35,7 @@
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles.css" />
     <link rel="stylesheet" type="text/css" href="../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
   
   <!-- Pre-loaded scripts that we'll load fully later -->
@@ -175,60 +176,24 @@ const thebe_selector_output = ".output, .cell_output"
         </ul>
         <p aria-level="2" class="caption" role="heading"><span class="caption-text">Introduction to C++</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="../01-IntroCPP/BasicCPP.html">Introduction to C++</a></li>
-
-
-
-<li class="toctree-l1"><a class="reference internal" href="../01-IntroCPP/CPP-FastPacedIntro.html">Very short intro to the basics of c++</a></li>
-
-
-
-
-
-
-
-
-
-
+<li class="toctree-l1"><a class="reference internal" href="../01-IntroCPP/BasicCPP.html">Introduction to Programming and C++</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../01-IntroCPP/Resources.html">Resources</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../01-IntroCPP/CPP-FastPacedIntro.html">Very fast intro to the basics of c++</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Numerical Calculus</span></p>
 <ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="../02-derivatives/NumericalDifferentiation.html">Numerical differentiation</a></li>
-
-
-
 <li class="toctree-l1"><a class="reference internal" href="../03-integration/NumericalIntegration_Basics.html">Common Numerical Integration Algorithms</a></li>
-
-
-
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Modern and primitive arrays, and basic Linear Algebra</span></p>
 <ul class="current nav bd-sidenav">
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">Modern arrays</a></li>
-
-
-
-
-
 <li class="toctree-l1"><a class="reference internal" href="../05-matrixI/2D-matrices-to-1D-arrays.html">1D Arrays for 2D Matrices</a></li>
-
 <li class="toctree-l1"><a class="reference internal" href="../06-ArrayComputing/ArrayComputing-Valarray.html">Vector operations: Coefficient-wise</a></li>
-
-
-
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Linear Algebra and Numerical Libraries</span></p>
 <ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="../07-LinearAlgebra/LinearAlgebraEigen.html">Linear Systems : Matrices, Vectors, eigen systems</a></li>
-
-
-
-
-
-
-
-
-
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Ordinary differential equations: Initial value problems</span></p>
 <ul class="nav bd-sidenav">
@@ -497,14 +462,16 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Modern arrays</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#initial-exercises">Initial exercises</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#using-std-array-fixed-size-goes-to-the-stack-automatic-for">Using <code class="docutils literal notranslate"><span class="pre">std::array</span></code> : Fixed size, goes to the stack, automatic for</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#exercises">Exercises</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#using-std-vector-dynamic-size-uses-the-heap">Using <code class="docutils literal notranslate"><span class="pre">std::vector</span></code> : Dynamic size, uses the heap</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Exercises</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#initial-exercises">Initial exercises</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#using-std-array-fixed-size-goes-to-the-stack-automatic-for">Using <code class="docutils literal notranslate"><span class="pre">std::array</span></code> : Fixed size, goes to the stack, automatic for</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercises">Exercises</a></li>
 </ul>
-
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#using-std-vector-dynamic-size-uses-the-heap">Using <code class="docutils literal notranslate"><span class="pre">std::vector</span></code> : Dynamic size, uses the heap</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Exercises</a></li>
+</ul>
+</li>
+</ul>
             </nav>
         </div>
     </div>
@@ -592,9 +559,8 @@ the link <a class="reference external" href="https://onlinegdb.com/CKeYkLEiz">ht
 </div>
 <p>As you can see, a vector is a dynamc array of homogeneous contigous elements.</p>
 <p><a id="orga3d147a"></a></p>
-</section>
-<section class="tex2jax_ignore mathjax_ignore" id="initial-exercises">
-<h1>Initial exercises<a class="headerlink" href="#initial-exercises" title="Permalink to this heading">#</a></h1>
+<section id="initial-exercises">
+<h2>Initial exercises<a class="headerlink" href="#initial-exercises" title="Permalink to this heading">#</a></h2>
 <ol class="arabic simple">
 <li><p>Find the maximum size you can use for a <code class="docutils literal notranslate"><span class="pre">std::array</span></code> and a <code class="docutils literal notranslate"><span class="pre">std::vector</span></code> .
 Are they the same?</p></li>
@@ -607,8 +573,8 @@ address.</p></li>
 </ol>
 <p><a id="orgb9267a4"></a></p>
 </section>
-<section class="tex2jax_ignore mathjax_ignore" id="using-std-array-fixed-size-goes-to-the-stack-automatic-for">
-<h1>Using <code class="docutils literal notranslate"><span class="pre">std::array</span></code> : Fixed size, goes to the stack, automatic for<a class="headerlink" href="#using-std-array-fixed-size-goes-to-the-stack-automatic-for" title="Permalink to this heading">#</a></h1>
+<section id="using-std-array-fixed-size-goes-to-the-stack-automatic-for">
+<h2>Using <code class="docutils literal notranslate"><span class="pre">std::array</span></code> : Fixed size, goes to the stack, automatic for<a class="headerlink" href="#using-std-array-fixed-size-goes-to-the-stack-automatic-for" title="Permalink to this heading">#</a></h2>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="c1">// g++ -g -fsanitize=address</span>
 <span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;iostream&gt;</span>
 <span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;array&gt;</span>
@@ -687,9 +653,8 @@ address.</p></li>
 </pre></div>
 </div>
 <p><a id="org942e5a1"></a></p>
-</section>
-<section class="tex2jax_ignore mathjax_ignore" id="exercises">
-<h1>Exercises<a class="headerlink" href="#exercises" title="Permalink to this heading">#</a></h1>
+<section id="exercises">
+<h3>Exercises<a class="headerlink" href="#exercises" title="Permalink to this heading">#</a></h3>
 <ol class="arabic">
 <li><p>Find the largest <code class="docutils literal notranslate"><span class="pre">std::array</span></code> size you can get in your system. Is it related
 to the ram size? check the command</p>
@@ -705,8 +670,9 @@ it.</p></li>
 </ol>
 <p><a id="org02d3539"></a></p>
 </section>
-<section class="tex2jax_ignore mathjax_ignore" id="using-std-vector-dynamic-size-uses-the-heap">
-<h1>Using <code class="docutils literal notranslate"><span class="pre">std::vector</span></code> : Dynamic size, uses the heap<a class="headerlink" href="#using-std-vector-dynamic-size-uses-the-heap" title="Permalink to this heading">#</a></h1>
+</section>
+<section id="using-std-vector-dynamic-size-uses-the-heap">
+<h2>Using <code class="docutils literal notranslate"><span class="pre">std::vector</span></code> : Dynamic size, uses the heap<a class="headerlink" href="#using-std-vector-dynamic-size-uses-the-heap" title="Permalink to this heading">#</a></h2>
 <p>Vectors allow to use dynamic size arrays very easily and are the recommend data
 structure for our current math vector and matrix applications. You can see more
 info here:</p>
@@ -766,9 +732,8 @@ info here:</p>
 </pre></div>
 </div>
 <p><a id="org581880d"></a></p>
-</section>
-<section class="tex2jax_ignore mathjax_ignore" id="id1">
-<h1>Exercises<a class="headerlink" href="#id1" title="Permalink to this heading">#</a></h1>
+<section id="id1">
+<h3>Exercises<a class="headerlink" href="#id1" title="Permalink to this heading">#</a></h3>
 <p>Always try to use the STL, and also use functions to implement the following:</p>
 <ol class="arabic">
 <li><p>Compute the norm of a vector.</p></li>
@@ -786,8 +751,8 @@ newdata = {3, 9.0}; // 0 + 3*x^0 + 2*4.5*x^1
 <li><p>Compute the argmin (index of the min) of a vector</p></li>
 <li><p>Compute the argmax (index of the max) of a vector</p></li>
 <li><p>Compute the pnorm</p>
-<div class="amsmath math notranslate nohighlight" id="equation-18984a10-5076-4112-8aab-c2f8ee6119e9">
-<span class="eqno">(12)<a class="headerlink" href="#equation-18984a10-5076-4112-8aab-c2f8ee6119e9" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-bb4cf27a-45cb-4991-aeb9-c98c40e274d6">
+<span class="eqno">(12)<a class="headerlink" href="#equation-bb4cf27a-45cb-4991-aeb9-c98c40e274d6" title="Permalink to this equation">#</a></span>\[\begin{equation}
     \left(\sum_{i} x_{i}^{p}\right)^{1/p} \ .
     \end{equation}\]</div>
 </li>
@@ -836,6 +801,8 @@ generates N random numbers , with the weibull distribution and a given seed.
 Both N, the seed, and the weibull parameters must read from the command
 line. Also, you must compute the histogram and print it to a file.</p></li>
 </ol>
+</section>
+</section>
 </section>
 
     <script type="text/x-thebe-config">
@@ -902,14 +869,16 @@ line. Also, you must compute the histogram and print it to a file.</p></li>
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Modern arrays</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#initial-exercises">Initial exercises</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#using-std-array-fixed-size-goes-to-the-stack-automatic-for">Using <code class="docutils literal notranslate"><span class="pre">std::array</span></code> : Fixed size, goes to the stack, automatic for</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#exercises">Exercises</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#using-std-vector-dynamic-size-uses-the-heap">Using <code class="docutils literal notranslate"><span class="pre">std::vector</span></code> : Dynamic size, uses the heap</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Exercises</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#initial-exercises">Initial exercises</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#using-std-array-fixed-size-goes-to-the-stack-automatic-for">Using <code class="docutils literal notranslate"><span class="pre">std::array</span></code> : Fixed size, goes to the stack, automatic for</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercises">Exercises</a></li>
 </ul>
-
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#using-std-vector-dynamic-size-uses-the-heap">Using <code class="docutils literal notranslate"><span class="pre">std::vector</span></code> : Dynamic size, uses the heap</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Exercises</a></li>
+</ul>
+</li>
+</ul>
   </nav></div>
 
 </div></div>

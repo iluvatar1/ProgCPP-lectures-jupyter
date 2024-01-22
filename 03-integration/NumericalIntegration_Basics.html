@@ -35,6 +35,7 @@
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles.css" />
     <link rel="stylesheet" type="text/css" href="../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
   
   <!-- Pre-loaded scripts that we'll load fully later -->
@@ -175,60 +176,24 @@ const thebe_selector_output = ".output, .cell_output"
         </ul>
         <p aria-level="2" class="caption" role="heading"><span class="caption-text">Introduction to C++</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="../01-IntroCPP/BasicCPP.html">Introduction to C++</a></li>
-
-
-
-<li class="toctree-l1"><a class="reference internal" href="../01-IntroCPP/CPP-FastPacedIntro.html">Very short intro to the basics of c++</a></li>
-
-
-
-
-
-
-
-
-
-
+<li class="toctree-l1"><a class="reference internal" href="../01-IntroCPP/BasicCPP.html">Introduction to Programming and C++</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../01-IntroCPP/Resources.html">Resources</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../01-IntroCPP/CPP-FastPacedIntro.html">Very fast intro to the basics of c++</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Numerical Calculus</span></p>
 <ul class="current nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="../02-derivatives/NumericalDifferentiation.html">Numerical differentiation</a></li>
-
-
-
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">Common Numerical Integration Algorithms</a></li>
-
-
-
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Modern and primitive arrays, and basic Linear Algebra</span></p>
 <ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="../04-vector-containers/ModernArrays.html">Modern arrays</a></li>
-
-
-
-
-
 <li class="toctree-l1"><a class="reference internal" href="../05-matrixI/2D-matrices-to-1D-arrays.html">1D Arrays for 2D Matrices</a></li>
-
 <li class="toctree-l1"><a class="reference internal" href="../06-ArrayComputing/ArrayComputing-Valarray.html">Vector operations: Coefficient-wise</a></li>
-
-
-
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Linear Algebra and Numerical Libraries</span></p>
 <ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="../07-LinearAlgebra/LinearAlgebraEigen.html">Linear Systems : Matrices, Vectors, eigen systems</a></li>
-
-
-
-
-
-
-
-
-
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Ordinary differential equations: Initial value problems</span></p>
 <ul class="nav bd-sidenav">
@@ -497,31 +462,25 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Common Numerical Integration Algorithms</a><ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#trapezoidal-rule">Trapezoidal rule</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise"><strong>Exercise</strong></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#trapezoidal-rule">Trapezoidal rule</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise"><strong>Exercise</strong></a></li>
+</ul>
+</li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#simpsons-rule">Simpsons rule</a></li>
-</ul>
-</li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#romberg-method">Romberg method</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#romberg-method">Romberg method</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#other-techniques">Other techniques</a></li>
-</ul>
-</li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#gaussian-quadrature-introduction-to-vectors">Gaussian quadrature: Introduction to vectors</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#gaussian-quadrature-introduction-to-vectors">Gaussian quadrature: Introduction to vectors</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#example-using-a-vector-to-store-the-weights">Example using a vector to store the weights.</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#exercises">Exercises</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#gauss-quadrature-of-order-7">Gauss quadrature of order 7</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#integrating-a-datafile">Integrating a datafile</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#cumulative-probability">Cumulative probability</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#di-logarithm-function">Di-logarithm function</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#moment-distribution">Moment distribution</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#arch-lenght-mass-centroid">Arch lenght, mass, centroid</a></li>
 </ul>
 </li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#exercises">Exercises</a><ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#gauss-quadrature-of-order-7">Gauss quadrature of order 7</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#integrating-a-datafile">Integrating a datafile</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#cumulative-probability">Cumulative probability</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#di-logarithm-function">Di-logarithm function</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#moment-distribution">Moment distribution</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#arch-lenght-mass-centroid">Arch lenght, mass, centroid</a></li>
 </ul>
-</li>
-</ul>
-
             </nav>
         </div>
     </div>
@@ -542,8 +501,8 @@ document.write(`
 <p>Here the function between two points is approximated by a straight line and the te area covered by the trapezoid is added up. See: https://en.wikipedia.org/wiki/Trapezoidal_rule</p>
 <table class="table">
 <thead>
-<tr class="row-odd"><th class="head"><p><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d1/Integration_num_trapezes_notation.svg/330px-Integration_num_trapezes_notation.svg.png" /></p></th>
-<th class="head"><p><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/7e/Trapezium2.gif/330px-Trapezium2.gif" /></p></th>
+<tr class="row-odd"><th class="head"><p><img alt="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d1/Integration_num_trapezes_notation.svg/330px-Integration_num_trapezes_notation.svg.png" src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d1/Integration_num_trapezes_notation.svg/330px-Integration_num_trapezes_notation.svg.png" /></p></th>
+<th class="head"><p><img alt="https://upload.wikimedia.org/wikipedia/commons/thumb/7/7e/Trapezium2.gif/330px-Trapezium2.gif" src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/7e/Trapezium2.gif/330px-Trapezium2.gif" /></p></th>
 </tr>
 </thead>
 <tbody>
@@ -568,12 +527,11 @@ where \)</span>x_k = x_0 + k \Delta x<span class="math notranslate nohighlight">
 </pre></div>
 </div>
 <p>where fun is the square function.</p>
-</section>
 <section id="exercise">
-<h2><strong>Exercise</strong><a class="headerlink" href="#exercise" title="Permalink to this heading">#</a></h2>
+<h3><strong>Exercise</strong><a class="headerlink" href="#exercise" title="Permalink to this heading">#</a></h3>
 <p>Now use your implementation to compute the error function as a function of <span class="math notranslate nohighlight">\(x\)</span>, using the partition shown. Your program must print also the relative error, comparing with the “exact” value from https://en.cppreference.com/w/cpp/numeric/math/erf . Print your data to <code class="docutils literal notranslate"><span class="pre">erf_data.txt</span></code> (print the x value, the numerical value of the integral, and the relative error)</p>
-<div class="amsmath math notranslate nohighlight" id="equation-94afdfbe-21bf-4ffb-9e78-37883068872b">
-<span class="eqno">(1)<a class="headerlink" href="#equation-94afdfbe-21bf-4ffb-9e78-37883068872b" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-fc3c1fd0-9420-4051-b62e-bc3cd155ada4">
+<span class="eqno">(1)<a class="headerlink" href="#equation-fc3c1fd0-9420-4051-b62e-bc3cd155ada4" title="Permalink to this equation">#</a></span>\[\begin{equation}
 f(x) = \frac{2}{\sqrt{\pi}}\int_0^x e^{-t^2} dt
 \end{equation}\]</div>
 <p><span class="math notranslate nohighlight">\(x \in [0, 10]\)</span>, <span class="math notranslate nohighlight">\(\Delta x = 0.1\)</span></p>
@@ -610,13 +568,14 @@ f(x) = \frac{2}{\sqrt{\pi}}\int_0^x e^{-t^2} dt
 </div>
 </div>
 </section>
+</section>
 <section id="simpsons-rule">
 <h2>Simpsons rule<a class="headerlink" href="#simpsons-rule" title="Permalink to this heading">#</a></h2>
 <p>In this case, the method uses three discrete points and approximate the function as a parabola (second order polynomial), to improve the numerical integral computation. See: https://en.wikipedia.org/wiki/Simpson%27s_rule</p>
 <table class="table">
 <thead>
-<tr class="row-odd"><th class="head"><p><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/ca/Simpsons_method_illustration.svg/440px-Simpsons_method_illustration.svg.png" width=300 /></p></th>
-<th class="head"><p><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/67/Simpsonsrule2.gif/440px-Simpsonsrule2.gif" /></p></th>
+<tr class="row-odd"><th class="head"><p><a class="reference internal" href="https://upload.wikimedia.org/wikipedia/commons/thumb/c/ca/Simpsons_method_illustration.svg/440px-Simpsons_method_illustration.svg.png"><img alt="https://upload.wikimedia.org/wikipedia/commons/thumb/c/ca/Simpsons_method_illustration.svg/440px-Simpsons_method_illustration.svg.png" src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/ca/Simpsons_method_illustration.svg/440px-Simpsons_method_illustration.svg.png" style="width: 300px;" /></a></p></th>
+<th class="head"><p><img alt="https://upload.wikimedia.org/wikipedia/commons/thumb/6/67/Simpsonsrule2.gif/440px-Simpsonsrule2.gif" src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/67/Simpsonsrule2.gif/440px-Simpsonsrule2.gif" /></p></th>
 </tr>
 </thead>
 <tbody>
@@ -626,8 +585,8 @@ f(x) = \frac{2}{\sqrt{\pi}}\int_0^x e^{-t^2} dt
 </tbody>
 </table>
 <p>Now you compute the integral as</p>
-<div class="amsmath math notranslate nohighlight" id="equation-91983fc3-3039-4d99-9895-df1d4460d37d">
-<span class="eqno">(2)<a class="headerlink" href="#equation-91983fc3-3039-4d99-9895-df1d4460d37d" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-85decfb8-d96c-495d-8749-1f22dc6fbf97">
+<span class="eqno">(2)<a class="headerlink" href="#equation-85decfb8-d96c-495d-8749-1f22dc6fbf97" title="Permalink to this equation">#</a></span>\[\begin{equation}
 \int_a^b f(x) dx \simeq \frac{\Delta x}{3}\left( f(x_0) + 4 \sum_{k=1}^{N/2} f(x_{2k-1}) + 2\sum_{k=1}^{N/2-1} f(x_{2k}) + f(x_N)\right) + O(N^{-3}).
 \end{equation}\]</div>
 <p>Notice that <span class="math notranslate nohighlight">\(N\)</span> must be even.</p>
@@ -648,19 +607,18 @@ f(x) = \frac{2}{\sqrt{\pi}}\int_0^x e^{-t^2} dt
 </div>
 </div>
 </section>
-</section>
-<section class="tex2jax_ignore mathjax_ignore" id="romberg-method">
-<h1>Romberg method<a class="headerlink" href="#romberg-method" title="Permalink to this heading">#</a></h1>
+<section id="romberg-method">
+<h2>Romberg method<a class="headerlink" href="#romberg-method" title="Permalink to this heading">#</a></h2>
 <p>The <a class="reference external" href="https://en.wikipedia.org/wiki/Romberg%27s_method">Romberg Method</a> applies Richardson extrapolation to the given integration technique. The implementation is completely analogous as for the derivatives case.</p>
 <p>Implement it for the previous method shown and compare the errors as a function of <span class="math notranslate nohighlight">\(N\)</span>, the number of intervals. Use the err function and fix <span class="math notranslate nohighlight">\(x = 0.54432\)</span>.</p>
+</section>
 <section id="other-techniques">
 <h2>Other techniques<a class="headerlink" href="#other-techniques" title="Permalink to this heading">#</a></h2>
 <p>There are ways to improve the previous algorithms to decrease the error: using  higher order decompositions, using <a class="reference external" href="https://en.wikipedia.org/wiki/Adaptive_Simpson%27s_method">Adaptative techniques</a>, using <a class="reference external" href="https://en.wikipedia.org/wiki/Gaussian_quadrature">Gaussian quadrature</a>, mixing some of these techniques, etc. But implementing those methods by hand would be a daunting task.</p>
 <p>NOTE: When you have tabular data, you will be almost forced to use either the trapezoid or the simpsons method. You could also first interpolate the data and then integrate.</p>
 </section>
-</section>
-<section class="tex2jax_ignore mathjax_ignore" id="gaussian-quadrature-introduction-to-vectors">
-<h1>Gaussian quadrature: Introduction to vectors<a class="headerlink" href="#gaussian-quadrature-introduction-to-vectors" title="Permalink to this heading">#</a></h1>
+<section id="gaussian-quadrature-introduction-to-vectors">
+<h2>Gaussian quadrature: Introduction to vectors<a class="headerlink" href="#gaussian-quadrature-introduction-to-vectors" title="Permalink to this heading">#</a></h2>
 <p><a class="reference external" href="https://en.wikipedia.org/wiki/Gaussian_quadrature?useskin=vector">Gaussian quadrature</a> is a very clever technique that allows to compute integrals with a high precision and minimal number of points. First, notice that any numerical integral method can be written as
 $<span class="math notranslate nohighlight">\(
 I \simeq \sum w_i f(x_i),
@@ -681,6 +639,7 @@ therefore
 \int_a^b f(x) dx \simeq \frac{b-a}{2} \sum w_i f\left(\frac{b-a}{2}x' + \frac{b+a}{2}\right)
 \)</span><span class="math notranslate nohighlight">\(
 using the \)</span>w_i$ from the method.</p>
+</section>
 <section id="example-using-a-vector-to-store-the-weights">
 <h2>Example using a vector to store the weights.<a class="headerlink" href="#example-using-a-vector-to-store-the-weights" title="Permalink to this heading">#</a></h2>
 <p>For an increasing number of points, you will need to use many variables to store the weights. For a degree <span class="math notranslate nohighlight">\(n=5\)</span>, you will need five variables to store the weights, five more for the points, and then manually process that. It will be much better to store them in an data structure that allow us to handle the operations in a generic way. In this case, it will be a <code class="docutils literal notranslate"><span class="pre">std::vector</span></code>, which allows us to store data, contiguously in memory, and process it using simple for loops (SIMD).</p>
@@ -714,18 +673,17 @@ using the \)</span>w_i$ from the method.</p>
 <p>Notice how easy is to process data in an array.</p>
 <p>Now finish the implementation, and print the error, as a function of <span class="math notranslate nohighlight">\(x\)</span>, computing the err function, comparing the relative errors  with trapezoid, simpson, trapezoid+richardson, simpson+trapezoid, gauss_5. Plot it.</p>
 </section>
-</section>
-<section class="tex2jax_ignore mathjax_ignore" id="exercises">
-<h1>Exercises<a class="headerlink" href="#exercises" title="Permalink to this heading">#</a></h1>
+<section id="exercises">
+<h2>Exercises<a class="headerlink" href="#exercises" title="Permalink to this heading">#</a></h2>
 <section id="gauss-quadrature-of-order-7">
-<h2>Gauss quadrature of order 7<a class="headerlink" href="#gauss-quadrature-of-order-7" title="Permalink to this heading">#</a></h2>
+<h3>Gauss quadrature of order 7<a class="headerlink" href="#gauss-quadrature-of-order-7" title="Permalink to this heading">#</a></h3>
 <p>(REF: Sirca, Computational Methods in Physics. Also
 <a class="reference external" href="https://en.wikipedia.org/wiki/Gaussian_quadrature">https://en.wikipedia.org/wiki/Gaussian_quadrature</a>) The Gaussian quadrature is a
 very powerful method to compute integrals, where the points and weights are
 wisely chosen to improve the algorithm precision. The method is formulated in
 the range [-1, 1], so maybe the general integral must be scaled as</p>
-<div class="amsmath math notranslate nohighlight" id="equation-ccba33d4-64e1-458a-9668-2b7915af7310">
-<span class="eqno">(3)<a class="headerlink" href="#equation-ccba33d4-64e1-458a-9668-2b7915af7310" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-83ff417f-cb53-4fb9-b6ae-1ca9ac20ba51">
+<span class="eqno">(3)<a class="headerlink" href="#equation-83ff417f-cb53-4fb9-b6ae-1ca9ac20ba51" title="Permalink to this equation">#</a></span>\[\begin{equation}
 \int_a^b f(x) dx = \frac{b-a}{2} \sum_{j=1}^{n} w_j f\left(\frac{b-a}{2} x_j + \frac{a+b}{2} \right) + O((b-a)^{2n+1}).
 \end{equation}\]</div>
 <p>The next table shows the points positions and weights for the Gaussian integral
@@ -789,7 +747,7 @@ difference with the “exact” function <code class="docutils literal notransla
 <p>For more coefficients and higer orders, see <a class="reference external" href="https://pomax.github.io/bezierinfo/legendre-gauss.html">https://pomax.github.io/bezierinfo/legendre-gauss.html</a></p>
 </section>
 <section id="integrating-a-datafile">
-<h2>Integrating a datafile<a class="headerlink" href="#integrating-a-datafile" title="Permalink to this heading">#</a></h2>
+<h3>Integrating a datafile<a class="headerlink" href="#integrating-a-datafile" title="Permalink to this heading">#</a></h3>
 <p>The following data (file <code class="docutils literal notranslate"><span class="pre">accel.txt</span></code>) represents the acceleration of a car as a
 function of time</p>
 <table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
@@ -836,25 +794,25 @@ function of time</p>
 and compute the velocity as a function of time by integrating at each time step.</p>
 </section>
 <section id="cumulative-probability">
-<h2>Cumulative probability<a class="headerlink" href="#cumulative-probability" title="Permalink to this heading">#</a></h2>
+<h3>Cumulative probability<a class="headerlink" href="#cumulative-probability" title="Permalink to this heading">#</a></h3>
 <p>The probability density function for the <a class="reference external" href="https://en.wikipedia.org/wiki/Gamma_distribution">Gamma distribution</a> is</p>
-<div class="amsmath math notranslate nohighlight" id="equation-62e75bdc-dcd4-4050-a367-09ae849942dd">
-<span class="eqno">(4)<a class="headerlink" href="#equation-62e75bdc-dcd4-4050-a367-09ae849942dd" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-252f50b2-8e80-432c-90f3-2206a5d82fff">
+<span class="eqno">(4)<a class="headerlink" href="#equation-252f50b2-8e80-432c-90f3-2206a5d82fff" title="Permalink to this equation">#</a></span>\[\begin{equation}
 f(x; \alpha, \beta) = \frac{\beta^\alpha}{\Gamma(\alpha) x^{\alpha -1} e^{-\beta x} },
 \end{equation}\]</div>
 <p>para <span class="math notranslate nohighlight">\(0 &lt; x &lt; \infty\)</span>. Compute and plot the cumulative density function, using
 both the simpson method and the gaussian <span class="math notranslate nohighlight">\(g_7\)</span>, defined as</p>
-<div class="amsmath math notranslate nohighlight" id="equation-4ab4f8f7-dd8b-4d8d-85f0-a4ee046cfcf5">
-<span class="eqno">(5)<a class="headerlink" href="#equation-4ab4f8f7-dd8b-4d8d-85f0-a4ee046cfcf5" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-ed91f32e-aafd-49f0-9d7f-449c3a8a375e">
+<span class="eqno">(5)<a class="headerlink" href="#equation-ed91f32e-aafd-49f0-9d7f-449c3a8a375e" title="Permalink to this equation">#</a></span>\[\begin{equation}
 F(x; \alpha, \beta) = \int_0^x dt f(t; \alpha, \beta),
 \end{equation}\]</div>
 <p>for <span class="math notranslate nohighlight">\(x \in [0.0, 20.0]\)</span>, with <span class="math notranslate nohighlight">\(\alpha = 7.5, \beta = 1.0\)</span>.</p>
 </section>
 <section id="di-logarithm-function">
-<h2>Di-logarithm function<a class="headerlink" href="#di-logarithm-function" title="Permalink to this heading">#</a></h2>
+<h3>Di-logarithm function<a class="headerlink" href="#di-logarithm-function" title="Permalink to this heading">#</a></h3>
 <p>The di-logarithm function is defined as</p>
-<div class="amsmath math notranslate nohighlight" id="equation-b2f6b958-2324-430e-96dd-f2454a1c848b">
-<span class="eqno">(6)<a class="headerlink" href="#equation-b2f6b958-2324-430e-96dd-f2454a1c848b" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-853e62d6-3099-4dbc-a717-b7f90e2959c1">
+<span class="eqno">(6)<a class="headerlink" href="#equation-853e62d6-3099-4dbc-a717-b7f90e2959c1" title="Permalink to this equation">#</a></span>\[\begin{equation}
 \mathrm{Li}_2(x) = -\int_0^x \frac{\ln(1-t)}{t} dt.
 \end{equation}\]</div>
 <p>Plot the di-logarithm function for <span class="math notranslate nohighlight">\(x \in (0.0, 1.0)\)</span>. If you use simpson,
@@ -862,33 +820,33 @@ always make sure that the error is less than <span class="math notranslate nohig
 transform the variable and/or split the integral to avoid numerical problems.</p>
 </section>
 <section id="moment-distribution">
-<h2>Moment distribution<a class="headerlink" href="#moment-distribution" title="Permalink to this heading">#</a></h2>
+<h3>Moment distribution<a class="headerlink" href="#moment-distribution" title="Permalink to this heading">#</a></h3>
 <p>The kth moment for a probability distribution is</p>
-<div class="amsmath math notranslate nohighlight" id="equation-c15527bb-9648-4616-86cb-455b7711dcef">
-<span class="eqno">(7)<a class="headerlink" href="#equation-c15527bb-9648-4616-86cb-455b7711dcef" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-fc928f74-7843-4abd-8353-65ff3e99d8ec">
+<span class="eqno">(7)<a class="headerlink" href="#equation-fc928f74-7843-4abd-8353-65ff3e99d8ec" title="Permalink to this equation">#</a></span>\[\begin{equation}
 \lt x^k \gt = \int x^k f(x) dx,
 \end{equation}\]</div>
 <p>Compute the first ten moments for the  <a class="reference external" href="https://en.wikipedia.org/wiki/Gamma_distribution">Gamma distribution</a> ,</p>
-<div class="amsmath math notranslate nohighlight" id="equation-54f6a304-401e-4802-b301-0b86a78d3b40">
-<span class="eqno">(8)<a class="headerlink" href="#equation-54f6a304-401e-4802-b301-0b86a78d3b40" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-779f6951-8de7-42e5-9fc3-1107d905744f">
+<span class="eqno">(8)<a class="headerlink" href="#equation-779f6951-8de7-42e5-9fc3-1107d905744f" title="Permalink to this equation">#</a></span>\[\begin{equation}
 f(x; \alpha, \beta) = \frac{\beta^\alpha}{\Gamma(\alpha) x^{\alpha -1} e^{-\beta x} }.
 \end{equation}\]</div>
 </section>
 <section id="arch-lenght-mass-centroid">
-<h2>Arch lenght, mass, centroid<a class="headerlink" href="#arch-lenght-mass-centroid" title="Permalink to this heading">#</a></h2>
+<h3>Arch lenght, mass, centroid<a class="headerlink" href="#arch-lenght-mass-centroid" title="Permalink to this heading">#</a></h3>
 <p>The arc length of a curve <span class="math notranslate nohighlight">\(y(x)\)</span> is given by</p>
-<div class="amsmath math notranslate nohighlight" id="equation-5cdfaa75-25a8-4e0e-898f-35958a641825">
-<span class="eqno">(9)<a class="headerlink" href="#equation-5cdfaa75-25a8-4e0e-898f-35958a641825" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-660a6068-5dda-4f8d-8290-5d7b1e0f2c44">
+<span class="eqno">(9)<a class="headerlink" href="#equation-660a6068-5dda-4f8d-8290-5d7b1e0f2c44" title="Permalink to this equation">#</a></span>\[\begin{equation}
 s = \int_a^b dx \sqrt{1 + \left(\frac{dy}{dx}  \right)^2}.
 \end{equation}\]</div>
 <p>If a linear body has a density <span class="math notranslate nohighlight">\(\rho(x)\)</span>, the total mass would be</p>
-<div class="amsmath math notranslate nohighlight" id="equation-73d8df7b-fb5a-4786-b574-dcdba8cf6920">
-<span class="eqno">(10)<a class="headerlink" href="#equation-73d8df7b-fb5a-4786-b574-dcdba8cf6920" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-907c45d6-b513-4c96-ab41-c6bf8bd88da3">
+<span class="eqno">(10)<a class="headerlink" href="#equation-907c45d6-b513-4c96-ab41-c6bf8bd88da3" title="Permalink to this equation">#</a></span>\[\begin{equation}
 M = \int \rho(x) ds.
 \end{equation}\]</div>
 <p>The <span class="math notranslate nohighlight">\(x\)</span> position of the centroid can also be computed as</p>
-<div class="amsmath math notranslate nohighlight" id="equation-308c000b-1ba0-41d4-bc6c-e3426b5e0f38">
-<span class="eqno">(11)<a class="headerlink" href="#equation-308c000b-1ba0-41d4-bc6c-e3426b5e0f38" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-85ff6f42-d551-4e90-8eae-d3ea74415951">
+<span class="eqno">(11)<a class="headerlink" href="#equation-85ff6f42-d551-4e90-8eae-d3ea74415951" title="Permalink to this equation">#</a></span>\[\begin{equation}
 \overline x = \frac{\int x\rho ds}{\int \rho ds}
 \end{equation}\]</div>
 <ol class="arabic simple">
@@ -904,6 +862,7 @@ compute</p>
 </ol>
 </li>
 </ol>
+</section>
 </section>
 </section>
 
@@ -971,31 +930,25 @@ compute</p>
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Common Numerical Integration Algorithms</a><ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#trapezoidal-rule">Trapezoidal rule</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise"><strong>Exercise</strong></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#trapezoidal-rule">Trapezoidal rule</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise"><strong>Exercise</strong></a></li>
+</ul>
+</li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#simpsons-rule">Simpsons rule</a></li>
-</ul>
-</li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#romberg-method">Romberg method</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#romberg-method">Romberg method</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#other-techniques">Other techniques</a></li>
-</ul>
-</li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#gaussian-quadrature-introduction-to-vectors">Gaussian quadrature: Introduction to vectors</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#gaussian-quadrature-introduction-to-vectors">Gaussian quadrature: Introduction to vectors</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#example-using-a-vector-to-store-the-weights">Example using a vector to store the weights.</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#exercises">Exercises</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#gauss-quadrature-of-order-7">Gauss quadrature of order 7</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#integrating-a-datafile">Integrating a datafile</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#cumulative-probability">Cumulative probability</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#di-logarithm-function">Di-logarithm function</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#moment-distribution">Moment distribution</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#arch-lenght-mass-centroid">Arch lenght, mass, centroid</a></li>
 </ul>
 </li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#exercises">Exercises</a><ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#gauss-quadrature-of-order-7">Gauss quadrature of order 7</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#integrating-a-datafile">Integrating a datafile</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#cumulative-probability">Cumulative probability</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#di-logarithm-function">Di-logarithm function</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#moment-distribution">Moment distribution</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#arch-lenght-mass-centroid">Arch lenght, mass, centroid</a></li>
 </ul>
-</li>
-</ul>
-
   </nav></div>
 
 </div></div>
