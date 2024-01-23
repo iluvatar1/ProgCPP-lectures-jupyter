@@ -197,26 +197,7 @@ const thebe_selector_output = ".output, .cell_output"
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Ordinary differential equations: Initial value problems</span></p>
 <ul class="current nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="../08-ODE-IVP/InitialValueProblem.html">Ordinary differential equations (and initial value problems)</a></li>
-
-
-
-
-
-
-
-
-
-
-
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">Introduction to molecular dynamics through OOP</a></li>
-
-
-
-
-
-
-
-
 </ul>
 
     </div>
@@ -461,31 +442,33 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Introduction to molecular dynamics through OOP</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#the-particle-class">The particle class</a><ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#adding-methods">Adding methods</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise">Exercise</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-particle-class">The particle class</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#adding-methods">Adding methods</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise">Exercise</a></li>
 </ul>
 </li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#implementing-a-better-integration-algorithm-leap-frog">Implementing a better integration algorithm: leap-frog</a><ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Exercise</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#implementing-a-better-integration-algorithm-leap-frog">Implementing a better integration algorithm: leap-frog</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Exercise</a></li>
 </ul>
 </li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#force-computation">Force computation</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">Exercise</a><ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-main-implementation">The main implementation</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#exercises">Exercises</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#force-computation">Force computation</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">Exercise</a></li>
 </ul>
 </li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#adding-left-and-right-walls">Adding left and right walls</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#adding-more-particles">Adding more particles</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">Exercises</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#more-about-oop-modeling">More about OOP modeling</a><ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#modeling-a-complex-number-code-7-10-code">Modeling a complex number <code>[7/10]</code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-main-implementation">The main implementation</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercises">Exercises</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#adding-left-and-right-walls">Adding left and right walls</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#adding-more-particles">Adding more particles</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">Exercises</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#more-about-oop-modeling">More about OOP modeling</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#modeling-a-complex-number-code-7-10-code">Modeling a complex number <code>[7/10]</code></a></li>
 </ul>
 </li>
 </ul>
-
             </nav>
         </div>
     </div>
@@ -557,9 +540,8 @@ start with the particle.</p>
 </div></div>
 </div>
 <p><a id="orgce0ae5a"></a></p>
-</section>
-<section class="tex2jax_ignore mathjax_ignore" id="the-particle-class">
-<h1>The particle class<a class="headerlink" href="#the-particle-class" title="Permalink to this heading">#</a></h1>
+<section id="the-particle-class">
+<h2>The particle class<a class="headerlink" href="#the-particle-class" title="Permalink to this heading">#</a></h2>
 <p>First of all, we will start thinking about the smallest modeling unit here, the
 <code class="docutils literal notranslate"><span class="pre">particle</span></code>. To do so, we need to select the more fundamental characteristics of
 our particle for the problem at hand, in this case, we need the particle to have</p>
@@ -605,6 +587,7 @@ and so on. Let’s see this example in the python tutor or gdb online:</p>
 <span class="w">    </span><span class="p">}</span>
 </pre></div>
 </div>
+</section>
 <section id="adding-methods">
 <h2>Adding methods<a class="headerlink" href="#adding-methods" title="Permalink to this heading">#</a></h2>
 <p>This is only packing attributes, but you can also pack functions, like</p>
@@ -640,16 +623,15 @@ integration methods will need to be heavily adapted. It is much better for us to
 actually implement better integration algorithms right now, like the Leap-Frog
 algorithm.</p>
 <p><a id="org4533e17"></a></p>
-</section>
 <section id="exercise">
-<h2>Exercise<a class="headerlink" href="#exercise" title="Permalink to this heading">#</a></h2>
+<h3>Exercise<a class="headerlink" href="#exercise" title="Permalink to this heading">#</a></h3>
 <p>Write the <code class="docutils literal notranslate"><span class="pre">Particle</span></code> struct into two files: <code class="docutils literal notranslate"><span class="pre">Particle.h</span></code>, with the needed
 declarations, and <code class="docutils literal notranslate"><span class="pre">Particle.cpp</span></code>, with the implementations.</p>
 <p><a id="orge820769"></a></p>
 </section>
 </section>
-<section class="tex2jax_ignore mathjax_ignore" id="implementing-a-better-integration-algorithm-leap-frog">
-<h1>Implementing a better integration algorithm: leap-frog<a class="headerlink" href="#implementing-a-better-integration-algorithm-leap-frog" title="Permalink to this heading">#</a></h1>
+<section id="implementing-a-better-integration-algorithm-leap-frog">
+<h2>Implementing a better integration algorithm: leap-frog<a class="headerlink" href="#implementing-a-better-integration-algorithm-leap-frog" title="Permalink to this heading">#</a></h2>
 <p>When studying ODE-IVP, we started with the Euler algorithm, which is pretty
 simple and computes the forces only once per time step but, as we have seen
 before, its order is low and it is not stable. In Molecular Dynamics there are
@@ -659,8 +641,8 @@ optimized velocity verlet and so on. They try to integrate the evolution with a
 high order while reducing the number of force evaluations per time step. In
 particular, the leap-frog algorithm can be written as
 (<a class="reference external" href="https://en.wikipedia.org/wiki/Leapfrog_integration">https://en.wikipedia.org/wiki/Leapfrog_integration</a>)</p>
-<div class="amsmath math notranslate nohighlight" id="equation-bb8ad768-0d60-4d1f-a6c8-6a663e42f2e0">
-<span class="eqno">(38)<a class="headerlink" href="#equation-bb8ad768-0d60-4d1f-a6c8-6a663e42f2e0" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-c3d8427a-1aa4-4a9f-99d8-72c23c4e512e">
+<span class="eqno">(38)<a class="headerlink" href="#equation-c3d8427a-1aa4-4a9f-99d8-72c23c4e512e" title="Permalink to this equation">#</a></span>\[\begin{align}
 \vec V (t + \delta t/2) &amp;= \vec V (t - \delta t/2) + \vec F(t) \delta t/m + O(\delta t^3),\\
 \vec R(t+\delta t) &amp;= \vec R(t) + \vec V (t + \delta t/2) \delta t + O(\delta t^3).
 \end{align}\]</div>
@@ -668,20 +650,20 @@ particular, the leap-frog algorithm can be written as
 and symplectic. One important detail for the implementation: To perform the
 first step, you need to put your variables in the correct time. If we put t=0,
 the next step would be</p>
-<div class="amsmath math notranslate nohighlight" id="equation-93dc7749-54d3-4433-a681-e2d863968357">
-<span class="eqno">(39)<a class="headerlink" href="#equation-93dc7749-54d3-4433-a681-e2d863968357" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-13bc2415-1c5d-432d-981b-9c8ec6a3486a">
+<span class="eqno">(39)<a class="headerlink" href="#equation-13bc2415-1c5d-432d-981b-9c8ec6a3486a" title="Permalink to this equation">#</a></span>\[\begin{align}
 \vec V (0 + \delta t/2) &amp;= \vec V (0 - \delta t/2) + \vec F(0) \delta t/m + O(\delta t^3),\\
 \vec R(0+\delta t) &amp;= \vec R(0) + \vec V (0 + \delta t/2) \delta t + O(\delta t^3).
 \end{align}\]</div>
 <p>Therefore, we will need first to move the velocity from time 0 to time <span class="math notranslate nohighlight">\(0 -
 \delta t\)</span>. We could do that as follows</p>
-<div class="amsmath math notranslate nohighlight" id="equation-433b894e-cca5-4b23-b1ad-990659357197">
-<span class="eqno">(40)<a class="headerlink" href="#equation-433b894e-cca5-4b23-b1ad-990659357197" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-52c43721-c779-4375-9032-f71a0acf6ed7">
+<span class="eqno">(40)<a class="headerlink" href="#equation-52c43721-c779-4375-9032-f71a0acf6ed7" title="Permalink to this equation">#</a></span>\[\begin{equation}
 \vec V(0 - \delta t/2) = \vec V(0) - \delta t \vec F(0)/2m.
 \end{equation}\]</div>
 <p><a id="orgd0444a6"></a></p>
 <section id="id1">
-<h2>Exercise<a class="headerlink" href="#id1" title="Permalink to this heading">#</a></h2>
+<h3>Exercise<a class="headerlink" href="#id1" title="Permalink to this heading">#</a></h3>
 <p>Create a new <code class="docutils literal notranslate"><span class="pre">class</span></code> called <code class="docutils literal notranslate"><span class="pre">TimeIntegrator</span></code> which receives on its constructor
 the value of the time step, <span class="math notranslate nohighlight">\(\delta t\)</span>. Implement there the Leap-frog algorithm
 by using two member functions, <code class="docutils literal notranslate"><span class="pre">startIntegration</span></code> and <code class="docutils literal notranslate"><span class="pre">timeStep</span></code>, which receive
@@ -716,8 +698,8 @@ class (only use <code class="docutils literal notranslate"><span class="pre">Int
 <p><a id="orgb1e0fad"></a></p>
 </section>
 </section>
-<section class="tex2jax_ignore mathjax_ignore" id="force-computation">
-<h1>Force computation<a class="headerlink" href="#force-computation" title="Permalink to this heading">#</a></h1>
+<section id="force-computation">
+<h2>Force computation<a class="headerlink" href="#force-computation" title="Permalink to this heading">#</a></h2>
 <p>Finally, we can start creating a function or object that computes the force for
 a particle or for a set of particles. This normally called a collider, and it
 will need some parameters (like the gravity constant, the floor stiffness and so
@@ -729,9 +711,8 @@ included on the particles themselves), or global parameters (like gravity). We
 will here create a collider class and show how to implement the forces for our
 simple case.</p>
 <p><a id="orgbbe0d3f"></a></p>
-</section>
-<section class="tex2jax_ignore mathjax_ignore" id="id2">
-<h1>Exercise<a class="headerlink" href="#id2" title="Permalink to this heading">#</a></h1>
+<section id="id2">
+<h3>Exercise<a class="headerlink" href="#id2" title="Permalink to this heading">#</a></h3>
 <p>Create a new class called <code class="docutils literal notranslate"><span class="pre">Collider</span></code> which includes a member function to compute
 external forces (for now) on an array of particles (arbitrary type, use
 templates). To do so, complete the following code:</p>
@@ -763,6 +744,8 @@ templates). To do so, complete the following code:</p>
 </pre></div>
 </div>
 <p><a id="orge25232a"></a></p>
+</section>
+</section>
 <section id="the-main-implementation">
 <h2>The main implementation<a class="headerlink" href="#the-main-implementation" title="Permalink to this heading">#</a></h2>
 <p>Now we are ready to perform our simulation, using everything in our main
@@ -811,9 +794,8 @@ function,</p>
 </pre></div>
 </div>
 <p><a id="orgbba6ff1"></a></p>
-</section>
 <section id="exercises">
-<h2>Exercises<a class="headerlink" href="#exercises" title="Permalink to this heading">#</a></h2>
+<h3>Exercises<a class="headerlink" href="#exercises" title="Permalink to this heading">#</a></h3>
 <ul class="simple">
 <li><p>Add a damping with the ground. Where should you modify the code?</p></li>
 <li><p>Plot the phase space with and without damping</p></li>
@@ -823,8 +805,8 @@ paraview.</p></li>
 <p><a id="org60142b2"></a></p>
 </section>
 </section>
-<section class="tex2jax_ignore mathjax_ignore" id="adding-left-and-right-walls">
-<h1>Adding left and right walls<a class="headerlink" href="#adding-left-and-right-walls" title="Permalink to this heading">#</a></h1>
+<section id="adding-left-and-right-walls">
+<h2>Adding left and right walls<a class="headerlink" href="#adding-left-and-right-walls" title="Permalink to this heading">#</a></h2>
 <p>Now put a wall on the left (-L/2) and on the right (+L/2). L is a new parameter.
 In the initial condition,s, make sure that you are NOT intersecting any wall at
 the beginning.</p>
@@ -834,45 +816,45 @@ Put the left(right) wall at -L/2(L/2).</p></li>
 </ul>
 <p><a id="orgbe0fc30"></a></p>
 </section>
-<section class="tex2jax_ignore mathjax_ignore" id="adding-more-particles">
-<h1>Adding more particles<a class="headerlink" href="#adding-more-particles" title="Permalink to this heading">#</a></h1>
+<section id="adding-more-particles">
+<h2>Adding more particles<a class="headerlink" href="#adding-more-particles" title="Permalink to this heading">#</a></h2>
 <p>Now add another particle and implement a collision between particles. Later, Add
 many other particles and visualize their collisions. How does the cpu time
 scales with the number of particles?</p>
 <p>If two particles are colliding, with interpenetration <span class="math notranslate nohighlight">\(\delta\)</span>, then we can
 model the force that particle <span class="math notranslate nohighlight">\(i\)</span> exerts on particle <span class="math notranslate nohighlight">\(j\)</span> as,</p>
-<div class="amsmath math notranslate nohighlight" id="equation-5d90ad2d-a2e0-41ee-9fb5-7ec6283619c8">
-<span class="eqno">(41)<a class="headerlink" href="#equation-5d90ad2d-a2e0-41ee-9fb5-7ec6283619c8" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-0c7d923f-d456-4584-a95a-58436e9a7304">
+<span class="eqno">(41)<a class="headerlink" href="#equation-0c7d923f-d456-4584-a95a-58436e9a7304" title="Permalink to this equation">#</a></span>\[\begin{equation}
 \vec F_{ij} = k \delta \hat n_{ij},
 \end{equation}\]</div>
 <p>where <span class="math notranslate nohighlight">\(k\)</span> is a constant proportional to the effective Young modulus, and <span class="math notranslate nohighlight">\(\hat
 n_{ij}\)</span> is the normal vector from particle <span class="math notranslate nohighlight">\(i\)</span> to <span class="math notranslate nohighlight">\(j\)</span>, that is</p>
-<div class="amsmath math notranslate nohighlight" id="equation-676223ba-daf5-4b0e-b25b-7842d6ca640b">
-<span class="eqno">(42)<a class="headerlink" href="#equation-676223ba-daf5-4b0e-b25b-7842d6ca640b" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-c7dc3f7f-a327-42ee-be1b-1ef88606bedc">
+<span class="eqno">(42)<a class="headerlink" href="#equation-c7dc3f7f-a327-42ee-be1b-1ef88606bedc" title="Permalink to this equation">#</a></span>\[\begin{equation}
 \hat n_{ij} = \frac{\vec R_{ij}}{|\vec R_{ij}|},
 \end{equation}\]</div>
 <p>with <span class="math notranslate nohighlight">\(\vec R_{ij} = \vec R_j - \vec R_i\)</span>, and</p>
-<div class="amsmath math notranslate nohighlight" id="equation-ab9efdc6-2fb3-4882-87df-c86f54665e55">
-<span class="eqno">(43)<a class="headerlink" href="#equation-ab9efdc6-2fb3-4882-87df-c86f54665e55" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-aa5d4a9f-412f-43bb-be63-33074fd536c9">
+<span class="eqno">(43)<a class="headerlink" href="#equation-aa5d4a9f-412f-43bb-be63-33074fd536c9" title="Permalink to this equation">#</a></span>\[\begin{equation}
 \delta = r_i + r_j - |\vec R_{ij}|.
 \end{equation}\]</div>
 <p>For a more realistic force model, check
 <a class="reference external" href="https://www.cfdem.com/media/DEM/docu/gran_model_hertz.html">https://www.cfdem.com/media/DEM/docu/gran_model_hertz.html</a> and references
 therein.</p>
-</section>
-<section class="tex2jax_ignore mathjax_ignore" id="id3">
-<h1>Exercises<a class="headerlink" href="#id3" title="Permalink to this heading">#</a></h1>
+<section id="id3">
+<h3>Exercises<a class="headerlink" href="#id3" title="Permalink to this heading">#</a></h3>
 <ul class="simple">
 <li><p>Make the boundary a circle</p></li>
 <li><p>Create a canon of particles to add particles to the system every nth step.</p></li>
 </ul>
 <p><a id="org7504c15"></a></p>
 </section>
-<section class="tex2jax_ignore mathjax_ignore" id="more-about-oop-modeling">
-<h1>More about OOP modeling<a class="headerlink" href="#more-about-oop-modeling" title="Permalink to this heading">#</a></h1>
+</section>
+<section id="more-about-oop-modeling">
+<h2>More about OOP modeling<a class="headerlink" href="#more-about-oop-modeling" title="Permalink to this heading">#</a></h2>
 <p><a id="org43e1962"></a></p>
 <section id="modeling-a-complex-number-code-7-10-code">
-<h2>Modeling a complex number <code>[7/10]</code><a class="headerlink" href="#modeling-a-complex-number-code-7-10-code" title="Permalink to this heading">#</a></h2>
+<h3>Modeling a complex number <code>[7/10]</code><a class="headerlink" href="#modeling-a-complex-number-code-7-10-code" title="Permalink to this heading">#</a></h3>
 <p>Let’s model a complex number. The program should able to print the
 number and also to compute</p>
 <ul class="simple">
@@ -989,6 +971,7 @@ number and also to compute</p>
 </div>
 </section>
 </section>
+</section>
 
     <script type="text/x-thebe-config">
     {
@@ -1045,31 +1028,33 @@ number and also to compute</p>
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Introduction to molecular dynamics through OOP</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#the-particle-class">The particle class</a><ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#adding-methods">Adding methods</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise">Exercise</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-particle-class">The particle class</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#adding-methods">Adding methods</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise">Exercise</a></li>
 </ul>
 </li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#implementing-a-better-integration-algorithm-leap-frog">Implementing a better integration algorithm: leap-frog</a><ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Exercise</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#implementing-a-better-integration-algorithm-leap-frog">Implementing a better integration algorithm: leap-frog</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Exercise</a></li>
 </ul>
 </li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#force-computation">Force computation</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">Exercise</a><ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-main-implementation">The main implementation</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#exercises">Exercises</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#force-computation">Force computation</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">Exercise</a></li>
 </ul>
 </li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#adding-left-and-right-walls">Adding left and right walls</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#adding-more-particles">Adding more particles</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">Exercises</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#more-about-oop-modeling">More about OOP modeling</a><ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#modeling-a-complex-number-code-7-10-code">Modeling a complex number <code>[7/10]</code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-main-implementation">The main implementation</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercises">Exercises</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#adding-left-and-right-walls">Adding left and right walls</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#adding-more-particles">Adding more particles</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">Exercises</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#more-about-oop-modeling">More about OOP modeling</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#modeling-a-complex-number-code-7-10-code">Modeling a complex number <code>[7/10]</code></a></li>
 </ul>
 </li>
 </ul>
-
   </nav></div>
 
 </div></div>
