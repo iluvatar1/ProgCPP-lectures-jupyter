@@ -1,13 +1,12 @@
 
-
 <!DOCTYPE html>
 
 
-<html lang="en" data-content_root="" >
+<html lang="en" data-content_root="../" >
 
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
     <title>Numerical differentiation &#8212; Introduction to C++ and Numerical Methods</title>
   
@@ -29,44 +28,48 @@
 <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.1/webfonts/fa-brands-400.woff2" />
 <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.1/webfonts/fa-regular-400.woff2" />
 
-    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
-    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
-    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=384b581d" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
     <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/styles.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css?v=0a3b3ea7" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles.css?v=03b9d5b1" />
   
   <!-- Pre-loaded scripts that we'll load fully later -->
   <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae" />
 <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae" />
   <script src="../_static/vendor/fontawesome/6.5.1/js/all.min.js?digest=8d27b9dea8ad943066ae"></script>
 
-    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
-    <script src="../_static/jquery.js"></script>
-    <script src="../_static/underscore.js"></script>
-    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
-    <script src="../_static/doctools.js"></script>
-    <script src="../_static/clipboard.min.js"></script>
-    <script src="../_static/copybutton.js"></script>
-    <script src="../_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script src="../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../_static/doctools.js?v=888ff710"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=efea14e4"></script>
     <script>let toggleHintShow = 'Click to show';</script>
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
-    <script src="../_static/togglebutton.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="../_static/togglebutton.js?v=4a39c7ea"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
-    <script src="../_static/design-tabs.js"></script>
+    <script src="../_static/design-tabs.js?v=36754332"></script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
 const thebe_selector = ".thebe,.cell"
 const thebe_selector_input = "pre"
 const thebe_selector_output = ".output, .cell_output"
 </script>
-    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <script async="async" src="../_static/sphinx-thebe.js?v=afe5de03"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
     <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = '02-derivatives/NumericalDifferentiation';</script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="Common Numerical Integration Algorithms" href="../03-integration/NumericalIntegration_Basics.html" />
@@ -164,7 +167,18 @@ const thebe_selector_output = ".output, .cell_output"
   
   
 </a></div>
-        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn navbar-btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
     <div class="bd-toc-item navbar-nav active">
         
         <ul class="nav bd-sidenav bd-sidenav__home-link">
@@ -176,7 +190,7 @@ const thebe_selector_output = ".output, .cell_output"
         </ul>
         <p aria-level="2" class="caption" role="heading"><span class="caption-text">Introduction to C++</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="../01-IntroCPP/BasicCPP.html">Introduction to Programming and C++</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../01-IntroCPP/IntroProgrammingCourse.html">Introduction to Programming and C++</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../01-IntroCPP/Resources.html">Resources</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../01-IntroCPP/CPP-FastPacedIntro.html">Very fast intro to the basics of c++</a></li>
 </ul>
@@ -466,7 +480,7 @@ document.write(`
                 <article class="bd-article">
                   
   <section class="tex2jax_ignore mathjax_ignore" id="numerical-differentiation">
-<h1>Numerical differentiation<a class="headerlink" href="#numerical-differentiation" title="Permalink to this heading">#</a></h1>
+<h1>Numerical differentiation<a class="headerlink" href="#numerical-differentiation" title="Link to this heading">#</a></h1>
 <p>REFS:</p>
 <ul class="simple">
 <li><p>Ward; Kincaid; Numerical mathematics and computing</p></li>
@@ -474,7 +488,7 @@ document.write(`
 </ul>
 <p>Computing derivatives is the core of many of the numerical work done in computational physics. But it is not a trivial problem to do so with good accuracy. Numerical derivatives are the core computation in finite difference methods, optimization problems, interpolations and many more.</p>
 <section id="first-approach-forward-difference">
-<h2>First approach: forward difference<a class="headerlink" href="#first-approach-forward-difference" title="Permalink to this heading">#</a></h2>
+<h2>First approach: forward difference<a class="headerlink" href="#first-approach-forward-difference" title="Link to this heading">#</a></h2>
 <p>This is based on either the a Taylor expansion for a given function, or in the actual definition of the derivative (see https://en.wikipedia.org/wiki/Numerical_differentiation)</p>
 <table class="table">
 <thead>
@@ -491,7 +505,7 @@ document.write(`
 <p>where <span class="math notranslate nohighlight">\(h\)</span> is a parameter that ideally goes to zero but in practice that cannot be done due to numerical accuracy. You can also define the backward derivative by just using the previous point. The error estimate can be computed using a Taylor expansion.</p>
 </section>
 <section id="a-better-estimation-central-difference">
-<h2>A better estimation: Central difference<a class="headerlink" href="#a-better-estimation-central-difference" title="Permalink to this heading">#</a></h2>
+<h2>A better estimation: Central difference<a class="headerlink" href="#a-better-estimation-central-difference" title="Link to this heading">#</a></h2>
 <p>If you compute a forward (<span class="math notranslate nohighlight">\(+h\)</span>)<br />
 $<span class="math notranslate nohighlight">\(f(x+h) = f(x) + f'(x) h + f''(x) h^2/2 + f'''(x) h^3/6 + O(h^4) + O(h^5),\)</span><span class="math notranslate nohighlight">\(
 and a backward (\)</span>-h<span class="math notranslate nohighlight">\() Taylor expansion,
@@ -507,7 +521,7 @@ which is called the central difference. The order is improved and this version i
 </thead>
 <tbody>
 <tr class="row-even"><td><p><a class="reference internal" href="https://upload.wikimedia.org/wikipedia/commons/thumb/9/90/Finite_difference_method.svg/614px-Finite_difference_method.svg.png"><img alt="https://upload.wikimedia.org/wikipedia/commons/thumb/9/90/Finite_difference_method.svg/614px-Finite_difference_method.svg.png" src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/90/Finite_difference_method.svg/614px-Finite_difference_method.svg.png" style="width: 400px;" /></a></p></td>
-<td><p></p></td>
+<td><p><a class="reference internal" href="https://upload.wikimedia.org/wikipedia/commons/thumb/4/41/AbsoluteErrorNumericalDifferentiationExample.png/600px-AbsoluteErrorNumericalDifferentiationExample.png"><img alt="https://upload.wikimedia.org/wikipedia/commons/thumb/4/41/AbsoluteErrorNumericalDifferentiationExample.png/600px-AbsoluteErrorNumericalDifferentiationExample.png" src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/41/AbsoluteErrorNumericalDifferentiationExample.png/600px-AbsoluteErrorNumericalDifferentiationExample.png" style="width: 400px;" /></a></p></td>
 </tr>
 </tbody>
 </table>
@@ -516,7 +530,7 @@ $<span class="math notranslate nohighlight">\(f'(x) = \phi\left(\frac{h}{2}\righ
 where \)</span>\phi(h)<span class="math notranslate nohighlight">\( is the derivative estimation from the central difference with a given \)</span>h$ value.</p>
 </section>
 <section id="other-important-cases">
-<h2>Other important cases<a class="headerlink" href="#other-important-cases" title="Permalink to this heading">#</a></h2>
+<h2>Other important cases<a class="headerlink" href="#other-important-cases" title="Link to this heading">#</a></h2>
 <ul class="simple">
 <li><p>Interpolating data and then estimating the derivative</p></li>
 <li><p>Derivative of noisy data: first compute binned averages and then derive.</p></li>
@@ -525,7 +539,7 @@ where \)</span>\phi(h)<span class="math notranslate nohighlight">\( is the deriv
 </ul>
 </section>
 <section id="implementing-forward-and-central-derivatives">
-<h2>Implementing forward and central derivatives<a class="headerlink" href="#implementing-forward-and-central-derivatives" title="Permalink to this heading">#</a></h2>
+<h2>Implementing forward and central derivatives<a class="headerlink" href="#implementing-forward-and-central-derivatives" title="Link to this heading">#</a></h2>
 <p>Implement functions to compute both the forward and central derivatives. Explore the following case:
 Compute the derivative as a function of <span class="math notranslate nohighlight">\(x\)</span>, with fixed <span class="math notranslate nohighlight">\(h = 0.01\)</span>. Use <span class="math notranslate nohighlight">\(f(x) = \sin(x^2)\)</span>. Compare with the exact derivative. Plot the relative difference.</p>
 <p>The prototypes might be</p>
@@ -534,7 +548,7 @@ Compute the derivative as a function of <span class="math notranslate nohighligh
 </pre></div>
 </div>
 <section id="file-modularization">
-<h3>File modularization<a class="headerlink" href="#file-modularization" title="Permalink to this heading">#</a></h3>
+<h3>File modularization<a class="headerlink" href="#file-modularization" title="Link to this heading">#</a></h3>
 <p>Now try to modularize the code. Create headers and implementation files called <code class="docutils literal notranslate"><span class="pre">derivatives.h</span></code> and <code class="docutils literal notranslate"><span class="pre">derivatives.cpp</span></code>, where you are going to put declarations and implementations for both the forward and the central derivative methods. What happens now? where should the function to be derived go? We need a more generic approach. Use <code class="docutils literal notranslate"><span class="pre">using</span> <span class="pre">fptr</span> <span class="pre">=</span> <span class="pre">double(double)</span></code> as a function pointer, which is a construct that represents what a function returns and receives. The ideal is to use the functions as parameters</p>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">double</span><span class="w"> </span><span class="nf">forward_diff</span><span class="p">(</span><span class="kt">double</span><span class="w"> </span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="n">h</span><span class="p">,</span><span class="w"> </span><span class="n">fptr</span><span class="w"> </span><span class="n">fun</span><span class="p">);</span>
 <span class="kt">double</span><span class="w"> </span><span class="nf">central_diff</span><span class="p">(</span><span class="kt">double</span><span class="w"> </span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="n">h</span><span class="p">,</span><span class="w"> </span><span class="n">fptr</span><span class="w"> </span><span class="n">fun</span><span class="p">);</span>
@@ -550,16 +564,16 @@ Compute the derivative as a function of <span class="math notranslate nohighligh
 <p>Or even use functors or std::function. For now let’s just keep this simple with <code class="docutils literal notranslate"><span class="pre">using</span></code>.</p>
 </section>
 <section id="error-a-as-function-of-h">
-<h3>Error a as function of <span class="math notranslate nohighlight">\(h\)</span><a class="headerlink" href="#error-a-as-function-of-h" title="Permalink to this heading">#</a></h3>
+<h3>Error a as function of <span class="math notranslate nohighlight">\(h\)</span><a class="headerlink" href="#error-a-as-function-of-h" title="Link to this heading">#</a></h3>
 <p>Now fix <span class="math notranslate nohighlight">\( = 1.454335\)</span>, and compute (using another main function) the relative error as a function of <span class="math notranslate nohighlight">\(h \in [10^{-16}, 10^{-15}, 10^{-14}, \ldots, 10^{-3}, 10^{-2}, 10^{-1}]\)</span>. Plot it. Explain the differences among forward and central results.</p>
 </section>
 <section id="error-as-a-function-of-both-h-and-x">
-<h3>Error as a function of both <span class="math notranslate nohighlight">\(h\)</span> and <span class="math notranslate nohighlight">\(x\)</span><a class="headerlink" href="#error-as-a-function-of-both-h-and-x" title="Permalink to this heading">#</a></h3>
+<h3>Error as a function of both <span class="math notranslate nohighlight">\(h\)</span> and <span class="math notranslate nohighlight">\(x\)</span><a class="headerlink" href="#error-as-a-function-of-both-h-and-x" title="Link to this heading">#</a></h3>
 <p>Is the error dependent on <span class="math notranslate nohighlight">\(x\)</span> also? explore variations for both <span class="math notranslate nohighlight">\(x\)</span> and <span class="math notranslate nohighlight">\(y\)</span> and plot in a 3d picture.</p>
 </section>
 </section>
 <section id="implementing-richardson-extrapolation">
-<h2>Implementing Richardson extrapolation<a class="headerlink" href="#implementing-richardson-extrapolation" title="Permalink to this heading">#</a></h2>
+<h2>Implementing Richardson extrapolation<a class="headerlink" href="#implementing-richardson-extrapolation" title="Link to this heading">#</a></h2>
 <p>Now, use the general expression for Richardson extrapolation applied to an algorithm of order <span class="math notranslate nohighlight">\(O(h^\alpha)\)</span>, and also plot its relative differences for fixed <span class="math notranslate nohighlight">\(x\)</span>, (see https://en.wikipedia.org/wiki/Richardson_extrapolation?useskin=vector)
 $<span class="math notranslate nohighlight">\(
 I \simeq \dfrac{t^\alpha I(\frac{h}{t}) - I(h)}{t^\alpha - 1},
@@ -568,7 +582,7 @@ where \)</span>t<span class="math notranslate nohighlight">\( is a factor larger
 <p>As you can see, the Richardson implementation is very similar for both the central and the forward algorithms. Maybe there is some hope to decrease this duplication. Think about a new <code class="docutils literal notranslate"><span class="pre">using</span> <span class="pre">...</span></code> construct. Implement it and plot all errors as a function of <span class="math notranslate nohighlight">\(h\)</span></p>
 </section>
 <section id="testing">
-<h2>Testing<a class="headerlink" href="#testing" title="Permalink to this heading">#</a></h2>
+<h2>Testing<a class="headerlink" href="#testing" title="Link to this heading">#</a></h2>
 <p>Can you of some test to write for your derivatives?
 Implement some</p>
 </section>

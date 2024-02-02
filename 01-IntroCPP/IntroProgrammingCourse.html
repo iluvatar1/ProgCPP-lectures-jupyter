@@ -1,13 +1,12 @@
 
-
 <!DOCTYPE html>
 
 
-<html lang="en" data-content_root="" >
+<html lang="en" data-content_root="../" >
 
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
     <title>Introduction to Programming and C++ &#8212; Introduction to C++ and Numerical Methods</title>
   
@@ -29,42 +28,46 @@
 <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.1/webfonts/fa-brands-400.woff2" />
 <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.1/webfonts/fa-regular-400.woff2" />
 
-    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
-    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
-    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=384b581d" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
     <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/styles.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css?v=0a3b3ea7" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles.css?v=03b9d5b1" />
   
   <!-- Pre-loaded scripts that we'll load fully later -->
   <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae" />
 <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae" />
   <script src="../_static/vendor/fontawesome/6.5.1/js/all.min.js?digest=8d27b9dea8ad943066ae"></script>
 
-    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
-    <script src="../_static/jquery.js"></script>
-    <script src="../_static/underscore.js"></script>
-    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
-    <script src="../_static/doctools.js"></script>
-    <script src="../_static/clipboard.min.js"></script>
-    <script src="../_static/copybutton.js"></script>
-    <script src="../_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script src="../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../_static/doctools.js?v=888ff710"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=efea14e4"></script>
     <script>let toggleHintShow = 'Click to show';</script>
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
-    <script src="../_static/togglebutton.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="../_static/togglebutton.js?v=4a39c7ea"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
-    <script src="../_static/design-tabs.js"></script>
+    <script src="../_static/design-tabs.js?v=36754332"></script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
 const thebe_selector = ".thebe,.cell"
 const thebe_selector_input = "pre"
 const thebe_selector_output = ".output, .cell_output"
 </script>
-    <script async="async" src="../_static/sphinx-thebe.js"></script>
-    <script>DOCUMENTATION_OPTIONS.pagename = '01-IntroCPP/BasicCPP';</script>
+    <script async="async" src="../_static/sphinx-thebe.js?v=afe5de03"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = '01-IntroCPP/IntroProgrammingCourse';</script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="Resources" href="Resources.html" />
@@ -162,7 +165,18 @@ const thebe_selector_output = ".output, .cell_output"
   
   
 </a></div>
-        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn navbar-btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
     <div class="bd-toc-item navbar-nav active">
         
         <ul class="nav bd-sidenav bd-sidenav__home-link">
@@ -251,7 +265,7 @@ const thebe_selector_output = ".output, .cell_output"
       
       
       
-      <li><a href="https://mybinder.org/v2/gh/iluvatar1/ProgCPP-lectures-jupyter/master?urlpath=lab/tree/01-IntroCPP/BasicCPP.ipynb" target="_blank"
+      <li><a href="https://mybinder.org/v2/gh/iluvatar1/ProgCPP-lectures-jupyter/master?urlpath=lab/tree/01-IntroCPP/IntroProgrammingCourse.ipynb" target="_blank"
    class="btn btn-sm dropdown-item"
    title="Launch onBinder"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -269,7 +283,7 @@ const thebe_selector_output = ".output, .cell_output"
       
       
       
-      <li><a href="https://colab.research.google.com/github/iluvatar1/ProgCPP-lectures-jupyter/blob/master/github/iluvatar1/ProgCPP-lectures-jupyter/blob/master/01-IntroCPP/BasicCPP.ipynb" target="_blank"
+      <li><a href="https://colab.research.google.com/github/iluvatar1/ProgCPP-lectures-jupyter/blob/master/github/iluvatar1/ProgCPP-lectures-jupyter/blob/master/01-IntroCPP/IntroProgrammingCourse.ipynb" target="_blank"
    class="btn btn-sm dropdown-item"
    title="Launch onColab"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -317,7 +331,7 @@ const thebe_selector_output = ".output, .cell_output"
       
       
       
-      <li><a href="https://github.com/iluvatar1/ProgCPP-lectures-jupyter/issues/new?title=Issue%20on%20page%20%2F01-IntroCPP/BasicCPP.html&body=Your%20issue%20content%20here." target="_blank"
+      <li><a href="https://github.com/iluvatar1/ProgCPP-lectures-jupyter/issues/new?title=Issue%20on%20page%20%2F01-IntroCPP/IntroProgrammingCourse.html&body=Your%20issue%20content%20here." target="_blank"
    class="btn btn-sm btn-source-issues-button dropdown-item"
    title="Open an issue"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -347,7 +361,7 @@ const thebe_selector_output = ".output, .cell_output"
       
       
       
-      <li><a href="../_sources/01-IntroCPP/BasicCPP.ipynb" target="_blank"
+      <li><a href="../_sources/01-IntroCPP/IntroProgrammingCourse.ipynb" target="_blank"
    class="btn btn-sm btn-download-source-button dropdown-item"
    title="Download source file"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -477,7 +491,7 @@ document.write(`
                 <article class="bd-article">
                   
   <section class="tex2jax_ignore mathjax_ignore" id="introduction-to-programming-and-c">
-<h1>Introduction to Programming and C++<a class="headerlink" href="#introduction-to-programming-and-c" title="Permalink to this heading">#</a></h1>
+<h1>Introduction to Programming and C++<a class="headerlink" href="#introduction-to-programming-and-c" title="Link to this heading">#</a></h1>
 <div style="text-align: center;">
     <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/18/ISO_C%2B%2B_Logo.svg/612px-ISO_C%2B%2B_Logo.svg.png" alt="Image Description" width="200">
 </div>
@@ -503,7 +517,7 @@ https://computers-are-fast.github.io/</p>
 </div>
 <p>Here is an <a class="reference external" href="https://en.wikipedia.org/wiki/Outline_of_C%2B%2B?useskin=vector">outline</a></p>
 <section id="typical-basic-workflow">
-<h2>Typical basic workflow<a class="headerlink" href="#typical-basic-workflow" title="Permalink to this heading">#</a></h2>
+<h2>Typical basic workflow<a class="headerlink" href="#typical-basic-workflow" title="Link to this heading">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">load_ext</span> nb_js_diagrammers
@@ -578,7 +592,7 @@ We will edit the code now. Please use an editor and write the following code</p>
 </pre></div>
 </div>
 <p><strong>Step 2: Compile</strong>
-Now we will compile with the compiler <code class="docutils literal notranslate"><span class="pre">g++</span></code> (there are a <a class="reference external" href="https://en.wikipedia.org/w/index.php?title=List_of_compilers&amp;useskin=vector#C++_compilers">lot more</a>). In a terminal, in the same directory where the fie was saved, just run</p>
+Now we will compile with the compiler <code class="docutils literal notranslate"><span class="pre">g++</span></code> (there are a <a class="reference external" href="https://en.wikipedia.org/w/index.php?title=List_of_compilers&amp;amp;useskin=vector#C++_compilers">lot more</a>). In a terminal, in the same directory where the fie was saved, just run</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>g++<span class="w"> </span>helloworld.cpp
 </pre></div>
 </div>
@@ -604,7 +618,9 @@ compilation terminated.
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>BasicCPP.ipynb	CPP-FastPacedIntro.ipynb  Resources.ipynb
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CPP-FastPacedIntro.ipynb      a.out		    test_primes.cpp
+IntroProgrammingCourse.ipynb  avg.cpp
+Resources.ipynb		      small_prime_test.cpp
 </pre></div>
 </div>
 </div>
@@ -622,7 +638,9 @@ compilation terminated.
 compilation terminated.
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>BasicCPP.ipynb	CPP-FastPacedIntro.ipynb  Resources.ipynb
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CPP-FastPacedIntro.ipynb      a.out		    test_primes.cpp
+IntroProgrammingCourse.ipynb  avg.cpp
+Resources.ipynb		      small_prime_test.cpp
 </pre></div>
 </div>
 </div>
@@ -644,10 +662,10 @@ To execute, we need to specify the path to the executable. We are going to use t
 <p>Congratulation! Now you are a c++ developer … not so fast!</p>
 </section>
 <section id="understanding-helloworld">
-<h2>Understanding helloworld<a class="headerlink" href="#understanding-helloworld" title="Permalink to this heading">#</a></h2>
+<h2>Understanding helloworld<a class="headerlink" href="#understanding-helloworld" title="Link to this heading">#</a></h2>
 <p>There are a lot of things under the hood for the simple helloworld program.</p>
 <section id="comments">
-<h3>Comments<a class="headerlink" href="#comments" title="Permalink to this heading">#</a></h3>
+<h3>Comments<a class="headerlink" href="#comments" title="Link to this heading">#</a></h3>
 <p>You can add comments, ignored by the compiler, using either <code class="docutils literal notranslate"><span class="pre">//</span></code>, for single line comments, or</p>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cm">/* </span>
 <span class="cm">  large multiline </span>
@@ -658,7 +676,7 @@ To execute, we need to specify the path to the executable. We are going to use t
 <p>for multiline comments.</p>
 </section>
 <section id="pre-processor">
-<h3>Pre-processor<a class="headerlink" href="#pre-processor" title="Permalink to this heading">#</a></h3>
+<h3>Pre-processor<a class="headerlink" href="#pre-processor" title="Link to this heading">#</a></h3>
 <p>The line</p>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;iostream&gt;</span>
 </pre></div>
@@ -668,7 +686,7 @@ To execute, we need to specify the path to the executable. We are going to use t
 <p>Do not use <code class="docutils literal notranslate"><span class="pre">.h</span></code> headers. Those come from C , are not using the <code class="docutils literal notranslate"><span class="pre">std</span></code> namespace, and are a bad practice.</p>
 </section>
 <section id="the-main-function">
-<h3>The main function<a class="headerlink" href="#the-main-function" title="Permalink to this heading">#</a></h3>
+<h3>The main function<a class="headerlink" href="#the-main-function" title="Link to this heading">#</a></h3>
 <p>Good programming is based on splitting a daunting task into several smaller tasks that are isolated from each other and perform one thing well. Therefore, the concept of a <em>function</em> is of paramount importance. In c++, a function has a name, a set of arguments (parameters that it receives, like the domain, although the parameter number and type can be any), and a result type (a range) if it returns something. The typical function prototype is</p>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">return_type</span><span class="w"> </span><span class="nf">function_name</span><span class="p">(</span><span class="n">type1</span><span class="w"> </span><span class="n">par1</span><span class="p">,</span><span class="w"> </span><span class="n">type2</span><span class="w"> </span><span class="n">par2</span><span class="p">);</span>
 </pre></div>
@@ -704,7 +722,7 @@ To execute, we need to specify the path to the executable. We are going to use t
 </div>
 </section>
 <section id="std-cout-to-print">
-<h3><code class="docutils literal notranslate"><span class="pre">std::cout</span></code> to print<a class="headerlink" href="#std-cout-to-print" title="Permalink to this heading">#</a></h3>
+<h3><code class="docutils literal notranslate"><span class="pre">std::cout</span></code> to print<a class="headerlink" href="#std-cout-to-print" title="Link to this heading">#</a></h3>
 <p>The instruction <code class="docutils literal notranslate"><span class="pre">std::cout</span></code> allows to print to the standard output. The <code class="docutils literal notranslate"><span class="pre">\n</span></code> prints a new line. <strong>Warning:</strong> Do not use</p>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">using</span><span class="w"> </span><span class="k">namespace</span><span class="w"> </span><span class="nn">std</span><span class="p">;</span><span class="w"> </span><span class="c1">// DO NOT DO THIS</span>
 </pre></div>
@@ -712,12 +730,12 @@ To execute, we need to specify the path to the executable. We are going to use t
 <p>it is a bad practice, frowned upon. You can use a linter or static analysis tool, like cpplint, to chech for advice and errors.</p>
 </section>
 <section id="return-statement">
-<h3>Return statement<a class="headerlink" href="#return-statement" title="Permalink to this heading">#</a></h3>
+<h3>Return statement<a class="headerlink" href="#return-statement" title="Link to this heading">#</a></h3>
 <p>The <code class="docutils literal notranslate"><span class="pre">return</span></code> statement allows to exit the function, returning something or nothing. It depends on your use case if you need it or not.</p>
 </section>
 </section>
 <section id="practical-exercise">
-<h2>Practical exercise<a class="headerlink" href="#practical-exercise" title="Permalink to this heading">#</a></h2>
+<h2>Practical exercise<a class="headerlink" href="#practical-exercise" title="Link to this heading">#</a></h2>
 <p>Now please write a program that reads your name, and then prints <code class="docutils literal notranslate"><span class="pre">Hello,</span> <span class="pre">your-name-here</span></code> . Check if it is better to use <code class="docutils literal notranslate"><span class="pre">std::cin</span></code> or <code class="docutils literal notranslate"><span class="pre">std::getline</span></code>.  Compile it and test it.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -735,10 +753,10 @@ To execute, we need to specify the path to the executable. We are going to use t
 </div>
 </section>
 <section id="some-useful-tools">
-<h2>Some useful tools<a class="headerlink" href="#some-useful-tools" title="Permalink to this heading">#</a></h2>
+<h2>Some useful tools<a class="headerlink" href="#some-useful-tools" title="Link to this heading">#</a></h2>
 <p>As you learn more and your apps grow in complexity, you might need to use tools to easy the developer work so to focus on the analysis and results, while mantaining  readability and good practices. Please also focus in this in <strong>learning linux</strong>, is the environment that scientist use. You can find many online resources, like http://www.ee.surrey.ac.uk/Teaching/Unix/ or https://swcarpentry.github.io/shell-novice/. For a general overview of what it means to be  a modern c++ developer, see https://roadmap.sh/cpp</p>
 <section id="ide">
-<h3>IDE<a class="headerlink" href="#ide" title="Permalink to this heading">#</a></h3>
+<h3>IDE<a class="headerlink" href="#ide" title="Link to this heading">#</a></h3>
 <p>An IDE is not just an editor but also gives you an environment with debuggers, refactoring, etc. You might use</p>
 <ul class="simple">
 <li><p><a class="reference external" href="https://code.visualstudio.com/">Visual studio code</a> . Very famous right now. Runs on electron. Can connect remotely, but cannot run in the terminal. A lot of metrics sent to servers.</p></li>
@@ -749,14 +767,14 @@ To execute, we need to specify the path to the executable. We are going to use t
 </ul>
 </section>
 <section id="sanitizers">
-<h3>Sanitizers<a class="headerlink" href="#sanitizers" title="Permalink to this heading">#</a></h3>
+<h3>Sanitizers<a class="headerlink" href="#sanitizers" title="Link to this heading">#</a></h3>
 <p>When compiling, use sanitizers to allow for runtime error detections</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>g++<span class="w"> </span>-fsanitize<span class="o">=</span>address,undefined,leak<span class="w"> </span>filename.cpp<span class="w"> </span>-o<span class="w"> </span>...
 </pre></div>
 </div>
 </section>
 <section id="debuggers">
-<h3>Debuggers<a class="headerlink" href="#debuggers" title="Permalink to this heading">#</a></h3>
+<h3>Debuggers<a class="headerlink" href="#debuggers" title="Link to this heading">#</a></h3>
 <p>A programmer spent 80% of the time debugging and fixing its code, and 20% programming. To track errors, it is useful to use something more advanced than printing messages (poor’s man debugger). You can use tools like:</p>
 <ul class="simple">
 <li><p><a class="reference external" href="https://www.sourceware.org/gdb/">gdb</a></p></li>
@@ -767,7 +785,7 @@ To execute, we need to specify the path to the executable. We are going to use t
 </ul>
 </section>
 <section id="linters">
-<h3>Linters<a class="headerlink" href="#linters" title="Permalink to this heading">#</a></h3>
+<h3>Linters<a class="headerlink" href="#linters" title="Link to this heading">#</a></h3>
 <p>Sometimes you need tools that tell some possible errors in your code without actually running it. You can use</p>
 <ul class="simple">
 <li><p><a class="reference external" href="https://github.com/cpplint/cpplint">cpplint</a></p></li>
@@ -777,11 +795,11 @@ To execute, we need to specify the path to the executable. We are going to use t
 </ul>
 </section>
 <section id="formatting">
-<h3>Formatting<a class="headerlink" href="#formatting" title="Permalink to this heading">#</a></h3>
+<h3>Formatting<a class="headerlink" href="#formatting" title="Link to this heading">#</a></h3>
 <p>Formatting the code is key for readability of one self and others. You can use something like <a class="reference external" href="https://clang.llvm.org/docs/ClangFormat.html">clang-format</a> to format your ugly and unreadable code.</p>
 </section>
 <section id="compilation">
-<h3>Compilation<a class="headerlink" href="#compilation" title="Permalink to this heading">#</a></h3>
+<h3>Compilation<a class="headerlink" href="#compilation" title="Link to this heading">#</a></h3>
 <p>There are several compilers that you can use, like:</p>
 <ul class="simple">
 <li><p><a class="reference external" href="https://gcc.gnu.org/">gnu gcc/g++ compilers</a></p></li>
@@ -796,26 +814,26 @@ Sometimes it is useful to try several compilers to find possible bugs in the cod
 <li><p><a class="reference external" href="https://gcc.godbolt.org/">Compiler Explorer</a></p></li>
 <li><p><a class="reference external" href="https://replit.com/">Repl.it</a></p></li>
 </ul>
-<p>As your code grows in complexity (but even in the case of simple projects), the constant compilation, debugging, linting, etc could transform into a repetitive task that might be automatized. For simple projects you can use gnu make, using tutorials like https://makefiletutorial.com/ or https://www.cs.colby.edu/maxwell/courses/tutorials/maketutor/ or http://swcarpentry.github.io/make-novice/. For more complex projects and multiplatform support, you might use <a class="reference external" href="https://www.google.com/search?client=firefox-b-d&amp;q=cmake+tutorial+modern">cmake</a>.</p>
+<p>As your code grows in complexity (but even in the case of simple projects), the constant compilation, debugging, linting, etc could transform into a repetitive task that might be automatized. For simple projects you can use gnu make, using tutorials like https://makefiletutorial.com/ or https://www.cs.colby.edu/maxwell/courses/tutorials/maketutor/ or http://swcarpentry.github.io/make-novice/. For more complex projects and multiplatform support, you might use <a class="reference external" href="https://www.google.com/search?client=firefox-b-d&amp;amp;q=cmake+tutorial+modern">cmake</a>.</p>
 </section>
 <section id="package-managers">
-<h3>Package managers<a class="headerlink" href="#package-managers" title="Permalink to this heading">#</a></h3>
+<h3>Package managers<a class="headerlink" href="#package-managers" title="Link to this heading">#</a></h3>
 <p>Besides the typical operating system package manager, you can also use tools like <a class="reference external" href="https://spack.readthedocs.io/en/latest/">spack</a>, <a class="reference external" href="https://mesonbuild.com/">meson</a>, <a class="reference external" href="https://github.com/microsoft/vcpkg">vcpkg</a>, <a class="reference external" href="https://conan.io/">conan</a>, …</p>
 </section>
 <section id="version-control">
-<h3>Version control<a class="headerlink" href="#version-control" title="Permalink to this heading">#</a></h3>
+<h3>Version control<a class="headerlink" href="#version-control" title="Link to this heading">#</a></h3>
 <p>It is ALWAYS advisable to use version control. Please use git, so you will be able to rollback changes, create, merge and delete branches, activate continuous integration, and so on. You can also sync with remote repositories in portals like https://github.com/, or https://about.gitlab.com/why-gitlab/ . There are many tutorials, like https://swcarpentry.github.io/git-novice/ or https://learngitbranching.js.org/</p>
 </section>
 <section id="testing">
-<h3>Testing<a class="headerlink" href="#testing" title="Permalink to this heading">#</a></h3>
+<h3>Testing<a class="headerlink" href="#testing" title="Link to this heading">#</a></h3>
 <p>It is very important to write code that is testable, and to test constantly specially when introducing new changes To do so, you can use https://github.com/catchorg/Catch2, https://github.com/google/googletest , etc</p>
 </section>
 <section id="reproducible-environments">
-<h3>Reproducible environments<a class="headerlink" href="#reproducible-environments" title="Permalink to this heading">#</a></h3>
+<h3>Reproducible environments<a class="headerlink" href="#reproducible-environments" title="Link to this heading">#</a></h3>
 <p>When you write a new program and want to distribute it, or run it on another machine, you must ensure that it runs as in the original development machine. To do so, the modern solution is to use containers. Learn how to use <a class="reference external" href="https://www.docker.com/">docker</a> or <a class="reference external" href="https://podman.io/">Podman</a>. This will be required for the final project.</p>
 </section>
 <section id="documentation">
-<h3>Documentation<a class="headerlink" href="#documentation" title="Permalink to this heading">#</a></h3>
+<h3>Documentation<a class="headerlink" href="#documentation" title="Link to this heading">#</a></h3>
 <p>Use comments, and better, use something like <a class="reference external" href="https://www.doxygen.nl/">doxygen</a></p>
 </section>
 </section>

@@ -1,13 +1,12 @@
 
-
 <!DOCTYPE html>
 
 
-<html lang="en" data-content_root="" >
+<html lang="en" data-content_root="../" >
 
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
     <title>Vector operations: Coefficient-wise &#8212; Introduction to C++ and Numerical Methods</title>
   
@@ -29,44 +28,48 @@
 <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.1/webfonts/fa-brands-400.woff2" />
 <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.1/webfonts/fa-regular-400.woff2" />
 
-    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
-    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
-    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=384b581d" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
     <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/styles.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css?v=0a3b3ea7" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles.css?v=03b9d5b1" />
   
   <!-- Pre-loaded scripts that we'll load fully later -->
   <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae" />
 <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae" />
   <script src="../_static/vendor/fontawesome/6.5.1/js/all.min.js?digest=8d27b9dea8ad943066ae"></script>
 
-    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
-    <script src="../_static/jquery.js"></script>
-    <script src="../_static/underscore.js"></script>
-    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
-    <script src="../_static/doctools.js"></script>
-    <script src="../_static/clipboard.min.js"></script>
-    <script src="../_static/copybutton.js"></script>
-    <script src="../_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script src="../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../_static/doctools.js?v=888ff710"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=efea14e4"></script>
     <script>let toggleHintShow = 'Click to show';</script>
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
-    <script src="../_static/togglebutton.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="../_static/togglebutton.js?v=4a39c7ea"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
-    <script src="../_static/design-tabs.js"></script>
+    <script src="../_static/design-tabs.js?v=36754332"></script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
 const thebe_selector = ".thebe,.cell"
 const thebe_selector_input = "pre"
 const thebe_selector_output = ".output, .cell_output"
 </script>
-    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <script async="async" src="../_static/sphinx-thebe.js?v=afe5de03"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
     <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = '06-ArrayComputing/ArrayComputing-Valarray';</script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="Linear Systems : Matrices, Vectors, eigen systems" href="../07-LinearAlgebra/LinearAlgebraEigen.html" />
@@ -164,7 +167,18 @@ const thebe_selector_output = ".output, .cell_output"
   
   
 </a></div>
-        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn navbar-btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
     <div class="bd-toc-item navbar-nav active">
         
         <ul class="nav bd-sidenav bd-sidenav__home-link">
@@ -176,7 +190,7 @@ const thebe_selector_output = ".output, .cell_output"
         </ul>
         <p aria-level="2" class="caption" role="heading"><span class="caption-text">Introduction to C++</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="../01-IntroCPP/BasicCPP.html">Introduction to Programming and C++</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../01-IntroCPP/IntroProgrammingCourse.html">Introduction to Programming and C++</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../01-IntroCPP/Resources.html">Resources</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../01-IntroCPP/CPP-FastPacedIntro.html">Very fast intro to the basics of c++</a></li>
 </ul>
@@ -476,7 +490,7 @@ document.write(`
                   
   <p><a id="org480d17e"></a></p>
 <section class="tex2jax_ignore mathjax_ignore" id="vector-operations-coefficient-wise">
-<h1>Vector operations: Coefficient-wise<a class="headerlink" href="#vector-operations-coefficient-wise" title="Permalink to this heading">#</a></h1>
+<h1>Vector operations: Coefficient-wise<a class="headerlink" href="#vector-operations-coefficient-wise" title="Link to this heading">#</a></h1>
 <p>Coefficient-wise operations, like the vector sum (which operate component by
 component), are very common and useful. For instance, the whole <code class="docutils literal notranslate"><span class="pre">numpy</span></code> library
 is based on that (<a class="reference external" href="https://numpy.org/doc/stable/user/basics.broadcasting.html">https://numpy.org/doc/stable/user/basics.broadcasting.html</a>).
@@ -499,21 +513,21 @@ vectors. You have two options: using the standard library valarray, or using
     <figcaption>From: "https://miro.medium.com/v2/resize:fit:1400/format:webp/1*XbZqTBXZmnQtVZ_llbGJTw.png"</figcaption>
 </div>
 <section id="function-evaluation">
-<h2>Function evaluation<a class="headerlink" href="#function-evaluation" title="Permalink to this heading">#</a></h2>
+<h2>Function evaluation<a class="headerlink" href="#function-evaluation" title="Link to this heading">#</a></h2>
 <p>Furthermore , mathematical function evaluated in this array computing approach means evaluating the function on each component, such as</p>
-<div class="amsmath math notranslate nohighlight" id="equation-b44384be-48c9-4c80-ad31-72f3df74aadc">
-<span class="eqno">(15)<a class="headerlink" href="#equation-b44384be-48c9-4c80-ad31-72f3df74aadc" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-f4f2e643-ca0c-4ba5-b5a7-923d9155ce84">
+<span class="eqno">(15)<a class="headerlink" href="#equation-f4f2e643-ca0c-4ba5-b5a7-923d9155ce84" title="Permalink to this equation">#</a></span>\[\begin{equation}
 \vec y = \sin (\vec x)
 \end{equation}\]</div>
 <p>means</p>
-<div class="amsmath math notranslate nohighlight" id="equation-c0b9fcc9-c29e-419b-a2ab-4620af588e35">
-<span class="eqno">(16)<a class="headerlink" href="#equation-c0b9fcc9-c29e-419b-a2ab-4620af588e35" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-2b66ac76-0f67-4d69-9113-f9ab16c35ba4">
+<span class="eqno">(16)<a class="headerlink" href="#equation-2b66ac76-0f67-4d69-9113-f9ab16c35ba4" title="Permalink to this equation">#</a></span>\[\begin{equation}
 y_i = \sin x_i.
 \end{equation}\]</div>
 <p><a id="org8ea9979"></a></p>
 </section>
 <section id="c-valarray">
-<h2>C++ <code class="docutils literal notranslate"><span class="pre">valarray</span></code><a class="headerlink" href="#c-valarray" title="Permalink to this heading">#</a></h2>
+<h2>C++ <code class="docutils literal notranslate"><span class="pre">valarray</span></code><a class="headerlink" href="#c-valarray" title="Link to this heading">#</a></h2>
 <p>You can find the reference implementation at
 <a class="reference external" href="https://en.cppreference.com/w/cpp/numeric/valarray">https://en.cppreference.com/w/cpp/numeric/valarray</a> .</p>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;iostream&gt;</span>
@@ -533,11 +547,11 @@ y_i = \sin x_i.
 </pre></div>
 </div>
 <section id="example-using-apply">
-<h3>Example: Using apply<a class="headerlink" href="#example-using-apply" title="Permalink to this heading">#</a></h3>
+<h3>Example: Using apply<a class="headerlink" href="#example-using-apply" title="Link to this heading">#</a></h3>
 <p>Cómo usar la utilidad apply para multiplicar todos los elementos por 2 si el numero es impar y por 3 si el numero es par? Piense en la solución usando for e if y luego puede mirar a https://en.cppreference.com/w/cpp/numeric/valarray/apply</p>
 </section>
 <section id="indexing">
-<h3>Indexing<a class="headerlink" href="#indexing" title="Permalink to this heading">#</a></h3>
+<h3>Indexing<a class="headerlink" href="#indexing" title="Link to this heading">#</a></h3>
 <p>A simple example for indexing,
 is the following (<a class="reference external" href="https://en.cppreference.com/w/cpp/numeric/valarray/operator%3D">https://en.cppreference.com/w/cpp/numeric/valarray/operator%3D</a>)</p>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;iomanip&gt;</span>
@@ -578,7 +592,7 @@ is the following (<a class="reference external" href="https://en.cppreference.co
 </div>
 </section>
 <section id="masks">
-<h3>Masks<a class="headerlink" href="#masks" title="Permalink to this heading">#</a></h3>
+<h3>Masks<a class="headerlink" href="#masks" title="Link to this heading">#</a></h3>
 <p>As you can see, all operations are done at the element level. You can also
 define masks:</p>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;iostream&gt;</span>
@@ -626,32 +640,32 @@ each element:</p>
 </section>
 </section>
 <section id="exercises">
-<h2>Exercises<a class="headerlink" href="#exercises" title="Permalink to this heading">#</a></h2>
+<h2>Exercises<a class="headerlink" href="#exercises" title="Link to this heading">#</a></h2>
 <section id="dot-product">
-<h3>Dot product<a class="headerlink" href="#dot-product" title="Permalink to this heading">#</a></h3>
+<h3>Dot product<a class="headerlink" href="#dot-product" title="Link to this heading">#</a></h3>
 <p>Create a program that computes the dot product among two math vectors using
 valarray. Your program must read the vector size from the command line. Fill
 them using any function you want.</p>
 </section>
 <section id="heap-or-stack">
-<h3>Heap or stack?<a class="headerlink" href="#heap-or-stack" title="Permalink to this heading">#</a></h3>
+<h3>Heap or stack?<a class="headerlink" href="#heap-or-stack" title="Link to this heading">#</a></h3>
 <p>Is a valarray in the heap or the stack? Verify (check
 <a class="reference external" href="https://en.cppreference.com/w/cpp/numeric/valarray/resize">https://en.cppreference.com/w/cpp/numeric/valarray/resize</a>)</p>
 </section>
 <section id="filter-data">
-<h3>Filter data<a class="headerlink" href="#filter-data" title="Permalink to this heading">#</a></h3>
+<h3>Filter data<a class="headerlink" href="#filter-data" title="Link to this heading">#</a></h3>
 <p>Using the overloaded operators create a valarray for N=1000 points between 0
 and <span class="math notranslate nohighlight">\(2\pi\)</span>, then compute the <span class="math notranslate nohighlight">\(\sin\)</span> of those numbers and assing the result to
 a another valarray, and finally print only the values that fulfill that
 <span class="math notranslate nohighlight">\(|\sin x| \le 0.5\)</span>. All of this without using loops.</p>
 </section>
 <section id="simulation">
-<h3>Simulation<a class="headerlink" href="#simulation" title="Permalink to this heading">#</a></h3>
+<h3>Simulation<a class="headerlink" href="#simulation" title="Link to this heading">#</a></h3>
 <p>If you discretize time in steps of size <span class="math notranslate nohighlight">\(\delta t\)</span>, and you have the forces on
 a given ideal particle, you can compute the next position using the Euler
 algorithm,</p>
-<div class="amsmath math notranslate nohighlight" id="equation-8bc37f2e-1459-4d95-9f3c-422c3d6a8a3e">
-<span class="eqno">(17)<a class="headerlink" href="#equation-8bc37f2e-1459-4d95-9f3c-422c3d6a8a3e" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-d66343e9-5622-449f-9f1c-8ec2bd925b5c">
+<span class="eqno">(17)<a class="headerlink" href="#equation-d66343e9-5622-449f-9f1c-8ec2bd925b5c" title="Permalink to this equation">#</a></span>\[\begin{align}
 \vec R(t+\delta t) &amp;= \vec R(t) + \delta t \vec V(t),\\
 \vec V(t + \delta t) &amp;= \vec V(t) + \delta t \vec F(t)/m.\\
 \end{align}\]</div>
@@ -661,36 +675,36 @@ particle of mass <span class="math notranslate nohighlight">\(m=0.987\)</span>, 
 some damping. Later add some interaction with the ground.</p>
 </section>
 <section id="extract-odd-values">
-<h3>Extract odd values<a class="headerlink" href="#extract-odd-values" title="Permalink to this heading">#</a></h3>
+<h3>Extract odd values<a class="headerlink" href="#extract-odd-values" title="Link to this heading">#</a></h3>
 <p>Fill an <code class="docutils literal notranslate"><span class="pre">std::valarray</span></code> with random integers numbers uniformly distributed in [1000, 2500], and then extract the even values and compute their mean.</p>
 </section>
 <section id="cross-product">
-<h3>Cross product<a class="headerlink" href="#cross-product" title="Permalink to this heading">#</a></h3>
+<h3>Cross product<a class="headerlink" href="#cross-product" title="Link to this heading">#</a></h3>
 <p>Implement a function to compute the cross product between two 3d vectors. Using it, implement a function to compute the angle between the vectors. Remember that</p>
-<div class="amsmath math notranslate nohighlight" id="equation-672dc557-edd5-4d78-9b6e-d98b6c40f111">
-<span class="eqno">(18)<a class="headerlink" href="#equation-672dc557-edd5-4d78-9b6e-d98b6c40f111" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-4d8ae5f0-0a33-4582-89c4-9567d436914b">
+<span class="eqno">(18)<a class="headerlink" href="#equation-4d8ae5f0-0a33-4582-89c4-9567d436914b" title="Permalink to this equation">#</a></span>\[\begin{equation}
 |\vec A \times \vec B| = A B \sin\theta.
 \end{equation}\]</div>
 <p>Check test cases like <span class="math notranslate nohighlight">\(\vec A \times \vec A  = \vec 0, \hat i \times \hat j = \hat k, \ldots\)</span></p>
 </section>
 <section id="perpendicular-vector">
-<h3>Perpendicular vector<a class="headerlink" href="#perpendicular-vector" title="Permalink to this heading">#</a></h3>
+<h3>Perpendicular vector<a class="headerlink" href="#perpendicular-vector" title="Link to this heading">#</a></h3>
 <p>Use the previous cross product function to find a unit vector perpendicular to two vectors.</p>
 </section>
 <section id="plane-equation">
-<h3>Plane equation<a class="headerlink" href="#plane-equation" title="Permalink to this heading">#</a></h3>
+<h3>Plane equation<a class="headerlink" href="#plane-equation" title="Link to this heading">#</a></h3>
 <p>Find the equation of the plane in the form <span class="math notranslate nohighlight">\(ax + by + cz + d = 0\)</span>, saving the result in a 4d <code class="docutils literal notranslate"><span class="pre">std::vector</span></code>, given three 3D points represented using <code class="docutils literal notranslate"><span class="pre">std::valarray</span></code>.</p>
 </section>
 <section id="vector-product">
-<h3>Vector product<a class="headerlink" href="#vector-product" title="Permalink to this heading">#</a></h3>
+<h3>Vector product<a class="headerlink" href="#vector-product" title="Link to this heading">#</a></h3>
 <p>Write a function that returns the vector product</p>
-<div class="amsmath math notranslate nohighlight" id="equation-f96906c5-3996-4a63-bae6-a63f613bcabc">
-<span class="eqno">(19)<a class="headerlink" href="#equation-f96906c5-3996-4a63-bae6-a63f613bcabc" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-0d079677-1b0d-4be5-aa09-0530de1e9c7b">
+<span class="eqno">(19)<a class="headerlink" href="#equation-0d079677-1b0d-4be5-aa09-0530de1e9c7b" title="Permalink to this equation">#</a></span>\[\begin{equation}
 \vec A \cdot (\vec B \times \vec C)
 \end{equation}\]</div>
 </section>
 <section id="classical-angular-momentum-and-centripetal-acceleration">
-<h3>Classical angular momentum and centripetal acceleration<a class="headerlink" href="#classical-angular-momentum-and-centripetal-acceleration" title="Permalink to this heading">#</a></h3>
+<h3>Classical angular momentum and centripetal acceleration<a class="headerlink" href="#classical-angular-momentum-and-centripetal-acceleration" title="Link to this heading">#</a></h3>
 <p>Given a mass <span class="math notranslate nohighlight">\(m\)</span>, a position <span class="math notranslate nohighlight">\(\vec r\)</span>, and a velocity <span class="math notranslate nohighlight">\(\vec v = \omega \times \vec r \)</span>, compute both the angular momentum <span class="math notranslate nohighlight">\(\vec L = m \vec r \times (\vec r \times \vec \omega)\)</span> and the centripetal acceleration <span class="math notranslate nohighlight">\(\vec a = \vec \omega \times (\vec \omega \times \vec  r)\)</span>, using two different functions</p>
 </section>
 </section>

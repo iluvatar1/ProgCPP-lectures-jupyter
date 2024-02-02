@@ -1,13 +1,12 @@
 
-
 <!DOCTYPE html>
 
 
-<html lang="en" data-content_root="" >
+<html lang="en" data-content_root="../" >
 
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
     <title>Common Numerical Integration Algorithms &#8212; Introduction to C++ and Numerical Methods</title>
   
@@ -29,44 +28,48 @@
 <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.1/webfonts/fa-brands-400.woff2" />
 <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.1/webfonts/fa-regular-400.woff2" />
 
-    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
-    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
-    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=384b581d" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
     <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/styles.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css?v=0a3b3ea7" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles.css?v=03b9d5b1" />
   
   <!-- Pre-loaded scripts that we'll load fully later -->
   <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae" />
 <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae" />
   <script src="../_static/vendor/fontawesome/6.5.1/js/all.min.js?digest=8d27b9dea8ad943066ae"></script>
 
-    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
-    <script src="../_static/jquery.js"></script>
-    <script src="../_static/underscore.js"></script>
-    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
-    <script src="../_static/doctools.js"></script>
-    <script src="../_static/clipboard.min.js"></script>
-    <script src="../_static/copybutton.js"></script>
-    <script src="../_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script src="../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../_static/doctools.js?v=888ff710"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=efea14e4"></script>
     <script>let toggleHintShow = 'Click to show';</script>
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
-    <script src="../_static/togglebutton.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="../_static/togglebutton.js?v=4a39c7ea"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
-    <script src="../_static/design-tabs.js"></script>
+    <script src="../_static/design-tabs.js?v=36754332"></script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
 const thebe_selector = ".thebe,.cell"
 const thebe_selector_input = "pre"
 const thebe_selector_output = ".output, .cell_output"
 </script>
-    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <script async="async" src="../_static/sphinx-thebe.js?v=afe5de03"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
     <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = '03-integration/NumericalIntegration_Basics';</script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="Modern arrays" href="../04-vector-containers/ModernArrays.html" />
@@ -164,7 +167,18 @@ const thebe_selector_output = ".output, .cell_output"
   
   
 </a></div>
-        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn navbar-btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
     <div class="bd-toc-item navbar-nav active">
         
         <ul class="nav bd-sidenav bd-sidenav__home-link">
@@ -176,7 +190,7 @@ const thebe_selector_output = ".output, .cell_output"
         </ul>
         <p aria-level="2" class="caption" role="heading"><span class="caption-text">Introduction to C++</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="../01-IntroCPP/BasicCPP.html">Introduction to Programming and C++</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../01-IntroCPP/IntroProgrammingCourse.html">Introduction to Programming and C++</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../01-IntroCPP/Resources.html">Resources</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../01-IntroCPP/CPP-FastPacedIntro.html">Very fast intro to the basics of c++</a></li>
 </ul>
@@ -473,12 +487,12 @@ document.write(`
                 <article class="bd-article">
                   
   <section class="tex2jax_ignore mathjax_ignore" id="common-numerical-integration-algorithms">
-<h1>Common Numerical Integration Algorithms<a class="headerlink" href="#common-numerical-integration-algorithms" title="Permalink to this heading">#</a></h1>
+<h1>Common Numerical Integration Algorithms<a class="headerlink" href="#common-numerical-integration-algorithms" title="Link to this heading">#</a></h1>
 <p>Computing a numerical integral (or quadrature) is a typical problem that appears everywhere in numerical computing. The simple task of computing the error function, <span class="math notranslate nohighlight">\(f(x) = \int_{0}^x e^{-t^2}\)</span>, requires the application of numerical techniques to calculate this (improper integral) over an arbitrary range.</p>
 <p>In any numerical computing course you will start by exploring the trapezoidal and the simpsons rule. Here we are jus going to give the general formulation and then go directly to the functions given by scipy</p>
 <p>Let’s compare several of the typical algorithms: https://www.geogebra.org/m/WsZgaJcc, and a beautiful visualization at https://www.youtube.com/watch?v=FnJqaIESC2s</p>
 <section id="trapezoidal-rule">
-<h2>Trapezoidal rule<a class="headerlink" href="#trapezoidal-rule" title="Permalink to this heading">#</a></h2>
+<h2>Trapezoidal rule<a class="headerlink" href="#trapezoidal-rule" title="Link to this heading">#</a></h2>
 <p>Here the function between two points is approximated by a straight line and the te area covered by the trapezoid is added up. See: https://en.wikipedia.org/wiki/Trapezoidal_rule</p>
 <table class="table">
 <thead>
@@ -509,10 +523,10 @@ where \)</span>x_k = x_0 + k \Delta x<span class="math notranslate nohighlight">
 </div>
 <p>where fun is the square function.</p>
 <section id="exercise">
-<h3><strong>Exercise</strong><a class="headerlink" href="#exercise" title="Permalink to this heading">#</a></h3>
+<h3><strong>Exercise</strong><a class="headerlink" href="#exercise" title="Link to this heading">#</a></h3>
 <p>Now use your implementation to compute the error function as a function of <span class="math notranslate nohighlight">\(x\)</span>, using the partition shown. Your program must print also the relative error, comparing with the “exact” value from https://en.cppreference.com/w/cpp/numeric/math/erf . Print your data to <code class="docutils literal notranslate"><span class="pre">erf_data.txt</span></code> (print the x value, the numerical value of the integral, and the relative error)</p>
-<div class="amsmath math notranslate nohighlight" id="equation-5405fb91-9941-4199-bcb7-1cc16fd38a7d">
-<span class="eqno">(1)<a class="headerlink" href="#equation-5405fb91-9941-4199-bcb7-1cc16fd38a7d" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-689ea33f-84f5-407f-b85f-9bde36a798d1">
+<span class="eqno">(1)<a class="headerlink" href="#equation-689ea33f-84f5-407f-b85f-9bde36a798d1" title="Permalink to this equation">#</a></span>\[\begin{equation}
 f(x) = \frac{2}{\sqrt{\pi}}\int_0^x e^{-t^2} dt
 \end{equation}\]</div>
 <p><span class="math notranslate nohighlight">\(x \in [0, 10]\)</span>, <span class="math notranslate nohighlight">\(\Delta x = 0.1\)</span></p>
@@ -551,7 +565,7 @@ f(x) = \frac{2}{\sqrt{\pi}}\int_0^x e^{-t^2} dt
 </section>
 </section>
 <section id="simpsons-rule">
-<h2>Simpsons rule<a class="headerlink" href="#simpsons-rule" title="Permalink to this heading">#</a></h2>
+<h2>Simpsons rule<a class="headerlink" href="#simpsons-rule" title="Link to this heading">#</a></h2>
 <p>In this case, the method uses three discrete points and approximate the function as a parabola (second order polynomial), to improve the numerical integral computation. See: https://en.wikipedia.org/wiki/Simpson%27s_rule</p>
 <table class="table">
 <thead>
@@ -566,8 +580,8 @@ f(x) = \frac{2}{\sqrt{\pi}}\int_0^x e^{-t^2} dt
 </tbody>
 </table>
 <p>Now you compute the integral as</p>
-<div class="amsmath math notranslate nohighlight" id="equation-2717d19f-3f8a-4ea9-9a99-08f9ac7da7ee">
-<span class="eqno">(2)<a class="headerlink" href="#equation-2717d19f-3f8a-4ea9-9a99-08f9ac7da7ee" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-ab686f15-8b84-4468-a010-ccbce8003ad2">
+<span class="eqno">(2)<a class="headerlink" href="#equation-ab686f15-8b84-4468-a010-ccbce8003ad2" title="Permalink to this equation">#</a></span>\[\begin{equation}
 \int_a^b f(x) dx \simeq \frac{\Delta x}{3}\left( f(x_0) + 4 \sum_{k=1}^{N/2} f(x_{2k-1}) + 2\sum_{k=1}^{N/2-1} f(x_{2k}) + f(x_N)\right) + O(N^{-3}).
 \end{equation}\]</div>
 <p>Notice that <span class="math notranslate nohighlight">\(N\)</span> must be even.</p>
@@ -589,17 +603,17 @@ f(x) = \frac{2}{\sqrt{\pi}}\int_0^x e^{-t^2} dt
 </div>
 </section>
 <section id="romberg-method">
-<h2>Romberg method<a class="headerlink" href="#romberg-method" title="Permalink to this heading">#</a></h2>
+<h2>Romberg method<a class="headerlink" href="#romberg-method" title="Link to this heading">#</a></h2>
 <p>The <a class="reference external" href="https://en.wikipedia.org/wiki/Romberg%27s_method">Romberg Method</a> applies Richardson extrapolation to the given integration technique. The implementation is completely analogous as for the derivatives case.</p>
 <p>Implement it for the previous method shown and compare the errors as a function of <span class="math notranslate nohighlight">\(N\)</span>, the number of intervals. Use the err function and fix <span class="math notranslate nohighlight">\(x = 0.54432\)</span>.</p>
 </section>
 <section id="other-techniques">
-<h2>Other techniques<a class="headerlink" href="#other-techniques" title="Permalink to this heading">#</a></h2>
+<h2>Other techniques<a class="headerlink" href="#other-techniques" title="Link to this heading">#</a></h2>
 <p>There are ways to improve the previous algorithms to decrease the error: using  higher order decompositions, using <a class="reference external" href="https://en.wikipedia.org/wiki/Adaptive_Simpson%27s_method">Adaptative techniques</a>, using <a class="reference external" href="https://en.wikipedia.org/wiki/Gaussian_quadrature">Gaussian quadrature</a>, mixing some of these techniques, etc. But implementing those methods by hand would be a daunting task.</p>
 <p>NOTE: When you have tabular data, you will be almost forced to use either the trapezoid or the simpsons method. You could also first interpolate the data and then integrate.</p>
 </section>
 <section id="gaussian-quadrature-introduction-to-vectors">
-<h2>Gaussian quadrature: Introduction to vectors<a class="headerlink" href="#gaussian-quadrature-introduction-to-vectors" title="Permalink to this heading">#</a></h2>
+<h2>Gaussian quadrature: Introduction to vectors<a class="headerlink" href="#gaussian-quadrature-introduction-to-vectors" title="Link to this heading">#</a></h2>
 <p><a class="reference external" href="https://en.wikipedia.org/wiki/Gaussian_quadrature?useskin=vector">Gaussian quadrature</a> is a very clever technique that allows to compute integrals with a high precision and minimal number of points. First, notice that any numerical integral method can be written as
 $<span class="math notranslate nohighlight">\(
 I \simeq \sum w_i f(x_i),
@@ -622,7 +636,7 @@ therefore
 using the \)</span>w_i$ from the method.</p>
 </section>
 <section id="example-using-a-vector-to-store-the-weights">
-<h2>Example using a vector to store the weights.<a class="headerlink" href="#example-using-a-vector-to-store-the-weights" title="Permalink to this heading">#</a></h2>
+<h2>Example using a vector to store the weights.<a class="headerlink" href="#example-using-a-vector-to-store-the-weights" title="Link to this heading">#</a></h2>
 <p>For an increasing number of points, you will need to use many variables to store the weights. For a degree <span class="math notranslate nohighlight">\(n=5\)</span>, you will need five variables to store the weights, five more for the points, and then manually process that. It will be much better to store them in an data structure that allow us to handle the operations in a generic way. In this case, it will be a <code class="docutils literal notranslate"><span class="pre">std::vector</span></code>, which allows us to store data, contiguously in memory, and process it using simple for loops (SIMD).</p>
 <p>Our declaration could be</p>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">double</span><span class="w"> </span><span class="nf">gauss_5</span><span class="p">(</span><span class="kt">double</span><span class="w"> </span><span class="n">a</span><span class="p">,</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="n">b</span><span class="p">,</span><span class="w"> </span><span class="n">fptr</span><span class="w"> </span><span class="n">fun</span><span class="p">);</span>
@@ -655,16 +669,16 @@ using the \)</span>w_i$ from the method.</p>
 <p>Now finish the implementation, and print the error, as a function of <span class="math notranslate nohighlight">\(x\)</span>, computing the err function, comparing the relative errors  with trapezoid, simpson, trapezoid+richardson, simpson+trapezoid, gauss_5. Plot it.</p>
 </section>
 <section id="exercises">
-<h2>Exercises<a class="headerlink" href="#exercises" title="Permalink to this heading">#</a></h2>
+<h2>Exercises<a class="headerlink" href="#exercises" title="Link to this heading">#</a></h2>
 <section id="gauss-quadrature-of-order-7">
-<h3>Gauss quadrature of order 7<a class="headerlink" href="#gauss-quadrature-of-order-7" title="Permalink to this heading">#</a></h3>
+<h3>Gauss quadrature of order 7<a class="headerlink" href="#gauss-quadrature-of-order-7" title="Link to this heading">#</a></h3>
 <p>(REF: Sirca, Computational Methods in Physics. Also
 <a class="reference external" href="https://en.wikipedia.org/wiki/Gaussian_quadrature">https://en.wikipedia.org/wiki/Gaussian_quadrature</a>) The Gaussian quadrature is a
 very powerful method to compute integrals, where the points and weights are
 wisely chosen to improve the algorithm precision. The method is formulated in
 the range [-1, 1], so maybe the general integral must be scaled as</p>
-<div class="amsmath math notranslate nohighlight" id="equation-ad1f7199-46d3-47dc-a39b-a01f7993868f">
-<span class="eqno">(3)<a class="headerlink" href="#equation-ad1f7199-46d3-47dc-a39b-a01f7993868f" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-20236fd4-5c13-47bd-b184-53ab9e80a7c6">
+<span class="eqno">(3)<a class="headerlink" href="#equation-20236fd4-5c13-47bd-b184-53ab9e80a7c6" title="Permalink to this equation">#</a></span>\[\begin{equation}
 \int_a^b f(x) dx = \frac{b-a}{2} \sum_{j=1}^{n} w_j f\left(\frac{b-a}{2} x_j + \frac{a+b}{2} \right) + O((b-a)^{2n+1}).
 \end{equation}\]</div>
 <p>The next table shows the points positions and weights for the Gaussian integral
@@ -728,7 +742,7 @@ difference with the “exact” function <code class="docutils literal notransla
 <p>For more coefficients and higer orders, see <a class="reference external" href="https://pomax.github.io/bezierinfo/legendre-gauss.html">https://pomax.github.io/bezierinfo/legendre-gauss.html</a></p>
 </section>
 <section id="integrating-a-datafile">
-<h3>Integrating a datafile<a class="headerlink" href="#integrating-a-datafile" title="Permalink to this heading">#</a></h3>
+<h3>Integrating a datafile<a class="headerlink" href="#integrating-a-datafile" title="Link to this heading">#</a></h3>
 <p>The following data (file <code class="docutils literal notranslate"><span class="pre">accel.txt</span></code>) represents the acceleration of a car as a
 function of time</p>
 <table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
@@ -775,25 +789,25 @@ function of time</p>
 and compute the velocity as a function of time by integrating at each time step.</p>
 </section>
 <section id="cumulative-probability">
-<h3>Cumulative probability<a class="headerlink" href="#cumulative-probability" title="Permalink to this heading">#</a></h3>
+<h3>Cumulative probability<a class="headerlink" href="#cumulative-probability" title="Link to this heading">#</a></h3>
 <p>The probability density function for the <a class="reference external" href="https://en.wikipedia.org/wiki/Gamma_distribution">Gamma distribution</a> is</p>
-<div class="amsmath math notranslate nohighlight" id="equation-54570e9b-aa64-4fb2-8337-eb5a97a7ed04">
-<span class="eqno">(4)<a class="headerlink" href="#equation-54570e9b-aa64-4fb2-8337-eb5a97a7ed04" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-3c3bc4cd-ffd6-4d61-9211-817ee10215e0">
+<span class="eqno">(4)<a class="headerlink" href="#equation-3c3bc4cd-ffd6-4d61-9211-817ee10215e0" title="Permalink to this equation">#</a></span>\[\begin{equation}
 f(x; \alpha, \beta) = \frac{\beta^\alpha}{\Gamma(\alpha) x^{\alpha -1} e^{-\beta x} },
 \end{equation}\]</div>
 <p>para <span class="math notranslate nohighlight">\(0 &lt; x &lt; \infty\)</span>. Compute and plot the cumulative density function, using
 both the simpson method and the gaussian <span class="math notranslate nohighlight">\(g_7\)</span>, defined as</p>
-<div class="amsmath math notranslate nohighlight" id="equation-2d97ecb0-678d-4775-927a-1f3f5b4bba39">
-<span class="eqno">(5)<a class="headerlink" href="#equation-2d97ecb0-678d-4775-927a-1f3f5b4bba39" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-798fae4c-1320-4b04-9c79-36f66fdeae30">
+<span class="eqno">(5)<a class="headerlink" href="#equation-798fae4c-1320-4b04-9c79-36f66fdeae30" title="Permalink to this equation">#</a></span>\[\begin{equation}
 F(x; \alpha, \beta) = \int_0^x dt f(t; \alpha, \beta),
 \end{equation}\]</div>
 <p>for <span class="math notranslate nohighlight">\(x \in [0.0, 20.0]\)</span>, with <span class="math notranslate nohighlight">\(\alpha = 7.5, \beta = 1.0\)</span>.</p>
 </section>
 <section id="di-logarithm-function">
-<h3>Di-logarithm function<a class="headerlink" href="#di-logarithm-function" title="Permalink to this heading">#</a></h3>
+<h3>Di-logarithm function<a class="headerlink" href="#di-logarithm-function" title="Link to this heading">#</a></h3>
 <p>The di-logarithm function is defined as</p>
-<div class="amsmath math notranslate nohighlight" id="equation-022ea9f9-a2c0-4dc0-b754-21a86904b77f">
-<span class="eqno">(6)<a class="headerlink" href="#equation-022ea9f9-a2c0-4dc0-b754-21a86904b77f" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-dcad34fd-b072-4892-aece-7c76639cd3fa">
+<span class="eqno">(6)<a class="headerlink" href="#equation-dcad34fd-b072-4892-aece-7c76639cd3fa" title="Permalink to this equation">#</a></span>\[\begin{equation}
 \mathrm{Li}_2(x) = -\int_0^x \frac{\ln(1-t)}{t} dt.
 \end{equation}\]</div>
 <p>Plot the di-logarithm function for <span class="math notranslate nohighlight">\(x \in (0.0, 1.0)\)</span>. If you use simpson,
@@ -801,33 +815,33 @@ always make sure that the error is less than <span class="math notranslate nohig
 transform the variable and/or split the integral to avoid numerical problems.</p>
 </section>
 <section id="moment-distribution">
-<h3>Moment distribution<a class="headerlink" href="#moment-distribution" title="Permalink to this heading">#</a></h3>
+<h3>Moment distribution<a class="headerlink" href="#moment-distribution" title="Link to this heading">#</a></h3>
 <p>The kth moment for a probability distribution is</p>
-<div class="amsmath math notranslate nohighlight" id="equation-8d43cf80-63e1-460b-8af4-4c0c6e1a406d">
-<span class="eqno">(7)<a class="headerlink" href="#equation-8d43cf80-63e1-460b-8af4-4c0c6e1a406d" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-47a0b3a7-c9b5-4945-a6cd-96af00ae9862">
+<span class="eqno">(7)<a class="headerlink" href="#equation-47a0b3a7-c9b5-4945-a6cd-96af00ae9862" title="Permalink to this equation">#</a></span>\[\begin{equation}
 \lt x^k \gt = \int x^k f(x) dx,
 \end{equation}\]</div>
 <p>Compute the first ten moments for the  <a class="reference external" href="https://en.wikipedia.org/wiki/Gamma_distribution">Gamma distribution</a> ,</p>
-<div class="amsmath math notranslate nohighlight" id="equation-f1be1ed2-1724-448e-b7cf-ad830c342106">
-<span class="eqno">(8)<a class="headerlink" href="#equation-f1be1ed2-1724-448e-b7cf-ad830c342106" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-5d98f79a-0635-4761-a4fc-7122b7a68079">
+<span class="eqno">(8)<a class="headerlink" href="#equation-5d98f79a-0635-4761-a4fc-7122b7a68079" title="Permalink to this equation">#</a></span>\[\begin{equation}
 f(x; \alpha, \beta) = \frac{\beta^\alpha}{\Gamma(\alpha) x^{\alpha -1} e^{-\beta x} }.
 \end{equation}\]</div>
 </section>
 <section id="arch-lenght-mass-centroid">
-<h3>Arch lenght, mass, centroid<a class="headerlink" href="#arch-lenght-mass-centroid" title="Permalink to this heading">#</a></h3>
+<h3>Arch lenght, mass, centroid<a class="headerlink" href="#arch-lenght-mass-centroid" title="Link to this heading">#</a></h3>
 <p>The arc length of a curve <span class="math notranslate nohighlight">\(y(x)\)</span> is given by</p>
-<div class="amsmath math notranslate nohighlight" id="equation-13193aba-ad31-4710-9adc-d414bb69a024">
-<span class="eqno">(9)<a class="headerlink" href="#equation-13193aba-ad31-4710-9adc-d414bb69a024" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-12d6e40a-8235-42a3-bc01-fafc0bc2b2f3">
+<span class="eqno">(9)<a class="headerlink" href="#equation-12d6e40a-8235-42a3-bc01-fafc0bc2b2f3" title="Permalink to this equation">#</a></span>\[\begin{equation}
 s = \int_a^b dx \sqrt{1 + \left(\frac{dy}{dx}  \right)^2}.
 \end{equation}\]</div>
 <p>If a linear body has a density <span class="math notranslate nohighlight">\(\rho(x)\)</span>, the total mass would be</p>
-<div class="amsmath math notranslate nohighlight" id="equation-f925ece8-49c8-41e9-a3dd-9052f4a7871a">
-<span class="eqno">(10)<a class="headerlink" href="#equation-f925ece8-49c8-41e9-a3dd-9052f4a7871a" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-38acce7d-a2c7-4f78-8ff1-dec4dc1342f3">
+<span class="eqno">(10)<a class="headerlink" href="#equation-38acce7d-a2c7-4f78-8ff1-dec4dc1342f3" title="Permalink to this equation">#</a></span>\[\begin{equation}
 M = \int \rho(x) ds.
 \end{equation}\]</div>
 <p>The <span class="math notranslate nohighlight">\(x\)</span> position of the centroid can also be computed as</p>
-<div class="amsmath math notranslate nohighlight" id="equation-219f4906-530a-4cbb-ac90-82e6c4f12ddf">
-<span class="eqno">(11)<a class="headerlink" href="#equation-219f4906-530a-4cbb-ac90-82e6c4f12ddf" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-cb749c4a-7cfa-4cf6-a20a-cf02f56e4a47">
+<span class="eqno">(11)<a class="headerlink" href="#equation-cb749c4a-7cfa-4cf6-a20a-cf02f56e4a47" title="Permalink to this equation">#</a></span>\[\begin{equation}
 \overline x = \frac{\int x\rho ds}{\int \rho ds}
 \end{equation}\]</div>
 <ol class="arabic simple">

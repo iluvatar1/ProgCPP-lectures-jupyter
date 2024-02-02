@@ -1,13 +1,12 @@
 
-
 <!DOCTYPE html>
 
 
-<html lang="en" data-content_root="" >
+<html lang="en" data-content_root="../" >
 
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
     <title>Linear Systems : Matrices, Vectors, eigen systems &#8212; Introduction to C++ and Numerical Methods</title>
   
@@ -29,44 +28,48 @@
 <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.1/webfonts/fa-brands-400.woff2" />
 <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.1/webfonts/fa-regular-400.woff2" />
 
-    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
-    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
-    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=384b581d" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
     <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/styles.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css?v=0a3b3ea7" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles.css?v=03b9d5b1" />
   
   <!-- Pre-loaded scripts that we'll load fully later -->
   <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae" />
 <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae" />
   <script src="../_static/vendor/fontawesome/6.5.1/js/all.min.js?digest=8d27b9dea8ad943066ae"></script>
 
-    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
-    <script src="../_static/jquery.js"></script>
-    <script src="../_static/underscore.js"></script>
-    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
-    <script src="../_static/doctools.js"></script>
-    <script src="../_static/clipboard.min.js"></script>
-    <script src="../_static/copybutton.js"></script>
-    <script src="../_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script src="../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../_static/doctools.js?v=888ff710"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=efea14e4"></script>
     <script>let toggleHintShow = 'Click to show';</script>
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
-    <script src="../_static/togglebutton.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="../_static/togglebutton.js?v=4a39c7ea"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
-    <script src="../_static/design-tabs.js"></script>
+    <script src="../_static/design-tabs.js?v=36754332"></script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
 const thebe_selector = ".thebe,.cell"
 const thebe_selector_input = "pre"
 const thebe_selector_output = ".output, .cell_output"
 </script>
-    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <script async="async" src="../_static/sphinx-thebe.js?v=afe5de03"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
     <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = '07-LinearAlgebra/LinearAlgebraEigen';</script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="Ordinary differential equations (and initial value problems)" href="../08-ODE-IVP/InitialValueProblem.html" />
@@ -164,7 +167,18 @@ const thebe_selector_output = ".output, .cell_output"
   
   
 </a></div>
-        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn navbar-btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
     <div class="bd-toc-item navbar-nav active">
         
         <ul class="nav bd-sidenav bd-sidenav__home-link">
@@ -176,7 +190,7 @@ const thebe_selector_output = ".output, .cell_output"
         </ul>
         <p aria-level="2" class="caption" role="heading"><span class="caption-text">Introduction to C++</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="../01-IntroCPP/BasicCPP.html">Introduction to Programming and C++</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../01-IntroCPP/IntroProgrammingCourse.html">Introduction to Programming and C++</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../01-IntroCPP/Resources.html">Resources</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../01-IntroCPP/CPP-FastPacedIntro.html">Very fast intro to the basics of c++</a></li>
 </ul>
@@ -501,7 +515,7 @@ document.write(`
                 <article class="bd-article">
                   
   <section class="tex2jax_ignore mathjax_ignore" id="linear-systems-matrices-vectors-eigen-systems">
-<h1>Linear Systems : Matrices, Vectors, eigen systems<a class="headerlink" href="#linear-systems-matrices-vectors-eigen-systems" title="Permalink to this heading">#</a></h1>
+<h1>Linear Systems : Matrices, Vectors, eigen systems<a class="headerlink" href="#linear-systems-matrices-vectors-eigen-systems" title="Link to this heading">#</a></h1>
 <p>In this module we will learn how to solve linear systems which are very common in engineering and applied physics.</p>
 <p>Applications are numerous:</p>
 <ul class="simple">
@@ -534,7 +548,7 @@ document.write(`
 <p>Furthermore, for eigen values, please check
 https://www.youtube.com/watch?v=PFDu9oVAE-g&amp;t=0s</p>
 <section id="eigen-c">
-<h2>Eigen c++<a class="headerlink" href="#eigen-c" title="Permalink to this heading">#</a></h2>
+<h2>Eigen c++<a class="headerlink" href="#eigen-c" title="Link to this heading">#</a></h2>
 <p>Eigen is a C++ template library for linear algebra: matrices, vectors, numerical solvers, and related algorithms.</p>
 <ul class="simple">
 <li><p>http://eigen.tuxfamily.org/index.php?title=Main_Page</p></li>
@@ -542,11 +556,11 @@ https://www.youtube.com/watch?v=PFDu9oVAE-g&amp;t=0s</p>
 </ul>
 <p>Quick reference: https://eigen.tuxfamily.org/dox/group__QuickRefPage.html</p>
 <section id="solving-ax-b">
-<h3>Solving <span class="math notranslate nohighlight">\(Ax = b\)</span><a class="headerlink" href="#solving-ax-b" title="Permalink to this heading">#</a></h3>
+<h3>Solving <span class="math notranslate nohighlight">\(Ax = b\)</span><a class="headerlink" href="#solving-ax-b" title="Link to this heading">#</a></h3>
 <p>This is one of the archetypical problems in numerical algebra. You migh try to implement it by hand, but it will probable be not efficient, stable, etc (Remember https://nhigham.com/2022/10/11/seven-sins-of-numerical-linear-algebra/). Better to use a numerical library to do the heavy task for you.</p>
 </section>
 <section id="qr-decomposition">
-<h3>QR decomposition<a class="headerlink" href="#qr-decomposition" title="Permalink to this heading">#</a></h3>
+<h3>QR decomposition<a class="headerlink" href="#qr-decomposition" title="Link to this heading">#</a></h3>
 <p>In this example we are going to use eigen to solve the system using HouseHolder QR decomposition as done in http://eigen.tuxfamily.org/dox/group__TutorialLinearAlgebra.html . Please create a file with the following code, compile it and run it. You are supposed to have already installed eigen (the computer room and the binder machine both have it).</p>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp">#</span><span class="w"> </span><span class="cp">include</span><span class="w"> </span><span class="cpf">&lt;iostream&gt;</span>
 <span class="cp">#</span><span class="w"> </span><span class="cp">include</span><span class="w"> </span><span class="cpf">&lt;Eigen/Dense&gt;</span>
@@ -584,7 +598,7 @@ https://www.youtube.com/watch?v=PFDu9oVAE-g&amp;t=0s</p>
 <p>What do you get? is the optimized code faster than the original one? why? why not?</p>
 </section>
 <section id="installation-and-compilation-tips">
-<h3>Installation and compilation tips<a class="headerlink" href="#installation-and-compilation-tips" title="Permalink to this heading">#</a></h3>
+<h3>Installation and compilation tips<a class="headerlink" href="#installation-and-compilation-tips" title="Link to this heading">#</a></h3>
 <p>Try the following:</p>
 <ul>
 <li><p>Library installed at <code class="docutils literal notranslate"><span class="pre">/usr/include/eigen3</span></code> or <code class="docutils literal notranslate"><span class="pre">/usr/local/include/eigen3</span></code>: Then you need to tell the compiler where to find the headers</p>
@@ -609,15 +623,15 @@ https://www.youtube.com/watch?v=PFDu9oVAE-g&amp;t=0s</p>
 </ul>
 </section>
 <section id="exercise">
-<h3>Exercise<a class="headerlink" href="#exercise" title="Permalink to this heading">#</a></h3>
+<h3>Exercise<a class="headerlink" href="#exercise" title="Link to this heading">#</a></h3>
 <p>How to know that the solution is actuallya. solution of the original problem? design a criteria .</p>
 </section>
 <section id="id1">
-<h3>Exercise<a class="headerlink" href="#id1" title="Permalink to this heading">#</a></h3>
+<h3>Exercise<a class="headerlink" href="#id1" title="Link to this heading">#</a></h3>
 <p>Now create a random matrix and vector, of arbitrary size <code class="docutils literal notranslate"><span class="pre">N</span></code>, and measure the time to compute the solution as a function of <code class="docutils literal notranslate"><span class="pre">N</span></code>. Use <code class="docutils literal notranslate"><span class="pre">Eigen::MatrixXd</span> <span class="pre">A</span> <span class="pre">=</span> <span class="pre">Eigen::MatrixXd::Random(N,</span> <span class="pre">N);</span></code> and <code class="docutils literal notranslate"><span class="pre">std::chrono</span></code></p>
 </section>
 <section id="lu-decomposition">
-<h3>LU decomposition<a class="headerlink" href="#lu-decomposition" title="Permalink to this heading">#</a></h3>
+<h3>LU decomposition<a class="headerlink" href="#lu-decomposition" title="Link to this heading">#</a></h3>
 <p>THe LU decomposition os another tool we can use to solve the system (advantages? disadvantages?)</p>
 <p>Now implement the following solution and compare with the previous one? The only change you need is</p>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">Eigen</span><span class="o">::</span><span class="n">MatrixXd</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">A</span><span class="p">.</span><span class="n">fullPivLu</span><span class="p">().</span><span class="n">solve</span><span class="p">(</span><span class="n">b</span><span class="p">)</span>
@@ -640,22 +654,22 @@ https://www.youtube.com/watch?v=PFDu9oVAE-g&amp;t=0s</p>
 </section>
 </section>
 <section id="exercises">
-<h2>Exercises<a class="headerlink" href="#exercises" title="Permalink to this heading">#</a></h2>
+<h2>Exercises<a class="headerlink" href="#exercises" title="Link to this heading">#</a></h2>
 <section id="solving-simple-system">
-<h3>Solving simple system<a class="headerlink" href="#solving-simple-system" title="Permalink to this heading">#</a></h3>
+<h3>Solving simple system<a class="headerlink" href="#solving-simple-system" title="Link to this heading">#</a></h3>
 <p>Solve the system</p>
 <img alt="../_images/linear-example-01.png" class="centerimg50" src="../_images/linear-example-01.png" />
 </section>
 <section id="performance-between-qr-and-lu">
-<h3>Performance between QR and LU<a class="headerlink" href="#performance-between-qr-and-lu" title="Permalink to this heading">#</a></h3>
+<h3>Performance between QR and LU<a class="headerlink" href="#performance-between-qr-and-lu" title="Link to this heading">#</a></h3>
 <p>Compare the time between LU and QR decompositions on random matrices.</p>
 </section>
 <section id="solve-simple-system">
-<h3>Solve simple system<a class="headerlink" href="#solve-simple-system" title="Permalink to this heading">#</a></h3>
+<h3>Solve simple system<a class="headerlink" href="#solve-simple-system" title="Link to this heading">#</a></h3>
 <a class="reference internal image-reference" href="../_images/linear-example-03.png"><img alt="../_images/linear-example-03.png" src="../_images/linear-example-03.png" style="width: 600px;" /></a>
 </section>
 <section id="simulating-temperature">
-<h3>Simulating temperature<a class="headerlink" href="#simulating-temperature" title="Permalink to this heading">#</a></h3>
+<h3>Simulating temperature<a class="headerlink" href="#simulating-temperature" title="Link to this heading">#</a></h3>
 <ul class="simple">
 <li><p>Temperature discretized
 <img alt="../_images/linear-example-04-T.png" class="centerimg50" src="../_images/linear-example-04-T.png" /></p></li>
@@ -664,10 +678,10 @@ https://www.youtube.com/watch?v=PFDu9oVAE-g&amp;t=0s</p>
 </ul>
 </section>
 <section id="laplace-equation-in-2d">
-<h3>Laplace equation in 2D<a class="headerlink" href="#laplace-equation-in-2d" title="Permalink to this heading">#</a></h3>
+<h3>Laplace equation in 2D<a class="headerlink" href="#laplace-equation-in-2d" title="Link to this heading">#</a></h3>
 <p>When solving the laplace equation <span class="math notranslate nohighlight">\(\nabla V = 0\)</span> to compute the electrostatic potential on a planar region, you can discretize the derivatives on a grid   and then arrive to the following equation</p>
-<div class="amsmath math notranslate nohighlight" id="equation-8fc27e46-f5e5-426a-918a-0349362fb738">
-<span class="eqno">(20)<a class="headerlink" href="#equation-8fc27e46-f5e5-426a-918a-0349362fb738" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-c5ba6b03-484e-45ec-9b26-87d61a5fbecf">
+<span class="eqno">(20)<a class="headerlink" href="#equation-c5ba6b03-484e-45ec-9b26-87d61a5fbecf" title="Permalink to this equation">#</a></span>\[\begin{equation}
    V_{i+1,j} + V_{i-1,j} + V_{i,j+1} + V_{i,j-1} - 4V_{i,j} = 0.0.
    \end{equation}\]</div>
 <p>This can be written as a matrix problem. Solve the matrix problem for a
@@ -676,23 +690,23 @@ conditions, of Dirichlet type, are <span class="math notranslate nohighlight">\(
    V(0, y) = V(L, y) = 0.0\)</span>.</p>
 </section>
 <section id="vandermonde-determinant">
-<h3>Vandermonde determinant<a class="headerlink" href="#vandermonde-determinant" title="Permalink to this heading">#</a></h3>
+<h3>Vandermonde determinant<a class="headerlink" href="#vandermonde-determinant" title="Link to this heading">#</a></h3>
 <p>Compute the determinant of the [[https://en.wikipedia.org/wiki/Vandermonde_matrix][Vandermonde matrix]] of size <span class="math notranslate nohighlight">\(N\times N\)</span>.
 Measure the time as a function of <span class="math notranslate nohighlight">\(N\)</span>.</p>
 </section>
 <section id="condition-number">
-<h3>Condition number<a class="headerlink" href="#condition-number" title="Permalink to this heading">#</a></h3>
+<h3>Condition number<a class="headerlink" href="#condition-number" title="Link to this heading">#</a></h3>
 <p>Compute the condition number for an arbitrary matrix <span class="math notranslate nohighlight">\(A\)</span>. Apply it for the
 Vandermonde matrix. The condition number is defined as <span class="math notranslate nohighlight">\(\kappa(A)
    = |A^{-1}| |A|\)</span></p>
 </section>
 <section id="rotation-matrix">
-<h3>Rotation matrix<a class="headerlink" href="#rotation-matrix" title="Permalink to this heading">#</a></h3>
+<h3>Rotation matrix<a class="headerlink" href="#rotation-matrix" title="Link to this heading">#</a></h3>
 <p>Define a rotation matrix in 2d by an angle <span class="math notranslate nohighlight">\(\theta\)</span>. Apply it to a given
 vector and check that it is actually rotated.</p>
 </section>
 <section id="coupled-oscillators">
-<h3>Coupled oscillators<a class="headerlink" href="#coupled-oscillators" title="Permalink to this heading">#</a></h3>
+<h3>Coupled oscillators<a class="headerlink" href="#coupled-oscillators" title="Link to this heading">#</a></h3>
 <p>Imagine that you have two masses <span class="math notranslate nohighlight">\(m_1, m_2\)</span>, coupled through springs in the
 form wall-spring-mass-spring-mass-spring-wall. All spring are linear with
 constant <span class="math notranslate nohighlight">\(k\)</span>. Write the equations of motion, replace each solution with
@@ -701,10 +715,10 @@ amplitudes. Compute the eigen values and eigen-vectors. Those are the [[https://
 modes]] . Extend to n oscillators of the same mass.</p>
 </section>
 <section id="thick-lens-boas-3-15-9">
-<h3>Thick lens (Boas, 3.15.9)<a class="headerlink" href="#thick-lens-boas-3-15-9" title="Permalink to this heading">#</a></h3>
+<h3>Thick lens (Boas, 3.15.9)<a class="headerlink" href="#thick-lens-boas-3-15-9" title="Link to this heading">#</a></h3>
 <p>The next matrix is used when discussing a thick lens in air</p>
-<div class="amsmath math notranslate nohighlight" id="equation-b1fcb3d6-40a5-4694-b620-bf8bccc43ac6">
-<span class="eqno">(21)<a class="headerlink" href="#equation-b1fcb3d6-40a5-4694-b620-bf8bccc43ac6" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-3afb3c34-b776-42de-bd12-7872d29ec59e">
+<span class="eqno">(21)<a class="headerlink" href="#equation-3afb3c34-b776-42de-bd12-7872d29ec59e" title="Permalink to this equation">#</a></span>\[\begin{equation}
 A = 
 \begin{pmatrix}
 1 &amp; (n-1)/R_2\\
@@ -722,23 +736,23 @@ d/n &amp; 1
 <p>where <span class="math notranslate nohighlight">\(d\)</span> is the thickness of the lens, <span class="math notranslate nohighlight">\(n\)</span> is the refraction index, and <span class="math notranslate nohighlight">\(R_1\)</span> and <span class="math notranslate nohighlight">\(R_2\)</span> are the curvature radius. Element <span class="math notranslate nohighlight">\(A_{12}\)</span> is equal to <span class="math notranslate nohighlight">\(-1/f\)</span>, where <span class="math notranslate nohighlight">\(f\)</span> is the focal distance. Evaluate <span class="math notranslate nohighlight">\(\det A\)</span> and <span class="math notranslate nohighlight">\(1/f\)</span> as functions of <span class="math notranslate nohighlight">\(n \in [1, 3]\)</span>.</p>
 </section>
 <section id="products-production">
-<h3>Products production<a class="headerlink" href="#products-production" title="Permalink to this heading">#</a></h3>
+<h3>Products production<a class="headerlink" href="#products-production" title="Link to this heading">#</a></h3>
 <a class="reference internal image-reference" href="../_images/problem-05.png"><img alt="../_images/problem-05.png" src="../_images/problem-05.png" style="width: 300px;" /></a>
 </section>
 <section id="teaching-distribution">
-<h3>Teaching distribution<a class="headerlink" href="#teaching-distribution" title="Permalink to this heading">#</a></h3>
+<h3>Teaching distribution<a class="headerlink" href="#teaching-distribution" title="Link to this heading">#</a></h3>
 <a class="reference internal image-reference" href="../_images/problem-06.png"><img alt="../_images/problem-06.png" src="../_images/problem-06.png" style="width: 300px;" /></a>
 </section>
 <section id="payments">
-<h3>Payments<a class="headerlink" href="#payments" title="Permalink to this heading">#</a></h3>
+<h3>Payments<a class="headerlink" href="#payments" title="Link to this heading">#</a></h3>
 <a class="reference internal image-reference" href="../_images/problem-08.png"><img alt="../_images/problem-08.png" src="../_images/problem-08.png" style="width: 300px;" /></a>
 </section>
 </section>
 <section id="eigen-vectors-and-eigen-values">
-<h2>Eigen vectors and eigen values<a class="headerlink" href="#eigen-vectors-and-eigen-values" title="Permalink to this heading">#</a></h2>
+<h2>Eigen vectors and eigen values<a class="headerlink" href="#eigen-vectors-and-eigen-values" title="Link to this heading">#</a></h2>
 <p>Eigen-values (<span class="math notranslate nohighlight">\(\lambda\)</span>) and eigen-vectors (<span class="math notranslate nohighlight">\(\vec v\)</span>) of a matrix <span class="math notranslate nohighlight">\(A\)</span> fulfill the following equation</p>
-<div class="amsmath math notranslate nohighlight" id="equation-72a22157-55bd-451e-a49a-bf6010dbe079">
-<span class="eqno">(22)<a class="headerlink" href="#equation-72a22157-55bd-451e-a49a-bf6010dbe079" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-8c019807-26d3-400b-92a5-b93808bca79b">
+<span class="eqno">(22)<a class="headerlink" href="#equation-8c019807-26d3-400b-92a5-b93808bca79b" title="Permalink to this equation">#</a></span>\[\begin{equation}
 A\vec v = \lambda \vec v,
 \end{equation}\]</div>
 <p>and are extensively use in physics, statistics, computational methods, etc (see https://en.wikipedia.org/wiki/Eigenvalues_and_eigenvectors?useskin=vector). For example, they are use to compute (https://en.wikipedia.org/wiki/Eigenvalues_and_eigenvectors?useskin=vector#Applications):</p>
@@ -750,8 +764,8 @@ A\vec v = \lambda \vec v,
   </div>
 </li>
 <li><p>Diagonalization basis for matrices: Given a matrix <span class="math notranslate nohighlight">\(A\)</span>, and the matrix <span class="math notranslate nohighlight">\(P\)</span> whose column vectors are the eigenvectors of <span class="math notranslate nohighlight">\(A\)</span>, then one can apply a basis trnasformation, to move to the eigen-vector matrices, and obtain a diagonal matrix <span class="math notranslate nohighlight">\(D\)</span> (whose elements are the eigen values of <span class="math notranslate nohighlight">\(A\)</span>), as</p>
-<div class="amsmath math notranslate nohighlight" id="equation-552ceb3e-4b04-431a-a793-5641f0fbf49b">
-<span class="eqno">(23)<a class="headerlink" href="#equation-552ceb3e-4b04-431a-a793-5641f0fbf49b" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-89e6c2b1-09cf-474d-87e7-05be1608598c">
+<span class="eqno">(23)<a class="headerlink" href="#equation-89e6c2b1-09cf-474d-87e7-05be1608598c" title="Permalink to this equation">#</a></span>\[\begin{equation}
     D = P^{-1}AP
     \end{equation}\]</div>
   <div style="text-align: center;">
@@ -790,7 +804,7 @@ A\vec v = \lambda \vec v,
   </div></li>
 </ul>
 <section id="solving-a-general-eigen-value-problem-with-eigen-c">
-<h3>Solving a general eigen value problem with eigen c++<a class="headerlink" href="#solving-a-general-eigen-value-problem-with-eigen-c" title="Permalink to this heading">#</a></h3>
+<h3>Solving a general eigen value problem with eigen c++<a class="headerlink" href="#solving-a-general-eigen-value-problem-with-eigen-c" title="Link to this heading">#</a></h3>
 <p>Following the documentation of the general eigen solver,
 https://eigen.tuxfamily.org/dox/classEigen_1_1EigenSolver.html, we can use the
 example to show how it works:</p>
@@ -832,25 +846,25 @@ example to show how it works:</p>
 <p>Please compile and run it. This is a very general example and cam be simplified for specific matrices (hermitian) to improve efficiency.</p>
 </section>
 <section id="exercises-for-eigen-systems">
-<h3>Exercises for eigen systems<a class="headerlink" href="#exercises-for-eigen-systems" title="Permalink to this heading">#</a></h3>
+<h3>Exercises for eigen systems<a class="headerlink" href="#exercises-for-eigen-systems" title="Link to this heading">#</a></h3>
 <section id="eigen-values-hilbert-matrix">
-<h4>Eigen values Hilbert matrix<a class="headerlink" href="#eigen-values-hilbert-matrix" title="Permalink to this heading">#</a></h4>
+<h4>Eigen values Hilbert matrix<a class="headerlink" href="#eigen-values-hilbert-matrix" title="Link to this heading">#</a></h4>
 <p>Compute the eigen values and the condition number for the https://en.wikipedia.org/wiki/Hilbert_matrix.</p>
 </section>
 <section id="power-method-and-eigen-values">
-<h4>Power method and eigen values<a class="headerlink" href="#power-method-and-eigen-values" title="Permalink to this heading">#</a></h4>
+<h4>Power method and eigen values<a class="headerlink" href="#power-method-and-eigen-values" title="Link to this heading">#</a></h4>
 <p>Apply the https://en.wikipedia.org/wiki/Power_iteration to compute the maximum eigen value of the Vandermonde
 matrix (or any other matrix).</p>
 </section>
 <section id="power-of-a-matrix">
-<h4>Power of a matrix<a class="headerlink" href="#power-of-a-matrix" title="Permalink to this heading">#</a></h4>
+<h4>Power of a matrix<a class="headerlink" href="#power-of-a-matrix" title="Link to this heading">#</a></h4>
 <p>Given a matrix <span class="math notranslate nohighlight">\(A\)</span>, one can compute easily <span class="math notranslate nohighlight">\(A^k\)</span> using diagonalization: <span class="math notranslate nohighlight">\(A^k = (PDP^{-1})^k = PDP^{-1}PDP^{-1} ... PDP^{-1} = PD^{k}P^{-1}\)</span>, where <span class="math notranslate nohighlight">\(D^k\)</span> is just raising the eigen values to the given k power. Implement this in a function that receives an eigen matrix and a power k and returns the corresponding result.</p>
 </section>
 <section id="checking-stability-heath-scientific-computing">
-<h4>Checking stability (Heath, scientific computing)<a class="headerlink" href="#checking-stability-heath-scientific-computing" title="Permalink to this heading">#</a></h4>
+<h4>Checking stability (Heath, scientific computing)<a class="headerlink" href="#checking-stability-heath-scientific-computing" title="Link to this heading">#</a></h4>
 <p>Compute the eigen values of the matrix</p>
-<div class="amsmath math notranslate nohighlight" id="equation-bb5de83b-4e85-4b85-ab70-3deecac5a5f9">
-<span class="eqno">(24)<a class="headerlink" href="#equation-bb5de83b-4e85-4b85-ab70-3deecac5a5f9" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-ae905203-9a06-4308-8b05-88de94ca325e">
+<span class="eqno">(24)<a class="headerlink" href="#equation-ae905203-9a06-4308-8b05-88de94ca325e" title="Permalink to this equation">#</a></span>\[\begin{equation}
 A = 
 \begin{pmatrix}
 9 &amp; 4.5 &amp; 3\\
@@ -861,15 +875,15 @@ A =
 <p>Then do it again, but change the 19 to 18.95. What is the relative change in the eigen values magnitudes? Do the same changing it to 19.05. Can you draw any conclusion about this? can you devise a condition number to characterize this?</p>
 </section>
 <section id="markov-chain-heath-scientific-computing">
-<h4>Markov chain (Heath, Scientific Computing)<a class="headerlink" href="#markov-chain-heath-scientific-computing" title="Permalink to this heading">#</a></h4>
+<h4>Markov chain (Heath, Scientific Computing)<a class="headerlink" href="#markov-chain-heath-scientific-computing" title="Link to this heading">#</a></h4>
 <p>A Markov chain is a representation of a Markov process, which, in turns, is a random process with no memory: the current state depends only on the previous one and no more. The probability of a transition from state j to state i is given by <span class="math notranslate nohighlight">\(a_{ij}\)</span>,where <span class="math notranslate nohighlight">\(0 \le a_{ij} \le 1\)</span> and <span class="math notranslate nohighlight">\(\sum_{i=1}^n a_{ij} =1\)</span>. Let <span class="math notranslate nohighlight">\(A\)</span> denote the matrix of transition probabilities, and let <span class="math notranslate nohighlight">\(x^{(k)}\)</span> denote the probability that the system is  in state <span class="math notranslate nohighlight">\(i\)</span> after transition <span class="math notranslate nohighlight">\(k\)</span>. If the initial probability distribution vector is <span class="math notranslate nohighlight">\(x^{(0)}\)</span>, then the probability distribution vector after <span class="math notranslate nohighlight">\(k\)</span> steps is given by</p>
-<div class="amsmath math notranslate nohighlight" id="equation-2ee47945-3474-4a11-9048-69e3e630eabc">
-<span class="eqno">(25)<a class="headerlink" href="#equation-2ee47945-3474-4a11-9048-69e3e630eabc" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-32d9787c-8e91-4339-afbe-de636b155d97">
+<span class="eqno">(25)<a class="headerlink" href="#equation-32d9787c-8e91-4339-afbe-de636b155d97" title="Permalink to this equation">#</a></span>\[\begin{equation}
 x^{(k)} = A x^{(k-1)} = A^k x^{(0)}.
 \end{equation}\]</div>
 <p>Consider the matrix</p>
-<div class="amsmath math notranslate nohighlight" id="equation-01bd1cdf-3ea4-42b4-a64d-3342b8bd59d1">
-<span class="eqno">(26)<a class="headerlink" href="#equation-01bd1cdf-3ea4-42b4-a64d-3342b8bd59d1" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-bd3ae757-e1c3-4462-b966-4a27114ccaef">
+<span class="eqno">(26)<a class="headerlink" href="#equation-bd3ae757-e1c3-4462-b966-4a27114ccaef" title="Permalink to this equation">#</a></span>\[\begin{equation}
 A = 
 \begin{pmatrix}
 0.8 &amp; 0.2 &amp; 0.1\\
@@ -903,21 +917,21 @@ A =
 \end{equation}
 whose eigen values are 1 --></section>
 <section id="todo-matrix-exponential-from-taylor-expansion">
-<h4>TODO Matrix exponential from taylor expansion<a class="headerlink" href="#todo-matrix-exponential-from-taylor-expansion" title="Permalink to this heading">#</a></h4>
+<h4>TODO Matrix exponential from taylor expansion<a class="headerlink" href="#todo-matrix-exponential-from-taylor-expansion" title="Link to this heading">#</a></h4>
 </section>
 <section id="todo-normal-modes">
-<h4>TODO Normal modes<a class="headerlink" href="#todo-normal-modes" title="Permalink to this heading">#</a></h4>
+<h4>TODO Normal modes<a class="headerlink" href="#todo-normal-modes" title="Link to this heading">#</a></h4>
 </section>
 </section>
 <section id="other-eigen-tools">
-<h3>Other eigen tools<a class="headerlink" href="#other-eigen-tools" title="Permalink to this heading">#</a></h3>
+<h3>Other eigen tools<a class="headerlink" href="#other-eigen-tools" title="Link to this heading">#</a></h3>
 <ul class="simple">
 <li><p>http://eigen.tuxfamily.org/dox/group__Sparse__chapter.html</p></li>
 <li><p>http://eigen.tuxfamily.org/dox/group__Geometry__chapter.html</p></li>
 </ul>
 </section>
 <section id="eigen-arrays-coefficient-wise-computation">
-<h3>Eigen arrays: coefficient wise computation<a class="headerlink" href="#eigen-arrays-coefficient-wise-computation" title="Permalink to this heading">#</a></h3>
+<h3>Eigen arrays: coefficient wise computation<a class="headerlink" href="#eigen-arrays-coefficient-wise-computation" title="Link to this heading">#</a></h3>
 <p>This library also implements element-wise operations and data structs,
 https://eigen.tuxfamily.org/dox/group__TutorialArrayClass.html ,
 https://eigen.tuxfamily.org/dox/group__QuickRefPage.html#title6 . There are many
@@ -982,20 +996,20 @@ overloaded operations that you can use. Plase check the docs.</p>
 </div>
 </section>
 <section id="id2">
-<h3>Exercises<a class="headerlink" href="#id2" title="Permalink to this heading">#</a></h3>
+<h3>Exercises<a class="headerlink" href="#id2" title="Link to this heading">#</a></h3>
 <section id="filtering-data">
-<h4>Filtering data<a class="headerlink" href="#filtering-data" title="Permalink to this heading">#</a></h4>
+<h4>Filtering data<a class="headerlink" href="#filtering-data" title="Link to this heading">#</a></h4>
 <p>Create N=1000 points between 0
 and <span class="math notranslate nohighlight">\(2\pi\)</span>, then compute the <span class="math notranslate nohighlight">\(\sin\)</span> of those numbers, and finally print only the values that fulfill that
 <span class="math notranslate nohighlight">\(|\sin x| \le 0.5\)</span>. All of this without using loops.</p>
 </section>
 <section id="md-simulation">
-<h4>MD simulation<a class="headerlink" href="#md-simulation" title="Permalink to this heading">#</a></h4>
+<h4>MD simulation<a class="headerlink" href="#md-simulation" title="Link to this heading">#</a></h4>
 <p>If you discretize time in steps of size <span class="math notranslate nohighlight">\(\delta t\)</span>, and you have the forces on
 a given ideal particle, you can compute the next position using the Euler
 algorithm,</p>
-<div class="amsmath math notranslate nohighlight" id="equation-fce838ac-5057-45d8-85dd-55080956969d">
-<span class="eqno">(27)<a class="headerlink" href="#equation-fce838ac-5057-45d8-85dd-55080956969d" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-07165402-9a66-4717-992a-e8b98a816934">
+<span class="eqno">(27)<a class="headerlink" href="#equation-07165402-9a66-4717-992a-e8b98a816934" title="Permalink to this equation">#</a></span>\[\begin{align}
     \vec R(t+\delta t) &amp;= \vec R(t) + \delta t \vec V(t),\\
     \vec V(t + \delta t) &amp;= \vec V(t) + \delta t \vec F(t)/m.\\
    \end{align}\]</div>
