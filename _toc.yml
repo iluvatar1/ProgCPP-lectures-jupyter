@@ -10,7 +10,7 @@ parts:
   - caption: "Introduction to C++"
     numbered: false
     chapters:
-    - file: 01-IntroCPP/BasicCPP.ipynb
+    - file: 01-IntroCPP/IntroProgrammingCourse.ipynb
     - file: 01-IntroCPP/Resources.ipynb
     - file: 01-IntroCPP/CPP-FastPacedIntro.ipynb
   - caption: "Numerical Calculus"
