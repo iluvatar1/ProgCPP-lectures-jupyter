@@ -507,6 +507,7 @@ document.write(`
 <p>The main idea at the end of this course is to be able to program something like https://www.youtube.com/watch?v=lS_qeBy3aQI, where more complex systems are available https://flyover.github.io/box2d.ts/testbed/</p>
 <p>C++ allows you to really exploit your computational resources:
 https://computers-are-fast.github.io/</p>
+<p>Also, if you want to know more about a computer, please check https://www.youtube.com/watch?v=d86ws7mQYIg</p>
 <div style="text-align: center;">
     <img src="https://global-uploads.webflow.com/5d0dc87aac109e1ffdbe379c/60c747b9e5f372c3bc2cfb12_pieT5veoNqVqJjagsCTj8_Cg1zDJTJDUF5mlKj0SaHM4MHCp2EGw6TwkBWEQEFd5qg0GAbAIBgJss6tjDvvng_Tk6gse8dRQrstEBaL9lq8BdZ54523gEQPROzireFIDMMRk20k.png" alt="Image Description" width="600">
     <figcaption>From: "https://global-uploads.webflow.com/5d0dc87aac109e1ffdbe379c/60c747b9e5f372c3bc2cfb12_pieT5veoNqVqJjagsCTj8_Cg1zDJTJDUF5mlKj0SaHM4MHCp2EGw6TwkBWEQEFd5qg0GAbAIBgJss6tjDvvng_Tk6gse8dRQrstEBaL9lq8BdZ54523gEQPROzireFIDMMRk20k.png"</figcaption>
@@ -514,6 +515,14 @@ https://computers-are-fast.github.io/</p>
 <div style="text-align: center;">
     <img src="https://miro.medium.com/v2/resize:fit:1400/format:webp/0*yutZoDvzTWDJtx_s.png" alt="Image Description" width="600">
     <figcaption>From: "https://educative-inc.medium.com/c-is-a-good-first-language-to-learn-646297e765ea"</figcaption>
+</div>
+<div style="text-align: center;">
+    <img src="https://media.springernature.com/full/springer-static/image/art%3A10.1186%2F1751-0473-7-5/MediaObjects/13029_2012_Article_73_Fig1_HTML.jpg" alt="Image Description" width="600">
+    <figcaption>From: "https://media.springernature.com/full/springer-static/image/art%3A10.1186%2F1751-0473-7-5/MediaObjects/13029_2012_Article_73_Fig1_HTML.jpg"</figcaption>
+</div>
+<div style="text-align: center;">
+    <img src="https://media.springernature.com/m685/springer-static/image/art%3A10.1038%2Fs41550-020-1208-y/MediaObjects/41550_2020_1208_Fig3_HTML.png" alt="Image Description" width="600">
+    <figcaption>From: "https://media.springernature.com/m685/springer-static/image/art%3A10.1038%2Fs41550-020-1208-y/MediaObjects/41550_2020_1208_Fig3_HTML.png"</figcaption>
 </div>
 <p>Here is an <a class="reference external" href="https://en.wikipedia.org/wiki/Outline_of_C%2B%2B?useskin=vector">outline</a></p>
 <section id="typical-basic-workflow">
@@ -596,69 +605,25 @@ Now we will compile with the compiler <code class="docutils literal notranslate"
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>g++<span class="w"> </span>helloworld.cpp
 </pre></div>
 </div>
-<p>You have terminals available in a local or remote linux installation, in vscode in a code space, in binder, but not in google collab. There you need to either pay to have a terminal (is not that expensive), or just run a cell prepending <code class="docutils literal notranslate"><span class="pre">!</span></code> as the following</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span>g++<span class="w"> </span>helloworld.cpp
+<p>You have terminals available in a local or remote linux installation, in vscode in a code space, in binder, but not in google collab. There you need to either pay to have a terminal (is not that expensive), or just run a cell prepending <code class="docutils literal notranslate"><span class="pre">!</span></code> as follows</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>!g++<span class="w"> </span>helloworld.cpp
 </pre></div>
 </div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class=" -Color -Color-Bold">cc1plus:</span> <span class=" -Color -Color-Bold -Color-Bold-Red">fatal error: </span>helloworld.cpp: No such file or directory
-compilation terminated.
+<p>This produces the executable <code class="docutils literal notranslate"><span class="pre">a.out</span></code> (you can change the name using the compilation flag <code class="docutils literal notranslate"><span class="pre">-o</span> <span class="pre">name.x</span></code>), as</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>g++<span class="w"> </span>helloworld.cpp<span class="w"> </span>-o<span class="w"> </span>hello.x
 </pre></div>
 </div>
-</div>
-</div>
-<p>This produces the executable <code class="docutils literal notranslate"><span class="pre">a.out</span></code></p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span>ls
+<p>You can check the contents of the current dir with</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>ls
 </pre></div>
 </div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CPP-FastPacedIntro.ipynb      a.out		    test_primes.cpp
-IntroProgrammingCourse.ipynb  avg.cpp
-Resources.ipynb		      small_prime_test.cpp
-</pre></div>
-</div>
-</div>
-</div>
-<p>But we can generate any other executable name as</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span>g++<span class="w"> </span>helloworld.cpp<span class="w"> </span>-o<span class="w"> </span>hello.x
-<span class="o">!</span>ls
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class=" -Color -Color-Bold">cc1plus:</span> <span class=" -Color -Color-Bold -Color-Bold-Red">fatal error: </span>helloworld.cpp: No such file or directory
-compilation terminated.
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CPP-FastPacedIntro.ipynb      a.out		    test_primes.cpp
-IntroProgrammingCourse.ipynb  avg.cpp
-Resources.ipynb		      small_prime_test.cpp
-</pre></div>
-</div>
-</div>
-</div>
+<p>(remeber to prepend a <code class="docutils literal notranslate"><span class="pre">!</span></code> if you are using collab)</p>
 <p><strong>Step 3: Execute</strong>
 To execute, we need to specify the path to the executable. We are going to use the symbol ‘./’, which means the current directory</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span>./hello.x
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>./hello.x
 </pre></div>
 </div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/usr/bin/sh: 1: ./hello.x: not found
-</pre></div>
-</div>
-</div>
-</div>
+<p>(or <code class="docutils literal notranslate"><span class="pre">./a.out</span></code>)</p>
 <p>Congratulation! Now you are a c++ developer … not so fast!</p>
 </section>
 <section id="understanding-helloworld">

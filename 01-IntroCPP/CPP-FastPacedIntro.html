@@ -470,6 +470,7 @@ document.write(`
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Exercise</a></li>
 </ul>
 </li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#functions">Functions</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#conditionals">Conditionals</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercises">Exercises</a></li>
 </ul>
@@ -486,7 +487,7 @@ document.write(`
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">Exercises</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#functions">Functions</a><ul class="nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#functions-again">Functions again</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">Exercises</a></li>
 </ul>
 </li>
@@ -535,36 +536,15 @@ document.write(`
 </pre></div>
 </div>
 <p>Please write it in a file called <code class="docutils literal notranslate"><span class="pre">minimal.cpp</span></code>. Now compile it and run it. Notice that now we are giving it a name for the executable:</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span>g++<span class="w"> </span>-std<span class="o">=</span>c++17<span class="w"> </span>minimal.cpp<span class="w"> </span>-o<span class="w"> </span>minimal.x
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>g++<span class="w"> </span>-std<span class="o">=</span>c++17<span class="w"> </span>minimal.cpp<span class="w"> </span>-o<span class="w"> </span>minimal.x
+./minimal.x
 </pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class=" -Color -Color-Bold">cc1plus:</span> <span class=" -Color -Color-Bold -Color-Bold-Red">fatal error: </span>minimal.cpp: No such file or directory
-compilation terminated.
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span>./minimal.x
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/usr/bin/sh: 1: ./minimal.x: not found
-</pre></div>
-</div>
-</div>
 </div>
 <p><strong>Exercises</strong></p>
 <ul>
 <li><p>What happens if you remove the return statement?</p></li>
 <li><p>After running the executable, check the status of the command in the shell by using the following instruction</p>
-<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span><span class="nb">echo</span><span class="w"> </span><span class="nv">$?</span>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">echo</span><span class="w"> </span><span class="nv">$?</span>
 </pre></div>
 </div>
 </li>
@@ -578,7 +558,10 @@ compilation terminated.
     <img src="https://hackingcpp.com/cpp/lang/variables_crop.svg" alt="Image Description" width="600">
     <figcaption>From: "https://hackingcpp.com/cpp/lang/variables_crop.svg"</figcaption>
 </div>
-<section id="exercise">
+<div style="text-align: center;">
+    <img src="https://hackingcpp.com/cs/number_representations_crop.png" alt="Image Description" width="800">
+    <figcaption>From: "https://hackingcpp.com/cs/number_representations_crop.png"</figcaption>
+</div><section id="exercise">
 <h3>Exercise<a class="headerlink" href="#exercise" title="Link to this heading">#</a></h3>
 <ul>
 <li><p>Create a program that declares a variable of type</p>
@@ -622,15 +605,44 @@ compilation terminated.
 <h2>Operators<a class="headerlink" href="#operators" title="Link to this heading">#</a></h2>
 <section id="arithmetic">
 <h3>Arithmetic<a class="headerlink" href="#arithmetic" title="Link to this heading">#</a></h3>
-<p>You have <code class="docutils literal notranslate"><span class="pre">=,</span> <span class="pre">+,</span> <span class="pre">-,</span> <span class="pre">*,</span> <span class="pre">/,</span> <span class="pre">%,</span> <span class="pre">-=,</span> <span class="pre">+=,</span> <span class="pre">*=,</span> <span class="pre">/=,</span> <span class="pre">++,</span> <span class="pre">--</span></code></p>
+<p>Example: <code class="docutils literal notranslate"><span class="pre">=,</span> <span class="pre">+,</span> <span class="pre">-,</span> <span class="pre">*,</span> <span class="pre">/,</span> <span class="pre">%,</span> <span class="pre">-=,</span> <span class="pre">+=,</span> <span class="pre">*=,</span> <span class="pre">/=,</span> <span class="pre">++,</span> <span class="pre">--</span></code></p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">int</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">10</span><span class="p">,</span><span class="w"> </span><span class="n">b</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">20</span><span class="p">,</span><span class="w"> </span><span class="n">c</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span>
+<span class="n">a</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">b</span><span class="p">;</span><span class="w"> </span><span class="c1">// assigns b value to a value</span>
+<span class="n">a</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">b</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">60</span><span class="p">;</span><span class="w"> </span><span class="c1">// adds 60 to b value, then assigns that value to a</span>
+<span class="n">a</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="mi">60</span><span class="p">;</span><span class="w"> </span><span class="c1">// same as previous</span>
+<span class="n">a</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">2</span><span class="o">*</span><span class="n">b</span><span class="p">;</span><span class="w"> </span><span class="c1">// multiplication. Here same as a *= b;</span>
+<span class="n">a</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">b</span><span class="o">/</span><span class="mi">3</span><span class="p">;</span><span class="w"> </span><span class="c1">// division, notice truncation for integers. a /= 3;</span>
+<span class="n">a</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">b</span><span class="o">%</span><span class="mi">7</span><span class="p">;</span><span class="w"> </span><span class="c1">// modulo operator, residue</span>
+<span class="n">a</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">10</span><span class="p">;</span>
+<span class="n">b</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">20</span><span class="p">;</span><span class="w"> </span>
+<span class="n">a</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">b</span><span class="o">++</span><span class="p">;</span><span class="w"> </span><span class="c1">// post increment</span>
+<span class="n">a</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">10</span><span class="p">;</span>
+<span class="n">b</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">20</span><span class="p">;</span><span class="w"> </span>
+<span class="n">a</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">++</span><span class="n">b</span><span class="p">;</span><span class="w"> </span><span class="c1">// pre increment</span>
+</pre></div>
+</div>
 </section>
 <section id="comparison">
 <h3>Comparison<a class="headerlink" href="#comparison" title="Link to this heading">#</a></h3>
 <p>You have <code class="docutils literal notranslate"><span class="pre">==,</span> <span class="pre">!=,</span> <span class="pre">&gt;,</span> <span class="pre">&gt;=,</span> <span class="pre">&lt;,</span> <span class="pre">&lt;=</span></code></p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">int</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">10</span><span class="p">,</span><span class="w"> </span><span class="n">b</span><span class="o">=</span><span class="w"> </span><span class="mi">20</span><span class="p">;</span>
+<span class="kt">bool</span><span class="w"> </span><span class="n">result</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">true</span><span class="p">;</span>
+<span class="n">result</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">b</span><span class="p">;</span><span class="w"> </span><span class="c1">// is a value equal to b value</span>
+<span class="n">result</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="n">b</span><span class="p">;</span><span class="w"> </span><span class="c1">// is a value different than b value</span>
+<span class="n">result</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="n">b</span><span class="p">;</span><span class="w"> </span><span class="c1">// is a value les or equal to b value</span>
+</pre></div>
+</div>
 </section>
 <section id="logic">
 <h3>Logic<a class="headerlink" href="#logic" title="Link to this heading">#</a></h3>
 <p>You have <code class="docutils literal notranslate"><span class="pre">&amp;&amp;,</span> <span class="pre">and,</span> <span class="pre">||,</span> <span class="pre">or,</span> <span class="pre">!,</span> <span class="pre">not,</span> <span class="pre">&amp;,</span> <span class="pre">|</span></code></p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">int</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">10</span><span class="p">,</span><span class="w"> </span><span class="n">b</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">20</span><span class="p">;</span>
+<span class="kt">bool</span><span class="w"> </span><span class="n">result</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">false</span><span class="p">;</span><span class="w"> </span>
+<span class="n">result</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">a</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">b</span><span class="p">)</span><span class="w"> </span><span class="k">and</span><span class="w"> </span><span class="p">(</span><span class="mi">3</span><span class="o">*</span><span class="n">a</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">b</span><span class="p">);</span><span class="w"> </span><span class="c1">// and , &amp;&amp; , at value level</span>
+<span class="n">result</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">a</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">b</span><span class="p">)</span><span class="w"> </span><span class="k">or</span><span class="w"> </span><span class="p">(</span><span class="mi">3</span><span class="o">*</span><span class="n">a</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">b</span><span class="p">);</span><span class="w"> </span><span class="c1">// or, ||, at calue level</span>
+<span class="kt">int</span><span class="w"> </span><span class="n">c</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">b</span><span class="p">;</span><span class="w"> </span><span class="c1">// at bits value</span>
+</pre></div>
+</div>
 </section>
 <section id="precedence">
 <h3>Precedence<a class="headerlink" href="#precedence" title="Link to this heading">#</a></h3>
@@ -639,12 +651,45 @@ compilation terminated.
 <section id="id1">
 <h3>Exercise<a class="headerlink" href="#id1" title="Link to this heading">#</a></h3>
 <ul class="simple">
-<li><p>Write a program that shows examples for the arithmetic operators</p></li>
-<li><p>Write a program that shows examples for the comparison operators</p></li>
-<li><p>Write a program that shows examples for the logic operators.</p></li>
+<li><p>Write a program that shows examples for the arithmetic operators. Use a simple function (the main function must just call it).</p></li>
+<li><p>Write a program that shows examples for the comparison operators. Use a simple function (the main function must just call it).</p></li>
+<li><p>Write a program that shows examples for the logic operators. Use a simple function (the main function must just call it).</p></li>
 <li><p>Facebook genius: What is the result of <code class="docutils literal notranslate"><span class="pre">6*2/3+1</span></code>? Make your prediction and then compute it.</p></li>
 </ul>
 </section>
+</section>
+<section id="functions">
+<h2>Functions<a class="headerlink" href="#functions" title="Link to this heading">#</a></h2>
+<p>See: https://hackingcpp.com/cpp/lang/function_basics.html</p>
+<p>Functions are of fundamental importance. They allow to encapsulate the implementation details and to create modular and more maintainable programs. Each function must do one thing well. Using functions also allows the program to be tested, profiled, and extended. Form now on, will keep clean the <code class="docutils literal notranslate"><span class="pre">main</span></code> function, and use it to call other functions.</p>
+<div style="text-align: center;">
+    <img src="https://hackingcpp.com/cpp/lang/function_terminology.svg" alt="Image Description" width="800">
+    <figcaption>From: "https://hackingcpp.com/cpp/lang/function_terminology.svg"</figcaption>
+</div>
+<p>There are many more details about functions, like passing by value/reference, return types, overloading, templates, lambdas, …, but we will learn those details on the run. Please write the following code</p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;iostream&gt;</span>
+
+<span class="c1">// function declaration: name and types</span>
+<span class="kt">double</span><span class="w"> </span><span class="nf">average</span><span class="p">(</span><span class="kt">double</span><span class="w"> </span><span class="n">a</span><span class="p">,</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="n">b</span><span class="p">);</span><span class="w"> </span><span class="c1">// a and b are LOCAL variables</span>
+
+<span class="c1">// main function. Execution starts here</span>
+<span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">argc</span><span class="p">,</span><span class="w"> </span><span class="kt">char</span><span class="w"> </span><span class="o">**</span><span class="n">argv</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kt">double</span><span class="w"> </span><span class="n">x</span><span class="p">{</span><span class="mf">2.35</span><span class="p">};</span>
+<span class="w">    </span><span class="kt">double</span><span class="w"> </span><span class="n">y</span><span class="p">{</span><span class="mf">4.987</span><span class="p">};</span>
+<span class="w">    </span><span class="kt">double</span><span class="w"> </span><span class="n">avg</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">average</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="p">);</span><span class="w"> </span><span class="c1">// x value copied to a, y value copied to b, result of calling assigned to avg</span>
+<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;avg: &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">avg</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">;</span>
+<span class="w">    </span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="c1">// function implementation: how it does that</span>
+<span class="kt">double</span><span class="w"> </span><span class="nf">average</span><span class="p">(</span><span class="kt">double</span><span class="w"> </span><span class="n">a</span><span class="p">,</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="n">b</span><span class="p">)</span><span class="w"> </span>
+<span class="p">{</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="p">(</span><span class="n">a</span><span class="o">+</span><span class="n">b</span><span class="p">)</span><span class="o">/</span><span class="mi">2</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Compile it and run it. From now on try to use functions all the time.</p>
 </section>
 <section id="conditionals">
 <h2>Conditionals<a class="headerlink" href="#conditionals" title="Link to this heading">#</a></h2>
@@ -716,7 +761,15 @@ graph LR
 (Please notice that the goal here is to learn if/else and the modulo operator, but the reading interactively is something not advisable)</p>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;iostream&gt;</span>
 
+<span class="kt">void</span><span class="w"> </span><span class="nf">read_check_even_odd</span><span class="p">(</span><span class="kt">void</span><span class="p">);</span>
+
 <span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">argc</span><span class="p">,</span><span class="w"> </span><span class="kt">char</span><span class="w"> </span><span class="o">**</span><span class="n">argv</span><span class="p">)</span>
+<span class="p">{</span>
+<span class="w">  </span><span class="n">read_check_even_odd</span><span class="p">();</span>
+<span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kt">void</span><span class="w"> </span><span class="nf">read_check_even_odd</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span>
 <span class="p">{</span>
 <span class="w">  </span><span class="kt">int</span><span class="w"> </span><span class="n">num</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
 
@@ -740,32 +793,10 @@ graph LR
 <span class="w">  </span><span class="c1">//else {</span>
 <span class="w">  </span><span class="c1">//cout &lt;&lt; &quot;El numero es impar&quot; &lt;&lt; endl;</span>
 <span class="w">  </span><span class="c1">//}</span>
-
-<span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
 <span class="p">}</span>
 </pre></div>
 </div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span>g++<span class="w"> </span>even_odd.cpp<span class="w"> </span>-o<span class="w"> </span>even_odd.x
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class=" -Color -Color-Bold">cc1plus:</span> <span class=" -Color -Color-Bold -Color-Bold-Red">fatal error: </span>even_odd.cpp: No such file or directory
-compilation terminated.
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Do not run this here, it will hang waiting for inputing the number. USE THE CONSOLE/TERMINAL</span>
-<span class="c1">#!./even_odd.x</span>
-</pre></div>
-</div>
-</div>
-</div>
+<p>Compile and run it. As this is expecting to read from the terminal, run it in a real terminal, not on google collab.</p>
 <section id="exercises">
 <h3>Exercises<a class="headerlink" href="#exercises" title="Link to this heading">#</a></h3>
 <ul class="simple">
@@ -776,21 +807,6 @@ compilation terminated.
 </ul>
 </li>
 </ul>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%writefile</span> small_prime_test.cpp
-<span class="nb">int</span> <span class="n">main</span><span class="p">(</span><span class="nb">int</span> <span class="n">argc</span><span class="p">,</span> <span class="n">charg</span> <span class="o">**</span><span class="n">argv</span><span class="p">)</span> <span class="p">{</span>
-    
-<span class="p">}</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Writing small_prime_test.cpp
-</pre></div>
-</div>
-</div>
-</div>
 </section>
 </section>
 <section id="loops">
@@ -905,8 +921,8 @@ graph LR
 </ul>
 </section>
 </section>
-<section id="functions">
-<h2>Functions<a class="headerlink" href="#functions" title="Link to this heading">#</a></h2>
+<section id="functions-again">
+<h2>Functions again<a class="headerlink" href="#functions-again" title="Link to this heading">#</a></h2>
 <p>See: https://hackingcpp.com/cpp/lang/function_basics.html</p>
 <p>Functions are of fundamental importance. They allow to encapsulate the implementation details and to create modular and more maintainable programs. Each function must do one thing well. Using functions also allows the program to be tested, profiled, and extended. Form now on, will keep clean the <code class="docutils literal notranslate"><span class="pre">main</span></code> function, and use it to call other functions.</p>
 <div style="text-align: center;">
@@ -914,57 +930,6 @@ graph LR
     <figcaption>From: "https://hackingcpp.com/cpp/lang/function_terminology.svg"</figcaption>
 </div>
 <p>There are many more details about functions, like passing by value/reference, return types, overloading, templates, lambdas, …, but we will learn those details on the run.</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%writefile</span> avg.cpp
-<span class="c1">#include &lt;iostream&gt;</span>
-
-<span class="o">//</span> <span class="n">function</span> <span class="n">declaration</span><span class="p">:</span> <span class="n">name</span> <span class="ow">and</span> <span class="n">types</span>
-<span class="n">double</span> <span class="n">average</span><span class="p">(</span><span class="n">double</span> <span class="n">a</span><span class="p">,</span> <span class="n">double</span> <span class="n">b</span><span class="p">);</span> <span class="o">//</span> <span class="n">a</span> <span class="ow">and</span> <span class="n">b</span> <span class="n">are</span> <span class="n">LOCAL</span> <span class="n">variables</span>
-
-<span class="o">//</span> <span class="n">main</span> <span class="n">function</span><span class="o">.</span> <span class="n">Execution</span> <span class="n">starts</span> <span class="n">here</span>
-<span class="nb">int</span> <span class="n">main</span><span class="p">(</span><span class="nb">int</span> <span class="n">argc</span><span class="p">,</span> <span class="n">char</span> <span class="o">**</span><span class="n">argv</span><span class="p">)</span> <span class="p">{</span>
-    <span class="n">double</span> <span class="n">x</span><span class="p">{</span><span class="mf">2.35</span><span class="p">};</span>
-    <span class="n">double</span> <span class="n">y</span><span class="p">{</span><span class="mf">4.987</span><span class="p">};</span>
-    <span class="n">double</span> <span class="n">avg</span> <span class="o">=</span> <span class="n">average</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">);</span> <span class="o">//</span> <span class="n">x</span> <span class="n">value</span> <span class="n">copied</span> <span class="n">to</span> <span class="n">a</span><span class="p">,</span> <span class="n">y</span> <span class="n">value</span> <span class="n">copied</span> <span class="n">to</span> <span class="n">b</span><span class="p">,</span> <span class="n">result</span> <span class="n">of</span> <span class="n">calling</span> <span class="n">assigned</span> <span class="n">to</span> <span class="n">avg</span>
-    <span class="n">std</span><span class="p">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s2">&quot;avg: &quot;</span> <span class="o">&lt;&lt;</span> <span class="n">avg</span> <span class="o">&lt;&lt;</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">;</span>
-    
-    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
-<span class="p">}</span>
-
-<span class="o">//</span> <span class="n">function</span> <span class="n">implementation</span><span class="p">:</span> <span class="n">how</span> <span class="n">it</span> <span class="n">does</span> <span class="n">that</span>
-<span class="n">double</span> <span class="n">average</span><span class="p">(</span><span class="n">double</span> <span class="n">a</span><span class="p">,</span> <span class="n">double</span> <span class="n">b</span><span class="p">)</span> 
-<span class="p">{</span>
-    <span class="k">return</span> <span class="p">(</span><span class="n">a</span><span class="o">+</span><span class="n">b</span><span class="p">)</span><span class="o">/</span><span class="mi">2</span><span class="p">;</span>
-<span class="p">}</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Writing avg.cpp
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span>g++<span class="w"> </span>-std<span class="o">=</span>c++17<span class="w"> </span>avg.cpp
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span>./a.out
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>avg: 3.6685
-</pre></div>
-</div>
-</div>
-</div>
 <div style="text-align: center;">
     <img src="https://hackingcpp.com/cs/function_contracts_crop.svg" alt="Image Description" width="800">
     <figcaption>From: "https://hackingcpp.com/cs/function_contracts_crop.svg"</figcaption>
@@ -1188,7 +1153,7 @@ Negative<span class="w"> </span>number.<span class="w"> </span>Ignoring
 <section id="babilonian-square-root">
 <h3>Babilonian square root<a class="headerlink" href="#babilonian-square-root" title="Link to this heading">#</a></h3>
 <p>The babilonians found that to compute the square root of 2, you can iterate the following expression
-$<span class="math notranslate nohighlight">\(x \leftarrow \dfrac{x+2/x}{x}\)</span>$. Implement this algorithm in a function that receives the number of iterations to perform and the returns the estimation. Print in scientific notation with 15 decimals of precision using the following instructions in the main function</p>
+<span class="math notranslate nohighlight">\(x \leftarrow \dfrac{x+2/x}{x}\)</span>. Implement this algorithm in a function that receives the number of iterations to perform and the returns the estimation. Print in scientific notation with 15 decimals of precision using the following instructions in the main function</p>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="p">.</span><span class="n">setf</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">ios</span><span class="o">::</span><span class="n">scientific</span><span class="p">);</span><span class="w"> </span><span class="c1">// imprimir en notacipn cientifica</span>
 <span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="p">.</span><span class="n">precision</span><span class="p">(</span><span class="mi">15</span><span class="p">);</span><span class="w">  </span><span class="c1">// imprimir con 15 cifras decimales</span>
 </pre></div>
@@ -1353,6 +1318,7 @@ $<span class="math notranslate nohighlight">\(x \leftarrow \dfrac{x+2/x}{x}\)</s
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Exercise</a></li>
 </ul>
 </li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#functions">Functions</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#conditionals">Conditionals</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercises">Exercises</a></li>
 </ul>
@@ -1369,7 +1335,7 @@ $<span class="math notranslate nohighlight">\(x \leftarrow \dfrac{x+2/x}{x}\)</s
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">Exercises</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#functions">Functions</a><ul class="nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#functions-again">Functions again</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">Exercises</a></li>
 </ul>
 </li>
