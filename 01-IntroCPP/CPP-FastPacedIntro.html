@@ -958,6 +958,10 @@ graph LR
 </section>
 <section id="file-modularization">
 <h2>File modularization<a class="headerlink" href="#file-modularization" title="Link to this heading">#</a></h2>
+<div style="text-align: center;">
+    <img src="https://hackingcpp.com/cpp/lang/separate_compilation_crop.svg" alt="Image Description" width="900">
+    <figcaption>From: "https://hackingcpp.com/cpp/lang/separate_compilation_crop.svg"</figcaption>
+</div>
 <p>As you can see, the basic function <code class="docutils literal notranslate"><span class="pre">is_prime</span></code> is used in all the problems, and we are repeating code per exercise. We can do better by modularizing the file, moving the utility functions to another file. Our structure would be something like:</p>
 <ul>
 <li><p><code class="docutils literal notranslate"><span class="pre">primes.h</span></code> : file with <strong>DECLARATIONS</strong> of all the functions we think we will use int the future</p>
