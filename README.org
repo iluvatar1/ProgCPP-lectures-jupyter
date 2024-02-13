@@ -1,4 +1,0 @@
-Introductory lecture notes for cpp lang, in jupyter
-
-
-Click to go to the [[https://mybinder.org/v2/gh/iluvatar1/ProgCPP-dev/HEAD][Binder repo]]
