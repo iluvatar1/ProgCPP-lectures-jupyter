@@ -1,12 +1,13 @@
 
+
 <!DOCTYPE html>
 
 
-<html lang="en" data-content_root="../" >
+<html lang="en" data-content_root="" >
 
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
     <title>Ordinary differential equations (and initial value problems) &#8212; Introduction to C++ and Numerical Methods</title>
   
@@ -28,40 +29,44 @@
 <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.1/webfonts/fa-brands-400.woff2" />
 <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.1/webfonts/fa-regular-400.woff2" />
 
-    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=fa44fd50" />
-    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=384b581d" />
-    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
-    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
-    <link rel="stylesheet" type="text/css" href="../_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css?v=0a3b3ea7" />
-    <link rel="stylesheet" type="text/css" href="../_static/styles.css?v=03b9d5b1" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
   
   <!-- Pre-loaded scripts that we'll load fully later -->
   <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae" />
 <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae" />
   <script src="../_static/vendor/fontawesome/6.5.1/js/all.min.js?digest=8d27b9dea8ad943066ae"></script>
 
-    <script src="../_static/documentation_options.js?v=9eb32ce0"></script>
-    <script src="../_static/doctools.js?v=888ff710"></script>
-    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
-    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
-    <script src="../_static/copybutton.js?v=f281be69"></script>
-    <script src="../_static/scripts/sphinx-book-theme.js?v=efea14e4"></script>
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
     <script>let toggleHintShow = 'Click to show';</script>
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
-    <script src="../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script src="../_static/togglebutton.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
-    <script src="../_static/design-tabs.js?v=36754332"></script>
-    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
-    <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
-    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
-    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script src="../_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
     <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = '08-ODE-IVP/InitialValueProblem';</script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="Introduction to molecular dynamics through OOP" href="../09-ODE-IVP-OOP/IntroMolecularDynamics.html" />
@@ -159,18 +164,7 @@
   
   
 </a></div>
-        <div class="sidebar-primary-item">
-
- <script>
- document.write(`
-   <button class="btn navbar-btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <i class="fa-solid fa-magnifying-glass"></i>
-    <span class="search-button__default-text">Search</span>
-    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
-   </button>
- `);
- </script></div>
-        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
     <div class="bd-toc-item navbar-nav active">
         
         <ul class="nav bd-sidenav bd-sidenav__home-link">
@@ -480,12 +474,12 @@ document.write(`
                   
   <p><a id="org83faa3b"></a></p>
 <section class="tex2jax_ignore mathjax_ignore" id="ordinary-differential-equations-and-initial-value-problems">
-<h1>Ordinary differential equations (and initial value problems)<a class="headerlink" href="#ordinary-differential-equations-and-initial-value-problems" title="Link to this heading">#</a></h1>
+<h1>Ordinary differential equations (and initial value problems)<a class="headerlink" href="#ordinary-differential-equations-and-initial-value-problems" title="Permalink to this heading">#</a></h1>
 <p>In mathematics, an ordinary differential equation (ODE) is a differential equation (DE) dependent on only a single independent variable. As with other DE, its unknown(s) consists of one (or more) function(s) and involves the derivatives of those functions The term “ordinary” is used in contrast with partial differential equations which may be with respect to more than one independent variable.(see https://en.wikipedia.org/wiki/Ordinary_differential_equation?useskin=vector)</p>
 <p><a class="reference external" href="https://en.wikipedia.org/wiki/Initial_value_problem?useskin=vector">An initial value problem</a>, IVP, is a a problem specified by an ordinary differential equation and its initial conditions.</p>
 <p>You have been already solving a differential equation: The second Newton law</p>
-<div class="amsmath math notranslate nohighlight" id="equation-92d5d878-5f22-4e97-a59b-08329d2c562e">
-<span class="eqno">(28)<a class="headerlink" href="#equation-92d5d878-5f22-4e97-a59b-08329d2c562e" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-263c8884-82ef-4ac6-9438-6b3de67227d7">
+<span class="eqno">(28)<a class="headerlink" href="#equation-263c8884-82ef-4ac6-9438-6b3de67227d7" title="Permalink to this equation">#</a></span>\[\begin{equation}
 ma = m\frac{dv}{dt} = m\frac{d^2x}{dt^2} = \sum F = f(t, x, v),
 \end{equation}\]</div>
 <p>Can be seen as a first order differential equation (when talking about <span class="math notranslate nohighlight">\(v\)</span>) or as a second order differential equation (regarding <span class="math notranslate nohighlight">\(x\)</span>).</p>
@@ -496,31 +490,31 @@ ma = m\frac{dv}{dt} = m\frac{d^2x}{dt^2} = \sum F = f(t, x, v),
 </div>
 <p>In this chapter we will focus on solving, numerically, <a class="reference external" href="https://en.wikipedia.org/wiki/Ordinary_differential_equation?useskin=vector">Ordinary differential equations</a>. Later we will learn some basic methods for <a class="reference external" href="https://en.wikipedia.org/wiki/Partial_differential_equation?useskin=vector">Partial differential equations</a>. For a nice introduction to both of them, please watch:</p>
 <ul class="simple">
-<li><p><a class="reference external" href="https://www.youtube.com/watch?v=p_di4Zn4wz4&amp;amp;t=0s">Ordinary differential equations intro</a></p></li>
-<li><p><a class="reference external" href="https://www.youtube.com/watch?v=ly4S0oi3Yz8&amp;amp;t=0s">Partial differential equations intro</a></p></li>
+<li><p><a class="reference external" href="https://www.youtube.com/watch?v=p_di4Zn4wz4&amp;t=0s">Ordinary differential equations intro</a></p></li>
+<li><p><a class="reference external" href="https://www.youtube.com/watch?v=ly4S0oi3Yz8&amp;t=0s">Partial differential equations intro</a></p></li>
 </ul>
 <p>A numerical solution for and IVP corresponds to finding an algorithm that allows you to move from time <span class="math notranslate nohighlight">\(t\)</span> to time <span class="math notranslate nohighlight">\(t+\delta t\)</span>, given a time discretization. It is assumed that the general problem is represented as</p>
-<div class="amsmath math notranslate nohighlight" id="equation-fa2f8cbc-c8f8-43ab-857a-90ecc78a4869">
-<span class="eqno">(29)<a class="headerlink" href="#equation-fa2f8cbc-c8f8-43ab-857a-90ecc78a4869" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-222e1303-95e4-4dd8-847a-a3c18cf05cb9">
+<span class="eqno">(29)<a class="headerlink" href="#equation-222e1303-95e4-4dd8-847a-a3c18cf05cb9" title="Permalink to this equation">#</a></span>\[\begin{equation}
 \dot y = \frac{dy}{dt} = f(t, y),
 \end{equation}\]</div>
 <p>where <span class="math notranslate nohighlight">\(y\)</span> represents the state of the system. All linear differential equations of any order can be cast to this form by introducing auxiliary derivatives, so the problem becomes vectorial, but its form remains</p>
-<div class="amsmath math notranslate nohighlight" id="equation-fdeed6b3-c77e-4816-9f05-eed7e15cd9af">
-<span class="eqno">(30)<a class="headerlink" href="#equation-fdeed6b3-c77e-4816-9f05-eed7e15cd9af" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-1af1c0d6-e123-4dcb-8bc9-e77f011ca7bc">
+<span class="eqno">(30)<a class="headerlink" href="#equation-1af1c0d6-e123-4dcb-8bc9-e77f011ca7bc" title="Permalink to this equation">#</a></span>\[\begin{equation}
 \frac{d\vec y}{dt} = \vec f(t, \vec y).
 \end{equation}\]</div>
 <p>So the key question is how to go numerically from <span class="math notranslate nohighlight">\(\vec y(t)\)</span> to <span class="math notranslate nohighlight">\(\vec y(t+\delta t)\)</span>. There are several algorithms, with both advantages and disadvantages (in sinplicity, precision, stability, etc), to do so. Here we will see Euler algorithm which is the most straight forward (but lacks precision and stability), and later  one of the most common, the Runge-Kutta. After that, specific algorithms for second order equations will be discussed (like Leap-Frog and Verlet), and, finally some numerical libraries will be shown.</p>
 <p><a id="org87d015a"></a></p>
 <section id="the-euler-algorithm">
-<h2>The Euler algorithm<a class="headerlink" href="#the-euler-algorithm" title="Link to this heading">#</a></h2>
+<h2>The Euler algorithm<a class="headerlink" href="#the-euler-algorithm" title="Permalink to this heading">#</a></h2>
 <p>The <a class="reference external" href="https://en.wikipedia.org/wiki/Euler_method?useskin=vector">Euler method</a> is based on the forward derivative:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-12d6ffea-e8af-4a28-82fa-8554854206b9">
-<span class="eqno">(31)<a class="headerlink" href="#equation-12d6ffea-e8af-4a28-82fa-8554854206b9" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-3217e556-4eb7-44f1-8bab-005b1e479ca3">
+<span class="eqno">(31)<a class="headerlink" href="#equation-3217e556-4eb7-44f1-8bab-005b1e479ca3" title="Permalink to this equation">#</a></span>\[\begin{equation}
 \frac{d\vec y}{dt} = \frac{\vec y(t+h) - \vec y(t)}{h} + O(h).
 \end{equation}\]</div>
 <p>Here, <span class="math notranslate nohighlight">\(h = \delta t\)</span>. Since we are looking for <span class="math notranslate nohighlight">\(f(t + \delta t)\)</span>, and we actually know the derivatives (they are given by the differential equation we want to solve), then</p>
-<div class="amsmath math notranslate nohighlight" id="equation-9989ebad-0e7f-4d0a-9641-52ddbc2aaa80">
-<span class="eqno">(32)<a class="headerlink" href="#equation-9989ebad-0e7f-4d0a-9641-52ddbc2aaa80" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-73252103-230a-4a04-911a-8fe4acc52eb4">
+<span class="eqno">(32)<a class="headerlink" href="#equation-73252103-230a-4a04-911a-8fe4acc52eb4" title="Permalink to this equation">#</a></span>\[\begin{align}
 \vec y(t+\delta t) &amp;= \vec y(t) + \delta t \frac{d \vec y}{dt} + O(\delta t^2), \\
 &amp;= \vec y(t) + \delta t \vec f(t, \vec y) + O(\delta  t^2),
 \end{align}\]</div>
@@ -531,7 +525,7 @@ ma = m\frac{dv}{dt} = m\frac{d^2x}{dt^2} = \sum F = f(t, x, v),
 </div>
 Although easy to implement, it lacks stability, and its low order (locally $O(\delta t^2)$, globally $O(N\delta t^2) = O(\delta t)$) implies a very small $\delta t$, so many steps to solve the IVP on a given time interval.  Check https://www.desmos.com/calculator/0i0oebdu6j</section>
 <section id="implementation-of-integration-algorithms">
-<h2>Implementation of integration algorithms<a class="headerlink" href="#implementation-of-integration-algorithms" title="Link to this heading">#</a></h2>
+<h2>Implementation of integration algorithms<a class="headerlink" href="#implementation-of-integration-algorithms" title="Permalink to this heading">#</a></h2>
 <p>Before implementing the euler equation, and to easy future comparisons, let’s define the interface that we will use for all the implementations:</p>
 <hr class="docutils" />
 <p><strong>Main file</strong></p>
@@ -554,7 +548,7 @@ use the same interface.</p>
 </section>
 <hr class="docutils" />
 <section id="euler-algorithm-implementation">
-<h2>Euler algorithm implementation<a class="headerlink" href="#euler-algorithm-implementation" title="Link to this heading">#</a></h2>
+<h2>Euler algorithm implementation<a class="headerlink" href="#euler-algorithm-implementation" title="Permalink to this heading">#</a></h2>
 <p>First of all, our Euler algorithm will be implemented as</p>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">template</span><span class="w"> </span><span class="o">&lt;</span><span class="k">class</span><span class="w"> </span><span class="nc">deriv_t</span><span class="p">,</span><span class="w"> </span><span class="k">class</span><span class="w"> </span><span class="nc">system_t</span><span class="p">,</span><span class="w"> </span><span class="k">class</span><span class="w"> </span><span class="nc">printer_t</span><span class="o">&gt;</span>
 <span class="kt">void</span><span class="w"> </span><span class="n">integrate_euler</span><span class="p">(</span><span class="n">deriv_t</span><span class="w"> </span><span class="n">deriv</span><span class="p">,</span><span class="w"> </span><span class="n">system_t</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">y</span><span class="p">,</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="n">tinit</span><span class="p">,</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="n">tend</span><span class="p">,</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="n">dt</span><span class="p">,</span><span class="w"> </span><span class="n">printer_t</span><span class="w"> </span><span class="n">writer</span><span class="p">)</span>
@@ -583,10 +577,10 @@ use the same interface.</p>
 <p>Save this in the file <code class="docutils literal notranslate"><span class="pre">integrator.h</span></code>.</p>
 </section>
 <section id="solving-a-first-order-equation">
-<h2>Solving a first order equation<a class="headerlink" href="#solving-a-first-order-equation" title="Link to this heading">#</a></h2>
+<h2>Solving a first order equation<a class="headerlink" href="#solving-a-first-order-equation" title="Permalink to this heading">#</a></h2>
 <p>Please solve the first order differential equation</p>
-<div class="amsmath math notranslate nohighlight" id="equation-60f8a638-b612-4ffe-acc5-b4009bef0d11">
-<span class="eqno">(33)<a class="headerlink" href="#equation-60f8a638-b612-4ffe-acc5-b4009bef0d11" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-c13b208a-8cdc-4962-b75c-b6e540e9122c">
+<span class="eqno">(33)<a class="headerlink" href="#equation-c13b208a-8cdc-4962-b75c-b6e540e9122c" title="Permalink to this equation">#</a></span>\[\begin{equation}
 \dot y = \frac{dy}{dt} = 5\sin(t) + t,
 \end{equation}\]</div>
 <p>with initial condition <span class="math notranslate nohighlight">\(y(0) = 1.5\)</span>, for <span class="math notranslate nohighlight">\(t \in [0, 10.0]\)</span>. Plot the numerical and theoretical solution for <span class="math notranslate nohighlight">\(\delta t = 0.1, 0.2, 0.8, 1.5\)</span>. Our main file could be</p>
@@ -641,16 +635,16 @@ use the same interface.</p>
 </div>
 </section>
 <section id="solving-a-second-order-differential-equation">
-<h2>Solving a second order differential equation<a class="headerlink" href="#solving-a-second-order-differential-equation" title="Link to this heading">#</a></h2>
+<h2>Solving a second order differential equation<a class="headerlink" href="#solving-a-second-order-differential-equation" title="Permalink to this heading">#</a></h2>
 <p>Here we will simulate an harmonic oscillator, described by</p>
-<div class="amsmath math notranslate nohighlight" id="equation-1687fd4e-7922-4b1d-9737-7c7001767341">
-<span class="eqno">(34)<a class="headerlink" href="#equation-1687fd4e-7922-4b1d-9737-7c7001767341" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-dd607981-f848-4e63-8f21-4437b97873c3">
+<span class="eqno">(34)<a class="headerlink" href="#equation-dd607981-f848-4e63-8f21-4437b97873c3" title="Permalink to this equation">#</a></span>\[\begin{equation}
 \frac{d^2x}{dt^2} + \omega^2 x = 0,
 \end{equation}\]</div>
 <p>which can be transformed into a system of 2 differential equations using the
 velocity, <span class="math notranslate nohighlight">\(v = dx/dt\)</span>, as <span class="math notranslate nohighlight">\(\vec y = (y_0, y_1) = (x, dx/dt) = (x, v)\)</span>,</p>
-<div class="amsmath math notranslate nohighlight" id="equation-b3ffd932-83f8-47f0-8b9f-0fd1ec71c6a7">
-<span class="eqno">(35)<a class="headerlink" href="#equation-b3ffd932-83f8-47f0-8b9f-0fd1ec71c6a7" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-9c6620c5-50f4-44cb-8328-94a860b07391">
+<span class="eqno">(35)<a class="headerlink" href="#equation-9c6620c5-50f4-44cb-8328-94a860b07391" title="Permalink to this equation">#</a></span>\[\begin{align}
 \frac{dy_0}{dt} &amp;= \frac{dx}{dt} = v = y_1\\
 \frac{dy_1}{dt} &amp;= \frac{dv}{dt} = -\omega^2 x = -\omega^2 y_0.
 \end{align}\]</div>
@@ -668,7 +662,7 @@ derivative interface uniform. For instance, our derivative funtion could be a la
 </div>
 <p>Solve the system, for <span class="math notranslate nohighlight">\(\omega = 1.234\)</span> rad/s. Choose an appropriate time interval so you have at least for full oscillations. Again, plot the theoretical and numerical solutions for <span class="math notranslate nohighlight">\(\delta t = 0.1, 0.2, 0.5, 1.0\)</span>. Furthermore, plot the mechanical energy as function of time, and also plot the phase space <span class="math notranslate nohighlight">\(v\)</span> versus <span class="math notranslate nohighlight">\(x\)</span>.</p>
 <section id="exercises">
-<h3>Exercises<a class="headerlink" href="#exercises" title="Link to this heading">#</a></h3>
+<h3>Exercises<a class="headerlink" href="#exercises" title="Permalink to this heading">#</a></h3>
 <ol class="arabic simple">
 <li><p>Use the previous code to check if the energy is conserved (plot the phase
 space, <span class="math notranslate nohighlight">\(v\)</span> versus <span class="math notranslate nohighlight">\(x\)</span>). Check the effect of <span class="math notranslate nohighlight">\(\Delta t\)</span>.</p></li>
@@ -678,20 +672,20 @@ space, <span class="math notranslate nohighlight">\(v\)</span> versus <span clas
 </section>
 </section>
 <section id="runge-kutta-algorithm">
-<h2>Runge-Kutta algorithm<a class="headerlink" href="#runge-kutta-algorithm" title="Link to this heading">#</a></h2>
+<h2>Runge-Kutta algorithm<a class="headerlink" href="#runge-kutta-algorithm" title="Permalink to this heading">#</a></h2>
 <p>Unfortunately, the Euler method is not stable, and its precision is far from ideal. We can improve its order by using methods that or order 3, 4 and so on. Here, we will study the typical <a class="reference external" href="https://en.wikipedia.org/wiki/Runge%E2%80%93Kutta_methods">Runge-Kutta method</a> of order 4, for N coupled linear differential equations. This is much better than simple Euler. The price to pay is to evaluate the derivatives four times per time step.</p>
 <div style="text-align: center;">
     <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/7e/Runge-Kutta_slopes.svg/600px-Runge-Kutta_slopes.svg.png" alt="Image Description" width="600">
     <figcaption>From: "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7e/Runge-Kutta_slopes.svg/600px-Runge-Kutta_slopes.svg.png"</figcaption>
 </div>
 <p>For the RK4 algorithm , we can compute the evolution as</p>
-<div class="amsmath math notranslate nohighlight" id="equation-d836fc1f-7662-405b-bc28-a72b68c7d521">
-<span class="eqno">(36)<a class="headerlink" href="#equation-d836fc1f-7662-405b-bc28-a72b68c7d521" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-08c4b9cf-aedd-4e24-9eec-17f93a42e8ff">
+<span class="eqno">(36)<a class="headerlink" href="#equation-08c4b9cf-aedd-4e24-9eec-17f93a42e8ff" title="Permalink to this equation">#</a></span>\[\begin{equation}
 \vec y(t+\delta t) = \vec y (t) + \frac{h}{6}(\vec k_1 + 2\vec k_2 + 2\vec k_3 + \vec k_4) + O(\delta t^5),
 \end{equation}\]</div>
 <p>with the <span class="math notranslate nohighlight">\(\vec k_i\)</span> functions evaluating the derivatives at different stages</p>
-<div class="amsmath math notranslate nohighlight" id="equation-fdec7846-0525-4d0e-a9a1-251c7cb8b432">
-<span class="eqno">(37)<a class="headerlink" href="#equation-fdec7846-0525-4d0e-a9a1-251c7cb8b432" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-5901a0f9-be87-4cb6-a656-fec926b093a6">
+<span class="eqno">(37)<a class="headerlink" href="#equation-5901a0f9-be87-4cb6-a656-fec926b093a6" title="Permalink to this equation">#</a></span>\[\begin{align}
 \vec k_1 &amp;= \vec f(t, \vec y(t)),\\
 \vec k_2 &amp;= \vec f(t + \frac{h}{2}, \vec y(t) + h\frac{\vec k_1}{2}),\\
 \vec k_3 &amp;= \vec f(t + \frac{h}{2}, \vec y(t) + h\frac{\vec k_2}{2}),\\
@@ -745,7 +739,7 @@ following implementation</p>
 </div>
 <p><a id="orga3c88cc"></a></p>
 <section id="id1">
-<h3>Exercises<a class="headerlink" href="#id1" title="Link to this heading">#</a></h3>
+<h3>Exercises<a class="headerlink" href="#id1" title="Permalink to this heading">#</a></h3>
 <ol class="arabic simple">
 <li><p>Compare the results for  the same system and same <span class="math notranslate nohighlight">\(\Delta t\)</span> using both Euler
 and rk4. Does rk4 conserves the mechanical energy better?</p></li>
@@ -764,7 +758,7 @@ book.</p></li>
 </section>
 </section>
 <section id="using-a-library-odeint">
-<h2>Using a library : odeint<a class="headerlink" href="#using-a-library-odeint" title="Link to this heading">#</a></h2>
+<h2>Using a library : odeint<a class="headerlink" href="#using-a-library-odeint" title="Permalink to this heading">#</a></h2>
 <p>You could also use more elaborate libraries tailored to this kind of problems.
 In this section we will use odeint,
 <a class="reference external" href="https://headmyshoulder.github.io/odeint-v2/examples.html">https://headmyshoulder.github.io/odeint-v2/examples.html</a> . Install it if you
@@ -822,7 +816,7 @@ base code</p>
 </div>
 <p><a id="orgec3d44c"></a></p>
 <section id="id2">
-<h3>Exercises<a class="headerlink" href="#id2" title="Link to this heading">#</a></h3>
+<h3>Exercises<a class="headerlink" href="#id2" title="Permalink to this heading">#</a></h3>
 <ol class="arabic simple">
 <li><p>Again, compare the errors among euler, rk4 and odeint.</p></li>
 <li><p>Use a functor to encapsulate the global parameter.</p></li>
@@ -832,7 +826,7 @@ speed.</p></li>
 </section>
 </section>
 <section id="more-numerical-libs">
-<h2>More numerical libs<a class="headerlink" href="#more-numerical-libs" title="Link to this heading">#</a></h2>
+<h2>More numerical libs<a class="headerlink" href="#more-numerical-libs" title="Permalink to this heading">#</a></h2>
 <ul class="simple">
 <li><p>Odeint: Odeint is a modern and fast library that provides a variety of ODE solvers, including Runge-Kutta methods, Adams-Bashforth methods, and backward difference formulas. It is also very flexible and can be used with a variety of different data structures and numerical types.</p>
 <ul>
@@ -979,7 +973,7 @@ Here is an examples for using this library (see also https://github.com/basilwon
 <p><a id="orgc1f4cf1"></a></p>
 </section>
 <section id="modelling-a-bouncing-ball-and-an-introduction-to-oop">
-<h2>Modelling a bouncing ball and an introduction to OOP<a class="headerlink" href="#modelling-a-bouncing-ball-and-an-introduction-to-oop" title="Link to this heading">#</a></h2>
+<h2>Modelling a bouncing ball and an introduction to OOP<a class="headerlink" href="#modelling-a-bouncing-ball-and-an-introduction-to-oop" title="Permalink to this heading">#</a></h2>
 <p>Now, we would like to model a ball bouncing on the floor. In this case, the
 derivatives function will get more complicated since the force with the floor is
 not present always, only when there is a collision with it. To model this

@@ -1,12 +1,13 @@
 
+
 <!DOCTYPE html>
 
 
-<html lang="en" data-content_root="../" >
+<html lang="en" data-content_root="" >
 
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
     <title>Introduction to molecular dynamics through OOP &#8212; Introduction to C++ and Numerical Methods</title>
   
@@ -28,40 +29,44 @@
 <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.1/webfonts/fa-brands-400.woff2" />
 <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.1/webfonts/fa-regular-400.woff2" />
 
-    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=fa44fd50" />
-    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=384b581d" />
-    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
-    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
-    <link rel="stylesheet" type="text/css" href="../_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css?v=0a3b3ea7" />
-    <link rel="stylesheet" type="text/css" href="../_static/styles.css?v=03b9d5b1" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
   
   <!-- Pre-loaded scripts that we'll load fully later -->
   <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae" />
 <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae" />
   <script src="../_static/vendor/fontawesome/6.5.1/js/all.min.js?digest=8d27b9dea8ad943066ae"></script>
 
-    <script src="../_static/documentation_options.js?v=9eb32ce0"></script>
-    <script src="../_static/doctools.js?v=888ff710"></script>
-    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
-    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
-    <script src="../_static/copybutton.js?v=f281be69"></script>
-    <script src="../_static/scripts/sphinx-book-theme.js?v=efea14e4"></script>
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
     <script>let toggleHintShow = 'Click to show';</script>
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
-    <script src="../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script src="../_static/togglebutton.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
-    <script src="../_static/design-tabs.js?v=36754332"></script>
-    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
-    <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
-    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
-    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script src="../_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
     <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = '09-ODE-IVP-OOP/IntroMolecularDynamics';</script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="prev" title="Ordinary differential equations (and initial value problems)" href="../08-ODE-IVP/InitialValueProblem.html" />
@@ -158,18 +163,7 @@
   
   
 </a></div>
-        <div class="sidebar-primary-item">
-
- <script>
- document.write(`
-   <button class="btn navbar-btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <i class="fa-solid fa-magnifying-glass"></i>
-    <span class="search-button__default-text">Search</span>
-    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
-   </button>
- `);
- </script></div>
-        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
     <div class="bd-toc-item navbar-nav active">
         
         <ul class="nav bd-sidenav bd-sidenav__home-link">
@@ -471,7 +465,7 @@ document.write(`
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#more-about-oop-modeling">More about OOP modeling</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#modeling-a-complex-number-7-10">Modeling a complex number <code>[7/10]</code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#modeling-a-complex-number-code-7-10-code">Modeling a complex number <code>[7/10]</code></a></li>
 </ul>
 </li>
 </ul>
@@ -487,7 +481,7 @@ document.write(`
                   
   <p><a id="org328ad68"></a></p>
 <section class="tex2jax_ignore mathjax_ignore" id="introduction-to-molecular-dynamics-through-oop">
-<h1>Introduction to molecular dynamics through OOP<a class="headerlink" href="#introduction-to-molecular-dynamics-through-oop" title="Link to this heading">#</a></h1>
+<h1>Introduction to molecular dynamics through OOP<a class="headerlink" href="#introduction-to-molecular-dynamics-through-oop" title="Permalink to this heading">#</a></h1>
 <p><a class="reference external" href="https://en.wikipedia.org/wiki/Molecular_dynamics">Molecular Dynamics</a> allows to simulate complex systems where you can represent
 the interactions through forces and then solve the second Newton equation using
 some numerical method. It is applied on a large kind of problems, from cosmological simulations, to molecules and atoms, to biophysical systems, etc</p>
@@ -547,7 +541,7 @@ start with the particle.</p>
 </div>
 <p><a id="orgce0ae5a"></a></p>
 <section id="the-particle-class">
-<h2>The particle class<a class="headerlink" href="#the-particle-class" title="Link to this heading">#</a></h2>
+<h2>The particle class<a class="headerlink" href="#the-particle-class" title="Permalink to this heading">#</a></h2>
 <p>First of all, we will start thinking about the smallest modeling unit here, the
 <code class="docutils literal notranslate"><span class="pre">particle</span></code>. To do so, we need to select the more fundamental characteristics of
 our particle for the problem at hand, in this case, we need the particle to have</p>
@@ -595,7 +589,7 @@ and so on. Let’s see this example in the python tutor or gdb online:</p>
 </div>
 </section>
 <section id="adding-methods">
-<h2>Adding methods<a class="headerlink" href="#adding-methods" title="Link to this heading">#</a></h2>
+<h2>Adding methods<a class="headerlink" href="#adding-methods" title="Permalink to this heading">#</a></h2>
 <p>This is only packing attributes, but you can also pack functions, like</p>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp">#pragma once</span>
 <span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;iostream&gt;</span>
@@ -630,14 +624,14 @@ actually implement better integration algorithms right now, like the Leap-Frog
 algorithm.</p>
 <p><a id="org4533e17"></a></p>
 <section id="exercise">
-<h3>Exercise<a class="headerlink" href="#exercise" title="Link to this heading">#</a></h3>
+<h3>Exercise<a class="headerlink" href="#exercise" title="Permalink to this heading">#</a></h3>
 <p>Write the <code class="docutils literal notranslate"><span class="pre">Particle</span></code> struct into two files: <code class="docutils literal notranslate"><span class="pre">Particle.h</span></code>, with the needed
 declarations, and <code class="docutils literal notranslate"><span class="pre">Particle.cpp</span></code>, with the implementations.</p>
 <p><a id="orge820769"></a></p>
 </section>
 </section>
 <section id="implementing-a-better-integration-algorithm-leap-frog">
-<h2>Implementing a better integration algorithm: leap-frog<a class="headerlink" href="#implementing-a-better-integration-algorithm-leap-frog" title="Link to this heading">#</a></h2>
+<h2>Implementing a better integration algorithm: leap-frog<a class="headerlink" href="#implementing-a-better-integration-algorithm-leap-frog" title="Permalink to this heading">#</a></h2>
 <p>When studying ODE-IVP, we started with the Euler algorithm, which is pretty
 simple and computes the forces only once per time step but, as we have seen
 before, its order is low and it is not stable. In Molecular Dynamics there are
@@ -647,8 +641,8 @@ optimized velocity verlet and so on. They try to integrate the evolution with a
 high order while reducing the number of force evaluations per time step. In
 particular, the leap-frog algorithm can be written as
 (<a class="reference external" href="https://en.wikipedia.org/wiki/Leapfrog_integration">https://en.wikipedia.org/wiki/Leapfrog_integration</a>)</p>
-<div class="amsmath math notranslate nohighlight" id="equation-58f8d9cc-4def-4a5e-9f5d-756965b54055">
-<span class="eqno">(38)<a class="headerlink" href="#equation-58f8d9cc-4def-4a5e-9f5d-756965b54055" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-34730271-188d-4c5b-9092-105a637601c9">
+<span class="eqno">(38)<a class="headerlink" href="#equation-34730271-188d-4c5b-9092-105a637601c9" title="Permalink to this equation">#</a></span>\[\begin{align}
 \vec V (t + \delta t/2) &amp;= \vec V (t - \delta t/2) + \vec F(t) \delta t/m + O(\delta t^3),\\
 \vec R(t+\delta t) &amp;= \vec R(t) + \vec V (t + \delta t/2) \delta t + O(\delta t^3).
 \end{align}\]</div>
@@ -656,20 +650,20 @@ particular, the leap-frog algorithm can be written as
 and symplectic. One important detail for the implementation: To perform the
 first step, you need to put your variables in the correct time. If we put t=0,
 the next step would be</p>
-<div class="amsmath math notranslate nohighlight" id="equation-8e48ae3d-7608-474a-aba7-3816a92e4535">
-<span class="eqno">(39)<a class="headerlink" href="#equation-8e48ae3d-7608-474a-aba7-3816a92e4535" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-632858f8-b08b-47f1-976b-35b22c74dcb9">
+<span class="eqno">(39)<a class="headerlink" href="#equation-632858f8-b08b-47f1-976b-35b22c74dcb9" title="Permalink to this equation">#</a></span>\[\begin{align}
 \vec V (0 + \delta t/2) &amp;= \vec V (0 - \delta t/2) + \vec F(0) \delta t/m + O(\delta t^3),\\
 \vec R(0+\delta t) &amp;= \vec R(0) + \vec V (0 + \delta t/2) \delta t + O(\delta t^3).
 \end{align}\]</div>
 <p>Therefore, we will need first to move the velocity from time 0 to time <span class="math notranslate nohighlight">\(0 -
 \delta t\)</span>. We could do that as follows</p>
-<div class="amsmath math notranslate nohighlight" id="equation-41813512-15a0-40e7-a79b-1cd2c88445a2">
-<span class="eqno">(40)<a class="headerlink" href="#equation-41813512-15a0-40e7-a79b-1cd2c88445a2" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-fa7a9611-4ee7-4f24-8566-d70283eb2a1f">
+<span class="eqno">(40)<a class="headerlink" href="#equation-fa7a9611-4ee7-4f24-8566-d70283eb2a1f" title="Permalink to this equation">#</a></span>\[\begin{equation}
 \vec V(0 - \delta t/2) = \vec V(0) - \delta t \vec F(0)/2m.
 \end{equation}\]</div>
 <p><a id="orgd0444a6"></a></p>
 <section id="id1">
-<h3>Exercise<a class="headerlink" href="#id1" title="Link to this heading">#</a></h3>
+<h3>Exercise<a class="headerlink" href="#id1" title="Permalink to this heading">#</a></h3>
 <p>Create a new <code class="docutils literal notranslate"><span class="pre">class</span></code> called <code class="docutils literal notranslate"><span class="pre">TimeIntegrator</span></code> which receives on its constructor
 the value of the time step, <span class="math notranslate nohighlight">\(\delta t\)</span>. Implement there the Leap-frog algorithm
 by using two member functions, <code class="docutils literal notranslate"><span class="pre">startIntegration</span></code> and <code class="docutils literal notranslate"><span class="pre">timeStep</span></code>, which receive
@@ -705,7 +699,7 @@ class (only use <code class="docutils literal notranslate"><span class="pre">Int
 </section>
 </section>
 <section id="force-computation">
-<h2>Force computation<a class="headerlink" href="#force-computation" title="Link to this heading">#</a></h2>
+<h2>Force computation<a class="headerlink" href="#force-computation" title="Permalink to this heading">#</a></h2>
 <p>Finally, we can start creating a function or object that computes the force for
 a particle or for a set of particles. This normally called a collider, and it
 will need some parameters (like the gravity constant, the floor stiffness and so
@@ -718,7 +712,7 @@ will here create a collider class and show how to implement the forces for our
 simple case.</p>
 <p><a id="orgbbe0d3f"></a></p>
 <section id="id2">
-<h3>Exercise<a class="headerlink" href="#id2" title="Link to this heading">#</a></h3>
+<h3>Exercise<a class="headerlink" href="#id2" title="Permalink to this heading">#</a></h3>
 <p>Create a new class called <code class="docutils literal notranslate"><span class="pre">Collider</span></code> which includes a member function to compute
 external forces (for now) on an array of particles (arbitrary type, use
 templates). To do so, complete the following code:</p>
@@ -753,7 +747,7 @@ templates). To do so, complete the following code:</p>
 </section>
 </section>
 <section id="the-main-implementation">
-<h2>The main implementation<a class="headerlink" href="#the-main-implementation" title="Link to this heading">#</a></h2>
+<h2>The main implementation<a class="headerlink" href="#the-main-implementation" title="Permalink to this heading">#</a></h2>
 <p>Now we are ready to perform our simulation, using everything in our main
 function,</p>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;Particle.h&quot;</span>
@@ -801,7 +795,7 @@ function,</p>
 </div>
 <p><a id="orgbba6ff1"></a></p>
 <section id="exercises">
-<h3>Exercises<a class="headerlink" href="#exercises" title="Link to this heading">#</a></h3>
+<h3>Exercises<a class="headerlink" href="#exercises" title="Permalink to this heading">#</a></h3>
 <ul class="simple">
 <li><p>Add a damping with the ground. Where should you modify the code?</p></li>
 <li><p>Plot the phase space with and without damping</p></li>
@@ -812,7 +806,7 @@ paraview.</p></li>
 </section>
 </section>
 <section id="adding-left-and-right-walls">
-<h2>Adding left and right walls<a class="headerlink" href="#adding-left-and-right-walls" title="Link to this heading">#</a></h2>
+<h2>Adding left and right walls<a class="headerlink" href="#adding-left-and-right-walls" title="Permalink to this heading">#</a></h2>
 <p>Now put a wall on the left (-L/2) and on the right (+L/2). L is a new parameter.
 In the initial condition,s, make sure that you are NOT intersecting any wall at
 the beginning.</p>
@@ -823,32 +817,32 @@ Put the left(right) wall at -L/2(L/2).</p></li>
 <p><a id="orgbe0fc30"></a></p>
 </section>
 <section id="adding-more-particles">
-<h2>Adding more particles<a class="headerlink" href="#adding-more-particles" title="Link to this heading">#</a></h2>
+<h2>Adding more particles<a class="headerlink" href="#adding-more-particles" title="Permalink to this heading">#</a></h2>
 <p>Now add another particle and implement a collision between particles. Later, Add
 many other particles and visualize their collisions. How does the cpu time
 scales with the number of particles?</p>
 <p>If two particles are colliding, with interpenetration <span class="math notranslate nohighlight">\(\delta\)</span>, then we can
 model the force that particle <span class="math notranslate nohighlight">\(i\)</span> exerts on particle <span class="math notranslate nohighlight">\(j\)</span> as,</p>
-<div class="amsmath math notranslate nohighlight" id="equation-9f7ef030-b929-4305-83e1-de85ffc0ce03">
-<span class="eqno">(41)<a class="headerlink" href="#equation-9f7ef030-b929-4305-83e1-de85ffc0ce03" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-36d5fe87-30c8-4449-9d69-85614e9fbcd1">
+<span class="eqno">(41)<a class="headerlink" href="#equation-36d5fe87-30c8-4449-9d69-85614e9fbcd1" title="Permalink to this equation">#</a></span>\[\begin{equation}
 \vec F_{ij} = k \delta \hat n_{ij},
 \end{equation}\]</div>
 <p>where <span class="math notranslate nohighlight">\(k\)</span> is a constant proportional to the effective Young modulus, and <span class="math notranslate nohighlight">\(\hat
 n_{ij}\)</span> is the normal vector from particle <span class="math notranslate nohighlight">\(i\)</span> to <span class="math notranslate nohighlight">\(j\)</span>, that is</p>
-<div class="amsmath math notranslate nohighlight" id="equation-6bd91bbe-3c76-4df7-88c7-3cf24a9110b3">
-<span class="eqno">(42)<a class="headerlink" href="#equation-6bd91bbe-3c76-4df7-88c7-3cf24a9110b3" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-956133c5-828e-4ee1-a51f-1e0b63280344">
+<span class="eqno">(42)<a class="headerlink" href="#equation-956133c5-828e-4ee1-a51f-1e0b63280344" title="Permalink to this equation">#</a></span>\[\begin{equation}
 \hat n_{ij} = \frac{\vec R_{ij}}{|\vec R_{ij}|},
 \end{equation}\]</div>
 <p>with <span class="math notranslate nohighlight">\(\vec R_{ij} = \vec R_j - \vec R_i\)</span>, and</p>
-<div class="amsmath math notranslate nohighlight" id="equation-711ccbaf-e104-4336-8ab7-72d78fcce7d5">
-<span class="eqno">(43)<a class="headerlink" href="#equation-711ccbaf-e104-4336-8ab7-72d78fcce7d5" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-65f81a04-32d3-41d7-b0f3-9e2d725c1a14">
+<span class="eqno">(43)<a class="headerlink" href="#equation-65f81a04-32d3-41d7-b0f3-9e2d725c1a14" title="Permalink to this equation">#</a></span>\[\begin{equation}
 \delta = r_i + r_j - |\vec R_{ij}|.
 \end{equation}\]</div>
 <p>For a more realistic force model, check
 <a class="reference external" href="https://www.cfdem.com/media/DEM/docu/gran_model_hertz.html">https://www.cfdem.com/media/DEM/docu/gran_model_hertz.html</a> and references
 therein.</p>
 <section id="id3">
-<h3>Exercises<a class="headerlink" href="#id3" title="Link to this heading">#</a></h3>
+<h3>Exercises<a class="headerlink" href="#id3" title="Permalink to this heading">#</a></h3>
 <ul class="simple">
 <li><p>Make the boundary a circle</p></li>
 <li><p>Create a canon of particles to add particles to the system every nth step.</p></li>
@@ -857,10 +851,10 @@ therein.</p>
 </section>
 </section>
 <section id="more-about-oop-modeling">
-<h2>More about OOP modeling<a class="headerlink" href="#more-about-oop-modeling" title="Link to this heading">#</a></h2>
+<h2>More about OOP modeling<a class="headerlink" href="#more-about-oop-modeling" title="Permalink to this heading">#</a></h2>
 <p><a id="org43e1962"></a></p>
-<section id="modeling-a-complex-number-7-10">
-<h3>Modeling a complex number <code>[7/10]</code><a class="headerlink" href="#modeling-a-complex-number-7-10" title="Link to this heading">#</a></h3>
+<section id="modeling-a-complex-number-code-7-10-code">
+<h3>Modeling a complex number <code>[7/10]</code><a class="headerlink" href="#modeling-a-complex-number-code-7-10-code" title="Permalink to this heading">#</a></h3>
 <p>Let’s model a complex number. The program should able to print the
 number and also to compute</p>
 <ul class="simple">
@@ -1057,7 +1051,7 @@ number and also to compute</p>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#more-about-oop-modeling">More about OOP modeling</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#modeling-a-complex-number-7-10">Modeling a complex number <code>[7/10]</code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#modeling-a-complex-number-code-7-10-code">Modeling a complex number <code>[7/10]</code></a></li>
 </ul>
 </li>
 </ul>
