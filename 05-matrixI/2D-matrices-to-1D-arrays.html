@@ -148,7 +148,7 @@ const thebe_selector_output = ".output, .cell_output"
 
   
 
-<a class="navbar-brand logo" href="../intro.html">
+<a class="navbar-brand logo" href="../README.html">
   
   
   
@@ -169,7 +169,7 @@ const thebe_selector_output = ".output, .cell_output"
         
         <ul class="nav bd-sidenav bd-sidenav__home-link">
             <li class="toctree-l1">
-                <a class="reference internal" href="../intro.html">
+                <a class="reference internal" href="../README.html">
                     Introduction to C++ and Numerical Methods
                 </a>
             </li>
@@ -625,13 +625,13 @@ inside each cell correspond to indexes)</p>
 </div>
 <p>As you can see, in the 1d array in memory, the first element (1d index 0) has the coordinates (0, 0), the second element (1d index 1) corresponds to (0, 1), and so on. The sixth 1d element, with 1d index 5, has 2D coordinates (1, 2). Can you devise a rule to relate the 1d and the 2d indexes?</p>
 <p>For a general matrix of size <code class="docutils literal notranslate"><span class="pre">MxN</span></code>, you have the following mapping from 2D to 1D</p>
-<div class="amsmath math notranslate nohighlight" id="equation-26f95b78-2f56-47e3-94f0-09065be2a2c5">
-<span class="eqno">(13)<a class="headerlink" href="#equation-26f95b78-2f56-47e3-94f0-09065be2a2c5" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-3d27a8c1-7f29-4593-9f08-f22d1b425eb8">
+<span class="eqno">(13)<a class="headerlink" href="#equation-3d27a8c1-7f29-4593-9f08-f22d1b425eb8" title="Permalink to this equation">#</a></span>\[\begin{equation}
 id = iN + j,
 \end{equation}\]</div>
 <p>while , from 1D to 2D</p>
-<div class="amsmath math notranslate nohighlight" id="equation-76bd82bf-ecee-4793-9604-0d7a3ff9105e">
-<span class="eqno">(14)<a class="headerlink" href="#equation-76bd82bf-ecee-4793-9604-0d7a3ff9105e" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-1c73fef9-30d8-424e-b6dc-006d55b8f2c3">
+<span class="eqno">(14)<a class="headerlink" href="#equation-1c73fef9-30d8-424e-b6dc-006d55b8f2c3" title="Permalink to this equation">#</a></span>\[\begin{align}
 i &amp;= id/N,\\
 j &amp;= id%N.
 \end{align}\]</div>

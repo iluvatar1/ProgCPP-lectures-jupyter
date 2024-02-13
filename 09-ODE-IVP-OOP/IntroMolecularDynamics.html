@@ -147,7 +147,7 @@ const thebe_selector_output = ".output, .cell_output"
 
   
 
-<a class="navbar-brand logo" href="../intro.html">
+<a class="navbar-brand logo" href="../README.html">
   
   
   
@@ -168,7 +168,7 @@ const thebe_selector_output = ".output, .cell_output"
         
         <ul class="nav bd-sidenav bd-sidenav__home-link">
             <li class="toctree-l1">
-                <a class="reference internal" href="../intro.html">
+                <a class="reference internal" href="../README.html">
                     Introduction to C++ and Numerical Methods
                 </a>
             </li>
@@ -641,8 +641,8 @@ optimized velocity verlet and so on. They try to integrate the evolution with a
 high order while reducing the number of force evaluations per time step. In
 particular, the leap-frog algorithm can be written as
 (<a class="reference external" href="https://en.wikipedia.org/wiki/Leapfrog_integration">https://en.wikipedia.org/wiki/Leapfrog_integration</a>)</p>
-<div class="amsmath math notranslate nohighlight" id="equation-c3313dc2-431f-4195-a021-d7d607d56c00">
-<span class="eqno">(38)<a class="headerlink" href="#equation-c3313dc2-431f-4195-a021-d7d607d56c00" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-8680d5f5-5c20-4ec1-8b14-1130cef56b0b">
+<span class="eqno">(38)<a class="headerlink" href="#equation-8680d5f5-5c20-4ec1-8b14-1130cef56b0b" title="Permalink to this equation">#</a></span>\[\begin{align}
 \vec V (t + \delta t/2) &amp;= \vec V (t - \delta t/2) + \vec F(t) \delta t/m + O(\delta t^3),\\
 \vec R(t+\delta t) &amp;= \vec R(t) + \vec V (t + \delta t/2) \delta t + O(\delta t^3).
 \end{align}\]</div>
@@ -650,15 +650,15 @@ particular, the leap-frog algorithm can be written as
 and symplectic. One important detail for the implementation: To perform the
 first step, you need to put your variables in the correct time. If we put t=0,
 the next step would be</p>
-<div class="amsmath math notranslate nohighlight" id="equation-5dd8b571-5052-471d-a2b2-ee8193dfa1aa">
-<span class="eqno">(39)<a class="headerlink" href="#equation-5dd8b571-5052-471d-a2b2-ee8193dfa1aa" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-dd3d4304-3d66-40c4-ad3a-b3835c908314">
+<span class="eqno">(39)<a class="headerlink" href="#equation-dd3d4304-3d66-40c4-ad3a-b3835c908314" title="Permalink to this equation">#</a></span>\[\begin{align}
 \vec V (0 + \delta t/2) &amp;= \vec V (0 - \delta t/2) + \vec F(0) \delta t/m + O(\delta t^3),\\
 \vec R(0+\delta t) &amp;= \vec R(0) + \vec V (0 + \delta t/2) \delta t + O(\delta t^3).
 \end{align}\]</div>
 <p>Therefore, we will need first to move the velocity from time 0 to time <span class="math notranslate nohighlight">\(0 -
 \delta t\)</span>. We could do that as follows</p>
-<div class="amsmath math notranslate nohighlight" id="equation-dec323a4-a91b-4555-9ccf-70b399b53b5e">
-<span class="eqno">(40)<a class="headerlink" href="#equation-dec323a4-a91b-4555-9ccf-70b399b53b5e" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-cdf7c8a1-0410-4b2d-bbeb-8ca595126e64">
+<span class="eqno">(40)<a class="headerlink" href="#equation-cdf7c8a1-0410-4b2d-bbeb-8ca595126e64" title="Permalink to this equation">#</a></span>\[\begin{equation}
 \vec V(0 - \delta t/2) = \vec V(0) - \delta t \vec F(0)/2m.
 \end{equation}\]</div>
 <p><a id="orgd0444a6"></a></p>
@@ -823,19 +823,19 @@ many other particles and visualize their collisions. How does the cpu time
 scales with the number of particles?</p>
 <p>If two particles are colliding, with interpenetration <span class="math notranslate nohighlight">\(\delta\)</span>, then we can
 model the force that particle <span class="math notranslate nohighlight">\(i\)</span> exerts on particle <span class="math notranslate nohighlight">\(j\)</span> as,</p>
-<div class="amsmath math notranslate nohighlight" id="equation-d1906afe-8ccf-4257-bfc7-599bb777e6a2">
-<span class="eqno">(41)<a class="headerlink" href="#equation-d1906afe-8ccf-4257-bfc7-599bb777e6a2" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-cac57efe-c7ff-4796-88fe-52c242838de6">
+<span class="eqno">(41)<a class="headerlink" href="#equation-cac57efe-c7ff-4796-88fe-52c242838de6" title="Permalink to this equation">#</a></span>\[\begin{equation}
 \vec F_{ij} = k \delta \hat n_{ij},
 \end{equation}\]</div>
 <p>where <span class="math notranslate nohighlight">\(k\)</span> is a constant proportional to the effective Young modulus, and <span class="math notranslate nohighlight">\(\hat
 n_{ij}\)</span> is the normal vector from particle <span class="math notranslate nohighlight">\(i\)</span> to <span class="math notranslate nohighlight">\(j\)</span>, that is</p>
-<div class="amsmath math notranslate nohighlight" id="equation-90474e06-f23e-44af-bbc7-8655f49bcfbe">
-<span class="eqno">(42)<a class="headerlink" href="#equation-90474e06-f23e-44af-bbc7-8655f49bcfbe" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-22730693-2794-495e-9db3-6b38099c14d3">
+<span class="eqno">(42)<a class="headerlink" href="#equation-22730693-2794-495e-9db3-6b38099c14d3" title="Permalink to this equation">#</a></span>\[\begin{equation}
 \hat n_{ij} = \frac{\vec R_{ij}}{|\vec R_{ij}|},
 \end{equation}\]</div>
 <p>with <span class="math notranslate nohighlight">\(\vec R_{ij} = \vec R_j - \vec R_i\)</span>, and</p>
-<div class="amsmath math notranslate nohighlight" id="equation-6e951f1c-b070-42f1-84dc-edcb796b3d0d">
-<span class="eqno">(43)<a class="headerlink" href="#equation-6e951f1c-b070-42f1-84dc-edcb796b3d0d" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-e1374947-dbdb-417d-98a8-42e1842965c9">
+<span class="eqno">(43)<a class="headerlink" href="#equation-e1374947-dbdb-417d-98a8-42e1842965c9" title="Permalink to this equation">#</a></span>\[\begin{equation}
 \delta = r_i + r_j - |\vec R_{ij}|.
 \end{equation}\]</div>
 <p>For a more realistic force model, check
