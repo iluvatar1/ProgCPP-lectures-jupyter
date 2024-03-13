@@ -492,13 +492,16 @@ document.write(`
 </section>
 <section id="a-better-estimation-central-difference">
 <h2>A better estimation: Central difference<a class="headerlink" href="#a-better-estimation-central-difference" title="Permalink to this heading">#</a></h2>
-<p>If you compute a forward (<span class="math notranslate nohighlight">\(+h\)</span>)<br />
-$<span class="math notranslate nohighlight">\(f(x+h) = f(x) + f'(x) h + f''(x) h^2/2 + f'''(x) h^3/6 + O(h^4) + O(h^5),\)</span><span class="math notranslate nohighlight">\(
-and a backward (\)</span>-h<span class="math notranslate nohighlight">\() Taylor expansion,
-\)</span><span class="math notranslate nohighlight">\(f(x-h) = f(x) - f'(x) h + f''(x) h^2/2 - f'''(x) h^3/6 + O(h^4) - O(h^5),\)</span><span class="math notranslate nohighlight">\(
-and then you subtract the second from the first (notice that adding then allows you to compute the second order derivative), you get
-\)</span><span class="math notranslate nohighlight">\(f'(x) \simeq \frac{f(x+h) - f(x-h)}{2h} + O(h^2)\)</span>$
-which is called the central difference. The order is improved and this version is better than the simple forward difference. See: https://en.wikipedia.org/wiki/Finite_difference</p>
+<p>If you compute a forward (<span class="math notranslate nohighlight">\(+h\)</span>)</p>
+<div class="math notranslate nohighlight">
+\[f(x+h) = f(x) + f'(x) h + f''(x) h^2/2 + f'''(x) h^3/6 + O(h^4) + O(h^5),\]</div>
+<p>and a backward (<span class="math notranslate nohighlight">\(-h\)</span>) Taylor expansion,</p>
+<div class="math notranslate nohighlight">
+\[f(x-h) = f(x) - f'(x) h + f''(x) h^2/2 - f'''(x) h^3/6 + O(h^4) - O(h^5),\]</div>
+<p>and then you subtract the second from the first (notice that adding then allows you to compute the second order derivative), you get</p>
+<div class="math notranslate nohighlight">
+\[f'(x) \simeq \frac{f(x+h) - f(x-h)}{2h} + O(h^2)\]</div>
+<p>which is called the central difference. The order is improved and this version is better than the simple forward difference. See: https://en.wikipedia.org/wiki/Finite_difference</p>
 <table class="table">
 <thead>
 <tr class="row-odd"><th class="head"><p>Comparison among methods</p></th>
@@ -512,11 +515,11 @@ which is called the central difference. The order is improved and this version i
 </tbody>
 </table>
 <p>By using <a class="reference external" href="https://en.wikipedia.org/wiki/Richardson_extrapolation">Richardson extrapolation</a>, you can improve even more the central difference estimation,</p>
-<div class="amsmath math notranslate nohighlight" id="equation-ae1fef12-ea03-4b23-8663-4b032453dd31">
-<span class="eqno">(1)<a class="headerlink" href="#equation-ae1fef12-ea03-4b23-8663-4b032453dd31" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-71878443-4451-49da-9f2f-7ac452c90bad">
+<span class="eqno">(1)<a class="headerlink" href="#equation-71878443-4451-49da-9f2f-7ac452c90bad" title="Permalink to this equation">#</a></span>\[\begin{equation}
 f'(x) = \phi\left(\frac{h}{2}\right) + \frac{1}{3}\left[\phi\left(\frac{h}{2} \right) - \phi(h) \right] + O(h^4),
 \end{equation}\]</div>
-<p>where <span class="math notranslate nohighlight">\(\phi(h)\)</span> is the derivative estimation from the central difference with a given <span class="math notranslate nohighlight">\(h\)</span> value.</p>
+<p>where <span class="math notranslate nohighlight">\(\phi(h)\)</span> is the derivative estimation from the central difference with a given <span class="math notranslate nohighlight">\(h\)</span> value. <strong>NOTE</strong>: This form is only for the central difference, since it depends on the algorithm order.</p>
 </section>
 <section id="other-important-cases">
 <h2>Other important cases<a class="headerlink" href="#other-important-cases" title="Permalink to this heading">#</a></h2>
@@ -539,7 +542,8 @@ Compute the derivative as a function of <span class="math notranslate nohighligh
 <section id="file-modularization">
 <h3>File modularization<a class="headerlink" href="#file-modularization" title="Permalink to this heading">#</a></h3>
 <p>Now try to modularize the code. Create headers and implementation files called <code class="docutils literal notranslate"><span class="pre">derivatives.h</span></code> and <code class="docutils literal notranslate"><span class="pre">derivatives.cpp</span></code>, where you are going to put declarations and implementations for both the forward and the central derivative methods. What happens now? where should the function to be derived go? We need a more generic approach. Use <code class="docutils literal notranslate"><span class="pre">using</span> <span class="pre">fptr</span> <span class="pre">=</span> <span class="pre">double(double)</span></code> as a function pointer, which is a construct that represents what a function returns and receives. The ideal is to use the functions as parameters</p>
-<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">double</span><span class="w"> </span><span class="nf">forward_diff</span><span class="p">(</span><span class="kt">double</span><span class="w"> </span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="n">h</span><span class="p">,</span><span class="w"> </span><span class="n">fptr</span><span class="w"> </span><span class="n">fun</span><span class="p">);</span>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">using</span><span class="w"> </span><span class="n">fptr</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kt">double</span><span class="p">(</span><span class="kt">double</span><span class="p">);</span><span class="w"> </span><span class="c1">// pointer(c++11) to a function which receives a double and returns a double</span>
+<span class="kt">double</span><span class="w"> </span><span class="nf">forward_diff</span><span class="p">(</span><span class="kt">double</span><span class="w"> </span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="n">h</span><span class="p">,</span><span class="w"> </span><span class="n">fptr</span><span class="w"> </span><span class="n">fun</span><span class="p">);</span>
 <span class="kt">double</span><span class="w"> </span><span class="nf">central_diff</span><span class="p">(</span><span class="kt">double</span><span class="w"> </span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="n">h</span><span class="p">,</span><span class="w"> </span><span class="n">fptr</span><span class="w"> </span><span class="n">fun</span><span class="p">);</span>
 </pre></div>
 </div>
@@ -563,11 +567,12 @@ Compute the derivative as a function of <span class="math notranslate nohighligh
 </section>
 <section id="implementing-richardson-extrapolation">
 <h2>Implementing Richardson extrapolation<a class="headerlink" href="#implementing-richardson-extrapolation" title="Permalink to this heading">#</a></h2>
-<p>Now, use the general expression for Richardson extrapolation applied to an algorithm of order <span class="math notranslate nohighlight">\(O(h^\alpha)\)</span>, and also plot its relative differences for fixed <span class="math notranslate nohighlight">\(x\)</span>, (see https://en.wikipedia.org/wiki/Richardson_extrapolation?useskin=vector)
-$<span class="math notranslate nohighlight">\(
+<p>Now, use the general expression for Richardson extrapolation applied to an algorithm of order <span class="math notranslate nohighlight">\(O(h^\alpha)\)</span>, and also plot its relative differences for fixed <span class="math notranslate nohighlight">\(x\)</span>, (see https://en.wikipedia.org/wiki/Richardson_extrapolation?useskin=vector)</p>
+<div class="amsmath math notranslate nohighlight" id="equation-2d9a71f0-8a4e-4675-a77e-b531e3e4ed59">
+<span class="eqno">(2)<a class="headerlink" href="#equation-2d9a71f0-8a4e-4675-a77e-b531e3e4ed59" title="Permalink to this equation">#</a></span>\[\begin{equation}
 I \simeq \dfrac{t^\alpha I(\frac{h}{t}) - I(h)}{t^\alpha - 1},
-\)</span><span class="math notranslate nohighlight">\(
-where \)</span>t<span class="math notranslate nohighlight">\( is a factor larger than 1 (tipically \)</span>t=2<span class="math notranslate nohighlight">\(), \)</span>\alpha<span class="math notranslate nohighlight">\( is the algorithm order, and \)</span>I$ is the value you are computing. This implies additions to both headers and implementation files, and a new main.</p>
+\end{equation}\]</div>
+<p>where <span class="math notranslate nohighlight">\(t\)</span> is a factor larger than 1 (tipically <span class="math notranslate nohighlight">\(t=2\)</span>), <span class="math notranslate nohighlight">\(\alpha\)</span> is the algorithm order, and <span class="math notranslate nohighlight">\(I\)</span> is the value you are computing. This implies additions to both headers and implementation files, and a new main.</p>
 <p>As you can see, the Richardson implementation is very similar for both the central and the forward algorithms. Maybe there is some hope to decrease this duplication. Think about a new <code class="docutils literal notranslate"><span class="pre">using</span> <span class="pre">...</span></code> construct. Implement it and plot all errors as a function of <span class="math notranslate nohighlight">\(h\)</span></p>
 </section>
 <section id="testing">
