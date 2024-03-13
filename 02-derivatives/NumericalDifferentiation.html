@@ -484,7 +484,7 @@ document.write(`
 </thead>
 <tbody>
 <tr class="row-even"><td><p>$<span class="math notranslate nohighlight">\(f'(x) \simeq \frac{f(x+h) - f(x)}{h} + O(h)\)</span>$</p></td>
-<td><p><a class="reference internal" href="https://upload.wikimedia.org/wikipedia/commons/thumb/1/18/Derivative.svg/460px-Derivative.svg.png"><img alt="https://upload.wikimedia.org/wikipedia/commons/thumb/1/18/Derivative.svg/460px-Derivative.svg.png" src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/18/Derivative.svg/460px-Derivative.svg.png" style="width: 300px;" /></a></p></td>
+<td><p><a class="reference internal" href="https://upload.wikimedia.org/wikipedia/commons/thumb/1/18/Derivative.svg/460px-Derivative.svg.png"><img alt="https://upload.wikimedia.org/wikipedia/commons/thumb/1/18/Derivative.svg/460px-Derivative.svg.png" src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/18/Derivative.svg/460px-Derivative.svg.png" style="width: 500px;" /></a></p></td>
 </tr>
 </tbody>
 </table>
@@ -506,14 +506,17 @@ which is called the central difference. The order is improved and this version i
 </tr>
 </thead>
 <tbody>
-<tr class="row-even"><td><p><a class="reference internal" href="https://upload.wikimedia.org/wikipedia/commons/thumb/9/90/Finite_difference_method.svg/614px-Finite_difference_method.svg.png"><img alt="https://upload.wikimedia.org/wikipedia/commons/thumb/9/90/Finite_difference_method.svg/614px-Finite_difference_method.svg.png" src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/90/Finite_difference_method.svg/614px-Finite_difference_method.svg.png" style="width: 400px;" /></a></p></td>
-<td><p><a class="reference internal" href="https://upload.wikimedia.org/wikipedia/commons/thumb/4/41/AbsoluteErrorNumericalDifferentiationExample.png/600px-AbsoluteErrorNumericalDifferentiationExample.png"><img alt="https://upload.wikimedia.org/wikipedia/commons/thumb/4/41/AbsoluteErrorNumericalDifferentiationExample.png/600px-AbsoluteErrorNumericalDifferentiationExample.png" src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/41/AbsoluteErrorNumericalDifferentiationExample.png/600px-AbsoluteErrorNumericalDifferentiationExample.png" style="width: 400px;" /></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="https://upload.wikimedia.org/wikipedia/commons/thumb/9/90/Finite_difference_method.svg/614px-Finite_difference_method.svg.png"><img alt="https://upload.wikimedia.org/wikipedia/commons/thumb/9/90/Finite_difference_method.svg/614px-Finite_difference_method.svg.png" src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/90/Finite_difference_method.svg/614px-Finite_difference_method.svg.png" style="width: 600px;" /></a></p></td>
+<td><p><a class="reference internal" href="https://upload.wikimedia.org/wikipedia/commons/thumb/4/41/AbsoluteErrorNumericalDifferentiationExample.png/600px-AbsoluteErrorNumericalDifferentiationExample.png"><img alt="https://upload.wikimedia.org/wikipedia/commons/thumb/4/41/AbsoluteErrorNumericalDifferentiationExample.png/600px-AbsoluteErrorNumericalDifferentiationExample.png" src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/41/AbsoluteErrorNumericalDifferentiationExample.png/600px-AbsoluteErrorNumericalDifferentiationExample.png" style="width: 600px;" /></a></p></td>
 </tr>
 </tbody>
 </table>
-<p>By using <a class="reference external" href="https://en.wikipedia.org/wiki/Richardson_extrapolation">Richardson extrapolation</a>, you can improve even more the central difference estimation,
-$<span class="math notranslate nohighlight">\(f'(x) = \phi\left(\frac{h}{2}\right) + \frac{1}{3}\left[\phi\left(\frac{h}{2} \right) - \phi(h) \right] + O(h^4)\)</span><span class="math notranslate nohighlight">\(,
-where \)</span>\phi(h)<span class="math notranslate nohighlight">\( is the derivative estimation from the central difference with a given \)</span>h$ value.</p>
+<p>By using <a class="reference external" href="https://en.wikipedia.org/wiki/Richardson_extrapolation">Richardson extrapolation</a>, you can improve even more the central difference estimation,</p>
+<div class="amsmath math notranslate nohighlight" id="equation-ae1fef12-ea03-4b23-8663-4b032453dd31">
+<span class="eqno">(1)<a class="headerlink" href="#equation-ae1fef12-ea03-4b23-8663-4b032453dd31" title="Permalink to this equation">#</a></span>\[\begin{equation}
+f'(x) = \phi\left(\frac{h}{2}\right) + \frac{1}{3}\left[\phi\left(\frac{h}{2} \right) - \phi(h) \right] + O(h^4),
+\end{equation}\]</div>
+<p>where <span class="math notranslate nohighlight">\(\phi(h)\)</span> is the derivative estimation from the central difference with a given <span class="math notranslate nohighlight">\(h\)</span> value.</p>
 </section>
 <section id="other-important-cases">
 <h2>Other important cases<a class="headerlink" href="#other-important-cases" title="Permalink to this heading">#</a></h2>

@@ -625,13 +625,13 @@ inside each cell correspond to indexes)</p>
 </div>
 <p>As you can see, in the 1d array in memory, the first element (1d index 0) has the coordinates (0, 0), the second element (1d index 1) corresponds to (0, 1), and so on. The sixth 1d element, with 1d index 5, has 2D coordinates (1, 2). Can you devise a rule to relate the 1d and the 2d indexes?</p>
 <p>For a general matrix of size <code class="docutils literal notranslate"><span class="pre">MxN</span></code>, you have the following mapping from 2D to 1D</p>
-<div class="amsmath math notranslate nohighlight" id="equation-ad42d5db-a2ab-44fa-8abc-3ca913c231ca">
-<span class="eqno">(13)<a class="headerlink" href="#equation-ad42d5db-a2ab-44fa-8abc-3ca913c231ca" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-588ed039-3a1a-441a-acb7-f90ecc9adcf0">
+<span class="eqno">(14)<a class="headerlink" href="#equation-588ed039-3a1a-441a-acb7-f90ecc9adcf0" title="Permalink to this equation">#</a></span>\[\begin{equation}
 id = iN + j,
 \end{equation}\]</div>
 <p>while , from 1D to 2D</p>
-<div class="amsmath math notranslate nohighlight" id="equation-6d35aea4-3053-464b-b2a3-3c90e8c02e70">
-<span class="eqno">(14)<a class="headerlink" href="#equation-6d35aea4-3053-464b-b2a3-3c90e8c02e70" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-b5ef872e-1e18-43e8-abfe-b6ed13ebde1b">
+<span class="eqno">(15)<a class="headerlink" href="#equation-b5ef872e-1e18-43e8-abfe-b6ed13ebde1b" title="Permalink to this equation">#</a></span>\[\begin{align}
 i &amp;= id/N,\\
 j &amp;= id%N.
 \end{align}\]</div>
