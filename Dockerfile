@@ -23,6 +23,9 @@ RUN apt-get update && \
     unzip \
     sudo \
     cpplint \
+    valgrind \
+    gdb \
+    libspdlog-dev \
     && apt-get clean && \
     rm -rf /var/lib/apt/lists/*
 
