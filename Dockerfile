@@ -61,9 +61,12 @@ RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
 # Set the SHELL environment variable to /bin/bash
 ENV SHELL=/bin/bash
 
+# Remove the default user to free id 1000
+RUN userdel -r ubuntu
+
 # create user with a home directory
 ARG NB_USER=jovyan
-ARG NB_UID=1001
+ARG NB_UID=1000
 ENV USER ${NB_USER}
 ENV HOME /home/${NB_USER}
 
@@ -88,7 +91,7 @@ COPY requirements.txt .
 #create venv, activate and run pip install
 RUN python3 -m venv .venv
 RUN . .venv/bin/activate && pip install -r requirements.txt
-RUN echo "source .venv/bin/activate" >> ~/.bashrc # This is for root
+RUN echo "source ~/.venv/bin/activate" >> ~/.bashrc # This is for root
 
 
 ## Run matplotlib config to generate the font cache
