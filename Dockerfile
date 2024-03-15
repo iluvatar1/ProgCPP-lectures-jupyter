@@ -79,6 +79,12 @@ RUN adduser --disabled-password \
 # Copy the rest of the files
 COPY . ${HOME}
 
+#Copy only the requirements file first
+COPY requirements.txt .
+#create venv, activate and run pip install
+RUN python3 -m venv ${HOME}/.venv
+RUN . ${HOME}/.venv/bin/activate && pip install -r requirements.txt
+
 # Set ownership of files
 USER root
 RUN chown -R ${NB_UID} ${HOME}
@@ -86,21 +92,13 @@ RUN chown -R ${NB_UID} ${HOME}
 WORKDIR ${HOME}
 USER ${USER}
 
-#Copy only the requirements file first
-COPY requirements.txt .
-#create venv, activate and run pip install
-RUN python3 -m venv .venv
-RUN . .venv/bin/activate && pip install -r requirements.txt
-RUN echo "source ~/.venv/bin/activate" >> ~/.bashrc # This is for root
-
-
 ## Run matplotlib config to generate the font cache
 #RUN . .venv/bin/activate && MPLBACKEND=Agg python3 -c "import matplotlib.pyplot"
 
 # Setup starship
 RUN echo 'eval "$(starship init bash)"' >> ${HOME}/.bashrc
 # setup venv for user
-RUN echo "source .venv/bin/activate" >> ${HOME}/.bashrc
+RUN echo "source ~/.venv/bin/activate" >> ${HOME}/.bashrc
 
 
 # ## Clone the source code repo
