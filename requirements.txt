@@ -1,4 +1,6 @@
 jupyter-book==0.15.1
+notebook
+jupyterlab
 matplotlib
 numpy
 ghp-import
