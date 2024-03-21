@@ -475,7 +475,8 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="d-arrays-for-2d-matrices">
+  <p>https://www.cs.usfca.edu/~galles/visualization/RotateScale2D.html</p>
+<section class="tex2jax_ignore mathjax_ignore" id="d-arrays-for-2d-matrices">
 <h1>1D Arrays for 2D Matrices<a class="headerlink" href="#d-arrays-for-2d-matrices" title="Permalink to this heading">#</a></h1>
 <p><a id="org4fe13c5"></a></p>
 <section id="representing-a-matrix">
@@ -625,13 +626,13 @@ inside each cell correspond to indexes)</p>
 </div>
 <p>As you can see, in the 1d array in memory, the first element (1d index 0) has the coordinates (0, 0), the second element (1d index 1) corresponds to (0, 1), and so on. The sixth 1d element, with 1d index 5, has 2D coordinates (1, 2). Can you devise a rule to relate the 1d and the 2d indexes?</p>
 <p>For a general matrix of size <code class="docutils literal notranslate"><span class="pre">MxN</span></code>, you have the following mapping from 2D to 1D</p>
-<div class="amsmath math notranslate nohighlight" id="equation-a90c8907-0a7e-497c-ae66-3af50e560277">
-<span class="eqno">(15)<a class="headerlink" href="#equation-a90c8907-0a7e-497c-ae66-3af50e560277" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-4a2aa8d2-d9e2-4b11-8453-6fb8fc103581">
+<span class="eqno">(15)<a class="headerlink" href="#equation-4a2aa8d2-d9e2-4b11-8453-6fb8fc103581" title="Permalink to this equation">#</a></span>\[\begin{equation}
 id = iN + j,
 \end{equation}\]</div>
 <p>while , from 1D to 2D</p>
-<div class="amsmath math notranslate nohighlight" id="equation-aa27a8db-f3cd-4f21-9ef7-9b06421f3584">
-<span class="eqno">(16)<a class="headerlink" href="#equation-aa27a8db-f3cd-4f21-9ef7-9b06421f3584" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-e7e50b50-6f13-460d-bf4f-d986dd1bfb57">
+<span class="eqno">(16)<a class="headerlink" href="#equation-e7e50b50-6f13-460d-bf4f-d986dd1bfb57" title="Permalink to this equation">#</a></span>\[\begin{align}
 i &amp;= id/N,\\
 j &amp;= id%N.
 \end{align}\]</div>

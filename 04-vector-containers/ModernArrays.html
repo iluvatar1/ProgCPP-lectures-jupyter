@@ -448,10 +448,8 @@ document.write(`
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercises">Exercises</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#using-std-vector-dynamic-size-uses-the-heap">Using <code class="docutils literal notranslate"><span class="pre">std::vector</span></code> : Dynamic size, uses the heap</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Exercises</a></li>
-</ul>
-</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#using-std-vector-dynamic-size-uses-the-heap">Using <code class="docutils literal notranslate"><span class="pre">std::vector</span></code> : Dynamic size, uses the heap</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Exercises</a></li>
 </ul>
             </nav>
         </div>
@@ -503,7 +501,7 @@ block memory block that can be accessed very fast: https://hackingcpp.com/cpp/st
 kind of <code class="docutils literal notranslate"><span class="pre">for</span></code>. It is recommended to run this on a graphical debugger , either
 locally in emacs or visual code, or online on the python tutor or <a class="reference external" href="https://www.onlinegdb.com/">onlinegdb</a>, at
 the link <a class="reference external" href="https://onlinegdb.com/CKeYkLEiz">https://onlinegdb.com/CKeYkLEiz</a> .</p>
-<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;iostream&gt;</span>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;iostream&gt;</span>
 <span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;array&gt;</span>
 <span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;vector&gt;</span>
 
@@ -556,7 +554,7 @@ address.</p></li>
 </section>
 <section id="using-std-array-fixed-size-goes-to-the-stack-automatic-for">
 <h2>Using <code class="docutils literal notranslate"><span class="pre">std::array</span></code> : Fixed size, goes to the stack, automatic for<a class="headerlink" href="#using-std-array-fixed-size-goes-to-the-stack-automatic-for" title="Permalink to this heading">#</a></h2>
-<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="c1">// g++ -g -fsanitize=address</span>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="c1">// g++ -g -fsanitize=address</span>
 <span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;iostream&gt;</span>
 <span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;array&gt;</span>
 
@@ -713,17 +711,19 @@ info here:</p>
 </pre></div>
 </div>
 <p><a id="org581880d"></a></p>
+</section>
 <section id="id1">
-<h3>Exercises<a class="headerlink" href="#id1" title="Permalink to this heading">#</a></h3>
+<h2>Exercises<a class="headerlink" href="#id1" title="Permalink to this heading">#</a></h2>
 <p>Always try to use the STL, and also use functions to implement the following:</p>
 <ol class="arabic">
 <li><p>Compute the norm of a vector.</p></li>
+<li><p>Implement the Gauss 7 point method, storing the weights and the coordinates points in a vector.</p></li>
 <li><p>Compute the dot product between two vectors. Use <code class="docutils literal notranslate"><span class="pre">std::inner_product</span></code>.</p></li>
 <li><p>Assume that a vector represents the coefficients of a n-degree polynomial.
 Compute the derivative of the polynomial and save the coefficients in another
 vector.</p>
-<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>data = {1 , 3, 4.5}; // 1*x^0 + 3*x^1 + 4.5*x^2
-newdata = {3, 9.0}; // 0 + 3*x^0 + 2*4.5*x^1
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="w">    </span><span class="n">data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="mi">1</span><span class="w"> </span><span class="p">,</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w"> </span><span class="mf">4.5</span><span class="p">};</span><span class="w"> </span><span class="c1">// 1*x^0 + 3*x^1 + 4.5*x^2</span>
+<span class="w">    </span><span class="n">newdata</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="mi">3</span><span class="p">,</span><span class="w"> </span><span class="mf">9.0</span><span class="p">};</span><span class="w"> </span><span class="c1">// 0 + 3*x^0 + 2*4.5*x^1</span>
 </pre></div>
 </div>
 </li>
@@ -732,8 +732,8 @@ newdata = {3, 9.0}; // 0 + 3*x^0 + 2*4.5*x^1
 <li><p>Compute the argmin (index of the min) of a vector</p></li>
 <li><p>Compute the argmax (index of the max) of a vector</p></li>
 <li><p>Compute the pnorm</p>
-<div class="amsmath math notranslate nohighlight" id="equation-b55e32ea-3b36-42cd-b0cd-d6b7fb6ad671">
-<span class="eqno">(14)<a class="headerlink" href="#equation-b55e32ea-3b36-42cd-b0cd-d6b7fb6ad671" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-d491c15f-6026-46e8-9fd4-0655d9784c7b">
+<span class="eqno">(14)<a class="headerlink" href="#equation-d491c15f-6026-46e8-9fd4-0655d9784c7b" title="Permalink to this equation">#</a></span>\[\begin{equation}
     \left(\sum_{i} x_{i}^{p}\right)^{1/p} \ .
     \end{equation}\]</div>
 </li>
@@ -741,36 +741,36 @@ newdata = {3, 9.0}; // 0 + 3*x^0 + 2*4.5*x^1
 the median, the 25, 50, 75 percentiles, the min value, and the max value.</p></li>
 <li><p>Use the standard algorithm sort to sort a data array.</p></li>
 <li><p>Fill a vector with random numbers</p>
-<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>// llenar un vector con numeros aleatorios
-
-#include &lt;iostream&gt;
-#include &lt;string&gt;
-#include &lt;vector&gt;
-#include &quot;random_vector.h&quot;
-
-int main(int argc, char **argv) {
-
-  // read variables
-  if (argc != 2) {
-    std::cerr &lt;&lt; &quot;Usage: &quot; &lt;&lt; argv[0] &lt;&lt; &quot; N&quot; &lt;&lt; std::endl;
-    std::cerr &lt;&lt; &quot;N: size of the vector&quot; &lt;&lt; std::endl;
-    return 1;
-  }
-  const int N = std::stoi(argv[1]);
-
-  // set the vector
-  std::vector&lt;double&gt; data;
-  data.resize(N);
-
-  // fill the vector
-  fill_randomly(data);
-
-  // print the vector
-  std::string fname = &quot;data.txt&quot;;
-  print(data, fname);
-
-  return 0;
-}
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="w">    </span><span class="c1">// llenar un vector con numeros aleatorios</span>
+<span class="w">    </span>
+<span class="w">    </span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;iostream&gt;</span>
+<span class="w">    </span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;string&gt;</span>
+<span class="w">    </span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;vector&gt;</span>
+<span class="w">    </span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;random_vector.h&quot;</span>
+<span class="w">    </span>
+<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">argc</span><span class="p">,</span><span class="w"> </span><span class="kt">char</span><span class="w"> </span><span class="o">**</span><span class="n">argv</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span>
+<span class="w">      </span><span class="c1">// read variables</span>
+<span class="w">      </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">argc</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="mi">2</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">std</span><span class="o">::</span><span class="n">cerr</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;Usage: &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">argv</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot; N&quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+<span class="w">        </span><span class="n">std</span><span class="o">::</span><span class="n">cerr</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;N: size of the vector&quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span>
+<span class="w">      </span><span class="p">}</span>
+<span class="w">      </span><span class="k">const</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">N</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">stoi</span><span class="p">(</span><span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">]);</span>
+<span class="w">    </span>
+<span class="w">      </span><span class="c1">// set the vector</span>
+<span class="w">      </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;</span><span class="w"> </span><span class="n">data</span><span class="p">;</span>
+<span class="w">      </span><span class="n">data</span><span class="p">.</span><span class="n">resize</span><span class="p">(</span><span class="n">N</span><span class="p">);</span>
+<span class="w">    </span>
+<span class="w">      </span><span class="c1">// fill the vector</span>
+<span class="w">      </span><span class="n">fill_randomly</span><span class="p">(</span><span class="n">data</span><span class="p">);</span>
+<span class="w">    </span>
+<span class="w">      </span><span class="c1">// print the vector</span>
+<span class="w">      </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">fname</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;data.txt&quot;</span><span class="p">;</span>
+<span class="w">      </span><span class="n">print</span><span class="p">(</span><span class="n">data</span><span class="p">,</span><span class="w"> </span><span class="n">fname</span><span class="p">);</span>
+<span class="w">    </span>
+<span class="w">      </span><span class="k">return</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
 </pre></div>
 </div>
 </li>
@@ -782,7 +782,6 @@ generates N random numbers , with the weibull distribution and a given seed.
 Both N, the seed, and the weibull parameters must read from the command
 line. Also, you must compute the histogram and print it to a file.</p></li>
 </ol>
-</section>
 </section>
 </section>
 
@@ -855,10 +854,8 @@ line. Also, you must compute the histogram and print it to a file.</p></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercises">Exercises</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#using-std-vector-dynamic-size-uses-the-heap">Using <code class="docutils literal notranslate"><span class="pre">std::vector</span></code> : Dynamic size, uses the heap</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Exercises</a></li>
-</ul>
-</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#using-std-vector-dynamic-size-uses-the-heap">Using <code class="docutils literal notranslate"><span class="pre">std::vector</span></code> : Dynamic size, uses the heap</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Exercises</a></li>
 </ul>
   </nav></div>
 
