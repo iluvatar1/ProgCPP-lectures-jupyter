@@ -69,7 +69,7 @@ const thebe_selector_output = ".output, .cell_output"
     <script>DOCUMENTATION_OPTIONS.pagename = '05-matrixI/2D-matrices-to-1D-arrays';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Vector operations: Coefficient-wise" href="../06-ArrayComputing/ArrayComputing-Valarray.html" />
+    <link rel="next" title="Vector operations: Coefficient-wise , array computing" href="../06-ArrayComputing/ArrayComputing-Valarray.html" />
     <link rel="prev" title="Modern arrays" href="../04-vector-containers/ModernArrays.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
@@ -189,7 +189,7 @@ const thebe_selector_output = ".output, .cell_output"
 <ul class="current nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="../04-vector-containers/ModernArrays.html">Modern arrays</a></li>
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">1D Arrays for 2D Matrices</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../06-ArrayComputing/ArrayComputing-Valarray.html">Vector operations: Coefficient-wise</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../06-ArrayComputing/ArrayComputing-Valarray.html">Vector operations: Coefficient-wise , array computing</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Linear Algebra and Numerical Libraries</span></p>
 <ul class="nav bd-sidenav">
@@ -626,13 +626,13 @@ inside each cell correspond to indexes)</p>
 </div>
 <p>As you can see, in the 1d array in memory, the first element (1d index 0) has the coordinates (0, 0), the second element (1d index 1) corresponds to (0, 1), and so on. The sixth 1d element, with 1d index 5, has 2D coordinates (1, 2). Can you devise a rule to relate the 1d and the 2d indexes?</p>
 <p>For a general matrix of size <code class="docutils literal notranslate"><span class="pre">MxN</span></code>, you have the following mapping from 2D to 1D</p>
-<div class="amsmath math notranslate nohighlight" id="equation-7f4d0cb3-0ab9-4fc3-9286-150152b3cf03">
-<span class="eqno">(15)<a class="headerlink" href="#equation-7f4d0cb3-0ab9-4fc3-9286-150152b3cf03" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-faac3a2d-9181-4fbc-aec5-50df9ef51a26">
+<span class="eqno">(15)<a class="headerlink" href="#equation-faac3a2d-9181-4fbc-aec5-50df9ef51a26" title="Permalink to this equation">#</a></span>\[\begin{equation}
 id = iN + j,
 \end{equation}\]</div>
 <p>while , from 1D to 2D</p>
-<div class="amsmath math notranslate nohighlight" id="equation-d829c46e-7d77-4466-8f2e-2f8a6eceacaa">
-<span class="eqno">(16)<a class="headerlink" href="#equation-d829c46e-7d77-4466-8f2e-2f8a6eceacaa" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-90257b7b-7c0d-452e-a263-e5af4900c5cb">
+<span class="eqno">(16)<a class="headerlink" href="#equation-90257b7b-7c0d-452e-a263-e5af4900c5cb" title="Permalink to this equation">#</a></span>\[\begin{align}
 i &amp;= id/N,\\
 j &amp;= id%N.
 \end{align}\]</div>
@@ -1081,7 +1081,7 @@ the time at <span class="math notranslate nohighlight">\(N = 4\)</span>.</p>
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Vector operations: Coefficient-wise</p>
+        <p class="prev-next-title">Vector operations: Coefficient-wise , array computing</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
