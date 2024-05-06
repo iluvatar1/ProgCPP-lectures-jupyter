@@ -626,13 +626,13 @@ inside each cell correspond to indexes)</p>
 </div>
 <p>As you can see, in the 1d array in memory, the first element (1d index 0) has the coordinates (0, 0), the second element (1d index 1) corresponds to (0, 1), and so on. The sixth 1d element, with 1d index 5, has 2D coordinates (1, 2). Can you devise a rule to relate the 1d and the 2d indexes?</p>
 <p>For a general matrix of size <code class="docutils literal notranslate"><span class="pre">MxN</span></code>, you have the following mapping from 2D to 1D</p>
-<div class="amsmath math notranslate nohighlight" id="equation-faac3a2d-9181-4fbc-aec5-50df9ef51a26">
-<span class="eqno">(15)<a class="headerlink" href="#equation-faac3a2d-9181-4fbc-aec5-50df9ef51a26" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-aff60824-93b8-4e65-bc21-6767d4217190">
+<span class="eqno">(15)<a class="headerlink" href="#equation-aff60824-93b8-4e65-bc21-6767d4217190" title="Permalink to this equation">#</a></span>\[\begin{equation}
 id = iN + j,
 \end{equation}\]</div>
 <p>while , from 1D to 2D</p>
-<div class="amsmath math notranslate nohighlight" id="equation-90257b7b-7c0d-452e-a263-e5af4900c5cb">
-<span class="eqno">(16)<a class="headerlink" href="#equation-90257b7b-7c0d-452e-a263-e5af4900c5cb" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-be0e30b7-8878-49bc-8bb4-6d0d9cc8df61">
+<span class="eqno">(16)<a class="headerlink" href="#equation-be0e30b7-8878-49bc-8bb4-6d0d9cc8df61" title="Permalink to this equation">#</a></span>\[\begin{align}
 i &amp;= id/N,\\
 j &amp;= id%N.
 \end{align}\]</div>
@@ -1012,24 +1012,22 @@ Implement what is needed.</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="w">        </span>./a.out<span class="w"> </span><span class="m">64</span><span class="w"> </span><span class="m">10</span>
 </pre></div>
 </div>
-<p>you should get something like
-<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides"></p>
-<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>&lt;colgroup&gt;
-&lt;col  class=&quot;org-right&quot; /&gt;
-&lt;/colgroup&gt;
-&lt;tbody&gt;
-&lt;tr&gt;
-&lt;td class=&quot;org-right&quot;&gt;14.6676&lt;/td&gt;
-&lt;/tr&gt;
-
-
-&lt;tr&gt;
-&lt;td class=&quot;org-right&quot;&gt;0.002486&lt;/td&gt;
-&lt;/tr&gt;
-&lt;/tbody&gt;
-&lt;/table&gt;
-</pre></div>
-</div>
+<p>you should get something like</p>
+<table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p></p></th>
+<th class="head"><p>Value</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>1</p></td>
+<td><p>14.6676</p></td>
+</tr>
+<tr class="row-odd"><td><p>2</p></td>
+<td><p>0.002486</p></td>
+</tr>
+</tbody>
+</table>
 <p>Plot, in log-log scale, the time as a function of the matriz size <span class="math notranslate nohighlight">\(N\)</span> in the
 range <span class="math notranslate nohighlight">\(N \in \{4, 8, 16, 32, 64, 128, 256, 512, 1024\}\)</span>. Normalize all times by
 the time at <span class="math notranslate nohighlight">\(N = 4\)</span>.</p>
