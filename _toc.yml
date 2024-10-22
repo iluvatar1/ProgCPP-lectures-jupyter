@@ -33,4 +33,11 @@ parts:
     chapters:
     - file: 08-ODE-IVP/InitialValueProblem.ipynb
     - file: 09-ODE-IVP-OOP/IntroMolecularDynamics.ipynb
-  
+    - caption: "Python introduction"
+    numbered: false
+    chapters:
+    - file: 11-IntroPython/01-IntroPython/01-IntroProgrammingPython.ipynb
+    - file: 11-IntroPython/01-IntroPython/02-IntroProgrammingPython-DataStructs.ipynb
+    - file: 11-IntroPython/01-IntroPython/matplotlib-Intro.ipynb
+    - file: 11-IntroPython/02-numpy/02-numpy-basic-reduced.ipynb
+    - file: 11-IntroPython/03-Scipy/Scipy.ipynb
