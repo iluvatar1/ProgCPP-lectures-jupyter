@@ -4,7 +4,7 @@ jupyterlab
 matplotlib
 numpy
 ghp-import
-jupyterlab-lsp
+#jupyterlab-lsp
 jupyterlab-git
 pandas
 vpython
@@ -13,9 +13,10 @@ seaborn
 RISE
 pylint
 autopep8
-jupyter-collaboration
-jupyterlab-link-share
+#jupyter-collaboration
+#jupyterlab-link-share
 jupyterlab_vpython
-python-lsp-server
+#python-lsp-server
 pyright
 nb-js-diagrammers
+nbgrader

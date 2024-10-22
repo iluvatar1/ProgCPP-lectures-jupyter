@@ -11,7 +11,8 @@ email                       : wfoquendop@unal.edu.co  # An email address to cont
 copyright                   : "2024"  # Copyright year to be placed in the footer
 logo                        : https://upload.wikimedia.org/wikipedia/commons/1/18/ISO_C%2B%2B_Logo.svg  # A path to the book logo
 # Patterns to skip when building the book. Can be glob-style (e.g. "*skip.ipynb")
-exclude_patterns            : [_build, Thumbs.db, .DS_Store, "**.ipynb_checkpoints", "VisualizationGL"]
+exclude_patterns            : [_build, Thumbs.db, .DS_Store,
+"**.ipynb_checkpoints", "VisualizationGL", "00-IntroCourse**", "**.virtual_documents**"]
 # Auto-exclude files not in the toc
 only_build_toc_files        : true
 # Force re-execution of notebooks on each build.

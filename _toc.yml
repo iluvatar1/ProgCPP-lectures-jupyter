@@ -6,7 +6,7 @@ format: jb-book
 root: README
 title: Introduction to C++ and Numerical Methods
 
-parts:    
+parts:
   - caption: "Introduction to C++"
     numbered: false
     chapters:
@@ -33,7 +33,7 @@ parts:
     chapters:
     - file: 08-ODE-IVP/InitialValueProblem.ipynb
     - file: 09-ODE-IVP-OOP/IntroMolecularDynamics.ipynb
-    - caption: "Python introduction"
+  - caption: "Python introduction"
     numbered: false
     chapters:
     - file: 11-IntroPython/01-IntroPython/01-IntroProgrammingPython.ipynb

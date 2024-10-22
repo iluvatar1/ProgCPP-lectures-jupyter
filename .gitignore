@@ -7,3 +7,5 @@
 *.virtual_documents
 _build/
 **/*.cpp
+.DS_Store
+__pycache__
