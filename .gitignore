@@ -10,3 +10,5 @@ _build/
 .DS_Store
 __pycache__
 .secrets
+drafts
+gradebook.db

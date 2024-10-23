@@ -19,7 +19,7 @@ RUN apt-get update && \
     libeigen3-dev \
     bat \
     emacs-nox \
-    vim \
+    #vim \
     gnuplot-nox \
     nano \
     git \
@@ -28,7 +28,7 @@ RUN apt-get update && \
     unzip \
     sudo \
     cpplint \
-    valgrind \
+    #valgrind \
     gdb \
     libspdlog-dev \
     && apt-get clean && \
@@ -76,8 +76,9 @@ RUN adduser --disabled-password \
     --uid ${NB_UID} \
     ${NB_USER}
 
-# Copy the rest of the files
-COPY . ${HOME}
+USER ${NB_USER}
+# move to home
+WORKDIR ${HOME}
 
 #Copy only the requirements file first
 COPY requirements.txt .
@@ -85,10 +86,10 @@ COPY requirements.txt .
 RUN python3 -m venv ${HOME}/.venv
 RUN . ${HOME}/.venv/bin/activate && pip install -r requirements.txt
 
-# Set ownership of files
-USER root
-RUN chown -R ${NB_UID} ${HOME}
+# Clone the source code repo
+RUN git clone https://github.com/iluvatar1/ProgCPP-lectures-jupyter.git
 
+# Switch back to root to install jupyter
 WORKDIR ${HOME}
 USER ${USER}
 
