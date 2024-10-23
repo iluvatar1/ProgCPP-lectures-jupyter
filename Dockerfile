@@ -80,11 +80,14 @@ USER ${NB_USER}
 # move to home
 WORKDIR ${HOME}
 
-#Copy only the requirements file first
+# Copy only the requirements file first
 COPY requirements.txt .
-#create venv, activate and run pip install
-RUN python3 -m venv ${HOME}/.venv
-RUN . ${HOME}/.venv/bin/activate && pip install -r requirements.txt
+
+# USING pip
+# create venv, activate and run pip install
+#RUN python3 -m venv ${HOME}/.venv
+#RUN . ${HOME}/.venv/bin/activate && pip install -r requirements.txt
+
 
 # Clone the source code repo
 RUN git clone https://github.com/iluvatar1/ProgCPP-lectures-jupyter.git
@@ -102,5 +105,12 @@ RUN echo 'eval "$(starship init bash)"' >> ${HOME}/.bashrc
 RUN echo "source ~/.venv/bin/activate" >> ${HOME}/.bashrc
 
 
-# ## Clone the source code repo
-# #RUN git clone https://github.com/iluvatar1/2023-II-ProgCPP
+# USING uv
+# Download and run the uv installer
+RUN curl -Lsf https://astral.sh/uv/install.sh | sh
+# Set the PATH to include both cargo bin and current directory
+ENV PATH="/root/.cargo/bin:/usr/local/bin:$PATH"
+RUN ${HOME}/.cargo/bin/uv venv --python 3.12 && ${HOME}/.cargo/bin/uv pip install -r requirements.txt
+RUN echo 'source $HOME/.cargo/env' >> ${HOME}/.bashrc
+RUN echo "source .venv/bin/activate" >> ${HOME}/.bashrc
+
