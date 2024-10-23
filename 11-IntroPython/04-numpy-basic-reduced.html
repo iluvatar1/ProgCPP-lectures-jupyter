@@ -1,0 +1,1176 @@
+
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+    <title>Efficient Python arrays : Numpy &#8212; Introduction to C++ and Numerical Methods</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = '11-IntroPython/04-numpy-basic-reduced';</script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="SciPy - Library of scientific algorithms for Python" href="05-Scipy.html" />
+    <link rel="prev" title="Matplotlib" href="03-matplotlib-intro.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../README.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="https://upload.wikimedia.org/wikipedia/commons/1/18/ISO_C%2B%2B_Logo.svg" class="logo__image only-light" alt="Introduction to C++ and Numerical Methods - Home"/>
+    <script>document.write(`<img src="https://upload.wikimedia.org/wikipedia/commons/1/18/ISO_C%2B%2B_Logo.svg" class="logo__image only-dark" alt="Introduction to C++ and Numerical Methods - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../README.html">
+                    Introduction to C++ and Numerical Methods
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Introduction to C++</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../01-IntroCPP/IntroProgrammingCourse.html">Introduction to Programming and C++</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../01-IntroCPP/Resources.html">Resources</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../01-IntroCPP/CPP-FastPacedIntro.html">Very fast intro to the basics of c++</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Numerical Calculus</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../02-derivatives/NumericalDifferentiation.html">Numerical differentiation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../03-integration/NumericalIntegration_Basics.html">Common Numerical Integration Algorithms</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Modern and primitive arrays, and basic Linear Algebra</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../04-vector-containers/ModernArrays.html">Modern arrays</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../05-matrixI/2D-matrices-to-1D-arrays.html">1D Arrays for 2D Matrices</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../06-ArrayComputing/ArrayComputing-Valarray.html">Vector operations: Coefficient-wise , array computing</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Linear Algebra and Numerical Libraries</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../07-LinearAlgebra/LinearAlgebraEigen.html">Linear Systems : Matrices, Vectors, eigen systems</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Ordinary differential equations: Initial value problems</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../08-ODE-IVP/InitialValueProblem.html">Ordinary differential equations (and initial value problems)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../09-ODE-IVP-OOP/IntroMolecularDynamics.html">Introduction to molecular dynamics through OOP</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Python introduction</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="01-IntroProgrammingPython.html">Python Programming (very fast) Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="02-IntroProgrammingPython-DataStructs.html">Basic data structures</a></li>
+<li class="toctree-l1"><a class="reference internal" href="03-matplotlib-intro.html">Matplotlib</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Efficient Python arrays : Numpy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="05-Scipy.html">SciPy - Library of scientific algorithms for Python</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-launch-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Launch interactive content">
+    <i class="fas fa-rocket"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://mybinder.org/v2/gh/iluvatar1/ProgCPP-lectures-jupyter/master?urlpath=lab/tree/11-IntroPython/04-numpy-basic-reduced.ipynb" target="_blank"
+   class="btn btn-sm dropdown-item"
+   title="Launch onBinder"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  
+    <img src="../_static/images/logo_binder.svg">
+  </span>
+<span class="btn__text-container">Binder</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://colab.research.google.com/github/iluvatar1/ProgCPP-lectures-jupyter/blob/master/github/iluvatar1/ProgCPP-lectures-jupyter/blob/master/11-IntroPython/04-numpy-basic-reduced.ipynb" target="_blank"
+   class="btn btn-sm dropdown-item"
+   title="Launch onColab"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  
+    <img src="../_static/images/logo_colab.png">
+  </span>
+<span class="btn__text-container">Colab</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/iluvatar1/ProgCPP-lectures-jupyter" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/iluvatar1/ProgCPP-lectures-jupyter/issues/new?title=Issue%20on%20page%20%2F11-IntroPython/04-numpy-basic-reduced.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/11-IntroPython/04-numpy-basic-reduced.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Efficient Python arrays : Numpy</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#basic-numpy">Basic numpy</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#alternative-ways-to-create-arrays">Alternative ways to create arrays</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#indexing-and-slicing">Indexing and slicing</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#copies-and-views">Copies and Views</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#fancy-indexing-masked-arrays">Fancy indexing (masked arrays)</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#boolean-masks">Boolean masks</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#indexing-with-integers">Indexing with integers</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#numerical-operations-or-vector-computing">Numerical operations (or vector computing)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#d-arrays">2D Arrays</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#axis">Axis</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#matrix-aggregation">Matrix aggregation</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#exercises">Exercises</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#reading-a-file">Reading a file</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#reading-file-with-comments">Reading file with comments</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#using-loadtxt">Using loadtxt</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#printing-with-comments">Printing with comments</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#kinematics-from-file">Kinematics from file</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#d-matrix-example-image">3D matrix example: Image</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#image-tutorial-example">Image tutorial example</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise">Exercise</a></li>
+</ul>
+</li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="efficient-python-arrays-numpy">
+<h1>Efficient Python arrays : Numpy<a class="headerlink" href="#efficient-python-arrays-numpy" title="Permalink to this heading">#</a></h1>
+<p><strong>REFS:</strong></p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://scipy-lectures.org/">Scipy lecture notes</a></p></li>
+<li><p>A primer of Scientific Programming with Python</p></li>
+<li><p>https://betterprogramming.pub/numpy-illustrated-the-visual-guide-to-numpy-3b1d4976de1d</p></li>
+<li><p>https://jalammar.github.io/visual-numpy/</p></li>
+<li><p>https://realpython.com/numpy-tutorial/</p></li>
+</ul>
+<p>The numerical python package, <code class="docutils literal notranslate"><span class="pre">numpy</span></code>, allows for easy and efficient manipulation of vectorial data. In this context, it is important to remark some of the so-called <code class="docutils literal notranslate"><span class="pre">vectorial</span></code> computation. Let’s give an example. Imagine a two dimensional vector <span class="math notranslate nohighlight">\(a\)</span>. How would you represent it using python? You coul use either a list, a tuple, etc:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>a1 = [x, y]
+a2 = (x, y)
+</pre></div>
+</div>
+<p>Of course, it can be  generalized to more dimensions:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>a1 = [x, y, z, w]
+a2 = [0.0, -0.9, 1, -3, 9, ... , 90]
+</pre></div>
+</div>
+<p>Managing vectors by using these typical python constructs is very good from a general programmer point of view, but it has its costs. For example, iterating over a lits by means of a for loop could be very slow. Actually, for typical problemas of computational mathematics and physics, only homogeneous storage structs with fast access are needed, like the arrays of languages like c++, fortran, etc. Arrays might be more limited than general lists, but could vastly outperform lists and tuples for vectorial computations. The <code class="docutils literal notranslate"><span class="pre">numpy</span></code> package provides array like structs to perform fast mathematical operations on numerical data.</p>
+<p>Furthermore, vectorial operations are natural on numpy arrays. But what is a vectorial operation? Let’s assume we have a vector <span class="math notranslate nohighlight">\(v\)</span> of <span class="math notranslate nohighlight">\(n\)</span>-components. What would be the meaning of something like
+u = sin(v)
+? in the context of vectorial computing, it would mean to apply the function <code class="docutils literal notranslate"><span class="pre">sin</span></code> to every component of the vector <code class="docutils literal notranslate"><span class="pre">v</span></code>, therefore <span class="math notranslate nohighlight">\(u_i = \sin(v_i)\)</span>. In general, given a function <span class="math notranslate nohighlight">\(f\)</span>, the expression <span class="math notranslate nohighlight">\(u = f(v)\)</span> means <span class="math notranslate nohighlight">\(u_i = f(v_i)\)</span>. Numpy allows for this kind of computing. What would be the meaning of
+u = v^2*cos(v)*e^v + 2?</p>
+<a class="reference internal image-reference" href="https://miro.medium.com/max/700/1*D-I8hK4WXC8wtpR5tvR0fw.png"><img alt="https://miro.medium.com/max/700/1*D-I8hK4WXC8wtpR5tvR0fw.png" src="https://miro.medium.com/max/700/1*D-I8hK4WXC8wtpR5tvR0fw.png" style="width: 85%;" /></a>
+<p>See: https://betterprogramming.pub/numpy-illustrated-the-visual-guide-to-numpy-3b1d4976de1d</p>
+<section id="basic-numpy">
+<h2>Basic numpy<a class="headerlink" href="#basic-numpy" title="Permalink to this heading">#</a></h2>
+<p>Try the following code snippet:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="n">a</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">,</span> <span class="s1">&#39;3&#39;</span><span class="p">,</span> <span class="mi">5</span><span class="p">])</span>
+<span class="nb">print</span> <span class="p">(</span><span class="n">a</span><span class="p">)</span>
+<span class="n">a</span><span class="o">.</span><span class="n">dtype</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;0&#39; &#39;1.0&#39; &#39;3&#39; &#39;5&#39;]
+</pre></div>
+</div>
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>dtype(&#39;&lt;U32&#39;)
+</pre></div>
+</div>
+</div>
+</div>
+<p>This means: we are importing the numpy package with the name np. Then, we create an numpy array by using the <code class="docutils literal notranslate"><span class="pre">np.array</span></code> function from a list of values, and assign the result to the variable <code class="docutils literal notranslate"><span class="pre">a</span></code>. What is <code class="docutils literal notranslate"><span class="pre">a</span></code>? use <code class="docutils literal notranslate"><span class="pre">a?</span></code> . The array <code class="docutils literal notranslate"><span class="pre">a</span></code> has several attributes which you can use later, like the shape and type of the internal data.</p>
+<p>Let’s now compare the efficiency of a list versus a numpy array, by means of the %timeit magic function of ipython:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">L</span> <span class="o">=</span> <span class="nb">range</span><span class="p">(</span><span class="mi">10000</span><span class="p">)</span>
+<span class="o">%</span><span class="k">timeit</span> [i**2 for i in L]
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>421 μs ± 6.88 μs per loop (mean ± std. dev. of 7 runs, 1,000 loops each)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">a</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">10000</span><span class="p">)</span>
+<span class="o">%</span><span class="k">timeit</span> a**2
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>3.46 μs ± 111 ns per loop (mean ± std. dev. of 7 runs, 100,000 loops each)
+</pre></div>
+</div>
+</div>
+</div>
+<p>You can extract some info like the shape and the dimension as</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">a</span><span class="o">.</span><span class="n">ndim</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">a</span><span class="o">.</span><span class="n">shape</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(10000,)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">a</span><span class="o">.</span><span class="n">dtype</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>dtype(&#39;int64&#39;)
+</pre></div>
+</div>
+</div>
+</div>
+<section id="alternative-ways-to-create-arrays">
+<h3>Alternative ways to create arrays<a class="headerlink" href="#alternative-ways-to-create-arrays" title="Permalink to this heading">#</a></h3>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>a = np.arange(10)
+b = np.arange(1, 9, 2)
+</pre></div>
+</div>
+<p>The function <code class="docutils literal notranslate"><span class="pre">linspace</span></code> is very useful. It allows to create a uniform partition on a given interval for a given number of points. For example, to create an array of 100 points uniformly on the interval [2, 3], you can use</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">a</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">100</span><span class="p">)</span>
+<span class="nb">print</span> <span class="n">a</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span>  <span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">7</span><span class="p">],</span> <span class="n">line</span> <span class="mi">2</span>
+    <span class="nb">print</span> <span class="n">a</span>
+    <span class="o">^</span>
+<span class="ne">SyntaxError</span>: Missing parentheses in call to &#39;print&#39;. Did you mean print(...)?
+</pre></div>
+</div>
+</div>
+</div>
+<p>Check the documentation.</p>
+<p>You can also create several other types of useful arrays like</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">a</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">((</span><span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span> <span class="c1"># shape is a tuple</span>
+<span class="nb">print</span> <span class="n">a</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">a</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">rand</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span>
+<span class="nb">print</span> <span class="n">a</span>
+</pre></div>
+</div>
+</div>
+</div>
+<a class="reference internal image-reference" href="https://miro.medium.com/max/700/1*cyN_FxUVbkdDyrULhfTIGw.png"><img alt="https://miro.medium.com/max/700/1*cyN_FxUVbkdDyrULhfTIGw.png" src="https://miro.medium.com/max/700/1*cyN_FxUVbkdDyrULhfTIGw.png" style="width: 80%;" /></a>
+<p>Ref: https://betterprogramming.pub/numpy-illustrated-the-visual-guide-to-numpy-3b1d4976de1d</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Truncation errors</span>
+<span class="n">data</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.8</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">data</span><span class="w"> </span><span class="si">= }</span><span class="s2">&quot;</span><span class="p">)</span> <span class="c1"># should not include 0.8</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Solution: dont use floats, use integers</span>
+<span class="n">data</span> <span class="o">=</span> <span class="mf">0.1</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">8</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">data</span><span class="w"> </span><span class="si">= }</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="n">data</span> <span class="o">=</span> <span class="mf">0.5</span> <span class="o">+</span> <span class="mf">0.1</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">data</span><span class="w"> </span><span class="si">= }</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="indexing-and-slicing">
+<h3>Indexing and slicing<a class="headerlink" href="#indexing-and-slicing" title="Permalink to this heading">#</a></h3>
+<p>Numpy allows for powerfull and efficient access to internal members of arrays</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">IPython.core.display</span> <span class="kn">import</span> <span class="n">Image</span> 
+<span class="n">Image</span><span class="p">(</span><span class="n">filename</span><span class="o">=</span><span class="s1">&#39;slicing.png&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="copies-and-views">
+<h3>Copies and Views<a class="headerlink" href="#copies-and-views" title="Permalink to this heading">#</a></h3>
+<p>A slicing operation creates a <strong>view</strong> of the original array, not a copy (in contrast, an slice of a list creates a new list). A modification of a view, modifies the original array:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">a</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
+<span class="nb">print</span> <span class="p">(</span><span class="n">a</span><span class="p">)</span>
+<span class="n">b</span> <span class="o">=</span> <span class="n">a</span><span class="p">[::</span><span class="mi">2</span><span class="p">]</span>
+<span class="nb">print</span> <span class="p">(</span><span class="n">b</span><span class="p">)</span>
+<span class="n">b</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mi">12</span>
+<span class="nb">print</span> <span class="p">(</span><span class="n">b</span><span class="p">)</span>
+<span class="nb">print</span> <span class="p">(</span><span class="n">a</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>But, if you really need a copy, you can use the <code class="docutils literal notranslate"><span class="pre">.copy</span></code> method:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">a</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
+<span class="nb">print</span> <span class="p">(</span><span class="n">a</span><span class="p">)</span>
+<span class="n">c</span> <span class="o">=</span> <span class="n">a</span><span class="p">[::</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+<span class="n">c</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mi">12</span>
+<span class="nb">print</span> <span class="p">(</span><span class="n">a</span><span class="p">)</span>
+<span class="nb">print</span> <span class="p">(</span><span class="n">c</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="fancy-indexing-masked-arrays">
+<h3>Fancy indexing (masked arrays)<a class="headerlink" href="#fancy-indexing-masked-arrays" title="Permalink to this heading">#</a></h3>
+<p>Using arrays to mask indexes is an useful way to manipulate arrays. Numpy provides this functionality. <strong>Note:</strong> Fancy indexing creates copies, not views.</p>
+<section id="boolean-masks">
+<h4>Boolean masks<a class="headerlink" href="#boolean-masks" title="Permalink to this heading">#</a></h4>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
+<span class="n">a</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">random_integers</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="mi">15</span><span class="p">)</span>
+<span class="nb">print</span> <span class="p">(</span><span class="n">a</span><span class="p">)</span>
+<span class="nb">print</span> <span class="p">(</span><span class="n">a</span> <span class="o">%</span> <span class="mi">3</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span>
+<span class="n">mask</span> <span class="o">=</span> <span class="p">(</span><span class="n">a</span> <span class="o">%</span> <span class="mi">3</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span>
+<span class="nb">print</span> <span class="p">(</span><span class="s2">&quot;Mask = &quot;</span><span class="p">,</span> <span class="n">mask</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">extract_from_a</span> <span class="o">=</span> <span class="n">a</span><span class="p">[</span><span class="n">mask</span><span class="p">]</span>
+<span class="nb">print</span> <span class="p">(</span><span class="n">extract_from_a</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span> <span class="p">(</span><span class="n">a</span><span class="p">)</span>
+<span class="n">a</span><span class="p">[</span><span class="n">a</span><span class="o">%</span><span class="k">3</span> == 0] = -1
+<span class="nb">print</span> <span class="p">(</span><span class="n">a</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<a class="reference internal image-reference" href="https://miro.medium.com/max/700/1*nFGcXav_xxD7TXGiRYMpHg.png"><img alt="https://miro.medium.com/max/700/1*nFGcXav_xxD7TXGiRYMpHg.png" src="https://miro.medium.com/max/700/1*nFGcXav_xxD7TXGiRYMpHg.png" style="width: 85%;" /></a>
+<p>Ref: https://betterprogramming.pub/numpy-illustrated-the-visual-guide-to-numpy-3b1d4976de1d</p>
+</section>
+<section id="indexing-with-integers">
+<h4>Indexing with integers<a class="headerlink" href="#indexing-with-integers" title="Permalink to this heading">#</a></h4>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">a</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">100</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>
+<span class="nb">print</span> <span class="n">a</span>
+<span class="n">a</span><span class="p">[[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">2</span><span class="p">]]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">a</span><span class="p">[[</span><span class="mi">9</span><span class="p">,</span> <span class="mi">7</span><span class="p">]]</span> <span class="o">=</span> <span class="o">-</span><span class="mi">100</span>
+<span class="nb">print</span> <span class="n">a</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">Image</span><span class="p">(</span><span class="n">filename</span><span class="o">=</span><span class="s1">&#39;fancy_indexing.png&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+</section>
+<section id="numerical-operations-or-vector-computing">
+<h2>Numerical operations (or vector computing)<a class="headerlink" href="#numerical-operations-or-vector-computing" title="Permalink to this heading">#</a></h2>
+<p>As stated at the beginning, numpy arrays are well suited for the so called numerical computing. In this section we will see some examples to get familiar with this kind of operations.
+<a class="reference internal" href="https://miro.medium.com/max/700/1*XbZqTBXZmnQtVZ_llbGJTw.png"><img alt="https://miro.medium.com/max/700/1*XbZqTBXZmnQtVZ_llbGJTw.png" src="https://miro.medium.com/max/700/1*XbZqTBXZmnQtVZ_llbGJTw.png" style="width: 75%;" /></a>
+From: https://betterprogramming.pub/numpy-illustrated-the-visual-guide-to-numpy-3b1d4976de1d</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">a</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">])</span>
+<span class="nb">print</span> <span class="p">(</span><span class="n">a</span><span class="p">)</span> 
+<span class="nb">print</span> <span class="p">(</span><span class="n">a</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
+<span class="nb">print</span> <span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">a</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">b</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span>
+<span class="nb">print</span> <span class="p">(</span><span class="n">b</span><span class="p">)</span>
+<span class="n">b</span><span class="o">-</span><span class="n">a</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">j</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
+<span class="mi">2</span><span class="o">**</span><span class="p">(</span><span class="n">j</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="o">-</span> <span class="n">j</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Performance comparison:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">a</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">10000</span><span class="p">)</span>
+<span class="o">%</span><span class="k">timeit</span> a + 1
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">l</span> <span class="o">=</span> <span class="nb">range</span><span class="p">(</span><span class="mi">10000</span><span class="p">)</span>
+<span class="o">%</span><span class="k">timeit</span> [i+1 for i in l]
+</pre></div>
+</div>
+</div>
+</div>
+<p>Take into account that array multiplication should be done through function <code class="docutils literal notranslate"><span class="pre">np.dot</span></code></p>
+<p>You can use a lot of internal functions (https://numpy.org/doc/stable/reference/routines.math.html) and random generators (https://numpy.org/doc/stable/reference/random/index.html)</p>
+</section>
+<section id="d-arrays">
+<h2>2D Arrays<a class="headerlink" href="#d-arrays" title="Permalink to this heading">#</a></h2>
+<a class="reference internal image-reference" href="https://miro.medium.com/max/700/1*aLMuXA81pDXaw0J0QdKvRQ.png"><img alt="https://miro.medium.com/max/700/1*aLMuXA81pDXaw0J0QdKvRQ.png" src="https://miro.medium.com/max/700/1*aLMuXA81pDXaw0J0QdKvRQ.png" style="width: 80%;" /></a>
+<p>REF: https://betterprogramming.pub/numpy-illustrated-the-visual-guide-to-numpy-3b1d4976de1d</p>
+<section id="axis">
+<h3>Axis<a class="headerlink" href="#axis" title="Permalink to this heading">#</a></h3>
+<a class="reference internal image-reference" href="https://miro.medium.com/max/700/1*jmXqsVUNaBaUsBAkHgqb3A.png"><img alt="https://miro.medium.com/max/700/1*jmXqsVUNaBaUsBAkHgqb3A.png" src="https://miro.medium.com/max/700/1*jmXqsVUNaBaUsBAkHgqb3A.png" style="width: 80%;" /></a>
+<p>REF: https://betterprogramming.pub/numpy-illustrated-the-visual-guide-to-numpy-3b1d4976de1d</p>
+</section>
+<section id="matrix-aggregation">
+<h3>Matrix aggregation<a class="headerlink" href="#matrix-aggregation" title="Permalink to this heading">#</a></h3>
+<a class="reference internal image-reference" href="https://jalammar.github.io/images/numpy/numpy-matrix-aggregation-4.png"><img alt="https://jalammar.github.io/images/numpy/numpy-matrix-aggregation-4.png" src="https://jalammar.github.io/images/numpy/numpy-matrix-aggregation-4.png" style="width: 80%;" /></a>
+<p>REF: https://jalammar.github.io/visual-numpy/</p>
+<a class="reference internal image-reference" href="https://miro.medium.com/max/1400/1*SJbmp5_qJixVztVMJQn9sw.png"><img alt="https://miro.medium.com/max/1400/1*SJbmp5_qJixVztVMJQn9sw.png" src="https://miro.medium.com/max/1400/1*SJbmp5_qJixVztVMJQn9sw.png" style="width: 80%;" /></a>
+<a class="reference internal image-reference" href="https://miro.medium.com/max/1400/1*ZUFxtl3Z2cdDZhcLUNpE0Q.png"><img alt="https://miro.medium.com/max/1400/1*ZUFxtl3Z2cdDZhcLUNpE0Q.png" src="https://miro.medium.com/max/1400/1*ZUFxtl3Z2cdDZhcLUNpE0Q.png" style="width: 80%;" /></a>
+</section>
+</section>
+<section id="exercises">
+<h2>Exercises<a class="headerlink" href="#exercises" title="Permalink to this heading">#</a></h2>
+<section id="reading-a-file">
+<h3>Reading a file<a class="headerlink" href="#reading-a-file" title="Permalink to this heading">#</a></h3>
+<p>Create a <em>Reading a two column file</em>: Make a program who reads a two column file and stores the first column in a list called <code class="docutils literal notranslate"><span class="pre">x</span></code> and the second one in a list called <code class="docutils literal notranslate"><span class="pre">y</span></code>. Then convert the list to arrays and plot them. Test it with some example file.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># YOUR CODE HERE</span>
+<span class="k">raise</span> <span class="ne">NotImplementedError</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="reading-file-with-comments">
+<h3>Reading file with comments<a class="headerlink" href="#reading-file-with-comments" title="Permalink to this heading">#</a></h3>
+<p>Extend the previous exercise to be able to read a data file with comments. The comment chracter is supposed to be <code class="docutils literal notranslate"><span class="pre">#</span></code>. Every line starting with <code class="docutils literal notranslate"><span class="pre">#</span></code> should be ignored. Test.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># YOUR CODE HERE</span>
+<span class="k">raise</span> <span class="ne">NotImplementedError</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="using-loadtxt">
+<h3>Using loadtxt<a class="headerlink" href="#using-loadtxt" title="Permalink to this heading">#</a></h3>
+<p>Improve exercise 1 and 2 by using the <code class="docutils literal notranslate"><span class="pre">numpy.loadtxt()</span></code> function. You should rerad the documentation. Test and compare.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># YOUR CODE HERE</span>
+<span class="k">raise</span> <span class="ne">NotImplementedError</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="printing-with-comments">
+<h3>Printing with comments<a class="headerlink" href="#printing-with-comments" title="Permalink to this heading">#</a></h3>
+<p>Write a program which prints tabulated data for a given function, but also printing some comments on it using the <code class="docutils literal notranslate"><span class="pre">#</span></code> character. Use the previous program to make sure you can read back the data.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># YOUR CODE HERE</span>
+<span class="k">raise</span> <span class="ne">NotImplementedError</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="kinematics-from-file">
+<h3>Kinematics from file<a class="headerlink" href="#kinematics-from-file" title="Permalink to this heading">#</a></h3>
+<p>Assume that you are given a file which has printed the values <span class="math notranslate nohighlight">\(a_0, a_1, \ldots, a_k\)</span> for the acceleration of a given system at specified intervals of size <span class="math notranslate nohighlight">\(\Delta t\)</span>, that is, <span class="math notranslate nohighlight">\(t_k = k\Delta t\)</span>. Your task is to read those values and to compute the velocity of the system at some time <span class="math notranslate nohighlight">\(t\)</span>. To do that remember that the acceleration can be given as <span class="math notranslate nohighlight">\(a(t) = v'(t)\)</span>. Therefore, to find <span class="math notranslate nohighlight">\(v\)</span>, you must integrate the acceleration as</p>
+<div class="math notranslate nohighlight">
+\[v(t) = v(0) + \int\limits_0^t d\tau\ a(\tau).\]</div>
+<p>If <span class="math notranslate nohighlight">\(a(t)\)</span> is only known at discrete points, as in this case, you have to approximate the integral. You can use the trapezoidal rule to get</p>
+<div class="math notranslate nohighlight">
+\[v(t_k) \simeq \Delta t \left( \frac{1}{2}a_0 + \frac{1}{2}a_k + \sum\limits_{i=1}^{k-1}a_i \right), 1 \le k \le n-1 .\]</div>
+<p>Assume that <span class="math notranslate nohighlight">\(v(0) = 0\)</span>. Your program should: Read the values for <span class="math notranslate nohighlight">\(a\)</span> from the array. Then, compute the values for velocity and finally plot the acceleration and the velocity as a function of time. Good test cases for this problem are null values for the acceleration, and constant values for the acceleration, whose theoretical solution you already know. The <span class="math notranslate nohighlight">\(\Delta t\)</span> value should be specified at the command line (use the <code class="docutils literal notranslate"><span class="pre">sys</span></code> module to read command line arguments).</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># YOUR CODE HERE</span>
+<span class="k">raise</span> <span class="ne">NotImplementedError</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="d-matrix-example-image">
+<h2>3D matrix example: Image<a class="headerlink" href="#d-matrix-example-image" title="Permalink to this heading">#</a></h2>
+<a class="reference internal image-reference" href="https://jalammar.github.io/images/numpy/numpy-grayscale-image.png"><img alt="https://jalammar.github.io/images/numpy/numpy-grayscale-image.png" src="https://jalammar.github.io/images/numpy/numpy-grayscale-image.png" style="width: 80%;" /></a>
+<a class="reference internal image-reference" href="https://jalammar.github.io/images/numpy/numpy-color-image.png"><img alt="https://jalammar.github.io/images/numpy/numpy-color-image.png" src="https://jalammar.github.io/images/numpy/numpy-color-image.png" style="width: 80%;" /></a>
+<p>REF: https://jalammar.github.io/visual-numpy/</p>
+<section id="image-tutorial-example">
+<h3>Image tutorial example<a class="headerlink" href="#image-tutorial-example" title="Permalink to this heading">#</a></h3>
+<p>We will use the following kitty image: https://files.realpython.com/media/kitty.90952ca484f1.jpg from https://realpython.com/numpy-tutorial/ . The local name will be just kitty.jpg .</p>
+<a class="reference internal image-reference" href="11-IntroPython/kitty.jpg"><img alt="11-IntroPython/kitty.jpg" src="11-IntroPython/kitty.jpg" style="width: 80%;" /></a>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">matplotlib.image</span> <span class="k">as</span> <span class="nn">mpimg</span>
+
+<span class="n">img</span> <span class="o">=</span> <span class="n">mpimg</span><span class="o">.</span><span class="n">imread</span><span class="p">(</span><span class="s2">&quot;kitty.jpg&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="n">img</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">img</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="n">imgplot</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">img</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Now remove the red and green channels</span>
+<span class="n">output</span> <span class="o">=</span> <span class="n">img</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>  <span class="c1"># The original image is read-only!</span>
+<span class="n">output</span><span class="p">[:,</span> <span class="p">:,</span> <span class="p">:</span><span class="mi">2</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="n">mpimg</span><span class="o">.</span><span class="n">imsave</span><span class="p">(</span><span class="s2">&quot;kitty-blue.jpg&quot;</span><span class="p">,</span> <span class="n">output</span><span class="p">)</span>
+<span class="n">img_blue</span> <span class="o">=</span> <span class="n">mpimg</span><span class="o">.</span><span class="n">imread</span><span class="p">(</span><span class="s2">&quot;kitty-blue.jpg&quot;</span><span class="p">)</span>
+<span class="n">imgplot_blue</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">img_blue</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Now make it only green</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Now let&#39;s make it gray-scale</span>
+<span class="c1"># This means averaging all the channels</span>
+<span class="n">averages</span> <span class="o">=</span> <span class="n">img</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>  <span class="c1"># Take the average of each R, G, and B</span>
+<span class="n">mpimg</span><span class="o">.</span><span class="n">imsave</span><span class="p">(</span><span class="s2">&quot;kitty-bad-gray.jpg&quot;</span><span class="p">,</span> <span class="n">averages</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s2">&quot;gray&quot;</span><span class="p">)</span>
+<span class="n">img_gray</span> <span class="o">=</span> <span class="n">mpimg</span><span class="o">.</span><span class="n">imread</span><span class="p">(</span><span class="s2">&quot;kitty-bad-gray.jpg&quot;</span><span class="p">)</span>
+<span class="n">imgplot_gray</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">img_gray</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Now improve it by using the luminosity method:</span>
+<span class="c1"># Differente weigths for each channel</span>
+<span class="n">weights</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">0.3</span><span class="p">,</span> <span class="mf">0.59</span><span class="p">,</span> <span class="mf">0.11</span><span class="p">])</span>
+<span class="n">grayscale</span> <span class="o">=</span> <span class="n">img</span> <span class="o">@</span> <span class="n">weights</span> <span class="c1"># dot product</span>
+<span class="n">mpimg</span><span class="o">.</span><span class="n">imsave</span><span class="p">(</span><span class="s2">&quot;kitty-good-gray.jpg&quot;</span><span class="p">,</span> <span class="n">grayscale</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s2">&quot;gray&quot;</span><span class="p">)</span>
+<span class="n">img_gray</span> <span class="o">=</span> <span class="n">mpimg</span><span class="o">.</span><span class="n">imread</span><span class="p">(</span><span class="s2">&quot;kitty-good-gray.jpg&quot;</span><span class="p">)</span>
+<span class="n">imgplot_gray</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">img_gray</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="ch">#!pip3 install --user scikit-image</span>
+<span class="o">!</span>conda<span class="w"> </span>install<span class="w"> </span>-y<span class="w"> </span>scikit-image
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">skimage</span> <span class="kn">import</span> <span class="n">data</span>
+<span class="n">cat</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">chelsea</span><span class="p">()</span>
+<span class="nb">type</span><span class="p">(</span><span class="n">cat</span><span class="p">)</span>
+<span class="n">cat</span><span class="o">.</span><span class="n">shape</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">cat</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="exercise">
+<h3>Exercise<a class="headerlink" href="#exercise" title="Permalink to this heading">#</a></h3>
+<p>Obtain the following image (zoom on 1/4 to 3/4 on each axis):
+<a class="reference internal" href="11-IntroPython/chelsea-zoom-green.jpg"><img alt="11-IntroPython/chelsea-zoom-green.jpg" src="11-IntroPython/chelsea-zoom-green.jpg" style="width: 80%;" /></a></p>
+</section>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./11-IntroPython"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="03-matplotlib-intro.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Matplotlib</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="05-Scipy.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">SciPy - Library of scientific algorithms for Python</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#basic-numpy">Basic numpy</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#alternative-ways-to-create-arrays">Alternative ways to create arrays</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#indexing-and-slicing">Indexing and slicing</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#copies-and-views">Copies and Views</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#fancy-indexing-masked-arrays">Fancy indexing (masked arrays)</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#boolean-masks">Boolean masks</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#indexing-with-integers">Indexing with integers</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#numerical-operations-or-vector-computing">Numerical operations (or vector computing)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#d-arrays">2D Arrays</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#axis">Axis</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#matrix-aggregation">Matrix aggregation</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#exercises">Exercises</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#reading-a-file">Reading a file</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#reading-file-with-comments">Reading file with comments</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#using-loadtxt">Using loadtxt</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#printing-with-comments">Printing with comments</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#kinematics-from-file">Kinematics from file</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#d-matrix-example-image">3D matrix example: Image</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#image-tutorial-example">Image tutorial example</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise">Exercise</a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By William Oquendo
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2024.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
