@@ -1,31 +1,23 @@
 name: deploy-book
-
 on:
-  # Trigger the workflow on push to main branch
   push:
     branches:
       - master
-
 env:
-  BASE_URL: /${{ github.event.repository.name }}
-
-# Allow only one concurrent deployment, skipping runs queued between the run in-progress and latest queued.
-# However, do NOT cancel in-progress runs as we want to allow these production deployments to complete.
+  BASE_URL: /${{ github.event.repository.name || 'local-test' }}
 concurrency:
   group: "pages"
   cancel-in-progress: false
-
 jobs:
   deploy-book:
     runs-on: ubuntu-latest
-    # Sets permissions of the GITHUB_TOKEN to allow deployment to GitHub Pages
     permissions:
       pages: write
       id-token: write
     steps:
-      - uses: actions/checkout@v3
+      - name: Checkout repository
+        uses: actions/checkout@v3
 
-      # Install dependencies
       - name: Set up Python 3.11
         uses: actions/setup-python@v4
         with:
@@ -35,15 +27,27 @@ jobs:
         run: |
           pip install -r requirements.txt
 
-      # Build the book
       - name: Build the book
         run: |
           jupyter-book build .
 
-      # Push the book's HTML to github-pages 
-      - name: GitHub Pages action
+      # For GitHub environment - actual deployment
+      - name: Deploy to GitHub Pages
+        if: ${{ !env.ACT }}
         uses: peaceiris/actions-gh-pages@v3.5.9
         with:
           personal_token: ${{ secrets.ACTIONS_FOR_BOOK_ACCESS_TOKEN }}
           publish_dir: ./_build/html
           publish_branch: gh-pages
+
+      # For local testing - just verify the build
+      - name: Local build verification
+        if: ${{ env.ACT }}
+        run: |
+          echo "🚀 Local build verification completed!"
+          echo "✓ Book built successfully in ./_build/html"
+          echo "📚 Contents of build directory:"
+          ls -la ./_build/html
+          echo ""
+          echo "ℹ️  Note: Running in local environment - skipping gh-pages deployment"
+          echo "   When this runs on GitHub, content will be deployed to gh-pages branch"

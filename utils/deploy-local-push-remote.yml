@@ -1,0 +1,70 @@
+name: deploy-book
+on:
+  push:
+    branches:
+      - master
+env:
+  BASE_URL: /${{ github.event.repository.name || 'local-test' }}
+concurrency:
+  group: "pages"
+  cancel-in-progress: false
+jobs:
+  deploy-book:
+    runs-on: ubuntu-latest
+    permissions:
+      pages: write
+      id-token: write
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Set up Python 3.11
+        uses: actions/setup-python@v4
+        with:
+          python-version: 3.11
+
+      - name: Install dependencies
+        run: |
+          pip install -r requirements.txt
+
+      - name: Build the book
+        run: |
+          jupyter-book build .
+
+      # For GitHub environment
+      - name: Deploy to GitHub Pages
+        if: ${{ !env.ACT }}
+        uses: peaceiris/actions-gh-pages@v3.5.9
+        with:
+          personal_token: ${{ secrets.ACTIONS_FOR_BOOK_ACCESS_TOKEN }}
+          publish_dir: ./_build/html
+          publish_branch: gh-pages
+
+      # Simple direct push for local testing
+      - name: Direct push to gh-pages
+        if: ${{ env.ACT }}
+        run: |
+          echo "Performing direct push to gh-pages..."
+
+          # Configure git with token
+          git config --global user.name "GitHub Actions Bot"
+          git config --global user.email "actions@github.com"
+
+          # Get the repository URL with token
+          REPO_URL="https://${{ secrets.ACTIONS_FOR_BOOK_ACCESS_TOKEN }}@github.com/${GITHUB_REPOSITORY}.git"
+
+          # Create and switch to gh-pages branch
+          git checkout -b gh-pages || git checkout gh-pages
+
+          # Remove existing files but keep .git
+          find . -maxdepth 1 ! -name '.git' ! -name '.' ! -name '..' -exec rm -rf {} +
+
+          # Copy built files to root
+          cp -r _build/html/* .
+
+          # Add and commit
+          git add -A
+          git commit -m "Deploy book to gh-pages"
+
+          # Push directly to gh-pages
+          git push -f "$REPO_URL" gh-pages
