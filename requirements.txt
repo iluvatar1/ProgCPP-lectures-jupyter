@@ -1,4 +1,5 @@
-jupyter-book==0.15.1
+#jupyter-book==0.15.1
+jupyter-book==1.0.3
 notebook
 jupyterlab
 matplotlib
@@ -20,3 +21,4 @@ jupyterlab_vpython
 pyright
 nb-js-diagrammers
 nbgrader
+jupyter-repo2docker
