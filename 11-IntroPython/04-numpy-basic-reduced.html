@@ -1,13 +1,12 @@
 
-
 <!DOCTYPE html>
 
 
-<html lang="en" data-content_root="" >
+<html lang="en" data-content_root="../" >
 
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
     <title>Efficient Python arrays : Numpy &#8212; Introduction to C++ and Numerical Methods</title>
   
@@ -17,62 +16,62 @@
     document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
     document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
   </script>
+  <!-- 
+    this give us a css class that will be invisible only if js is disabled 
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
-<link href="../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
-<link href="../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link href="../_static/styles/theme.css?digest=26a4bc78f4c0ddb94549" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=26a4bc78f4c0ddb94549" rel="stylesheet" />
 
-  
-  <link href="../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
-  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
-
-    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
-    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
-    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=a3416100" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
     <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/styles.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles.css?v=03b9d5b1" />
   
+  <!-- So that users can add custom icons -->
+  <script src="../_static/scripts/fontawesome.js?digest=26a4bc78f4c0ddb94549"></script>
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
-<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
-  <script src="../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=26a4bc78f4c0ddb94549" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=26a4bc78f4c0ddb94549" />
 
-    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
-    <script src="../_static/jquery.js"></script>
-    <script src="../_static/underscore.js"></script>
-    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
-    <script src="../_static/doctools.js"></script>
-    <script src="../_static/clipboard.min.js"></script>
-    <script src="../_static/copybutton.js"></script>
-    <script src="../_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script src="../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
     <script>let toggleHintShow = 'Click to show';</script>
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
-    <script src="../_static/togglebutton.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="../_static/togglebutton.js?v=4a39c7ea"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
-    <script src="../_static/design-tabs.js"></script>
-    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
-const thebe_selector = ".thebe,.cell"
-const thebe_selector_input = "pre"
-const thebe_selector_output = ".output, .cell_output"
-</script>
-    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <script src="../_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
     <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = '11-IntroPython/04-numpy-basic-reduced';</script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="SciPy - Library of scientific algorithms for Python" href="05-Scipy.html" />
     <link rel="prev" title="Matplotlib" href="03-matplotlib-intro.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="" />
   </head>
   
   
@@ -88,19 +87,8 @@ const thebe_selector_output = ".output, .cell_output"
     <i class="fa-solid fa-arrow-up"></i>Back to top</button>
 
   
-  <input type="checkbox"
-          class="sidebar-toggle"
-          id="pst-primary-sidebar-checkbox"/>
-  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
-  
-  <input type="checkbox"
-          class="sidebar-toggle"
-          id="pst-secondary-sidebar-checkbox"/>
-  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
-  
-  <div class="search-button__wrapper">
-    <div class="search-button__overlay"></div>
-    <div class="search-button__search-container">
+  <dialog id="pst-search-dialog">
+    
 <form class="bd-search d-flex align-items-center"
       action="../search.html"
       method="get">
@@ -108,7 +96,6 @@ const thebe_selector_output = ".output, .cell_output"
   <input type="search"
          class="form-control"
          name="q"
-         id="search-input"
          placeholder="Search this book..."
          aria-label="Search this book..."
          autocomplete="off"
@@ -116,8 +103,8 @@ const thebe_selector_output = ".output, .cell_output"
          autocapitalize="off"
          spellcheck="false"/>
   <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
-</form></div>
-  </div>
+</form>
+  </dialog>
 
   <div class="pst-async-banner-revealer d-none">
   <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
@@ -133,7 +120,8 @@ const thebe_selector_output = ".output, .cell_output"
       
       
       
-      <div class="bd-sidebar-primary bd-sidebar">
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
         
 
   
@@ -163,11 +151,18 @@ const thebe_selector_output = ".output, .cell_output"
     
     
     <img src="https://upload.wikimedia.org/wikipedia/commons/1/18/ISO_C%2B%2B_Logo.svg" class="logo__image only-light" alt="Introduction to C++ and Numerical Methods - Home"/>
-    <script>document.write(`<img src="https://upload.wikimedia.org/wikipedia/commons/1/18/ISO_C%2B%2B_Logo.svg" class="logo__image only-dark" alt="Introduction to C++ and Numerical Methods - Home"/>`);</script>
+    <img src="https://upload.wikimedia.org/wikipedia/commons/1/18/ISO_C%2B%2B_Logo.svg" class="logo__image only-dark pst-js-only" alt="Introduction to C++ and Numerical Methods - Home"/>
   
   
 </a></div>
-        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+        <div class="sidebar-primary-item">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
     <div class="bd-toc-item navbar-nav active">
         
         <ul class="nav bd-sidenav bd-sidenav__home-link">
@@ -239,9 +234,9 @@ const thebe_selector_output = ".output, .cell_output"
   
     <div class="header-article-items__start">
       
-        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
   <span class="fa-solid fa-bars"></span>
-</label></div>
+</button></div>
       
     </div>
   
@@ -266,14 +261,14 @@ const thebe_selector_output = ".output, .cell_output"
       
       <li><a href="https://mybinder.org/v2/gh/iluvatar1/ProgCPP-lectures-jupyter/master?urlpath=lab/tree/11-IntroPython/04-numpy-basic-reduced.ipynb" target="_blank"
    class="btn btn-sm dropdown-item"
-   title="Launch onBinder"
+   title="Launch on Binder"
    data-bs-placement="left" data-bs-toggle="tooltip"
 >
   
 
 <span class="btn__icon-container">
   
-    <img src="../_static/images/logo_binder.svg">
+    <img alt="Binder logo" src="../_static/images/logo_binder.svg">
   </span>
 <span class="btn__text-container">Binder</span>
 </a>
@@ -284,14 +279,14 @@ const thebe_selector_output = ".output, .cell_output"
       
       <li><a href="https://colab.research.google.com/github/iluvatar1/ProgCPP-lectures-jupyter/blob/master/github/iluvatar1/ProgCPP-lectures-jupyter/blob/master/11-IntroPython/04-numpy-basic-reduced.ipynb" target="_blank"
    class="btn btn-sm dropdown-item"
-   title="Launch onColab"
+   title="Launch on Colab"
    data-bs-placement="left" data-bs-toggle="tooltip"
 >
   
 
 <span class="btn__icon-container">
   
-    <img src="../_static/images/logo_colab.png">
+    <img alt="Colab logo" src="../_static/images/logo_colab.png">
   </span>
 <span class="btn__text-container">Colab</span>
 </a>
@@ -413,27 +408,19 @@ const thebe_selector_output = ".output, .cell_output"
 
 
 
-<script>
-document.write(`
-  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
-    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
-    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
-  </button>
-`);
-</script>
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button>
 
 
-<script>
-document.write(`
-  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
     <i class="fa-solid fa-magnifying-glass fa-lg"></i>
-  </button>
-`);
-</script>
-<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+</button>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
     <span class="fa-solid fa-list"></span>
-</label>
+</button>
 </div></div>
       
     </div>
@@ -496,7 +483,7 @@ document.write(`
                 <article class="bd-article">
                   
   <section class="tex2jax_ignore mathjax_ignore" id="efficient-python-arrays-numpy">
-<h1>Efficient Python arrays : Numpy<a class="headerlink" href="#efficient-python-arrays-numpy" title="Permalink to this heading">#</a></h1>
+<h1>Efficient Python arrays : Numpy<a class="headerlink" href="#efficient-python-arrays-numpy" title="Link to this heading">#</a></h1>
 <p><strong>REFS:</strong></p>
 <ul class="simple">
 <li><p><a class="reference external" href="https://scipy-lectures.org/">Scipy lecture notes</a></p></li>
@@ -523,7 +510,7 @@ u = v^2*cos(v)*e^v + 2?</p>
 <a class="reference internal image-reference" href="https://miro.medium.com/max/700/1*D-I8hK4WXC8wtpR5tvR0fw.png"><img alt="https://miro.medium.com/max/700/1*D-I8hK4WXC8wtpR5tvR0fw.png" src="https://miro.medium.com/max/700/1*D-I8hK4WXC8wtpR5tvR0fw.png" style="width: 85%;" /></a>
 <p>See: https://betterprogramming.pub/numpy-illustrated-the-visual-guide-to-numpy-3b1d4976de1d</p>
 <section id="basic-numpy">
-<h2>Basic numpy<a class="headerlink" href="#basic-numpy" title="Permalink to this heading">#</a></h2>
+<h2>Basic numpy<a class="headerlink" href="#basic-numpy" title="Link to this heading">#</a></h2>
 <p>Try the following code snippet:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -553,7 +540,7 @@ u = v^2*cos(v)*e^v + 2?</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>421 μs ± 6.88 μs per loop (mean ± std. dev. of 7 runs, 1,000 loops each)
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>406 μs ± 5.07 μs per loop (mean ± std. dev. of 7 runs, 1,000 loops each)
 </pre></div>
 </div>
 </div>
@@ -566,7 +553,7 @@ u = v^2*cos(v)*e^v + 2?</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>3.46 μs ± 111 ns per loop (mean ± std. dev. of 7 runs, 100,000 loops each)
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>3.07 μs ± 93.4 ns per loop (mean ± std. dev. of 7 runs, 100,000 loops each)
 </pre></div>
 </div>
 </div>
@@ -609,7 +596,7 @@ u = v^2*cos(v)*e^v + 2?</p>
 </div>
 </div>
 <section id="alternative-ways-to-create-arrays">
-<h3>Alternative ways to create arrays<a class="headerlink" href="#alternative-ways-to-create-arrays" title="Permalink to this heading">#</a></h3>
+<h3>Alternative ways to create arrays<a class="headerlink" href="#alternative-ways-to-create-arrays" title="Link to this heading">#</a></h3>
 <div class="highlight-none notranslate"><div class="highlight"><pre><span></span>a = np.arange(10)
 b = np.arange(1, 9, 2)
 </pre></div>
@@ -673,7 +660,7 @@ b = np.arange(1, 9, 2)
 </div>
 </section>
 <section id="indexing-and-slicing">
-<h3>Indexing and slicing<a class="headerlink" href="#indexing-and-slicing" title="Permalink to this heading">#</a></h3>
+<h3>Indexing and slicing<a class="headerlink" href="#indexing-and-slicing" title="Link to this heading">#</a></h3>
 <p>Numpy allows for powerfull and efficient access to internal members of arrays</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -685,7 +672,7 @@ b = np.arange(1, 9, 2)
 </div>
 </section>
 <section id="copies-and-views">
-<h3>Copies and Views<a class="headerlink" href="#copies-and-views" title="Permalink to this heading">#</a></h3>
+<h3>Copies and Views<a class="headerlink" href="#copies-and-views" title="Link to this heading">#</a></h3>
 <p>A slicing operation creates a <strong>view</strong> of the original array, not a copy (in contrast, an slice of a list creates a new list). A modification of a view, modifies the original array:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -715,10 +702,10 @@ b = np.arange(1, 9, 2)
 </div>
 </section>
 <section id="fancy-indexing-masked-arrays">
-<h3>Fancy indexing (masked arrays)<a class="headerlink" href="#fancy-indexing-masked-arrays" title="Permalink to this heading">#</a></h3>
+<h3>Fancy indexing (masked arrays)<a class="headerlink" href="#fancy-indexing-masked-arrays" title="Link to this heading">#</a></h3>
 <p>Using arrays to mask indexes is an useful way to manipulate arrays. Numpy provides this functionality. <strong>Note:</strong> Fancy indexing creates copies, not views.</p>
 <section id="boolean-masks">
-<h4>Boolean masks<a class="headerlink" href="#boolean-masks" title="Permalink to this heading">#</a></h4>
+<h4>Boolean masks<a class="headerlink" href="#boolean-masks" title="Link to this heading">#</a></h4>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
@@ -752,7 +739,7 @@ b = np.arange(1, 9, 2)
 <p>Ref: https://betterprogramming.pub/numpy-illustrated-the-visual-guide-to-numpy-3b1d4976de1d</p>
 </section>
 <section id="indexing-with-integers">
-<h4>Indexing with integers<a class="headerlink" href="#indexing-with-integers" title="Permalink to this heading">#</a></h4>
+<h4>Indexing with integers<a class="headerlink" href="#indexing-with-integers" title="Link to this heading">#</a></h4>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">a</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">100</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>
@@ -781,7 +768,7 @@ b = np.arange(1, 9, 2)
 </section>
 </section>
 <section id="numerical-operations-or-vector-computing">
-<h2>Numerical operations (or vector computing)<a class="headerlink" href="#numerical-operations-or-vector-computing" title="Permalink to this heading">#</a></h2>
+<h2>Numerical operations (or vector computing)<a class="headerlink" href="#numerical-operations-or-vector-computing" title="Link to this heading">#</a></h2>
 <p>As stated at the beginning, numpy arrays are well suited for the so called numerical computing. In this section we will see some examples to get familiar with this kind of operations.
 <a class="reference internal" href="https://miro.medium.com/max/700/1*XbZqTBXZmnQtVZ_llbGJTw.png"><img alt="https://miro.medium.com/max/700/1*XbZqTBXZmnQtVZ_llbGJTw.png" src="https://miro.medium.com/max/700/1*XbZqTBXZmnQtVZ_llbGJTw.png" style="width: 75%;" /></a>
 From: https://betterprogramming.pub/numpy-illustrated-the-visual-guide-to-numpy-3b1d4976de1d</p>
@@ -833,16 +820,16 @@ From: https://betterprogramming.pub/numpy-illustrated-the-visual-guide-to-numpy-
 <p>You can use a lot of internal functions (https://numpy.org/doc/stable/reference/routines.math.html) and random generators (https://numpy.org/doc/stable/reference/random/index.html)</p>
 </section>
 <section id="d-arrays">
-<h2>2D Arrays<a class="headerlink" href="#d-arrays" title="Permalink to this heading">#</a></h2>
+<h2>2D Arrays<a class="headerlink" href="#d-arrays" title="Link to this heading">#</a></h2>
 <a class="reference internal image-reference" href="https://miro.medium.com/max/700/1*aLMuXA81pDXaw0J0QdKvRQ.png"><img alt="https://miro.medium.com/max/700/1*aLMuXA81pDXaw0J0QdKvRQ.png" src="https://miro.medium.com/max/700/1*aLMuXA81pDXaw0J0QdKvRQ.png" style="width: 80%;" /></a>
 <p>REF: https://betterprogramming.pub/numpy-illustrated-the-visual-guide-to-numpy-3b1d4976de1d</p>
 <section id="axis">
-<h3>Axis<a class="headerlink" href="#axis" title="Permalink to this heading">#</a></h3>
+<h3>Axis<a class="headerlink" href="#axis" title="Link to this heading">#</a></h3>
 <a class="reference internal image-reference" href="https://miro.medium.com/max/700/1*jmXqsVUNaBaUsBAkHgqb3A.png"><img alt="https://miro.medium.com/max/700/1*jmXqsVUNaBaUsBAkHgqb3A.png" src="https://miro.medium.com/max/700/1*jmXqsVUNaBaUsBAkHgqb3A.png" style="width: 80%;" /></a>
 <p>REF: https://betterprogramming.pub/numpy-illustrated-the-visual-guide-to-numpy-3b1d4976de1d</p>
 </section>
 <section id="matrix-aggregation">
-<h3>Matrix aggregation<a class="headerlink" href="#matrix-aggregation" title="Permalink to this heading">#</a></h3>
+<h3>Matrix aggregation<a class="headerlink" href="#matrix-aggregation" title="Link to this heading">#</a></h3>
 <a class="reference internal image-reference" href="https://jalammar.github.io/images/numpy/numpy-matrix-aggregation-4.png"><img alt="https://jalammar.github.io/images/numpy/numpy-matrix-aggregation-4.png" src="https://jalammar.github.io/images/numpy/numpy-matrix-aggregation-4.png" style="width: 80%;" /></a>
 <p>REF: https://jalammar.github.io/visual-numpy/</p>
 <a class="reference internal image-reference" href="https://miro.medium.com/max/1400/1*SJbmp5_qJixVztVMJQn9sw.png"><img alt="https://miro.medium.com/max/1400/1*SJbmp5_qJixVztVMJQn9sw.png" src="https://miro.medium.com/max/1400/1*SJbmp5_qJixVztVMJQn9sw.png" style="width: 80%;" /></a>
@@ -850,9 +837,9 @@ From: https://betterprogramming.pub/numpy-illustrated-the-visual-guide-to-numpy-
 </section>
 </section>
 <section id="exercises">
-<h2>Exercises<a class="headerlink" href="#exercises" title="Permalink to this heading">#</a></h2>
+<h2>Exercises<a class="headerlink" href="#exercises" title="Link to this heading">#</a></h2>
 <section id="reading-a-file">
-<h3>Reading a file<a class="headerlink" href="#reading-a-file" title="Permalink to this heading">#</a></h3>
+<h3>Reading a file<a class="headerlink" href="#reading-a-file" title="Link to this heading">#</a></h3>
 <p>Create a <em>Reading a two column file</em>: Make a program who reads a two column file and stores the first column in a list called <code class="docutils literal notranslate"><span class="pre">x</span></code> and the second one in a list called <code class="docutils literal notranslate"><span class="pre">y</span></code>. Then convert the list to arrays and plot them. Test it with some example file.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -864,7 +851,7 @@ From: https://betterprogramming.pub/numpy-illustrated-the-visual-guide-to-numpy-
 </div>
 </section>
 <section id="reading-file-with-comments">
-<h3>Reading file with comments<a class="headerlink" href="#reading-file-with-comments" title="Permalink to this heading">#</a></h3>
+<h3>Reading file with comments<a class="headerlink" href="#reading-file-with-comments" title="Link to this heading">#</a></h3>
 <p>Extend the previous exercise to be able to read a data file with comments. The comment chracter is supposed to be <code class="docutils literal notranslate"><span class="pre">#</span></code>. Every line starting with <code class="docutils literal notranslate"><span class="pre">#</span></code> should be ignored. Test.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -876,7 +863,7 @@ From: https://betterprogramming.pub/numpy-illustrated-the-visual-guide-to-numpy-
 </div>
 </section>
 <section id="using-loadtxt">
-<h3>Using loadtxt<a class="headerlink" href="#using-loadtxt" title="Permalink to this heading">#</a></h3>
+<h3>Using loadtxt<a class="headerlink" href="#using-loadtxt" title="Link to this heading">#</a></h3>
 <p>Improve exercise 1 and 2 by using the <code class="docutils literal notranslate"><span class="pre">numpy.loadtxt()</span></code> function. You should rerad the documentation. Test and compare.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -888,7 +875,7 @@ From: https://betterprogramming.pub/numpy-illustrated-the-visual-guide-to-numpy-
 </div>
 </section>
 <section id="printing-with-comments">
-<h3>Printing with comments<a class="headerlink" href="#printing-with-comments" title="Permalink to this heading">#</a></h3>
+<h3>Printing with comments<a class="headerlink" href="#printing-with-comments" title="Link to this heading">#</a></h3>
 <p>Write a program which prints tabulated data for a given function, but also printing some comments on it using the <code class="docutils literal notranslate"><span class="pre">#</span></code> character. Use the previous program to make sure you can read back the data.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -900,7 +887,7 @@ From: https://betterprogramming.pub/numpy-illustrated-the-visual-guide-to-numpy-
 </div>
 </section>
 <section id="kinematics-from-file">
-<h3>Kinematics from file<a class="headerlink" href="#kinematics-from-file" title="Permalink to this heading">#</a></h3>
+<h3>Kinematics from file<a class="headerlink" href="#kinematics-from-file" title="Link to this heading">#</a></h3>
 <p>Assume that you are given a file which has printed the values <span class="math notranslate nohighlight">\(a_0, a_1, \ldots, a_k\)</span> for the acceleration of a given system at specified intervals of size <span class="math notranslate nohighlight">\(\Delta t\)</span>, that is, <span class="math notranslate nohighlight">\(t_k = k\Delta t\)</span>. Your task is to read those values and to compute the velocity of the system at some time <span class="math notranslate nohighlight">\(t\)</span>. To do that remember that the acceleration can be given as <span class="math notranslate nohighlight">\(a(t) = v'(t)\)</span>. Therefore, to find <span class="math notranslate nohighlight">\(v\)</span>, you must integrate the acceleration as</p>
 <div class="math notranslate nohighlight">
 \[v(t) = v(0) + \int\limits_0^t d\tau\ a(\tau).\]</div>
@@ -919,12 +906,12 @@ From: https://betterprogramming.pub/numpy-illustrated-the-visual-guide-to-numpy-
 </section>
 </section>
 <section id="d-matrix-example-image">
-<h2>3D matrix example: Image<a class="headerlink" href="#d-matrix-example-image" title="Permalink to this heading">#</a></h2>
+<h2>3D matrix example: Image<a class="headerlink" href="#d-matrix-example-image" title="Link to this heading">#</a></h2>
 <a class="reference internal image-reference" href="https://jalammar.github.io/images/numpy/numpy-grayscale-image.png"><img alt="https://jalammar.github.io/images/numpy/numpy-grayscale-image.png" src="https://jalammar.github.io/images/numpy/numpy-grayscale-image.png" style="width: 80%;" /></a>
 <a class="reference internal image-reference" href="https://jalammar.github.io/images/numpy/numpy-color-image.png"><img alt="https://jalammar.github.io/images/numpy/numpy-color-image.png" src="https://jalammar.github.io/images/numpy/numpy-color-image.png" style="width: 80%;" /></a>
 <p>REF: https://jalammar.github.io/visual-numpy/</p>
 <section id="image-tutorial-example">
-<h3>Image tutorial example<a class="headerlink" href="#image-tutorial-example" title="Permalink to this heading">#</a></h3>
+<h3>Image tutorial example<a class="headerlink" href="#image-tutorial-example" title="Link to this heading">#</a></h3>
 <p>We will use the following kitty image: https://files.realpython.com/media/kitty.90952ca484f1.jpg from https://realpython.com/numpy-tutorial/ . The local name will be just kitty.jpg .</p>
 <a class="reference internal image-reference" href="11-IntroPython/kitty.jpg"><img alt="11-IntroPython/kitty.jpg" src="11-IntroPython/kitty.jpg" style="width: 80%;" /></a>
 <div class="cell docutils container">
@@ -1018,7 +1005,7 @@ From: https://betterprogramming.pub/numpy-illustrated-the-visual-guide-to-numpy-
 </div>
 </section>
 <section id="exercise">
-<h3>Exercise<a class="headerlink" href="#exercise" title="Permalink to this heading">#</a></h3>
+<h3>Exercise<a class="headerlink" href="#exercise" title="Link to this heading">#</a></h3>
 <p>Obtain the following image (zoom on 1/4 to 3/4 on each axis):
 <a class="reference internal" href="11-IntroPython/chelsea-zoom-green.jpg"><img alt="11-IntroPython/chelsea-zoom-green.jpg" src="11-IntroPython/chelsea-zoom-green.jpg" style="width: 80%;" /></a></p>
 </section>
@@ -1080,7 +1067,8 @@ From: https://betterprogramming.pub/numpy-illustrated-the-visual-guide-to-numpy-
             
             
               
-                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
 
 
   <div class="sidebar-secondary-item">
@@ -1167,8 +1155,8 @@ By William Oquendo
   </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
-<script src="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+  <script defer src="../_static/scripts/bootstrap.js?digest=26a4bc78f4c0ddb94549"></script>
+<script defer src="../_static/scripts/pydata-sphinx-theme.js?digest=26a4bc78f4c0ddb94549"></script>
 
   <footer class="bd-footer">
   </footer>

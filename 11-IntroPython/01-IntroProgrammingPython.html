@@ -1,13 +1,12 @@
 
-
 <!DOCTYPE html>
 
 
-<html lang="en" data-content_root="" >
+<html lang="en" data-content_root="../" >
 
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
     <title>Python Programming (very fast) Introduction &#8212; Introduction to C++ and Numerical Methods</title>
   
@@ -17,62 +16,62 @@
     document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
     document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
   </script>
+  <!-- 
+    this give us a css class that will be invisible only if js is disabled 
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
-<link href="../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
-<link href="../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link href="../_static/styles/theme.css?digest=26a4bc78f4c0ddb94549" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=26a4bc78f4c0ddb94549" rel="stylesheet" />
 
-  
-  <link href="../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
-  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
-
-    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
-    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
-    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=a3416100" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
     <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/styles.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles.css?v=03b9d5b1" />
   
+  <!-- So that users can add custom icons -->
+  <script src="../_static/scripts/fontawesome.js?digest=26a4bc78f4c0ddb94549"></script>
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
-<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
-  <script src="../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=26a4bc78f4c0ddb94549" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=26a4bc78f4c0ddb94549" />
 
-    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
-    <script src="../_static/jquery.js"></script>
-    <script src="../_static/underscore.js"></script>
-    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
-    <script src="../_static/doctools.js"></script>
-    <script src="../_static/clipboard.min.js"></script>
-    <script src="../_static/copybutton.js"></script>
-    <script src="../_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script src="../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
     <script>let toggleHintShow = 'Click to show';</script>
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
-    <script src="../_static/togglebutton.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="../_static/togglebutton.js?v=4a39c7ea"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
-    <script src="../_static/design-tabs.js"></script>
-    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
-const thebe_selector = ".thebe,.cell"
-const thebe_selector_input = "pre"
-const thebe_selector_output = ".output, .cell_output"
-</script>
-    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <script src="../_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
     <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = '11-IntroPython/01-IntroProgrammingPython';</script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="Basic data structures" href="02-IntroProgrammingPython-DataStructs.html" />
     <link rel="prev" title="Introduction to molecular dynamics through OOP" href="../09-ODE-IVP-OOP/IntroMolecularDynamics.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="" />
   </head>
   
   
@@ -88,19 +87,8 @@ const thebe_selector_output = ".output, .cell_output"
     <i class="fa-solid fa-arrow-up"></i>Back to top</button>
 
   
-  <input type="checkbox"
-          class="sidebar-toggle"
-          id="pst-primary-sidebar-checkbox"/>
-  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
-  
-  <input type="checkbox"
-          class="sidebar-toggle"
-          id="pst-secondary-sidebar-checkbox"/>
-  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
-  
-  <div class="search-button__wrapper">
-    <div class="search-button__overlay"></div>
-    <div class="search-button__search-container">
+  <dialog id="pst-search-dialog">
+    
 <form class="bd-search d-flex align-items-center"
       action="../search.html"
       method="get">
@@ -108,7 +96,6 @@ const thebe_selector_output = ".output, .cell_output"
   <input type="search"
          class="form-control"
          name="q"
-         id="search-input"
          placeholder="Search this book..."
          aria-label="Search this book..."
          autocomplete="off"
@@ -116,8 +103,8 @@ const thebe_selector_output = ".output, .cell_output"
          autocapitalize="off"
          spellcheck="false"/>
   <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
-</form></div>
-  </div>
+</form>
+  </dialog>
 
   <div class="pst-async-banner-revealer d-none">
   <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
@@ -133,7 +120,8 @@ const thebe_selector_output = ".output, .cell_output"
       
       
       
-      <div class="bd-sidebar-primary bd-sidebar">
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
         
 
   
@@ -163,11 +151,18 @@ const thebe_selector_output = ".output, .cell_output"
     
     
     <img src="https://upload.wikimedia.org/wikipedia/commons/1/18/ISO_C%2B%2B_Logo.svg" class="logo__image only-light" alt="Introduction to C++ and Numerical Methods - Home"/>
-    <script>document.write(`<img src="https://upload.wikimedia.org/wikipedia/commons/1/18/ISO_C%2B%2B_Logo.svg" class="logo__image only-dark" alt="Introduction to C++ and Numerical Methods - Home"/>`);</script>
+    <img src="https://upload.wikimedia.org/wikipedia/commons/1/18/ISO_C%2B%2B_Logo.svg" class="logo__image only-dark pst-js-only" alt="Introduction to C++ and Numerical Methods - Home"/>
   
   
 </a></div>
-        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+        <div class="sidebar-primary-item">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
     <div class="bd-toc-item navbar-nav active">
         
         <ul class="nav bd-sidenav bd-sidenav__home-link">
@@ -239,9 +234,9 @@ const thebe_selector_output = ".output, .cell_output"
   
     <div class="header-article-items__start">
       
-        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
   <span class="fa-solid fa-bars"></span>
-</label></div>
+</button></div>
       
     </div>
   
@@ -266,14 +261,14 @@ const thebe_selector_output = ".output, .cell_output"
       
       <li><a href="https://mybinder.org/v2/gh/iluvatar1/ProgCPP-lectures-jupyter/master?urlpath=lab/tree/11-IntroPython/01-IntroProgrammingPython.ipynb" target="_blank"
    class="btn btn-sm dropdown-item"
-   title="Launch onBinder"
+   title="Launch on Binder"
    data-bs-placement="left" data-bs-toggle="tooltip"
 >
   
 
 <span class="btn__icon-container">
   
-    <img src="../_static/images/logo_binder.svg">
+    <img alt="Binder logo" src="../_static/images/logo_binder.svg">
   </span>
 <span class="btn__text-container">Binder</span>
 </a>
@@ -284,14 +279,14 @@ const thebe_selector_output = ".output, .cell_output"
       
       <li><a href="https://colab.research.google.com/github/iluvatar1/ProgCPP-lectures-jupyter/blob/master/github/iluvatar1/ProgCPP-lectures-jupyter/blob/master/11-IntroPython/01-IntroProgrammingPython.ipynb" target="_blank"
    class="btn btn-sm dropdown-item"
-   title="Launch onColab"
+   title="Launch on Colab"
    data-bs-placement="left" data-bs-toggle="tooltip"
 >
   
 
 <span class="btn__icon-container">
   
-    <img src="../_static/images/logo_colab.png">
+    <img alt="Colab logo" src="../_static/images/logo_colab.png">
   </span>
 <span class="btn__text-container">Colab</span>
 </a>
@@ -413,27 +408,19 @@ const thebe_selector_output = ".output, .cell_output"
 
 
 
-<script>
-document.write(`
-  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
-    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
-    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
-  </button>
-`);
-</script>
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button>
 
 
-<script>
-document.write(`
-  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
     <i class="fa-solid fa-magnifying-glass fa-lg"></i>
-  </button>
-`);
-</script>
-<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+</button>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
     <span class="fa-solid fa-list"></span>
-</label>
+</button>
 </div></div>
       
     </div>
@@ -483,9 +470,9 @@ document.write(`
                 <article class="bd-article">
                   
   <section class="tex2jax_ignore mathjax_ignore" id="python-programming-very-fast-introduction">
-<h1>Python Programming (very fast) Introduction<a class="headerlink" href="#python-programming-very-fast-introduction" title="Permalink to this heading">#</a></h1>
+<h1>Python Programming (very fast) Introduction<a class="headerlink" href="#python-programming-very-fast-introduction" title="Link to this heading">#</a></h1>
 <section id="importing-modules">
-<h2>Importing modules<a class="headerlink" href="#importing-modules" title="Permalink to this heading">#</a></h2>
+<h2>Importing modules<a class="headerlink" href="#importing-modules" title="Link to this heading">#</a></h2>
 <p>Python has an extensive standard library (https://docs.python.org/3/library/) to perform several task in optimized and easy-to-use way. For basic mathematical operations you can just use the normal operators, but for other standard functions, like <code class="docutils literal notranslate"><span class="pre">sin</span></code>, you could import the standard <code class="docutils literal notranslate"><span class="pre">math</span></code> module, or , much better, use either <code class="docutils literal notranslate"><span class="pre">numpy</span></code> or <code class="docutils literal notranslate"><span class="pre">scipy</span></code> modules</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">math</span> <span class="k">as</span> <span class="nn">m</span> <span class="c1"># imports the math module with an alias m</span>
 <span class="c1"># import math # imports math module but you need to use math.sin or math.cos</span>
@@ -529,7 +516,7 @@ document.write(`
 </div>
 </section>
 <section id="looking-for-help">
-<h2>Looking for help<a class="headerlink" href="#looking-for-help" title="Permalink to this heading">#</a></h2>
+<h2>Looking for help<a class="headerlink" href="#looking-for-help" title="Link to this heading">#</a></h2>
 <p>What are the units of the argument for the <code class="docutils literal notranslate"><span class="pre">sin</span></code> function? Are there any other functions provided by the <code class="docutils literal notranslate"><span class="pre">numpy</span></code> module? Check the documentation using either google or, inside a notebook</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>help(np.sin)
 help(np)
@@ -546,7 +533,7 @@ np.sin?
 </div>
 </section>
 <section id="printing-and-reading-to-and-from-the-screen">
-<h2>Printing and reading to and from the screen<a class="headerlink" href="#printing-and-reading-to-and-from-the-screen" title="Permalink to this heading">#</a></h2>
+<h2>Printing and reading to and from the screen<a class="headerlink" href="#printing-and-reading-to-and-from-the-screen" title="Link to this heading">#</a></h2>
 <p>You have already seen how to print to the screen. To read, you can use the function call <code class="docutils literal notranslate"><span class="pre">input</span></code>. Try it:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -583,7 +570,7 @@ np.sin?
 </div>
 </section>
 <section id="selection-structures-if-if-else">
-<h2>Selection structures : <code class="docutils literal notranslate"><span class="pre">if</span></code>, <code class="docutils literal notranslate"><span class="pre">if</span> <span class="pre">else</span></code><a class="headerlink" href="#selection-structures-if-if-else" title="Permalink to this heading">#</a></h2>
+<h2>Selection structures : <code class="docutils literal notranslate"><span class="pre">if</span></code>, <code class="docutils literal notranslate"><span class="pre">if</span> <span class="pre">else</span></code><a class="headerlink" href="#selection-structures-if-if-else" title="Link to this heading">#</a></h2>
 <p>This is a simple example on how to use if to select from several options</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -622,7 +609,7 @@ np.sin?
 </div>
 </section>
 <section id="loop-structures-for-and-while">
-<h2>Loop structures: for and while<a class="headerlink" href="#loop-structures-for-and-while" title="Permalink to this heading">#</a></h2>
+<h2>Loop structures: for and while<a class="headerlink" href="#loop-structures-for-and-while" title="Link to this heading">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">N</span> <span class="o">=</span> <span class="mi">5</span>
@@ -680,7 +667,7 @@ np.sin?
 </div>
 </section>
 <section id="how-to-declare-functions">
-<h2>How to declare functions<a class="headerlink" href="#how-to-declare-functions" title="Permalink to this heading">#</a></h2>
+<h2>How to declare functions<a class="headerlink" href="#how-to-declare-functions" title="Link to this heading">#</a></h2>
 <p>Functions are the next construct necessary for the a good program design. A function should be defined by using the keyword <code class="docutils literal notranslate"><span class="pre">def</span></code> .</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -734,9 +721,9 @@ np.sin?
 </div>
 </section>
 <section id="exercises">
-<h2>Exercises<a class="headerlink" href="#exercises" title="Permalink to this heading">#</a></h2>
+<h2>Exercises<a class="headerlink" href="#exercises" title="Link to this heading">#</a></h2>
 <section id="convert-from-farenheit-to-celcius">
-<h3>Convert from Farenheit to Celcius<a class="headerlink" href="#convert-from-farenheit-to-celcius" title="Permalink to this heading">#</a></h3>
+<h3>Convert from Farenheit to Celcius<a class="headerlink" href="#convert-from-farenheit-to-celcius" title="Link to this heading">#</a></h3>
 <p>Write a function that receives a temperature in F and prints it in C</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -757,31 +744,31 @@ np.sin?
 </div>
 </section>
 <section id="triangle-vertexes">
-<h3>Triangle vertexes<a class="headerlink" href="#triangle-vertexes" title="Permalink to this heading">#</a></h3>
+<h3>Triangle vertexes<a class="headerlink" href="#triangle-vertexes" title="Link to this heading">#</a></h3>
 <p>The coordinates for the vertexes of a given triangle are written into a file in the form  \begin{align*}x_1\ \ \  y_1\x_2\ \ \  y_2\x_3\ \ \ y_3  \end{align*} Write a program that reads this values, and computes the area of the triangle, defined as $<span class="math notranslate nohighlight">\( A = \frac{1}{2}[x_2y_3 - x_3y_2 - x_1y_3 + x_3y_1 + x_1y_2 - x_2y_1]\)</span>$. Use functions.</p>
 </section>
 <section id="rc-circuit">
-<h3>RC circuit<a class="headerlink" href="#rc-circuit" title="Permalink to this heading">#</a></h3>
+<h3>RC circuit<a class="headerlink" href="#rc-circuit" title="Link to this heading">#</a></h3>
 <p>Write a Python program that uses a loop to simulate the behavior of an RC circuit. The program should ask the user for the resistance and capacitance values of the circuit and should calculate the voltage across the capacitor as a function of time. The program should then create a plot of the voltage across the capacitor versus time.</p>
 </section>
 <section id="spring-system">
-<h3>Spring system<a class="headerlink" href="#spring-system" title="Permalink to this heading">#</a></h3>
+<h3>Spring system<a class="headerlink" href="#spring-system" title="Link to this heading">#</a></h3>
 <p>Write a Python program that uses a loop to simulate the motion of a mass-spring system. The program should ask the user for the mass of the object, the spring constant, and the initial displacement from equilibrium. The program should then calculate the position of the object as a function of time and create a plot of the position versus time.</p>
 </section>
 <section id="projectile">
-<h3>Projectile<a class="headerlink" href="#projectile" title="Permalink to this heading">#</a></h3>
+<h3>Projectile<a class="headerlink" href="#projectile" title="Link to this heading">#</a></h3>
 <p>Write a Python program that uses a loop to simulate the motion of a projectile under the influence of gravity. The program should ask the user for the initial velocity and launch angle of the projectile, and should calculate the trajectory of the projectile over time. The program should then create a plot of the trajectory of the projectile. Use the Euler integration algorithm to compute the next position and velocity. Compare adding a damping linear force with air.</p>
 </section>
 <section id="random-numbers">
-<h3>Random numbers<a class="headerlink" href="#random-numbers" title="Permalink to this heading">#</a></h3>
+<h3>Random numbers<a class="headerlink" href="#random-numbers" title="Link to this heading">#</a></h3>
 <p>Write a Python program that reads three integers N, lower, upper, and generates a list of N random integers between lower and upper, inclusive. The program should then print out the number of integers in the list that are even and the number of integers that are odd. Finally, the program should create a bar chart that shows the number of even and odd integers in the list. Then create 4 plots with increasing N showing that limit distribution of even and odd numbers.</p>
 </section>
 <section id="heatmap">
-<h3>Heatmap<a class="headerlink" href="#heatmap" title="Permalink to this heading">#</a></h3>
+<h3>Heatmap<a class="headerlink" href="#heatmap" title="Link to this heading">#</a></h3>
 <p>Write a Python function that takes an integer n as input and returns a NumPy array of size n x n, where the elements of the array are random integers between lower and upper, which are also arguments of the function. Write a second function that takes the NumPy array as input and creates a heatmap of the array. Use these functions to create a program that generates a mxm NumPy array of random integers and displays it as a heatmap. Use several m</p>
 </section>
 <section id="fitting-with-scipy">
-<h3>Fitting with scipy<a class="headerlink" href="#fitting-with-scipy" title="Permalink to this heading">#</a></h3>
+<h3>Fitting with scipy<a class="headerlink" href="#fitting-with-scipy" title="Link to this heading">#</a></h3>
 <p>Here we will learn how to perform a non-linear fit. To do so, we will generate some random data and then fit it. First, create a function that represents the theoretical trend that you want to fit. Now create two numpy arrays, xdata and ydata. For xdata use the linspace function on the range you are interested in. For ydata use the theoretical function and add a gaussian noise for each point. Now use the scipy.curve_fit function to fit the data, and print the fit parameters and their errors. Plot both the data and the fit.</p>
 </section>
 </section>
@@ -842,7 +829,8 @@ np.sin?
             
             
               
-                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
 
 
   <div class="sidebar-secondary-item">
@@ -916,8 +904,8 @@ By William Oquendo
   </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
-<script src="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+  <script defer src="../_static/scripts/bootstrap.js?digest=26a4bc78f4c0ddb94549"></script>
+<script defer src="../_static/scripts/pydata-sphinx-theme.js?digest=26a4bc78f4c0ddb94549"></script>
 
   <footer class="bd-footer">
   </footer>

@@ -1,13 +1,12 @@
 
-
 <!DOCTYPE html>
 
 
-<html lang="en" data-content_root="" >
+<html lang="en" data-content_root="../" >
 
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
     <title>Very fast intro to the basics of c++ &#8212; Introduction to C++ and Numerical Methods</title>
   
@@ -17,62 +16,62 @@
     document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
     document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
   </script>
+  <!-- 
+    this give us a css class that will be invisible only if js is disabled 
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
-<link href="../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
-<link href="../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link href="../_static/styles/theme.css?digest=26a4bc78f4c0ddb94549" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=26a4bc78f4c0ddb94549" rel="stylesheet" />
 
-  
-  <link href="../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
-  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
-
-    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
-    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
-    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=a3416100" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
     <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/styles.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles.css?v=03b9d5b1" />
   
+  <!-- So that users can add custom icons -->
+  <script src="../_static/scripts/fontawesome.js?digest=26a4bc78f4c0ddb94549"></script>
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
-<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
-  <script src="../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=26a4bc78f4c0ddb94549" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=26a4bc78f4c0ddb94549" />
 
-    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
-    <script src="../_static/jquery.js"></script>
-    <script src="../_static/underscore.js"></script>
-    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
-    <script src="../_static/doctools.js"></script>
-    <script src="../_static/clipboard.min.js"></script>
-    <script src="../_static/copybutton.js"></script>
-    <script src="../_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script src="../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
     <script>let toggleHintShow = 'Click to show';</script>
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
-    <script src="../_static/togglebutton.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="../_static/togglebutton.js?v=4a39c7ea"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
-    <script src="../_static/design-tabs.js"></script>
-    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
-const thebe_selector = ".thebe,.cell"
-const thebe_selector_input = "pre"
-const thebe_selector_output = ".output, .cell_output"
-</script>
-    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <script src="../_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
     <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = '01-IntroCPP/CPP-FastPacedIntro';</script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="Numerical differentiation" href="../02-derivatives/NumericalDifferentiation.html" />
     <link rel="prev" title="Resources" href="Resources.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="" />
   </head>
   
   
@@ -88,19 +87,8 @@ const thebe_selector_output = ".output, .cell_output"
     <i class="fa-solid fa-arrow-up"></i>Back to top</button>
 
   
-  <input type="checkbox"
-          class="sidebar-toggle"
-          id="pst-primary-sidebar-checkbox"/>
-  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
-  
-  <input type="checkbox"
-          class="sidebar-toggle"
-          id="pst-secondary-sidebar-checkbox"/>
-  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
-  
-  <div class="search-button__wrapper">
-    <div class="search-button__overlay"></div>
-    <div class="search-button__search-container">
+  <dialog id="pst-search-dialog">
+    
 <form class="bd-search d-flex align-items-center"
       action="../search.html"
       method="get">
@@ -108,7 +96,6 @@ const thebe_selector_output = ".output, .cell_output"
   <input type="search"
          class="form-control"
          name="q"
-         id="search-input"
          placeholder="Search this book..."
          aria-label="Search this book..."
          autocomplete="off"
@@ -116,8 +103,8 @@ const thebe_selector_output = ".output, .cell_output"
          autocapitalize="off"
          spellcheck="false"/>
   <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
-</form></div>
-  </div>
+</form>
+  </dialog>
 
   <div class="pst-async-banner-revealer d-none">
   <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
@@ -133,7 +120,8 @@ const thebe_selector_output = ".output, .cell_output"
       
       
       
-      <div class="bd-sidebar-primary bd-sidebar">
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
         
 
   
@@ -163,11 +151,18 @@ const thebe_selector_output = ".output, .cell_output"
     
     
     <img src="https://upload.wikimedia.org/wikipedia/commons/1/18/ISO_C%2B%2B_Logo.svg" class="logo__image only-light" alt="Introduction to C++ and Numerical Methods - Home"/>
-    <script>document.write(`<img src="https://upload.wikimedia.org/wikipedia/commons/1/18/ISO_C%2B%2B_Logo.svg" class="logo__image only-dark" alt="Introduction to C++ and Numerical Methods - Home"/>`);</script>
+    <img src="https://upload.wikimedia.org/wikipedia/commons/1/18/ISO_C%2B%2B_Logo.svg" class="logo__image only-dark pst-js-only" alt="Introduction to C++ and Numerical Methods - Home"/>
   
   
 </a></div>
-        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+        <div class="sidebar-primary-item">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
     <div class="bd-toc-item navbar-nav active">
         
         <ul class="nav bd-sidenav bd-sidenav__home-link">
@@ -239,9 +234,9 @@ const thebe_selector_output = ".output, .cell_output"
   
     <div class="header-article-items__start">
       
-        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
   <span class="fa-solid fa-bars"></span>
-</label></div>
+</button></div>
       
     </div>
   
@@ -266,14 +261,14 @@ const thebe_selector_output = ".output, .cell_output"
       
       <li><a href="https://mybinder.org/v2/gh/iluvatar1/ProgCPP-lectures-jupyter/master?urlpath=lab/tree/01-IntroCPP/CPP-FastPacedIntro.ipynb" target="_blank"
    class="btn btn-sm dropdown-item"
-   title="Launch onBinder"
+   title="Launch on Binder"
    data-bs-placement="left" data-bs-toggle="tooltip"
 >
   
 
 <span class="btn__icon-container">
   
-    <img src="../_static/images/logo_binder.svg">
+    <img alt="Binder logo" src="../_static/images/logo_binder.svg">
   </span>
 <span class="btn__text-container">Binder</span>
 </a>
@@ -284,14 +279,14 @@ const thebe_selector_output = ".output, .cell_output"
       
       <li><a href="https://colab.research.google.com/github/iluvatar1/ProgCPP-lectures-jupyter/blob/master/github/iluvatar1/ProgCPP-lectures-jupyter/blob/master/01-IntroCPP/CPP-FastPacedIntro.ipynb" target="_blank"
    class="btn btn-sm dropdown-item"
-   title="Launch onColab"
+   title="Launch on Colab"
    data-bs-placement="left" data-bs-toggle="tooltip"
 >
   
 
 <span class="btn__icon-container">
   
-    <img src="../_static/images/logo_colab.png">
+    <img alt="Colab logo" src="../_static/images/logo_colab.png">
   </span>
 <span class="btn__text-container">Colab</span>
 </a>
@@ -413,27 +408,19 @@ const thebe_selector_output = ".output, .cell_output"
 
 
 
-<script>
-document.write(`
-  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
-    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
-    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
-  </button>
-`);
-</script>
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button>
 
 
-<script>
-document.write(`
-  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
     <i class="fa-solid fa-magnifying-glass fa-lg"></i>
-  </button>
-`);
-</script>
-<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+</button>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
     <span class="fa-solid fa-list"></span>
-</label>
+</button>
 </div></div>
       
     </div>
@@ -525,10 +512,10 @@ document.write(`
                 <article class="bd-article">
                   
   <section class="tex2jax_ignore mathjax_ignore" id="very-fast-intro-to-the-basics-of-c">
-<h1>Very fast intro to the basics of c++<a class="headerlink" href="#very-fast-intro-to-the-basics-of-c" title="Permalink to this heading">#</a></h1>
+<h1>Very fast intro to the basics of c++<a class="headerlink" href="#very-fast-intro-to-the-basics-of-c" title="Link to this heading">#</a></h1>
 <p>Although the c++ standard is really large, for this course we need to handle well a small subset of it. What is more important is to learn how to THINK like a programmer, not to memorize the actual syntax, which can actually obtained from google bard or chatGPT. In this section, we will learn the very basics and then we start practicing. Practice is the key in everything. For more details, see https://www.learncpp.com/ or a reference book.</p>
 <section id="minimal-example">
-<h2>Minimal example<a class="headerlink" href="#minimal-example" title="Permalink to this heading">#</a></h2>
+<h2>Minimal example<a class="headerlink" href="#minimal-example" title="Link to this heading">#</a></h2>
 <p>This a minimal valid cpp program. It does “nothing”. But when you compile, a lot of things happen. For more info see https://hackingcpp.com/cpp/hello_world.html</p>
 <div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
 <span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
@@ -552,7 +539,7 @@ document.write(`
 </ul>
 </section>
 <section id="variables-and-types">
-<h2>Variables and types<a class="headerlink" href="#variables-and-types" title="Permalink to this heading">#</a></h2>
+<h2>Variables and types<a class="headerlink" href="#variables-and-types" title="Link to this heading">#</a></h2>
 <p>C++ is a typed lang. It means that you have to specify the type of the variable you are going to use. You have booleans, char, integers, float and double, arrays/vectors, structs, …. See https://hackingcpp.com/cpp/lang/fundamental_types.html</p>
 <div style="text-align: center;">
     <img src="https://hackingcpp.com/cpp/lang/variables_crop.svg" alt="Image Description" width="600">
@@ -562,7 +549,7 @@ document.write(`
     <img src="https://hackingcpp.com/cs/number_representations_crop.png" alt="Image Description" width="800">
     <figcaption>From: "https://hackingcpp.com/cs/number_representations_crop.png"</figcaption>
 </div><section id="exercise">
-<h3>Exercise<a class="headerlink" href="#exercise" title="Permalink to this heading">#</a></h3>
+<h3>Exercise<a class="headerlink" href="#exercise" title="Link to this heading">#</a></h3>
 <ul>
 <li><p>Create a program that declares a variable of type</p>
 <ul class="simple">
@@ -602,9 +589,9 @@ document.write(`
 </section>
 </section>
 <section id="operators">
-<h2>Operators<a class="headerlink" href="#operators" title="Permalink to this heading">#</a></h2>
+<h2>Operators<a class="headerlink" href="#operators" title="Link to this heading">#</a></h2>
 <section id="arithmetic">
-<h3>Arithmetic<a class="headerlink" href="#arithmetic" title="Permalink to this heading">#</a></h3>
+<h3>Arithmetic<a class="headerlink" href="#arithmetic" title="Link to this heading">#</a></h3>
 <p>Example: <code class="docutils literal notranslate"><span class="pre">=,</span> <span class="pre">+,</span> <span class="pre">-,</span> <span class="pre">*,</span> <span class="pre">/,</span> <span class="pre">%,</span> <span class="pre">-=,</span> <span class="pre">+=,</span> <span class="pre">*=,</span> <span class="pre">/=,</span> <span class="pre">++,</span> <span class="pre">--</span></code></p>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">int</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">10</span><span class="p">,</span><span class="w"> </span><span class="n">b</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">20</span><span class="p">,</span><span class="w"> </span><span class="n">c</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span>
 <span class="n">a</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">b</span><span class="p">;</span><span class="w"> </span><span class="c1">// assigns b value to a value</span>
@@ -623,7 +610,7 @@ document.write(`
 </div>
 </section>
 <section id="comparison">
-<h3>Comparison<a class="headerlink" href="#comparison" title="Permalink to this heading">#</a></h3>
+<h3>Comparison<a class="headerlink" href="#comparison" title="Link to this heading">#</a></h3>
 <p>You have <code class="docutils literal notranslate"><span class="pre">==,</span> <span class="pre">!=,</span> <span class="pre">&gt;,</span> <span class="pre">&gt;=,</span> <span class="pre">&lt;,</span> <span class="pre">&lt;=</span></code></p>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">int</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">10</span><span class="p">,</span><span class="w"> </span><span class="n">b</span><span class="o">=</span><span class="w"> </span><span class="mi">20</span><span class="p">;</span>
 <span class="kt">bool</span><span class="w"> </span><span class="n">result</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">true</span><span class="p">;</span>
@@ -634,7 +621,7 @@ document.write(`
 </div>
 </section>
 <section id="logic">
-<h3>Logic<a class="headerlink" href="#logic" title="Permalink to this heading">#</a></h3>
+<h3>Logic<a class="headerlink" href="#logic" title="Link to this heading">#</a></h3>
 <p>You have <code class="docutils literal notranslate"><span class="pre">&amp;&amp;,</span> <span class="pre">and,</span> <span class="pre">||,</span> <span class="pre">or,</span> <span class="pre">!,</span> <span class="pre">not,</span> <span class="pre">&amp;,</span> <span class="pre">|</span></code></p>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">int</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">10</span><span class="p">,</span><span class="w"> </span><span class="n">b</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">20</span><span class="p">;</span>
 <span class="kt">bool</span><span class="w"> </span><span class="n">result</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">false</span><span class="p">;</span><span class="w"> </span>
@@ -645,11 +632,11 @@ document.write(`
 </div>
 </section>
 <section id="precedence">
-<h3>Precedence<a class="headerlink" href="#precedence" title="Permalink to this heading">#</a></h3>
+<h3>Precedence<a class="headerlink" href="#precedence" title="Link to this heading">#</a></h3>
 <p>Operators have a defined precedence: https://en.cppreference.com/w/cpp/language/operator_precedence</p>
 </section>
 <section id="id1">
-<h3>Exercise<a class="headerlink" href="#id1" title="Permalink to this heading">#</a></h3>
+<h3>Exercise<a class="headerlink" href="#id1" title="Link to this heading">#</a></h3>
 <ul class="simple">
 <li><p>Write a program that shows examples for the arithmetic operators. Use a simple function (the main function must just call it).</p></li>
 <li><p>Write a program that shows examples for the comparison operators. Use a simple function (the main function must just call it).</p></li>
@@ -659,7 +646,7 @@ document.write(`
 </section>
 </section>
 <section id="functions">
-<h2>Functions<a class="headerlink" href="#functions" title="Permalink to this heading">#</a></h2>
+<h2>Functions<a class="headerlink" href="#functions" title="Link to this heading">#</a></h2>
 <p>See: https://hackingcpp.com/cpp/lang/function_basics.html</p>
 <p>Functions are of fundamental importance. They allow to encapsulate the implementation details and to create modular and more maintainable programs. Each function must do one thing well. Using functions also allows the program to be tested, profiled, and extended. Form now on, will keep clean the <code class="docutils literal notranslate"><span class="pre">main</span></code> function, and use it to call other functions.</p>
 <div style="text-align: center;">
@@ -691,14 +678,14 @@ document.write(`
 </div>
 <p>Compile it and run it. From now on try to use functions all the time.</p>
 <section id="exercises">
-<h3>Exercises<a class="headerlink" href="#exercises" title="Permalink to this heading">#</a></h3>
+<h3>Exercises<a class="headerlink" href="#exercises" title="Link to this heading">#</a></h3>
 <ul class="simple">
 <li><p>Write a program that prints the number of primes less than <span class="math notranslate nohighlight">\(n\)</span> for <span class="math notranslate nohighlight">\(n \in [2, 1000]\)</span>. Plot it using either gnuplot or matplotlib</p></li>
 </ul>
 </section>
 </section>
 <section id="conditionals">
-<h2>Conditionals<a class="headerlink" href="#conditionals" title="Permalink to this heading">#</a></h2>
+<h2>Conditionals<a class="headerlink" href="#conditionals" title="Link to this heading">#</a></h2>
 <p>This allows you to change the execution path according to a given condition. The general syntax is</p>
 <div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">conditon</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
 <span class="w">  </span><span class="c1">// do something if condition is true</span>
@@ -804,7 +791,7 @@ graph LR
 </div>
 <p>Compile and run it. As this is expecting to read from the terminal, run it in a real terminal, not on google collab.</p>
 <section id="id2">
-<h3>Exercises<a class="headerlink" href="#id2" title="Permalink to this heading">#</a></h3>
+<h3>Exercises<a class="headerlink" href="#id2" title="Link to this heading">#</a></h3>
 <ul class="simple">
 <li><p>You have to write a program that reads a number. If the number is smaller or equal than 10, verify if it is prime (you might need to write several if or if/else). If it is larger, write the message <code class="docutils literal notranslate"><span class="pre">Too</span> <span class="pre">large</span> <span class="pre">to</span> <span class="pre">verify</span> <span class="pre">manually</span></code>. To do so:</p>
 <ul>
@@ -818,12 +805,12 @@ graph LR
 </section>
 </section>
 <section id="loops">
-<h2>Loops<a class="headerlink" href="#loops" title="Permalink to this heading">#</a></h2>
+<h2>Loops<a class="headerlink" href="#loops" title="Link to this heading">#</a></h2>
 <p>See https://hackingcpp.com/cpp/lang/control_flow_basics.html</p>
 <section id="classical-loops">
-<h3>Classical loops<a class="headerlink" href="#classical-loops" title="Permalink to this heading">#</a></h3>
+<h3>Classical loops<a class="headerlink" href="#classical-loops" title="Link to this heading">#</a></h3>
 <section id="for-loop">
-<h4><code class="docutils literal notranslate"><span class="pre">for</span></code> loop<a class="headerlink" href="#for-loop" title="Permalink to this heading">#</a></h4>
+<h4><code class="docutils literal notranslate"><span class="pre">for</span></code> loop<a class="headerlink" href="#for-loop" title="Link to this heading">#</a></h4>
 <p>Includes initialization, condition and step or change. Change must ensure reaching condition == false.</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="k">for</span><span class="w"> </span><span class="o">(</span>initialization<span class="p">;</span><span class="w"> </span>condition<span class="p">;</span><span class="w"> </span>step<span class="o">)</span><span class="w"> </span><span class="o">{</span><span class="w"> </span>…<span class="w"> </span><span class="o">}</span>
 </pre></div>
@@ -871,7 +858,7 @@ graph LR
 </div>
 </section>
 <section id="while-loop">
-<h4><code class="docutils literal notranslate"><span class="pre">while</span></code> loop<a class="headerlink" href="#while-loop" title="Permalink to this heading">#</a></h4>
+<h4><code class="docutils literal notranslate"><span class="pre">while</span></code> loop<a class="headerlink" href="#while-loop" title="Link to this heading">#</a></h4>
 <p>Repeat while condition is true.</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>init<span class="p">;</span><span class="w"> </span>
 <span class="k">while</span><span class="w"> </span><span class="o">(</span>condition<span class="o">)</span><span class="w"> </span><span class="o">{</span><span class="w"> </span>…<span class="w"> </span><span class="p">;</span><span class="w"> </span>step<span class="p">;</span><span class="w"> </span><span class="o">}</span>
@@ -887,7 +874,7 @@ graph LR
 </div>
 </section>
 <section id="do-while-loop">
-<h4><code class="docutils literal notranslate"><span class="pre">do-while</span></code> loop<a class="headerlink" href="#do-while-loop" title="Permalink to this heading">#</a></h4>
+<h4><code class="docutils literal notranslate"><span class="pre">do-while</span></code> loop<a class="headerlink" href="#do-while-loop" title="Link to this heading">#</a></h4>
 <p>Repeat while condition is true, BUT always do at least one step.</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="k">do</span><span class="w"> </span><span class="o">{</span><span class="w"> </span>…<span class="w"> </span><span class="o">}</span><span class="w"> </span><span class="k">while</span><span class="w"> </span><span class="o">(</span>condition<span class="o">)</span><span class="p">;</span>
 </pre></div>
@@ -901,12 +888,12 @@ graph LR
 </div>
 </section>
 <section id="flow-control">
-<h4>Flow control<a class="headerlink" href="#flow-control" title="Permalink to this heading">#</a></h4>
+<h4>Flow control<a class="headerlink" href="#flow-control" title="Link to this heading">#</a></h4>
 <p>You can also add a <code class="docutils literal notranslate"><span class="pre">continue</span></code> or <code class="docutils literal notranslate"><span class="pre">break</span></code> inside a loop if you need it. A <code class="docutils literal notranslate"><span class="pre">continue</span></code> tells the program to ignore the lines in the loop behind it, and continue with the next iteration. A <code class="docutils literal notranslate"><span class="pre">break</span></code> exist the loop.</p>
 </section>
 </section>
 <section id="range-based-loops">
-<h3>Range based loops<a class="headerlink" href="#range-based-loops" title="Permalink to this heading">#</a></h3>
+<h3>Range based loops<a class="headerlink" href="#range-based-loops" title="Link to this heading">#</a></h3>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="k">for</span><span class="w"> </span><span class="o">(</span>variable<span class="w"> </span>:<span class="w"> </span>range<span class="o">)</span><span class="w"> </span><span class="o">{</span><span class="w"> </span>…<span class="w"> </span><span class="o">}</span>
 </pre></div>
 </div>
@@ -918,7 +905,7 @@ graph LR
 </div>
 </section>
 <section id="id3">
-<h3>Exercises<a class="headerlink" href="#id3" title="Permalink to this heading">#</a></h3>
+<h3>Exercises<a class="headerlink" href="#id3" title="Link to this heading">#</a></h3>
 <ul class="simple">
 <li><p>Write a program that prints the numbers between 5 and 223 which are divisible by both 3 and 7. Print the numbers separated by a space, and a new line only at the end. Use the three types of classical loops (so your program must print the same three times)</p></li>
 </ul>
@@ -933,7 +920,7 @@ graph LR
 </section>
 </section>
 <section id="functions-again">
-<h2>Functions again<a class="headerlink" href="#functions-again" title="Permalink to this heading">#</a></h2>
+<h2>Functions again<a class="headerlink" href="#functions-again" title="Link to this heading">#</a></h2>
 <p>See: https://hackingcpp.com/cpp/lang/function_basics.html</p>
 <p>Functions are of fundamental importance. They allow to encapsulate the implementation details and to create modular and more maintainable programs. Each function must do one thing well. Using functions also allows the program to be tested, profiled, and extended. Form now on, will keep clean the <code class="docutils literal notranslate"><span class="pre">main</span></code> function, and use it to call other functions.</p>
 <div style="text-align: center;">
@@ -955,7 +942,7 @@ graph LR
 <li><p>Numerics algorithms: https://en.cppreference.com/w/cpp/numeric#Numeric_algorithms</p></li>
 </ul>
 <section id="id4">
-<h3>Exercises<a class="headerlink" href="#id4" title="Permalink to this heading">#</a></h3>
+<h3>Exercises<a class="headerlink" href="#id4" title="Link to this heading">#</a></h3>
 <p>Write different programs to solve the following (use functions extensively):</p>
 <ul class="simple">
 <li><p>Create a function that receives an integers and return true if it is a prime, false otherwise. Use it in the main function to print the primes from 1 up to 150.</p></li>
@@ -968,7 +955,7 @@ graph LR
 </section>
 </section>
 <section id="file-modularization">
-<h2>File modularization<a class="headerlink" href="#file-modularization" title="Permalink to this heading">#</a></h2>
+<h2>File modularization<a class="headerlink" href="#file-modularization" title="Link to this heading">#</a></h2>
 <div style="text-align: center;">
     <img src="https://hackingcpp.com/cpp/lang/separate_compilation_crop.svg" alt="Image Description" width="900">
     <figcaption>From: "https://hackingcpp.com/cpp/lang/separate_compilation_crop.svg"</figcaption>
@@ -1027,7 +1014,7 @@ graph LR
 Do this will all the functions previously written. So, include all the prime functions in the .h and .cpp files, and then create the corresponding main files.</p>
 </section>
 <section id="basic-testing">
-<h2>Basic Testing<a class="headerlink" href="#basic-testing" title="Permalink to this heading">#</a></h2>
+<h2>Basic Testing<a class="headerlink" href="#basic-testing" title="Link to this heading">#</a></h2>
 <p>Once we have modularized our code, not only using functions, but also files, it is possible to start testing our code so to be sure that we are not repeating old mistakes, etc. Here we will use <a class="reference external" href="https://github.com/catchorg/Catch2">catch2</a> to do so, with a simple example: the prime function. The idea is that, for each bug/problem you find, to implement a test case so to avoid repeating that in the future. The following is an example file</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1066,7 +1053,7 @@ All<span class="w"> </span>tests<span class="w"> </span>passed<span class="w"> <
 <p>Finally, you can automatize everything using a Makefile.</p>
 </section>
 <section id="classes-and-structs">
-<h2>Classes and structs<a class="headerlink" href="#classes-and-structs" title="Permalink to this heading">#</a></h2>
+<h2>Classes and structs<a class="headerlink" href="#classes-and-structs" title="Link to this heading">#</a></h2>
 <p>In C++ you can program using object oriented programming. In our case, we will use this to encapsulate data and some functionality. An example in our domain would be the simulation of some planets orbits. We can have an array of data for the <code class="docutils literal notranslate"><span class="pre">x</span></code> positions, the <code class="docutils literal notranslate"><span class="pre">y</span></code> positions, the <code class="docutils literal notranslate"><span class="pre">z</span></code> positions, the velocities and so on. This can be overwhelming when indexing and processing. We might use a better computational model that resembles, better, the physical model. Our main object here is a planet. And a planet has several attributes, like its coordinates, its mass, radius, and so on. So it would be better if we can represent this as a new datatype, let’s calle it a <code class="docutils literal notranslate"><span class="pre">Planet</span></code>. We can do it using structs or classes:</p>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">struct</span><span class="w"> </span><span class="nc">Planet</span><span class="w"> </span><span class="p">{</span>
 <span class="w">    </span><span class="c1">// public attributes</span>
@@ -1095,14 +1082,14 @@ All<span class="w"> </span>tests<span class="w"> </span>passed<span class="w"> <
 <p>We will be using structs/classes to create generalized data and functions, called functors, after overloading the <code class="docutils literal notranslate"><span class="pre">()</span></code> operator. So our class will represent a function with internal state, something very powerful.</p>
 </section>
 <section id="workshop">
-<h2>Workshop<a class="headerlink" href="#workshop" title="Permalink to this heading">#</a></h2>
+<h2>Workshop<a class="headerlink" href="#workshop" title="Link to this heading">#</a></h2>
 <p>For all the following codes always modularize the files (separating the main function into another file) and write a test to be run with catch2. All parameters must be pased as command line parameters. Do not use <code class="docutils literal notranslate"><span class="pre">cin</span></code> or similar.</p>
 <section id="multiples-of-3-and-5">
-<h3>Multiples of 3 and 5<a class="headerlink" href="#multiples-of-3-and-5" title="Permalink to this heading">#</a></h3>
+<h3>Multiples of 3 and 5<a class="headerlink" href="#multiples-of-3-and-5" title="Link to this heading">#</a></h3>
 <p>Write a program that reads a number from the command line and prints the number divisible by 3 and 5 smaller or equal than that number.</p>
 </section>
 <section id="square-of">
-<h3>Square of *<a class="headerlink" href="#square-of" title="Permalink to this heading">#</a></h3>
+<h3>Square of *<a class="headerlink" href="#square-of" title="Link to this heading">#</a></h3>
 <p>Write a program that reads a positive number from the command line and then prints a “square” with that number of asterisks. For example, <code class="docutils literal notranslate"><span class="pre">./a.out</span> <span class="pre">5</span></code> must print</p>
 <div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>*****
 *<span class="w">   </span>*
@@ -1113,11 +1100,11 @@ All<span class="w"> </span>tests<span class="w"> </span>passed<span class="w"> <
 </div>
 </section>
 <section id="square-of-any-char">
-<h3>Square of any char<a class="headerlink" href="#square-of-any-char" title="Permalink to this heading">#</a></h3>
+<h3>Square of any char<a class="headerlink" href="#square-of-any-char" title="Link to this heading">#</a></h3>
 <p>Now generalize the previous program and read both the number of characters and the character to be used.</p>
 </section>
 <section id="fixing-loops">
-<h3>Fixing loops<a class="headerlink" href="#fixing-loops" title="Permalink to this heading">#</a></h3>
+<h3>Fixing loops<a class="headerlink" href="#fixing-loops" title="Link to this heading">#</a></h3>
 <p>What is wrong with the following codes?</p>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="w">  </span><span class="k">for</span><span class="p">(;;)</span><span class="w"> </span><span class="p">{</span>
 
@@ -1131,7 +1118,7 @@ All<span class="w"> </span>tests<span class="w"> </span>passed<span class="w"> <
 </div>
 </section>
 <section id="for-and-while-loops">
-<h3>For and while loops<a class="headerlink" href="#for-and-while-loops" title="Permalink to this heading">#</a></h3>
+<h3>For and while loops<a class="headerlink" href="#for-and-while-loops" title="Link to this heading">#</a></h3>
 <ul class="simple">
 <li><p>Transform the next loop into a <code class="docutils literal notranslate"><span class="pre">while</span></code> loop</p></li>
 </ul>
@@ -1142,11 +1129,11 @@ All<span class="w"> </span>tests<span class="w"> </span>passed<span class="w"> <
 </div>
 </section>
 <section id="sum-of-squares-and-plot">
-<h3>Sum of squares and plot<a class="headerlink" href="#sum-of-squares-and-plot" title="Permalink to this heading">#</a></h3>
+<h3>Sum of squares and plot<a class="headerlink" href="#sum-of-squares-and-plot" title="Link to this heading">#</a></h3>
 <p>Write a program that reads a number from the command line and prints the sum of squares less than that number. Use it to plot the data.</p>
 </section>
 <section id="digits">
-<h3>Digits<a class="headerlink" href="#digits" title="Permalink to this heading">#</a></h3>
+<h3>Digits<a class="headerlink" href="#digits" title="Link to this heading">#</a></h3>
 <p>The program must read a number of four digits and print the digits, separated by a space. Some examples</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>./a.out<span class="w"> </span><span class="m">123</span>
 <span class="m">0</span><span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="m">2</span><span class="w"> </span><span class="m">3</span>
@@ -1166,7 +1153,7 @@ Negative<span class="w"> </span>number.<span class="w"> </span>Ignoring
 </div>
 </section>
 <section id="babilonian-square-root">
-<h3>Babilonian square root<a class="headerlink" href="#babilonian-square-root" title="Permalink to this heading">#</a></h3>
+<h3>Babilonian square root<a class="headerlink" href="#babilonian-square-root" title="Link to this heading">#</a></h3>
 <p>The babilonians found that to compute the square root of 2, you can iterate the following expression
 <span class="math notranslate nohighlight">\(x \leftarrow \dfrac{x+2/x}{x}\)</span>. Implement this algorithm in a function that receives the number of iterations to perform and the returns the estimation. Print in scientific notation with 15 decimals of precision using the following instructions in the main function</p>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="p">.</span><span class="n">setf</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">ios</span><span class="o">::</span><span class="n">scientific</span><span class="p">);</span><span class="w"> </span><span class="c1">// imprimir en notacipn cientifica</span>
@@ -1191,15 +1178,15 @@ Negative<span class="w"> </span>number.<span class="w"> </span>Ignoring
 <p>To print in that format you can also use a modern construct, <code class="docutils literal notranslate"><span class="pre">std::format</span></code>, available in the c++23 standard. Check https://en.cppreference.com/w/cpp/io/print . Or , if it is installed, you can use https://fmt.dev/latest/index.html  (also see https://hackingcpp.com/cpp/libs/fmt.html). Or if you prefer to be classic, you can use <code class="docutils literal notranslate"><span class="pre">printf</span></code>.</p>
 </section>
 <section id="uncertainty">
-<h3>Uncertainty<a class="headerlink" href="#uncertainty" title="Permalink to this heading">#</a></h3>
+<h3>Uncertainty<a class="headerlink" href="#uncertainty" title="Link to this heading">#</a></h3>
 <p>Write a program that reads two floating-point numbers from the command line. One number represents the radius, and the other represents the uncertainty. Then, call a function that calculates and prints the area of the associated circle along with its propagated uncertainty. The area is calculated as , and the propagated uncertainty is <span class="math notranslate nohighlight">\(2\pi r\Delta r\)</span>. If you do it correctly, the uncertainty must have only one significant figure, and it limits the number of decimals in the main quantity.</p>
 </section>
 <section id="primes-again">
-<h3>Primes again<a class="headerlink" href="#primes-again" title="Permalink to this heading">#</a></h3>
+<h3>Primes again<a class="headerlink" href="#primes-again" title="Link to this heading">#</a></h3>
 <p>Check or improve your program to compute if a number is prime to be able to compute it with 10000019 or larger in a couple of seconds at most.</p>
 </section>
 <section id="largest-prime-smaller-than-number">
-<h3>Largest prime smaller than number<a class="headerlink" href="#largest-prime-smaller-than-number" title="Permalink to this heading">#</a></h3>
+<h3>Largest prime smaller than number<a class="headerlink" href="#largest-prime-smaller-than-number" title="Link to this heading">#</a></h3>
 <p>Write a program that reads a positive integer from the command line and prints the largest prime number that is less than or equal to the input number. The code should execute in less than 30 seconds, even for large numbers like 10000019 (a prime number) or 10000030 (not a prime number).</p>
 <p>Some examples:</p>
 <div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>./a.out<span class="w"> </span><span class="m">2</span>
@@ -1234,23 +1221,23 @@ Negative<span class="w"> </span>number.<span class="w"> </span>Ignoring
 </div>
 </section>
 <section id="gcd">
-<h3>GCD<a class="headerlink" href="#gcd" title="Permalink to this heading">#</a></h3>
+<h3>GCD<a class="headerlink" href="#gcd" title="Link to this heading">#</a></h3>
 <p>Write a program that reads two positive integers from the command line and prints their greatest common divisor (GCD). Check the standard library for an immediate solution</p>
 </section>
 <section id="sum-of-primes">
-<h3>Sum of primes<a class="headerlink" href="#sum-of-primes" title="Permalink to this heading">#</a></h3>
+<h3>Sum of primes<a class="headerlink" href="#sum-of-primes" title="Link to this heading">#</a></h3>
 <p>Write a program that reads a positive integer from the command line and prints the sum of prime numbers that are less than the input number.</p>
 </section>
 <section id="collatz-largest-number">
-<h3>Collatz largest number<a class="headerlink" href="#collatz-largest-number" title="Permalink to this heading">#</a></h3>
+<h3>Collatz largest number<a class="headerlink" href="#collatz-largest-number" title="Link to this heading">#</a></h3>
 <p>Write a program that reads a positive integer from the command line and calculates the largest term obtained in the Collatz sequence for that number.</p>
 </section>
 <section id="collatz-number-of-terms">
-<h3>Collatz number of terms<a class="headerlink" href="#collatz-number-of-terms" title="Permalink to this heading">#</a></h3>
+<h3>Collatz number of terms<a class="headerlink" href="#collatz-number-of-terms" title="Link to this heading">#</a></h3>
 <p>Write a program that reads a positive integer from the command line and calculates the number of terms in the Collatz sequence for that number.</p>
 </section>
 <section id="sexy-primes-smaller-than-number">
-<h3>Sexy primes smaller than number<a class="headerlink" href="#sexy-primes-smaller-than-number" title="Permalink to this heading">#</a></h3>
+<h3>Sexy primes smaller than number<a class="headerlink" href="#sexy-primes-smaller-than-number" title="Link to this heading">#</a></h3>
 <p>Write a program that reads a positive integer from the command line and prints the sexy prime numbers that are less than the input number. Two prime numbers are “sexy” if they are separated by 6 (e.g., 5 and 11, or 13 and 19).</p>
 </section>
 </section>
@@ -1311,7 +1298,8 @@ Negative<span class="w"> </span>number.<span class="w"> </span>Ignoring
             
             
               
-                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
 
 
   <div class="sidebar-secondary-item">
@@ -1427,8 +1415,8 @@ By William Oquendo
   </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
-<script src="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+  <script defer src="../_static/scripts/bootstrap.js?digest=26a4bc78f4c0ddb94549"></script>
+<script defer src="../_static/scripts/pydata-sphinx-theme.js?digest=26a4bc78f4c0ddb94549"></script>
 
   <footer class="bd-footer">
   </footer>
