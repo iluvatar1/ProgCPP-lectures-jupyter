@@ -8,9 +8,9 @@ FROM ubuntu:24.04
 RUN apt-get update && \
     apt-get install -y --no-install-recommends \
     python3 \
-    python3-pip \
-    python3-dev \
-    python3-venv \
+    #python3-pip \ # handled by uv
+    #python3-dev \ # handled by uv
+    #python3-venv \ # handled by uv
     libffi-dev \
     g++-14 \
     make \
@@ -31,6 +31,7 @@ RUN apt-get update && \
     #valgrind \
     gdb \
     libspdlog-dev \
+    ca-certificates \
     && apt-get clean && \
     rm -rf /var/lib/apt/lists/*
 
@@ -67,8 +68,7 @@ RUN userdel -r ubuntu
 # create user with a home directory
 ARG NB_USER=jovyan
 ARG NB_UID=1000
-ENV USER ${NB_USER}
-ENV HOME /home/${NB_USER}
+ARG NB_HOME=/home/${NB_USER}
 
 RUN adduser --disabled-password \
     --gecos "Default user" \
@@ -76,10 +76,26 @@ RUN adduser --disabled-password \
     --uid ${NB_UID} \
     ${NB_USER}
 
-USER ${NB_USER}
-# move to home
-WORKDIR ${HOME}
+#USER ${NB_USER}
+## move to home
+#WORKDIR ${HOME}
 
+
+# Work as NB_USER
+WORKDIR ${NB_HOME}
+USER ${NB_USER}
+
+# Clone the source code repo
+RUN git clone https://github.com/iluvatar1/ProgCPP-lectures-jupyter.git
+
+# Setup starship
+RUN echo 'eval "$(starship init bash)"' >> ${NB_HOME}/.bashrc
+# setup venv for user
+RUN echo "source ~/.venv/bin/activate" >> ${NB_HOME}/.bashrc
+
+# ###########################################################################################################
+# Install python packges
+# ###########################################################################################################
 # Copy only the requirements file first
 COPY requirements.txt .
 
@@ -88,29 +104,23 @@ COPY requirements.txt .
 #RUN python3 -m venv ${HOME}/.venv
 #RUN . ${HOME}/.venv/bin/activate && pip install -r requirements.txt
 
+# USING uv from astral (very fast)
+# Download and run the uv installer
+RUN curl -Lsf https://astral.sh/uv/install.sh | sh
+# Set the PATH to include both cargo bin and current directory
+#ENV PATH="$NB_HOME/.cargo/bin:/usr/local/bin:$PATH"
+RUN ${HOME}/.cargo/bin/uv venv --python 3.12 && ${HOME}/.cargo/bin/uv pip install -r requirements.txt
+RUN echo 'source $HOME/.cargo/env' >> ${HOME}/.bashrc
+RUN echo "source .venv/bin/activate" >> ${HOME}/.bashrc
+RUN echo 'export PATH=$HOME/.cargo/bin:$HOME/.venv/bin:$PATH' >> ${HOME}/.bashrc
 
-# Clone the source code repo
-RUN git clone https://github.com/iluvatar1/ProgCPP-lectures-jupyter.git
-
-# Switch back to root to install jupyter
-WORKDIR ${HOME}
-USER ${USER}
+# Fix the path for jupyter to make this work with binder
+USER root
+RUN ln -s /home/jovyan/.venv/bin/jupyter /usr/local/bin/jupyter
+USER ${NB_USER}
 
 ## Run matplotlib config to generate the font cache
 #RUN . .venv/bin/activate && MPLBACKEND=Agg python3 -c "import matplotlib.pyplot"
 
-# Setup starship
-RUN echo 'eval "$(starship init bash)"' >> ${HOME}/.bashrc
-# setup venv for user
-RUN echo "source ~/.venv/bin/activate" >> ${HOME}/.bashrc
-
-
-# USING uv
-# Download and run the uv installer
-RUN curl -Lsf https://astral.sh/uv/install.sh | sh
-# Set the PATH to include both cargo bin and current directory
-ENV PATH="/root/.cargo/bin:/usr/local/bin:$PATH"
-RUN ${HOME}/.cargo/bin/uv venv --python 3.12 && ${HOME}/.cargo/bin/uv pip install -r requirements.txt
-RUN echo 'source $HOME/.cargo/env' >> ${HOME}/.bashrc
-RUN echo "source .venv/bin/activate" >> ${HOME}/.bashrc
-
+ENV USER=${NB_USER}
+ENV HOME=/home/${NB_USER}
