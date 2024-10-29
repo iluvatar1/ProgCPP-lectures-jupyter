@@ -14,7 +14,7 @@ actions:
 binder:
 	@echo "Building binder image"
 	docker build ./  -f ./Dockerfile  -t bindertest
-    docker run -it --rm -p 8888:8888 bindertest jupyter notebook --NotebookApp.default_url=/lab/ --ip=0.0.0.0 --port=8888 --allow-root
+	docker run -it --rm -p 8888:8888 bindertest jupyter notebook --NotebookApp.default_url=/lab/ --ip=0.0.0.0 --port=8888 --allow-root
 
 repo2docker:
 	@echo "Building docker image with repo2docker"
@@ -22,8 +22,8 @@ repo2docker:
 
 devcontainer:
 	@echo "Building and running  devcontainer image "
-    devcontainer build --workspace-folder ./ --image-name devcontest
-    docker run -it devcontest /bin/bash
+	devcontainer build --workspace-folder ./ --image-name devcontest
+	docker run -it devcontest /bin/bash
 
 clean:
 	rm -f *~ #_build
