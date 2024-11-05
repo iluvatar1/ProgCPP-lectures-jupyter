@@ -442,8 +442,14 @@
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#minimal-example">Minimal example</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#variables-and-types">Variables and types</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise">Exercise</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#variables">Variables</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#variable-types">Variable types</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercises">Exercises</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#initialization">Initialization</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#python-c-tutor">Python/C++ tutor</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#overflow-and-santizers">Overflow and santizers</a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#operators">Operators</a><ul class="nav section-nav flex-column">
@@ -451,15 +457,21 @@
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#comparison">Comparison</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#logic">Logic</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#precedence">Precedence</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Exercise</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Exercises</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#arithmetic-examples">Arithmetic examples</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#comparison-examples">Comparison examples</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#logic-operators">Logic operators</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#facebook-genius">Facebook genius</a></li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#functions">Functions</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercises">Exercises</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">Exercises</a></li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#conditionals">Conditionals</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">Exercises</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">Exercises</a></li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#loops">Loops</a><ul class="nav section-nav flex-column">
@@ -471,11 +483,11 @@
 </ul>
 </li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#range-based-loops">Range based loops</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">Exercises</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">Exercises</a></li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#functions-again">Functions again</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">Exercises</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">Exercises</a></li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#file-modularization">File modularization</a></li>
@@ -538,29 +550,79 @@
 <li><p>Look for some other standard library at https://en.cppreference.com/w/ . Choose one and try to describe, in general words, its use.</p></li>
 </ul>
 </section>
-<section id="variables-and-types">
-<h2>Variables and types<a class="headerlink" href="#variables-and-types" title="Link to this heading">#</a></h2>
+<section id="variables">
+<h2>Variables<a class="headerlink" href="#variables" title="Link to this heading">#</a></h2>
+<p>See</p>
+<ul class="simple">
+<li><p>https://www.learncpp.com/cpp-tutorial/introduction-to-objects-and-variables/</p></li>
+<li><p><a class="reference external" href="https://hackingcpp.com/cpp/lang/fundamental_types.html">https://hackingcpp.com/cpp/lang/fundamental_types.html</a></p></li>
+</ul>
+<p>A variable in c++ is an object which has:</p>
+<ul class="simple">
+<li><p>A datatype</p></li>
+<li><p>A value</p></li>
+<li><p>A name</p></li>
+<li><p>A memory address</p></li>
+<li><p>A scope</p></li>
+</ul>
 <p>C++ is a typed lang. It means that you have to specify the type of the variable you are going to use. You have booleans, char, integers, float and double, arrays/vectors, structs, …. See https://hackingcpp.com/cpp/lang/fundamental_types.html</p>
+<p>A variable in memory:</p>
 <div style="text-align: center;">
-    <img src="https://hackingcpp.com/cpp/lang/variables_crop.svg" alt="Image Description" width="600">
+    <img src="https://hackingcpp.com/cpp/lang/variables_crop.svg" alt="Image Description" width="700">
     <figcaption>From: "https://hackingcpp.com/cpp/lang/variables_crop.svg"</figcaption>
 </div>
+<p>How to represent “reals”:</p>
 <div style="text-align: center;">
-    <img src="https://hackingcpp.com/cs/number_representations_crop.png" alt="Image Description" width="800">
+    <img src="https://hackingcpp.com/cs/number_representations_crop.png" alt="Image Description" width="900">
     <figcaption>From: "https://hackingcpp.com/cs/number_representations_crop.png"</figcaption>
-</div><section id="exercise">
-<h3>Exercise<a class="headerlink" href="#exercise" title="Link to this heading">#</a></h3>
-<ul>
-<li><p>Create a program that declares a variable of type</p>
+</div>
+</section>
+<section id="variable-types">
+<h2>Variable types<a class="headerlink" href="#variable-types" title="Link to this heading">#</a></h2>
+<p>char, int, unsigned int, float, double, bool, …
+See:</p>
+<ul class="simple">
+<li><p>https://hackingcpp.com/cpp/lang/fundamental_types.html</p></li>
+<li><p>https://en.cppreference.com/w/cpp/language/types</p></li>
+</ul>
+<section id="exercises">
+<h3>Exercises<a class="headerlink" href="#exercises" title="Link to this heading">#</a></h3>
+<section id="initialization">
+<h4>Initialization<a class="headerlink" href="#initialization" title="Link to this heading">#</a></h4>
+<p>Create a program that declares a variable of type</p>
 <ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">int</span></code> without initializing it.</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">double</span></code> with initial value -9.87e-8.</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">std::string</span></code> initialized with your first name .</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">std::vector&lt;double&gt;</span></code> with 10 values not initialized.</p></li>
 </ul>
-</li>
-<li><p>Copy and visualize this program execution in the cpp python tutor.</p></li>
-<li><p>Analyze the output of the following program:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># YOUR CODE HERE</span>
+<span class="k">raise</span> <span class="ne">NotImplementedError</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">NotImplementedError</span><span class="g g-Whitespace">                       </span>Traceback (most recent call last)
+<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">line</span> <span class="mi">2</span>
+<span class="g g-Whitespace">      </span><span class="mi">1</span> <span class="c1"># YOUR CODE HERE</span>
+<span class="ne">----&gt; </span><span class="mi">2</span> <span class="k">raise</span> <span class="ne">NotImplementedError</span><span class="p">()</span>
+
+<span class="ne">NotImplementedError</span>: 
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="python-c-tutor">
+<h4>Python/C++ tutor<a class="headerlink" href="#python-c-tutor" title="Link to this heading">#</a></h4>
+<p>Copy and visualize this program execution in the cpp python tutor.</p>
+</section>
+<section id="overflow-and-santizers">
+<h4>Overflow and santizers<a class="headerlink" href="#overflow-and-santizers" title="Link to this heading">#</a></h4>
+<p>Analyze the output of the following program:</p>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;iostream&gt;</span>
 <span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
 <span class="w">  </span><span class="c1">// con enteros</span>
@@ -584,8 +646,7 @@
 </pre></div>
 </div>
 <p>Compile this program with sanitizers and run it again (<code class="docutils literal notranslate"><span class="pre">-fsanitize=undefined</span></code>). To understand the output, look for an overflow/underflow error.</p>
-</li>
-</ul>
+</section>
 </section>
 </section>
 <section id="operators">
@@ -636,13 +697,23 @@
 <p>Operators have a defined precedence: https://en.cppreference.com/w/cpp/language/operator_precedence</p>
 </section>
 <section id="id1">
-<h3>Exercise<a class="headerlink" href="#id1" title="Link to this heading">#</a></h3>
-<ul class="simple">
-<li><p>Write a program that shows examples for the arithmetic operators. Use a simple function (the main function must just call it).</p></li>
-<li><p>Write a program that shows examples for the comparison operators. Use a simple function (the main function must just call it).</p></li>
-<li><p>Write a program that shows examples for the logic operators. Use a simple function (the main function must just call it).</p></li>
-<li><p>Facebook genius: What is the result of <code class="docutils literal notranslate"><span class="pre">6*2/3+1</span></code>? Make your prediction and then compute it.</p></li>
-</ul>
+<h3>Exercises<a class="headerlink" href="#id1" title="Link to this heading">#</a></h3>
+<section id="arithmetic-examples">
+<h4>Arithmetic examples<a class="headerlink" href="#arithmetic-examples" title="Link to this heading">#</a></h4>
+<p>Write a program that shows examples for the arithmetic operators. Use a simple function (the main function must just call it).</p>
+</section>
+<section id="comparison-examples">
+<h4>Comparison examples<a class="headerlink" href="#comparison-examples" title="Link to this heading">#</a></h4>
+<p>Write a program that shows examples for the comparison operators. Use a simple function (the main function must just call it).</p>
+</section>
+<section id="logic-operators">
+<h4>Logic operators<a class="headerlink" href="#logic-operators" title="Link to this heading">#</a></h4>
+<p>Write a program that shows examples for the logic operators. Use a simple function (the main function must just call it).</p>
+</section>
+</section>
+<section id="facebook-genius">
+<h3>Facebook genius<a class="headerlink" href="#facebook-genius" title="Link to this heading">#</a></h3>
+<p>What is the result of <code class="docutils literal notranslate"><span class="pre">6*2/3+1</span></code>? Make your prediction and then compute it.</p>
 </section>
 </section>
 <section id="functions">
@@ -654,7 +725,7 @@
     <figcaption>From: "https://hackingcpp.com/cpp/lang/function_terminology.svg"</figcaption>
 </div>
 <p>There are many more details about functions, like passing by value/reference, return types, overloading, templates, lambdas, …, but we will learn those details on the run. Please write the following code</p>
-<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;iostream&gt;</span>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;iostream&gt;</span>
 
 <span class="c1">// function declaration: name and types</span>
 <span class="kt">double</span><span class="w"> </span><span class="nf">average</span><span class="p">(</span><span class="kt">double</span><span class="w"> </span><span class="n">a</span><span class="p">,</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="n">b</span><span class="p">);</span><span class="w"> </span><span class="c1">// a and b are LOCAL variables</span>
@@ -677,8 +748,8 @@
 </pre></div>
 </div>
 <p>Compile it and run it. From now on try to use functions all the time.</p>
-<section id="exercises">
-<h3>Exercises<a class="headerlink" href="#exercises" title="Link to this heading">#</a></h3>
+<section id="id2">
+<h3>Exercises<a class="headerlink" href="#id2" title="Link to this heading">#</a></h3>
 <ul class="simple">
 <li><p>Write a program that prints the number of primes less than <span class="math notranslate nohighlight">\(n\)</span> for <span class="math notranslate nohighlight">\(n \in [2, 1000]\)</span>. Plot it using either gnuplot or matplotlib</p></li>
 </ul>
@@ -687,7 +758,7 @@
 <section id="conditionals">
 <h2>Conditionals<a class="headerlink" href="#conditionals" title="Link to this heading">#</a></h2>
 <p>This allows you to change the execution path according to a given condition. The general syntax is</p>
-<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">conditon</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">condition</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
 <span class="w">  </span><span class="c1">// do something if condition is true</span>
 <span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span>
 <span class="w">  </span><span class="c1">// Do something if condition is false. The else is not mandatory   </span>
@@ -695,7 +766,7 @@
 </pre></div>
 </div>
 <p>You can add also <code class="docutils literal notranslate"><span class="pre">if</span> <span class="pre">...</span> <span class="pre">else</span> <span class="pre">if</span> <span class="pre">...</span> <span class="pre">else</span></code> as you want. Sometimes it would be more clear to use a <code class="docutils literal notranslate"><span class="pre">switch</span></code> statement. The <code class="docutils literal notranslate"><span class="pre">condition</span></code> can be as complex as you want.</p>
-<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">condition</span><span class="w"> </span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">condition</span><span class="w"> </span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
 <span class="w">  </span><span class="c1">// perform action 1</span>
 <span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">condition2</span><span class="w"> </span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
 <span class="w">  </span><span class="c1">// perform action 2</span>
@@ -726,33 +797,10 @@ graph LR
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output text_html"><iframe srcdoc="&lt;html&gt;
-    &lt;body&gt;
-        &lt;script src=&quot;https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js&quot;&gt;&lt;/script&gt;
-        &lt;script&gt;
-            mermaid.initialize({ startOnLoad: true });
-        &lt;/script&gt;
- 
-        &lt;div class=&quot;mermaid&quot;&gt;
-            graph LR
-    A[Start] --&gt;B{Condition 1}
-    B --&gt;|true| C[Action 1]
-    B --&gt;|else if| D{Condition 2}
-    D --&gt;|true| E[Action 2]
-    D --&gt;|false| F[Action 3]
-    C --&gt; X[End]
-    E --&gt; X
-    F --&gt; X
-        &lt;/div&gt;
- 
-    &lt;/body&gt;
-&lt;/html&gt;
-" width="100%" height="250"style="border:none !important;" "allowfullscreen" "webkitallowfullscreen" "mozallowfullscreen"></iframe></div></div>
 </div>
 <p><strong>Example: Even/odd number</strong>
 (Please notice that the goal here is to learn if/else and the modulo operator, but the reading interactively is something not advisable)</p>
-<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;iostream&gt;</span>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;iostream&gt;</span>
 
 <span class="kt">void</span><span class="w"> </span><span class="nf">read_check_even_odd</span><span class="p">(</span><span class="kt">void</span><span class="p">);</span>
 
@@ -790,8 +838,8 @@ graph LR
 </pre></div>
 </div>
 <p>Compile and run it. As this is expecting to read from the terminal, run it in a real terminal, not on google collab.</p>
-<section id="id2">
-<h3>Exercises<a class="headerlink" href="#id2" title="Link to this heading">#</a></h3>
+<section id="id3">
+<h3>Exercises<a class="headerlink" href="#id3" title="Link to this heading">#</a></h3>
 <ul class="simple">
 <li><p>You have to write a program that reads a number. If the number is smaller or equal than 10, verify if it is prime (you might need to write several if or if/else). If it is larger, write the message <code class="docutils literal notranslate"><span class="pre">Too</span> <span class="pre">large</span> <span class="pre">to</span> <span class="pre">verify</span> <span class="pre">manually</span></code>. To do so:</p>
 <ul>
@@ -834,27 +882,6 @@ graph LR
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output text_html"><iframe srcdoc="&lt;html&gt;
-    &lt;body&gt;
-        &lt;script src=&quot;https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js&quot;&gt;&lt;/script&gt;
-        &lt;script&gt;
-            mermaid.initialize({ startOnLoad: true });
-        &lt;/script&gt;
- 
-        &lt;div class=&quot;mermaid&quot;&gt;
-            graph LR
-    A[Start] --&gt; B[Initialization]
-    B --&gt;|Condition| C{Condition true?}
-    C --&gt;|Yes| D[Instructions]
-    D --&gt; E[Step]
-    E --&gt;|Condition| C
-    C --&gt;|No| F[End]
-        &lt;/div&gt;
- 
-    &lt;/body&gt;
-&lt;/html&gt;
-" width="100%" height="250"style="border:none !important;" "allowfullscreen" "webkitallowfullscreen" "mozallowfullscreen"></iframe></div></div>
 </div>
 </section>
 <section id="while-loop">
@@ -904,8 +931,8 @@ graph LR
 </pre></div>
 </div>
 </section>
-<section id="id3">
-<h3>Exercises<a class="headerlink" href="#id3" title="Link to this heading">#</a></h3>
+<section id="id4">
+<h3>Exercises<a class="headerlink" href="#id4" title="Link to this heading">#</a></h3>
 <ul class="simple">
 <li><p>Write a program that prints the numbers between 5 and 223 which are divisible by both 3 and 7. Print the numbers separated by a space, and a new line only at the end. Use the three types of classical loops (so your program must print the same three times)</p></li>
 </ul>
@@ -941,8 +968,8 @@ graph LR
 <li><p>Valarray (to emulate math vectors): https://en.cppreference.com/w/cpp/numeric/valarray</p></li>
 <li><p>Numerics algorithms: https://en.cppreference.com/w/cpp/numeric#Numeric_algorithms</p></li>
 </ul>
-<section id="id4">
-<h3>Exercises<a class="headerlink" href="#id4" title="Link to this heading">#</a></h3>
+<section id="id5">
+<h3>Exercises<a class="headerlink" href="#id5" title="Link to this heading">#</a></h3>
 <p>Write different programs to solve the following (use functions extensively):</p>
 <ul class="simple">
 <li><p>Create a function that receives an integers and return true if it is a prime, false otherwise. Use it in the main function to print the primes from 1 up to 150.</p></li>
@@ -1029,11 +1056,6 @@ Do this will all the functions previously written. So, include all the prime fun
     <span class="n">REQUIRE</span><span class="p">(</span> <span class="n">is_prime</span><span class="p">(</span> <span class="mi">3</span><span class="p">)</span> <span class="o">==</span> <span class="n">true</span> <span class="p">);</span>
     <span class="n">REQUIRE</span><span class="p">(</span> <span class="n">is_prime</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span> <span class="o">==</span> <span class="n">false</span> <span class="p">);</span>
 <span class="p">}</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Writing test_primes.cpp
 </pre></div>
 </div>
 </div>
@@ -1309,8 +1331,14 @@ Negative<span class="w"> </span>number.<span class="w"> </span>Ignoring
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#minimal-example">Minimal example</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#variables-and-types">Variables and types</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise">Exercise</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#variables">Variables</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#variable-types">Variable types</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercises">Exercises</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#initialization">Initialization</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#python-c-tutor">Python/C++ tutor</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#overflow-and-santizers">Overflow and santizers</a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#operators">Operators</a><ul class="nav section-nav flex-column">
@@ -1318,15 +1346,21 @@ Negative<span class="w"> </span>number.<span class="w"> </span>Ignoring
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#comparison">Comparison</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#logic">Logic</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#precedence">Precedence</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Exercise</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Exercises</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#arithmetic-examples">Arithmetic examples</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#comparison-examples">Comparison examples</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#logic-operators">Logic operators</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#facebook-genius">Facebook genius</a></li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#functions">Functions</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercises">Exercises</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">Exercises</a></li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#conditionals">Conditionals</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">Exercises</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">Exercises</a></li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#loops">Loops</a><ul class="nav section-nav flex-column">
@@ -1338,11 +1372,11 @@ Negative<span class="w"> </span>number.<span class="w"> </span>Ignoring
 </ul>
 </li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#range-based-loops">Range based loops</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">Exercises</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">Exercises</a></li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#functions-again">Functions again</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">Exercises</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">Exercises</a></li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#file-modularization">File modularization</a></li>
