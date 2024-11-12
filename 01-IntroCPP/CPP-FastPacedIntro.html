@@ -490,9 +490,6 @@
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">Exercises</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#file-modularization">File modularization</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#basic-testing">Basic Testing</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#classes-and-structs">Classes and structs</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#workshop">Workshop</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#multiples-of-3-and-5">Multiples of 3 and 5</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#square-of">Square of *</a></li>
@@ -510,8 +507,12 @@
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#collatz-largest-number">Collatz largest number</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#collatz-number-of-terms">Collatz number of terms</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#sexy-primes-smaller-than-number">Sexy primes smaller than number</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#using-the-standar-library-for-time">Using the standar library for time</a></li>
 </ul>
 </li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#file-modularization">File modularization</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#basic-testing">Basic Testing</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#classes-and-structs">Classes and structs</a></li>
 </ul>
             </nav>
         </div>
@@ -585,6 +586,7 @@ See:</p>
 <li><p>https://hackingcpp.com/cpp/lang/fundamental_types.html</p></li>
 <li><p>https://en.cppreference.com/w/cpp/language/types</p></li>
 </ul>
+<p>Bugs: Gandhi the destroyer (unsigned char): https://www.youtube.com/watch?v=Iq_r7IcNmUk</p>
 <section id="exercises">
 <h3>Exercises<a class="headerlink" href="#exercises" title="Link to this heading">#</a></h3>
 <section id="initialization">
@@ -725,7 +727,8 @@ See:</p>
     <figcaption>From: "https://hackingcpp.com/cpp/lang/function_terminology.svg"</figcaption>
 </div>
 <p>There are many more details about functions, like passing by value/reference, return types, overloading, templates, lambdas, …, but we will learn those details on the run. Please write the following code</p>
-<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;iostream&gt;</span>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="c1">//#include &lt;iostream&gt;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;print&gt;</span><span class="c1"> // compile with -std=c++23</span>
 
 <span class="c1">// function declaration: name and types</span>
 <span class="kt">double</span><span class="w"> </span><span class="nf">average</span><span class="p">(</span><span class="kt">double</span><span class="w"> </span><span class="n">a</span><span class="p">,</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="n">b</span><span class="p">);</span><span class="w"> </span><span class="c1">// a and b are LOCAL variables</span>
@@ -735,7 +738,8 @@ See:</p>
 <span class="w">    </span><span class="kt">double</span><span class="w"> </span><span class="n">x</span><span class="p">{</span><span class="mf">2.35</span><span class="p">};</span>
 <span class="w">    </span><span class="kt">double</span><span class="w"> </span><span class="n">y</span><span class="p">{</span><span class="mf">4.987</span><span class="p">};</span>
 <span class="w">    </span><span class="kt">double</span><span class="w"> </span><span class="n">avg</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">average</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="p">);</span><span class="w"> </span><span class="c1">// x value copied to a, y value copied to b, result of calling assigned to avg</span>
-<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;avg: &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">avg</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">;</span>
+<span class="w">    </span><span class="c1">//std::cout &lt;&lt; &quot;avg: &quot; &lt;&lt; avg &lt;&lt; &quot;\n&quot;;</span>
+<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">print</span><span class="p">(</span><span class="s">&quot;avg: {0:20.16f}</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">avg</span><span class="p">);</span>
 <span class="w">    </span>
 <span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
 <span class="p">}</span>
@@ -860,7 +864,7 @@ graph LR
 <section id="for-loop">
 <h4><code class="docutils literal notranslate"><span class="pre">for</span></code> loop<a class="headerlink" href="#for-loop" title="Link to this heading">#</a></h4>
 <p>Includes initialization, condition and step or change. Change must ensure reaching condition == false.</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="k">for</span><span class="w"> </span><span class="o">(</span>initialization<span class="p">;</span><span class="w"> </span>condition<span class="p">;</span><span class="w"> </span>step<span class="o">)</span><span class="w"> </span><span class="o">{</span><span class="w"> </span>…<span class="w"> </span><span class="o">}</span>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="k">for</span><span class="w"> </span><span class="o">(</span>initialization<span class="p">;</span><span class="w"> </span>condition<span class="p">;</span><span class="w"> </span>change<span class="o">)</span><span class="w"> </span><span class="o">{</span><span class="w"> </span>…<span class="w"> </span><span class="o">}</span>
 </pre></div>
 </div>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>//<span class="w"> </span>prints<span class="w"> </span><span class="m">0</span><span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="m">2</span><span class="w"> </span><span class="m">3</span><span class="w"> </span><span class="m">4</span>
@@ -876,7 +880,7 @@ graph LR
     A[Start] --&gt; B[Initialization]
     B --&gt;|Condition| C{Condition true?}
     C --&gt;|Yes| D[Instructions]
-    D --&gt; E[Step]
+    D --&gt; E[Change]
     E --&gt;|Condition| C
     C --&gt;|No| F[End]
 </pre></div>
@@ -888,7 +892,7 @@ graph LR
 <h4><code class="docutils literal notranslate"><span class="pre">while</span></code> loop<a class="headerlink" href="#while-loop" title="Link to this heading">#</a></h4>
 <p>Repeat while condition is true.</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>init<span class="p">;</span><span class="w"> </span>
-<span class="k">while</span><span class="w"> </span><span class="o">(</span>condition<span class="o">)</span><span class="w"> </span><span class="o">{</span><span class="w"> </span>…<span class="w"> </span><span class="p">;</span><span class="w"> </span>step<span class="p">;</span><span class="w"> </span><span class="o">}</span>
+<span class="k">while</span><span class="w"> </span><span class="o">(</span>condition<span class="o">)</span><span class="w"> </span><span class="o">{</span><span class="w"> </span>…<span class="w"> </span><span class="p">;</span><span class="w"> </span>change<span class="p">;</span><span class="w"> </span><span class="o">}</span>
 </pre></div>
 </div>
 <p>Example</p>
@@ -980,128 +984,6 @@ graph LR
 <li><p>Read https://hackingcpp.com/cpp/lang/command_line_arguments.html to be able to read command line arguments after processing <code class="docutils literal notranslate"><span class="pre">argc</span></code> and <code class="docutils literal notranslate"><span class="pre">argv</span></code>. Rewrite your previous programs to read the limits from the command line. You can also check https://faculty.cs.niu.edu/~mcmahon/CS241/Notes/command_line_arguments.html</p></li>
 </ul>
 </section>
-</section>
-<section id="file-modularization">
-<h2>File modularization<a class="headerlink" href="#file-modularization" title="Link to this heading">#</a></h2>
-<div style="text-align: center;">
-    <img src="https://hackingcpp.com/cpp/lang/separate_compilation_crop.svg" alt="Image Description" width="900">
-    <figcaption>From: "https://hackingcpp.com/cpp/lang/separate_compilation_crop.svg"</figcaption>
-</div>
-<p>As you can see, the basic function <code class="docutils literal notranslate"><span class="pre">is_prime</span></code> is used in all the problems, and we are repeating code per exercise. We can do better by modularizing the file, moving the utility functions to another file. Our structure would be something like:</p>
-<ul>
-<li><p><code class="docutils literal notranslate"><span class="pre">primes.h</span></code> : file with <strong>DECLARATIONS</strong> of all the functions we think we will use int the future</p>
-<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="w">  </span><span class="cp">#pragma once</span>
-<span class="w">  </span><span class="kt">bool</span><span class="w"> </span><span class="nf">is_prime</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">n</span><span class="p">);</span>
-<span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="nf">print_sexy_primes</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">a</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">b</span><span class="p">);</span>
-</pre></div>
-</div>
-</li>
-<li><p><code class="docutils literal notranslate"><span class="pre">primes.cpp</span></code> : file with the <strong>IMPLEMENTATIONS</strong> of the functions declared in <code class="docutils literal notranslate"><span class="pre">primes.h</span></code></p>
-<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="w">  </span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;primes.h&quot;</span>
-<span class="w">  </span><span class="kt">bool</span><span class="w"> </span><span class="nf">is_prime</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">n</span><span class="p">)</span>
-<span class="w">  </span><span class="p">{</span>
-<span class="w">       </span><span class="c1">// instructions</span>
-<span class="w">  </span><span class="p">}</span>
-
-<span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="nf">print_sexy_primes</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">a</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">b</span><span class="p">)</span>
-<span class="w">  </span><span class="p">{</span>
-<span class="w">      </span><span class="c1">// instructions to print the sexy primes in the specified range</span>
-<span class="w">  </span><span class="p">}</span>
-</pre></div>
-</div>
-<p>Notice that there is no <code class="docutils literal notranslate"><span class="pre">main</span></code> function.</p>
-</li>
-<li><p><code class="docutils literal notranslate"><span class="pre">main_cousin.cpp</span></code>: The file where we solve this problem, and uses the primes utilities.</p>
-<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="w">  </span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;iostream&gt;</span>
-<span class="w">  </span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;string&gt;</span>
-<span class="w">  </span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;primes.h&quot;</span>
-
-<span class="w">  </span><span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">arg</span><span class="p">,</span><span class="w"> </span><span class="kt">char</span><span class="w"> </span><span class="o">**</span><span class="n">argv</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">      </span><span class="kt">int</span><span class="w"> </span><span class="n">minval</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">stoi</span><span class="p">(</span><span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">]);</span>
-<span class="w">      </span><span class="kt">int</span><span class="w"> </span><span class="n">maxval</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">stoi</span><span class="p">(</span><span class="n">argv</span><span class="p">[</span><span class="mi">2</span><span class="p">]);</span>
-<span class="w">      </span><span class="n">print_sexy_numbers</span><span class="p">(</span><span class="n">minval</span><span class="p">,</span><span class="w"> </span><span class="n">maxval</span><span class="p">);</span>
-<span class="w">      </span><span class="k">return</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
-<span class="w">  </span><span class="p">}</span>
-</pre></div>
-</div>
-<p>Notice how the <code class="docutils literal notranslate"><span class="pre">main</span></code> function now is so simple, and its intent is clear, although we do not know the implementation.</p>
-</li>
-<li><p>Compilation:</p>
-<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>g++<span class="w"> </span>-std<span class="o">=</span>c++17<span class="w"> </span>primes.cpp<span class="w"> </span>main_cousin.cpp<span class="w"> </span>-o<span class="w"> </span>cousin.x
-</pre></div>
-</div>
-</li>
-<li><p>Execution</p>
-<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>./cousin.x<span class="w"> </span><span class="m">200</span><span class="w"> </span><span class="m">400</span>
-</pre></div>
-</div>
-</li>
-</ul>
-<p><strong>Exercise</strong>
-Do this will all the functions previously written. So, include all the prime functions in the .h and .cpp files, and then create the corresponding main files.</p>
-</section>
-<section id="basic-testing">
-<h2>Basic Testing<a class="headerlink" href="#basic-testing" title="Link to this heading">#</a></h2>
-<p>Once we have modularized our code, not only using functions, but also files, it is possible to start testing our code so to be sure that we are not repeating old mistakes, etc. Here we will use <a class="reference external" href="https://github.com/catchorg/Catch2">catch2</a> to do so, with a simple example: the prime function. The idea is that, for each bug/problem you find, to implement a test case so to avoid repeating that in the future. The following is an example file</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%writefile</span> test_primes.cpp
-<span class="c1">#include &lt;catch2/catch_test_macros.hpp&gt;</span>
-<span class="c1">#include &lt;cstdint&gt;</span>
-<span class="c1">#include &quot;primes.h&quot;</span>
-
-<span class="n">TEST_CASE</span><span class="p">(</span> <span class="s2">&quot;Primes are computed&quot;</span><span class="p">,</span> <span class="s2">&quot;[prime]&quot;</span> <span class="p">)</span> <span class="p">{</span>
-    <span class="n">REQUIRE</span><span class="p">(</span> <span class="n">is_prime</span><span class="p">(</span> <span class="mi">1</span><span class="p">)</span> <span class="o">==</span> <span class="n">true</span> <span class="p">);</span>
-    <span class="n">REQUIRE</span><span class="p">(</span> <span class="n">is_prime</span><span class="p">(</span> <span class="mi">2</span><span class="p">)</span> <span class="o">==</span> <span class="n">true</span> <span class="p">);</span>
-    <span class="n">REQUIRE</span><span class="p">(</span> <span class="n">is_prime</span><span class="p">(</span> <span class="mi">3</span><span class="p">)</span> <span class="o">==</span> <span class="n">true</span> <span class="p">);</span>
-    <span class="n">REQUIRE</span><span class="p">(</span> <span class="n">is_prime</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span> <span class="o">==</span> <span class="n">false</span> <span class="p">);</span>
-<span class="p">}</span>
-</pre></div>
-</div>
-</div>
-</div>
-<p>Now compile as (we are using catch2 version 3 and it must be installed on the path)</p>
-<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>g++<span class="w"> </span>primes.cpp<span class="w"> </span>test_primes.cpp<span class="w">  </span>-l<span class="w"> </span>Catch2Main<span class="w"> </span>-l<span class="w"> </span>Catch2
-</pre></div>
-</div>
-<p>and then run and you will get something like</p>
-<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>./a.out<span class="w"> </span>
-Randomness<span class="w"> </span>seeded<span class="w"> </span>to:<span class="w"> </span><span class="nv">3750912043</span>
-<span class="o">===============================================================================</span>
-All<span class="w"> </span>tests<span class="w"> </span>passed<span class="w"> </span><span class="o">(</span><span class="m">4</span><span class="w"> </span>assertions<span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="nb">test</span><span class="w"> </span><span class="k">case</span><span class="o">)</span>
-</pre></div>
-</div>
-<p>if everything is fine.</p>
-<p>Finally, you can automatize everything using a Makefile.</p>
-</section>
-<section id="classes-and-structs">
-<h2>Classes and structs<a class="headerlink" href="#classes-and-structs" title="Link to this heading">#</a></h2>
-<p>In C++ you can program using object oriented programming. In our case, we will use this to encapsulate data and some functionality. An example in our domain would be the simulation of some planets orbits. We can have an array of data for the <code class="docutils literal notranslate"><span class="pre">x</span></code> positions, the <code class="docutils literal notranslate"><span class="pre">y</span></code> positions, the <code class="docutils literal notranslate"><span class="pre">z</span></code> positions, the velocities and so on. This can be overwhelming when indexing and processing. We might use a better computational model that resembles, better, the physical model. Our main object here is a planet. And a planet has several attributes, like its coordinates, its mass, radius, and so on. So it would be better if we can represent this as a new datatype, let’s calle it a <code class="docutils literal notranslate"><span class="pre">Planet</span></code>. We can do it using structs or classes:</p>
-<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">struct</span><span class="w"> </span><span class="nc">Planet</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="c1">// public attributes</span>
-<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">valarray</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;</span><span class="w"> </span><span class="n">R</span><span class="p">(</span><span class="mi">3</span><span class="p">),</span><span class="w"> </span><span class="n">V</span><span class="p">(</span><span class="mi">3</span><span class="p">),</span><span class="w"> </span><span class="n">F</span><span class="p">(</span><span class="mi">3</span><span class="p">);</span><span class="w"> </span><span class="c1">// model position, velocity and force as vectors</span>
-<span class="w">    </span><span class="kt">double</span><span class="w"> </span><span class="n">mass</span><span class="p">,</span><span class="w"> </span><span class="n">radius</span><span class="p">;</span>
-<span class="w">    </span>
-<span class="w">    </span><span class="c1">// public functions</span>
-<span class="w">    </span><span class="kt">double</span><span class="w"> </span><span class="nf">speed</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
-<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">sqrt</span><span class="p">((</span><span class="n">V</span><span class="o">*</span><span class="n">V</span><span class="p">).</span><span class="n">sum</span><span class="p">());</span>
-<span class="w">    </span><span class="p">}</span>
-<span class="p">};</span>
-</pre></div>
-</div>
-<p>and then we can use it in the code as</p>
-<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="p">...</span>
-<span class="w">    </span><span class="n">Planet</span><span class="w"> </span><span class="n">mercury</span><span class="p">,</span><span class="w"> </span><span class="n">earth</span><span class="p">;</span>
-<span class="p">...</span><span class="w"> </span>
-<span class="w">    </span><span class="n">mercury</span><span class="p">.</span><span class="n">speed</span><span class="p">();</span>
-<span class="p">...</span>
-<span class="w">    </span><span class="n">compute_force</span><span class="p">(</span><span class="n">earth</span><span class="p">,</span><span class="w"> </span><span class="n">mercury</span><span class="p">);</span>
-<span class="p">...</span>
-</pre></div>
-</div>
-<p>You can also have private members using the keyword <code class="docutils literal notranslate"><span class="pre">private</span></code>. Classes and structs in c++ are basically, but in a class everything is private by default, while for a struct everything is public by default.</p>
-<p>As an exercise, create a struct or class to model a molecule.</p>
-<p>We will be using structs/classes to create generalized data and functions, called functors, after overloading the <code class="docutils literal notranslate"><span class="pre">()</span></code> operator. So our class will represent a function with internal state, something very powerful.</p>
 </section>
 <section id="workshop">
 <h2>Workshop<a class="headerlink" href="#workshop" title="Link to this heading">#</a></h2>
@@ -1262,6 +1144,132 @@ Negative<span class="w"> </span>number.<span class="w"> </span>Ignoring
 <h3>Sexy primes smaller than number<a class="headerlink" href="#sexy-primes-smaller-than-number" title="Link to this heading">#</a></h3>
 <p>Write a program that reads a positive integer from the command line and prints the sexy prime numbers that are less than the input number. Two prime numbers are “sexy” if they are separated by 6 (e.g., 5 and 11, or 13 and 19).</p>
 </section>
+<section id="using-the-standar-library-for-time">
+<h3>Using the standar library for time<a class="headerlink" href="#using-the-standar-library-for-time" title="Link to this heading">#</a></h3>
+<p>https://www.cppstories.com/2024/chrono_dates_zones/</p>
+</section>
+</section>
+<section id="file-modularization">
+<h2>File modularization<a class="headerlink" href="#file-modularization" title="Link to this heading">#</a></h2>
+<div style="text-align: center;">
+    <img src="https://hackingcpp.com/cpp/lang/separate_compilation_crop.svg" alt="Image Description" width="900">
+    <figcaption>From: "https://hackingcpp.com/cpp/lang/separate_compilation_crop.svg"</figcaption>
+</div>
+<p>As you can see, the basic function <code class="docutils literal notranslate"><span class="pre">is_prime</span></code> is used in all the problems, and we are repeating code per exercise. We can do better by modularizing the file, moving the utility functions to another file. Our structure would be something like:</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">primes.h</span></code> : file with <strong>DECLARATIONS</strong> of all the functions we think we will use int the future</p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="w">  </span><span class="cp">#pragma once</span>
+<span class="w">  </span><span class="kt">bool</span><span class="w"> </span><span class="nf">is_prime</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">n</span><span class="p">);</span>
+<span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="nf">print_sexy_primes</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">a</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">b</span><span class="p">);</span>
+</pre></div>
+</div>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">primes.cpp</span></code> : file with the <strong>IMPLEMENTATIONS</strong> of the functions declared in <code class="docutils literal notranslate"><span class="pre">primes.h</span></code></p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="w">  </span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;primes.h&quot;</span>
+<span class="w">  </span><span class="kt">bool</span><span class="w"> </span><span class="nf">is_prime</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">n</span><span class="p">)</span>
+<span class="w">  </span><span class="p">{</span>
+<span class="w">       </span><span class="c1">// instructions</span>
+<span class="w">  </span><span class="p">}</span>
+
+<span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="nf">print_sexy_primes</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">a</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">b</span><span class="p">)</span>
+<span class="w">  </span><span class="p">{</span>
+<span class="w">      </span><span class="c1">// instructions to print the sexy primes in the specified range</span>
+<span class="w">  </span><span class="p">}</span>
+</pre></div>
+</div>
+<p>Notice that there is no <code class="docutils literal notranslate"><span class="pre">main</span></code> function.</p>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">main_cousin.cpp</span></code>: The file where we solve this problem, and uses the primes utilities.</p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="w">  </span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;iostream&gt;</span>
+<span class="w">  </span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;string&gt;</span>
+<span class="w">  </span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;primes.h&quot;</span>
+
+<span class="w">  </span><span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">arg</span><span class="p">,</span><span class="w"> </span><span class="kt">char</span><span class="w"> </span><span class="o">**</span><span class="n">argv</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="kt">int</span><span class="w"> </span><span class="n">minval</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">stoi</span><span class="p">(</span><span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">]);</span>
+<span class="w">      </span><span class="kt">int</span><span class="w"> </span><span class="n">maxval</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">stoi</span><span class="p">(</span><span class="n">argv</span><span class="p">[</span><span class="mi">2</span><span class="p">]);</span>
+<span class="w">      </span><span class="n">print_sexy_numbers</span><span class="p">(</span><span class="n">minval</span><span class="p">,</span><span class="w"> </span><span class="n">maxval</span><span class="p">);</span>
+<span class="w">      </span><span class="k">return</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="w">  </span><span class="p">}</span>
+</pre></div>
+</div>
+<p>Notice how the <code class="docutils literal notranslate"><span class="pre">main</span></code> function now is so simple, and its intent is clear, although we do not know the implementation.</p>
+</li>
+<li><p>Compilation:</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>g++<span class="w"> </span>-std<span class="o">=</span>c++17<span class="w"> </span>primes.cpp<span class="w"> </span>main_cousin.cpp<span class="w"> </span>-o<span class="w"> </span>cousin.x
+</pre></div>
+</div>
+</li>
+<li><p>Execution</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>./cousin.x<span class="w"> </span><span class="m">200</span><span class="w"> </span><span class="m">400</span>
+</pre></div>
+</div>
+</li>
+</ul>
+<p><strong>Exercise</strong>
+Do this will all the functions previously written. So, include all the prime functions in the .h and .cpp files, and then create the corresponding main files.</p>
+</section>
+<section id="basic-testing">
+<h2>Basic Testing<a class="headerlink" href="#basic-testing" title="Link to this heading">#</a></h2>
+<p>Once we have modularized our code, not only using functions, but also files, it is possible to start testing our code so to be sure that we are not repeating old mistakes, etc. Here we will use <a class="reference external" href="https://github.com/catchorg/Catch2">catch2</a> to do so, with a simple example: the prime function. The idea is that, for each bug/problem you find, to implement a test case so to avoid repeating that in the future. The following is an example file</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%writefile</span> test_primes.cpp
+<span class="c1">#include &lt;catch2/catch_test_macros.hpp&gt;</span>
+<span class="c1">#include &lt;cstdint&gt;</span>
+<span class="c1">#include &quot;primes.h&quot;</span>
+
+<span class="n">TEST_CASE</span><span class="p">(</span> <span class="s2">&quot;Primes are computed&quot;</span><span class="p">,</span> <span class="s2">&quot;[prime]&quot;</span> <span class="p">)</span> <span class="p">{</span>
+    <span class="n">REQUIRE</span><span class="p">(</span> <span class="n">is_prime</span><span class="p">(</span> <span class="mi">1</span><span class="p">)</span> <span class="o">==</span> <span class="n">true</span> <span class="p">);</span>
+    <span class="n">REQUIRE</span><span class="p">(</span> <span class="n">is_prime</span><span class="p">(</span> <span class="mi">2</span><span class="p">)</span> <span class="o">==</span> <span class="n">true</span> <span class="p">);</span>
+    <span class="n">REQUIRE</span><span class="p">(</span> <span class="n">is_prime</span><span class="p">(</span> <span class="mi">3</span><span class="p">)</span> <span class="o">==</span> <span class="n">true</span> <span class="p">);</span>
+    <span class="n">REQUIRE</span><span class="p">(</span> <span class="n">is_prime</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span> <span class="o">==</span> <span class="n">false</span> <span class="p">);</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Now compile as (we are using catch2 version 3 and it must be installed on the path)</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>g++<span class="w"> </span>primes.cpp<span class="w"> </span>test_primes.cpp<span class="w">  </span>-l<span class="w"> </span>Catch2Main<span class="w"> </span>-l<span class="w"> </span>Catch2
+</pre></div>
+</div>
+<p>and then run and you will get something like</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>./a.out<span class="w"> </span>
+Randomness<span class="w"> </span>seeded<span class="w"> </span>to:<span class="w"> </span><span class="nv">3750912043</span>
+<span class="o">===============================================================================</span>
+All<span class="w"> </span>tests<span class="w"> </span>passed<span class="w"> </span><span class="o">(</span><span class="m">4</span><span class="w"> </span>assertions<span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="nb">test</span><span class="w"> </span><span class="k">case</span><span class="o">)</span>
+</pre></div>
+</div>
+<p>if everything is fine.</p>
+<p>Finally, you can automatize everything using a Makefile.</p>
+</section>
+<section id="classes-and-structs">
+<h2>Classes and structs<a class="headerlink" href="#classes-and-structs" title="Link to this heading">#</a></h2>
+<p>In C++ you can program using object oriented programming. In our case, we will use this to encapsulate data and some functionality. An example in our domain would be the simulation of some planets orbits. We can have an array of data for the <code class="docutils literal notranslate"><span class="pre">x</span></code> positions, the <code class="docutils literal notranslate"><span class="pre">y</span></code> positions, the <code class="docutils literal notranslate"><span class="pre">z</span></code> positions, the velocities and so on. This can be overwhelming when indexing and processing. We might use a better computational model that resembles, better, the physical model. Our main object here is a planet. And a planet has several attributes, like its coordinates, its mass, radius, and so on. So it would be better if we can represent this as a new datatype, let’s calle it a <code class="docutils literal notranslate"><span class="pre">Planet</span></code>. We can do it using structs or classes:</p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">struct</span><span class="w"> </span><span class="nc">Planet</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="c1">// public attributes</span>
+<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">valarray</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;</span><span class="w"> </span><span class="n">R</span><span class="p">(</span><span class="mi">3</span><span class="p">),</span><span class="w"> </span><span class="n">V</span><span class="p">(</span><span class="mi">3</span><span class="p">),</span><span class="w"> </span><span class="n">F</span><span class="p">(</span><span class="mi">3</span><span class="p">);</span><span class="w"> </span><span class="c1">// model position, velocity and force as vectors</span>
+<span class="w">    </span><span class="kt">double</span><span class="w"> </span><span class="n">mass</span><span class="p">,</span><span class="w"> </span><span class="n">radius</span><span class="p">;</span>
+<span class="w">    </span>
+<span class="w">    </span><span class="c1">// public functions</span>
+<span class="w">    </span><span class="kt">double</span><span class="w"> </span><span class="nf">speed</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">sqrt</span><span class="p">((</span><span class="n">V</span><span class="o">*</span><span class="n">V</span><span class="p">).</span><span class="n">sum</span><span class="p">());</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">};</span>
+</pre></div>
+</div>
+<p>and then we can use it in the code as</p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="p">...</span>
+<span class="w">    </span><span class="n">Planet</span><span class="w"> </span><span class="n">mercury</span><span class="p">,</span><span class="w"> </span><span class="n">earth</span><span class="p">;</span>
+<span class="p">...</span><span class="w"> </span>
+<span class="w">    </span><span class="n">mercury</span><span class="p">.</span><span class="n">speed</span><span class="p">();</span>
+<span class="p">...</span>
+<span class="w">    </span><span class="n">compute_force</span><span class="p">(</span><span class="n">earth</span><span class="p">,</span><span class="w"> </span><span class="n">mercury</span><span class="p">);</span>
+<span class="p">...</span>
+</pre></div>
+</div>
+<p>You can also have private members using the keyword <code class="docutils literal notranslate"><span class="pre">private</span></code>. Classes and structs in c++ are basically, but in a class everything is private by default, while for a struct everything is public by default.</p>
+<p>As an exercise, create a struct or class to model a molecule.</p>
+<p>We will be using structs/classes to create generalized data and functions, called functors, after overloading the <code class="docutils literal notranslate"><span class="pre">()</span></code> operator. So our class will represent a function with internal state, something very powerful.</p>
 </section>
 </section>
 
@@ -1379,9 +1387,6 @@ Negative<span class="w"> </span>number.<span class="w"> </span>Ignoring
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">Exercises</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#file-modularization">File modularization</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#basic-testing">Basic Testing</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#classes-and-structs">Classes and structs</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#workshop">Workshop</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#multiples-of-3-and-5">Multiples of 3 and 5</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#square-of">Square of *</a></li>
@@ -1399,8 +1404,12 @@ Negative<span class="w"> </span>number.<span class="w"> </span>Ignoring
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#collatz-largest-number">Collatz largest number</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#collatz-number-of-terms">Collatz number of terms</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#sexy-primes-smaller-than-number">Sexy primes smaller than number</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#using-the-standar-library-for-time">Using the standar library for time</a></li>
 </ul>
 </li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#file-modularization">File modularization</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#basic-testing">Basic Testing</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#classes-and-structs">Classes and structs</a></li>
 </ul>
   </nav></div>
 
