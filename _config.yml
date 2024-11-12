@@ -51,7 +51,7 @@ launch_buttons:
   binderhub_interact_text   : "Interact"  # The text that interact buttons will contain.
   jupyterhub_url            : ""  # The URL of the JupyterHub (e.g., https://datahub.berkeley.edu)
   thebe                     : false  # Add a thebe button to pages (requires the repository to run on Binder)
-  colab_url                 : "https://colab.research.google.com/github/iluvatar1/ProgCPP-lectures-jupyter/blob/master" # The URL of Google Colab (https://colab.research.google.com)
+  colab_url                 : "https://colab.research.google.com" # The URL of Google Colab (https://colab.research.google.com)
 # Information about where the book exists on the web
 repository:
   url: https://github.com/iluvatar1/ProgCPP-lectures-jupyter  # Online location of your book
