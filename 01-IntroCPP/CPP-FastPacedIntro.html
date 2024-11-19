@@ -527,6 +527,10 @@
   <section class="tex2jax_ignore mathjax_ignore" id="very-fast-intro-to-the-basics-of-c">
 <h1>Very fast intro to the basics of c++<a class="headerlink" href="#very-fast-intro-to-the-basics-of-c" title="Link to this heading">#</a></h1>
 <p>Although the c++ standard is really large, for this course we need to handle well a small subset of it. What is more important is to learn how to THINK like a programmer, not to memorize the actual syntax, which can actually obtained from google bard or chatGPT. In this section, we will learn the very basics and then we start practicing. Practice is the key in everything. For more details, see https://www.learncpp.com/ or a reference book.</p>
+<p>Some good practices</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://reprog.wordpress.com/2010/03/06/programming-books-part-2-the-elements-of-programming-style/">https://reprog.wordpress.com/2010/03/06/programming-books-part-2-the-elements-of-programming-style/</a></p></li>
+</ul>
 <section id="minimal-example">
 <h2>Minimal example<a class="headerlink" href="#minimal-example" title="Link to this heading">#</a></h2>
 <p>This a minimal valid cpp program. It does “nothing”. But when you compile, a lot of things happen. For more info see https://hackingcpp.com/cpp/hello_world.html</p>
@@ -1058,8 +1062,8 @@ Negative<span class="w"> </span>number.<span class="w"> </span>Ignoring
 </section>
 <section id="babilonian-square-root">
 <h3>Babilonian square root<a class="headerlink" href="#babilonian-square-root" title="Link to this heading">#</a></h3>
-<p>The babilonians found that to compute the square root of 2, you can iterate the following expression
-<span class="math notranslate nohighlight">\(x \leftarrow \dfrac{x+2/x}{x}\)</span>. Implement this algorithm in a function that receives the number of iterations to perform and the returns the estimation. Print in scientific notation with 15 decimals of precision using the following instructions in the main function</p>
+<p>The babilonians found that to compute the square root of S, you can iterate the following expression
+<span class="math notranslate nohighlight">\(x \leftarrow \dfrac{x+S/x}{2}\)</span>. Implement this algorithm in a function that receives the number of iterations to perform and the returns the estimation. Print in scientific notation with 15 decimals of precision using the following instructions in the main function</p>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="p">.</span><span class="n">setf</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">ios</span><span class="o">::</span><span class="n">scientific</span><span class="p">);</span><span class="w"> </span><span class="c1">// imprimir en notacipn cientifica</span>
 <span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="p">.</span><span class="n">precision</span><span class="p">(</span><span class="mi">15</span><span class="p">);</span><span class="w">  </span><span class="c1">// imprimir con 15 cifras decimales</span>
 </pre></div>
