@@ -519,8 +519,8 @@
 </table>
 </div>
 <p>By using <a class="reference external" href="https://en.wikipedia.org/wiki/Richardson_extrapolation">Richardson extrapolation</a>, you can improve even more the central difference estimation,</p>
-<div class="amsmath math notranslate nohighlight" id="equation-8a567816-a43f-40f6-9dc2-5efe0a2fbfab">
-<span class="eqno">(1)<a class="headerlink" href="#equation-8a567816-a43f-40f6-9dc2-5efe0a2fbfab" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-888fda61-a3bb-44bd-829d-e01fc61cb11a">
+<span class="eqno">(1)<a class="headerlink" href="#equation-888fda61-a3bb-44bd-829d-e01fc61cb11a" title="Permalink to this equation">#</a></span>\[\begin{equation}
 f'(x) = \phi\left(\frac{h}{2}\right) + \frac{1}{3}\left[\phi\left(\frac{h}{2} \right) - \phi(h) \right] + O(h^4),
 \end{equation}\]</div>
 <p>where <span class="math notranslate nohighlight">\(\phi(h)\)</span> is the derivative estimation from the central difference with a given <span class="math notranslate nohighlight">\(h\)</span> value. <strong>NOTE</strong>: This form is only for the central difference, since it depends on the algorithm order.</p>
@@ -572,8 +572,8 @@ Compute the derivative as a function of <span class="math notranslate nohighligh
 <section id="implementing-richardson-extrapolation">
 <h2>Implementing Richardson extrapolation<a class="headerlink" href="#implementing-richardson-extrapolation" title="Link to this heading">#</a></h2>
 <p>Now, use the general expression for Richardson extrapolation applied to an algorithm of order <span class="math notranslate nohighlight">\(O(h^\alpha)\)</span>, and also plot its relative differences for fixed <span class="math notranslate nohighlight">\(x\)</span>, (see https://en.wikipedia.org/wiki/Richardson_extrapolation?useskin=vector)</p>
-<div class="amsmath math notranslate nohighlight" id="equation-02714781-7313-48d1-85fc-a6f7a394852e">
-<span class="eqno">(2)<a class="headerlink" href="#equation-02714781-7313-48d1-85fc-a6f7a394852e" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-501470e0-ccae-43fd-89fb-959afc945690">
+<span class="eqno">(2)<a class="headerlink" href="#equation-501470e0-ccae-43fd-89fb-959afc945690" title="Permalink to this equation">#</a></span>\[\begin{equation}
 I \simeq \dfrac{t^\alpha I(\frac{h}{t}) - I(h)}{t^\alpha - 1},
 \end{equation}\]</div>
 <p>where <span class="math notranslate nohighlight">\(t\)</span> is a factor larger than 1 (tipically <span class="math notranslate nohighlight">\(t=2\)</span>), <span class="math notranslate nohighlight">\(\alpha\)</span> is the algorithm order, and <span class="math notranslate nohighlight">\(I\)</span> is the value you are computing. This implies additions to both headers and implementation files, and a new main.</p>
