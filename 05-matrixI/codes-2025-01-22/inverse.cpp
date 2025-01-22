@@ -25,17 +25,31 @@ bool check_inverses(const std::vector<double> &A, const std::vector<double> &Ain
 
 int main(int argc, char **argv)
 {
-  const int M = std::stoi(argv[1]);
-  const int N = std::stoi(argv[2]);
+  //const int M = std::stoi(argv[1]);
+  //const int N = std::stoi(argv[2]);
 
-  std::vector<double> array2d(M*N, 0.0);
+  std::vector<double> A(3*3, 0.0);
+  std::vector<double> B(3*3, 0.0);
 
-  fill_matrix(array2d, M, N);
+  //fill_matrix(array2d, M, N);
   //print_matrix(array2d, M, N);
+  A[0*3 + 0] = 1; A[0*3 + 1] = 2; A[0*3 + 2] = 3;  
+  A[1*3 + 0] = 0; A[1*3 + 1] = 1; A[1*3 + 2] = 4;  
+  A[2*3 + 0] = 5; A[2*3 + 1] = 6; A[2*3 + 2] = 0;  
 
-  std::vector<double> array2d_T(M*N, 0.0);
-  transpose_matrix(array2d, M, N, array2d_T);
+  B[0*3 + 0] = -24; B[0*3 + 1] =  18; B[0*3 + 2] =  4.99999;  
+  B[1*3 + 0] =  20; B[1*3 + 1] = -15; B[1*3 + 2] = -4;  
+  B[2*3 + 0] =  -5; B[2*3 + 1] =   4; B[2*3 + 2] =  1;  
+
+  std::vector<double> C(3*3, 0.0);
+  matmul(A, B, 3, 3, 3, C);
+  print_matrix(C, 3, 3);
+
+  //std::vector<double> array2d_T(M*N, 0.0);
+  //transpose_matrix(array2d, M, N, array2d_T);
   //print_matrix(array2d_T, N, M);
+
+  std::cout << check_inverses(A, B, 3, 1.0e-6) << "\n";
 
   return 0;
 }
@@ -114,6 +128,8 @@ bool check_inverses(const std::vector<double> &A,
 				if (std::abs(result) > eps) {
 					return false;
 				}
+			}
 		}
 	}
+	return true;
 }
