@@ -3,13 +3,13 @@
 
 int main()
 {
-  std::valarray<int> data = {0,1,2,3,4,5,6,7,8,9};
+  std::valarray<int> data = {10,9,2,3,4,5,6,7,8,9};
 
   std::cout << "Initial valarray: ";
   for(int n: data) std::cout << n << ' ';
   std::cout << '\n';
 
-  data[data > 5] = -1; // valarray<bool> overload of operator[]
+  data[data > 5 && data <8] = -1; // valarray<bool> overload of operator[]
   // the type of data>5 is std::valarray<bool>
   // the type of data[data>5] is std::mask_array<int>
 
