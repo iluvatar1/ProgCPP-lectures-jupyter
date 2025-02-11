@@ -1,0 +1,1019 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Introduction to molecular dynamics through OOP &#8212; Introduction to C++ and Numerical Methods</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=a3416100" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles.css?v=03b9d5b1" />
+  
+  <!-- So that users can add custom icons -->
+  <script src="../_static/scripts/fontawesome.js?digest=8878045cc6db502f8baf"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
+
+    <script src="../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = '09-ODE-IVP-OOP-MolecularDynamics/IntroMolecularDynamics';</script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Python Programming (very fast) Introduction" href="../11-IntroPython/01-IntroProgrammingPython.html" />
+    <link rel="prev" title="Ordinary differential equations (and initial value problems)" href="../08-ODE-IVP/InitialValueProblem.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="" />
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../README.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="https://upload.wikimedia.org/wikipedia/commons/1/18/ISO_C%2B%2B_Logo.svg" class="logo__image only-light" alt="Introduction to C++ and Numerical Methods - Home"/>
+    <img src="https://upload.wikimedia.org/wikipedia/commons/1/18/ISO_C%2B%2B_Logo.svg" class="logo__image only-dark pst-js-only" alt="Introduction to C++ and Numerical Methods - Home"/>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../README.html">
+                    Introduction to C++ and Numerical Methods
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Introduction to C++</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../01-IntroCPP/IntroProgrammingCourse.html">Introduction to Programming and C++</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../01-IntroCPP/Resources.html">Resources</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../01-IntroCPP/CPP-FastPacedIntro.html">Very fast intro to the basics of c++</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Numerical Calculus</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../02-derivatives/NumericalDifferentiation.html">Numerical differentiation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../03-integration/NumericalIntegration_Basics.html">Common Numerical Integration Algorithms</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Modern and primitive arrays, and basic Linear Algebra</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../04-vector-containers/ModernArrays.html">Modern arrays</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../05-matrixI/2D-matrices-to-1D-arrays.html">1D Arrays for 2D Matrices</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../06-ArrayComputing/ArrayComputing-Valarray.html">Vector operations: Coefficient-wise , array computing</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Linear Algebra and Numerical Libraries</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../07-LinearAlgebra/LinearAlgebraEigen.html">Linear Systems : Matrices, Vectors, eigen systems</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Ordinary differential equations: Initial value problems</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../08-ODE-IVP/InitialValueProblem.html">Ordinary differential equations (and initial value problems)</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Introduction to molecular dynamics through OOP</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Python introduction</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../11-IntroPython/01-IntroProgrammingPython.html">Python Programming (very fast) Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../11-IntroPython/02-IntroProgrammingPython-DataStructs.html">Basic data structures</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../11-IntroPython/03-matplotlib-intro.html">Matplotlib</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../11-IntroPython/04-numpy-basic-reduced.html">Efficient Python arrays : Numpy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../11-IntroPython/05-Scipy.html">SciPy - Library of scientific algorithms for Python</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-launch-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Launch interactive content">
+    <i class="fas fa-rocket"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://mybinder.org/v2/gh/iluvatar1/ProgCPP-lectures-jupyter/master?urlpath=lab/tree/09-ODE-IVP-OOP-MolecularDynamics/IntroMolecularDynamics.ipynb" target="_blank"
+   class="btn btn-sm dropdown-item"
+   title="Launch on Binder"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  
+    <img alt="Binder logo" src="../_static/images/logo_binder.svg">
+  </span>
+<span class="btn__text-container">Binder</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://colab.research.google.com/github/iluvatar1/ProgCPP-lectures-jupyter/blob/master/09-ODE-IVP-OOP-MolecularDynamics/IntroMolecularDynamics.ipynb" target="_blank"
+   class="btn btn-sm dropdown-item"
+   title="Launch on Colab"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  
+    <img alt="Colab logo" src="../_static/images/logo_colab.png">
+  </span>
+<span class="btn__text-container">Colab</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/iluvatar1/ProgCPP-lectures-jupyter" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/iluvatar1/ProgCPP-lectures-jupyter/issues/new?title=Issue%20on%20page%20%2F09-ODE-IVP-OOP-MolecularDynamics/IntroMolecularDynamics.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/09-ODE-IVP-OOP-MolecularDynamics/IntroMolecularDynamics.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button>
+
+
+<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+</button>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Introduction to molecular dynamics through OOP</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-particle-class">The particle class</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#adding-methods">Adding methods</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#implementing-a-better-integration-algorithm-leap-frog">Implementing a better integration algorithm: leap-frog</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#constraints">Constraints</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#force-computation">Force computation</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-main-implementation">The main implementation</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#exercises"><strong>Exercises</strong></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#phase-space">Phase space</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#paraview-animation">Paraview animation</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#adding-left-and-right-walls">Adding left and right walls</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#adding-more-particles">Adding more particles</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#add-a-particle-cannon">Add a particle cannon</a></li>
+</ul>
+</li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <p><a id="org328ad68"></a></p>
+<section class="tex2jax_ignore mathjax_ignore" id="introduction-to-molecular-dynamics-through-oop">
+<h1>Introduction to molecular dynamics through OOP<a class="headerlink" href="#introduction-to-molecular-dynamics-through-oop" title="Link to this heading">#</a></h1>
+<p><a class="reference external" href="https://en.wikipedia.org/wiki/Molecular_dynamics">Molecular Dynamics</a> allows to simulate complex systems where you can represent
+the interactions through forces and then solve the second Newton equation using
+some numerical method. It is applied on a large kind of problems, from cosmological simulations, to molecules and atoms, to biophysical systems, etc</p>
+<table>
+  <tr>
+    <td>
+      <div style="text-align: center;">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/f/f4/MD_water.gif" alt="Image Description" width="500">
+    <figcaption>From: "https://upload.wikimedia.org/wikipedia/commons/f/f4/MD_water.gif"</figcaption>
+</div>
+      </td>
+      <td>
+          <div style="text-align: center;">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/9e/Cundall_DEM.gif/330px-Cundall_DEM.gif" alt="Image Description" width="300">
+    <figcaption>From: "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9e/Cundall_DEM.gif/330px-Cundall_DEM.gif"</figcaption>
+</div>
+          </td>
+  </tr>
+</table>
+<p>In the previous section we learned how to solve this kind
+of initial value problems, using algorithms like rk4. But those algorithms
+require several evaluations of the force function per time step, and also become
+complex to implement when many particles are involved. So here we will better
+start changing the computational model to the object oriented approach and ,
+while doing it, we will learn some concepts from the Molecular dynamics world.
+We will keep working on the particle bouncing on the floor problem. To do so,
+our simulation will have almost the same structure as before, but now we are
+talking about a particle:</p>
+<ul class="simple">
+<li><p>Setup particle initial conditions</p></li>
+<li><p>Iterate over time:</p>
+<ul>
+<li><p>compute particle forces</p></li>
+<li><p>perform a time step integration</p></li>
+<li><p>Apply constrains</p></li>
+<li><p>print needed info</p></li>
+</ul>
+</li>
+</ul>
+<p>This looks similar to the previous approach but the mental model is simpler and
+also can be easily extended to more particles and/or complex forces. And to
+improve even more our code, we will separate the particle, from the integration,
+and from the forces. Each of these procedures will be on different files. Let’s
+start with the particle.</p>
+<p>To learn more about classes, check
+<a class="reference external" href="https://www.learncpp.com/cpp-tutorial/classes-and-class-members/">https://www.learncpp.com/cpp-tutorial/classes-and-class-members/</a> .</p>
+<p>Our goal now will be to be able to simulate a particle bouncing on the floor, with possibly more particles and walls. This could be easily applicable to more complex systems. This a basic physics engine, and we could later play to get something like <a class="reference external" href="https://www.youtube.com/watch?v=lS_qeBy3aQI&amp;amp;t=0s">https://www.youtube.com/watch?v=lS_qeBy3aQI&amp;t=0s</a></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%html</span>
+<span class="p">&lt;</span><span class="nt">iframe</span> <span class="na">width</span><span class="o">=</span><span class="s">&quot;560&quot;</span> <span class="na">height</span><span class="o">=</span><span class="s">&quot;315&quot;</span> <span class="na">src</span><span class="o">=</span><span class="s">&quot;https://www.youtube.com/embed/lS_qeBy3aQI&quot;</span> <span class="na">title</span><span class="o">=</span><span class="s">&quot;YouTube video player&quot;</span> <span class="na">frameborder</span><span class="o">=</span><span class="s">&quot;0&quot;</span> <span class="na">allow</span><span class="o">=</span><span class="s">&quot;accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture&quot;</span> <span class="na">allowfullscreen</span><span class="p">&gt;&lt;/</span><span class="nt">iframe</span><span class="p">&gt;</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><iframe width="560" height="315" src="https://www.youtube.com/embed/lS_qeBy3aQI" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+</div></div>
+</div>
+<p><a id="orgce0ae5a"></a></p>
+<section id="the-particle-class">
+<h2>The particle class<a class="headerlink" href="#the-particle-class" title="Link to this heading">#</a></h2>
+<p>First of all, we will start thinking about the smallest modeling unit here, the
+<code class="docutils literal notranslate"><span class="pre">particle</span></code>. To do so, we need to select the more fundamental characteristics of
+our particle for the problem at hand, in this case, we need the particle to have</p>
+<ul class="simple">
+<li><p>A mass, radius (type <code class="docutils literal notranslate"><span class="pre">double</span></code>)</p></li>
+<li><p>A vector representing the position, the velocity and the forces. (type
+<code class="docutils literal notranslate"><span class="pre">std::vector&lt;double&gt;</span></code>)</p></li>
+</ul>
+<p>Many other characteristics could enter the simulation when the model needs them.
+To declare this new data type, we use the following code by means of a <code class="docutils literal notranslate"><span class="pre">struct</span></code>
+(we could also use a <code class="docutils literal notranslate"><span class="pre">class</span></code>, the only difference is that for <code class="docutils literal notranslate"><span class="pre">structs</span></code> all
+members are public by default, while for a <code class="docutils literal notranslate"><span class="pre">class</span></code> all members are private by
+default)</p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="c1">// particle.hpp</span>
+<span class="cp">#pragma once</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;iostream&gt;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;valarray&gt;</span>
+
+<span class="k">struct</span><span class="w"> </span><span class="nc">Particle</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">valarray</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;</span><span class="w"> </span><span class="n">R</span><span class="p">{</span><span class="mf">0.0</span><span class="p">,</span><span class="w"> </span><span class="mf">0.0</span><span class="p">,</span><span class="w"> </span><span class="mf">0.0</span><span class="p">},</span><span class="w"> </span><span class="n">V</span><span class="p">{</span><span class="mf">0.0</span><span class="p">,</span><span class="w"> </span><span class="mf">0.0</span><span class="p">,</span><span class="w"> </span><span class="mf">0.0</span><span class="p">},</span><span class="w"> </span><span class="n">F</span><span class="p">{</span><span class="mf">0.0</span><span class="p">,</span><span class="w"> </span><span class="mf">0.0</span><span class="p">,</span><span class="w"> </span><span class="mf">0.0</span><span class="p">};</span>
+<span class="w">    </span><span class="kt">double</span><span class="w"> </span><span class="n">mass</span><span class="p">{</span><span class="mi">0</span><span class="p">},</span><span class="w"> </span><span class="n">rad</span><span class="p">{</span><span class="mi">0</span><span class="p">};</span>
+<span class="w">    </span><span class="kt">void</span><span class="w"> </span><span class="nf">print</span><span class="p">(</span><span class="kt">void</span><span class="p">);</span>
+<span class="p">};</span>
+</pre></div>
+</div>
+<p>here, <code class="docutils literal notranslate"><span class="pre">R</span></code>, <code class="docutils literal notranslate"><span class="pre">V</span></code>, and <code class="docutils literal notranslate"><span class="pre">F</span></code>, represent the position, velocity and force,
+respectively. Each <strong>instance</strong> of the class Particle will have its own <code class="docutils literal notranslate"><span class="pre">R,</span> <span class="pre">V</span></code>
+and so on. Let’s see this example in the python tutor or gdb online:</p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;particle.h&quot;</span>
+
+<span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">argc</span><span class="p">,</span><span class="w"> </span><span class="kt">char</span><span class="w"> </span><span class="o">**</span><span class="n">argv</span><span class="p">)</span>
+<span class="p">{</span>
+<span class="w">  </span><span class="n">Particle</span><span class="w"> </span><span class="n">body1</span><span class="p">,</span><span class="w"> </span><span class="n">body2</span><span class="p">;</span>
+<span class="w">  </span><span class="n">body1</span><span class="p">.</span><span class="n">R</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">5.6</span><span class="p">;</span>
+<span class="w">  </span><span class="n">body2</span><span class="p">.</span><span class="n">V</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">-0.98</span><span class="p">;</span>
+<span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</section>
+<section id="adding-methods">
+<h2>Adding methods<a class="headerlink" href="#adding-methods" title="Link to this heading">#</a></h2>
+<p>This is only packing attributes, but you can also pack functions, like</p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="c1">// particle.hpp</span>
+<span class="cp">#pragma once</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;iostream&gt;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;valarray&gt;</span>
+
+<span class="k">struct</span><span class="w"> </span><span class="nc">Particle</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">valarray</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;</span><span class="w"> </span><span class="n">R</span><span class="p">{</span><span class="mf">0.0</span><span class="p">,</span><span class="w"> </span><span class="mf">0.0</span><span class="p">,</span><span class="w"> </span><span class="mf">0.0</span><span class="p">},</span><span class="w"> </span><span class="n">V</span><span class="p">{</span><span class="mf">0.0</span><span class="p">,</span><span class="w"> </span><span class="mf">0.0</span><span class="p">,</span><span class="w"> </span><span class="mf">0.0</span><span class="p">},</span><span class="w"> </span><span class="n">F</span><span class="p">{</span><span class="mf">0.0</span><span class="p">,</span><span class="w"> </span><span class="mf">0.0</span><span class="p">,</span><span class="w"> </span><span class="mf">0.0</span><span class="p">};</span>
+<span class="w">    </span><span class="kt">double</span><span class="w"> </span><span class="n">mass</span><span class="p">{</span><span class="mi">0</span><span class="p">},</span><span class="w"> </span><span class="n">rad</span><span class="p">{</span><span class="mi">0</span><span class="p">};</span>
+<span class="w">    </span><span class="kt">void</span><span class="w"> </span><span class="nf">print</span><span class="p">(</span><span class="kt">void</span><span class="p">);</span>
+<span class="p">};</span>
+</pre></div>
+</div>
+<p>For instance, there are also important member functions, like the <code class="docutils literal notranslate"><span class="pre">constructor</span></code> and the
+<code class="docutils literal notranslate"><span class="pre">destructor</span></code>, that must be used when those tasks are important. You can also
+overload operators to teach the language how to react, for instance, when you
+try to sum up to particles (if that makes sense). In our case, the constructor
+is already declared inside the class (<code class="docutils literal notranslate"><span class="pre">Particle()</span></code>), does not return anything
+(not even void), and a destructor will be declared similarly but as
+<code class="docutils literal notranslate"><span class="pre">~Particle()</span></code>. Using constructors/destructors is important when you need to
+administer resources.</p>
+<p>Our simulation will now be done using the particle struct. But our previous
+integration methods will need to be heavily adapted. It is much better for us to
+actually implement better integration algorithms right now, like the Leap-Frog
+algorithm.</p>
+<p>The actual implementartion will be in file <code class="docutils literal notranslate"><span class="pre">particle.cpp</span></code></p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;particle.h&quot;</span>
+
+<span class="c1">// particle.cpp</span>
+<span class="kt">void</span><span class="w"> </span><span class="nf">Particle::print</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">mass</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;</span><span class="se">\t</span><span class="s">&quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">rad</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;</span><span class="se">\t</span><span class="s">&quot;</span>
+<span class="w">              </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">R</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;</span><span class="se">\t</span><span class="s">&quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">R</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;</span><span class="se">\t</span><span class="s">&quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">R</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;</span><span class="se">\t</span><span class="s">&quot;</span>
+<span class="w">              </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">V</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;</span><span class="se">\t</span><span class="s">&quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">V</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;</span><span class="se">\t</span><span class="s">&quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">V</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;</span><span class="se">\t</span><span class="s">&quot;</span>
+<span class="w">              </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">F</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;</span><span class="se">\t</span><span class="s">&quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">F</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;</span><span class="se">\t</span><span class="s">&quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">F</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;</span><span class="se">\t</span><span class="s">&quot;</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="c1">// You can also overload the cout operator: friend declared to acces possible private data</span>
+<span class="c1">// see: https://www.learncpp.com/cpp-tutorial/overloading-the-io-operators/</span>
+</pre></div>
+</div>
+<p>Notice the <code class="docutils literal notranslate"><span class="pre">::</span></code> scope resolution operator.</p>
+<div style="background-color: #f0f7fb; color: #055781; padding: 10px; border-left: 5px solid #055781; font-weight: bold; font-size: 20px; margin: 10px 0;">EXERCISE</div>
+<p>Write the <code class="docutils literal notranslate"><span class="pre">Particle</span></code> struct into two files: <code class="docutils literal notranslate"><span class="pre">Particle.h</span></code>, with the needed
+declarations, and <code class="docutils literal notranslate"><span class="pre">Particle.cpp</span></code>, with the implementations. Create a main file that can instantiate a particle and set some of its internal values, then print it.
+Later just put everythin in the .hpp.</p>
+<p><a id="orge820769"></a></p>
+</section>
+<section id="implementing-a-better-integration-algorithm-leap-frog">
+<h2>Implementing a better integration algorithm: leap-frog<a class="headerlink" href="#implementing-a-better-integration-algorithm-leap-frog" title="Link to this heading">#</a></h2>
+<p>When studying ODE-IVP, we started with the Euler algorithm, which is pretty
+simple and computes the forces only once per time step but, as we have seen
+before, its order is low and it is not stable. In Molecular Dynamics there are
+several algorithms that fulfill several interesting properties (like being
+symplectic) that are commonly used, like leap-frog, verlet, velocity-verlet,
+optimized velocity verlet and so on. They try to integrate the evolution with a
+high order while reducing the number of force evaluations per time step. In
+particular, the leap-frog algorithm can be written as
+(<a class="reference external" href="https://en.wikipedia.org/wiki/Leapfrog_integration">https://en.wikipedia.org/wiki/Leapfrog_integration</a>)</p>
+<div class="amsmath math notranslate nohighlight" id="equation-7416dc9b-89ea-45e8-95f8-22b17e8604a5">
+<span class="eqno">(44)<a class="headerlink" href="#equation-7416dc9b-89ea-45e8-95f8-22b17e8604a5" title="Permalink to this equation">#</a></span>\[\begin{align}
+\vec V (t + \delta t/2) &amp;= \vec V (t - \delta t/2) + \vec F(t) \delta t/m + O(\delta t^3),\\
+\vec R(t+\delta t) &amp;= \vec R(t) + \vec V (t + \delta t/2) \delta t + O(\delta t^3).
+\end{align}\]</div>
+<p>As you can see, the velocity is now in half-steps. This algorithm is very stable
+and symplectic. One important detail for the implementation: To perform the
+first step, you need to put your variables in the correct time. If we put t=0,
+the next step would be</p>
+<div class="amsmath math notranslate nohighlight" id="equation-ef8f5a2b-19cb-4e2a-9cfe-c7d895b6cb65">
+<span class="eqno">(45)<a class="headerlink" href="#equation-ef8f5a2b-19cb-4e2a-9cfe-c7d895b6cb65" title="Permalink to this equation">#</a></span>\[\begin{align}
+\vec V (0 + \delta t/2) &amp;= \vec V (0 - \delta t/2) + \vec F(0) \delta t/m + O(\delta t^3),\\
+\vec R(0+\delta t) &amp;= \vec R(0) + \vec V (0 + \delta t/2) \delta t + O(\delta t^3).
+\end{align}\]</div>
+<p>Therefore, we will need first to move the velocity from time 0 to time <span class="math notranslate nohighlight">\(0 -
+\delta t\)</span>. We could do that as follows</p>
+<div class="amsmath math notranslate nohighlight" id="equation-40d51cd6-3679-4877-ad63-b93cbfe4ff7f">
+<span class="eqno">(46)<a class="headerlink" href="#equation-40d51cd6-3679-4877-ad63-b93cbfe4ff7f" title="Permalink to this equation">#</a></span>\[\begin{equation}
+\vec V(0 - \delta t/2) = \vec V(0) - \delta t \vec F(0)/2m.
+\end{equation}\]</div>
+<p><a id="orgd0444a6"></a></p>
+<div style="background-color: #f0f7fb; color: #055781; padding: 10px; border-left: 5px solid #055781; font-weight: bold; font-size: 20px; margin: 10px 0;">EXERCISE</div>
+<p>Create a new <code class="docutils literal notranslate"><span class="pre">class</span></code> called <code class="docutils literal notranslate"><span class="pre">TimeIntegrator</span></code> which receives on its constructor
+the value of the time step, <span class="math notranslate nohighlight">\(\delta t\)</span>. Implement there the Leap-frog algorithm
+by using two member functions, <code class="docutils literal notranslate"><span class="pre">startIntegration</span></code> and <code class="docutils literal notranslate"><span class="pre">timeStep</span></code>, which receive
+a array of particles (use templates for an arbitrary array of particles type,
+<code class="docutils literal notranslate"><span class="pre">particle_array_t</span></code>) and perform the needed task. Implement everything inside the
+class (only use <code class="docutils literal notranslate"><span class="pre">integrator.h</span></code>, implement everything there)</p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp">#pragma once</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">TimeIntegrator</span><span class="p">{</span>
+<span class="w">    </span><span class="kt">double</span><span class="w"> </span><span class="n">dt</span><span class="p">{</span><span class="mf">0.0</span><span class="p">};</span>
+
+<span class="k">public</span><span class="o">:</span>
+<span class="w">    </span><span class="n">TimeIntegrator</span><span class="p">(</span><span class="kt">double</span><span class="w"> </span><span class="n">DT</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">dt</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">DT</span><span class="p">;</span><span class="w"> </span><span class="p">}</span>
+
+<span class="w">    </span><span class="k">template</span><span class="w"> </span><span class="o">&lt;</span><span class="k">class</span><span class="w"> </span><span class="nc">particle_array_t</span><span class="o">&gt;</span>
+<span class="w">        </span><span class="kt">void</span><span class="w"> </span><span class="n">startIntegration</span><span class="p">(</span><span class="n">particle_array_t</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">parray</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="c1">// this function moves the initial velocity to -dt/2</span>
+<span class="w">        </span><span class="c1">// V = V - A dt/2 = V - F dt /2m</span>
+<span class="w">        </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="k">auto</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">p</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">parray</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">ii</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">ii</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mi">3</span><span class="p">;</span><span class="w"> </span><span class="o">++</span><span class="n">ii</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                </span><span class="n">p</span><span class="p">.</span><span class="n">V</span><span class="p">[</span><span class="n">ii</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">p</span><span class="p">.</span><span class="n">V</span><span class="p">[</span><span class="n">ii</span><span class="p">]</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">p</span><span class="p">.</span><span class="n">F</span><span class="p">[</span><span class="n">ii</span><span class="p">]</span><span class="o">*</span><span class="n">dt</span><span class="o">/</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">p</span><span class="p">.</span><span class="n">mass</span><span class="p">);</span>
+<span class="w">            </span><span class="p">}</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="k">template</span><span class="w"> </span><span class="o">&lt;</span><span class="k">class</span><span class="w"> </span><span class="nc">particle_array_t</span><span class="o">&gt;</span>
+<span class="w">        </span><span class="kt">void</span><span class="w"> </span><span class="n">timeStep</span><span class="p">(</span><span class="n">particle_array_t</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">parray</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="c1">// this function moves the velocity by dt</span>
+<span class="w">        </span><span class="c1">// TODO</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">};</span>
+</pre></div>
+</div>
+<p><a id="orgb1e0fad"></a></p>
+</section>
+<section id="constraints">
+<h2>Constraints<a class="headerlink" href="#constraints" title="Link to this heading">#</a></h2>
+<p>Normally, in this physical simulations we want to use physical forces for the system behaviour. But sometimes we don’t actually need a lot of precision, or to follow stric physical laws, so we can simplify a lot the interactions by applying “constraints”, i.e, forcing the particle to be in certain region, to be not mobile, etc.</p>
+<p>In this case, we will play with keeping the particle inside a disc (sphere) of radius <code class="docutils literal notranslate"><span class="pre">REXT</span></code>, centering at the origin for simplicity. How to do that? at each step, we check the distance of the external border of our particle, and if it is larger than the external radius, we move the particle back to the inside of the region and invert its normal velocity. To do this, we will create a new class to amnage this kind of boundaries, called <code class="docutils literal notranslate"><span class="pre">Boundary</span></code>. It will have the needed parameters and will apply the needed constraints.</p>
+<p>In our case, we want to keep all particles inside the sphere. To do so, for each particle, we can compute its external border with the spherical boundary, and detect if the particle is outside. Then, we can correct the particle position in the normal direction towards de center, and also invert the velocity, even adding a restitutin coefficient.</p>
+<div style="background-color: #f0f7fb; color: #055781; padding: 10px; border-left: 5px solid #055781; font-weight: bold; font-size: 20px; margin: 10px 0;">EXERCISE</div>
+<p>Deduce the vectorial corrections needed to apply the constraint described, to both the position and velocity, and implement them in the following class</p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp">#pragma once</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;valarray&gt;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;iostream&gt;</span>
+
+<span class="k">class</span><span class="w"> </span><span class="nc">Boundary</span><span class="p">{</span>
+<span class="w">  </span><span class="kt">double</span><span class="w"> </span><span class="n">RMAX_</span><span class="p">{</span><span class="mf">0.0</span><span class="p">},</span><span class="w"> </span><span class="n">EN_</span><span class="p">{</span><span class="mf">0.0</span><span class="p">};</span><span class="w"> </span><span class="c1">// RMAX is the radius of the sphere, EN is the coefficient of restitution</span>
+<span class="w">  </span><span class="n">std</span><span class="o">::</span><span class="n">valarray</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;</span><span class="w"> </span><span class="n">C_</span><span class="p">{</span><span class="mf">0.0</span><span class="p">,</span><span class="w"> </span><span class="mf">0.0</span><span class="p">,</span><span class="w"> </span><span class="mf">0.0</span><span class="p">};</span><span class="w"> </span><span class="c1">// Center</span>
+
+<span class="w">  </span><span class="k">public</span><span class="o">:</span>
+<span class="w">    </span><span class="n">Boundary</span><span class="p">(</span><span class="kt">double</span><span class="w"> </span><span class="n">RMAX</span><span class="p">,</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="n">CX</span><span class="p">,</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="n">CY</span><span class="p">,</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="n">CZ</span><span class="p">,</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="n">EN</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="n">RMAX_</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">RMAX</span><span class="p">;</span>
+<span class="w">      </span><span class="n">C_</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">CX</span><span class="p">;</span>
+<span class="w">      </span><span class="n">C_</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">CY</span><span class="p">;</span>
+<span class="w">      </span><span class="n">C_</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">CZ</span><span class="p">;</span>
+<span class="w">      </span><span class="n">EN_</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">EN</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="k">template</span><span class="w"> </span><span class="o">&lt;</span><span class="k">class</span><span class="w"> </span><span class="nc">particle_array_t</span><span class="o">&gt;</span>
+<span class="w">    </span><span class="kt">void</span><span class="w"> </span><span class="n">apply</span><span class="p">(</span><span class="n">particle_array_t</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">parray</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="c1">// applySphericalConstraint</span>
+<span class="w">      </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="k">auto</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">p</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">parray</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="c1">// TODO</span>
+<span class="w">      </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">};</span>
+</pre></div>
+</div>
+</section>
+<section id="force-computation">
+<h2>Force computation<a class="headerlink" href="#force-computation" title="Link to this heading">#</a></h2>
+<p>Finally, we can start creating a function or object that computes the force for
+a particle or for a set of particles. This normally called a collider, and it
+will need some parameters (like the gravity constant, the floor stiffness and so
+on) to perform its jobs. We can also use a simple function that receives the
+parameters and the particle array and compute the force. Since the amount of
+parameters is arbitrary, and their names, they can be stored in a dictionary
+(<code class="docutils literal notranslate"><span class="pre">std::map</span></code>). They can also be split into particle level parameters (that can be
+included on the particles themselves), or global parameters (like gravity). We
+will here create a collider class and show how to implement the forces for our
+simple case.</p>
+<p><a id="orgbbe0d3f"></a></p>
+<div style="background-color: #f0f7fb; color: #055781; padding: 10px; border-left: 5px solid #055781; font-weight: bold; font-size: 20px; margin: 10px 0;">EXERCISE</div>
+<p>Create a new class called <code class="docutils literal notranslate"><span class="pre">Collider</span></code> which includes a member function to compute
+external forces (for now) on an array of particles (arbitrary type, use
+templates). To do so, complete the following code:</p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp">#pragma once</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;map&gt;</span>
+
+<span class="k">class</span><span class="w"> </span><span class="nc">Collider</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="n">std</span><span class="o">::</span><span class="n">map</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="p">,</span><span class="w"> </span><span class="kt">double</span><span class="o">&gt;</span><span class="w"> </span><span class="n">params</span><span class="p">;</span><span class="w"> </span><span class="c1">// parameters to compute the forces</span>
+<span class="w">  </span><span class="k">public</span><span class="o">:</span>
+<span class="w">    </span><span class="n">Collider</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">map</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="p">,</span><span class="w"> </span><span class="kt">double</span><span class="o">&gt;</span><span class="w"> </span><span class="o">&amp;</span><span class="n">PARAMS</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">params</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">PARAMS</span><span class="p">;</span><span class="w"> </span><span class="p">}</span>
+
+<span class="w">    </span><span class="k">template</span><span class="o">&lt;</span><span class="k">class</span><span class="w"> </span><span class="nc">particle_array_t</span><span class="o">&gt;</span>
+<span class="w">    </span><span class="kt">void</span><span class="w"> </span><span class="n">computeForces</span><span class="p">(</span><span class="n">particle_array_t</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">parray</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="c1">// reset forces</span>
+<span class="w">      </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="k">auto</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">p</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">parray</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">p</span><span class="p">.</span><span class="n">F</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">};</span>
+<span class="w">      </span><span class="p">}</span>
+<span class="w">      </span><span class="c1">// individual forces</span>
+<span class="w">      </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="k">auto</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">p</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">parray</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="c1">// gravity force</span>
+<span class="w">        </span><span class="n">p</span><span class="p">.</span><span class="n">F</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="n">p</span><span class="p">.</span><span class="n">mass</span><span class="o">*</span><span class="n">params</span><span class="p">[</span><span class="s">&quot;G&quot;</span><span class="p">];</span>
+
+<span class="w">        </span><span class="c1">//TODO: force with floor</span>
+
+<span class="w">      </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">};</span>
+</pre></div>
+</div>
+<p><a id="orge25232a"></a></p>
+</section>
+<section id="the-main-implementation">
+<h2>The main implementation<a class="headerlink" href="#the-main-implementation" title="Link to this heading">#</a></h2>
+<p>Now we are ready to perform our simulation, using everything in our main
+function,</p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="c1">//  g++-14 -std=c++17 particle.cpp main_md.cpp</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;particle.h&quot;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;integrator.h&quot;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;collider.h&quot;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;boundary.h&quot;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;vector&gt;</span>
+
+<span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">argc</span><span class="p">,</span><span class="w"> </span><span class="kt">char</span><span class="w"> </span><span class="o">**</span><span class="n">argv</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">Particle</span><span class="o">&gt;</span><span class="w"> </span><span class="n">bodies</span><span class="p">;</span>
+<span class="w">  </span><span class="n">bodies</span><span class="p">.</span><span class="n">resize</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span><span class="w"> </span><span class="c1">// only one particle for now</span>
+
+<span class="w">  </span><span class="c1">// parameters</span>
+<span class="w">  </span><span class="n">std</span><span class="o">::</span><span class="n">map</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="p">,</span><span class="w"> </span><span class="kt">double</span><span class="o">&gt;</span><span class="w"> </span><span class="n">p</span><span class="p">;</span>
+<span class="w">  </span><span class="n">p</span><span class="p">[</span><span class="s">&quot;T0&quot;</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">0.0</span><span class="p">;</span>
+<span class="w">  </span><span class="n">p</span><span class="p">[</span><span class="s">&quot;TF&quot;</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">100.8767</span><span class="p">;</span>
+<span class="w">  </span><span class="n">p</span><span class="p">[</span><span class="s">&quot;DT&quot;</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">0.01</span><span class="p">;</span>
+<span class="w">  </span><span class="n">p</span><span class="p">[</span><span class="s">&quot;G&quot;</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">0.0</span><span class="p">;</span><span class="w"> </span><span class="c1">//-9.81;</span>
+
+<span class="w">  </span><span class="c1">// Force collider</span>
+<span class="w">  </span><span class="n">Collider</span><span class="w"> </span><span class="n">collider</span><span class="p">(</span><span class="n">p</span><span class="p">);</span>
+
+<span class="w">  </span><span class="c1">// Time initialization</span>
+<span class="w">  </span><span class="n">TimeIntegrator</span><span class="w"> </span><span class="n">integrator</span><span class="p">(</span><span class="n">p</span><span class="p">[</span><span class="s">&quot;DT&quot;</span><span class="p">]);</span>
+
+<span class="w">  </span><span class="c1">// Boundary conditions</span>
+<span class="w">  </span><span class="n">Boundary</span><span class="w"> </span><span class="n">bc</span><span class="p">(</span><span class="mf">2.345</span><span class="p">,</span><span class="w"> </span><span class="mf">0.0</span><span class="p">,</span><span class="w"> </span><span class="mf">0.0</span><span class="p">,</span><span class="w"> </span><span class="mf">0.0</span><span class="p">,</span><span class="w"> </span><span class="mf">1.0</span><span class="p">);</span><span class="w"> </span><span class="c1">// RMAX, CX, CY, CZ, EN</span>
+
+<span class="w">  </span><span class="c1">// initial conditions and properties</span>
+<span class="w">  </span><span class="n">bodies</span><span class="p">[</span><span class="mi">0</span><span class="p">].</span><span class="n">R</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">0.987</span><span class="p">;</span><span class="w">  </span><span class="c1">// z is upwards, x to the right</span>
+<span class="w">  </span><span class="n">bodies</span><span class="p">[</span><span class="mi">0</span><span class="p">].</span><span class="n">V</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">4.9876</span><span class="p">;</span><span class="c1">//12.987; // z is upwards, x to the right</span>
+<span class="w">  </span><span class="n">bodies</span><span class="p">[</span><span class="mi">0</span><span class="p">].</span><span class="n">V</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">0.0</span><span class="p">;</span><span class="w"> </span><span class="c1">//4.9876; //3.987; // z is upwards, x to the right</span>
+<span class="w">  </span><span class="n">bodies</span><span class="p">[</span><span class="mi">0</span><span class="p">].</span><span class="n">rad</span><span class="w">  </span><span class="o">=</span><span class="w"> </span><span class="mf">0.103</span><span class="p">;</span>
+<span class="w">  </span><span class="n">bodies</span><span class="p">[</span><span class="mi">0</span><span class="p">].</span><span class="n">mass</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">0.337</span><span class="p">;</span>
+<span class="w">  </span><span class="n">collider</span><span class="p">.</span><span class="n">computeForces</span><span class="p">(</span><span class="n">bodies</span><span class="p">);</span><span class="w"> </span><span class="c1">// force at t = 0</span>
+<span class="w">  </span><span class="n">integrator</span><span class="p">.</span><span class="n">startIntegration</span><span class="p">(</span><span class="n">bodies</span><span class="p">);</span><span class="w"> </span><span class="c1">// start integration algorithm</span>
+<span class="w">  </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">p</span><span class="p">[</span><span class="s">&quot;T0&quot;</span><span class="p">]</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;</span><span class="se">\t</span><span class="s">&quot;</span><span class="p">;</span>
+<span class="w">  </span><span class="n">bodies</span><span class="p">[</span><span class="mi">0</span><span class="p">].</span><span class="n">print</span><span class="p">();</span>
+<span class="w">  </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">;</span>
+
+<span class="w">  </span><span class="c1">// Time iteration</span>
+<span class="w">  </span><span class="k">const</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">niter</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kt">int</span><span class="p">((</span><span class="n">p</span><span class="p">[</span><span class="s">&quot;TF&quot;</span><span class="p">]</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">p</span><span class="p">[</span><span class="s">&quot;T0&quot;</span><span class="p">])</span><span class="o">/</span><span class="n">p</span><span class="p">[</span><span class="s">&quot;DT&quot;</span><span class="p">]);</span>
+<span class="w">  </span><span class="k">for</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">ii</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span><span class="w"> </span><span class="n">ii</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">niter</span><span class="p">;</span><span class="w"> </span><span class="o">++</span><span class="n">ii</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">collider</span><span class="p">.</span><span class="n">computeForces</span><span class="p">(</span><span class="n">bodies</span><span class="p">);</span>
+<span class="w">    </span><span class="n">integrator</span><span class="p">.</span><span class="n">timeStep</span><span class="p">(</span><span class="n">bodies</span><span class="p">);</span>
+<span class="w">	</span><span class="n">bc</span><span class="p">.</span><span class="n">apply</span><span class="p">(</span><span class="n">bodies</span><span class="p">);</span>
+<span class="w">    </span><span class="kt">double</span><span class="w"> </span><span class="n">time</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">p</span><span class="p">[</span><span class="s">&quot;T0&quot;</span><span class="p">]</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">ii</span><span class="o">*</span><span class="n">p</span><span class="p">[</span><span class="s">&quot;DT&quot;</span><span class="p">];</span>
+<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">time</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;</span><span class="se">\t</span><span class="s">&quot;</span><span class="p">;</span>
+<span class="w">    </span><span class="n">bodies</span><span class="p">[</span><span class="mi">0</span><span class="p">].</span><span class="n">print</span><span class="p">();</span>
+<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">;</span>
+<span class="w">  </span><span class="p">}</span>
+
+<span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p><a id="orgbba6ff1"></a></p>
+</section>
+<section id="exercises">
+<h2><strong>Exercises</strong><a class="headerlink" href="#exercises" title="Link to this heading">#</a></h2>
+<section id="phase-space">
+<h3>Phase space<a class="headerlink" href="#phase-space" title="Link to this heading">#</a></h3>
+<p>Plot the phase space with and without damping</p>
+</section>
+<section id="paraview-animation">
+<h3>Paraview animation<a class="headerlink" href="#paraview-animation" title="Link to this heading">#</a></h3>
+<p>Create an animation by printing the position data to a csv file and then using paraview.</p>
+</section>
+<section id="adding-left-and-right-walls">
+<h3>Adding left and right walls<a class="headerlink" href="#adding-left-and-right-walls" title="Link to this heading">#</a></h3>
+<p>Now put a wall on the left (-L/2) and on the right (+L/2). L is a new parameter.
+In the initial condition,s, make sure that you are NOT intersecting any wall at
+the beginning. Add collisions with left and right walls. You will need to specify a length L.
+Put the left(right) wall at -L/2(L/2).</p>
+</section>
+<section id="adding-more-particles">
+<h3>Adding more particles<a class="headerlink" href="#adding-more-particles" title="Link to this heading">#</a></h3>
+<p>Now add another particle and implement a collision between particles. Later, Add
+many other particles and visualize their collisions. How does the cpu time
+scales with the number of particles?</p>
+<p>Here we will implemement a physical force among particles. But, still, how would you do it using constraints?</p>
+<p>If two particles are colliding, with interpenetration <span class="math notranslate nohighlight">\(\delta\)</span>, then we can
+model the force that particle <span class="math notranslate nohighlight">\(i\)</span> exerts on particle <span class="math notranslate nohighlight">\(j\)</span> as,</p>
+<div class="amsmath math notranslate nohighlight" id="equation-1b15718d-b757-4e48-b99c-9825a87f19ef">
+<span class="eqno">(47)<a class="headerlink" href="#equation-1b15718d-b757-4e48-b99c-9825a87f19ef" title="Permalink to this equation">#</a></span>\[\begin{equation}
+\vec F_{ij} = k \delta \hat n_{ij},
+\end{equation}\]</div>
+<p>where <span class="math notranslate nohighlight">\(k\)</span> is a constant proportional to the effective Young modulus, and <span class="math notranslate nohighlight">\(\hat
+n_{ij}\)</span> is the normal vector from particle <span class="math notranslate nohighlight">\(i\)</span> to <span class="math notranslate nohighlight">\(j\)</span>, that is</p>
+<div class="amsmath math notranslate nohighlight" id="equation-c0f477f5-acbc-42cb-a716-d8112c6022cf">
+<span class="eqno">(48)<a class="headerlink" href="#equation-c0f477f5-acbc-42cb-a716-d8112c6022cf" title="Permalink to this equation">#</a></span>\[\begin{equation}
+\hat n_{ij} = \frac{\vec R_{ij}}{|\vec R_{ij}|},
+\end{equation}\]</div>
+<p>with <span class="math notranslate nohighlight">\(\vec R_{ij} = \vec R_j - \vec R_i\)</span>, and</p>
+<div class="amsmath math notranslate nohighlight" id="equation-66718c5f-eecd-41c3-9806-033b271f209a">
+<span class="eqno">(49)<a class="headerlink" href="#equation-66718c5f-eecd-41c3-9806-033b271f209a" title="Permalink to this equation">#</a></span>\[\begin{equation}
+\delta = r_i + r_j - |\vec R_{ij}|.
+\end{equation}\]</div>
+<p>For a more realistic force model, check
+<a class="reference external" href="https://www.cfdem.com/media/DEM/docu/gran_model_hertz.html">https://www.cfdem.com/media/DEM/docu/gran_model_hertz.html</a> and references
+therein.</p>
+</section>
+<section id="add-a-particle-cannon">
+<h3>Add a particle cannon<a class="headerlink" href="#add-a-particle-cannon" title="Link to this heading">#</a></h3>
+<p>Create a cannon of particles to add particles to the system every nth step.</p>
+</section>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./09-ODE-IVP-OOP-MolecularDynamics"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="../08-ODE-IVP/InitialValueProblem.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Ordinary differential equations (and initial value problems)</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="../11-IntroPython/01-IntroProgrammingPython.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Python Programming (very fast) Introduction</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-particle-class">The particle class</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#adding-methods">Adding methods</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#implementing-a-better-integration-algorithm-leap-frog">Implementing a better integration algorithm: leap-frog</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#constraints">Constraints</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#force-computation">Force computation</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-main-implementation">The main implementation</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#exercises"><strong>Exercises</strong></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#phase-space">Phase space</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#paraview-animation">Paraview animation</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#adding-left-and-right-walls">Adding left and right walls</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#adding-more-particles">Adding more particles</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#add-a-particle-cannon">Add a particle cannon</a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By William Oquendo
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2024.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf"></script>
+<script defer src="../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
