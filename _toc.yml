@@ -33,6 +33,10 @@ parts:
     chapters:
     - file: 08-ODE-IVP/InitialValueProblem.ipynb
     - file: 09-ODE-IVP-OOP-MolecularDynamics/IntroMolecularDynamics.ipynb
+  - caption: "Random Systems"
+    numbered: false
+    chapters:
+    - file: 10-RandomSystems/RandomSystems.ipynb
   - caption: "Python introduction"
     numbered: false
     chapters:
