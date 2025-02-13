@@ -21,7 +21,7 @@ class Boundary{
       for (auto & p : parray) {
         double r2 = ((p.R-C_)*(p.R-C_)).sum();
         double r = std::sqrt(r2);
-        double delta = r + p.rad - RMAX;
+        double delta = r + p.rad - RMAX_;
         if (delta > 0) {
             std::valarray<double> N = (p.R - C_)/r;
             p.R = p.R - delta*N;
