@@ -54,7 +54,9 @@ int main(int argc, char **argv) {
     std::cout << time << "\t";
     bodies[0].print();
     std::cout << "\n";
-    print_to_csv(bodies, ii);
+    if (ii%100 == 0) {
+      print_to_csv(bodies, ii);
+    }
   }
 
   return 0;
@@ -70,7 +72,7 @@ void print_to_csv(const std::vector<Particle> & particles, int istep)
   if (remaining > 0) {
     fname.insert(0, remaining, '0');
   }
-  fname = "DISPLAY/" + fname + ".csv";
+  fname = "DISPLAY/system_" + fname + ".csv";
 
   // open filestream
   std::ofstream fout(fname);
