@@ -198,9 +198,9 @@
 <li class="toctree-l1"><a class="reference internal" href="../08-ODE-IVP/InitialValueProblem.html">Ordinary differential equations (and initial value problems)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../09-ODE-IVP-OOP-MolecularDynamics/IntroMolecularDynamics.html">Introduction to molecular dynamics through OOP</a></li>
 </ul>
-<p aria-level="2" class="caption" role="heading"><span class="caption-text">Random Systems</span></p>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Random Numbers and Applications</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="../10-RandomSystems/RandomSystems.html">Random Numbers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../10-RandomSystems/RandomNumbers.html">Random Numbers</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Python introduction</span></p>
 <ul class="nav bd-sidenav">
@@ -633,13 +633,13 @@ inside each cell correspond to indexes)</p>
 </div>
 <p>As you can see, in the 1d array in memory, the first element (1d index 0) has the coordinates (0, 0), the second element (1d index 1) corresponds to (0, 1), and so on. The sixth 1d element, with 1d index 5, has 2D coordinates (1, 2). Can you devise a rule to relate the 1d and the 2d indexes?</p>
 <p>For a general matrix of size <code class="docutils literal notranslate"><span class="pre">MxN</span></code>, you have the following mapping from 2D to 1D</p>
-<div class="amsmath math notranslate nohighlight" id="equation-628284cb-6349-4921-909a-03fca3213178">
-<span class="eqno">(18)<a class="headerlink" href="#equation-628284cb-6349-4921-909a-03fca3213178" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-2a49c583-f279-477f-a8ab-91ae8af403bf">
+<span class="eqno">(18)<a class="headerlink" href="#equation-2a49c583-f279-477f-a8ab-91ae8af403bf" title="Permalink to this equation">#</a></span>\[\begin{equation}
 id = iN + j,
 \end{equation}\]</div>
 <p>while , from 1D to 2D</p>
-<div class="amsmath math notranslate nohighlight" id="equation-fd7f7a26-0903-44e8-b6cb-7fde841a8748">
-<span class="eqno">(19)<a class="headerlink" href="#equation-fd7f7a26-0903-44e8-b6cb-7fde841a8748" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-2fbf9f5f-df1b-4616-9a6e-234285cbdeb7">
+<span class="eqno">(19)<a class="headerlink" href="#equation-2fbf9f5f-df1b-4616-9a6e-234285cbdeb7" title="Permalink to this equation">#</a></span>\[\begin{align}
 i &amp;= id/N,\\
 j &amp;= id%N.
 \end{align}\]</div>
