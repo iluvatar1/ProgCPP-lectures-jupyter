@@ -1,6 +1,5 @@
 *.out*
 *.x*
-#*.cpp
 #*.py
 *.txt
 *.ipynb_checkpoints*
@@ -13,3 +12,8 @@ __pycache__
 drafts
 gradebook.db
 *~
+*.pdf
+DISPLAY/
+*.o
+*.log
+.vscode
