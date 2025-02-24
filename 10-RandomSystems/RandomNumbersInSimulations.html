@@ -1,0 +1,939 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Random numbers in simulations &#8212; Introduction to C++ and Numerical Methods</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles.css?v=03b9d5b1" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = '10-RandomSystems/RandomNumbersInSimulations';</script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Python Programming (very fast) Introduction" href="../11-IntroPython/01-IntroProgrammingPython.html" />
+    <link rel="prev" title="Random Numbers" href="RandomNumbers.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../README.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="https://upload.wikimedia.org/wikipedia/commons/1/18/ISO_C%2B%2B_Logo.svg" class="logo__image only-light" alt="Introduction to C++ and Numerical Methods - Home"/>
+    <script>document.write(`<img src="https://upload.wikimedia.org/wikipedia/commons/1/18/ISO_C%2B%2B_Logo.svg" class="logo__image only-dark" alt="Introduction to C++ and Numerical Methods - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../README.html">
+                    Introduction to C++ and Numerical Methods
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Introduction to C++</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../01-IntroCPP/IntroProgrammingCourse.html">Introduction to Programming and C++</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../01-IntroCPP/Resources.html">Resources</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../01-IntroCPP/CPP-FastPacedIntro.html">Very fast intro to the basics of c++</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Numerical Calculus</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../02-derivatives/NumericalDifferentiation.html">Numerical differentiation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../03-integration/NumericalIntegration_Basics.html">Common Numerical Integration Algorithms</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Modern and primitive arrays, and basic Linear Algebra</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../04-vector-containers/ModernArrays.html">Modern arrays</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../05-matrixI/2D-matrices-to-1D-arrays.html">1D Arrays for 2D Matrices</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../06-ArrayComputing/ArrayComputing-Valarray.html">Vector operations: Coefficient-wise , array computing</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Linear Algebra and Numerical Libraries</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../07-LinearAlgebra/LinearAlgebraEigen.html">Linear Systems : Matrices, Vectors, eigen systems</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Ordinary differential equations: Initial value problems</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../08-ODE-IVP/InitialValueProblem.html">Ordinary differential equations (and initial value problems)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../09-ODE-IVP-OOP-MolecularDynamics/IntroMolecularDynamics.html">Introduction to molecular dynamics through OOP</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Random Numbers and Applications</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="RandomNumbers.html">Random Numbers</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Random numbers in simulations</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Python introduction</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../11-IntroPython/01-IntroProgrammingPython.html">Python Programming (very fast) Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../11-IntroPython/02-IntroProgrammingPython-DataStructs.html">Basic data structures</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../11-IntroPython/03-matplotlib-intro.html">Matplotlib</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../11-IntroPython/04-numpy-basic-reduced.html">Efficient Python arrays : Numpy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../11-IntroPython/05-Scipy.html">SciPy - Library of scientific algorithms for Python</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-launch-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Launch interactive content">
+    <i class="fas fa-rocket"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://mybinder.org/v2/gh/iluvatar1/ProgCPP-lectures-jupyter/master?urlpath=lab/tree/10-RandomSystems/RandomNumbersInSimulations.ipynb" target="_blank"
+   class="btn btn-sm dropdown-item"
+   title="Launch on Binder"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  
+    <img alt="Binder logo" src="../_static/images/logo_binder.svg">
+  </span>
+<span class="btn__text-container">Binder</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://colab.research.google.com/github/iluvatar1/ProgCPP-lectures-jupyter/blob/master/10-RandomSystems/RandomNumbersInSimulations.ipynb" target="_blank"
+   class="btn btn-sm dropdown-item"
+   title="Launch on Colab"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  
+    <img alt="Colab logo" src="../_static/images/logo_colab.png">
+  </span>
+<span class="btn__text-container">Colab</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/iluvatar1/ProgCPP-lectures-jupyter" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/iluvatar1/ProgCPP-lectures-jupyter/issues/new?title=Issue%20on%20page%20%2F10-RandomSystems/RandomNumbersInSimulations.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/10-RandomSystems/RandomNumbersInSimulations.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Random numbers in simulations</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#loaded-dice-ward">Loaded dice (Ward)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#buffon-needle-problem">Buffon needle problem</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#neutron-shielding">Neutron shielding</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#integrals-using-monte-carlo-again">Integrals using Monte Carlo (again)</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#importance-sampling">Importance sampling</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-random-walk">The random walk</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="random-numbers-in-simulations">
+<h1>Random numbers in simulations<a class="headerlink" href="#random-numbers-in-simulations" title="Link to this heading">#</a></h1>
+<hr class="docutils" />
+<p>REFS:</p>
+<ul class="simple">
+<li><p>Boudreau, Applied Computational Physics</p></li>
+<li><p>Heath, Scientific Computing</p></li>
+<li><p>Landau y Paez, Computational physics, problem solving with computers</p></li>
+<li><p>Anagnostoupulos, A practical introduction to computational physics and scientific computing</p></li>
+<li><p>Ward, Numerical Mathematicas and Computing</p></li>
+<li><p>Beu, Introduction to Numerical Programming - A practical guide for scientist and engineers using python and C/C++</p></li>
+</ul>
+<p>The so-called <a class="reference external" href="https://en.wikipedia.org/wiki/Monte_Carlo_method">MonteCarlo methods</a> are computational methods that use random numbers to perform computations or simulations. Applications are immense, from traffic simulations, to atomic systems, to pedestrian crowds, to probabilistic computations, to neutron scattering in nuclear shielding, to materials design, and so on.</p>
+<section id="loaded-dice-ward">
+<h2>Loaded dice (Ward)<a class="headerlink" href="#loaded-dice-ward" title="Link to this heading">#</a></h2>
+<p>Imagine that you have a loaded dice, where each face has different probability to appear (for a fair dice, it should be equal prob). For the present example, let’s assume the following</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Outcome</p></th>
+<th class="head"><p>1</p></th>
+<th class="head"><p>2</p></th>
+<th class="head"><p>3</p></th>
+<th class="head"><p>4</p></th>
+<th class="head"><p>5</p></th>
+<th class="head"><p>6</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Probability</p></td>
+<td><p>0.2</p></td>
+<td><p>0.14</p></td>
+<td><p>0.22</p></td>
+<td><p>0.16</p></td>
+<td><p>0.17</p></td>
+<td><p>0.11</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Think of a way to simulate the loaded dice (hint: using a uniform random number in <span class="math notranslate nohighlight">\([0, 1)\)</span>, you can split the unit interval in terms of the previous probabilities to choose each face at each throw). Launch the simulated die 10000 times and print the prob per face.</p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;iostream&gt;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;fstream&gt;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;random&gt;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;string&gt;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;vector&gt;</span>
+
+<span class="kt">void</span><span class="w"> </span><span class="nf">check_args</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">argc</span><span class="p">,</span><span class="w"> </span><span class="kt">char</span><span class="w"> </span><span class="o">**</span><span class="n">argv</span><span class="p">);</span>
+<span class="kt">void</span><span class="w"> </span><span class="nf">generate_samples_loaded_dice</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">seed</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">nsamples</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">fname</span><span class="p">);</span>
+
+<span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">argc</span><span class="p">,</span><span class="w"> </span><span class="kt">char</span><span class="w"> </span><span class="o">**</span><span class="n">argv</span><span class="p">)</span>
+<span class="p">{</span>
+<span class="w">	</span><span class="n">check_args</span><span class="p">(</span><span class="n">argc</span><span class="p">,</span><span class="w"> </span><span class="n">argv</span><span class="p">);</span>
+
+<span class="w">	</span><span class="k">const</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">SEED</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">stoi</span><span class="p">(</span><span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">]);</span>
+<span class="w">	</span><span class="k">const</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">SAMPLES</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">stoi</span><span class="p">(</span><span class="n">argv</span><span class="p">[</span><span class="mi">2</span><span class="p">]);</span>
+<span class="w">	</span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">FNAME</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">argv</span><span class="p">[</span><span class="mi">3</span><span class="p">];</span>
+<span class="w">    </span><span class="c1">// MAYBE LOADED PROBS CAN ALSO BE READ</span>
+
+<span class="w">	</span><span class="n">generate_samples_loaded_dice</span><span class="p">(</span><span class="n">SEED</span><span class="p">,</span><span class="w"> </span><span class="n">SAMPLES</span><span class="p">,</span><span class="w"> </span><span class="n">FNAME</span><span class="p">);</span>
+
+<span class="w">	</span><span class="k">return</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kt">void</span><span class="w"> </span><span class="nf">check_args</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">argc</span><span class="p">,</span><span class="w"> </span><span class="kt">char</span><span class="w"> </span><span class="o">**</span><span class="n">argv</span><span class="p">)</span>
+<span class="p">{</span>
+<span class="w">	</span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="mi">4</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="n">argc</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">		</span><span class="n">std</span><span class="o">::</span><span class="n">cerr</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;Error. Usage: </span><span class="se">\n</span><span class="s">&quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">argv</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot; SEED SAMPLES FNAME</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">;</span>
+<span class="w">		</span><span class="n">exit</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>
+<span class="w">	</span><span class="p">}</span>
+<span class="p">}</span>
+
+<span class="kt">void</span><span class="w"> </span><span class="nf">generate_samples_loaded_dice</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">seed</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">nsamples</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">fname</span><span class="p">)</span>
+<span class="p">{</span>
+<span class="w">    </span><span class="c1">// TODO</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<div style="background-color: #f0f7fb; color: #055781; padding: 10px; border-left: 5px solid #055781; font-weight: bold; font-size: 20px; margin: 10px 0;">EXERCISE</div>
+<ul class="simple">
+<li><p>[ ] Read the loaded probs from the command line.</p></li>
+<li><p>[ ] Read the loaded probs from a file. Maybe a configuration file using something like toml, yaml or json.</p></li>
+</ul>
+</section>
+<section id="buffon-needle-problem">
+<h2>Buffon needle problem<a class="headerlink" href="#buffon-needle-problem" title="Link to this heading">#</a></h2>
+<p>“In probability theory, Buffon’s needle problem is a question first posed in the 18th century by Georges-Louis Leclerc, Comte de Buffon:[1]</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>Suppose we have a floor made of parallel strips of wood, each the same width, and we drop a needle onto the floor. What is the probability that the needle will lie across a line between two strips?&quot;
+</pre></div>
+</div>
+<p>From:  <a class="reference external" href="https://en.wikipedia.org/wiki/Buffon%27s_needle_problem?useskin=vector">https://en.wikipedia.org/wiki/Buffon’s_needle_problem?useskin=vector</a></p>
+<p>For this problem, we will use a needle shorter than the lines’ separation. We will put the needle center as a random variable, and its orientation will be another random variable.</p>
+<a class="reference internal image-reference" href="../_images/needle.png"><img alt="Needle bug" class="align-center" src="../_images/needle.png" style="width: 70%;" /></a>
+<p>From: Ward</p>
+<p>The theoretical solution predicts that</p>
+<div class="amsmath math notranslate nohighlight" id="equation-98fed3ad-e8d5-49b1-ad80-3de2eedd3b55">
+<span class="eqno">(62)<a class="headerlink" href="#equation-98fed3ad-e8d5-49b1-ad80-3de2eedd3b55" title="Permalink to this equation">#</a></span>\[\begin{equation}
+p = \frac{2}{\pi}\frac{l}{t},
+\end{equation}\]</div>
+<p>where <span class="math notranslate nohighlight">\(l\)</span> is the needle lenght and <span class="math notranslate nohighlight">\(t\)</span> the lines separation.</p>
+<p>Let’s use <span class="math notranslate nohighlight">\(l= t= 1\)</span>. Simulate <code class="docutils literal notranslate"><span class="pre">nsamples</span></code> (at least 50000) throws, and check the numerical probability compared with the expected one. From symmetry, let’s choose <span class="math notranslate nohighlight">\(u \in [0, 1/2)\)</span>, and <span class="math notranslate nohighlight">\(v \in [0, \pi/2)\)</span>. The needle intersects one of the lines if and only if <span class="math notranslate nohighlight">\(u \le \frac{1}{2} \sin v\)</span>. The probability will be the number of times the condition is fulfilled, over the</p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;iostream&gt;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;fstream&gt;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;random&gt;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;string&gt;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;vector&gt;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;cmath&gt;</span>
+
+<span class="kt">void</span><span class="w"> </span><span class="nf">check_args</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">argc</span><span class="p">,</span><span class="w"> </span><span class="kt">char</span><span class="w"> </span><span class="o">**</span><span class="n">argv</span><span class="p">);</span>
+<span class="kt">void</span><span class="w"> </span><span class="nf">generate_samples_needle</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">seed</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">nsamples</span><span class="p">);</span>
+
+<span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">argc</span><span class="p">,</span><span class="w"> </span><span class="kt">char</span><span class="w"> </span><span class="o">**</span><span class="n">argv</span><span class="p">)</span>
+<span class="p">{</span>
+<span class="w">	</span><span class="n">check_args</span><span class="p">(</span><span class="n">argc</span><span class="p">,</span><span class="w"> </span><span class="n">argv</span><span class="p">);</span>
+
+<span class="w">	</span><span class="k">const</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">SEED</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">stoi</span><span class="p">(</span><span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">]);</span>
+<span class="w">	</span><span class="k">const</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">SAMPLES</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">stoi</span><span class="p">(</span><span class="n">argv</span><span class="p">[</span><span class="mi">2</span><span class="p">]);</span>
+
+<span class="w">	</span><span class="n">generate_samples_needle</span><span class="p">(</span><span class="n">SEED</span><span class="p">,</span><span class="w"> </span><span class="n">SAMPLES</span><span class="p">);</span>
+
+<span class="w">	</span><span class="k">return</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kt">void</span><span class="w"> </span><span class="nf">check_args</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">argc</span><span class="p">,</span><span class="w"> </span><span class="kt">char</span><span class="w"> </span><span class="o">**</span><span class="n">argv</span><span class="p">)</span>
+<span class="p">{</span>
+<span class="w">	</span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="mi">3</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="n">argc</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">		</span><span class="n">std</span><span class="o">::</span><span class="n">cerr</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;Error. Usage: </span><span class="se">\n</span><span class="s">&quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">argv</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot; SEED SAMPLES</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">;</span>
+<span class="w">		</span><span class="n">exit</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>
+<span class="w">	</span><span class="p">}</span>
+<span class="p">}</span>
+
+<span class="kt">void</span><span class="w"> </span><span class="nf">generate_samples_needle</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">seed</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">nsamples</span><span class="p">)</span>
+<span class="p">{</span>
+<span class="w">    </span><span class="c1">// TODO</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<div style="background-color: #f0f7fb; color: #055781; padding: 10px; border-left: 5px solid #055781; font-weight: bold; font-size: 20px; margin: 10px 0;">EXERCISE</div>
+<ul class="simple">
+<li><p>[ ] Plot the percentual diff between the expected and computed value as a function of the number of samples.</p></li>
+<li><p>[ ] How many samples will be needed to get a <span class="math notranslate nohighlight">\(10^{-8}\)</span> relative precision?</p></li>
+</ul>
+</section>
+<section id="neutron-shielding">
+<h2>Neutron shielding<a class="headerlink" href="#neutron-shielding" title="Link to this heading">#</a></h2>
+<p>Imagine a flux of neutrons penetrating a lead wall of a given thick. Your task is to estimate the fraction of neutrons that crossed the wall.</p>
+<a class="reference internal image-reference" href="../_images/neutron.png"><img alt="Neutron Shielding , from Ward" class="align-center" src="../_images/neutron.png" style="width: 80%;" /></a>
+<p>Neutrons enter the wall perpendicularly, but then they rebound in random directions, advancing a unit distance after each collision. Each collision dissipates kinetic energy, and we will assume that it is zero after 8 collisions. Compute the fraction of neutrons that cross the wall.</p>
+<div style="background-color: #f0f7fb; color: #055781; padding: 10px; border-left: 5px solid #055781; font-weight: bold; font-size: 20px; margin: 10px 0;">EXERCISE</div>
+<ul class="simple">
+<li><p>[ ] Compute the fraction as a function of the distance.</p></li>
+<li><p>[ ] Compute the fraction as a function of the number of collisions to loose all kinetic energy, with fixed distance.</p></li>
+</ul>
+</section>
+<section id="integrals-using-monte-carlo-again">
+<h2>Integrals using Monte Carlo (again)<a class="headerlink" href="#integrals-using-monte-carlo-again" title="Link to this heading">#</a></h2>
+<p>Monte Carlo methods are well suited to compute multi-dimensional integrals, like</p>
+<div class="amsmath math notranslate nohighlight" id="equation-d81464f1-3079-4fca-bb36-811767e9642f">
+<span class="eqno">(63)<a class="headerlink" href="#equation-d81464f1-3079-4fca-bb36-811767e9642f" title="Permalink to this equation">#</a></span>\[\begin{equation}
+I = \int dx_1\int dx_2\int dx_3 \ldots \int x_D f(\vec x),
+\end{equation}\]</div>
+<p>where its numerical form can be written as</p>
+<div class="amsmath math notranslate nohighlight" id="equation-75bc80ca-b5aa-4040-8fb5-749eed815b45">
+<span class="eqno">(64)<a class="headerlink" href="#equation-75bc80ca-b5aa-4040-8fb5-749eed815b45" title="Permalink to this equation">#</a></span>\[\begin{equation}
+I \simeq \sum_{i_1}^n \sum_{i_2}^n \sum_{i_3}^n \ldots \sum_{i_D}^n w_1 w_2 \ldots w_D f(x_1, x_2, x_3, \ldots , x_D).
+\end{equation}\]</div>
+<p>The total number of points needed for this is about <span class="math notranslate nohighlight">\(N = n^D\)</span>. And the error, for a typical quadrature, goes like <span class="math notranslate nohighlight">\(\epsilon_{\text{math}} = (1/n)^p = N^{-p/D}\)</span>. This is impractical. For <span class="math notranslate nohighlight">\(D = 4\)</span>, this makes the Simpson method a first order approximation.</p>
+<p>In Monte Carlo integration, we choose points uniformly in the given region and then compute the integral. The result quality depends on the actual points chosen and its representativity on the function to be integrated. The numerical integral can be written as</p>
+<div class="amsmath math notranslate nohighlight" id="equation-2ae11377-42f8-40f6-b3f0-cf4b85f029b1">
+<span class="eqno">(65)<a class="headerlink" href="#equation-2ae11377-42f8-40f6-b3f0-cf4b85f029b1" title="Permalink to this equation">#</a></span>\[\begin{equation}
+\int_D f dV \simeq V \langle f \rangle \pm\ \sigma, 
+\end{equation}\]</div>
+<p>where</p>
+<div class="amsmath math notranslate nohighlight" id="equation-a665f359-d428-41ea-b864-417a0a74bc67">
+<span class="eqno">(66)<a class="headerlink" href="#equation-a665f359-d428-41ea-b864-417a0a74bc67" title="Permalink to this equation">#</a></span>\[\begin{equation}
+\sigma = V \sqrt{\frac{\langle f^2 \rangle - \langle f \rangle^2}{n}} = \frac{V}{\sqrt{n}} \sigma_f
+\end{equation}\]</div>
+<p>is the standard deviation (<span class="math notranslate nohighlight">\(\sigma^2\)</span> is called the variance). The error decreases as <span class="math notranslate nohighlight">\(n^{-1/2}\)</span> regardless the dimension, which is very advantageous for <span class="math notranslate nohighlight">\(D \ge 4\)</span>.</p>
+<section id="importance-sampling">
+<h3>Importance sampling<a class="headerlink" href="#importance-sampling" title="Link to this heading">#</a></h3>
+<p>For <span class="math notranslate nohighlight">\(n=20\)</span> and  <span class="math notranslate nohighlight">\(D = 20\)</span>, computing the equipartition function</p>
+<div class="amsmath math notranslate nohighlight" id="equation-2c13089d-3618-4fe8-94bc-dcd661a02f8f">
+<span class="eqno">(67)<a class="headerlink" href="#equation-2c13089d-3618-4fe8-94bc-dcd661a02f8f" title="Permalink to this equation">#</a></span>\[\begin{equation}
+Z = \int \ldots \int d^3 r_1 \ldots d^3 r_N \exp\left[ -\frac{1}{k_B T}E(\vec r_1, \ldots, \vec r_N)\right]
+\end{equation}\]</div>
+<p>requires <span class="math notranslate nohighlight">\(10^{60}\)</span> operations, which, in a petascale supercomputer (more than <span class="math notranslate nohighlight">\(10^{16}\)</span> flops), will take around <span class="math notranslate nohighlight">\(10^{36}\)</span> years. Also, the actual choice of points is important. For instance, to compute points inside an hypersphere in <span class="math notranslate nohighlight">\(D\)</span> dimensions, we sample points uniformly in the hyper cube, and the probability is</p>
+<div class="amsmath math notranslate nohighlight" id="equation-30679996-66e3-4be7-b722-2dbfe36fc7ed">
+<span class="eqno">(68)<a class="headerlink" href="#equation-30679996-66e3-4be7-b722-2dbfe36fc7ed" title="Permalink to this equation">#</a></span>\[\begin{equation}
+P(D) = \frac{2}{\Gamma(D/2)} \left(\frac{\sqrt{\pi}}{2} \right)^D, 
+\end{equation}\]</div>
+<p>which, for <span class="math notranslate nohighlight">\(D = 100\)</span>, is about <span class="math notranslate nohighlight">\(10^{-68}\)</span>, so basically all points are rejected.</p>
+<p>Therefore, it is advisable to have a procedure that allows to select points inside the region where the function is more representative. To do so, we rewritte the integral as</p>
+<div class="amsmath math notranslate nohighlight" id="equation-58b900e8-132a-4bd7-8a1b-2a6f53244da1">
+<span class="eqno">(69)<a class="headerlink" href="#equation-58b900e8-132a-4bd7-8a1b-2a6f53244da1" title="Permalink to this equation">#</a></span>\[\begin{equation}
+\int f(\vec x) d\vec x = \int h(\vec x) w(\vec x) d\vec x,
+\end{equation}\]</div>
+<p>where <span class="math notranslate nohighlight">\(w(\vec x)\)</span> is a weight function to choose the points, and must be normalized. After that,<span class="math notranslate nohighlight">\(n\)</span> random points are generated according to the weight function, and the integral is simply given as</p>
+<div class="amsmath math notranslate nohighlight" id="equation-b16ea846-1c14-41b9-9350-95abf57e8140">
+<span class="eqno">(70)<a class="headerlink" href="#equation-b16ea846-1c14-41b9-9350-95abf57e8140" title="Permalink to this equation">#</a></span>\[\begin{equation}
+\int d\vec x f(\vec x) \simeq \bar h,
+\end{equation}\]</div>
+<p>with error</p>
+<div class="amsmath math notranslate nohighlight" id="equation-debae539-b3cc-4e8a-b891-a5170a6ea1b5">
+<span class="eqno">(71)<a class="headerlink" href="#equation-debae539-b3cc-4e8a-b891-a5170a6ea1b5" title="Permalink to this equation">#</a></span>\[\begin{equation}
+\sigma = \sqrt{\frac{\bar{h^2} - (\bar h)^2}{N-1}}.
+\end{equation}\]</div>
+<p>There is some freedom to chose the weight function.  The idea is to focus the variation in the weight function, so to make the <span class="math notranslate nohighlight">\(h\)</span> function as constant as possible.</p>
+<p>Example (Boudreau): Let’s compute the following</p>
+<div class="amsmath math notranslate nohighlight" id="equation-4682930d-ca4f-4bbb-ad22-8341e8e80918">
+<span class="eqno">(72)<a class="headerlink" href="#equation-4682930d-ca4f-4bbb-ad22-8341e8e80918" title="Permalink to this equation">#</a></span>\[\begin{equation}
+I = \int_0^\infty dx\  x^2 e^{-x},
+\end{equation}\]</div>
+<p>Using three weight functions as follows:</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p><span class="math notranslate nohighlight">\(w(x)\)</span></p></th>
+<th class="head"><p><span class="math notranslate nohighlight">\(h(x)\)</span></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(e^{-x}\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(x^2\)</span></p></td>
+</tr>
+<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(xe^{-x}\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(x\)</span></p></td>
+</tr>
+<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(x^2e^{-x}\)</span></p></td>
+<td><p>1</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Implement a program that prints the result, and the error, comparing with the actual value of 2.</p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;iostream&gt;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;fstream&gt;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;random&gt;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;string&gt;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;vector&gt;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;cmath&gt;</span>
+
+<span class="kt">void</span><span class="w"> </span><span class="nf">check_args</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">argc</span><span class="p">,</span><span class="w"> </span><span class="kt">char</span><span class="w"> </span><span class="o">**</span><span class="n">argv</span><span class="p">);</span>
+<span class="kt">void</span><span class="w"> </span><span class="nf">importance_sampling0</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">seed</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">nsamples</span><span class="p">);</span>
+<span class="kt">void</span><span class="w"> </span><span class="nf">importance_sampling1</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">seed</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">nsamples</span><span class="p">);</span>
+<span class="kt">void</span><span class="w"> </span><span class="nf">importance_sampling2</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">seed</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">nsamples</span><span class="p">);</span>
+
+<span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">argc</span><span class="p">,</span><span class="w"> </span><span class="kt">char</span><span class="w"> </span><span class="o">**</span><span class="n">argv</span><span class="p">)</span>
+<span class="p">{</span>
+<span class="w">	</span><span class="n">check_args</span><span class="p">(</span><span class="n">argc</span><span class="p">,</span><span class="w"> </span><span class="n">argv</span><span class="p">);</span>
+
+<span class="w">	</span><span class="k">const</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">SEED</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">stoi</span><span class="p">(</span><span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">]);</span>
+<span class="w">	</span><span class="k">const</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">SAMPLES</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">stoi</span><span class="p">(</span><span class="n">argv</span><span class="p">[</span><span class="mi">2</span><span class="p">]);</span>
+
+<span class="w">	</span><span class="n">importance_sampling0</span><span class="p">(</span><span class="n">SEED</span><span class="p">,</span><span class="w"> </span><span class="n">SAMPLES</span><span class="p">);</span>
+<span class="w">	</span><span class="n">importance_sampling1</span><span class="p">(</span><span class="n">SEED</span><span class="p">,</span><span class="w"> </span><span class="n">SAMPLES</span><span class="p">);</span>
+<span class="w">	</span><span class="n">importance_sampling2</span><span class="p">(</span><span class="n">SEED</span><span class="p">,</span><span class="w"> </span><span class="n">SAMPLES</span><span class="p">);</span>
+
+<span class="w">	</span><span class="k">return</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kt">void</span><span class="w"> </span><span class="nf">check_args</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">argc</span><span class="p">,</span><span class="w"> </span><span class="kt">char</span><span class="w"> </span><span class="o">**</span><span class="n">argv</span><span class="p">)</span>
+<span class="p">{</span>
+<span class="w">	</span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="mi">3</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="n">argc</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">		</span><span class="n">std</span><span class="o">::</span><span class="n">cerr</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;Error. Usage: </span><span class="se">\n</span><span class="s">&quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">argv</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot; SEED SAMPLES</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">;</span>
+<span class="w">		</span><span class="n">exit</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>
+<span class="w">	</span><span class="p">}</span>
+<span class="p">}</span>
+
+<span class="kt">void</span><span class="w"> </span><span class="nf">importance_sampling0</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">seed</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">nsamples</span><span class="p">)</span>
+<span class="p">{</span>
+<span class="w">    </span><span class="c1">// TODO</span>
+<span class="w">    </span><span class="c1">// define aux random number generators</span>
+<span class="w">	</span><span class="n">std</span><span class="o">::</span><span class="n">mt19937</span><span class="w"> </span><span class="n">gen</span><span class="p">(</span><span class="n">seed</span><span class="p">);</span><span class="w"> </span><span class="c1">// random bit generator</span>
+<span class="w">	</span><span class="n">std</span><span class="o">::</span><span class="n">exponential_distribution</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;</span><span class="w"> </span><span class="n">w</span><span class="p">(</span><span class="mf">1.0</span><span class="p">);</span><span class="w"> </span><span class="c1">// first weight function to test</span>
+<span class="w">	</span><span class="k">auto</span><span class="w"> </span><span class="n">h</span><span class="w">  </span><span class="o">=</span><span class="w"> </span><span class="p">[](</span><span class="kt">double</span><span class="w"> </span><span class="n">x</span><span class="p">){</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="n">x</span><span class="o">*</span><span class="n">x</span><span class="p">;</span><span class="w"> </span><span class="p">};</span><span class="w"> </span><span class="c1">// its integrand</span>
+<span class="w">	</span><span class="kt">double</span><span class="w"> </span><span class="n">sum</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">0.0</span><span class="p">,</span><span class="w"> </span><span class="n">sum_2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">0.0</span><span class="p">;</span>
+<span class="w">	</span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">ii</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">ii</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">nsamples</span><span class="p">;</span><span class="w"> </span><span class="o">++</span><span class="n">ii</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">		</span><span class="kt">double</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">w</span><span class="p">(</span><span class="n">gen</span><span class="p">);</span><span class="w"> </span><span class="c1">// generate a random number</span>
+<span class="w">		</span><span class="kt">double</span><span class="w"> </span><span class="n">val</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">h</span><span class="p">(</span><span class="n">x</span><span class="p">);</span><span class="w"> </span><span class="c1">// evaluate the integrand</span>
+<span class="w">		</span><span class="n">sum</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="n">val</span><span class="p">;</span><span class="w"> </span><span class="c1">// accumulate the sum</span>
+<span class="w">		</span><span class="n">sum_2</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="n">val</span><span class="o">*</span><span class="n">val</span><span class="p">;</span><span class="w"> </span><span class="c1">// accumulate the sum</span>
+<span class="w">	</span><span class="p">}</span>
+<span class="w">	</span><span class="kt">double</span><span class="w"> </span><span class="n">mean</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">sum</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">nsamples</span><span class="p">;</span><span class="w"> </span><span class="c1">// compute the mean</span>
+<span class="w">	</span><span class="kt">double</span><span class="w"> </span><span class="n">var</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">sum_2</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">nsamples</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">mean</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">mean</span><span class="p">;</span><span class="w"> </span><span class="c1">// compute the variance</span>
+<span class="w">	</span><span class="kt">double</span><span class="w"> </span><span class="n">sigma</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">sqrt</span><span class="p">(</span><span class="n">var</span><span class="o">/</span><span class="p">(</span><span class="n">nsamples</span><span class="mi">-1</span><span class="p">));</span><span class="w"> </span><span class="c1">// compute the standard deviation</span>
+<span class="w">	</span><span class="kt">double</span><span class="w"> </span><span class="n">rel_err</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">fabs</span><span class="p">(</span><span class="mf">1.0</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">mean</span><span class="o">/</span><span class="mf">2.0</span><span class="p">);</span>
+<span class="w">	</span><span class="n">std</span><span class="o">::</span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;%20.16e +- %20.16e</span><span class="se">\t</span><span class="s">%20.16e</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">mean</span><span class="p">,</span><span class="w"> </span><span class="n">sigma</span><span class="p">,</span><span class="w"> </span><span class="n">rel_err</span><span class="p">);</span>
+
+<span class="p">}</span>
+
+<span class="kt">void</span><span class="w"> </span><span class="nf">importance_sampling1</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">seed</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">nsamples</span><span class="p">)</span>
+<span class="p">{</span>
+<span class="w">    </span><span class="c1">// TODO</span>
+<span class="w">    </span><span class="c1">// define aux random number generators</span>
+<span class="w">	</span><span class="n">std</span><span class="o">::</span><span class="n">mt19937</span><span class="w"> </span><span class="n">gen</span><span class="p">(</span><span class="n">seed</span><span class="p">);</span><span class="w"> </span><span class="c1">// random bit generator</span>
+<span class="p">}</span>
+
+
+<span class="kt">void</span><span class="w"> </span><span class="nf">importance_sampling2</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">seed</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">nsamples</span><span class="p">)</span>
+<span class="p">{</span>
+<span class="w">    </span><span class="c1">// TODO</span>
+<span class="w">    </span><span class="c1">// define aux random number generators</span>
+<span class="w">	</span><span class="n">std</span><span class="o">::</span><span class="n">mt19937</span><span class="w"> </span><span class="n">gen</span><span class="p">(</span><span class="n">seed</span><span class="p">);</span><span class="w"> </span><span class="c1">// random bit generator</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="the-random-walk">
+<h2>The random walk<a class="headerlink" href="#the-random-walk" title="Link to this heading">#</a></h2>
+<p>The <a class="reference external" href="https://en.wikipedia.org/wiki/Random_walk">random walk</a>, is an example of <a class="reference external" href="https://en.wikipedia.org/wiki/Stochastic_process">random process</a>. It has been used in several applications: <a class="reference external" href="https://en.wikipedia.org/wiki/Random_walk?useskin=vector#Applications">https://en.wikipedia.org/wiki/Random_walk?useskin=vector#Applications</a></p>
+<a class="reference internal image-reference" href="https://upload.wikimedia.org/wikipedia/commons/1/18/Random_walk_2000000.png"><img alt="random walk from https://upload.wikimedia.org/wikipedia/commons/1/18/Random_walk_2000000.png" class="align-center" src="https://upload.wikimedia.org/wikipedia/commons/1/18/Random_walk_2000000.png" style="width: 80%;" /></a>
+<p>We will define a grid, and our walker will choose the next position at random. We are interested in computing the mean squared distance as function of time, which is related with a diffusion process. Since we are using four next neighbors, we need to choose those directions with equal probability, with a “fair” dice.</p>
+<p>Write a program to simulate the random walk in 2D. Use a grid of variable sixe (read it from the command line), and perform <code class="docutils literal notranslate"><span class="pre">NSTEPS</span></code>. Print the mean square distance as a function of the iteration. What do you find?</p>
+<div style="background-color: #f0f7fb; color: #055781; padding: 10px; border-left: 5px solid #055781; font-weight: bold; font-size: 20px; margin: 10px 0;">EXERCISE</div>
+<ul class="simple">
+<li><p>[ ] Create a random walk in 3 and 4 dimensions. Also plot the distance as a function of time.</p></li>
+<li><p>[ ] Self avoiding random walk: Perform a 2D random walk BUT avoid moving to a site that was already visited. Is the diffusion constant the same? what do you expect? See <a class="reference external" href="https://en.wikipedia.org/wiki/Self-avoiding_walk">https://en.wikipedia.org/wiki/Self-avoiding_walk</a></p></li>
+<li><p>[ ] Create a slight load to the positive x direction. What happens with the random walk?</p></li>
+<li><p>[ ] Create an ensemble of random walkers. Compute the system total entropy as
+\begin{equation}
+S = -\sum p_i\ln p_i,
+\end{equation}
+where <span class="math notranslate nohighlight">\(p_i = n_i/N\)</span> is the total number <span class="math notranslate nohighlight">\(n_i\)</span> of walkers in cell <span class="math notranslate nohighlight">\(i\)</span>, and <span class="math notranslate nohighlight">\(N\)</span> is the total number of walkers. Plot it as a function of time, starting from all the walkers in the center. What do you see?</p></li>
+</ul>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./10-RandomSystems"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="RandomNumbers.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Random Numbers</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="../11-IntroPython/01-IntroProgrammingPython.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Python Programming (very fast) Introduction</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#loaded-dice-ward">Loaded dice (Ward)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#buffon-needle-problem">Buffon needle problem</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#neutron-shielding">Neutron shielding</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#integrals-using-monte-carlo-again">Integrals using Monte Carlo (again)</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#importance-sampling">Importance sampling</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-random-walk">The random walk</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By William Oquendo
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2024.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

@@ -16,22 +16,20 @@
     document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
     document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
   </script>
-  <!--
-    this give us a css class that will be invisible only if js is disabled
-  -->
-  <noscript>
-    <style>
-      .pst-js-only { display: none !important; }
-
-    </style>
-  </noscript>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="../_static/styles/theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
-<link href="../_static/styles/pydata-sphinx-theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+  <link href="../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
 
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
-    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=a3416100" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=eba8b062" />
     <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
     <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
@@ -39,11 +37,10 @@
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
     <link rel="stylesheet" type="text/css" href="../_static/styles.css?v=03b9d5b1" />
   
-  <!-- So that users can add custom icons -->
-  <script src="../_static/scripts/fontawesome.js?digest=8878045cc6db502f8baf"></script>
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
-<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
 
     <script src="../_static/documentation_options.js?v=9eb32ce0"></script>
     <script src="../_static/doctools.js?v=9a2dae69"></script>
@@ -67,11 +64,10 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Python Programming (very fast) Introduction" href="../11-IntroPython/01-IntroProgrammingPython.html" />
+    <link rel="next" title="Random numbers in simulations" href="RandomNumbersInSimulations.html" />
     <link rel="prev" title="Introduction to molecular dynamics through OOP" href="../09-ODE-IVP-OOP-MolecularDynamics/IntroMolecularDynamics.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
-  <meta name="docsearch:version" content="" />
   </head>
   
   
@@ -87,8 +83,19 @@
     <i class="fa-solid fa-arrow-up"></i>Back to top</button>
 
   
-  <dialog id="pst-search-dialog">
-    
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
 <form class="bd-search d-flex align-items-center"
       action="../search.html"
       method="get">
@@ -96,6 +103,7 @@
   <input type="search"
          class="form-control"
          name="q"
+         id="search-input"
          placeholder="Search this book..."
          aria-label="Search this book..."
          autocomplete="off"
@@ -103,8 +111,8 @@
          autocapitalize="off"
          spellcheck="false"/>
   <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
-</form>
-  </dialog>
+</form></div>
+  </div>
 
   <div class="pst-async-banner-revealer d-none">
   <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
@@ -120,8 +128,7 @@
       
       
       
-      <dialog id="pst-primary-sidebar-modal"></dialog>
-      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+      <div class="bd-sidebar-primary bd-sidebar">
         
 
   
@@ -151,17 +158,21 @@
     
     
     <img src="https://upload.wikimedia.org/wikipedia/commons/1/18/ISO_C%2B%2B_Logo.svg" class="logo__image only-light" alt="Introduction to C++ and Numerical Methods - Home"/>
-    <img src="https://upload.wikimedia.org/wikipedia/commons/1/18/ISO_C%2B%2B_Logo.svg" class="logo__image only-dark pst-js-only" alt="Introduction to C++ and Numerical Methods - Home"/>
+    <script>document.write(`<img src="https://upload.wikimedia.org/wikipedia/commons/1/18/ISO_C%2B%2B_Logo.svg" class="logo__image only-dark" alt="Introduction to C++ and Numerical Methods - Home"/>`);</script>
   
   
 </a></div>
         <div class="sidebar-primary-item">
 
-<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
- <i class="fa-solid fa-magnifying-glass"></i>
- <span class="search-button__default-text">Search</span>
- <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
-</button></div>
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
         <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
     <div class="bd-toc-item navbar-nav active">
         
@@ -201,6 +212,7 @@
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Random Numbers and Applications</span></p>
 <ul class="current nav bd-sidenav">
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">Random Numbers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="RandomNumbersInSimulations.html">Random numbers in simulations</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Python introduction</span></p>
 <ul class="nav bd-sidenav">
@@ -217,14 +229,9 @@
   
   
   <div class="sidebar-primary-items__end sidebar-primary__section">
-      <div class="sidebar-primary-item">
-<div id="ethical-ad-placement"
-      class="flat"
-      data-ea-publisher="readthedocs"
-      data-ea-type="readthedocs-sidebar"
-      data-ea-manual="true">
-</div></div>
   </div>
+  
+  <div id="rtd-footer-container"></div>
 
 
       </div>
@@ -417,16 +424,24 @@
 
 
 
-<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
-  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
-  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
-  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
-</button>
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
 
 
-<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
     <i class="fa-solid fa-magnifying-glass fa-lg"></i>
-</button>
+  </button>
+`);
+</script>
 <button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
     <span class="fa-solid fa-list"></span>
 </button>
@@ -506,8 +521,8 @@ integral, and perform simulations.</p>
 <section id="linear-congruential-random-number-generator">
 <h2>Linear congruential Random Number Generator<a class="headerlink" href="#linear-congruential-random-number-generator" title="Link to this heading">#</a></h2>
 <p>Represented by</p>
-<div class="amsmath math notranslate nohighlight" id="equation-a74e11b6-74bb-42c3-9c90-91f0dad064a9">
-<span class="eqno">(50)<a class="headerlink" href="#equation-a74e11b6-74bb-42c3-9c90-91f0dad064a9" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-c36ae314-732d-4866-abe8-9903c9bc95aa">
+<span class="eqno">(50)<a class="headerlink" href="#equation-c36ae314-732d-4866-abe8-9903c9bc95aa" title="Permalink to this equation">#</a></span>\[\begin{equation}
 x' = (ax + c) \mod m,
 \end{equation}\]</div>
 <p>where <span class="math notranslate nohighlight">\(a, c, m\)</span> are integers constants. The random generator quality depends on those constants. There are several proposal for them, check
@@ -641,7 +656,7 @@ the LCRNG <span class="math notranslate nohighlight">\(3N\)</span> times.</p></l
 <section id="computing-the-histogram">
 <h3>Computing the histogram<a class="headerlink" href="#computing-the-histogram" title="Link to this heading">#</a></h3>
 <p>A histogram is basically counter that counts how many samples fall into a bin or box. A histogram needs a minimum or a maximum limit and also a number of bins. Then you can just count how many samples for into a single bin I’m from that you can estimate for instance, the probability density function or the cummulative probability, or whatever you need.</p>
-<p>The following program shows how to compute the histogram from samples read from a file (create first a file with the random samples), and then print a pdf from the histogram (you have to complete some parts). If I have a count histogram, <span class="math notranslate nohighlight">\(c_i\)</span>, the probability can be estimated as <span class="math notranslate nohighlight">\(p_i = c_i/\sum_i c_i\)</span>. And the the probability desntiy function as <span class="math notranslate nohighlight">\(\text{pdf}_i = p_i\cdot\Delta x\)</span>, where <span class="math notranslate nohighlight">\(\Delta x\)</span> is the bin width.</p>
+<p>The following program shows how to compute the histogram from samples read from a file (create first a file with the random samples), and then print a pdf from the histogram (you have to complete some parts). If I have a count histogram, <span class="math notranslate nohighlight">\(c_i\)</span>, the probability can be estimated as <span class="math notranslate nohighlight">\(p_i = c_i/\sum_i c_i\)</span>. And the the probability density function as <span class="math notranslate nohighlight">\(\text{pdf}_i = p_i/\Delta x\)</span>, where <span class="math notranslate nohighlight">\(\Delta x\)</span> is the bin width.</p>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;iostream&gt;</span>
 <span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;fstream&gt;</span>
 <span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;random&gt;</span>
@@ -735,18 +750,18 @@ the LCRNG <span class="math notranslate nohighlight">\(3N\)</span> times.</p></l
 <section id="example-exponential-distribution">
 <h3>Example: Exponential distribution<a class="headerlink" href="#example-exponential-distribution" title="Link to this heading">#</a></h3>
 <p>In this case you want to invert the cumulative probability function. Let’s say that you have an exponential distribution, whose density is</p>
-<div class="amsmath math notranslate nohighlight" id="equation-7f4866a8-46d6-49f2-b1a3-4cecd3f9b5a8">
-<span class="eqno">(51)<a class="headerlink" href="#equation-7f4866a8-46d6-49f2-b1a3-4cecd3f9b5a8" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-34bef461-0c81-469d-998a-8cc666b80fac">
+<span class="eqno">(51)<a class="headerlink" href="#equation-34bef461-0c81-469d-998a-8cc666b80fac" title="Permalink to this equation">#</a></span>\[\begin{equation}
 f(t) = \lambda e^{-\lambda t}, t &gt; 0
 \end{equation}\]</div>
 <p>whose cumulative distribution is</p>
-<div class="amsmath math notranslate nohighlight" id="equation-d60a5506-5607-4d74-8830-14376c18b365">
-<span class="eqno">(52)<a class="headerlink" href="#equation-d60a5506-5607-4d74-8830-14376c18b365" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-fecd04e7-1d9b-49bc-b185-e23e58495629">
+<span class="eqno">(52)<a class="headerlink" href="#equation-fecd04e7-1d9b-49bc-b185-e23e58495629" title="Permalink to this equation">#</a></span>\[\begin{equation}
 F(x) = \int_0^x f(t) dt = 1 - e^{-\lambda x}.
 \end{equation}\]</div>
 <p>Now, the cumulative distribution is in the range <span class="math notranslate nohighlight">\([0, 1)\)</span>. If we equate it to a uniform random number in the same interval, <span class="math notranslate nohighlight">\(z = F(x)\)</span>, then we can invert this expression and obtain <span class="math notranslate nohighlight">\(x = F^{-1}(z)\)</span>. For the exponential distribution we get</p>
-<div class="amsmath math notranslate nohighlight" id="equation-1db3be7b-b7ed-4d9b-b7d0-6f87f4118ca6">
-<span class="eqno">(53)<a class="headerlink" href="#equation-1db3be7b-b7ed-4d9b-b7d0-6f87f4118ca6" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-f4bf0e95-0d1a-4da5-8e6a-e5f56c2a9d36">
+<span class="eqno">(53)<a class="headerlink" href="#equation-f4bf0e95-0d1a-4da5-8e6a-e5f56c2a9d36" title="Permalink to this equation">#</a></span>\[\begin{equation}
 x = -\frac{\ln (1-z)}{\lambda}
 \end{equation}\]</div>
 <div style="background-color: #f0f7fb; color: #055781; padding: 10px; border-left: 5px solid #055781; font-weight: bold; font-size: 20px; margin: 10px 0;">EXERCISE</div>
@@ -777,10 +792,6 @@ x = -\frac{\ln (1-z)}{\lambda}
 <span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
 <span class="p">}</span>
 
-<span class="kt">double</span><span class="w"> </span><span class="nf">f</span><span class="p">(</span><span class="kt">double</span><span class="w"> </span><span class="n">x</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="mf">3.0</span><span class="o">*</span><span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">x</span><span class="o">*</span><span class="n">x</span><span class="p">)</span><span class="o">/</span><span class="mf">4.0</span><span class="p">;</span>
-<span class="p">}</span>
-
 
 <span class="kt">void</span><span class="w"> </span><span class="nf">exponential_inverse_method</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">seed</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">samples</span><span class="p">,</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">fname</span><span class="p">,</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="n">mylambda</span><span class="p">)</span>
 <span class="p">{</span>
@@ -806,13 +817,13 @@ x = -\frac{\ln (1-z)}{\lambda}
 </ul>
 <p>You can cehck more at <a class="reference external" href="https://bookdown.org/rdpeng/advstatcomp/rejection-sampling.html">https://bookdown.org/rdpeng/advstatcomp/rejection-sampling.html</a></p>
 <p>For instance, if we want to generate samples with the pdf</p>
-<div class="amsmath math notranslate nohighlight" id="equation-41519765-bb7e-4a57-ae2a-092864c9c167">
-<span class="eqno">(54)<a class="headerlink" href="#equation-41519765-bb7e-4a57-ae2a-092864c9c167" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-32b23604-2ec1-4782-b704-bb1bd3d24b98">
+<span class="eqno">(54)<a class="headerlink" href="#equation-32b23604-2ec1-4782-b704-bb1bd3d24b98" title="Permalink to this equation">#</a></span>\[\begin{equation}
 f(x) = \frac{3}{4} (1 - x^2).
 \end{equation}\]</div>
 <p>Since this is always than 3.0/4.0, we can use , as auxiliary,</p>
-<div class="amsmath math notranslate nohighlight" id="equation-a7196153-5c1f-43cd-b33a-ce9847440e9c">
-<span class="eqno">(55)<a class="headerlink" href="#equation-a7196153-5c1f-43cd-b33a-ce9847440e9c" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-eaaa5654-46b5-49f8-9fd9-f4a5c818e11e">
+<span class="eqno">(55)<a class="headerlink" href="#equation-eaaa5654-46b5-49f8-9fd9-f4a5c818e11e" title="Permalink to this equation">#</a></span>\[\begin{equation}
 g(x) = 3/4. 
 \end{equation}\]</div>
 <p>So, we generate a random sample <span class="math notranslate nohighlight">\(x\)</span> in <span class="math notranslate nohighlight">\([-1, 1)\)</span> (where <span class="math notranslate nohighlight">\(f\)</span> is defined), then generate a uniform <span class="math notranslate nohighlight">\(r\)</span>, and accept only if <span class="math notranslate nohighlight">\(r &lt; f(x) \)</span>.</p>
@@ -859,7 +870,7 @@ Implement rejection sampling for the previous example and plot the histogram.
 </section>
 <section id="sampling-regions">
 <h2>Sampling regions<a class="headerlink" href="#sampling-regions" title="Link to this heading">#</a></h2>
-<p>Let’s assume that you want to generate random samples uniformly distributed inside the ellipse <span class="math notranslate nohighlight">\(x^2 + 4y^2 = 4\)</span>.  To do so, you can just use rejection sampling as before, using as limits the limits of the rectangle circumscribing the ellipse, or even optimize, by not generating samples across the whole rectanble but inside the region (for a given <span class="math notranslate nohighlight">\(x\)</span>, generate <span class="math notranslate nohighlight">\(y\)</span> in <span class="math notranslate nohighlight">\([-\sqrt{1-x^2/4}, +\sqrt{1-x^2/4})\)</span>. Are the results the same?</p>
+<p>Let’s assume that you want to generate random samples uniformly distributed inside the ellipse <span class="math notranslate nohighlight">\(x^2 + 4y^2 = 4\)</span>.  To do so, you can just use rejection sampling as before, using as limits the limits of the rectangle circumscribing the ellipse, or even optimize, by not generating samples across the whole rectangle but inside the region (for a given <span class="math notranslate nohighlight">\(x\)</span>, generate <span class="math notranslate nohighlight">\(y\)</span> in <span class="math notranslate nohighlight">\([-\sqrt{1-x^2/4}, +\sqrt{1-x^2/4})\)</span>. Are the results the same?</p>
 <ol class="arabic simple">
 <li><p>Generate random numbers <span class="math notranslate nohighlight">\(-2 \le x \le 2\)</span>, and <span class="math notranslate nohighlight">\(-1 \le y \le 1\)</span>, reject those outside the region.</p></li>
 <li><p>As another approach, do the same but, to avoid wasting number, generate <span class="math notranslate nohighlight">\(|y| \le \frac{1}{2}\sqrt{4-x^2}\)</span> so you always accept it.</p></li>
@@ -977,30 +988,30 @@ Implement rejection sampling for the previous example and plot the histogram.
 <section id="computing-multi-dimensional-integrals">
 <h2>Computing multi-dimensional integrals<a class="headerlink" href="#computing-multi-dimensional-integrals" title="Link to this heading">#</a></h2>
 <p>Computing integrals using random numbers is easy and practical, specially for large dimensions. In the unit interval, one can compute</p>
-<div class="amsmath math notranslate nohighlight" id="equation-f4d8aee6-6b7b-4da4-9370-ce4f40e318cd">
-<span class="eqno">(56)<a class="headerlink" href="#equation-f4d8aee6-6b7b-4da4-9370-ce4f40e318cd" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-fbe3bac7-f714-4ce1-aadf-e7c9e704acf2">
+<span class="eqno">(56)<a class="headerlink" href="#equation-fbe3bac7-f714-4ce1-aadf-e7c9e704acf2" title="Permalink to this equation">#</a></span>\[\begin{equation}
 \int_0^1 f(x) dx \simeq \frac{1}{n} \sum_{i=1}^n f(x_i),
 \end{equation}\]</div>
 <p>so the integral is approximated as the average function value. For a general interval, one has</p>
-<div class="amsmath math notranslate nohighlight" id="equation-81abb5ac-5f3c-44b1-b8f8-b10003e2666c">
-<span class="eqno">(57)<a class="headerlink" href="#equation-81abb5ac-5f3c-44b1-b8f8-b10003e2666c" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-9f5ab3d4-fc34-4d14-a797-8384c6c67fee">
+<span class="eqno">(57)<a class="headerlink" href="#equation-9f5ab3d4-fc34-4d14-a797-8384c6c67fee" title="Permalink to this equation">#</a></span>\[\begin{equation}
 \frac{1}{b-a}\int_a^b f(x) dx \simeq \frac{1}{n} \sum_{i=1}^n f(x_i),
 \end{equation}\]</div>
 <p>or , in higher dimensions</p>
-<div class="amsmath math notranslate nohighlight" id="equation-03f91199-301a-45cc-bf2a-68d95289ecf8">
-<span class="eqno">(58)<a class="headerlink" href="#equation-03f91199-301a-45cc-bf2a-68d95289ecf8" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-561fd170-5ea7-4f36-ad15-78e7674e67cc">
+<span class="eqno">(58)<a class="headerlink" href="#equation-561fd170-5ea7-4f36-ad15-78e7674e67cc" title="Permalink to this equation">#</a></span>\[\begin{equation}
 \frac{1}{8}\int_1^3\int_{-1}^1 \int_0^2 f(x, y, z) dxdydz \simeq \frac{1}{n} \sum_{i=1}^n f(x_i, y_i, z_i).
 \end{equation}\]</div>
 <p>In general one has</p>
-<div class="amsmath math notranslate nohighlight" id="equation-5b23232c-1ab8-411f-8ece-651554752204">
-<span class="eqno">(59)<a class="headerlink" href="#equation-5b23232c-1ab8-411f-8ece-651554752204" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-707b91d2-f2ad-4a4b-95d2-62f4b3e86f34">
+<span class="eqno">(59)<a class="headerlink" href="#equation-707b91d2-f2ad-4a4b-95d2-62f4b3e86f34" title="Permalink to this equation">#</a></span>\[\begin{equation}
 \int_A f \simeq (\text{measure of}\ A) \times (\text{average of}\ f\ \text{over}\ n\ \text{random points on}\ A)
 \end{equation}\]</div>
 <section id="example-2d-integral">
 <h3>Example: 2D Integral<a class="headerlink" href="#example-2d-integral" title="Link to this heading">#</a></h3>
 <p>Compute the following integral</p>
-<div class="amsmath math notranslate nohighlight" id="equation-5a580852-99eb-4d4c-a9c6-fcbfafc640c9">
-<span class="eqno">(60)<a class="headerlink" href="#equation-5a580852-99eb-4d4c-a9c6-fcbfafc640c9" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-6d1cabaf-7815-4ae2-b3aa-520f7248c031">
+<span class="eqno">(60)<a class="headerlink" href="#equation-6d1cabaf-7815-4ae2-b3aa-520f7248c031" title="Permalink to this equation">#</a></span>\[\begin{equation}
 \iint_\limits{\Omega}\sin\sqrt{\ln(x+y+1)} dx dy, 
 \end{equation}\]</div>
 <p>where the integration region <span class="math notranslate nohighlight">\(\Omega\)</span> is the disk defined as <span class="math notranslate nohighlight">\((x-1/2)^2 + (y-1/2)^2 \le 1/4\)</span>. Exact value is close to 0.57 .</p>
@@ -1060,8 +1071,8 @@ The expected value is around 0.14</p>
 <h3>Exercises<a class="headerlink" href="#exercises" title="Link to this heading">#</a></h3>
 <ul>
 <li><p>[ ] (Ward) Compute</p>
-<div class="amsmath math notranslate nohighlight" id="equation-74df2d04-b2fd-40c6-88fc-5d01739eb1fb">
-<span class="eqno">(61)<a class="headerlink" href="#equation-74df2d04-b2fd-40c6-88fc-5d01739eb1fb" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-84fc36db-b3c3-40b9-bcae-349bd2962024">
+<span class="eqno">(61)<a class="headerlink" href="#equation-84fc36db-b3c3-40b9-bcae-349bd2962024" title="Permalink to this equation">#</a></span>\[\begin{equation}
 \int_0^2\int_3^6\int_{-1}^1 (y x^2 + z\log y + e^x) dx dy dz
 \end{equation}\]</div>
 </li>
@@ -1112,11 +1123,11 @@ The expected value is around 0.14</p>
       </div>
     </a>
     <a class="right-next"
-       href="../11-IntroPython/01-IntroProgrammingPython.html"
+       href="RandomNumbersInSimulations.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Python Programming (very fast) Introduction</p>
+        <p class="prev-next-title">Random numbers in simulations</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -1127,8 +1138,7 @@ The expected value is around 0.14</p>
             
             
               
-                <dialog id="pst-secondary-sidebar-modal"></dialog>
-                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
 
 
   <div class="sidebar-secondary-item">
@@ -1203,8 +1213,8 @@ By William Oquendo
   </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script defer src="../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf"></script>
-<script defer src="../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf"></script>
+  <script src="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
 
   <footer class="bd-footer">
   </footer>
