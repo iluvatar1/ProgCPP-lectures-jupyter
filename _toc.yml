@@ -37,7 +37,7 @@ parts:
     numbered: false
     chapters:
     - file: 10-RandomSystems/RandomNumbers.ipynb
-    #- file: 10-RandomSystems/MonteCarlo-Simulation.ipynb
+    - file: 10-RandomSystems/RandomNumbersInSimulations.ipynb
   - caption: "Python introduction"
     numbered: false
     chapters:
