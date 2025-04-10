@@ -222,6 +222,10 @@
 <li class="toctree-l1"><a class="reference internal" href="04-numpy-basic-reduced.html">Efficient Python arrays : Numpy</a></li>
 <li class="toctree-l1"><a class="reference internal" href="05-Scipy.html">SciPy - Library of scientific algorithms for Python</a></li>
 </ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Appendix</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../A-01-Git/VersionControlGit.html">Git introduction</a></li>
+</ul>
 
     </div>
 </nav></div>
@@ -540,7 +544,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/b89e3fea00816c1616b2b1c58ec0b54fb1eded054ce5220d9195f7bd6048f156.png" src="../_images/b89e3fea00816c1616b2b1c58ec0b54fb1eded054ce5220d9195f7bd6048f156.png" />
+<img alt="../_images/83cb63fd10ca18c602162387b2e1448822a4067624d76227a3040934687c2103.png" src="../_images/83cb63fd10ca18c602162387b2e1448822a4067624d76227a3040934687c2103.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -639,7 +643,7 @@ plot(*args: &#39;float | ArrayLike | str&#39;, scalex: &#39;bool&#39; = True, sc
     
     Parameters
     ----------
-    x, y : array-like or scalar
+    x, y : array-like or float
         The horizontal / vertical coordinates of the data points.
         *x* values are optional and default to ``range(len(y))``.
     
@@ -700,7 +704,7 @@ plot(*args: &#39;float | ArrayLike | str&#39;, scalex: &#39;bool&#39; = True, sc
     
         Properties:
         agg_filter: a filter function, which takes a (m, n, 3) float array and a dpi value, and returns a (m, n, 3) array and two offsets from the bottom left corner of the image
-        alpha: scalar or None
+        alpha: float or None
         animated: bool
         antialiased or aa: bool
         clip_box: `~matplotlib.transforms.BboxBase` or None
@@ -861,7 +865,7 @@ plot(*args: &#39;float | ArrayLike | str&#39;, scalex: &#39;bool&#39; = True, sc
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Text(0.5, 1.0, &#39;This is a title which includes LaTeX $\\alpha, \\beta^\\gamma$&#39;)
 </pre></div>
 </div>
-<img alt="../_images/8b60038c460d0bddaf9d87e2ddb21819f96c6712ba1284ca1e7a4876e97921eb.png" src="../_images/8b60038c460d0bddaf9d87e2ddb21819f96c6712ba1284ca1e7a4876e97921eb.png" />
+<img alt="../_images/edfebcfb972d0f5b6ca51abad175771d91f589184a84674ae9e31a02f6d76982.png" src="../_images/edfebcfb972d0f5b6ca51abad175771d91f589184a84674ae9e31a02f6d76982.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -885,7 +889,7 @@ plot(*args: &#39;float | ArrayLike | str&#39;, scalex: &#39;bool&#39; = True, sc
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Text(0.5, 1.0, &#39;This is an inset&#39;)
 </pre></div>
 </div>
-<img alt="../_images/e7055b90c499bb53c3995d6280d6c581948c9079a1e4f6968f257d4cacb49533.png" src="../_images/e7055b90c499bb53c3995d6280d6c581948c9079a1e4f6968f257d4cacb49533.png" />
+<img alt="../_images/76b4df49ed149f78981014ed813cf86a4f18bf8207e997217e60f88aceddc95d.png" src="../_images/76b4df49ed149f78981014ed813cf86a4f18bf8207e997217e60f88aceddc95d.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -901,7 +905,7 @@ plot(*args: &#39;float | ArrayLike | str&#39;, scalex: &#39;bool&#39; = True, sc
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/dbde07849c7613f9c212fccd05ff5441dcd0935c40d05a7078d55e8bc0b959b4.png" src="../_images/dbde07849c7613f9c212fccd05ff5441dcd0935c40d05a7078d55e8bc0b959b4.png" />
+<img alt="../_images/adcf0f5425b31026fadb8a85f6106f59c9210069314ccc4da0b901886b822dc6.png" src="../_images/adcf0f5425b31026fadb8a85f6106f59c9210069314ccc4da0b901886b822dc6.png" />
 </div>
 </div>
 <p>As you can see, there are several defaults employed: the type of data plotting (lines), the color (blue and then green), the axis sizes, no labels, no legends, etc. Now let’s start modifying some settings.</p>
@@ -916,10 +920,10 @@ plot(*args: &#39;float | ArrayLike | str&#39;, scalex: &#39;bool&#39; = True, sc
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x7f54d0830d10&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x7f6f5c1714d0&gt;
 </pre></div>
 </div>
-<img alt="../_images/60bd005ede1365116efea79baabe06e3b301a15557708a54297d558b691fd69f.png" src="../_images/60bd005ede1365116efea79baabe06e3b301a15557708a54297d558b691fd69f.png" />
+<img alt="../_images/8dcfdcfc7b99747a11c29f8b919e32315e05c2d3f99a0b0a75a1fada2d54e9c6.png" src="../_images/8dcfdcfc7b99747a11c29f8b919e32315e05c2d3f99a0b0a75a1fada2d54e9c6.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -930,10 +934,10 @@ plot(*args: &#39;float | ArrayLike | str&#39;, scalex: &#39;bool&#39; = True, sc
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x7f54d02dfb50&gt;]
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x7f6f51fc71d0&gt;]
 </pre></div>
 </div>
-<img alt="../_images/ae0d0aa9cbfd4627badf05131b26509df351935171a5aeee23ee07b9f9a91bd5.png" src="../_images/ae0d0aa9cbfd4627badf05131b26509df351935171a5aeee23ee07b9f9a91bd5.png" />
+<img alt="../_images/2fbc0116986018679932f9b91289061ee7c1bd8a03a5926edc4e7534123bff9b.png" src="../_images/2fbc0116986018679932f9b91289061ee7c1bd8a03a5926edc4e7534123bff9b.png" />
 </div>
 </div>
 <p>There are more standard color : red, cyan, magenta, yellow, black, white. Actually, matplotlib can use a full range of html colors and even more! Check <a class="reference external" href="http://matplotlib.org/api/colors_api.html#module-matplotlib.colors">Matplotlib colors</a>.</p>
@@ -953,7 +957,7 @@ plot(*args: &#39;float | ArrayLike | str&#39;, scalex: &#39;bool&#39; = True, sc
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/9274303c4240e541136967a1c7c607ebad97f8f2e5384980dd24b0ccf771c896.png" src="../_images/9274303c4240e541136967a1c7c607ebad97f8f2e5384980dd24b0ccf771c896.png" />
+<img alt="../_images/0f5b2f7252424a2e2cca08cf68fa77c9b1d96db11495599eecd51f8f2b391fbc.png" src="../_images/0f5b2f7252424a2e2cca08cf68fa77c9b1d96db11495599eecd51f8f2b391fbc.png" />
 </div>
 </div>
 </section>
@@ -970,7 +974,7 @@ plot(*args: &#39;float | ArrayLike | str&#39;, scalex: &#39;bool&#39; = True, sc
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/dbde07849c7613f9c212fccd05ff5441dcd0935c40d05a7078d55e8bc0b959b4.png" src="../_images/dbde07849c7613f9c212fccd05ff5441dcd0935c40d05a7078d55e8bc0b959b4.png" />
+<img alt="../_images/adcf0f5425b31026fadb8a85f6106f59c9210069314ccc4da0b901886b822dc6.png" src="../_images/adcf0f5425b31026fadb8a85f6106f59c9210069314ccc4da0b901886b822dc6.png" />
 </div>
 </div>
 </section>
@@ -986,10 +990,10 @@ plot(*args: &#39;float | ArrayLike | str&#39;, scalex: &#39;bool&#39; = True, sc
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x7f54c4b2e850&gt;]
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x7f6f50479390&gt;]
 </pre></div>
 </div>
-<img alt="../_images/74be0a5a78bdde3e699e923d001701bb1da50eb9a79f506ec00597a761dec172.png" src="../_images/74be0a5a78bdde3e699e923d001701bb1da50eb9a79f506ec00597a761dec172.png" />
+<img alt="../_images/eb3198e044c863b082d63df1059eee540027e1d1808faec601cfda7d8cbc0bc4.png" src="../_images/eb3198e044c863b082d63df1059eee540027e1d1808faec601cfda7d8cbc0bc4.png" />
 </div>
 </div>
 <section id="setting-tics">
@@ -1005,10 +1009,10 @@ plot(*args: &#39;float | ArrayLike | str&#39;, scalex: &#39;bool&#39; = True, sc
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x7f54c4bc94d0&gt;]
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x7f6f5030cad0&gt;]
 </pre></div>
 </div>
-<img alt="../_images/d22452727674ba8aadd95df41322f681ce04b16ffab08ac94b09d0bb3535b093.png" src="../_images/d22452727674ba8aadd95df41322f681ce04b16ffab08ac94b09d0bb3535b093.png" />
+<img alt="../_images/c485f72884002d20eb964a4955c2b2836ce73035fa47fef904a1486c04a20257.png" src="../_images/c485f72884002d20eb964a4955c2b2836ce73035fa47fef904a1486c04a20257.png" />
 </div>
 </div>
 </section>
@@ -1025,10 +1029,10 @@ plot(*args: &#39;float | ArrayLike | str&#39;, scalex: &#39;bool&#39; = True, sc
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x7f54c4724590&gt;]
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x7f6f5035eed0&gt;]
 </pre></div>
 </div>
-<img alt="../_images/10f73a28827fd49ff26984db112147d44bf8280d582570569580a01df7c4e2eb.png" src="../_images/10f73a28827fd49ff26984db112147d44bf8280d582570569580a01df7c4e2eb.png" />
+<img alt="../_images/85adf06383f9516b33c2e34ca2b663d7630b0abf10598daab927f4134ce8df53.png" src="../_images/85adf06383f9516b33c2e34ca2b663d7630b0abf10598daab927f4134ce8df53.png" />
 </div>
 </div>
 </section>
@@ -1059,34 +1063,34 @@ plot(*args: &#39;float | ArrayLike | str&#39;, scalex: &#39;bool&#39; = True, sc
 <span class="g g-Whitespace">      </span><span class="mi">1</span> <span class="kn">from</span><span class="w"> </span><span class="nn">IPython.core.display</span><span class="w"> </span><span class="kn">import</span> <span class="n">Image</span> 
 <span class="ne">----&gt; </span><span class="mi">2</span> <span class="n">Image</span><span class="p">(</span><span class="n">filename</span><span class="o">=</span><span class="s1">&#39;subplots.png&#39;</span><span class="p">)</span>
 
-<span class="nn">File /opt/hostedtoolcache/Python/3.11.11/x64/lib/python3.11/site-packages/IPython/core/display.py:1053,</span> in <span class="ni">Image.__init__</span><span class="nt">(self, data, url, filename, format, embed, width, height, retina, unconfined, metadata, alt)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1051</span> <span class="bp">self</span><span class="o">.</span><span class="n">unconfined</span> <span class="o">=</span> <span class="n">unconfined</span>
-<span class="g g-Whitespace">   </span><span class="mi">1052</span> <span class="bp">self</span><span class="o">.</span><span class="n">alt</span> <span class="o">=</span> <span class="n">alt</span>
-<span class="ne">-&gt; </span><span class="mi">1053</span> <span class="nb">super</span><span class="p">(</span><span class="n">Image</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">data</span><span class="p">,</span> <span class="n">url</span><span class="o">=</span><span class="n">url</span><span class="p">,</span> <span class="n">filename</span><span class="o">=</span><span class="n">filename</span><span class="p">,</span>
-<span class="g g-Whitespace">   </span><span class="mi">1054</span>         <span class="n">metadata</span><span class="o">=</span><span class="n">metadata</span><span class="p">)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1056</span> <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">width</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">metadata</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;width&#39;</span><span class="p">,</span> <span class="p">{}):</span>
-<span class="g g-Whitespace">   </span><span class="mi">1057</span>     <span class="bp">self</span><span class="o">.</span><span class="n">width</span> <span class="o">=</span> <span class="n">metadata</span><span class="p">[</span><span class="s1">&#39;width&#39;</span><span class="p">]</span>
+<span class="nn">File /opt/hostedtoolcache/Python/3.11.11/x64/lib/python3.11/site-packages/IPython/core/display.py:1025,</span> in <span class="ni">Image.__init__</span><span class="nt">(self, data, url, filename, format, embed, width, height, retina, unconfined, metadata, alt)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1023</span> <span class="bp">self</span><span class="o">.</span><span class="n">unconfined</span> <span class="o">=</span> <span class="n">unconfined</span>
+<span class="g g-Whitespace">   </span><span class="mi">1024</span> <span class="bp">self</span><span class="o">.</span><span class="n">alt</span> <span class="o">=</span> <span class="n">alt</span>
+<span class="ne">-&gt; </span><span class="mi">1025</span> <span class="nb">super</span><span class="p">(</span><span class="n">Image</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">data</span><span class="p">,</span> <span class="n">url</span><span class="o">=</span><span class="n">url</span><span class="p">,</span> <span class="n">filename</span><span class="o">=</span><span class="n">filename</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">1026</span>         <span class="n">metadata</span><span class="o">=</span><span class="n">metadata</span><span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1028</span> <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">width</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">metadata</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;width&#39;</span><span class="p">,</span> <span class="p">{}):</span>
+<span class="g g-Whitespace">   </span><span class="mi">1029</span>     <span class="bp">self</span><span class="o">.</span><span class="n">width</span> <span class="o">=</span> <span class="n">metadata</span><span class="p">[</span><span class="s1">&#39;width&#39;</span><span class="p">]</span>
 
-<span class="nn">File /opt/hostedtoolcache/Python/3.11.11/x64/lib/python3.11/site-packages/IPython/core/display.py:371,</span> in <span class="ni">DisplayObject.__init__</span><span class="nt">(self, data, url, filename, metadata)</span>
-<span class="g g-Whitespace">    </span><span class="mi">368</span> <span class="k">elif</span> <span class="bp">self</span><span class="o">.</span><span class="n">metadata</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
-<span class="g g-Whitespace">    </span><span class="mi">369</span>     <span class="bp">self</span><span class="o">.</span><span class="n">metadata</span> <span class="o">=</span> <span class="p">{}</span>
-<span class="ne">--&gt; </span><span class="mi">371</span> <span class="bp">self</span><span class="o">.</span><span class="n">reload</span><span class="p">()</span>
-<span class="g g-Whitespace">    </span><span class="mi">372</span> <span class="bp">self</span><span class="o">.</span><span class="n">_check_data</span><span class="p">()</span>
+<span class="nn">File /opt/hostedtoolcache/Python/3.11.11/x64/lib/python3.11/site-packages/IPython/core/display.py:343,</span> in <span class="ni">DisplayObject.__init__</span><span class="nt">(self, data, url, filename, metadata)</span>
+<span class="g g-Whitespace">    </span><span class="mi">340</span> <span class="k">elif</span> <span class="bp">self</span><span class="o">.</span><span class="n">metadata</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">341</span>     <span class="bp">self</span><span class="o">.</span><span class="n">metadata</span> <span class="o">=</span> <span class="p">{}</span>
+<span class="ne">--&gt; </span><span class="mi">343</span> <span class="bp">self</span><span class="o">.</span><span class="n">reload</span><span class="p">()</span>
+<span class="g g-Whitespace">    </span><span class="mi">344</span> <span class="bp">self</span><span class="o">.</span><span class="n">_check_data</span><span class="p">()</span>
 
-<span class="nn">File /opt/hostedtoolcache/Python/3.11.11/x64/lib/python3.11/site-packages/IPython/core/display.py:1088,</span> in <span class="ni">Image.reload</span><span class="nt">(self)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1086</span><span class="w"> </span><span class="sd">&quot;&quot;&quot;Reload the raw data from file or URL.&quot;&quot;&quot;</span>
-<span class="g g-Whitespace">   </span><span class="mi">1087</span> <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">embed</span><span class="p">:</span>
-<span class="ne">-&gt; </span><span class="mi">1088</span>     <span class="nb">super</span><span class="p">(</span><span class="n">Image</span><span class="p">,</span><span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">reload</span><span class="p">()</span>
-<span class="g g-Whitespace">   </span><span class="mi">1089</span>     <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">retina</span><span class="p">:</span>
-<span class="g g-Whitespace">   </span><span class="mi">1090</span>         <span class="bp">self</span><span class="o">.</span><span class="n">_retina_shape</span><span class="p">()</span>
+<span class="nn">File /opt/hostedtoolcache/Python/3.11.11/x64/lib/python3.11/site-packages/IPython/core/display.py:1060,</span> in <span class="ni">Image.reload</span><span class="nt">(self)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1058</span><span class="w"> </span><span class="sd">&quot;&quot;&quot;Reload the raw data from file or URL.&quot;&quot;&quot;</span>
+<span class="g g-Whitespace">   </span><span class="mi">1059</span> <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">embed</span><span class="p">:</span>
+<span class="ne">-&gt; </span><span class="mi">1060</span>     <span class="nb">super</span><span class="p">(</span><span class="n">Image</span><span class="p">,</span><span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">reload</span><span class="p">()</span>
+<span class="g g-Whitespace">   </span><span class="mi">1061</span>     <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">retina</span><span class="p">:</span>
+<span class="g g-Whitespace">   </span><span class="mi">1062</span>         <span class="bp">self</span><span class="o">.</span><span class="n">_retina_shape</span><span class="p">()</span>
 
-<span class="nn">File /opt/hostedtoolcache/Python/3.11.11/x64/lib/python3.11/site-packages/IPython/core/display.py:397,</span> in <span class="ni">DisplayObject.reload</span><span class="nt">(self)</span>
-<span class="g g-Whitespace">    </span><span class="mi">395</span> <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">filename</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
-<span class="g g-Whitespace">    </span><span class="mi">396</span>     <span class="n">encoding</span> <span class="o">=</span> <span class="kc">None</span> <span class="k">if</span> <span class="s2">&quot;b&quot;</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_read_flags</span> <span class="k">else</span> <span class="s2">&quot;utf-8&quot;</span>
-<span class="ne">--&gt; </span><span class="mi">397</span>     <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">filename</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_read_flags</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="n">encoding</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
-<span class="g g-Whitespace">    </span><span class="mi">398</span>         <span class="bp">self</span><span class="o">.</span><span class="n">data</span> <span class="o">=</span> <span class="n">f</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
-<span class="g g-Whitespace">    </span><span class="mi">399</span> <span class="k">elif</span> <span class="bp">self</span><span class="o">.</span><span class="n">url</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
-<span class="g g-Whitespace">    </span><span class="mi">400</span>     <span class="c1"># Deferred import</span>
+<span class="nn">File /opt/hostedtoolcache/Python/3.11.11/x64/lib/python3.11/site-packages/IPython/core/display.py:369,</span> in <span class="ni">DisplayObject.reload</span><span class="nt">(self)</span>
+<span class="g g-Whitespace">    </span><span class="mi">367</span> <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">filename</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">368</span>     <span class="n">encoding</span> <span class="o">=</span> <span class="kc">None</span> <span class="k">if</span> <span class="s2">&quot;b&quot;</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_read_flags</span> <span class="k">else</span> <span class="s2">&quot;utf-8&quot;</span>
+<span class="ne">--&gt; </span><span class="mi">369</span>     <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">filename</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_read_flags</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="n">encoding</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">370</span>         <span class="bp">self</span><span class="o">.</span><span class="n">data</span> <span class="o">=</span> <span class="n">f</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
+<span class="g g-Whitespace">    </span><span class="mi">371</span> <span class="k">elif</span> <span class="bp">self</span><span class="o">.</span><span class="n">url</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">372</span>     <span class="c1"># Deferred import</span>
 
 <span class="ne">FileNotFoundError</span>: [Errno 2] No such file or directory: &#39;subplots.png&#39;
 </pre></div>

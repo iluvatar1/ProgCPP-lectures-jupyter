@@ -222,6 +222,10 @@
 <li class="toctree-l1"><a class="reference internal" href="../11-IntroPython/04-numpy-basic-reduced.html">Efficient Python arrays : Numpy</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../11-IntroPython/05-Scipy.html">SciPy - Library of scientific algorithms for Python</a></li>
 </ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Appendix</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../A-01-Git/VersionControlGit.html">Git introduction</a></li>
+</ul>
 
     </div>
 </nav></div>
@@ -466,8 +470,7 @@ document.write(`
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#minimal-example">Minimal example</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#variables">Variables</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#variable-types">Variable types</a><ul class="nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#variables">Variables</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercises">Exercises</a><ul class="nav section-nav flex-column">
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#initialization">Initialization</a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#python-c-tutor">Python/C++ tutor</a></li>
@@ -587,16 +590,17 @@ document.write(`
 <h2>Variables<a class="headerlink" href="#variables" title="Link to this heading">#</a></h2>
 <p>See</p>
 <ul class="simple">
-<li><p>https://www.learncpp.com/cpp-tutorial/introduction-to-objects-and-variables/</p></li>
+<li><p><a class="reference external" href="https://en.cppreference.com/w/cpp/language/types">https://en.cppreference.com/w/cpp/language/types</a></p></li>
+<li><p><a class="reference external" href="https://www.learncpp.com/cpp-tutorial/introduction-to-objects-and-variables/">https://www.learncpp.com/cpp-tutorial/introduction-to-objects-and-variables/</a></p></li>
 <li><p><a class="reference external" href="https://hackingcpp.com/cpp/lang/fundamental_types.html">https://hackingcpp.com/cpp/lang/fundamental_types.html</a></p></li>
 </ul>
 <p>A variable in c++ is an object which has:</p>
 <ul class="simple">
-<li><p>A datatype</p></li>
+<li><p>A datatype (<code class="docutils literal notranslate"><span class="pre">bool</span></code>, <code class="docutils literal notranslate"><span class="pre">char</span></code>, <code class="docutils literal notranslate"><span class="pre">int</span></code>, <code class="docutils literal notranslate"><span class="pre">long</span></code>, <code class="docutils literal notranslate"><span class="pre">unsigned</span> <span class="pre">int</span></code>, <code class="docutils literal notranslate"><span class="pre">float</span></code>, <code class="docutils literal notranslate"><span class="pre">double</span></code>, <code class="docutils literal notranslate"><span class="pre">std::string</span></code>, <code class="docutils literal notranslate"><span class="pre">std::vector</span></code> , …)</p></li>
 <li><p>A value</p></li>
 <li><p>A name</p></li>
 <li><p>A memory address</p></li>
-<li><p>A scope</p></li>
+<li><p>A scope (the sourronding <code class="docutils literal notranslate"><span class="pre">{}</span></code>)</p></li>
 </ul>
 <p>C++ is a typed lang. It means that you have to specify the type of the variable you are going to use. You have booleans, char, integers, float and double, arrays/vectors, structs, …. See https://hackingcpp.com/cpp/lang/fundamental_types.html</p>
 <p>A variable in memory:</p>
@@ -609,15 +613,6 @@ document.write(`
     <img src="https://hackingcpp.com/cs/number_representations_crop.png" alt="Image Description" width="900">
     <figcaption>From: "https://hackingcpp.com/cs/number_representations_crop.png"</figcaption>
 </div>
-</section>
-<section id="variable-types">
-<h2>Variable types<a class="headerlink" href="#variable-types" title="Link to this heading">#</a></h2>
-<p>char, int, unsigned int, float, double, bool, …
-See:</p>
-<ul class="simple">
-<li><p>https://hackingcpp.com/cpp/lang/fundamental_types.html</p></li>
-<li><p>https://en.cppreference.com/w/cpp/language/types</p></li>
-</ul>
 <p>Bugs: Gandhi the destroyer (unsigned char): https://www.youtube.com/watch?v=Iq_r7IcNmUk</p>
 <section id="exercises">
 <h3>Exercises<a class="headerlink" href="#exercises" title="Link to this heading">#</a></h3>
@@ -630,25 +625,6 @@ See:</p>
 <li><p><code class="docutils literal notranslate"><span class="pre">std::string</span></code> initialized with your first name .</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">std::vector&lt;double&gt;</span></code> with 10 values not initialized.</p></li>
 </ul>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># YOUR CODE HERE</span>
-<span class="k">raise</span> <span class="ne">NotImplementedError</span><span class="p">()</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
-<span class="ne">NotImplementedError</span><span class="g g-Whitespace">                       </span>Traceback (most recent call last)
-<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">line</span> <span class="mi">2</span>
-<span class="g g-Whitespace">      </span><span class="mi">1</span> <span class="c1"># YOUR CODE HERE</span>
-<span class="ne">----&gt; </span><span class="mi">2</span> <span class="k">raise</span> <span class="ne">NotImplementedError</span><span class="p">()</span>
-
-<span class="ne">NotImplementedError</span>: 
-</pre></div>
-</div>
-</div>
-</div>
 </section>
 <section id="python-c-tutor">
 <h4>Python/C++ tutor<a class="headerlink" href="#python-c-tutor" title="Link to this heading">#</a></h4>
@@ -660,8 +636,9 @@ See:</p>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;iostream&gt;</span>
 <span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
 <span class="w">  </span><span class="c1">// con enteros</span>
-<span class="w">  </span><span class="kt">int</span><span class="w"> </span><span class="n">b</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">-3000000000</span><span class="p">;</span>
+<span class="w">  </span><span class="kt">int</span><span class="w"> </span><span class="n">b</span><span class="w"> </span><span class="p">{</span><span class="mi">-3000000000</span><span class="p">};</span>
 <span class="w">  </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;b = &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">b</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">;</span>
+<span class="w">  </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;3*b = &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="mi">3</span><span class="o">*</span><span class="n">b</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">;</span>
 <span class="w">  </span><span class="kt">int</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">-2000000000</span><span class="p">;</span>
 <span class="w">  </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;a = &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">;</span>
 <span class="w">  </span><span class="c1">// con flotantes</span>
@@ -669,6 +646,7 @@ See:</p>
 <span class="w">  </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;x = &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">;</span>
 <span class="w">  </span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">3.24e307</span><span class="p">;</span>
 <span class="w">  </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;x = &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">;</span>
+<span class="w">  </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;100000*x = &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="mf">1.0e5</span><span class="o">*</span><span class="n">x</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">;</span>
 <span class="w">  </span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">3.24e310</span><span class="p">;</span>
 <span class="w">  </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;x = &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">;</span>
 <span class="w">  </span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">3.24e-310</span><span class="p">;</span>
@@ -833,6 +811,29 @@ graph LR
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_html"><iframe srcdoc="&lt;html&gt;
+    &lt;body&gt;
+        &lt;script src=&quot;https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js&quot;&gt;&lt;/script&gt;
+        &lt;script&gt;
+            mermaid.initialize({ startOnLoad: true });
+        &lt;/script&gt;
+ 
+        &lt;div class=&quot;mermaid&quot;&gt;
+            graph LR
+    A[Start] --&gt;B{Condition 1}
+    B --&gt;|true| C[Action 1]
+    B --&gt;|else if| D{Condition 2}
+    D --&gt;|true| E[Action 2]
+    D --&gt;|false| F[Action 3]
+    C --&gt; X[End]
+    E --&gt; X
+    F --&gt; X
+        &lt;/div&gt;
+ 
+    &lt;/body&gt;
+&lt;/html&gt;
+" width="100%" height="250"style="border:none !important;" "allowfullscreen" "webkitallowfullscreen" "mozallowfullscreen"></iframe></div></div>
 </div>
 <p><strong>Example: Even/odd number</strong>
 (Please notice that the goal here is to learn if/else and the modulo operator, but the reading interactively is something not advisable)</p>
@@ -918,6 +919,27 @@ graph LR
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_html"><iframe srcdoc="&lt;html&gt;
+    &lt;body&gt;
+        &lt;script src=&quot;https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js&quot;&gt;&lt;/script&gt;
+        &lt;script&gt;
+            mermaid.initialize({ startOnLoad: true });
+        &lt;/script&gt;
+ 
+        &lt;div class=&quot;mermaid&quot;&gt;
+            graph LR
+    A[Start] --&gt; B[Initialization]
+    B --&gt;|Condition| C{Condition true?}
+    C --&gt;|Yes| D[Instructions]
+    D --&gt; E[Change]
+    E --&gt;|Condition| C
+    C --&gt;|No| F[End]
+        &lt;/div&gt;
+ 
+    &lt;/body&gt;
+&lt;/html&gt;
+" width="100%" height="250"style="border:none !important;" "allowfullscreen" "webkitallowfullscreen" "mozallowfullscreen"></iframe></div></div>
 </div>
 </section>
 <section id="while-loop">
@@ -1259,6 +1281,11 @@ Do this will all the functions previously written. So, include all the prime fun
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Writing test_primes.cpp
+</pre></div>
+</div>
+</div>
 </div>
 <p>Now compile as (we are using catch2 version 3 and it must be installed on the path)</p>
 <div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>g++<span class="w"> </span>primes.cpp<span class="w"> </span>test_primes.cpp<span class="w">  </span>-l<span class="w"> </span>Catch2Main<span class="w"> </span>-l<span class="w"> </span>Catch2
@@ -1370,8 +1397,7 @@ All<span class="w"> </span>tests<span class="w"> </span>passed<span class="w"> <
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#minimal-example">Minimal example</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#variables">Variables</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#variable-types">Variable types</a><ul class="nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#variables">Variables</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercises">Exercises</a><ul class="nav section-nav flex-column">
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#initialization">Initialization</a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#python-c-tutor">Python/C++ tutor</a></li>

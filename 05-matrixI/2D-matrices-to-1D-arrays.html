@@ -222,6 +222,10 @@
 <li class="toctree-l1"><a class="reference internal" href="../11-IntroPython/04-numpy-basic-reduced.html">Efficient Python arrays : Numpy</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../11-IntroPython/05-Scipy.html">SciPy - Library of scientific algorithms for Python</a></li>
 </ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Appendix</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../A-01-Git/VersionControlGit.html">Git introduction</a></li>
+</ul>
 
     </div>
 </nav></div>
@@ -648,13 +652,13 @@ inside each cell correspond to indexes)</p>
 </div>
 <p>As you can see, in the 1d array in memory, the first element (1d index 0) has the coordinates (0, 0), the second element (1d index 1) corresponds to (0, 1), and so on. The sixth 1d element, with 1d index 5, has 2D coordinates (1, 2). Can you devise a rule to relate the 1d and the 2d indexes?</p>
 <p>For a general matrix of size <code class="docutils literal notranslate"><span class="pre">MxN</span></code>, you have the following mapping from 2D to 1D</p>
-<div class="amsmath math notranslate nohighlight" id="equation-8aaef484-68ea-4956-b9f9-311204d98722">
-<span class="eqno">(18)<a class="headerlink" href="#equation-8aaef484-68ea-4956-b9f9-311204d98722" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-4de01423-3399-4468-8db7-a25817cf1272">
+<span class="eqno">(18)<a class="headerlink" href="#equation-4de01423-3399-4468-8db7-a25817cf1272" title="Permalink to this equation">#</a></span>\[\begin{equation}
 id = iN + j,
 \end{equation}\]</div>
 <p>while , from 1D to 2D</p>
-<div class="amsmath math notranslate nohighlight" id="equation-1b498c8b-5171-4c0e-aa47-2de582cbf04f">
-<span class="eqno">(19)<a class="headerlink" href="#equation-1b498c8b-5171-4c0e-aa47-2de582cbf04f" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-61aff438-c6e5-4d18-a780-6b280e5f6c5d">
+<span class="eqno">(19)<a class="headerlink" href="#equation-61aff438-c6e5-4d18-a780-6b280e5f6c5d" title="Permalink to this equation">#</a></span>\[\begin{align}
 i &amp;= id/N,\\
 j &amp;= id%N.
 \end{align}\]</div>

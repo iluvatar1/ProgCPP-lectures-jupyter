@@ -23,16 +23,16 @@ printreversed([1, 2, 3, 4 , "hola", "mundo"])
 ------------------
 
 
-[0;31m---------------------------------------------------------------------------[0m
-[0;31mNotImplementedError[0m                       Traceback (most recent call last)
-Cell [0;32mIn[9], line 1[0m
-[0;32m----> 1[0m [43mprintreversed[49m[43m([49m[43m[[49m[38;5;241;43m1[39;49m[43m,[49m[43m [49m[38;5;241;43m2[39;49m[43m,[49m[43m [49m[38;5;241;43m3[39;49m[43m][49m[43m)[49m
-[1;32m      2[0m printreversed([[38;5;241m1[39m, [38;5;241m2[39m, [38;5;241m3[39m, [38;5;241m4[39m , [38;5;124m"[39m[38;5;124mhola[39m[38;5;124m"[39m, [38;5;124m"[39m[38;5;124mmundo[39m[38;5;124m"[39m])
+[31m---------------------------------------------------------------------------[39m
+[31mNotImplementedError[39m                       Traceback (most recent call last)
+[36mCell[39m[36m [39m[32mIn[9][39m[32m, line 1[39m
+[32m----> [39m[32m1[39m [43mprintreversed[49m[43m([49m[43m[[49m[32;43m1[39;49m[43m,[49m[43m [49m[32;43m2[39;49m[43m,[49m[43m [49m[32;43m3[39;49m[43m][49m[43m)[49m
+[32m      2[39m printreversed([[32m1[39m, [32m2[39m, [32m3[39m, [32m4[39m , [33m"[39m[33mhola[39m[33m"[39m, [33m"[39m[33mmundo[39m[33m"[39m])
 
-Cell [0;32mIn[8], line 3[0m, in [0;36mprintreversed[0;34m(l)[0m
-[1;32m      1[0m [38;5;28;01mdef[39;00m[38;5;250m [39m[38;5;21mprintreversed[39m(l):
-[1;32m      2[0m     [38;5;66;03m# YOUR CODE HERE[39;00m
-[0;32m----> 3[0m     [38;5;28;01mraise[39;00m [38;5;167;01mNotImplementedError[39;00m()
+[36mCell[39m[36m [39m[32mIn[8][39m[32m, line 3[39m, in [36mprintreversed[39m[34m(l)[39m
+[32m      1[39m [38;5;28;01mdef[39;00m[38;5;250m [39m[34mprintreversed[39m(l):
+[32m      2[39m     [38;5;66;03m# YOUR CODE HERE[39;00m
+[32m----> [39m[32m3[39m     [38;5;28;01mraise[39;00m [38;5;167;01mNotImplementedError[39;00m()
 
-[0;31mNotImplementedError[0m: 
+[31mNotImplementedError[39m: 
 

@@ -23,9 +23,9 @@ print a
 ------------------
 
 
-[0;36m  Cell [0;32mIn[7], line 2[0;36m[0m
-[0;31m    print a[0m
-[0m    ^[0m
-[0;31mSyntaxError[0m[0;31m:[0m Missing parentheses in call to 'print'. Did you mean print(...)?
+  [36mCell[39m[36m [39m[32mIn[7][39m[32m, line 2[39m
+[31m    [39m[31mprint a[39m
+    ^
+[31mSyntaxError[39m[31m:[39m Missing parentheses in call to 'print'. Did you mean print(...)?
 
 
