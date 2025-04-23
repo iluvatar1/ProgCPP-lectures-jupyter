@@ -662,8 +662,8 @@ optimized velocity verlet and so on. They try to integrate the evolution with a
 high order while reducing the number of force evaluations per time step. In
 particular, the leap-frog algorithm can be written as
 (<a class="reference external" href="https://en.wikipedia.org/wiki/Leapfrog_integration">https://en.wikipedia.org/wiki/Leapfrog_integration</a>)</p>
-<div class="amsmath math notranslate nohighlight" id="equation-6cbc261c-a113-42ee-8dee-973d3f39356d">
-<span class="eqno">(44)<a class="headerlink" href="#equation-6cbc261c-a113-42ee-8dee-973d3f39356d" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-ca470c57-b573-4d11-b830-6ab9159b14c9">
+<span class="eqno">(44)<a class="headerlink" href="#equation-ca470c57-b573-4d11-b830-6ab9159b14c9" title="Permalink to this equation">#</a></span>\[\begin{align}
 \vec V (t + \delta t/2) &amp;= \vec V (t - \delta t/2) + \vec F(t) \delta t/m + O(\delta t^3),\\
 \vec R(t+\delta t) &amp;= \vec R(t) + \vec V (t + \delta t/2) \delta t + O(\delta t^3).
 \end{align}\]</div>
@@ -671,15 +671,15 @@ particular, the leap-frog algorithm can be written as
 and symplectic. One important detail for the implementation: To perform the
 first step, you need to put your variables in the correct time. If we put t=0,
 the next step would be</p>
-<div class="amsmath math notranslate nohighlight" id="equation-a1b7943c-f62f-4ba2-8694-03bd09b16b73">
-<span class="eqno">(45)<a class="headerlink" href="#equation-a1b7943c-f62f-4ba2-8694-03bd09b16b73" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-7cb00737-dc3d-4afb-816e-9c3f633f1a4c">
+<span class="eqno">(45)<a class="headerlink" href="#equation-7cb00737-dc3d-4afb-816e-9c3f633f1a4c" title="Permalink to this equation">#</a></span>\[\begin{align}
 \vec V (0 + \delta t/2) &amp;= \vec V (0 - \delta t/2) + \vec F(0) \delta t/m + O(\delta t^3),\\
 \vec R(0+\delta t) &amp;= \vec R(0) + \vec V (0 + \delta t/2) \delta t + O(\delta t^3).
 \end{align}\]</div>
 <p>Therefore, we will need first to move the velocity from time 0 to time <span class="math notranslate nohighlight">\(0 -
 \delta t\)</span>. We could do that as follows</p>
-<div class="amsmath math notranslate nohighlight" id="equation-3d0e385f-8a70-49bf-9956-7c07a27e2b4a">
-<span class="eqno">(46)<a class="headerlink" href="#equation-3d0e385f-8a70-49bf-9956-7c07a27e2b4a" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-dcec9f87-fca8-4bb5-bf7b-ad46a52b1f35">
+<span class="eqno">(46)<a class="headerlink" href="#equation-dcec9f87-fca8-4bb5-bf7b-ad46a52b1f35" title="Permalink to this equation">#</a></span>\[\begin{equation}
 \vec V(0 - \delta t/2) = \vec V(0) - \delta t \vec F(0)/2m.
 \end{equation}\]</div>
 <p><a id="orgd0444a6"></a></p>
@@ -873,19 +873,19 @@ scales with the number of particles?</p>
 <p>Here we will implemement a physical force among particles. But, still, how would you do it using constraints?</p>
 <p>If two particles are colliding, with interpenetration <span class="math notranslate nohighlight">\(\delta\)</span>, then we can
 model the force that particle <span class="math notranslate nohighlight">\(i\)</span> exerts on particle <span class="math notranslate nohighlight">\(j\)</span> as,</p>
-<div class="amsmath math notranslate nohighlight" id="equation-d72599aa-95c8-43ce-a79d-c52e51d60936">
-<span class="eqno">(47)<a class="headerlink" href="#equation-d72599aa-95c8-43ce-a79d-c52e51d60936" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-84c1408d-a08b-46bd-9eeb-49f279b3dd5d">
+<span class="eqno">(47)<a class="headerlink" href="#equation-84c1408d-a08b-46bd-9eeb-49f279b3dd5d" title="Permalink to this equation">#</a></span>\[\begin{equation}
 \vec F_{ij} = k \delta \hat n_{ij},
 \end{equation}\]</div>
 <p>where <span class="math notranslate nohighlight">\(k\)</span> is a constant proportional to the effective Young modulus, and <span class="math notranslate nohighlight">\(\hat
 n_{ij}\)</span> is the normal vector from particle <span class="math notranslate nohighlight">\(i\)</span> to <span class="math notranslate nohighlight">\(j\)</span>, that is</p>
-<div class="amsmath math notranslate nohighlight" id="equation-d49b547f-485f-4a9f-a2e5-e0540e8adce2">
-<span class="eqno">(48)<a class="headerlink" href="#equation-d49b547f-485f-4a9f-a2e5-e0540e8adce2" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-69218021-ac74-47a0-ab7c-37f5cbf271ff">
+<span class="eqno">(48)<a class="headerlink" href="#equation-69218021-ac74-47a0-ab7c-37f5cbf271ff" title="Permalink to this equation">#</a></span>\[\begin{equation}
 \hat n_{ij} = \frac{\vec R_{ij}}{|\vec R_{ij}|},
 \end{equation}\]</div>
 <p>with <span class="math notranslate nohighlight">\(\vec R_{ij} = \vec R_j - \vec R_i\)</span>, and</p>
-<div class="amsmath math notranslate nohighlight" id="equation-e98c4b3c-0ca8-4aa0-a17d-a5ba9f0d717d">
-<span class="eqno">(49)<a class="headerlink" href="#equation-e98c4b3c-0ca8-4aa0-a17d-a5ba9f0d717d" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-d4505ef2-55fe-4000-9ced-a6dc54760044">
+<span class="eqno">(49)<a class="headerlink" href="#equation-d4505ef2-55fe-4000-9ced-a6dc54760044" title="Permalink to this equation">#</a></span>\[\begin{equation}
 \delta = r_i + r_j - |\vec R_{ij}|.
 \end{equation}\]</div>
 <p>For a more realistic force model, check
