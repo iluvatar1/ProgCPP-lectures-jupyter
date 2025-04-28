@@ -13,3 +13,6 @@ __pycache__
 drafts
 gradebook.db
 *~
+*pdf
+*db
+Dockerfile-*
