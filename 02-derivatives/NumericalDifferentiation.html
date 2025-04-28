@@ -470,14 +470,17 @@ document.write(`
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#first-approach-forward-difference">First approach: forward difference</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#a-better-estimation-central-difference">A better estimation: Central difference</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#implementing-it-in-c">Implementing it in C++</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#a-better-estimation-with-less-error-central-difference">A better estimation with less error: Central difference</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#other-important-cases">Other important cases</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#implementing-forward-and-central-derivatives">Implementing forward and central derivatives</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#file-modularization">File modularization</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#error-a-as-function-of-h">Error a as function of <span class="math notranslate nohighlight">\(h\)</span></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#file-modularization">File modularization</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#testing-a-first-implementation">Testing a first implementation</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#error-as-a-function-of-both-h-and-x">Error as a function of both <span class="math notranslate nohighlight">\(h\)</span> and <span class="math notranslate nohighlight">\(x\)</span></a></li>
 </ul>
 </li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#richardson-extrapolation">Richardson extrapolation</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#implementing-richardson-extrapolation">Implementing Richardson extrapolation</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#modularizing-the-files-with-richardson-extrapolation">Modularizing the files with Richardson extrapolation</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#testing">Testing</a></li>
@@ -499,41 +502,59 @@ document.write(`
 <li><p>Ward; Kincaid; Numerical mathematics and computing</p></li>
 <li><p>Wikipedia</p></li>
 </ul>
-<p>Computing derivatives is the core of many of the numerical work done in computational physics. But it is not a trivial problem to do so with good accuracy. Numerical derivatives are the core computation in finite difference methods, optimization problems, interpolations and many more.</p>
+<p>Computing derivatives is the core of many of the numerical work done in computational physics. But it is not a trivial problem to do so with good accuracy. Numerical derivatives are the core computation in finite difference methods, optimization problems, interpolations and many more. For instance, you need numerical derivatives to compute:</p>
+<ul class="simple">
+<li><p>your speed based on position and time. This is done with your gps (google maps, waze, etc), or the <a class="reference external" href="https://opensourcephysics.github.io/tracker-website/">tracker</a> software.</p></li>
+<li><p>the rate of change of any quantity that changes in time: speedometers, weather models, finance, etc.</p></li>
+<li><p>solutions for partial differential equations using “finite differences” <a class="reference external" href="https://en.wikipedia.org/wiki/Finite_difference?useskin=vector">https://en.wikipedia.org/wiki/Finite_difference?useskin=vector</a>.</p></li>
+<li><p>solutions for ordinary differential equations.</p></li>
+</ul>
 <section id="first-approach-forward-difference">
 <h2>First approach: forward difference<a class="headerlink" href="#first-approach-forward-difference" title="Link to this heading">#</a></h2>
-<p>This is based on either the a Taylor expansion for a given function, or in the actual definition of the derivative (see https://en.wikipedia.org/wiki/Numerical_differentiation)</p>
-<div class="pst-scrollable-table-container"><table class="table">
-<thead>
-<tr class="row-odd"><th class="head"><p>Definition</p></th>
-<th class="head"><p>Graphical interpretation</p></th>
-</tr>
-</thead>
-<tbody>
-<tr class="row-even"><td><p>$<span class="math notranslate nohighlight">\(f'(x) \simeq \frac{f(x+h) - f(x)}{h} + O(h)\)</span>$</p></td>
-<td><p><a class="reference internal" href="https://upload.wikimedia.org/wikipedia/commons/thumb/1/18/Derivative.svg/460px-Derivative.svg.png"><img alt="https://upload.wikimedia.org/wikipedia/commons/thumb/1/18/Derivative.svg/460px-Derivative.svg.png" src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/18/Derivative.svg/460px-Derivative.svg.png" style="width: 500px;" /></a></p></td>
-</tr>
-</tbody>
-</table>
-</div>
-<p>where <span class="math notranslate nohighlight">\(h\)</span> is a parameter that ideally goes to zero but in practice that cannot be done due to numerical accuracy. You can also define the backward derivative by just using the previous point. The error estimate can be computed using a Taylor expansion.</p>
-<ul class="simple">
-<li><p>Visualization: <a class="reference external" href="https://www.geogebra.org/m/aUjja5NV">https://www.geogebra.org/m/aUjja5NV</a></p></li>
-<li><p>And this is actually thebase for solving differential equations!: <a class="reference external" href="https://www.geogebra.org/m/NUeFjm9J">https://www.geogebra.org/m/NUeFjm9J</a></p></li>
-</ul>
+<p>The <a class="reference external" href="https://en.wikipedia.org/wiki/Taylor_series?useskin=vector">Taylor expansion</a> for a given analytical function is given by  (see an example at <a class="reference external" href="https://www.geogebra.org/m/s9SkCsvC">https://www.geogebra.org/m/s9SkCsvC</a>)</p>
+<div class="amsmath math notranslate nohighlight" id="equation-5fa3859a-d7fb-4ad4-9eb5-4ccfd9242622">
+<span class="eqno">(1)<a class="headerlink" href="#equation-5fa3859a-d7fb-4ad4-9eb5-4ccfd9242622" title="Permalink to this equation">#</a></span>\[\begin{equation}
+f(x+h) = f(x) + h f'(x) + \frac{h^2}{2!} f''(x) + \frac{h^3}{3!} f'''(x) + \dots,
+\end{equation}\]</div>
+<p>If we stop at the second order, we can rewrite it as</p>
+<div class="amsmath math notranslate nohighlight" id="equation-ce289874-7edc-45a9-9908-69a38d943372">
+<span class="eqno">(2)<a class="headerlink" href="#equation-ce289874-7edc-45a9-9908-69a38d943372" title="Permalink to this equation">#</a></span>\[\begin{equation}
+f(x+h) = f(x) + h f'(x) + O(h^2),
+\end{equation}\]</div>
+<p>where <span class="math notranslate nohighlight">\(O(h^2)\)</span> means that we stop expanding at the second order term, and , given that <span class="math notranslate nohighlight">\(h\)</span> is small, then the dominant term is of order <span class="math notranslate nohighlight">\(h^2\)</span>. This equation can be used to both solve a ODE (where we already know the <span class="math notranslate nohighlight">\(f'(x)\)</span>, see <a class="reference external" href="https://www.geogebra.org/m/NUeFjm9J">https://www.geogebra.org/m/NUeFjm9J</a>), or, to actually compute <span class="math notranslate nohighlight">\(f'(x)\)</span> , as a way to compute the slope (<a class="reference external" href="https://en.wikipedia.org/wiki/Numerical_differentiation">https://en.wikipedia.org/wiki/Numerical_differentiation</a>):</p>
+<div class="amsmath math notranslate nohighlight" id="equation-e35254be-45fd-43f2-904e-6f1f94c52be4">
+<span class="eqno">(3)<a class="headerlink" href="#equation-e35254be-45fd-43f2-904e-6f1f94c52be4" title="Permalink to this equation">#</a></span>\[\begin{equation}
+f'(x) \simeq \dfrac{f(x+h) - f(x)}{h} + O(h),
+\end{equation}\]</div>
+<p>which shows that, mathematically, the error should decerease as <span class="math notranslate nohighlight">\(h\)</span> (but, in the computer, there are more error sources). This approximation basically estimates the derivative using a linear interpolation, and assumes that you can compute <span class="math notranslate nohighlight">\(f(x)\)</span> for arbitrary points.
+<a class="reference internal" href="https://upload.wikimedia.org/wikipedia/commons/thumb/1/18/Derivative.svg/460px-Derivative.svg.png"><img alt="https://upload.wikimedia.org/wikipedia/commons/thumb/1/18/Derivative.svg/460px-Derivative.svg.png" src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/18/Derivative.svg/460px-Derivative.svg.png" style="width: 500px;" /></a></p>
 </section>
-<section id="a-better-estimation-central-difference">
-<h2>A better estimation: Central difference<a class="headerlink" href="#a-better-estimation-central-difference" title="Link to this heading">#</a></h2>
-<p>If you compute a forward (<span class="math notranslate nohighlight">\(+h\)</span>)</p>
-<div class="math notranslate nohighlight">
-\[f(x+h) = f(x) + f'(x) h + f''(x) h^2/2 + f'''(x) h^3/6 + O(h^4) + O(h^5),\]</div>
+<section id="implementing-it-in-c">
+<h2>Implementing it in C++<a class="headerlink" href="#implementing-it-in-c" title="Link to this heading">#</a></h2>
+<p>Think about a function declaration to implement the forward difference. What data type to return, what arguments? specially, should the function to be derived be an argument? For instance, if you want to derive the <span class="math notranslate nohighlight">\(\sin\)</span> function, you can use something that returns</p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="p">...</span>
+<span class="k">return</span><span class="w"> </span><span class="p">(</span><span class="err">\</span><span class="n">sin</span><span class="p">(</span><span class="n">x</span><span class="o">+</span><span class="n">h</span><span class="p">)</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="err">\</span><span class="n">sin</span><span class="p">(</span><span class="n">x</span><span class="p">))</span><span class="o">/</span><span class="n">h</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>That would work for that particular function, but if we want to derive other functions, then we would need to write more functions like this, maybe playing with the name to avoid name collisions. When programming, it is important to be generic. So it is much better to think about using a generic function <span class="math notranslate nohighlight">\(f\)</span> that receives a double and returns a double.</p>
+</section>
+<section id="a-better-estimation-with-less-error-central-difference">
+<h2>A better estimation with less error: Central difference<a class="headerlink" href="#a-better-estimation-with-less-error-central-difference" title="Link to this heading">#</a></h2>
+<p>We have used the forward derivative but there is nohing special about it. What if we played with the expansions both forward and backward?</p>
+<p>If you compute a forward (<span class="math notranslate nohighlight">\(+h\)</span>)  expansion, you have</p>
+<div class="amsmath math notranslate nohighlight" id="equation-1d9d5813-3587-41d6-93cc-633cd5697114">
+<span class="eqno">(4)<a class="headerlink" href="#equation-1d9d5813-3587-41d6-93cc-633cd5697114" title="Permalink to this equation">#</a></span>\[\begin{equation}
+f(x+h) = f(x) + f'(x) h + f''(x) h^2/2 + f'''(x) h^3/6 + O(h^4) + O(h^5),
+\end{equation}\]</div>
 <p>and a backward (<span class="math notranslate nohighlight">\(-h\)</span>) Taylor expansion,</p>
-<div class="math notranslate nohighlight">
-\[f(x-h) = f(x) - f'(x) h + f''(x) h^2/2 - f'''(x) h^3/6 + O(h^4) - O(h^5),\]</div>
+<div class="amsmath math notranslate nohighlight" id="equation-15c6601c-241d-4b99-8b08-053c3c78da17">
+<span class="eqno">(5)<a class="headerlink" href="#equation-15c6601c-241d-4b99-8b08-053c3c78da17" title="Permalink to this equation">#</a></span>\[\begin{equation}
+f(x-h) = f(x) - f'(x) h + f''(x) h^2/2 - f'''(x) h^3/6 + O(h^4) - O(h^5),
+\end{equation}\]</div>
 <p>and then you subtract the second from the first (notice that adding then allows you to compute the second order derivative), you get</p>
 <div class="math notranslate nohighlight">
 \[f'(x) \simeq \frac{f(x+h) - f(x-h)}{2h} + O(h^2)\]</div>
-<p>which is called the central difference. The order is improved and this version is better than the simple forward difference. See: https://en.wikipedia.org/wiki/Finite_difference</p>
+<p>which is called the central difference. The order is improved and this version is better than the simple forward difference. See: <a class="reference external" href="https://en.wikipedia.org/wiki/Finite_difference">https://en.wikipedia.org/wiki/Finite_difference</a></p>
 <div class="pst-scrollable-table-container"><table class="table">
 <thead>
 <tr class="row-odd"><th class="head"><p>Comparison among methods</p></th>
@@ -547,12 +568,6 @@ document.write(`
 </tbody>
 </table>
 </div>
-<p>By using <a class="reference external" href="https://en.wikipedia.org/wiki/Richardson_extrapolation">Richardson extrapolation</a>, you can improve even more the central difference estimation,</p>
-<div class="amsmath math notranslate nohighlight" id="equation-899597ab-6293-4567-8042-6d1fdf8fbe79">
-<span class="eqno">(1)<a class="headerlink" href="#equation-899597ab-6293-4567-8042-6d1fdf8fbe79" title="Permalink to this equation">#</a></span>\[\begin{equation}
-f'(x) = \phi\left(\frac{h}{2}\right) + \frac{1}{3}\left[\phi\left(\frac{h}{2} \right) - \phi(h) \right] + O(h^4),
-\end{equation}\]</div>
-<p>where <span class="math notranslate nohighlight">\(\phi(h)\)</span> is the derivative estimation from the central difference with a given <span class="math notranslate nohighlight">\(h\)</span> value. <strong>NOTE</strong>: This form is only for the central difference, since it depends on the algorithm order.</p>
 </section>
 <section id="other-important-cases">
 <h2>Other important cases<a class="headerlink" href="#other-important-cases" title="Link to this heading">#</a></h2>
@@ -565,13 +580,34 @@ f'(x) = \phi\left(\frac{h}{2}\right) + \frac{1}{3}\left[\phi\left(\frac{h}{2} \r
 </section>
 <section id="implementing-forward-and-central-derivatives">
 <h2>Implementing forward and central derivatives<a class="headerlink" href="#implementing-forward-and-central-derivatives" title="Link to this heading">#</a></h2>
-<p>Implement functions to compute both the forward and central derivatives. Explore the following case:
-Compute the derivative as a function of <span class="math notranslate nohighlight">\(x\)</span>, with fixed <span class="math notranslate nohighlight">\(h = 0.01\)</span>. Use <span class="math notranslate nohighlight">\(f(x) = \sin(x^2)\)</span>. Compare with the exact derivative. Plot the relative difference.</p>
+<p>Implement functions to compute both the forward and central derivatives.</p>
 <p>The prototypes might be</p>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">double</span><span class="w"> </span><span class="nf">forward_diff</span><span class="p">(</span><span class="kt">double</span><span class="w"> </span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="n">h</span><span class="p">);</span>
 <span class="kt">double</span><span class="w"> </span><span class="nf">central_diff</span><span class="p">(</span><span class="kt">double</span><span class="w"> </span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="n">h</span><span class="p">);</span>
 </pre></div>
 </div>
+<p>Use modular implementation.</p>
+<section id="error-a-as-function-of-h">
+<h3>Error a as function of <span class="math notranslate nohighlight">\(h\)</span><a class="headerlink" href="#error-a-as-function-of-h" title="Link to this heading">#</a></h3>
+<p>Now fix <span class="math notranslate nohighlight">\( = 1.454335\)</span>, and compute (using another main function) the relative error as a function of <span class="math notranslate nohighlight">\(h \in [10^{-16}, 10^{-15}, 10^{-14}, \ldots, 10^{-3}, 10^{-2}, 10^{-1}]\)</span>. Plot it.
+Explain the differences among forward and central results.</p>
+<p>You can plot using the following python script, but you have to adapt it and improve it:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="c1"># import seaborn as sns</span>
+<span class="c1"># sns.set_context(&quot;poster&quot;)</span>
+
+<span class="c1"># read data</span>
+<span class="n">x</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">loadtxt</span><span class="p">(</span><span class="s2">&quot;data.txt&quot;</span><span class="p">,</span> <span class="n">unpack</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="c1"># plot </span>
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="s1">&#39;-o&#39;</span><span class="p">,</span> <span class="s1">&#39;mylabel&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="s1">&#39;deriv.pdf&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
 <section id="file-modularization">
 <h3>File modularization<a class="headerlink" href="#file-modularization" title="Link to this heading">#</a></h3>
 <p>Now try to modularize the code. Create headers and implementation files called <code class="docutils literal notranslate"><span class="pre">derivatives.h</span></code> and <code class="docutils literal notranslate"><span class="pre">derivatives.cpp</span></code>, where you are going to put declarations and implementations for both the forward and the central derivative methods. What happens now? where should the function to be derived go? We need a more generic approach. Use <code class="docutils literal notranslate"><span class="pre">using</span> <span class="pre">fptr</span> <span class="pre">=</span> <span class="pre">double(double)</span></code> as a function pointer, which is a construct that represents what a function returns and receives. The ideal is to use the functions as parameters</p>
@@ -589,20 +625,29 @@ Compute the derivative as a function of <span class="math notranslate nohighligh
 </div>
 <p>Or even use functors or std::function. For now let’s just keep this simple with <code class="docutils literal notranslate"><span class="pre">using</span></code>.</p>
 </section>
-<section id="error-a-as-function-of-h">
-<h3>Error a as function of <span class="math notranslate nohighlight">\(h\)</span><a class="headerlink" href="#error-a-as-function-of-h" title="Link to this heading">#</a></h3>
-<p>Now fix <span class="math notranslate nohighlight">\( = 1.454335\)</span>, and compute (using another main function) the relative error as a function of <span class="math notranslate nohighlight">\(h \in [10^{-16}, 10^{-15}, 10^{-14}, \ldots, 10^{-3}, 10^{-2}, 10^{-1}]\)</span>. Plot it. Explain the differences among forward and central results.</p>
+<section id="testing-a-first-implementation">
+<h3>Testing a first implementation<a class="headerlink" href="#testing-a-first-implementation" title="Link to this heading">#</a></h3>
+<p>Compute the derivative as a function of <span class="math notranslate nohighlight">\(x\)</span>, with fixed <span class="math notranslate nohighlight">\(h = 0.01\)</span>. Use <span class="math notranslate nohighlight">\(f(x) = \sin(x^2)\)</span>. Compare with the exact derivative. Plot the relative difference.</p>
 </section>
 <section id="error-as-a-function-of-both-h-and-x">
 <h3>Error as a function of both <span class="math notranslate nohighlight">\(h\)</span> and <span class="math notranslate nohighlight">\(x\)</span><a class="headerlink" href="#error-as-a-function-of-both-h-and-x" title="Link to this heading">#</a></h3>
 <p>Is the error dependent on <span class="math notranslate nohighlight">\(x\)</span> also? explore variations for both <span class="math notranslate nohighlight">\(x\)</span> and <span class="math notranslate nohighlight">\(y\)</span> and plot in a 3d picture.</p>
 </section>
 </section>
+<section id="richardson-extrapolation">
+<h2>Richardson extrapolation<a class="headerlink" href="#richardson-extrapolation" title="Link to this heading">#</a></h2>
+<p>By using <a class="reference external" href="https://en.wikipedia.org/wiki/Richardson_extrapolation">Richardson extrapolation</a>, you can improve even more the central difference estimation,</p>
+<div class="amsmath math notranslate nohighlight" id="equation-8572f3a9-29ca-480c-ae63-ed74d1dda610">
+<span class="eqno">(6)<a class="headerlink" href="#equation-8572f3a9-29ca-480c-ae63-ed74d1dda610" title="Permalink to this equation">#</a></span>\[\begin{equation}
+f'(x) = \phi\left(\frac{h}{2}\right) + \frac{1}{3}\left[\phi\left(\frac{h}{2} \right) - \phi(h) \right] + O(h^4),
+\end{equation}\]</div>
+<p>where <span class="math notranslate nohighlight">\(\phi(h)\)</span> is the derivative estimation from the central difference with a given <span class="math notranslate nohighlight">\(h\)</span> value. <strong>NOTE</strong>: This form is only for the central difference, since it depends on the algorithm order.</p>
+</section>
 <section id="implementing-richardson-extrapolation">
 <h2>Implementing Richardson extrapolation<a class="headerlink" href="#implementing-richardson-extrapolation" title="Link to this heading">#</a></h2>
 <p>Now, use the general expression for Richardson extrapolation applied to an algorithm of order <span class="math notranslate nohighlight">\(O(h^\alpha)\)</span>, and also plot its relative differences for fixed <span class="math notranslate nohighlight">\(x\)</span>, (see https://en.wikipedia.org/wiki/Richardson_extrapolation?useskin=vector)</p>
-<div class="amsmath math notranslate nohighlight" id="equation-bcba398a-193c-45b1-87be-1eef7a92ed8c">
-<span class="eqno">(2)<a class="headerlink" href="#equation-bcba398a-193c-45b1-87be-1eef7a92ed8c" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-f5337baa-052d-4a54-98c3-6be31bc1a624">
+<span class="eqno">(7)<a class="headerlink" href="#equation-f5337baa-052d-4a54-98c3-6be31bc1a624" title="Permalink to this equation">#</a></span>\[\begin{equation}
 I \simeq \dfrac{t^\alpha I(\frac{h}{t}) - I(h)}{t^\alpha - 1},
 \end{equation}\]</div>
 <p>where <span class="math notranslate nohighlight">\(t\)</span> is a factor larger than 1 (tipically <span class="math notranslate nohighlight">\(t=2\)</span>), <span class="math notranslate nohighlight">\(\alpha\)</span> is the algorithm order, and <span class="math notranslate nohighlight">\(I\)</span> is the value you are computing. This implies additions to both headers and implementation files, and a new main.</p>
@@ -617,7 +662,7 @@ I \simeq \dfrac{t^\alpha I(\frac{h}{t}) - I(h)}{t^\alpha - 1},
 Our simple approach does not work in this case. We cannot use using inside using. Also, our approach does not work with other kind of functions, like templates or lambdas. Therefore, we need to use a more generic approach. In this case, using <code class="docutils literal notranslate"><span class="pre">std::function</span></code>, which is a generalization of an object behaving like a function (you need to <code class="docutils literal notranslate"><span class="pre">#include</span> <span class="pre">&lt;functional&gt;</span></code>), we can solve this and modularize our code.</p></li>
 </ul>
 <p>Our files will be like (fill in the <code class="docutils literal notranslate"><span class="pre">//</span> <span class="pre">todo</span></code>)</p>
-<p><code class="docutils literal notranslate"><span class="pre">deriv.h</span></code>: To store the declarations</p>
+<p><code class="docutils literal notranslate"><span class="pre">derivatives.h</span></code>: To store the declarations</p>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp">#pragma once</span>
 
 <span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;functional&gt;</span>
@@ -634,17 +679,17 @@ Our simple approach does not work in this case. We cannot use using inside using
 <span class="kt">double</span><span class="w"> </span><span class="nf">richardson</span><span class="p">(</span><span class="n">fptr</span><span class="w"> </span><span class="n">f</span><span class="p">,</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="n">h</span><span class="p">,</span><span class="w"> </span><span class="n">algptr</span><span class="w"> </span><span class="n">alg</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">n</span><span class="p">);</span><span class="w"> </span><span class="c1">// n is the algorithm order</span>
 </pre></div>
 </div>
-<p><code class="docutils literal notranslate"><span class="pre">deriv.cpp</span></code>:</p>
+<p><code class="docutils literal notranslate"><span class="pre">derivatives.cpp</span></code>:</p>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;deriv.h&quot;</span>
 
 <span class="kt">double</span><span class="w"> </span><span class="nf">deriv_central</span><span class="p">(</span><span class="n">fptr</span><span class="w"> </span><span class="n">f</span><span class="p">,</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="n">h</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
 <span class="w">	</span><span class="c1">// Central difference formula</span>
-<span class="w">	</span><span class="k">return</span><span class="w"> </span><span class="p">(</span><span class="n">f</span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">h</span><span class="p">)</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">f</span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">h</span><span class="p">))</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="p">(</span><span class="mi">2</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">h</span><span class="p">);</span>
+<span class="w">    </span><span class="c1">// todo</span>
 <span class="p">}</span>
 
 <span class="kt">double</span><span class="w"> </span><span class="nf">deriv_forward</span><span class="p">(</span><span class="n">fptr</span><span class="w"> </span><span class="n">f</span><span class="p">,</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="n">h</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
 <span class="w">	</span><span class="c1">// Forward difference formula</span>
-<span class="w">	</span><span class="k">return</span><span class="w"> </span><span class="p">(</span><span class="n">f</span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">h</span><span class="p">)</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">f</span><span class="p">(</span><span class="n">x</span><span class="p">))</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">h</span><span class="p">;</span>
+<span class="w">    </span><span class="c1">// todo</span>
 <span class="p">}</span>
 
 <span class="kt">double</span><span class="w"> </span><span class="nf">richardson</span><span class="p">(</span><span class="n">fptr</span><span class="w"> </span><span class="n">f</span><span class="p">,</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="n">h</span><span class="p">,</span><span class="w"> </span><span class="n">algptr</span><span class="w"> </span><span class="n">alg</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">n</span><span class="p">)</span><span class="w"> </span><span class="c1">// n is the algorithm order</span>
@@ -653,7 +698,7 @@ Our simple approach does not work in this case. We cannot use using inside using
 <span class="p">}</span>
 </pre></div>
 </div>
-<p>and our main function</p>
+<p>and our main function file <code class="docutils literal notranslate"><span class="pre">main_deriv.cpp</span></code></p>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;iostream&gt;</span>
 
 <span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;deriv.h&quot;</span>
@@ -675,13 +720,13 @@ Our simple approach does not work in this case. We cannot use using inside using
 </pre></div>
 </div>
 <p>To compile, use wither full compilation (easy but not practical with many cpp files)</p>
-<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>g++<span class="w"> </span>-std<span class="o">=</span>c++17<span class="w"> </span>deriv.cpp<span class="w"> </span>main_deriv.cpp
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>g++<span class="w"> </span>-std<span class="o">=</span>c++17<span class="w"> </span>derivatives.cpp<span class="w"> </span>main_deriv.cpp
 </pre></div>
 </div>
 <p>or the modularized one, which can be automated using a <code class="docutils literal notranslate"><span class="pre">Makefile</span></code></p>
-<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>g++<span class="w"> </span>-std<span class="o">=</span>c++17<span class="w"> </span>-c<span class="w"> </span>deriv.cpp<span class="w"> </span><span class="c1"># Produces the object deriv.o</span>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>g++<span class="w"> </span>-std<span class="o">=</span>c++17<span class="w"> </span>-c<span class="w"> </span>derivatives.cpp<span class="w"> </span><span class="c1"># Produces the object deriv.o</span>
 g++<span class="w"> </span>-std<span class="o">=</span>c++17<span class="w"> </span>-c<span class="w"> </span>main_deriv.cpp<span class="w"> </span><span class="c1"># Produces the object main_deriv.o</span>
-g++<span class="w"> </span>-std<span class="o">=</span>c++17<span class="w"> </span>deriv.o<span class="w"> </span>main_deriv.o<span class="w"> </span><span class="c1"># links both objects and produces the executable</span>
+g++<span class="w"> </span>-std<span class="o">=</span>c++17<span class="w"> </span>derivatives.o<span class="w"> </span>main_deriv.o<span class="w"> </span><span class="c1"># links both objects and produces the executable</span>
 </pre></div>
 </div>
 </section>
@@ -756,14 +801,17 @@ g++<span class="w"> </span>-std<span class="o">=</span>c++17<span class="w"> </s
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#first-approach-forward-difference">First approach: forward difference</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#a-better-estimation-central-difference">A better estimation: Central difference</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#implementing-it-in-c">Implementing it in C++</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#a-better-estimation-with-less-error-central-difference">A better estimation with less error: Central difference</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#other-important-cases">Other important cases</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#implementing-forward-and-central-derivatives">Implementing forward and central derivatives</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#file-modularization">File modularization</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#error-a-as-function-of-h">Error a as function of <span class="math notranslate nohighlight">\(h\)</span></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#file-modularization">File modularization</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#testing-a-first-implementation">Testing a first implementation</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#error-as-a-function-of-both-h-and-x">Error as a function of both <span class="math notranslate nohighlight">\(h\)</span> and <span class="math notranslate nohighlight">\(x\)</span></a></li>
 </ul>
 </li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#richardson-extrapolation">Richardson extrapolation</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#implementing-richardson-extrapolation">Implementing Richardson extrapolation</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#modularizing-the-files-with-richardson-extrapolation">Modularizing the files with Richardson extrapolation</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#testing">Testing</a></li>
