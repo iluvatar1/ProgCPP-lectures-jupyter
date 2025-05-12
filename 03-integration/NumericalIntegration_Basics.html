@@ -477,8 +477,15 @@ document.write(`
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#simpsons-rule">Simpsons rule</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#romberg-method">Romberg method</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#other-techniques">Other techniques</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#gaussian-quadrature-introduction-to-vectors">Gaussian quadrature: Introduction to vectors</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#example-using-a-vector-to-store-the-weights">Example using a vector to store the weights.</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#gaussian-quadrature-introduction-to-vectors">Gaussian quadrature: Introduction to vectors</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-gauss-legendre-quadrature-with-2-points">Exercise: Gauss-Legendre quadrature with 2 points</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#scalling-integration-intervals">Scalling integration intervals</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-gauss-legendre-on-general-intervals">Exercise: Gauss - Legendre on general intervals</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#higher-order-gauss-legendre-using-a-vector-to-store-the-weights-points">Higher order Gauss-Legendre: using a vector to store the weights/points.</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#exercises">Exercises</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#gauss-quadrature-of-order-7">Gauss quadrature of order 7</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#integrating-a-datafile">Integrating a datafile</a></li>
@@ -505,8 +512,8 @@ document.write(`
 <p>In any numerical computing course you will start by exploring the trapezoidal and the simpsons rule. Here we are jus going to give the general formulation and then go directly to the functions given by scipy</p>
 <p>Let’s compare several of the typical algorithms: <a class="reference external" href="https://www.geogebra.org/m/WsZgaJcc">https://www.geogebra.org/m/WsZgaJcc</a>, and a beautiful visualization at <a class="reference external" href="https://www.youtube.com/watch?v=FnJqaIESC2s">https://www.youtube.com/watch?v=FnJqaIESC2s</a></p>
 <p>All numerical quadratures can be written as</p>
-<div class="amsmath math notranslate nohighlight" id="equation-e6985f2e-c123-48f7-ad84-3f9e4c77fb78">
-<span class="eqno">(8)<a class="headerlink" href="#equation-e6985f2e-c123-48f7-ad84-3f9e4c77fb78" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-ff793d47-f926-4b5f-89c0-865209b71286">
+<span class="eqno">(8)<a class="headerlink" href="#equation-ff793d47-f926-4b5f-89c0-865209b71286" title="Permalink to this equation">#</a></span>\[\begin{equation}
 \int_a^b dx\  f(x) \simeq \sum_i w_i f(x_i) dx + \epsilon,
 \end{equation}\]</div>
 <p>where the weights <span class="math notranslate nohighlight">\(w_i\)</span> and the error <span class="math notranslate nohighlight">\(\epsilon\)</span> depend on the method chosen (see <a class="reference external" href="https://en.wikipedia.org/wiki/Newton%E2%80%93Cotes_formulas?useskin=vector">https://en.wikipedia.org/wiki/Newton–Cotes_formulas?useskin=vector</a>).</p>
@@ -527,8 +534,8 @@ document.write(`
 </table>
 </div>
 <p>Between two points, the integral is approximated as</p>
-<div class="amsmath math notranslate nohighlight" id="equation-23a8c148-b07e-4441-8bcd-be7f0864d889">
-<span class="eqno">(9)<a class="headerlink" href="#equation-23a8c148-b07e-4441-8bcd-be7f0864d889" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-47cbfc0c-7c69-46fc-85b3-d21968b12f8c">
+<span class="eqno">(9)<a class="headerlink" href="#equation-47cbfc0c-7c69-46fc-85b3-d21968b12f8c" title="Permalink to this equation">#</a></span>\[\begin{equation}
 I (a, b) = \int_a^b dx \ f(x) \simeq \frac{b-a}{2} (f(a) + f(b)) + O_{local}(\Delta x^3),
 \end{equation}\]</div>
 <p>where the weights are <span class="math notranslate nohighlight">\({1/2, 1/2}\)</span>.</p>
@@ -559,8 +566,8 @@ I (a, b) = \int_a^b dx \ f(x) \simeq \frac{b-a}{2} (f(a) + f(b)) + O_{local}(\De
 <section id="id1">
 <h3><strong>Exercise</strong><a class="headerlink" href="#id1" title="Link to this heading">#</a></h3>
 <p>Now use your implementation to compute the error function as a function of <span class="math notranslate nohighlight">\(x\)</span>, using the partition shown. Your program must print also the relative error, comparing with the “exact” value from https://en.cppreference.com/w/cpp/numeric/math/erf . Print your data to <code class="docutils literal notranslate"><span class="pre">erf_data.txt</span></code> (print the x value, the numerical value of the integral, and the relative error)</p>
-<div class="amsmath math notranslate nohighlight" id="equation-8668cd7b-e908-42ea-ab81-8ce0b7ee3fd7">
-<span class="eqno">(10)<a class="headerlink" href="#equation-8668cd7b-e908-42ea-ab81-8ce0b7ee3fd7" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-51766ffe-357c-4799-a2a5-5bc978791c9a">
+<span class="eqno">(10)<a class="headerlink" href="#equation-51766ffe-357c-4799-a2a5-5bc978791c9a" title="Permalink to this equation">#</a></span>\[\begin{equation}
 f(x) = \frac{2}{\sqrt{\pi}}\int_0^x e^{-t^2} dt
 \end{equation}\]</div>
 <p><span class="math notranslate nohighlight">\(x \in [0, 10]\)</span>, <span class="math notranslate nohighlight">\(\Delta x = 0.1\)</span></p>
@@ -618,14 +625,14 @@ f(x) = \frac{2}{\sqrt{\pi}}\int_0^x e^{-t^2} dt
 </table>
 </div>
 <p>Between two points, the integral is</p>
-<div class="amsmath math notranslate nohighlight" id="equation-87263f15-eb6b-4e9d-b03c-c1bf1aad30a9">
-<span class="eqno">(11)<a class="headerlink" href="#equation-87263f15-eb6b-4e9d-b03c-c1bf1aad30a9" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-e697a817-006e-4cf3-bab0-79da349cd347">
+<span class="eqno">(11)<a class="headerlink" href="#equation-e697a817-006e-4cf3-bab0-79da349cd347" title="Permalink to this equation">#</a></span>\[\begin{equation}
 I(a, b, 2) = \int_a^b dx\ f(x) \simeq \frac{b-a}{6} \left[ f(a) + 4f(\frac{a+b}{2}) + f(b)\right] + O_{local}(\Delta x^5),
 \end{equation}\]</div>
 <p>so the weights are <span class="math notranslate nohighlight">\(\{1/6, 4/6, 1/6\}\)</span>.</p>
 <p>Now, using a partition,  you compute the integral as</p>
-<div class="amsmath math notranslate nohighlight" id="equation-f1d21c64-6a68-4026-8f03-a361eb946661">
-<span class="eqno">(12)<a class="headerlink" href="#equation-f1d21c64-6a68-4026-8f03-a361eb946661" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-d4394ac2-7beb-43bb-b89f-49e7435c6fae">
+<span class="eqno">(12)<a class="headerlink" href="#equation-d4394ac2-7beb-43bb-b89f-49e7435c6fae" title="Permalink to this equation">#</a></span>\[\begin{equation}
 \int_a^b f(x) dx \simeq \frac{\Delta x}{3}\left( f(x_0) + 4 \sum_{k=1}^{N/2} f(x_{2k-1}) + 2\sum_{k=1}^{N/2-1} f(x_{2k}) + f(x_N)\right) + O_{global}(N^{-4}).
 \end{equation}\]</div>
 <p>Notice that <span class="math notranslate nohighlight">\(N\)</span> must be even, and <span class="math notranslate nohighlight">\(\Delta x = \dfrac{b-a}{N}\)</span>, so <span class="math notranslate nohighlight">\(O_{global}(\Delta x^4) = O_{global}(N^{-4})\)</span>.</p>
@@ -651,31 +658,47 @@ I(a, b, 2) = \int_a^b dx\ f(x) \simeq \frac{b-a}{6} \left[ f(a) + 4f(\frac{a+b}{
 <section id="gaussian-quadrature-introduction-to-vectors">
 <h2>Gaussian quadrature: Introduction to vectors<a class="headerlink" href="#gaussian-quadrature-introduction-to-vectors" title="Link to this heading">#</a></h2>
 <p><a class="reference external" href="https://en.wikipedia.org/wiki/Gaussian_quadrature?useskin=vector">Gaussian quadrature</a> is a very clever technique that allows to compute integrals with a high precision and minimal number of points. First, notice that any numerical integral method can be written as</p>
-<div class="math notranslate nohighlight">
-\[
-I \simeq \sum w_i f(x_i),
-\]</div>
-<p>where <span class="math notranslate nohighlight">\(x_i\)</span> are the evaluation points and <span class="math notranslate nohighlight">\(w_i\)</span> the associated weigths. What if you don’t fix the <span class="math notranslate nohighlight">\(x_i\)</span> to a uniform spacing, but, instead, try to compute both their optimal positions plus the optimal weights so you compute exactly the integral for an interpolating polynomial of degree <span class="math notranslate nohighlight">\(2n-1\)</span>, using <span class="math notranslate nohighlight">\(n\)</span> points? that is the basic idea behind the method. The modern formulation, thanks to Jacobi, uses orthogonal polynomials, usually in the [-1, 1] domain (so you need to re-scale your data).</p>
+<div class="amsmath math notranslate nohighlight" id="equation-7af6cd84-43b4-4da3-ba9b-db1ba746404a">
+<span class="eqno">(13)<a class="headerlink" href="#equation-7af6cd84-43b4-4da3-ba9b-db1ba746404a" title="Permalink to this equation">#</a></span>\[\begin{equation}
+I(a, b) \simeq \sum w_k f(x_k) \Delta x,
+\end{equation}\]</div>
+<p>with <span class="math notranslate nohighlight">\(\Delta x = \dfrac{b-a}{N}\)</span> and</p>
+<div class="amsmath math notranslate nohighlight" id="equation-6afceb3d-8467-40a0-b287-bb5e44d908af">
+<span class="eqno">(14)<a class="headerlink" href="#equation-6afceb3d-8467-40a0-b287-bb5e44d908af" title="Permalink to this equation">#</a></span>\[\begin{equation}
+x_k = a + k \Delta x .
+\end{equation}\]</div>
+<p>Notice that the points coordinates are fixed. Here <span class="math notranslate nohighlight">\(x_k\)</span> are the evaluation points and <span class="math notranslate nohighlight">\(w_k\)</span> the associated weigths.</p>
+<p>What if you don’t fix the <span class="math notranslate nohighlight">\(x_i\)</span> to a uniform spacing, but, instead, try to compute both their optimal positions plus the optimal weights so you compute exactly the integral for an interpolating polynomial of degree <span class="math notranslate nohighlight">\(2n-1\)</span>, using <span class="math notranslate nohighlight">\(n\)</span> points? that is the basic idea behind the Gaussian quadrature method. The modern formulation, thanks to Jacobi, uses orthogonal polynomials, usually in the [-1, 1] domain (so you need to re-scale your data when you are integratin from <span class="math notranslate nohighlight">\([a, b]\)</span>). For instace using just to points will give an integral exact up to a polynomial of degree <span class="math notranslate nohighlight">\(3\)</span>. Just two points …</p>
 <div style="text-align: center;">
     <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/93/Comparison_Gaussquad_trapezoidal.svg/660px-Comparison_Gaussquad_trapezoidal.svg.png" alt="Image Description" width="600">
     <figcaption>From: "https://upload.wikimedia.org/wikipedia/commons/thumb/9/93/Comparison_Gaussquad_trapezoidal.svg/660px-Comparison_Gaussquad_trapezoidal.svg.png"</figcaption>
 </div>
-In this image, it is illustrated that although the Gaussian method uses only two points, it is exact since the integration is done on a 3-degree polynomial.
-<p>For the Gauss-Legendre formulation, you can check the weights at https://en.wikipedia.org/wiki/Gaussian_quadrature?useskin=vector#Gauss%E2%80%93Legendre_quadrature</p>
-<p>To succesfully apply the Gaussian quadrature technique to a general integral on the interval [a, b], we need to map it to the interval [-1, 1], so we can use the mapping</p>
-<div class="math notranslate nohighlight">
-\[
-x = \frac{b-a}{2}x' + \frac{b+a}{2},
-\]</div>
-<p>therefore</p>
-<div class="math notranslate nohighlight">
-\[
-\int_a^b f(x) dx \simeq \frac{b-a}{2} \sum w_i f\left(\frac{b-a}{2}x' + \frac{b+a}{2}\right)
-\]</div>
-<p>using the <span class="math notranslate nohighlight">\(w_i\)</span> from the method.</p>
+In this image, it is illustrated that although the Gaussian method uses only two points, it is exact since the integration is done on a 3-degree polynomial. Here, the integrand is $y(x) = 7x^3 - 8x^2 - 3x + 3$. The exact integral value is 2/3. The trapezoid method, using two points, gives -10, forcing to use the composite trapezoid method, using mucho more numbers. The Gauss-Legendre, with just points (strategically chosen), gives the exact value.   <section id="exercise-gauss-legendre-quadrature-with-2-points">
+<h3>Exercise: Gauss-Legendre quadrature with 2 points<a class="headerlink" href="#exercise-gauss-legendre-quadrature-with-2-points" title="Link to this heading">#</a></h3>
+<p>For the Gauss-Legendre formulation, you can check the weights at <a class="reference external" href="https://en.wikipedia.org/wiki/Gaussian_quadrature?useskin=vector#Gauss%E2%80%93Legendre_quadrature">https://en.wikipedia.org/wiki/Gaussian_quadrature?useskin=vector#Gauss–Legendre_quadrature</a>. Interpret the table. Now implement the 2 point Gauss-Legendre quadrature and test the figure results.</p>
+<p>Can Richardson extrapolation be applied to the Gauss quadrature method?</p>
 </section>
-<section id="example-using-a-vector-to-store-the-weights">
-<h2>Example using a vector to store the weights.<a class="headerlink" href="#example-using-a-vector-to-store-the-weights" title="Link to this heading">#</a></h2>
+</section>
+<section id="scalling-integration-intervals">
+<h2>Scalling integration intervals<a class="headerlink" href="#scalling-integration-intervals" title="Link to this heading">#</a></h2>
+<p>To successfully apply the Gaussian quadrature technique to a general integral on the interval [a, b], we need to map it to the interval [-1, 1]. Basically you want a new <span class="math notranslate nohighlight">\(x'\)</span> such that <span class="math notranslate nohighlight">\(x = a\)</span> (<span class="math notranslate nohighlight">\(b\)</span>) when <span class="math notranslate nohighlight">\(x' = 1\)</span> (-1). Once such linear mapping is</p>
+<div class="amsmath math notranslate nohighlight" id="equation-a1956865-4a47-4641-af52-3827e4539714">
+<span class="eqno">(15)<a class="headerlink" href="#equation-a1956865-4a47-4641-af52-3827e4539714" title="Permalink to this equation">#</a></span>\[\begin{equation}
+x = \frac{b-a}{2}x' + \frac{b+a}{2},
+\end{equation}\]</div>
+<p>therefore</p>
+<div class="amsmath math notranslate nohighlight" id="equation-d3294668-a610-4c41-a345-d358db96ef60">
+<span class="eqno">(16)<a class="headerlink" href="#equation-d3294668-a610-4c41-a345-d358db96ef60" title="Permalink to this equation">#</a></span>\[\begin{equation}
+\int_a^b f(x) dx \simeq \frac{b-a}{2} \sum w_k f\left(\frac{b-a}{2}x_k' + \frac{b+a}{2}\right),
+\end{equation}\]</div>
+<p>using both the <span class="math notranslate nohighlight">\(w_i\)</span> and <span class="math notranslate nohighlight">\(x_i'\)</span> from the method.</p>
+<section id="exercise-gauss-legendre-on-general-intervals">
+<h3>Exercise: Gauss - Legendre on general intervals<a class="headerlink" href="#exercise-gauss-legendre-on-general-intervals" title="Link to this heading">#</a></h3>
+<p>Extend the previous to compute the integral on a general interval <span class="math notranslate nohighlight">\([a, b]\)</span>. Test that it is still working for the original interval , and then compute the integral of <span class="math notranslate nohighlight">\(\sin(e^x)\)</span> for <span class="math notranslate nohighlight">\(x \in [-5.0, 5.0]\)</span>, using the two point Gauss-Legendre method.</p>
+</section>
+</section>
+<section id="higher-order-gauss-legendre-using-a-vector-to-store-the-weights-points">
+<h2>Higher order Gauss-Legendre: using a vector to store the weights/points.<a class="headerlink" href="#higher-order-gauss-legendre-using-a-vector-to-store-the-weights-points" title="Link to this heading">#</a></h2>
 <p>For an increasing number of points, you will need to use many variables to store the weights. For a degree <span class="math notranslate nohighlight">\(n=5\)</span>, you will need five variables to store the weights, five more for the points, and then manually process that. It will be much better to store them in an data structure that allow us to handle the operations in a generic way. In this case, it will be a <code class="docutils literal notranslate"><span class="pre">std::vector</span></code>, which allows us to store data, contiguously in memory, and process it using simple for loops (SIMD).</p>
 <p>Our declaration could be</p>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">double</span><span class="w"> </span><span class="nf">gauss_5</span><span class="p">(</span><span class="kt">double</span><span class="w"> </span><span class="n">a</span><span class="p">,</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="n">b</span><span class="p">,</span><span class="w"> </span><span class="n">fptr</span><span class="w"> </span><span class="n">fun</span><span class="p">);</span>
@@ -716,8 +739,8 @@ x = \frac{b-a}{2}x' + \frac{b+a}{2},
 very powerful method to compute integrals, where the points and weights are
 wisely chosen to improve the algorithm precision. The method is formulated in
 the range [-1, 1], so maybe the general integral must be scaled as</p>
-<div class="amsmath math notranslate nohighlight" id="equation-90edd139-9f20-48c1-90ba-cd819fc2b822">
-<span class="eqno">(13)<a class="headerlink" href="#equation-90edd139-9f20-48c1-90ba-cd819fc2b822" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-a933d4a5-b4fc-407a-a6f6-4ffb60506249">
+<span class="eqno">(17)<a class="headerlink" href="#equation-a933d4a5-b4fc-407a-a6f6-4ffb60506249" title="Permalink to this equation">#</a></span>\[\begin{equation}
 \int_a^b f(x) dx = \frac{b-a}{2} \sum_{j=1}^{n} w_j f\left(\frac{b-a}{2} x_j + \frac{a+b}{2} \right) + O((b-a)^{2n+1}).
 \end{equation}\]</div>
 <p>The next table shows the points positions and weights for the Gaussian integral
@@ -830,14 +853,14 @@ and compute the velocity as a function of time by integrating at each time step.
 <section id="cumulative-probability">
 <h3>Cumulative probability<a class="headerlink" href="#cumulative-probability" title="Link to this heading">#</a></h3>
 <p>The probability density function for the <a class="reference external" href="https://en.wikipedia.org/wiki/Gamma_distribution">Gamma distribution</a> is</p>
-<div class="amsmath math notranslate nohighlight" id="equation-200aad8f-d134-44d5-95c7-9580fdcf591d">
-<span class="eqno">(14)<a class="headerlink" href="#equation-200aad8f-d134-44d5-95c7-9580fdcf591d" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-98014afa-71c4-4415-b657-de71cf19d35a">
+<span class="eqno">(18)<a class="headerlink" href="#equation-98014afa-71c4-4415-b657-de71cf19d35a" title="Permalink to this equation">#</a></span>\[\begin{equation}
 f(x; \alpha, \beta) = \frac{\beta^\alpha}{\Gamma(\alpha) x^{\alpha -1} e^{-\beta x} },
 \end{equation}\]</div>
 <p>para <span class="math notranslate nohighlight">\(0 &lt; x &lt; \infty\)</span>. Compute and plot the cumulative density function, using
 both the simpson method and the gaussian <span class="math notranslate nohighlight">\(g_7\)</span>, defined as</p>
-<div class="amsmath math notranslate nohighlight" id="equation-4ae63001-5501-49c3-b5cb-c8f2ea966626">
-<span class="eqno">(15)<a class="headerlink" href="#equation-4ae63001-5501-49c3-b5cb-c8f2ea966626" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-9f1fc9e1-b19f-4ca0-bb34-16d7c45979fa">
+<span class="eqno">(19)<a class="headerlink" href="#equation-9f1fc9e1-b19f-4ca0-bb34-16d7c45979fa" title="Permalink to this equation">#</a></span>\[\begin{equation}
 F(x; \alpha, \beta) = \int_0^x dt f(t; \alpha, \beta),
 \end{equation}\]</div>
 <p>for <span class="math notranslate nohighlight">\(x \in [0.0, 20.0]\)</span>, with <span class="math notranslate nohighlight">\(\alpha = 7.5, \beta = 1.0\)</span>.</p>
@@ -845,8 +868,8 @@ F(x; \alpha, \beta) = \int_0^x dt f(t; \alpha, \beta),
 <section id="di-logarithm-function">
 <h3>Di-logarithm function<a class="headerlink" href="#di-logarithm-function" title="Link to this heading">#</a></h3>
 <p>The di-logarithm function is defined as</p>
-<div class="amsmath math notranslate nohighlight" id="equation-3e0ea6a0-2984-4933-bb37-ad92e1f511c5">
-<span class="eqno">(16)<a class="headerlink" href="#equation-3e0ea6a0-2984-4933-bb37-ad92e1f511c5" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-79155cea-314c-4925-b357-4e815dc98094">
+<span class="eqno">(20)<a class="headerlink" href="#equation-79155cea-314c-4925-b357-4e815dc98094" title="Permalink to this equation">#</a></span>\[\begin{equation}
 \mathrm{Li}_2(x) = -\int_0^x \frac{\ln(1-t)}{t} dt.
 \end{equation}\]</div>
 <p>Plot the di-logarithm function for <span class="math notranslate nohighlight">\(x \in (0.0, 1.0)\)</span>. If you use simpson,
@@ -856,31 +879,31 @@ transform the variable and/or split the integral to avoid numerical problems.</p
 <section id="moment-distribution">
 <h3>Moment distribution<a class="headerlink" href="#moment-distribution" title="Link to this heading">#</a></h3>
 <p>The kth moment for a probability distribution is</p>
-<div class="amsmath math notranslate nohighlight" id="equation-77d742a3-5a7e-4810-a23c-32d7e445124c">
-<span class="eqno">(17)<a class="headerlink" href="#equation-77d742a3-5a7e-4810-a23c-32d7e445124c" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-9e6a822b-f35d-4e8e-a4bc-ec0ba67f4215">
+<span class="eqno">(21)<a class="headerlink" href="#equation-9e6a822b-f35d-4e8e-a4bc-ec0ba67f4215" title="Permalink to this equation">#</a></span>\[\begin{equation}
 \lt x^k \gt = \int x^k f(x) dx,
 \end{equation}\]</div>
 <p>Compute the first ten moments for the  <a class="reference external" href="https://en.wikipedia.org/wiki/Gamma_distribution">Gamma distribution</a> ,</p>
-<div class="amsmath math notranslate nohighlight" id="equation-b93642c2-cd8c-4518-a66e-d3cc13ef5569">
-<span class="eqno">(18)<a class="headerlink" href="#equation-b93642c2-cd8c-4518-a66e-d3cc13ef5569" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-2363e7e0-3f05-43f9-bfe0-94fb5c579108">
+<span class="eqno">(22)<a class="headerlink" href="#equation-2363e7e0-3f05-43f9-bfe0-94fb5c579108" title="Permalink to this equation">#</a></span>\[\begin{equation}
 f(x; \alpha, \beta) = \frac{\beta^\alpha}{\Gamma(\alpha) x^{\alpha -1} e^{-\beta x} }.
 \end{equation}\]</div>
 </section>
 <section id="arch-lenght-mass-centroid">
 <h3>Arch lenght, mass, centroid<a class="headerlink" href="#arch-lenght-mass-centroid" title="Link to this heading">#</a></h3>
 <p>The arc length of a curve <span class="math notranslate nohighlight">\(y(x)\)</span> is given by</p>
-<div class="amsmath math notranslate nohighlight" id="equation-a02be31e-9e27-44a5-af54-806c3b5b09f9">
-<span class="eqno">(19)<a class="headerlink" href="#equation-a02be31e-9e27-44a5-af54-806c3b5b09f9" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-ca94de89-328f-4f18-878a-72ebccac48f4">
+<span class="eqno">(23)<a class="headerlink" href="#equation-ca94de89-328f-4f18-878a-72ebccac48f4" title="Permalink to this equation">#</a></span>\[\begin{equation}
 s = \int_a^b dx \sqrt{1 + \left(\frac{dy}{dx}  \right)^2}.
 \end{equation}\]</div>
 <p>If a linear body has a density <span class="math notranslate nohighlight">\(\rho(x)\)</span>, the total mass would be</p>
-<div class="amsmath math notranslate nohighlight" id="equation-78af2e1e-56e4-4a28-b3b7-dd3d26c809a8">
-<span class="eqno">(20)<a class="headerlink" href="#equation-78af2e1e-56e4-4a28-b3b7-dd3d26c809a8" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-595a03db-ae5a-41bf-a1b5-0d9eed2055fe">
+<span class="eqno">(24)<a class="headerlink" href="#equation-595a03db-ae5a-41bf-a1b5-0d9eed2055fe" title="Permalink to this equation">#</a></span>\[\begin{equation}
 M = \int \rho(x) ds.
 \end{equation}\]</div>
 <p>The <span class="math notranslate nohighlight">\(x\)</span> position of the centroid can also be computed as</p>
-<div class="amsmath math notranslate nohighlight" id="equation-f0ca4dbb-d03b-4fa9-8d17-4d7a8da99996">
-<span class="eqno">(21)<a class="headerlink" href="#equation-f0ca4dbb-d03b-4fa9-8d17-4d7a8da99996" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-da905f36-9cb9-4c29-b8e2-dc2a21040b40">
+<span class="eqno">(25)<a class="headerlink" href="#equation-da905f36-9cb9-4c29-b8e2-dc2a21040b40" title="Permalink to this equation">#</a></span>\[\begin{equation}
 \overline x = \frac{\int x\rho ds}{\int \rho ds}
 \end{equation}\]</div>
 <ol class="arabic simple">
@@ -972,8 +995,15 @@ compute</p>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#simpsons-rule">Simpsons rule</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#romberg-method">Romberg method</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#other-techniques">Other techniques</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#gaussian-quadrature-introduction-to-vectors">Gaussian quadrature: Introduction to vectors</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#example-using-a-vector-to-store-the-weights">Example using a vector to store the weights.</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#gaussian-quadrature-introduction-to-vectors">Gaussian quadrature: Introduction to vectors</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-gauss-legendre-quadrature-with-2-points">Exercise: Gauss-Legendre quadrature with 2 points</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#scalling-integration-intervals">Scalling integration intervals</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-gauss-legendre-on-general-intervals">Exercise: Gauss - Legendre on general intervals</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#higher-order-gauss-legendre-using-a-vector-to-store-the-weights-points">Higher order Gauss-Legendre: using a vector to store the weights/points.</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#exercises">Exercises</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#gauss-quadrature-of-order-7">Gauss quadrature of order 7</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#integrating-a-datafile">Integrating a datafile</a></li>
