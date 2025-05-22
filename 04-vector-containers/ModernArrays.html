@@ -620,11 +620,7 @@ address.</p></li>
 <span class="w">  </span><span class="p">}</span>
 <span class="w">  </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">;</span><span class="w">    </span>
 
-<span class="c1">// compute the mean</span>
-<span class="w">  </span><span class="kt">double</span><span class="w"> </span><span class="n">sum</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">0.0</span><span class="p">;</span>
-<span class="w">  </span><span class="k">for</span><span class="p">(</span><span class="k">auto</span><span class="w"> </span><span class="n">val</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">data</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="n">sum</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="n">val</span><span class="p">;</span>
-<span class="w">  </span><span class="p">}</span>
+<span class="c1">// TODO: compute the mean</span>
 <span class="w">  </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;Average = &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">sum</span><span class="o">/</span><span class="n">data</span><span class="p">.</span><span class="n">size</span><span class="p">()</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
 
 <span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
@@ -710,8 +706,8 @@ info here:</p>
 <section id="exploration-declaration-and-operation-on-a-vector">
 <h3>Exploration : Declaration and operation on a vector<a class="headerlink" href="#exploration-declaration-and-operation-on-a-vector" title="Link to this heading">#</a></h3>
 <p>Declare a vector of double whose size is read from the command line as an argument. Fill it as</p>
-<div class="amsmath math notranslate nohighlight" id="equation-83f3242a-cdd4-4148-afbe-60c54d433fe9">
-<span class="eqno">(26)<a class="headerlink" href="#equation-83f3242a-cdd4-4148-afbe-60c54d433fe9" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-597e68b0-e81f-4af7-9ed8-f655e83f1f6d">
+<span class="eqno">(26)<a class="headerlink" href="#equation-597e68b0-e81f-4af7-9ed8-f655e83f1f6d" title="Permalink to this equation">#</a></span>\[\begin{equation}
 x[i] = i
 \end{equation}\]</div>
 <p>Compute the average.</p>
@@ -818,6 +814,11 @@ Declare a primitive array of doubles of large size. What is the maximum size tha
 <li><p>Iterator support: Can be used with standard iterators</p></li>
 </ul>
 <p>Almost always prefer to use <code class="docutils literal notranslate"><span class="pre">std::vector</span></code>.</p>
+<blockquote>
+<div><p><strong>EXERCISE: Comparing primitive arrays, dynamics memory and <code class="docutils literal notranslate"><span class="pre">std::vector</span></code></strong>
+Please write two programs. The first one, using a primitive array and dynamic memory, that starts with 5 elemments like <code class="docutils literal notranslate"><span class="pre">{2,</span> <span class="pre">3,</span> <span class="pre">4,</span> <span class="pre">5,</span> <span class="pre">6}</span></code>; then, print the memory address of the first element (<code class="docutils literal notranslate"><span class="pre">&amp;data[0]</span></code>), and then append the number 10 at the end. Print the final array.
+Now write the second program doing the same but using a <code class="docutils literal notranslate"><span class="pre">std::vector</span></code>.</p>
+</div></blockquote>
 </section>
 </section>
 <section id="id1">
@@ -840,8 +841,8 @@ vector.</p>
 <li><p>Compute the argmin (index of the min) of a vector</p></li>
 <li><p>Compute the argmax (index of the max) of a vector</p></li>
 <li><p>Compute the pnorm</p>
-<div class="amsmath math notranslate nohighlight" id="equation-20e41fe2-4d9a-4e23-a078-0d0b351188b8">
-<span class="eqno">(27)<a class="headerlink" href="#equation-20e41fe2-4d9a-4e23-a078-0d0b351188b8" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-f1c28c76-aa59-4d08-a745-264a94b9e10e">
+<span class="eqno">(27)<a class="headerlink" href="#equation-f1c28c76-aa59-4d08-a745-264a94b9e10e" title="Permalink to this equation">#</a></span>\[\begin{equation}
 \left(\sum_{i} x_{i}^{p}\right)^{1/p} \ .
 \end{equation}\]</div>
 </li>
