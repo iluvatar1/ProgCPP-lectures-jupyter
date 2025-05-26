@@ -472,6 +472,7 @@ document.write(`
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#representing-a-matrix">Representing a matrix</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#defining-matrices-from-primitives-in-c">Defining matrices from primitives in C++</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#d-and-2d-view">1D and 2D view</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#practical-example-transposing-a-matrix">Practical Example: transposing a matrix</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#exercises">Exercises</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#trace-of-a-matrix">Trace of a matrix</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#hilbert-matrix">Hilbert matrix</a></li>
@@ -501,8 +502,7 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <p>https://www.cs.usfca.edu/~galles/visualization/RotateScale2D.html</p>
-<section class="tex2jax_ignore mathjax_ignore" id="d-arrays-for-2d-matrices">
+  <section class="tex2jax_ignore mathjax_ignore" id="d-arrays-for-2d-matrices">
 <h1>1D Arrays for 2D Matrices<a class="headerlink" href="#d-arrays-for-2d-matrices" title="Link to this heading">#</a></h1>
 <p><a id="org4fe13c5"></a></p>
 <section id="representing-a-matrix">
@@ -514,6 +514,7 @@ columns, with a total of <span class="math notranslate nohighlight">\(S=m\times 
 <li><p><a class="reference external" href="https://www.khanacademy.org/math/multivariable-calculus/thinking-about-multivariable-function/x786f2022:vectors-and-matrices/a/matrices--visualized-mvc">https://www.khanacademy.org/math/multivariable-calculus/thinking-about-multivariable-function/x786f2022:vectors-and-matrices/a/matrices–visualized-mvc</a></p></li>
 <li><p><a class="reference external" href="https://www.youtube.com/watch?v=4csuTO7UTMo">https://www.youtube.com/watch?v=4csuTO7UTMo</a></p></li>
 <li><p><a class="reference external" href="https://brilliant.org/wiki/matrices/">https://brilliant.org/wiki/matrices/</a>).</p></li>
+<li><p>Rotations and scaling: <a class="reference external" href="https://www.cs.usfca.edu/~galles/visualization/RotateScale2D.html">https://www.cs.usfca.edu/~galles/visualization/RotateScale2D.html</a></p></li>
 </ul>
 <p>Matrices are ubiquitous in physics and
 mathematics, and their manipulation are the core of a large proportion of
@@ -651,21 +652,33 @@ inside each cell correspond to indexes)</p>
     <figcaption>From: "https://eli.thegreenplace.net/images/2015/row-major-2D.png"</figcaption>
 </div>
 <p>As you can see, in the 1d array in memory, the first element (1d index 0) has the coordinates (0, 0), the second element (1d index 1) corresponds to (0, 1), and so on. The sixth 1d element, with 1d index 5, has 2D coordinates (1, 2). Can you devise a rule to relate the 1d and the 2d indexes?</p>
-<p>For a general matrix of size <code class="docutils literal notranslate"><span class="pre">MxN</span></code>, you have the following mapping from 2D to 1D</p>
-<div class="amsmath math notranslate nohighlight" id="equation-d50e4297-6a9b-4f99-b9a7-f620abc72e5f">
-<span class="eqno">(28)<a class="headerlink" href="#equation-d50e4297-6a9b-4f99-b9a7-f620abc72e5f" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<p>We start from a 2D array as</p>
+<a class="reference internal image-reference" href="../_images/2d-array.png"><img alt="../_images/2d-array.png" src="../_images/2d-array.png" style="width: 50%;" /></a>
+<p>In a row-major language, like c++, it will be organized as a 1D array, row after row. We want to go through it in the same order, so we want to get a mapping like:</p>
+<a class="reference internal image-reference" href="../_images/2d-array-memory.png"><img alt="../_images/2d-array-memory.png" src="../_images/2d-array-memory.png" style="width: 80%;" /></a>
+<p>This will allow having an <code class="docutils literal notranslate"><span class="pre">MxN</span></code> size 1d array, but interpreting it as a 2D array, using the following mapping</p>
+<div class="amsmath math notranslate nohighlight" id="equation-938a4e8b-7fda-4d89-8161-a4e0d96d56bc">
+<span class="eqno">(28)<a class="headerlink" href="#equation-938a4e8b-7fda-4d89-8161-a4e0d96d56bc" title="Permalink to this equation">#</a></span>\[\begin{equation}
 id = iN + j,
 \end{equation}\]</div>
 <p>while , from 1D to 2D</p>
-<div class="amsmath math notranslate nohighlight" id="equation-9c678f55-32a2-40ca-a8ed-5b3e5a71d41b">
-<span class="eqno">(29)<a class="headerlink" href="#equation-9c678f55-32a2-40ca-a8ed-5b3e5a71d41b" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-f575fe04-9bd2-4083-b48a-90ff49eb2e5d">
+<span class="eqno">(29)<a class="headerlink" href="#equation-f575fe04-9bd2-4083-b48a-90ff49eb2e5d" title="Permalink to this equation">#</a></span>\[\begin{align}
 i &amp;= id/N,\\
 j &amp;= id%N.
 \end{align}\]</div>
-<div style="text-align: center;">
-    <img src="fig/1d-2d-mapping.png" alt="Image Description" width="600">
-    <figcaption>From: "1d-2d-mapping.png"</figcaption>
-</div><p>This is a bi-dimensional version for filling a given matrix and transposing it.</p>
+<a class="reference internal image-reference" href="../_images/1d-2d-mapping.png"><img alt="../_images/1d-2d-mapping.png" src="../_images/1d-2d-mapping.png" style="width: 70%;" /></a>
+<hr class="docutils" />
+<p><strong>In other words, to reference an element <code class="docutils literal notranslate"><span class="pre">[i][j]</span></code>, you just use <code class="docutils literal notranslate"><span class="pre">[i*N</span> <span class="pre">+</span> <span class="pre">j]</span></code>, where <code class="docutils literal notranslate"><span class="pre">N</span></code> is the total number of columns.</strong></p>
+</section>
+<section id="practical-example-transposing-a-matrix">
+<h2>Practical Example: transposing a matrix<a class="headerlink" href="#practical-example-transposing-a-matrix" title="Link to this heading">#</a></h2>
+<p>In this example, you will implement a matrix transpose but using 1d arrays. We will use two matrices, <code class="docutils literal notranslate"><span class="pre">A</span></code> and <code class="docutils literal notranslate"><span class="pre">B</span></code>, whose dimensions will be read from the command line, and will be modelled using 1d arrays. We will initialize <code class="docutils literal notranslate"><span class="pre">A</span></code> as</p>
+<div class="amsmath math notranslate nohighlight" id="equation-df8928a0-1099-4890-987d-d7706681675d">
+<span class="eqno">(30)<a class="headerlink" href="#equation-df8928a0-1099-4890-987d-d7706681675d" title="Permalink to this equation">#</a></span>\[\begin{equation}
+A[i][j] = i*N + j;
+\end{equation}\]</div>
+<p>Since <span class="math notranslate nohighlight">\(B = A^T\)</span>, if A is of size <code class="docutils literal notranslate"><span class="pre">MxN</span></code>, then B is of size <code class="docutils literal notranslate"><span class="pre">NxM</span></code> (although their total size is the same, <code class="docutils literal notranslate"><span class="pre">M*N</span></code>). Complete the following code:</p>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;iostream&gt;</span>
 <span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;vector&gt;</span>
 <span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;string&gt;</span>
@@ -715,103 +728,10 @@ j &amp;= id%N.
 <span class="kt">void</span><span class="w"> </span><span class="nf">transpose_matrix</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">datain</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">m</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">n</span><span class="p">,</span>
 <span class="w">                      </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">dataout</span><span class="p">)</span>
 <span class="p">{</span>
-<span class="w">  </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">ii</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">ii</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">m</span><span class="p">;</span><span class="w"> </span><span class="o">++</span><span class="n">ii</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">jj</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">jj</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">n</span><span class="p">;</span><span class="w"> </span><span class="o">++</span><span class="n">jj</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">      </span><span class="n">dataout</span><span class="p">[</span><span class="n">ii</span><span class="o">*</span><span class="n">m</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">jj</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">datain</span><span class="p">[</span><span class="n">ii</span><span class="o">*</span><span class="n">n</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">jj</span><span class="p">];</span><span class="w"> </span><span class="c1">// Error here</span>
-<span class="w">    </span><span class="p">}</span>
-<span class="w">  </span><span class="p">}</span>
+<span class="w">  </span><span class="c1">// TODO</span>
 <span class="p">}</span>
 </pre></div>
 </div>
-<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
-<colgroup>
-<col  class="org-right" />
-<col  class="org-right" />
-<col  class="org-right" />
-<col  class="org-right" />
-<col  class="org-right" />
-</colgroup>
-<tbody>
-<tr>
-<td class="org-right">0</td>
-<td class="org-right">1</td>
-<td class="org-right">2</td>
-<td class="org-right">3</td>
-<td class="org-right">4</td>
-</tr>
-<tr>
-<td class="org-right">5</td>
-<td class="org-right">6</td>
-<td class="org-right">7</td>
-<td class="org-right">8</td>
-<td class="org-right">9</td>
-</tr>
-<tr>
-<td class="org-right">10</td>
-<td class="org-right">11</td>
-<td class="org-right">12</td>
-<td class="org-right">13</td>
-<td class="org-right">14</td>
-</tr>
-<tr>
-<td class="org-right">15</td>
-<td class="org-right">16</td>
-<td class="org-right">17</td>
-<td class="org-right">18</td>
-<td class="org-right">19</td>
-</tr>
-<tr>
-<td class="org-right">&#xa0;</td>
-<td class="org-right">&#xa0;</td>
-<td class="org-right">&#xa0;</td>
-<td class="org-right">&#xa0;</td>
-<td class="org-right">&#xa0;</td>
-</tr>
-<tr>
-<td class="org-right">0</td>
-<td class="org-right">1</td>
-<td class="org-right">2</td>
-<td class="org-right">3</td>
-<td class="org-right">&#xa0;</td>
-</tr>
-<tr>
-<td class="org-right">5</td>
-<td class="org-right">6</td>
-<td class="org-right">7</td>
-<td class="org-right">8</td>
-<td class="org-right">&#xa0;</td>
-</tr>
-<tr>
-<td class="org-right">10</td>
-<td class="org-right">11</td>
-<td class="org-right">12</td>
-<td class="org-right">13</td>
-<td class="org-right">&#xa0;</td>
-</tr>
-<tr>
-<td class="org-right">15</td>
-<td class="org-right">16</td>
-<td class="org-right">17</td>
-<td class="org-right">18</td>
-<td class="org-right">&#xa0;</td>
-</tr>
-<tr>
-<td class="org-right">19</td>
-<td class="org-right">0</td>
-<td class="org-right">0</td>
-<td class="org-right">0</td>
-<td class="org-right">&#xa0;</td>
-</tr>
-<tr>
-<td class="org-right">&#xa0;</td>
-<td class="org-right">&#xa0;</td>
-<td class="org-right">&#xa0;</td>
-<td class="org-right">&#xa0;</td>
-<td class="org-right">&#xa0;</td>
-</tr>
-</tbody>
-</table>
-<p><a id="org1bead7e"></a></p>
 </section>
 <section id="exercises">
 <h2>Exercises<a class="headerlink" href="#exercises" title="Link to this heading">#</a></h2>
@@ -828,7 +748,7 @@ exercise implies one or more new declarations in this file.</p></li>
 necessary functions are called. The filename will change (the <code class="docutils literal notranslate"><span class="pre">XXXX</span></code> part).</p></li>
 </ul>
 <p>Then you will need to compile as</p>
-<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>g++ -std=c++17 -fsanitize=undefined,address matrix_utils.cpp matrix_XXXX.cpp
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>g++ -std=c++17 -fsanitize=undefined,address,leak matrix_utils.cpp matrix_XXXX.cpp
 </pre></div>
 </div>
 <p>Here is a basic example is show for the three files. Remember: the files
@@ -1129,6 +1049,7 @@ the time at <span class="math notranslate nohighlight">\(N = 4\)</span>.</p>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#representing-a-matrix">Representing a matrix</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#defining-matrices-from-primitives-in-c">Defining matrices from primitives in C++</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#d-and-2d-view">1D and 2D view</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#practical-example-transposing-a-matrix">Practical Example: transposing a matrix</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#exercises">Exercises</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#trace-of-a-matrix">Trace of a matrix</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#hilbert-matrix">Hilbert matrix</a></li>
