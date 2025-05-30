@@ -655,17 +655,17 @@ inside each cell correspond to indexes)</p>
 <p>We start from a 2D array as</p>
 <a class="reference internal image-reference" href="../_images/2d-array.png"><img alt="../_images/2d-array.png" src="../_images/2d-array.png" style="width: 50%;" /></a>
 <p>In a row-major language, like c++, it will be organized as a 1D array, row after row. We want to go through it in the same order, so we want to get a mapping like:</p>
-<a class="reference internal image-reference" href="../_images/2d-array-memory.png"><img alt="../_images/2d-array-memory.png" src="../_images/2d-array-memory.png" style="width: 80%;" /></a>
+<a class="reference internal image-reference" href="../_images/2d-array-memory.png"><img alt="../_images/2d-array-memory.png" src="../_images/2d-array-memory.png" style="width: 95%;" /></a>
 <p>This will allow having an <code class="docutils literal notranslate"><span class="pre">MxN</span></code> size 1d array, but interpreting it as a 2D array, using the following mapping</p>
-<div class="amsmath math notranslate nohighlight" id="equation-938a4e8b-7fda-4d89-8161-a4e0d96d56bc">
-<span class="eqno">(28)<a class="headerlink" href="#equation-938a4e8b-7fda-4d89-8161-a4e0d96d56bc" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-182b6deb-f54e-4c3a-92e6-e77c43446208">
+<span class="eqno">(28)<a class="headerlink" href="#equation-182b6deb-f54e-4c3a-92e6-e77c43446208" title="Permalink to this equation">#</a></span>\[\begin{equation}
 id = iN + j,
 \end{equation}\]</div>
 <p>while , from 1D to 2D</p>
-<div class="amsmath math notranslate nohighlight" id="equation-f575fe04-9bd2-4083-b48a-90ff49eb2e5d">
-<span class="eqno">(29)<a class="headerlink" href="#equation-f575fe04-9bd2-4083-b48a-90ff49eb2e5d" title="Permalink to this equation">#</a></span>\[\begin{align}
-i &amp;= id/N,\\
-j &amp;= id%N.
+<div class="amsmath math notranslate nohighlight" id="equation-d5dfdc80-2a85-46fd-81aa-a9b5bec657d7">
+<span class="eqno">(29)<a class="headerlink" href="#equation-d5dfdc80-2a85-46fd-81aa-a9b5bec657d7" title="Permalink to this equation">#</a></span>\[\begin{align}
+i &amp;= id/N, // \text{uses integer truncation: 5/3 -&gt; 1 row}\\ 
+j &amp;= id\%N. // \text{the modulus represents here the columns displacement}
 \end{align}\]</div>
 <a class="reference internal image-reference" href="../_images/1d-2d-mapping.png"><img alt="../_images/1d-2d-mapping.png" src="../_images/1d-2d-mapping.png" style="width: 70%;" /></a>
 <hr class="docutils" />
@@ -674,8 +674,8 @@ j &amp;= id%N.
 <section id="practical-example-transposing-a-matrix">
 <h2>Practical Example: transposing a matrix<a class="headerlink" href="#practical-example-transposing-a-matrix" title="Link to this heading">#</a></h2>
 <p>In this example, you will implement a matrix transpose but using 1d arrays. We will use two matrices, <code class="docutils literal notranslate"><span class="pre">A</span></code> and <code class="docutils literal notranslate"><span class="pre">B</span></code>, whose dimensions will be read from the command line, and will be modelled using 1d arrays. We will initialize <code class="docutils literal notranslate"><span class="pre">A</span></code> as</p>
-<div class="amsmath math notranslate nohighlight" id="equation-df8928a0-1099-4890-987d-d7706681675d">
-<span class="eqno">(30)<a class="headerlink" href="#equation-df8928a0-1099-4890-987d-d7706681675d" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-9bed8985-2c8f-4053-8f3a-fc53af742f1b">
+<span class="eqno">(30)<a class="headerlink" href="#equation-9bed8985-2c8f-4053-8f3a-fc53af742f1b" title="Permalink to this equation">#</a></span>\[\begin{equation}
 A[i][j] = i*N + j;
 \end{equation}\]</div>
 <p>Since <span class="math notranslate nohighlight">\(B = A^T\)</span>, if A is of size <code class="docutils literal notranslate"><span class="pre">MxN</span></code>, then B is of size <code class="docutils literal notranslate"><span class="pre">NxM</span></code> (although their total size is the same, <code class="docutils literal notranslate"><span class="pre">M*N</span></code>). Complete the following code:</p>
