@@ -192,7 +192,7 @@
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Numerical Calculus</span></p>
 <ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="../02-derivatives/NumericalDifferentiation.html">Numerical differentiation</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../03-integration/NumericalIntegration_Basics.html">Common Numerical Integration Algorithms</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../03-integration/NumericalIntegration_Basics.html">Numerical Integration</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Modern and primitive arrays, and basic Linear Algebra</span></p>
 <ul class="current nav bd-sidenav">
@@ -657,13 +657,13 @@ inside each cell correspond to indexes)</p>
 <p>In a row-major language, like c++, it will be organized as a 1D array, row after row. We want to go through it in the same order, so we want to get a mapping like:</p>
 <a class="reference internal image-reference" href="../_images/2d-array-memory.png"><img alt="../_images/2d-array-memory.png" src="../_images/2d-array-memory.png" style="width: 95%;" /></a>
 <p>This will allow having an <code class="docutils literal notranslate"><span class="pre">MxN</span></code> size 1d array, but interpreting it as a 2D array, using the following mapping</p>
-<div class="amsmath math notranslate nohighlight" id="equation-182b6deb-f54e-4c3a-92e6-e77c43446208">
-<span class="eqno">(28)<a class="headerlink" href="#equation-182b6deb-f54e-4c3a-92e6-e77c43446208" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-5ee281db-2cf1-4ca3-bf18-9830989934db">
+<span class="eqno">(28)<a class="headerlink" href="#equation-5ee281db-2cf1-4ca3-bf18-9830989934db" title="Permalink to this equation">#</a></span>\[\begin{equation}
 id = iN + j,
 \end{equation}\]</div>
 <p>while , from 1D to 2D</p>
-<div class="amsmath math notranslate nohighlight" id="equation-d5dfdc80-2a85-46fd-81aa-a9b5bec657d7">
-<span class="eqno">(29)<a class="headerlink" href="#equation-d5dfdc80-2a85-46fd-81aa-a9b5bec657d7" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-d07357ae-d642-4ad0-802b-300cf8b54f40">
+<span class="eqno">(29)<a class="headerlink" href="#equation-d07357ae-d642-4ad0-802b-300cf8b54f40" title="Permalink to this equation">#</a></span>\[\begin{align}
 i &amp;= id/N, // \text{uses integer truncation: 5/3 -&gt; 1 row}\\ 
 j &amp;= id\%N. // \text{the modulus represents here the columns displacement}
 \end{align}\]</div>
@@ -674,8 +674,8 @@ j &amp;= id\%N. // \text{the modulus represents here the columns displacement}
 <section id="practical-example-transposing-a-matrix">
 <h2>Practical Example: transposing a matrix<a class="headerlink" href="#practical-example-transposing-a-matrix" title="Link to this heading">#</a></h2>
 <p>In this example, you will implement a matrix transpose but using 1d arrays. We will use two matrices, <code class="docutils literal notranslate"><span class="pre">A</span></code> and <code class="docutils literal notranslate"><span class="pre">B</span></code>, whose dimensions will be read from the command line, and will be modelled using 1d arrays. We will initialize <code class="docutils literal notranslate"><span class="pre">A</span></code> as</p>
-<div class="amsmath math notranslate nohighlight" id="equation-9bed8985-2c8f-4053-8f3a-fc53af742f1b">
-<span class="eqno">(30)<a class="headerlink" href="#equation-9bed8985-2c8f-4053-8f3a-fc53af742f1b" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-d2e8e866-499c-4981-8a88-74f37af896f2">
+<span class="eqno">(30)<a class="headerlink" href="#equation-d2e8e866-499c-4981-8a88-74f37af896f2" title="Permalink to this equation">#</a></span>\[\begin{equation}
 A[i][j] = i*N + j;
 \end{equation}\]</div>
 <p>Since <span class="math notranslate nohighlight">\(B = A^T\)</span>, if A is of size <code class="docutils literal notranslate"><span class="pre">MxN</span></code>, then B is of size <code class="docutils literal notranslate"><span class="pre">NxM</span></code> (although their total size is the same, <code class="docutils literal notranslate"><span class="pre">M*N</span></code>). Complete the following code:</p>

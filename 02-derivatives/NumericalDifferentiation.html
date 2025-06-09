@@ -64,7 +64,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Common Numerical Integration Algorithms" href="../03-integration/NumericalIntegration_Basics.html" />
+    <link rel="next" title="Numerical Integration" href="../03-integration/NumericalIntegration_Basics.html" />
     <link rel="prev" title="Very fast intro to the basics of c++" href="../01-IntroCPP/CPP-FastPacedIntro.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
@@ -192,7 +192,7 @@
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Numerical Calculus</span></p>
 <ul class="current nav bd-sidenav">
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">Numerical differentiation</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../03-integration/NumericalIntegration_Basics.html">Common Numerical Integration Algorithms</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../03-integration/NumericalIntegration_Basics.html">Numerical Integration</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Modern and primitive arrays, and basic Linear Algebra</span></p>
 <ul class="nav bd-sidenav">
@@ -512,18 +512,18 @@ document.write(`
 <section id="first-approach-forward-difference">
 <h2>First approach: forward difference<a class="headerlink" href="#first-approach-forward-difference" title="Link to this heading">#</a></h2>
 <p>The <a class="reference external" href="https://en.wikipedia.org/wiki/Taylor_series?useskin=vector">Taylor expansion</a> for a given analytical function is given by  (see an example at <a class="reference external" href="https://www.geogebra.org/m/s9SkCsvC">https://www.geogebra.org/m/s9SkCsvC</a>)</p>
-<div class="amsmath math notranslate nohighlight" id="equation-798d5f46-d12e-43bb-973a-c2242af8236d">
-<span class="eqno">(1)<a class="headerlink" href="#equation-798d5f46-d12e-43bb-973a-c2242af8236d" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-369f33df-9270-48dd-b8ad-5ad70e10f0fb">
+<span class="eqno">(1)<a class="headerlink" href="#equation-369f33df-9270-48dd-b8ad-5ad70e10f0fb" title="Permalink to this equation">#</a></span>\[\begin{equation}
 f(x+h) = f(x) + h f'(x) + \frac{h^2}{2!} f''(x) + \frac{h^3}{3!} f'''(x) + \dots,
 \end{equation}\]</div>
 <p>If we stop at the second order, we can rewrite it as</p>
-<div class="amsmath math notranslate nohighlight" id="equation-b800e425-5f21-404d-a8f9-bf7aa6d001bd">
-<span class="eqno">(2)<a class="headerlink" href="#equation-b800e425-5f21-404d-a8f9-bf7aa6d001bd" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-ca2660f3-5f18-4ec7-a609-370c0c2c1b55">
+<span class="eqno">(2)<a class="headerlink" href="#equation-ca2660f3-5f18-4ec7-a609-370c0c2c1b55" title="Permalink to this equation">#</a></span>\[\begin{equation}
 f(x+h) = f(x) + h f'(x) + O(h^2),
 \end{equation}\]</div>
 <p>where <span class="math notranslate nohighlight">\(O(h^2)\)</span> means that we stop expanding at the second order term, and , given that <span class="math notranslate nohighlight">\(h\)</span> is small, then the dominant term is of order <span class="math notranslate nohighlight">\(h^2\)</span>. This equation can be used to both solve a ODE (where we already know the <span class="math notranslate nohighlight">\(f'(x)\)</span>, see <a class="reference external" href="https://www.geogebra.org/m/NUeFjm9J">https://www.geogebra.org/m/NUeFjm9J</a>), or, to actually compute <span class="math notranslate nohighlight">\(f'(x)\)</span> , as a way to compute the slope (<a class="reference external" href="https://en.wikipedia.org/wiki/Numerical_differentiation">https://en.wikipedia.org/wiki/Numerical_differentiation</a>):</p>
-<div class="amsmath math notranslate nohighlight" id="equation-7fa3ea75-2a66-475b-af6a-a7af7c17796e">
-<span class="eqno">(3)<a class="headerlink" href="#equation-7fa3ea75-2a66-475b-af6a-a7af7c17796e" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-931d257d-2cab-481c-992d-a2bae26059b4">
+<span class="eqno">(3)<a class="headerlink" href="#equation-931d257d-2cab-481c-992d-a2bae26059b4" title="Permalink to this equation">#</a></span>\[\begin{equation}
 f'(x) \simeq \dfrac{f(x+h) - f(x)}{h} + O(h),
 \end{equation}\]</div>
 <p>which shows that, mathematically, the error should decerease as <span class="math notranslate nohighlight">\(h\)</span> (but, in the computer, there are more error sources). This approximation basically estimates the derivative using a linear interpolation, and assumes that you can compute <span class="math notranslate nohighlight">\(f(x)\)</span> for arbitrary points.
@@ -542,13 +542,13 @@ f'(x) \simeq \dfrac{f(x+h) - f(x)}{h} + O(h),
 <h2>A better estimation with less error: Central difference<a class="headerlink" href="#a-better-estimation-with-less-error-central-difference" title="Link to this heading">#</a></h2>
 <p>We have used the forward derivative but there is nohing special about it. What if we played with the expansions both forward and backward?</p>
 <p>If you compute a forward (<span class="math notranslate nohighlight">\(+h\)</span>)  expansion, you have</p>
-<div class="amsmath math notranslate nohighlight" id="equation-21e0ac13-1581-4ccd-971f-6d68080bc3ca">
-<span class="eqno">(4)<a class="headerlink" href="#equation-21e0ac13-1581-4ccd-971f-6d68080bc3ca" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-b9cba8bc-3d92-4b15-8294-5105ea3c23dd">
+<span class="eqno">(4)<a class="headerlink" href="#equation-b9cba8bc-3d92-4b15-8294-5105ea3c23dd" title="Permalink to this equation">#</a></span>\[\begin{equation}
 f(x+h) = f(x) + f'(x) h + f''(x) h^2/2 + f'''(x) h^3/6 + O(h^4) + O(h^5),
 \end{equation}\]</div>
 <p>and a backward (<span class="math notranslate nohighlight">\(-h\)</span>) Taylor expansion,</p>
-<div class="amsmath math notranslate nohighlight" id="equation-aaeaf13a-cd2e-493d-9dff-9816e914a36d">
-<span class="eqno">(5)<a class="headerlink" href="#equation-aaeaf13a-cd2e-493d-9dff-9816e914a36d" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-0dac0e8d-8656-4379-9433-d45405c5d6b4">
+<span class="eqno">(5)<a class="headerlink" href="#equation-0dac0e8d-8656-4379-9433-d45405c5d6b4" title="Permalink to this equation">#</a></span>\[\begin{equation}
 f(x-h) = f(x) - f'(x) h + f''(x) h^2/2 - f'''(x) h^3/6 + O(h^4) - O(h^5),
 \end{equation}\]</div>
 <p>and then you subtract the second from the first (notice that adding then allows you to compute the second order derivative), you get</p>
@@ -637,8 +637,8 @@ Explain the differences among forward and central results.</p>
 <section id="richardson-extrapolation">
 <h2>Richardson extrapolation<a class="headerlink" href="#richardson-extrapolation" title="Link to this heading">#</a></h2>
 <p>By using <a class="reference external" href="https://en.wikipedia.org/wiki/Richardson_extrapolation">Richardson extrapolation</a>, you can improve even more the central difference estimation,</p>
-<div class="amsmath math notranslate nohighlight" id="equation-9e8d459a-ee60-4b72-9fc7-c6656ac169f6">
-<span class="eqno">(6)<a class="headerlink" href="#equation-9e8d459a-ee60-4b72-9fc7-c6656ac169f6" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-79c2d204-437a-4a5c-871f-ed25c071a9f4">
+<span class="eqno">(6)<a class="headerlink" href="#equation-79c2d204-437a-4a5c-871f-ed25c071a9f4" title="Permalink to this equation">#</a></span>\[\begin{equation}
 f'(x) = \phi\left(\frac{h}{2}\right) + \frac{1}{3}\left[\phi\left(\frac{h}{2} \right) - \phi(h) \right] + O(h^4),
 \end{equation}\]</div>
 <p>where <span class="math notranslate nohighlight">\(\phi(h)\)</span> is the derivative estimation from the central difference with a given <span class="math notranslate nohighlight">\(h\)</span> value. <strong>NOTE</strong>: This form is only for the central difference, since it depends on the algorithm order.</p>
@@ -646,8 +646,8 @@ f'(x) = \phi\left(\frac{h}{2}\right) + \frac{1}{3}\left[\phi\left(\frac{h}{2} \r
 <section id="implementing-richardson-extrapolation">
 <h2>Implementing Richardson extrapolation<a class="headerlink" href="#implementing-richardson-extrapolation" title="Link to this heading">#</a></h2>
 <p>Now, use the general expression for Richardson extrapolation applied to an algorithm of order <span class="math notranslate nohighlight">\(O(h^\alpha)\)</span>, and also plot its relative differences for fixed <span class="math notranslate nohighlight">\(x\)</span>, (see https://en.wikipedia.org/wiki/Richardson_extrapolation?useskin=vector)</p>
-<div class="amsmath math notranslate nohighlight" id="equation-ea85f487-ce39-49fe-bede-c671c6d60679">
-<span class="eqno">(7)<a class="headerlink" href="#equation-ea85f487-ce39-49fe-bede-c671c6d60679" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-1336cba2-6e78-495d-8a1e-b6c599df2b13">
+<span class="eqno">(7)<a class="headerlink" href="#equation-1336cba2-6e78-495d-8a1e-b6c599df2b13" title="Permalink to this equation">#</a></span>\[\begin{equation}
 I \simeq \dfrac{t^\alpha I(\frac{h}{t}) - I(h)}{t^\alpha - 1},
 \end{equation}\]</div>
 <p>where <span class="math notranslate nohighlight">\(t\)</span> is a factor larger than 1 (tipically <span class="math notranslate nohighlight">\(t=2\)</span>), <span class="math notranslate nohighlight">\(\alpha\)</span> is the algorithm order, and <span class="math notranslate nohighlight">\(I\)</span> is the value you are computing. This implies additions to both headers and implementation files, and a new main.</p>
@@ -780,7 +780,7 @@ g++<span class="w"> </span>-std<span class="o">=</span>c++17<span class="w"> </s
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Common Numerical Integration Algorithms</p>
+        <p class="prev-next-title">Numerical Integration</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
