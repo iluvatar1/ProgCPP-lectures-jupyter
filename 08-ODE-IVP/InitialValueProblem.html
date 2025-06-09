@@ -506,8 +506,8 @@ document.write(`
 <p>In mathematics, an ordinary differential equation (ODE) is a differential equation (DE) dependent on only a single independent variable. As with other DE, its unknown(s) consists of one (or more) function(s) and involves the derivatives of those functions The term “ordinary” is used in contrast with partial differential equations which may be with respect to more than one independent variable.(see https://en.wikipedia.org/wiki/Ordinary_differential_equation?useskin=vector)</p>
 <p><a class="reference external" href="https://en.wikipedia.org/wiki/Initial_value_problem?useskin=vector">An initial value problem</a>, IVP, is a a problem specified by an ordinary differential equation and its initial conditions.</p>
 <p>You have been already solving a differential equation: The second Newton law</p>
-<div class="amsmath math notranslate nohighlight" id="equation-213ba4dd-a0ad-4e3d-914d-db8b5214cc44">
-<span class="eqno">(44)<a class="headerlink" href="#equation-213ba4dd-a0ad-4e3d-914d-db8b5214cc44" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-1cd51df0-9f32-4a00-8898-1bbbe80c330b">
+<span class="eqno">(44)<a class="headerlink" href="#equation-1cd51df0-9f32-4a00-8898-1bbbe80c330b" title="Permalink to this equation">#</a></span>\[\begin{equation}
 ma = m\frac{dv}{dt} = m\frac{d^2x}{dt^2} = \sum F = f(t, x, v),
 \end{equation}\]</div>
 <p>Can be seen as a first order differential equation (when talking about <span class="math notranslate nohighlight">\(v\)</span>) or as a second order differential equation (regarding <span class="math notranslate nohighlight">\(x\)</span>).</p>
@@ -522,13 +522,13 @@ ma = m\frac{dv}{dt} = m\frac{d^2x}{dt^2} = \sum F = f(t, x, v),
 <li><p><a class="reference external" href="https://www.youtube.com/watch?v=ly4S0oi3Yz8&amp;amp;t=0s">Partial differential equations intro</a></p></li>
 </ul>
 <p>A numerical solution for and IVP corresponds to finding an algorithm that allows you to move from time <span class="math notranslate nohighlight">\(t\)</span> to time <span class="math notranslate nohighlight">\(t+\delta t\)</span>, given a time discretization. It is assumed that the general problem is represented as</p>
-<div class="amsmath math notranslate nohighlight" id="equation-084242af-1001-4b02-9f24-515aee593045">
-<span class="eqno">(45)<a class="headerlink" href="#equation-084242af-1001-4b02-9f24-515aee593045" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-93ee0ada-8865-44c9-8db6-493fc89861da">
+<span class="eqno">(45)<a class="headerlink" href="#equation-93ee0ada-8865-44c9-8db6-493fc89861da" title="Permalink to this equation">#</a></span>\[\begin{equation}
 \dot y = \frac{dy}{dt} = f(t, y),
 \end{equation}\]</div>
 <p>where <span class="math notranslate nohighlight">\(y\)</span> represents the state of the system. All linear differential equations of any order can be cast to this form by introducing auxiliary derivatives, so the problem becomes vectorial, but its form remains</p>
-<div class="amsmath math notranslate nohighlight" id="equation-5482d51d-cfdb-41c5-900e-6d2e074928eb">
-<span class="eqno">(46)<a class="headerlink" href="#equation-5482d51d-cfdb-41c5-900e-6d2e074928eb" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-bfe6cffe-15c1-4457-9d63-875e21b6ce69">
+<span class="eqno">(46)<a class="headerlink" href="#equation-bfe6cffe-15c1-4457-9d63-875e21b6ce69" title="Permalink to this equation">#</a></span>\[\begin{equation}
 \frac{d\vec y}{dt} = \vec f(t, \vec y).
 \end{equation}\]</div>
 <p>So the key question is how to go numerically from <span class="math notranslate nohighlight">\(\vec y(t)\)</span> to <span class="math notranslate nohighlight">\(\vec y(t+\delta t)\)</span>. There are several algorithms, with both advantages and disadvantages (in sinplicity, precision, stability, etc), to do so. Here we will see Euler algorithm which is the most straight forward (but lacks precision and stability), and later  one of the most common, the Runge-Kutta. After that, specific algorithms for second order equations will be discussed (like Leap-Frog and Verlet), and, finally some numerical libraries will be shown.</p>
@@ -536,13 +536,13 @@ ma = m\frac{dv}{dt} = m\frac{d^2x}{dt^2} = \sum F = f(t, x, v),
 <section id="the-euler-algorithm">
 <h2>The Euler algorithm<a class="headerlink" href="#the-euler-algorithm" title="Link to this heading">#</a></h2>
 <p>The <a class="reference external" href="https://en.wikipedia.org/wiki/Euler_method?useskin=vector">Euler method</a> is based on the forward derivative:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-1e00acde-84c9-4f39-ad1e-4a712633b4ba">
-<span class="eqno">(47)<a class="headerlink" href="#equation-1e00acde-84c9-4f39-ad1e-4a712633b4ba" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-1798ba01-f241-4a8d-a744-e77aab5e9293">
+<span class="eqno">(47)<a class="headerlink" href="#equation-1798ba01-f241-4a8d-a744-e77aab5e9293" title="Permalink to this equation">#</a></span>\[\begin{equation}
 \frac{d\vec y}{dt} = \frac{\vec y(t+h) - \vec y(t)}{h} + O(h).
 \end{equation}\]</div>
 <p>Here, <span class="math notranslate nohighlight">\(h = \delta t\)</span>. Since we are looking for <span class="math notranslate nohighlight">\(f(t + \delta t)\)</span>, and we actually know the derivatives (they are given by the differential equation we want to solve), then</p>
-<div class="amsmath math notranslate nohighlight" id="equation-aa250cda-7c0b-4c38-a821-9ba189733ea1">
-<span class="eqno">(48)<a class="headerlink" href="#equation-aa250cda-7c0b-4c38-a821-9ba189733ea1" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-6ba8c9b1-81b1-48dc-8cfd-6856bd16632d">
+<span class="eqno">(48)<a class="headerlink" href="#equation-6ba8c9b1-81b1-48dc-8cfd-6856bd16632d" title="Permalink to this equation">#</a></span>\[\begin{align}
 \vec y(t+\delta t) &amp;= \vec y(t) + \delta t \frac{d \vec y}{dt} + O(\delta t^2), \\
 &amp;= \vec y(t) + \delta t \vec f(t, \vec y) + O(\delta  t^2),
 \end{align}\]</div>
@@ -607,8 +607,8 @@ Although easy to implement, it lacks stability, and its low order (locally $O(\d
     <figcaption>From: "https://upload.wikimedia.org/wikipedia/commons/1/13/A_Trajectory_Through_Phase_Space_in_a_Lorenz_Attractor.gif"</figcaption>
 </div>
 <p>It is represented as the following set of coupled equations:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-78432667-c778-4dda-9a86-5bc3265965ad">
-<span class="eqno">(49)<a class="headerlink" href="#equation-78432667-c778-4dda-9a86-5bc3265965ad" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-4ce4dbe6-a011-4a53-b18f-4235308447ca">
+<span class="eqno">(49)<a class="headerlink" href="#equation-4ce4dbe6-a011-4a53-b18f-4235308447ca" title="Permalink to this equation">#</a></span>\[\begin{align}
 \frac{dx}{dt} = \sigma(y-x),\\
 \frac{dy}{dt} = x(\rho  - z) - y, \\
 \frac{dz}{dt} = xy - \beta z.
@@ -686,8 +686,8 @@ use the same interface.</p>
 <section id="solving-a-first-order-equation">
 <h2>Solving a first order equation<a class="headerlink" href="#solving-a-first-order-equation" title="Link to this heading">#</a></h2>
 <p>Please solve the first order differential equation</p>
-<div class="amsmath math notranslate nohighlight" id="equation-d73c82b7-9760-4103-9653-4d653656543a">
-<span class="eqno">(50)<a class="headerlink" href="#equation-d73c82b7-9760-4103-9653-4d653656543a" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-5c7069ca-49c8-473c-889c-b02352b3f9ce">
+<span class="eqno">(50)<a class="headerlink" href="#equation-5c7069ca-49c8-473c-889c-b02352b3f9ce" title="Permalink to this equation">#</a></span>\[\begin{equation}
 \dot y = \frac{dy}{dt} = 5\sin(t) + t,
 \end{equation}\]</div>
 <p>with initial condition <span class="math notranslate nohighlight">\(y(0) = 1.5\)</span>, for <span class="math notranslate nohighlight">\(t \in [0, 10.0]\)</span>. Plot the numerical and theoretical solution for <span class="math notranslate nohighlight">\(\delta t = 0.1, 0.2, 0.8, 1.5\)</span>. Our main file could be</p>
@@ -744,14 +744,14 @@ use the same interface.</p>
 <section id="solving-a-second-order-differential-equation">
 <h2>Solving a second order differential equation<a class="headerlink" href="#solving-a-second-order-differential-equation" title="Link to this heading">#</a></h2>
 <p>Here we will simulate an harmonic oscillator, described by</p>
-<div class="amsmath math notranslate nohighlight" id="equation-7286caf6-308f-4a9c-bffc-abcdd82bc7cb">
-<span class="eqno">(51)<a class="headerlink" href="#equation-7286caf6-308f-4a9c-bffc-abcdd82bc7cb" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-b05ec313-476b-4885-8fec-dbe16849dca6">
+<span class="eqno">(51)<a class="headerlink" href="#equation-b05ec313-476b-4885-8fec-dbe16849dca6" title="Permalink to this equation">#</a></span>\[\begin{equation}
 \frac{d^2x}{dt^2} + \omega^2 x = 0,
 \end{equation}\]</div>
 <p>which can be transformed into a system of 2 differential equations using the
 velocity, <span class="math notranslate nohighlight">\(v = dx/dt\)</span>, as <span class="math notranslate nohighlight">\(\vec y = (y_0, y_1) = (x, dx/dt) = (x, v)\)</span>,</p>
-<div class="amsmath math notranslate nohighlight" id="equation-9dcb917c-a431-4e8a-8de5-e83992f770a8">
-<span class="eqno">(52)<a class="headerlink" href="#equation-9dcb917c-a431-4e8a-8de5-e83992f770a8" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-e3c18313-b493-4914-a33e-a51ec24fdcae">
+<span class="eqno">(52)<a class="headerlink" href="#equation-e3c18313-b493-4914-a33e-a51ec24fdcae" title="Permalink to this equation">#</a></span>\[\begin{align}
 \frac{dy_0}{dt} &amp;= \frac{dx}{dt} = v = y_1\\
 \frac{dy_1}{dt} &amp;= \frac{dv}{dt} = -\omega^2 x = -\omega^2 y_0.
 \end{align}\]</div>
@@ -786,13 +786,13 @@ space, <span class="math notranslate nohighlight">\(v\)</span> versus <span clas
     <figcaption>From: "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7e/Runge-Kutta_slopes.svg/600px-Runge-Kutta_slopes.svg.png"</figcaption>
 </div>
 <p>For the RK4 algorithm , we can compute the evolution as</p>
-<div class="amsmath math notranslate nohighlight" id="equation-c8d85f7e-27a2-4ba6-a528-64897bb18a2d">
-<span class="eqno">(53)<a class="headerlink" href="#equation-c8d85f7e-27a2-4ba6-a528-64897bb18a2d" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-41cf8447-3eff-44cb-8ee4-316a352963a2">
+<span class="eqno">(53)<a class="headerlink" href="#equation-41cf8447-3eff-44cb-8ee4-316a352963a2" title="Permalink to this equation">#</a></span>\[\begin{equation}
 \vec y(t+\delta t) = \vec y (t) + \frac{h}{6}(\vec k_1 + 2\vec k_2 + 2\vec k_3 + \vec k_4) + O(\delta t^5),
 \end{equation}\]</div>
 <p>with the <span class="math notranslate nohighlight">\(\vec k_i\)</span> functions evaluating the derivatives at different stages</p>
-<div class="amsmath math notranslate nohighlight" id="equation-4560ebe8-a95c-4f77-a27b-d8d1721a17f7">
-<span class="eqno">(54)<a class="headerlink" href="#equation-4560ebe8-a95c-4f77-a27b-d8d1721a17f7" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-a399585d-1a09-4469-b041-f776f4cba7a3">
+<span class="eqno">(54)<a class="headerlink" href="#equation-a399585d-1a09-4469-b041-f776f4cba7a3" title="Permalink to this equation">#</a></span>\[\begin{align}
 \vec k_1 &amp;= \vec f(t, \vec y(t)),\\
 \vec k_2 &amp;= \vec f(t + \frac{h}{2}, \vec y(t) + h\frac{\vec k_1}{2}),\\
 \vec k_3 &amp;= \vec f(t + \frac{h}{2}, \vec y(t) + h\frac{\vec k_2}{2}),\\
