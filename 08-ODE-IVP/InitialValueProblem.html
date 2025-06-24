@@ -469,20 +469,29 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-euler-algorithm">The Euler algorithm</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#a-simple-one-dimensional-implementation">A simple, one dimensional implementation</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#a-more-general-implementation-the-lorenz-model-and-atractor">A more general implementation: The Lorenz model and atractor</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#general-implementation-of-integration-algorithms">General implementation of integration algorithms</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#euler-algorithm-implementation">Euler algorithm implementation</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#solving-a-first-order-equation">Solving a first order equation</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#first-order-algorithm-the-euler-algorithm">First order algorithm: The Euler algorithm</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#second-order-algorithm-the-heun-method">Second order algorithm : The Heun method</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#fourth-order-algorithm-runge-kutta-algorithm-rk4">Fourth order algorithm: Runge-Kutta algorithm RK4</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#implementation-discussion">Implementation discussion</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#example-implementing-the-euler-method-for-a-one-dimensional-problem">Example: implementing the Euler method for a one dimensional problem</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-lorenz-model-and-attractor">The Lorenz model and attractor</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-solve-using-the-euler-method">Exercise : Solve using the Euler method</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-heun-method">Exercise: Heun method</a></li>
+</ul>
+</li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#solving-a-second-order-differential-equation">Solving a second order differential equation</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercises">Exercises</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercises">Exercises</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#solve-the-simple-harmonic-oscillator-energy-conservation">Solve the simple harmonic oscillator: energy conservation</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#solve-the-simple-harmonic-oscillator-energy-conservation-with-heun">Solve the simple harmonic oscillator: energy conservation with Heun</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#runge-kutta-algorithm">Runge-Kutta algorithm</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Exercises</a></li>
 </ul>
 </li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#runge-kutta-algorithm-of-fourth-order-implementation">Runge-Kutta algorithm of fourth order: Implementation</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise">Exercise</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Exercises</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#using-a-library-odeint">Using a library : odeint</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">Exercises</a></li>
 </ul>
@@ -506,8 +515,8 @@ document.write(`
 <p>In mathematics, an ordinary differential equation (ODE) is a differential equation (DE) dependent on only a single independent variable. As with other DE, its unknown(s) consists of one (or more) function(s) and involves the derivatives of those functions The term “ordinary” is used in contrast with partial differential equations which may be with respect to more than one independent variable.(see https://en.wikipedia.org/wiki/Ordinary_differential_equation?useskin=vector)</p>
 <p><a class="reference external" href="https://en.wikipedia.org/wiki/Initial_value_problem?useskin=vector">An initial value problem</a>, IVP, is a a problem specified by an ordinary differential equation and its initial conditions.</p>
 <p>You have been already solving a differential equation: The second Newton law</p>
-<div class="amsmath math notranslate nohighlight" id="equation-1cd51df0-9f32-4a00-8898-1bbbe80c330b">
-<span class="eqno">(44)<a class="headerlink" href="#equation-1cd51df0-9f32-4a00-8898-1bbbe80c330b" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-32c24e3e-abea-44e3-995a-e74bf4558e77">
+<span class="eqno">(44)<a class="headerlink" href="#equation-32c24e3e-abea-44e3-995a-e74bf4558e77" title="Permalink to this equation">#</a></span>\[\begin{equation}
 ma = m\frac{dv}{dt} = m\frac{d^2x}{dt^2} = \sum F = f(t, x, v),
 \end{equation}\]</div>
 <p>Can be seen as a first order differential equation (when talking about <span class="math notranslate nohighlight">\(v\)</span>) or as a second order differential equation (regarding <span class="math notranslate nohighlight">\(x\)</span>).</p>
@@ -516,33 +525,36 @@ ma = m\frac{dv}{dt} = m\frac{d^2x}{dt^2} = \sum F = f(t, x, v),
     <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a4/Parabolic_trajectory.svg/500px-Parabolic_trajectory.svg.png" alt="Image Description" width="600">
     <figcaption>From: "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a4/Parabolic_trajectory.svg/500px-Parabolic_trajectory.svg.png"</figcaption>
 </div>
+<blockquote>
+<div><p>The following geogebra applet shows the effect of fixing the initial condition: <a class="reference external" href="https://www.geogebra.org/m/pepN3KbH">https://www.geogebra.org/m/pepN3KbH</a></p>
+</div></blockquote>
 <p>In this chapter we will focus on solving, numerically, <a class="reference external" href="https://en.wikipedia.org/wiki/Ordinary_differential_equation?useskin=vector">Ordinary differential equations</a>. Later we will learn some basic methods for <a class="reference external" href="https://en.wikipedia.org/wiki/Partial_differential_equation?useskin=vector">Partial differential equations</a>. For a nice introduction to both of them, please watch:</p>
 <ul class="simple">
 <li><p><a class="reference external" href="https://www.youtube.com/watch?v=p_di4Zn4wz4&amp;amp;t=0s">Ordinary differential equations intro</a></p></li>
 <li><p><a class="reference external" href="https://www.youtube.com/watch?v=ly4S0oi3Yz8&amp;amp;t=0s">Partial differential equations intro</a></p></li>
 </ul>
 <p>A numerical solution for and IVP corresponds to finding an algorithm that allows you to move from time <span class="math notranslate nohighlight">\(t\)</span> to time <span class="math notranslate nohighlight">\(t+\delta t\)</span>, given a time discretization. It is assumed that the general problem is represented as</p>
-<div class="amsmath math notranslate nohighlight" id="equation-93ee0ada-8865-44c9-8db6-493fc89861da">
-<span class="eqno">(45)<a class="headerlink" href="#equation-93ee0ada-8865-44c9-8db6-493fc89861da" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-2c26212f-4997-46fd-9a27-bc5c924f6c32">
+<span class="eqno">(45)<a class="headerlink" href="#equation-2c26212f-4997-46fd-9a27-bc5c924f6c32" title="Permalink to this equation">#</a></span>\[\begin{equation}
 \dot y = \frac{dy}{dt} = f(t, y),
 \end{equation}\]</div>
 <p>where <span class="math notranslate nohighlight">\(y\)</span> represents the state of the system. All linear differential equations of any order can be cast to this form by introducing auxiliary derivatives, so the problem becomes vectorial, but its form remains</p>
-<div class="amsmath math notranslate nohighlight" id="equation-bfe6cffe-15c1-4457-9d63-875e21b6ce69">
-<span class="eqno">(46)<a class="headerlink" href="#equation-bfe6cffe-15c1-4457-9d63-875e21b6ce69" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-c24aedf8-0ad7-40ef-b4ae-1fb9e55ffced">
+<span class="eqno">(46)<a class="headerlink" href="#equation-c24aedf8-0ad7-40ef-b4ae-1fb9e55ffced" title="Permalink to this equation">#</a></span>\[\begin{equation}
 \frac{d\vec y}{dt} = \vec f(t, \vec y).
 \end{equation}\]</div>
 <p>So the key question is how to go numerically from <span class="math notranslate nohighlight">\(\vec y(t)\)</span> to <span class="math notranslate nohighlight">\(\vec y(t+\delta t)\)</span>. There are several algorithms, with both advantages and disadvantages (in sinplicity, precision, stability, etc), to do so. Here we will see Euler algorithm which is the most straight forward (but lacks precision and stability), and later  one of the most common, the Runge-Kutta. After that, specific algorithms for second order equations will be discussed (like Leap-Frog and Verlet), and, finally some numerical libraries will be shown.</p>
 <p><a id="org87d015a"></a></p>
-<section id="the-euler-algorithm">
-<h2>The Euler algorithm<a class="headerlink" href="#the-euler-algorithm" title="Link to this heading">#</a></h2>
+<section id="first-order-algorithm-the-euler-algorithm">
+<h2>First order algorithm: The Euler algorithm<a class="headerlink" href="#first-order-algorithm-the-euler-algorithm" title="Link to this heading">#</a></h2>
 <p>The <a class="reference external" href="https://en.wikipedia.org/wiki/Euler_method?useskin=vector">Euler method</a> is based on the forward derivative:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-1798ba01-f241-4a8d-a744-e77aab5e9293">
-<span class="eqno">(47)<a class="headerlink" href="#equation-1798ba01-f241-4a8d-a744-e77aab5e9293" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-2029ef25-c29d-42bc-8486-72175aebcd9a">
+<span class="eqno">(47)<a class="headerlink" href="#equation-2029ef25-c29d-42bc-8486-72175aebcd9a" title="Permalink to this equation">#</a></span>\[\begin{equation}
 \frac{d\vec y}{dt} = \frac{\vec y(t+h) - \vec y(t)}{h} + O(h).
 \end{equation}\]</div>
 <p>Here, <span class="math notranslate nohighlight">\(h = \delta t\)</span>. Since we are looking for <span class="math notranslate nohighlight">\(f(t + \delta t)\)</span>, and we actually know the derivatives (they are given by the differential equation we want to solve), then</p>
-<div class="amsmath math notranslate nohighlight" id="equation-6ba8c9b1-81b1-48dc-8cfd-6856bd16632d">
-<span class="eqno">(48)<a class="headerlink" href="#equation-6ba8c9b1-81b1-48dc-8cfd-6856bd16632d" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-bdfae6f6-9cf9-440a-9212-63b05b06263b">
+<span class="eqno">(48)<a class="headerlink" href="#equation-bdfae6f6-9cf9-440a-9212-63b05b06263b" title="Permalink to this equation">#</a></span>\[\begin{align}
 \vec y(t+\delta t) &amp;= \vec y(t) + \delta t \frac{d \vec y}{dt} + O(\delta t^2), \\
 &amp;= \vec y(t) + \delta t \vec f(t, \vec y) + O(\delta  t^2),
 \end{align}\]</div>
@@ -551,214 +563,165 @@ ma = m\frac{dv}{dt} = m\frac{d^2x}{dt^2} = \sum F = f(t, x, v),
     <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/10/Euler_method.svg/440px-Euler_method.svg.png" alt="Image Description" width="400">
     <figcaption>From: "https://upload.wikimedia.org/wikipedia/commons/thumb/1/10/Euler_method.svg/440px-Euler_method.svg.png"</figcaption>
 </div>
-Although easy to implement, it lacks stability, and its low order (locally $O(\delta t^2)$, globally $O(N\delta t^2) = O(\delta t)$) implies a very small $\delta t$, so many steps to solve the IVP on a given time interval.  Check https://www.desmos.com/calculator/0i0oebdu6j</section>
-<section id="a-simple-one-dimensional-implementation">
-<h2>A simple, one dimensional implementation<a class="headerlink" href="#a-simple-one-dimensional-implementation" title="Link to this heading">#</a></h2>
-<p>Here we will solve the following one dimensional differential equation using the Euler algorithm:</p>
+<p>Although easy to implement, it lacks stability, and its low order (locally <span class="math notranslate nohighlight">\(O(\delta t^2)\)</span>, globally <span class="math notranslate nohighlight">\(O(N\delta t^2) = O(\delta t)\)</span>) implies a very small <span class="math notranslate nohighlight">\(\delta t\)</span>, so many steps to solve the IVP on a given time interval.</p>
+<blockquote>
+<div><p>Check <a class="reference external" href="https://www.geogebra.org/m/b5W3yTgs">https://www.geogebra.org/m/b5W3yTgs</a> and <a class="reference external" href="https://www.desmos.com/calculator/0i0oebdu6j">https://www.desmos.com/calculator/0i0oebdu6j</a></p>
+</div></blockquote>
+</section>
+<section id="second-order-algorithm-the-heun-method">
+<h2>Second order algorithm : The Heun method<a class="headerlink" href="#second-order-algorithm-the-heun-method" title="Link to this heading">#</a></h2>
+<p><a class="reference external" href="https://en.wikipedia.org/wiki/Heun%27s_method?useskin=vector">https://en.wikipedia.org/wiki/Heun’s_method?useskin=vector</a></p>
+<a class="reference internal image-reference" href="https://upload.wikimedia.org/wikipedia/commons/5/52/Heun%27s_Method_Diagram.jpg"><img alt="https://upload.wikimedia.org/wikipedia/commons/5/52/Heun%27s_Method_Diagram.jpg" class="align-center" src="https://upload.wikimedia.org/wikipedia/commons/5/52/Heun%27s_Method_Diagram.jpg" style="width: 50%;" /></a>
+<p>The Heun method, also known as the improved Euler method, mid-point method, or second order Runge-Kuta mehtod, is an improvement over the initial Euler method.</p>
+<p>Here, you need to compute intermediate values to estimate better the final value at each step:</p>
+<div class="amsmath math notranslate nohighlight" id="equation-0e8b0892-fe33-4dd4-923a-ca137ea1e392">
+<span class="eqno">(49)<a class="headerlink" href="#equation-0e8b0892-fe33-4dd4-923a-ca137ea1e392" title="Permalink to this equation">#</a></span>\[\begin{align}
+\vec k_{1i} &amp;= f(t_i, \vec y_i),\\
+\vec k_{2i} &amp;= f(t_i + h, \vec y_i + h k_{1i}),\\
+\vec y_{i+1} &amp;= \vec y_i + \frac{h}{2}\left[\vec k_{1i} + \vec k_{2i} \right].
+\end{align}\]</div>
+<blockquote>
+<div><p>Check <a class="reference external" href="https://www.geogebra.org/m/z9wWtA5h">https://www.geogebra.org/m/z9wWtA5h</a></p>
+</div></blockquote>
+</section>
+<section id="fourth-order-algorithm-runge-kutta-algorithm-rk4">
+<h2>Fourth order algorithm: Runge-Kutta algorithm RK4<a class="headerlink" href="#fourth-order-algorithm-runge-kutta-algorithm-rk4" title="Link to this heading">#</a></h2>
+<p>Here, we will study the typical <a class="reference external" href="https://en.wikipedia.org/wiki/Runge%E2%80%93Kutta_methods">Runge-Kutta method</a> of order 4, for N coupled linear differential equations. This is much better than simple Euler. The price to pay is to evaluate the derivatives four times per time step.</p>
+<div style="text-align: center;">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/7e/Runge-Kutta_slopes.svg/600px-Runge-Kutta_slopes.svg.png" alt="Image Description" width="600">
+    <figcaption>From: "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7e/Runge-Kutta_slopes.svg/600px-Runge-Kutta_slopes.svg.png"</figcaption>
+</div>
+<p>For the RK4 algorithm , we can compute the evolution as</p>
+<div class="amsmath math notranslate nohighlight" id="equation-ea8fbf0f-c918-4307-93a9-ff041eb5a74c">
+<span class="eqno">(50)<a class="headerlink" href="#equation-ea8fbf0f-c918-4307-93a9-ff041eb5a74c" title="Permalink to this equation">#</a></span>\[\begin{equation}
+\vec y(t+\delta t) = \vec y (t) + \frac{h}{6}(\vec k_1 + 2\vec k_2 + 2\vec k_3 + \vec k_4) + O(\delta t^5),
+\end{equation}\]</div>
+<p>with the <span class="math notranslate nohighlight">\(\vec k_i\)</span> functions evaluating the derivatives at different stages</p>
+<div class="amsmath math notranslate nohighlight" id="equation-2de9ce65-9257-4221-9bc5-369960861b8d">
+<span class="eqno">(51)<a class="headerlink" href="#equation-2de9ce65-9257-4221-9bc5-369960861b8d" title="Permalink to this equation">#</a></span>\[\begin{align}
+\vec k_1 &amp;= \vec f(t, \vec y(t)),\\
+\vec k_2 &amp;= \vec f(t + \frac{h}{2}, \vec y(t) + h\frac{\vec k_1}{2}),\\
+\vec k_3 &amp;= \vec f(t + \frac{h}{2}, \vec y(t) + h\frac{\vec k_2}{2}),\\
+\vec k_4 &amp;= \vec f(t + h, \vec y(t) + h\vec k_3),\\
+\end{align}\]</div>
+<p>The total global order is <span class="math notranslate nohighlight">\(O(\delta t^4)\)</span>.</p>
+<blockquote>
+<div><p>See <a class="reference external" href="https://www.geogebra.org/m/hvEzUcDF">https://www.geogebra.org/m/hvEzUcDF</a></p>
+</div></blockquote>
+</section>
+<section id="implementation-discussion">
+<h2>Implementation discussion<a class="headerlink" href="#implementation-discussion" title="Link to this heading">#</a></h2>
+<p>To implement any of the following approaches, please think about the requirements for the function to do that, before writing any code. Like:</p>
+<ul class="simple">
+<li><p>It needs to receive the initial and final times, plus the time step.</p></li>
+<li><p>Given that all methods need the current state, it should be given as an argument (as a reference to avoid creating costly copies when N is large)</p></li>
+<li><p>It should receive the derivatives function, to be able to compute the derivatives.</p></li>
+<li><p>EXTRA: To be able write the data in any chosen way, it might get a function to write the data, and that function must get the time, the state and the derivatives.</p></li>
+</ul>
+<p>Do you think something else is needed?</p>
+<p>Therefore, something like the following is needed:</p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">template</span><span class="w"> </span><span class="o">&lt;</span><span class="k">class</span><span class="w"> </span><span class="nc">deriv_t</span><span class="p">,</span><span class="w"> </span><span class="k">class</span><span class="w"> </span><span class="nc">system_t</span><span class="p">,</span><span class="w"> </span><span class="k">class</span><span class="w"> </span><span class="nc">printer_t</span><span class="o">&gt;</span>
+<span class="kt">void</span><span class="w"> </span><span class="n">integrate</span><span class="p">(</span><span class="n">deriv_t</span><span class="w"> </span><span class="n">fderiv</span><span class="p">,</span><span class="w"> </span><span class="n">system_t</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">s</span><span class="p">,</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="n">tinit</span><span class="p">,</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="n">tend</span><span class="p">,</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="n">dt</span><span class="p">,</span><span class="w"> </span><span class="n">printer_t</span><span class="w"> </span><span class="n">writer</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>where:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">state_t</span></code> represents the system state, like <code class="docutils literal notranslate"><span class="pre">std::valarray&lt;double&gt;</span></code> or <code class="docutils literal notranslate"><span class="pre">std::vector&lt;double&gt;</span></code>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">deriv_t</span></code> represents the function type that compute the derivatives, which in turn should be like <code class="docutils literal notranslate"><span class="pre">void</span> <span class="pre">fderiv(const</span> <span class="pre">system_t</span> <span class="pre">&amp;</span> <span class="pre">s,</span> <span class="pre">system_t</span> <span class="pre">&amp;</span> <span class="pre">dsdt,</span> <span class="pre">double</span> <span class="pre">t)</span></code>. Notice the const and non-const on the arguments.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">printer_t</span></code> represents a function type used to print, like <code class="docutils literal notranslate"><span class="pre">void</span> <span class="pre">printer(const</span> <span class="pre">system_t</span> <span class="pre">&amp;</span> <span class="pre">s,</span> <span class="pre">double</span> <span class="pre">t)</span></code>.</p></li>
+</ul>
+<p>When a function can work with several generic types as shown, one can use templates. But we can also use <code class="docutils literal notranslate"><span class="pre">using</span> <span class="pre">fptr</span> <span class="pre">=</span> <span class="pre">std::fuction...</span></code>. To learn more, we will use templates! (this makes us put the implementation in the header files).</p>
+<p>To represent the system state <span class="math notranslate nohighlight">\(s\)</span> we can use <code class="docutils literal notranslate"><span class="pre">std::valarray</span></code> which will avoid using many for loops.</p>
+</section>
+<section id="example-implementing-the-euler-method-for-a-one-dimensional-problem">
+<h2>Example: implementing the Euler method for a one dimensional problem<a class="headerlink" href="#example-implementing-the-euler-method-for-a-one-dimensional-problem" title="Link to this heading">#</a></h2>
+<p>Here we will solve the following one dimensional differential equation :</p>
 <div class="math notranslate nohighlight">
 \[
 \frac{dy}{dt} = f(y, \dot y, t) = r y (1-y),
 \]</div>
-<p>where <span class="math notranslate nohighlight">\(r\)</span> is a paremeter. This equation is called the “logistic equation” and used in the population dynamics field (https://en.wikipedia.org/wiki/Logistic_function?useskin=vector#Logistic_differential_equation). To solve this equation, we will need</p>
-<ul class="simple">
-<li><p>a function that returns the derivatives: for now, it will just return a number. But how to handle the constant <span class="math notranslate nohighlight">\(r\)</span>? for now it will be just a global constant.</p></li>
-<li><p>a function to perform the euler steps from and initial to a final time: It must also receive the initial state and then evolve it using the Euler algorithm.</p></li>
-</ul>
-<p>A simple, inmediate implementation is s follows</p>
-<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;iostream&gt;</span>
+<p>where <span class="math notranslate nohighlight">\(r\)</span> is a parameter. This equation is called the “logistic equation” and used in the population dynamics field (<a class="reference external" href="https://en.wikipedia.org/wiki/Logistic_function?useskin=vector#Logistic_differential_equation">https://en.wikipedia.org/wiki/Logistic_function?useskin=vector#Logistic_differential_equation</a>).</p>
+<div style="text-align: center;">
+<figure>
+<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c6/Logistic_function_derivatives.png/500px-Logistic_function_derivatives.png" width=60%>
+<figcaption> https://upload.wikimedia.org/wikipedia/commons/thumb/c/c6/Logistic_function_derivatives.png/500px-Logistic_function_derivatives.png </figcaption>
+</figure>
+</div>
+<blockquote>
+<div><p>This is also related to chaos through the logistic map: <a class="reference external" href="https://en.wikipedia.org/wiki/Logistic_map?useskin=vector">https://en.wikipedia.org/wiki/Logistic_map?useskin=vector</a></p>
+</div></blockquote>
+<p>For our solver, we have the following template implementation: Notice that the solver knows nothing about your functions for writing, the system data struct used and so on.</p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="c1">// ivp_solver.h</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;iostream&gt;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;valarray&gt;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;functional&gt;</span>
 
-<span class="k">const</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="n">R</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">0.10</span><span class="p">;</span>
-<span class="kt">double</span><span class="w"> </span><span class="nf">f</span><span class="p">(</span><span class="kt">double</span><span class="w"> </span><span class="n">y</span><span class="p">,</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="n">t</span><span class="p">);</span>
-<span class="kt">void</span><span class="w"> </span><span class="nf">euler</span><span class="p">(</span><span class="kt">double</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">y</span><span class="p">,</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="n">t0</span><span class="p">,</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="n">tf</span><span class="p">,</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="n">h</span><span class="p">);</span>
 
-<span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span>
+<span class="c1">// function template to work with &quot;any&quot; type</span>
+<span class="k">template</span><span class="w"> </span><span class="o">&lt;</span><span class="k">class</span><span class="w"> </span><span class="nc">deriv_t</span><span class="p">,</span><span class="w"> </span><span class="k">class</span><span class="w"> </span><span class="nc">system_t</span><span class="p">,</span><span class="w"> </span><span class="k">class</span><span class="w"> </span><span class="nc">printer_t</span><span class="o">&gt;</span>
+<span class="kt">void</span><span class="w"> </span><span class="n">integrate_euler</span><span class="p">(</span><span class="n">deriv_t</span><span class="w"> </span><span class="n">fderiv</span><span class="p">,</span><span class="w"> </span><span class="n">system_t</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">s</span><span class="p">,</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="n">tinit</span><span class="p">,</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="n">tend</span><span class="p">,</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="n">dt</span><span class="p">,</span><span class="w"> </span><span class="n">printer_t</span><span class="w"> </span><span class="n">writer</span><span class="p">)</span>
 <span class="p">{</span>
-<span class="w">  </span><span class="c1">// condiciones iniciales</span>
-<span class="w">  </span><span class="kt">double</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">0.57</span><span class="p">;</span>
+<span class="w">    </span><span class="c1">// vector to store derivs</span>
+<span class="w">    </span><span class="n">system_t</span><span class="w"> </span><span class="nf">dsdt</span><span class="p">(</span><span class="n">s</span><span class="p">.</span><span class="n">size</span><span class="p">());</span>
 
-<span class="w">  </span><span class="c1">// evolucion temporal</span>
-<span class="w">  </span><span class="n">euler</span><span class="p">(</span><span class="n">y</span><span class="p">,</span><span class="w"> </span><span class="mf">0.0</span><span class="p">,</span><span class="w"> </span><span class="mf">80.9876</span><span class="p">,</span><span class="w"> </span><span class="mf">0.05</span><span class="p">);</span>
-<span class="w">  </span>
-<span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
-<span class="p">}</span>
+<span class="w">    </span><span class="c1">// time loop</span>
+<span class="w">    </span><span class="k">for</span><span class="p">(</span><span class="kt">double</span><span class="w"> </span><span class="n">t</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">tinit</span><span class="p">;</span><span class="w"> </span><span class="n">t</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="n">tend</span><span class="p">;</span><span class="w"> </span><span class="n">t</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">t</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">dt</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="c1">// NOTE: Last time step not necessarily tf</span>
+<span class="w">        </span><span class="c1">// compute derivs</span>
+<span class="w">        </span><span class="n">fderiv</span><span class="p">(</span><span class="n">s</span><span class="p">,</span><span class="w"> </span><span class="n">dsdt</span><span class="p">,</span><span class="w"> </span><span class="n">t</span><span class="p">);</span>
 
-<span class="kt">double</span><span class="w"> </span><span class="nf">f</span><span class="p">(</span><span class="kt">double</span><span class="w"> </span><span class="n">y</span><span class="p">,</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="n">t</span><span class="p">)</span>
-<span class="p">{</span>
-<span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="n">R</span><span class="o">*</span><span class="n">y</span><span class="o">*</span><span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">y</span><span class="p">);</span>
-<span class="p">}</span>
+<span class="w">        </span><span class="c1">// compute new state. NOTE: Not using components, assuming valarray or similar</span>
+<span class="w">        </span><span class="n">s</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">s</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">dt</span><span class="o">*</span><span class="n">dsdt</span><span class="p">;</span><span class="w"> </span><span class="c1">// Euler</span>
 
-<span class="kt">void</span><span class="w"> </span><span class="nf">euler</span><span class="p">(</span><span class="kt">double</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">y</span><span class="p">,</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="n">t0</span><span class="p">,</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="n">tf</span><span class="p">,</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="n">h</span><span class="p">)</span>
-<span class="p">{</span>
-<span class="w">  </span><span class="c1">// avanzar desde y en t, hasta y en tf</span>
-<span class="w">  </span><span class="k">for</span><span class="p">(</span><span class="kt">double</span><span class="w"> </span><span class="n">t</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">t0</span><span class="p">;</span><span class="w"> </span><span class="n">t</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="n">tf</span><span class="p">;</span><span class="w"> </span><span class="n">t</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">t</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">h</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">t</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;</span><span class="se">\t</span><span class="s">&quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;</span><span class="se">\t</span><span class="s">&quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">f</span><span class="p">(</span><span class="n">y</span><span class="p">,</span><span class="w"> </span><span class="n">t</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">;</span>
-<span class="w">    </span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">h</span><span class="o">*</span><span class="n">f</span><span class="p">(</span><span class="n">y</span><span class="p">,</span><span class="w"> </span><span class="n">t</span><span class="p">);</span>
-<span class="w">  </span><span class="p">}</span>
+<span class="w">        </span><span class="c1">// write new state</span>
+<span class="w">        </span><span class="n">writer</span><span class="p">(</span><span class="n">s</span><span class="p">,</span><span class="w"> </span><span class="n">t</span><span class="p">);</span>
+<span class="w">      </span><span class="p">}</span>
 <span class="p">}</span>
 </pre></div>
 </div>
-<p>Please compile it, run it and check the effect of <span class="math notranslate nohighlight">\(h\)</span> and <span class="math notranslate nohighlight">\(r\)</span>.</p>
 </section>
-<section id="a-more-general-implementation-the-lorenz-model-and-atractor">
-<h2>A more general implementation: The Lorenz model and atractor<a class="headerlink" href="#a-more-general-implementation-the-lorenz-model-and-atractor" title="Link to this heading">#</a></h2>
+<section id="the-lorenz-model-and-attractor">
+<h2>The Lorenz model and attractor<a class="headerlink" href="#the-lorenz-model-and-attractor" title="Link to this heading">#</a></h2>
 <p>The <a class="reference external" href="https://en.wikipedia.org/wiki/Lorenz_system?useskin=vector">Lorenz model</a> for climate represents a coupled system of one-dimensional differential equations that is used to study the climate and also gave the first evidence on sensitivy to initial conditions and the onset of chaos. Its solutions attractor is very famous:</p>
 <div style="text-align: center;">
     <img src="https://upload.wikimedia.org/wikipedia/commons/1/13/A_Trajectory_Through_Phase_Space_in_a_Lorenz_Attractor.gif" alt="Image Description" width="300">
     <figcaption>From: "https://upload.wikimedia.org/wikipedia/commons/1/13/A_Trajectory_Through_Phase_Space_in_a_Lorenz_Attractor.gif"</figcaption>
 </div>
 <p>It is represented as the following set of coupled equations:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-4ce4dbe6-a011-4a53-b18f-4235308447ca">
-<span class="eqno">(49)<a class="headerlink" href="#equation-4ce4dbe6-a011-4a53-b18f-4235308447ca" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-167c5c3a-1aa2-4d50-aef2-a6aba9277571">
+<span class="eqno">(52)<a class="headerlink" href="#equation-167c5c3a-1aa2-4d50-aef2-a6aba9277571" title="Permalink to this equation">#</a></span>\[\begin{align}
 \frac{dx}{dt} = \sigma(y-x),\\
 \frac{dy}{dt} = x(\rho  - z) - y, \\
 \frac{dz}{dt} = xy - \beta z.
 \end{align}\]</div>
 <p>As you can see, we have three independet variables, and three parameters.</p>
-<p>Please about th possible modifications needed for the previous code to be able to solve the Lorens system. Some guiding questions:</p>
-<ul class="simple">
-<li><p>How many dimensions are now in the state vector to be solved? how to represent that state?</p></li>
-<li><p>how to return the derivative of a 3d vector?</p></li>
-<li><p>How to pack the parameters to pass them to the derivatives and related functions?</p></li>
-<li><p>How to print the system in a general way without mixing the integrator and the printing tools?</p></li>
-</ul>
-<hr class="docutils" />
-<p><strong>Exercise</strong></p>
-<ul class="simple">
-<li><p>Generalize the <code class="docutils literal notranslate"><span class="pre">f</span></code> function to be able to work on a N-dimensional state vector</p></li>
-<li><p>Generalize the <code class="docutils literal notranslate"><span class="pre">euler</span></code> function to be able to work on a N-dimensional state vector</p></li>
-<li><p>Pack the parameters in a given data structure.</p></li>
-<li><p>Select some parameter values and plot two solutions that start very close.</p></li>
-</ul>
+<section id="exercise-solve-using-the-euler-method">
+<h3>Exercise : Solve using the Euler method<a class="headerlink" href="#exercise-solve-using-the-euler-method" title="Link to this heading">#</a></h3>
+<p>Adapt the previous main code to solve the Lorenz system. Select some parameter values and plot two solutions that start very close.</p>
 </section>
-<hr class="docutils" />
-<section id="general-implementation-of-integration-algorithms">
-<h2>General implementation of integration algorithms<a class="headerlink" href="#general-implementation-of-integration-algorithms" title="Link to this heading">#</a></h2>
-<p>Before implementing the euler equation, and to easy future comparisons, let’s define the interface that we will use for all the implementations:</p>
-<hr class="docutils" />
-<p><strong>Main file</strong></p>
-<ul class="simple">
-<li><p>It must have the system constants, time interval and steps, etc.</p></li>
-<li><p><strong>System state type</strong>: <code class="docutils literal notranslate"><span class="pre">state_t</span></code>, will be represented by a data array, like a <code class="docutils literal notranslate"><span class="pre">vector</span></code> or <code class="docutils literal notranslate"><span class="pre">valarray</span></code>.</p></li>
-<li><p><strong>Derivatives function</strong>: It must return the derivatives, and must be defined in the main file since it corresponds to the actual differential equation you want to solve.  But it could be vectorial, so we will include the ouput vector in the arguments. It models the function <span class="math notranslate nohighlight">\(\vec f(t, \vec y)\)</span>, so its definition will be <code class="docutils literal notranslate"><span class="pre">void</span> <span class="pre">fderiv(const</span> <span class="pre">state_t</span> <span class="pre">&amp;</span> <span class="pre">y,</span> <span class="pre">state_t</span> <span class="pre">&amp;</span> <span class="pre">dydt,</span> <span class="pre">double</span> <span class="pre">t)</span></code>. Notice that the derivatives are a non-const reference, so we can store/return their values.</p></li>
-</ul>
-<hr class="docutils" />
-<p><strong>Header and implementation files: Functionality to solve an ODE</strong>
-The general prototype to solve the ODE will be a function with the following prototype</p>
-<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">template</span><span class="w"> </span><span class="o">&lt;</span><span class="k">class</span><span class="w"> </span><span class="nc">deriv_t</span><span class="p">,</span><span class="w"> </span><span class="k">class</span><span class="w"> </span><span class="nc">system_t</span><span class="p">,</span><span class="w"> </span><span class="k">class</span><span class="w"> </span><span class="nc">printer_t</span><span class="o">&gt;</span>
-<span class="w">    </span><span class="kt">void</span><span class="w"> </span><span class="n">integrate_euler</span><span class="p">(</span><span class="n">deriv_t</span><span class="w"> </span><span class="n">deriv</span><span class="p">,</span><span class="w"> </span><span class="n">system_t</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">s</span><span class="p">,</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="n">tinit</span><span class="p">,</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="n">tend</span><span class="p">,</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="n">dt</span><span class="p">,</span><span class="w"> </span><span class="n">printer_t</span><span class="w"> </span><span class="n">writer</span><span class="p">);</span>
-</pre></div>
-</div>
-<p>Why do we need to make it a template? because we want to allow the user to use any kind of type for the system class, and for printing the data. The first argument is the derivatives function, the second is the current state, then we have the nitial, final and time step, and finally something to write (wiether cout or a file stream).</p>
-<p>This implementation might look complex but will help us to use other libs that
-use the same interface.</p>
-<p>Please remember that the templates must go completely on the header file.</p>
+<section id="exercise-heun-method">
+<h3>Exercise: Heun method<a class="headerlink" href="#exercise-heun-method" title="Link to this heading">#</a></h3>
+<p>Implement the Heun method (<code class="docutils literal notranslate"><span class="pre">integrate_heun</span></code>) and solve again. DO you find any precision difference with the Euler method?</p>
 </section>
-<hr class="docutils" />
-<section id="euler-algorithm-implementation">
-<h2>Euler algorithm implementation<a class="headerlink" href="#euler-algorithm-implementation" title="Link to this heading">#</a></h2>
-<p>First of all, our Euler algorithm will be implemented as</p>
-<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="k">template</span><span class="w"> </span><span class="o">&lt;</span><span class="k">class</span><span class="w"> </span><span class="nc">deriv_t</span><span class="p">,</span><span class="w"> </span><span class="k">class</span><span class="w"> </span><span class="nc">system_t</span><span class="p">,</span><span class="w"> </span><span class="k">class</span><span class="w"> </span><span class="nc">printer_t</span><span class="o">&gt;</span>
-<span class="kt">void</span><span class="w"> </span><span class="n">integrate_euler</span><span class="p">(</span><span class="n">deriv_t</span><span class="w"> </span><span class="n">deriv</span><span class="p">,</span><span class="w"> </span><span class="n">system_t</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">y</span><span class="p">,</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="n">tinit</span><span class="p">,</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="n">tend</span><span class="p">,</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="n">dt</span><span class="p">,</span><span class="w"> </span><span class="n">printer_t</span><span class="w"> </span><span class="n">writer</span><span class="p">)</span>
-<span class="p">{</span>
-<span class="w">  </span><span class="c1">// initial setup</span>
-<span class="w">  </span><span class="n">system_t</span><span class="w"> </span><span class="n">dydt</span><span class="p">;</span><span class="w"> </span><span class="c1">// to store the derivatives</span>
-<span class="w">  </span><span class="k">const</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">N</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">y</span><span class="p">.</span><span class="n">size</span><span class="p">();</span>
-<span class="w">  </span><span class="n">dydt</span><span class="p">.</span><span class="n">resize</span><span class="p">(</span><span class="n">N</span><span class="p">);</span>
-<span class="w">  </span><span class="kt">double</span><span class="w"> </span><span class="n">time</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">tinit</span><span class="p">;</span>
-<span class="w">  </span><span class="kt">int</span><span class="w"> </span><span class="n">nsteps</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">tend</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">tinit</span><span class="p">)</span><span class="o">/</span><span class="n">dt</span><span class="p">;</span>
-<span class="w">  </span><span class="n">writer</span><span class="p">(</span><span class="n">y</span><span class="p">,</span><span class="w"> </span><span class="n">time</span><span class="p">);</span><span class="w"> </span><span class="c1">// write initial conditions</span>
-<span class="w">    </span>
-<span class="w">  </span><span class="c1">// time evolution</span>
-<span class="w">  </span><span class="k">for</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">ii</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span><span class="w"> </span><span class="n">ii</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">nsteps</span><span class="p">;</span><span class="w"> </span><span class="o">++</span><span class="n">ii</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="n">time</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">tinit</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">ii</span><span class="o">*</span><span class="n">dt</span><span class="p">;</span>
-<span class="w">    </span><span class="n">deriv</span><span class="p">(</span><span class="n">y</span><span class="p">,</span><span class="w"> </span><span class="n">dydt</span><span class="p">,</span><span class="w"> </span><span class="n">time</span><span class="p">);</span><span class="w"> </span><span class="c1">// compute the new derivatives</span>
-<span class="w">    </span><span class="c1">// y = y + dt*dydt; // coefficient wise (assumption)</span>
-<span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">ii</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">ii</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">N</span><span class="p">;</span><span class="w"> </span><span class="o">++</span><span class="n">ii</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="c1">// for each component of the state vector</span>
-<span class="w">      </span><span class="n">y</span><span class="p">[</span><span class="n">ii</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">y</span><span class="p">[</span><span class="n">ii</span><span class="p">]</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">dt</span><span class="o">*</span><span class="n">dydt</span><span class="p">[</span><span class="n">ii</span><span class="p">];</span><span class="w"> </span><span class="c1">// euler algorithm</span>
-<span class="w">    </span><span class="p">}</span>
-<span class="w">    </span><span class="n">writer</span><span class="p">(</span><span class="n">y</span><span class="p">,</span><span class="w"> </span><span class="n">time</span><span class="p">);</span><span class="w"> </span><span class="c1">// write the state for this new time</span>
-<span class="w">  </span><span class="p">}</span>
-<span class="p">}</span>
-</pre></div>
-</div>
-<p>Save this in the file <code class="docutils literal notranslate"><span class="pre">integrator.h</span></code>.</p>
-</section>
-<section id="solving-a-first-order-equation">
-<h2>Solving a first order equation<a class="headerlink" href="#solving-a-first-order-equation" title="Link to this heading">#</a></h2>
-<p>Please solve the first order differential equation</p>
-<div class="amsmath math notranslate nohighlight" id="equation-5c7069ca-49c8-473c-889c-b02352b3f9ce">
-<span class="eqno">(50)<a class="headerlink" href="#equation-5c7069ca-49c8-473c-889c-b02352b3f9ce" title="Permalink to this equation">#</a></span>\[\begin{equation}
-\dot y = \frac{dy}{dt} = 5\sin(t) + t,
-\end{equation}\]</div>
-<p>with initial condition <span class="math notranslate nohighlight">\(y(0) = 1.5\)</span>, for <span class="math notranslate nohighlight">\(t \in [0, 10.0]\)</span>. Plot the numerical and theoretical solution for <span class="math notranslate nohighlight">\(\delta t = 0.1, 0.2, 0.8, 1.5\)</span>. Our main file could be</p>
-<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;iostream&gt;</span>
-<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;valarray&gt;</span>
-<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;cmath&gt;</span>
-<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;cstdlib&gt;</span>
-<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;integrator.h&quot;</span>
-
-<span class="k">typedef</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">valarray</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;</span><span class="w"> </span><span class="n">state_t</span><span class="p">;</span><span class="w"> </span><span class="c1">// alias for state type</span>
-
-<span class="kt">void</span><span class="w"> </span><span class="nf">print</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">state_t</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">y</span><span class="p">,</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="n">time</span><span class="p">);</span>
-<span class="kt">void</span><span class="w"> </span><span class="nf">fderiv</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">state_t</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">y</span><span class="p">,</span><span class="w"> </span><span class="n">state_t</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">dydt</span><span class="p">,</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="n">t</span><span class="p">);</span>
-
-<span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">argc</span><span class="p">,</span><span class="w"> </span><span class="kt">char</span><span class="w"> </span><span class="o">**</span><span class="n">argv</span><span class="p">)</span>
-<span class="p">{</span>
-<span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">argc</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="mi">4</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">cerr</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;ERROR. Usage:</span><span class="se">\n</span><span class="s">&quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">argv</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot; T0 TF DT&quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
-<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">exit</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>
-<span class="w">  </span><span class="p">}</span>
-<span class="w">  </span><span class="k">const</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="n">T0</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">atof</span><span class="p">(</span><span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">]);</span>
-<span class="w">  </span><span class="k">const</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="n">TF</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">atof</span><span class="p">(</span><span class="n">argv</span><span class="p">[</span><span class="mi">2</span><span class="p">]);</span>
-<span class="w">  </span><span class="k">const</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="n">DT</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">atof</span><span class="p">(</span><span class="n">argv</span><span class="p">[</span><span class="mi">3</span><span class="p">]);</span>
-
-<span class="w">  </span><span class="k">const</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">N</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span>
-<span class="w">  </span><span class="n">state_t</span><span class="w"> </span><span class="n">y</span><span class="p">(</span><span class="n">N</span><span class="p">);</span>
-
-<span class="w">  </span><span class="c1">// initial conditions</span>
-<span class="w">  </span><span class="n">y</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">1.5</span><span class="p">;</span>
-
-<span class="w">  </span><span class="c1">// perform the actual integration</span>
-<span class="w">  </span><span class="c1">// adapt to print to a file</span>
-<span class="w">  </span><span class="n">integrate_euler</span><span class="p">(</span><span class="n">fderiv</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="p">,</span><span class="w"> </span><span class="n">T0</span><span class="p">,</span><span class="w"> </span><span class="n">TF</span><span class="p">,</span><span class="w"> </span><span class="n">DT</span><span class="p">,</span><span class="w"> </span><span class="n">print</span><span class="p">);</span>
-
-<span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
-<span class="p">}</span>
-
-<span class="kt">void</span><span class="w"> </span><span class="nf">fderiv</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">state_t</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">y</span><span class="p">,</span><span class="w"> </span><span class="n">state_t</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">dydt</span><span class="p">,</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="n">t</span><span class="p">)</span>
-<span class="p">{</span>
-<span class="w">    </span><span class="c1">//</span>
-<span class="p">}</span>
-
-<span class="kt">void</span><span class="w"> </span><span class="nf">print</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">state_t</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">y</span><span class="p">,</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="n">time</span><span class="p">)</span>
-<span class="p">{</span>
-<span class="w">  </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">time</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;</span><span class="se">\t</span><span class="s">&quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">y</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;</span><span class="se">\t</span><span class="s">&quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">y</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
-<span class="p">}</span>
-</pre></div>
-</div>
-<p>To compile just use the same command and everything will be fine</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>g++<span class="w"> </span>-g<span class="w"> </span>-std<span class="o">=</span>c++17<span class="w"> </span>-fsanitize<span class="o">=</span>address,undefined<span class="w"> </span>main_euler1.cpp<span class="w"> </span>-o<span class="w"> </span>main_euler1.x
-</pre></div>
-</div>
 </section>
 <section id="solving-a-second-order-differential-equation">
 <h2>Solving a second order differential equation<a class="headerlink" href="#solving-a-second-order-differential-equation" title="Link to this heading">#</a></h2>
-<p>Here we will simulate an harmonic oscillator, described by</p>
-<div class="amsmath math notranslate nohighlight" id="equation-b05ec313-476b-4885-8fec-dbe16849dca6">
-<span class="eqno">(51)<a class="headerlink" href="#equation-b05ec313-476b-4885-8fec-dbe16849dca6" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<p>A typical second order example is the famous harmonic oscillator, described by</p>
+<div class="amsmath math notranslate nohighlight" id="equation-04a9fa4e-73ab-49b0-9ce9-f17764d91a13">
+<span class="eqno">(53)<a class="headerlink" href="#equation-04a9fa4e-73ab-49b0-9ce9-f17764d91a13" title="Permalink to this equation">#</a></span>\[\begin{equation}
 \frac{d^2x}{dt^2} + \omega^2 x = 0,
 \end{equation}\]</div>
 <p>which can be transformed into a system of 2 differential equations using the
 velocity, <span class="math notranslate nohighlight">\(v = dx/dt\)</span>, as <span class="math notranslate nohighlight">\(\vec y = (y_0, y_1) = (x, dx/dt) = (x, v)\)</span>,</p>
-<div class="amsmath math notranslate nohighlight" id="equation-e3c18313-b493-4914-a33e-a51ec24fdcae">
-<span class="eqno">(52)<a class="headerlink" href="#equation-e3c18313-b493-4914-a33e-a51ec24fdcae" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-35c4d779-ca93-49f0-ab0d-d0dfb83985ed">
+<span class="eqno">(54)<a class="headerlink" href="#equation-35c4d779-ca93-49f0-ab0d-d0dfb83985ed" title="Permalink to this equation">#</a></span>\[\begin{align}
 \frac{dy_0}{dt} &amp;= \frac{dx}{dt} = v = y_1\\
 \frac{dy_1}{dt} &amp;= \frac{dv}{dt} = -\omega^2 x = -\omega^2 y_0.
 \end{align}\]</div>
+<p>Therefore, in this case the state vector will have 2 components: The first one for the position, the second one for the velocity.</p>
 <p>In this particular case we will need a parameter, <span class="math notranslate nohighlight">\(\omega\)</span>. In general, remember
 that if you need parameters (mass, frequency, spring constant) you either use
 lambda functions or functors to model the system derivatives and keep the
-derivative interface uniform. For instance, our derivative funtion could be a lambda like</p>
+derivative interface uniform. For instance, our derivative funtcion could be a lambda like</p>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">double</span><span class="w"> </span><span class="n">W</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">...;</span>
 <span class="c1">// actual derivatives: this is the system model</span>
 <span class="k">auto</span><span class="w"> </span><span class="n">fderiv</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="n">W</span><span class="p">](</span><span class="k">const</span><span class="w"> </span><span class="n">state_t</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">y</span><span class="p">,</span><span class="w"> </span><span class="n">state_t</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">dydt</span><span class="p">,</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="n">t</span><span class="p">){</span>
@@ -767,86 +730,61 @@ derivative interface uniform. For instance, our derivative funtion could be a la
 <span class="p">};</span>
 </pre></div>
 </div>
-<p>Solve the system, for <span class="math notranslate nohighlight">\(\omega = 1.234\)</span> rad/s. Choose an appropriate time interval so you have at least for full oscillations. Again, plot the theoretical and numerical solutions for <span class="math notranslate nohighlight">\(\delta t = 0.1, 0.2, 0.5, 1.0\)</span>. Furthermore, plot the mechanical energy as function of time, and also plot the phase space <span class="math notranslate nohighlight">\(v\)</span> versus <span class="math notranslate nohighlight">\(x\)</span>.</p>
 <section id="exercises">
 <h3>Exercises<a class="headerlink" href="#exercises" title="Link to this heading">#</a></h3>
-<ol class="arabic simple">
-<li><p>Use the previous code to check if the energy is conserved (plot the phase
-space, <span class="math notranslate nohighlight">\(v\)</span> versus <span class="math notranslate nohighlight">\(x\)</span>). Check the effect of <span class="math notranslate nohighlight">\(\Delta t\)</span>.</p></li>
-<li><p>Read, from a file, the parameters <span class="math notranslate nohighlight">\(\Delta t\)</span>, <span class="math notranslate nohighlight">\(t_0\)</span>, <span class="math notranslate nohighlight">\(t_f\)</span>, <span class="math notranslate nohighlight">\(\omega\)</span>.</p></li>
-</ol>
+<section id="solve-the-simple-harmonic-oscillator-energy-conservation">
+<h4>Solve the simple harmonic oscillator: energy conservation<a class="headerlink" href="#solve-the-simple-harmonic-oscillator-energy-conservation" title="Link to this heading">#</a></h4>
+<p>Solve the system, for <span class="math notranslate nohighlight">\(\omega = 1.234\)</span> rad/s. Choose an appropriate time interval so you have at least for full oscillations. Again, plot the theoretical and numerical solutions for <span class="math notranslate nohighlight">\(\delta t = 0.1, 0.2, 0.5, 1.0\)</span>. Furthermore, plot the mechanical energy as function of time, and also plot the phase space <span class="math notranslate nohighlight">\(v\)</span> versus <span class="math notranslate nohighlight">\(x\)</span>.</p>
+</section>
+<section id="solve-the-simple-harmonic-oscillator-energy-conservation-with-heun">
+<h4>Solve the simple harmonic oscillator: energy conservation with Heun<a class="headerlink" href="#solve-the-simple-harmonic-oscillator-energy-conservation-with-heun" title="Link to this heading">#</a></h4>
+<p>Do the same but with the Heun method</p>
 <p><a id="org248dc6c"></a></p>
 </section>
 </section>
-<section id="runge-kutta-algorithm">
-<h2>Runge-Kutta algorithm<a class="headerlink" href="#runge-kutta-algorithm" title="Link to this heading">#</a></h2>
+</section>
+<section id="runge-kutta-algorithm-of-fourth-order-implementation">
+<h2>Runge-Kutta algorithm of fourth order: Implementation<a class="headerlink" href="#runge-kutta-algorithm-of-fourth-order-implementation" title="Link to this heading">#</a></h2>
 <p>Unfortunately, the Euler method is not stable, and its precision is far from ideal. We can improve its order by using methods that or order 3, 4 and so on. Here, we will study the typical <a class="reference external" href="https://en.wikipedia.org/wiki/Runge%E2%80%93Kutta_methods">Runge-Kutta method</a> of order 4, for N coupled linear differential equations. This is much better than simple Euler. The price to pay is to evaluate the derivatives four times per time step.</p>
-<div style="text-align: center;">
-    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/7e/Runge-Kutta_slopes.svg/600px-Runge-Kutta_slopes.svg.png" alt="Image Description" width="600">
-    <figcaption>From: "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7e/Runge-Kutta_slopes.svg/600px-Runge-Kutta_slopes.svg.png"</figcaption>
-</div>
-<p>For the RK4 algorithm , we can compute the evolution as</p>
-<div class="amsmath math notranslate nohighlight" id="equation-41cf8447-3eff-44cb-8ee4-316a352963a2">
-<span class="eqno">(53)<a class="headerlink" href="#equation-41cf8447-3eff-44cb-8ee4-316a352963a2" title="Permalink to this equation">#</a></span>\[\begin{equation}
-\vec y(t+\delta t) = \vec y (t) + \frac{h}{6}(\vec k_1 + 2\vec k_2 + 2\vec k_3 + \vec k_4) + O(\delta t^5),
-\end{equation}\]</div>
-<p>with the <span class="math notranslate nohighlight">\(\vec k_i\)</span> functions evaluating the derivatives at different stages</p>
-<div class="amsmath math notranslate nohighlight" id="equation-a399585d-1a09-4469-b041-f776f4cba7a3">
-<span class="eqno">(54)<a class="headerlink" href="#equation-a399585d-1a09-4469-b041-f776f4cba7a3" title="Permalink to this equation">#</a></span>\[\begin{align}
-\vec k_1 &amp;= \vec f(t, \vec y(t)),\\
-\vec k_2 &amp;= \vec f(t + \frac{h}{2}, \vec y(t) + h\frac{\vec k_1}{2}),\\
-\vec k_3 &amp;= \vec f(t + \frac{h}{2}, \vec y(t) + h\frac{\vec k_2}{2}),\\
-\vec k_4 &amp;= \vec f(t + h, \vec y(t) + h\vec k_3),\\
-\end{align}\]</div>
-<p>The total global order is <span class="math notranslate nohighlight">\(O(\delta t^4)\)</span>.</p>
 <p>According to the Runge-Kutta algorithm, we will need to go step by step
 computing <code class="docutils literal notranslate"><span class="pre">k1,</span> <span class="pre">k2,</span> <span class="pre">...</span></code> and then update the state. We will compute the
 derivatives four times per time step, but the gain in precision will be huge, compared to the Euler.</p>
 <p>To implement this, we just add a new function to our <code class="docutils literal notranslate"><span class="pre">integrator.cpp</span></code> file, adding the
 following implementation</p>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">template</span><span class="w"> </span><span class="o">&lt;</span><span class="k">class</span><span class="w"> </span><span class="nc">deriv_t</span><span class="p">,</span><span class="w"> </span><span class="k">class</span><span class="w"> </span><span class="nc">system_t</span><span class="p">,</span><span class="w"> </span><span class="k">class</span><span class="w"> </span><span class="nc">printer_t</span><span class="o">&gt;</span>
-<span class="kt">void</span><span class="w"> </span><span class="n">integrate_rk4</span><span class="p">(</span><span class="n">deriv_t</span><span class="w"> </span><span class="n">deriv</span><span class="p">,</span><span class="w"> </span><span class="n">system_t</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">y</span><span class="p">,</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="n">tinit</span><span class="p">,</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="n">tend</span><span class="p">,</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="n">dt</span><span class="p">,</span><span class="w"> </span><span class="n">printer_t</span><span class="w"> </span><span class="n">writer</span><span class="p">)</span>
+<span class="kt">void</span><span class="w"> </span><span class="n">integrate_rk4</span><span class="p">(</span><span class="n">deriv_t</span><span class="w"> </span><span class="n">fderiv</span><span class="p">,</span><span class="w"> </span><span class="n">system_t</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">s</span><span class="p">,</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="n">tinit</span><span class="p">,</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="n">tend</span><span class="p">,</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="n">dt</span><span class="p">,</span><span class="w"> </span><span class="n">printer_t</span><span class="w"> </span><span class="n">writer</span><span class="p">)</span>
 <span class="p">{</span>
-<span class="w">    </span><span class="c1">// init method</span>
+<span class="w">    </span><span class="c1">// vector to store derivs</span>
 <span class="w">    </span><span class="n">system_t</span><span class="w"> </span><span class="n">k1</span><span class="p">,</span><span class="w"> </span><span class="n">k2</span><span class="p">,</span><span class="w"> </span><span class="n">k3</span><span class="p">,</span><span class="w"> </span><span class="n">k4</span><span class="p">,</span><span class="w"> </span><span class="n">aux</span><span class="p">;</span>
-<span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">N</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">y</span><span class="p">.</span><span class="n">size</span><span class="p">();</span>
-<span class="w">    </span><span class="n">k1</span><span class="p">.</span><span class="n">resize</span><span class="p">(</span><span class="n">N</span><span class="p">);</span>
-<span class="w">    </span><span class="n">k2</span><span class="p">.</span><span class="n">resize</span><span class="p">(</span><span class="n">N</span><span class="p">);</span>
-<span class="w">    </span><span class="n">k3</span><span class="p">.</span><span class="n">resize</span><span class="p">(</span><span class="n">N</span><span class="p">);</span>
-<span class="w">    </span><span class="n">k4</span><span class="p">.</span><span class="n">resize</span><span class="p">(</span><span class="n">N</span><span class="p">);</span>
-<span class="w">    </span><span class="n">aux</span><span class="p">.</span><span class="n">resize</span><span class="p">(</span><span class="n">N</span><span class="p">);</span>
-<span class="w">    </span><span class="c1">// time evolution</span>
-<span class="w">    </span><span class="kt">double</span><span class="w"> </span><span class="n">time</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">tinit</span><span class="p">;</span>
-<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">nsteps</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">tend</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">tinit</span><span class="p">)</span><span class="o">/</span><span class="n">dt</span><span class="p">;</span>
-<span class="w">    </span><span class="n">writer</span><span class="p">(</span><span class="n">y</span><span class="p">,</span><span class="w"> </span><span class="n">time</span><span class="p">);</span><span class="w"> </span><span class="c1">// write initial conditions</span>
-<span class="w">    </span><span class="k">for</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">ii</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span><span class="w"> </span><span class="n">ii</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">nsteps</span><span class="p">;</span><span class="w"> </span><span class="o">++</span><span class="n">ii</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">        </span><span class="n">time</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">tinit</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">ii</span><span class="o">*</span><span class="n">dt</span><span class="p">;</span>
+<span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">N</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">s</span><span class="p">.</span><span class="n">size</span><span class="p">();</span>
+<span class="w">    </span><span class="n">k1</span><span class="p">.</span><span class="n">resize</span><span class="p">(</span><span class="n">N</span><span class="p">);</span><span class="w"> </span><span class="n">k2</span><span class="p">.</span><span class="n">resize</span><span class="p">(</span><span class="n">N</span><span class="p">);</span><span class="w"> </span><span class="n">k3</span><span class="p">.</span><span class="n">resize</span><span class="p">(</span><span class="n">N</span><span class="p">);</span><span class="w"> </span><span class="n">k4</span><span class="p">.</span><span class="n">resize</span><span class="p">(</span><span class="n">N</span><span class="p">);</span><span class="w"> </span><span class="n">aux</span><span class="p">.</span><span class="n">resize</span><span class="p">(</span><span class="n">N</span><span class="p">);</span>
+
+<span class="w">    </span><span class="c1">// time loop</span>
+<span class="w">    </span><span class="k">for</span><span class="p">(</span><span class="kt">double</span><span class="w"> </span><span class="n">t</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">tinit</span><span class="p">;</span><span class="w"> </span><span class="n">t</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="n">tend</span><span class="p">;</span><span class="w"> </span><span class="n">t</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">t</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">dt</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="c1">// NOTE: Last time step not necessarily tf</span>
 <span class="w">        </span><span class="c1">// k1 -&gt; (t, y)</span>
-<span class="w">        </span><span class="n">deriv</span><span class="p">(</span><span class="n">y</span><span class="p">,</span><span class="w"> </span><span class="n">k1</span><span class="p">,</span><span class="w"> </span><span class="n">time</span><span class="p">);</span>
+<span class="w">        </span><span class="n">fderiv</span><span class="p">(</span><span class="n">s</span><span class="p">,</span><span class="w"> </span><span class="n">k1</span><span class="p">,</span><span class="w"> </span><span class="n">t</span><span class="p">);</span>
 <span class="w">        </span><span class="c1">// k2 -&gt; t+h/2, y+h*k1/2</span>
-<span class="w">        </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">ii</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">ii</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">N</span><span class="p">;</span><span class="w"> </span><span class="o">++</span><span class="n">ii</span><span class="p">)</span>
-<span class="w">            </span><span class="n">aux</span><span class="p">[</span><span class="n">ii</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">y</span><span class="p">[</span><span class="n">ii</span><span class="p">]</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">k1</span><span class="p">[</span><span class="n">ii</span><span class="p">]</span><span class="o">*</span><span class="n">dt</span><span class="o">/</span><span class="mi">2</span><span class="p">;</span>
-<span class="w">        </span><span class="n">deriv</span><span class="p">(</span><span class="n">aux</span><span class="p">,</span><span class="w"> </span><span class="n">k2</span><span class="p">,</span><span class="w"> </span><span class="n">time</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">dt</span><span class="o">/</span><span class="mi">2</span><span class="p">);</span>
-<span class="w">        </span><span class="c1">// k3 -&gt; t+h/2, y+h*k2/2</span>
-<span class="w">        </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">ii</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">ii</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">N</span><span class="p">;</span><span class="w"> </span><span class="o">++</span><span class="n">ii</span><span class="p">)</span>
-<span class="w">            </span><span class="n">aux</span><span class="p">[</span><span class="n">ii</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">y</span><span class="p">[</span><span class="n">ii</span><span class="p">]</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">k2</span><span class="p">[</span><span class="n">ii</span><span class="p">]</span><span class="o">*</span><span class="n">dt</span><span class="o">/</span><span class="mi">2</span><span class="p">;</span>
-<span class="w">        </span><span class="n">deriv</span><span class="p">(</span><span class="n">aux</span><span class="p">,</span><span class="w"> </span><span class="n">k3</span><span class="p">,</span><span class="w"> </span><span class="n">time</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">dt</span><span class="o">/</span><span class="mi">2</span><span class="p">);</span>
-<span class="w">        </span><span class="c1">// k4 -&gt; t+h, y+h*k3</span>
-<span class="w">        </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">ii</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">ii</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">N</span><span class="p">;</span><span class="w"> </span><span class="o">++</span><span class="n">ii</span><span class="p">)</span>
-<span class="w">            </span><span class="n">aux</span><span class="p">[</span><span class="n">ii</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">y</span><span class="p">[</span><span class="n">ii</span><span class="p">]</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">k3</span><span class="p">[</span><span class="n">ii</span><span class="p">]</span><span class="o">*</span><span class="n">dt</span><span class="p">;</span>
-<span class="w">        </span><span class="n">deriv</span><span class="p">(</span><span class="n">aux</span><span class="p">,</span><span class="w"> </span><span class="n">k4</span><span class="p">,</span><span class="w"> </span><span class="n">time</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">dt</span><span class="p">);</span>
+<span class="w">        </span><span class="n">aux</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">s</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">k1</span><span class="o">*</span><span class="n">dt</span><span class="o">/</span><span class="mi">2</span><span class="p">;</span>
+<span class="w">        </span><span class="n">fderiv</span><span class="p">(</span><span class="n">aux</span><span class="p">,</span><span class="w"> </span><span class="n">k2</span><span class="p">,</span><span class="w"> </span><span class="n">t</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">dt</span><span class="o">/</span><span class="mi">2</span><span class="p">);</span>
+<span class="w">        </span><span class="c1">// TODO</span>
+<span class="w">        </span>
+<span class="w">        </span>
 <span class="w">        </span><span class="c1">// use all k</span>
-<span class="w">        </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">ii</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">ii</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">N</span><span class="p">;</span><span class="w"> </span><span class="o">++</span><span class="n">ii</span><span class="p">)</span>
-<span class="w">            </span><span class="n">y</span><span class="p">[</span><span class="n">ii</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">y</span><span class="p">[</span><span class="n">ii</span><span class="p">]</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">dt</span><span class="o">*</span><span class="p">(</span><span class="n">k1</span><span class="p">[</span><span class="n">ii</span><span class="p">]</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">2</span><span class="o">*</span><span class="n">k2</span><span class="p">[</span><span class="n">ii</span><span class="p">]</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">2</span><span class="o">*</span><span class="n">k3</span><span class="p">[</span><span class="n">ii</span><span class="p">]</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">k4</span><span class="p">[</span><span class="n">ii</span><span class="p">])</span><span class="o">/</span><span class="mf">6.0</span><span class="p">;</span>
+<span class="w">        </span><span class="n">s</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">s</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">dt</span><span class="o">*</span><span class="p">(</span><span class="n">k1</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">2</span><span class="o">*</span><span class="n">k2</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">2</span><span class="o">*</span><span class="n">k3</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">k4</span><span class="p">)</span><span class="o">/</span><span class="mf">6.0</span><span class="p">;</span>
 <span class="w">        </span><span class="c1">// call writer</span>
-<span class="w">        </span><span class="n">writer</span><span class="p">(</span><span class="n">y</span><span class="p">,</span><span class="w"> </span><span class="n">time</span><span class="p">);</span>
+<span class="w">        </span><span class="n">writer</span><span class="p">(</span><span class="n">s</span><span class="p">,</span><span class="w"> </span><span class="n">t</span><span class="p">);</span>
 <span class="w">    </span><span class="p">}</span>
 <span class="p">}</span>
 </pre></div>
 </div>
+<section id="exercise">
+<h3>Exercise<a class="headerlink" href="#exercise" title="Link to this heading">#</a></h3>
+<p>Implement the rk4 and use it to check the energy conservation for the harmonic oscillator. Is it better than Euler?</p>
 <p><a id="orga3c88cc"></a></p>
+</section>
+</section>
 <section id="id1">
-<h3>Exercises<a class="headerlink" href="#id1" title="Link to this heading">#</a></h3>
+<h2>Exercises<a class="headerlink" href="#id1" title="Link to this heading">#</a></h2>
 <ol class="arabic simple">
 <li><p>Compare the results for  the same system and same <span class="math notranslate nohighlight">\(\Delta t\)</span> using both Euler
 and rk4. Does rk4 conserves the mechanical energy better?</p></li>
@@ -862,7 +800,6 @@ book.</p></li>
 <li><p>Implement the Verlet method: https://en.wikipedia.org/wiki/Verlet_integration?useskin=vector . Notice that you need a spetial treatment to start the algorithm.</p></li>
 </ol>
 <p><a id="orgb989128"></a></p>
-</section>
 </section>
 <section id="using-a-library-odeint">
 <h2>Using a library : odeint<a class="headerlink" href="#using-a-library-odeint" title="Link to this heading">#</a></h2>
@@ -1173,20 +1110,29 @@ leap-frog or verlet integration algorithms. This will be done in the next chapte
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-euler-algorithm">The Euler algorithm</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#a-simple-one-dimensional-implementation">A simple, one dimensional implementation</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#a-more-general-implementation-the-lorenz-model-and-atractor">A more general implementation: The Lorenz model and atractor</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#general-implementation-of-integration-algorithms">General implementation of integration algorithms</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#euler-algorithm-implementation">Euler algorithm implementation</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#solving-a-first-order-equation">Solving a first order equation</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#first-order-algorithm-the-euler-algorithm">First order algorithm: The Euler algorithm</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#second-order-algorithm-the-heun-method">Second order algorithm : The Heun method</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#fourth-order-algorithm-runge-kutta-algorithm-rk4">Fourth order algorithm: Runge-Kutta algorithm RK4</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#implementation-discussion">Implementation discussion</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#example-implementing-the-euler-method-for-a-one-dimensional-problem">Example: implementing the Euler method for a one dimensional problem</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-lorenz-model-and-attractor">The Lorenz model and attractor</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-solve-using-the-euler-method">Exercise : Solve using the Euler method</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-heun-method">Exercise: Heun method</a></li>
+</ul>
+</li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#solving-a-second-order-differential-equation">Solving a second order differential equation</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercises">Exercises</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercises">Exercises</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#solve-the-simple-harmonic-oscillator-energy-conservation">Solve the simple harmonic oscillator: energy conservation</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#solve-the-simple-harmonic-oscillator-energy-conservation-with-heun">Solve the simple harmonic oscillator: energy conservation with Heun</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#runge-kutta-algorithm">Runge-Kutta algorithm</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Exercises</a></li>
 </ul>
 </li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#runge-kutta-algorithm-of-fourth-order-implementation">Runge-Kutta algorithm of fourth order: Implementation</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise">Exercise</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Exercises</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#using-a-library-odeint">Using a library : odeint</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">Exercises</a></li>
 </ul>
