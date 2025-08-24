@@ -22,3 +22,13 @@ pyright
 nb-js-diagrammers
 nbgrader
 jupyter-repo2docker
+
+jupyter-cache
+
+jupyterlab_myst
+
+sphinx-exercise
+sphinx-inline_tabs
+sphinx_proof
+sphinx_examples
+sphinx_hoverxref
