@@ -32,7 +32,7 @@
     <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=eba8b062" />
     <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
     <link rel="stylesheet" type="text/css" href="../_static/styles.css?v=03b9d5b1" />
@@ -658,13 +658,13 @@ inside each cell correspond to indexes)</p>
 <p>In a row-major language, like c++, it will be organized as a 1D array, row after row. We want to go through it in the same order, so we want to get a mapping like:</p>
 <a class="reference internal image-reference" href="../_images/2d-array-memory.png"><img alt="../_images/2d-array-memory.png" src="../_images/2d-array-memory.png" style="width: 95%;" /></a>
 <p>This will allow having an <code class="docutils literal notranslate"><span class="pre">MxN</span></code> size 1d array, but interpreting it as a 2D array, using the following mapping</p>
-<div class="amsmath math notranslate nohighlight" id="equation-8e830f75-4f60-44be-b38c-9a315c64389b">
-<span class="eqno">(28)<a class="headerlink" href="#equation-8e830f75-4f60-44be-b38c-9a315c64389b" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-f7db2339-b6cf-4fa9-a014-37fb4d5e76c0">
+<span class="eqno">(28)<a class="headerlink" href="#equation-f7db2339-b6cf-4fa9-a014-37fb4d5e76c0" title="Permalink to this equation">#</a></span>\[\begin{equation}
 id = iN + j,
 \end{equation}\]</div>
 <p>while , from 1D to 2D</p>
-<div class="amsmath math notranslate nohighlight" id="equation-f6b64200-95bb-4166-a1a4-1e2ba0526f1f">
-<span class="eqno">(29)<a class="headerlink" href="#equation-f6b64200-95bb-4166-a1a4-1e2ba0526f1f" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-f63ca370-2cfe-44e2-b58b-2c2cc9300f8f">
+<span class="eqno">(29)<a class="headerlink" href="#equation-f63ca370-2cfe-44e2-b58b-2c2cc9300f8f" title="Permalink to this equation">#</a></span>\[\begin{align}
 i &amp;= id/N, // \text{uses integer truncation: 5/3 -&gt; 1 row}\\ 
 j &amp;= id\%N. // \text{the modulus represents here the columns displacement}
 \end{align}\]</div>
@@ -675,8 +675,8 @@ j &amp;= id\%N. // \text{the modulus represents here the columns displacement}
 <section id="practical-example-transposing-a-matrix">
 <h2>Practical Example: transposing a matrix<a class="headerlink" href="#practical-example-transposing-a-matrix" title="Link to this heading">#</a></h2>
 <p>In this example, you will implement a matrix transpose but using 1d arrays. We will use two matrices, <code class="docutils literal notranslate"><span class="pre">A</span></code> and <code class="docutils literal notranslate"><span class="pre">B</span></code>, whose dimensions will be read from the command line, and will be modelled using 1d arrays. We will initialize <code class="docutils literal notranslate"><span class="pre">A</span></code> as</p>
-<div class="amsmath math notranslate nohighlight" id="equation-4fc49a51-29af-4c5d-9507-02a174b7a127">
-<span class="eqno">(30)<a class="headerlink" href="#equation-4fc49a51-29af-4c5d-9507-02a174b7a127" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-3e953f9f-81ca-4f51-963d-3b0a748a1855">
+<span class="eqno">(30)<a class="headerlink" href="#equation-3e953f9f-81ca-4f51-963d-3b0a748a1855" title="Permalink to this equation">#</a></span>\[\begin{equation}
 A[i][j] = i*N + j;
 \end{equation}\]</div>
 <p>Since <span class="math notranslate nohighlight">\(B = A^T\)</span>, if A is of size <code class="docutils literal notranslate"><span class="pre">MxN</span></code>, then B is of size <code class="docutils literal notranslate"><span class="pre">NxM</span></code> (although their total size is the same, <code class="docutils literal notranslate"><span class="pre">M*N</span></code>). Complete the following code:</p>

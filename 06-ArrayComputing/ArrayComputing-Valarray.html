@@ -32,7 +32,7 @@
     <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=eba8b062" />
     <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
     <link rel="stylesheet" type="text/css" href="../_static/styles.css?v=03b9d5b1" />
@@ -532,13 +532,13 @@ vectors. You have two options: using the standard library valarray, or using
 <section id="function-evaluation">
 <h2>Function evaluation<a class="headerlink" href="#function-evaluation" title="Link to this heading">#</a></h2>
 <p>Furthermore , mathematical function evaluated in this array computing approach means evaluating the function on each component, such as</p>
-<div class="amsmath math notranslate nohighlight" id="equation-4ba1425b-6b24-4eea-95cc-2a186da22abd">
-<span class="eqno">(31)<a class="headerlink" href="#equation-4ba1425b-6b24-4eea-95cc-2a186da22abd" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-be4c4684-8e4b-4eef-beb4-06afb2e11773">
+<span class="eqno">(31)<a class="headerlink" href="#equation-be4c4684-8e4b-4eef-beb4-06afb2e11773" title="Permalink to this equation">#</a></span>\[\begin{equation}
 \vec y = \sin (\vec x)
 \end{equation}\]</div>
 <p>means</p>
-<div class="amsmath math notranslate nohighlight" id="equation-33201caa-151d-4253-8279-fd26a3de3201">
-<span class="eqno">(32)<a class="headerlink" href="#equation-33201caa-151d-4253-8279-fd26a3de3201" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-e95a99cc-a21b-44a7-9c75-d9f5b5092f90">
+<span class="eqno">(32)<a class="headerlink" href="#equation-e95a99cc-a21b-44a7-9c75-d9f5b5092f90" title="Permalink to this equation">#</a></span>\[\begin{equation}
 y_i = \sin x_i.
 \end{equation}\]</div>
 <p><a id="org8ea9979"></a></p>
@@ -663,8 +663,8 @@ a another valarray, and finally print only the values that fulfill that
 <p>If you discretize time in steps of size <span class="math notranslate nohighlight">\(\delta t\)</span>, and you have the forces on
 a given ideal particle, you can compute the next position using the Euler
 algorithm,</p>
-<div class="amsmath math notranslate nohighlight" id="equation-c1743fdd-1e20-4af8-b687-2566b3e8f11c">
-<span class="eqno">(33)<a class="headerlink" href="#equation-c1743fdd-1e20-4af8-b687-2566b3e8f11c" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-d0e4cb3e-b7a4-4461-997b-f4a456f34315">
+<span class="eqno">(33)<a class="headerlink" href="#equation-d0e4cb3e-b7a4-4461-997b-f4a456f34315" title="Permalink to this equation">#</a></span>\[\begin{align}
 \vec R(t+\delta t) &amp;= \vec R(t) + \delta t \vec V(t),\\
 \vec V(t + \delta t) &amp;= \vec V(t) + \delta t \vec F(t)/m.\\
 \end{align}\]</div>
@@ -680,8 +680,8 @@ some damping. Later add some interaction with the ground.</p>
 <section id="cross-product">
 <h3>Cross product<a class="headerlink" href="#cross-product" title="Link to this heading">#</a></h3>
 <p>Implement a function to compute the cross product between two 3d vectors. Using it, implement a function to compute the angle between the vectors. Remember that</p>
-<div class="amsmath math notranslate nohighlight" id="equation-742f95ae-ff64-480c-8feb-9dbdcd937a63">
-<span class="eqno">(34)<a class="headerlink" href="#equation-742f95ae-ff64-480c-8feb-9dbdcd937a63" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-7f040ff9-c2cc-4f56-b5ab-e53f69bc0b40">
+<span class="eqno">(34)<a class="headerlink" href="#equation-7f040ff9-c2cc-4f56-b5ab-e53f69bc0b40" title="Permalink to this equation">#</a></span>\[\begin{equation}
 |\vec A \times \vec B| = A B \sin\theta.
 \end{equation}\]</div>
 <p>Check test cases like <span class="math notranslate nohighlight">\(\vec A \times \vec A  = \vec 0, \hat i \times \hat j = \hat k, \ldots\)</span></p>
@@ -697,8 +697,8 @@ some damping. Later add some interaction with the ground.</p>
 <section id="vector-product">
 <h3>Vector product<a class="headerlink" href="#vector-product" title="Link to this heading">#</a></h3>
 <p>Write a function that returns the vector product</p>
-<div class="amsmath math notranslate nohighlight" id="equation-94f7b898-218d-4f9a-ad1b-fa4bdcbb0843">
-<span class="eqno">(35)<a class="headerlink" href="#equation-94f7b898-218d-4f9a-ad1b-fa4bdcbb0843" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-7f7dabea-fbbd-499f-9913-c4eed0f0b9ba">
+<span class="eqno">(35)<a class="headerlink" href="#equation-7f7dabea-fbbd-499f-9913-c4eed0f0b9ba" title="Permalink to this equation">#</a></span>\[\begin{equation}
 \vec A \cdot (\vec B \times \vec C)
 \end{equation}\]</div>
 </section>
