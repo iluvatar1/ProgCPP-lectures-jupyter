@@ -34,6 +34,18 @@
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
     <link rel="stylesheet" type="text/css" href="../_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../_static/exercise.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/tabs.css?v=4c969af8" />
+    <link rel="stylesheet" type="text/css" href="../_static/proof.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-examples.css?v=e236af4b" />
+    <link rel="stylesheet" type="text/css" href="../_static/css/tooltipster.custom.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/css/tooltipster.bundle.min.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/css/tooltipster-sideTip-shadow.min.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/css/tooltipster-sideTip-punk.min.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/css/tooltipster-sideTip-noir.min.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/css/tooltipster-sideTip-light.min.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/css/tooltipster-sideTip-borderless.min.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/css/micromodal.css" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
     <link rel="stylesheet" type="text/css" href="../_static/styles.css?v=03b9d5b1" />
   
@@ -42,22 +54,43 @@
 <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
   <script src="../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
 
+    <script src="../_static/jquery.js?v=5d32c60e"></script>
+    <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
     <script src="../_static/documentation_options.js?v=9eb32ce0"></script>
     <script src="../_static/doctools.js?v=9a2dae69"></script>
     <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
     <script src="../_static/copybutton.js?v=f281be69"></script>
     <script src="../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script src="../_static/tabs.js?v=3ee01567"></script>
+    <script src="../_static/js/hoverxref.js"></script>
+    <script src="../_static/js/tooltipster.bundle.min.js"></script>
+    <script src="../_static/js/micromodal.min.js"></script>
     <script>let toggleHintShow = 'Click to show';</script>
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
     <script src="../_static/togglebutton.js?v=4a39c7ea"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
     <script src="../_static/design-tabs.js?v=f930bc37"></script>
+    <script async="async" src="https://www.googletagmanager.com/gtag/js?id=G-DX59QS1P22"></script>
+    <script>
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){ dataLayer.push(arguments); }
+                gtag('js', new Date());
+                gtag('config', 'G-DX59QS1P22');
+            </script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
     <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){ dataLayer.push(arguments); }
+                gtag('js', new Date());
+                gtag('config', 'G-DX59QS1P22');
+            </script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = '01-IntroCPP/IntroProgrammingCourse';</script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
@@ -311,6 +344,24 @@
 </a>
 </li>
       
+      
+      
+      
+      <li>
+<button onclick="initThebeSBT()"
+  class="btn btn-sm btn-launch-thebe dropdown-item"
+  title="Launch Thebe"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-play"></i>
+  </span>
+<span class="btn__text-container">Live Code</span>
+</button>
+</li>
+      
   </ul>
 </div>
 
@@ -515,13 +566,13 @@ document.write(`
 <li><p>A powerful, battle tested language (old), with new standards every 3 years.</p></li>
 <li><p>A multiparadigm language (we will learn only a subset)</p></li>
 <li><p>A compiled language (using compilers like <code class="docutils literal notranslate"><span class="pre">g++</span></code> or <code class="docutils literal notranslate"><span class="pre">icc</span></code>)</p></li>
-<li><p>Highly performant, used vastly on scientific and many other applications: amazon.com, intel, IBM, facebook, Google, Microsoft, Apple, Adobe, …</p></li>
+<li><p>Highly performant, used vastly on scientific and many other applications: <a class="reference external" href="http://amazon.com">amazon.com</a>, intel, IBM, facebook, Google, Microsoft, Apple, Adobe, …</p></li>
 <li><p>Games written in c++: Assasins creed, Call of Duty, Mass Effect, World of Warcraft, Starcraft, Halo, Among Us, …</p></li>
 </ul>
-<p>The main idea at the end of this course is to be able to program something like https://www.youtube.com/watch?v=lS_qeBy3aQI, where more complex systems are available https://flyover.github.io/box2d.ts/testbed/</p>
+<p>The main idea at the end of this course is to be able to program something like <a class="reference external" href="https://www.youtube.com/watch?v=lS_qeBy3aQI">https://www.youtube.com/watch?v=lS_qeBy3aQI</a>, where more complex systems are available <a class="reference external" href="https://flyover.github.io/box2d.ts/testbed/">https://flyover.github.io/box2d.ts/testbed/</a></p>
 <p>C++ allows you to really exploit your computational resources:
-https://computers-are-fast.github.io/</p>
-<p>Also, if you want to know more about a computer, please check https://www.youtube.com/watch?v=d86ws7mQYIg</p>
+<a class="reference external" href="https://computers-are-fast.github.io/">https://computers-are-fast.github.io/</a></p>
+<p>Also, if you want to know more about a computer, please check <a class="reference external" href="https://www.youtube.com/watch?v=d86ws7mQYIg">https://www.youtube.com/watch?v=d86ws7mQYIg</a></p>
 <ul class="simple">
 <li><p>Moore law <a class="reference external" href="https://www.youtube.com/watch?v=Qlv5pB6u534">https://www.youtube.com/watch?v=Qlv5pB6u534</a></p></li>
 </ul>
@@ -736,7 +787,7 @@ To execute, we need to specify the path to the executable. We are going to use t
 </section>
 <section id="some-useful-tools">
 <h2>Some useful tools<a class="headerlink" href="#some-useful-tools" title="Link to this heading">#</a></h2>
-<p>As you learn more and your apps grow in complexity, you might need to use tools to easy the developer work so to focus on the analysis and results, while mantaining  readability and good practices. Please also focus in this in <strong>learning linux</strong>, is the environment that scientist use. You can find many online resources, like http://www.ee.surrey.ac.uk/Teaching/Unix/ or https://swcarpentry.github.io/shell-novice/. For a general overview of what it means to be  a modern c++ developer, see https://roadmap.sh/cpp</p>
+<p>As you learn more and your apps grow in complexity, you might need to use tools to easy the developer work so to focus on the analysis and results, while mantaining  readability and good practices. Please also focus in this in <strong>learning linux</strong>, is the environment that scientist use. You can find many online resources, like <a class="reference external" href="http://www.ee.surrey.ac.uk/Teaching/Unix/">http://www.ee.surrey.ac.uk/Teaching/Unix/</a> or <a class="reference external" href="https://swcarpentry.github.io/shell-novice/">https://swcarpentry.github.io/shell-novice/</a>. For a general overview of what it means to be  a modern c++ developer, see <a class="reference external" href="https://roadmap.sh/cpp">https://roadmap.sh/cpp</a></p>
 <section id="good-programming-practices">
 <h3>Good programming practices<a class="headerlink" href="#good-programming-practices" title="Link to this heading">#</a></h3>
 <ul class="simple">
@@ -757,7 +808,7 @@ To execute, we need to specify the path to the executable. We are going to use t
 <li><p><a class="reference external" href="https://vscodium.com/">VSCodium</a> Free implementation, no telemetry. But not all plugins work.</p></li>
 <li><p><a class="reference external" href="https://github.com/doomemacs/doomemacs">Emacs doom</a> or <a class="reference external" href="https://www.spacemacs.org/">space emacs</a>. Emacs distributions with many packages to make emacs a useful IDE.</p></li>
 <li><p><a class="reference external" href="https://lapce.dev/#downloads-all">Lapce</a> A rust implementation which is very fast.</p></li>
-<li><p>And much more: Sublime text, atom, Notepad++, Eclipse, Clion, Blocks , ..</p></li>
+<li><p>And much more: Sublime text, atom, Notepad++, Eclipse, Clion, Blocks , …</p></li>
 </ul>
 </section>
 <section id="sanitizers">
@@ -808,7 +859,7 @@ Sometimes it is useful to try several compilers to find possible bugs in the cod
 <li><p><a class="reference external" href="https://gcc.godbolt.org/">Compiler Explorer</a></p></li>
 <li><p><a class="reference external" href="https://replit.com/">Repl.it</a></p></li>
 </ul>
-<p>As your code grows in complexity (but even in the case of simple projects), the constant compilation, debugging, linting, etc could transform into a repetitive task that might be automatized. For simple projects you can use gnu make, using tutorials like https://makefiletutorial.com/ or https://www.cs.colby.edu/maxwell/courses/tutorials/maketutor/ or http://swcarpentry.github.io/make-novice/. For more complex projects and multiplatform support, you might use <a class="reference external" href="https://www.google.com/search?client=firefox-b-d&amp;amp;q=cmake+tutorial+modern">cmake</a>.</p>
+<p>As your code grows in complexity (but even in the case of simple projects), the constant compilation, debugging, linting, etc could transform into a repetitive task that might be automatized. For simple projects you can use gnu make, using tutorials like <a class="reference external" href="https://makefiletutorial.com/">https://makefiletutorial.com/</a> or <a class="reference external" href="https://www.cs.colby.edu/maxwell/courses/tutorials/maketutor/">https://www.cs.colby.edu/maxwell/courses/tutorials/maketutor/</a> or <a class="reference external" href="http://swcarpentry.github.io/make-novice/">http://swcarpentry.github.io/make-novice/</a>. For more complex projects and multiplatform support, you might use <a class="reference external" href="https://www.google.com/search?client=firefox-b-d&amp;amp;q=cmake+tutorial+modern">cmake</a>.</p>
 </section>
 <section id="package-managers">
 <h3>Package managers<a class="headerlink" href="#package-managers" title="Link to this heading">#</a></h3>
@@ -816,11 +867,11 @@ Sometimes it is useful to try several compilers to find possible bugs in the cod
 </section>
 <section id="version-control">
 <h3>Version control<a class="headerlink" href="#version-control" title="Link to this heading">#</a></h3>
-<p>It is ALWAYS advisable to use version control. Please use git, so you will be able to rollback changes, create, merge and delete branches, activate continuous integration, and so on. You can also sync with remote repositories in portals like https://github.com/, or https://about.gitlab.com/why-gitlab/ . There are many tutorials, like https://swcarpentry.github.io/git-novice/ or https://learngitbranching.js.org/</p>
+<p>It is ALWAYS advisable to use version control. Please use git, so you will be able to rollback changes, create, merge and delete branches, activate continuous integration, and so on. You can also sync with remote repositories in portals like <a class="github reference external" href="https://github.com/"></a>, or <a class="reference external" href="https://about.gitlab.com/why-gitlab/">https://about.gitlab.com/why-gitlab/</a> . There are many tutorials, like <a class="reference external" href="https://swcarpentry.github.io/git-novice/">https://swcarpentry.github.io/git-novice/</a> or <a class="reference external" href="https://learngitbranching.js.org/">https://learngitbranching.js.org/</a></p>
 </section>
 <section id="testing">
 <h3>Testing<a class="headerlink" href="#testing" title="Link to this heading">#</a></h3>
-<p>It is very important to write code that is testable, and to test constantly specially when introducing new changes To do so, you can use https://github.com/catchorg/Catch2, https://github.com/google/googletest , etc</p>
+<p>It is very important to write code that is testable, and to test constantly specially when introducing new changes To do so, you can use <a class="github reference external" href="https://github.com/catchorg/Catch2">catchorg/Catch2</a>, <a class="github reference external" href="https://github.com/google/googletest">google/googletest</a> , etc</p>
 </section>
 <section id="reproducible-environments">
 <h3>Reproducible environments<a class="headerlink" href="#reproducible-environments" title="Link to this heading">#</a></h3>
@@ -837,7 +888,7 @@ Sometimes it is useful to try several compilers to find possible bugs in the cod
     {
         requestKernel: true,
         binderOptions: {
-            repo: "binder-examples/jupyter-stacks-datascience",
+            repo: "iluvatar1/ProgCPP-lectures-jupyter",
             ref: "master",
         },
         codeMirrorConfig: {

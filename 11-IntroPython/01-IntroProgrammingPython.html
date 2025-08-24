@@ -34,6 +34,18 @@
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
     <link rel="stylesheet" type="text/css" href="../_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../_static/exercise.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/tabs.css?v=4c969af8" />
+    <link rel="stylesheet" type="text/css" href="../_static/proof.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-examples.css?v=e236af4b" />
+    <link rel="stylesheet" type="text/css" href="../_static/css/tooltipster.custom.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/css/tooltipster.bundle.min.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/css/tooltipster-sideTip-shadow.min.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/css/tooltipster-sideTip-punk.min.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/css/tooltipster-sideTip-noir.min.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/css/tooltipster-sideTip-light.min.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/css/tooltipster-sideTip-borderless.min.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/css/micromodal.css" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
     <link rel="stylesheet" type="text/css" href="../_static/styles.css?v=03b9d5b1" />
   
@@ -42,21 +54,40 @@
 <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
   <script src="../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
 
+    <script src="../_static/jquery.js?v=5d32c60e"></script>
+    <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
     <script src="../_static/documentation_options.js?v=9eb32ce0"></script>
     <script src="../_static/doctools.js?v=9a2dae69"></script>
     <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
     <script src="../_static/copybutton.js?v=f281be69"></script>
     <script src="../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script src="../_static/tabs.js?v=3ee01567"></script>
+    <script src="../_static/js/hoverxref.js"></script>
+    <script src="../_static/js/tooltipster.bundle.min.js"></script>
+    <script src="../_static/js/micromodal.min.js"></script>
     <script>let toggleHintShow = 'Click to show';</script>
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
     <script src="../_static/togglebutton.js?v=4a39c7ea"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
     <script src="../_static/design-tabs.js?v=f930bc37"></script>
+    <script async="async" src="https://www.googletagmanager.com/gtag/js?id=G-DX59QS1P22"></script>
+    <script>
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){ dataLayer.push(arguments); }
+                gtag('js', new Date());
+                gtag('config', 'G-DX59QS1P22');
+            </script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
     <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){ dataLayer.push(arguments); }
+                gtag('js', new Date());
+                gtag('config', 'G-DX59QS1P22');
+            </script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
     <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
@@ -313,6 +344,24 @@
 </a>
 </li>
       
+      
+      
+      
+      <li>
+<button onclick="initThebeSBT()"
+  class="btn btn-sm btn-launch-thebe dropdown-item"
+  title="Launch Thebe"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-play"></i>
+  </span>
+<span class="btn__text-container">Live Code</span>
+</button>
+</li>
+      
   </ul>
 </div>
 
@@ -502,7 +551,7 @@ document.write(`
 <h1>Python Programming (very fast) Introduction<a class="headerlink" href="#python-programming-very-fast-introduction" title="Link to this heading">#</a></h1>
 <section id="importing-modules">
 <h2>Importing modules<a class="headerlink" href="#importing-modules" title="Link to this heading">#</a></h2>
-<p>Python has an extensive standard library (https://docs.python.org/3/library/) to perform several task in optimized and easy-to-use way. For basic mathematical operations you can just use the normal operators, but for other standard functions, like <code class="docutils literal notranslate"><span class="pre">sin</span></code>, you could import the standard <code class="docutils literal notranslate"><span class="pre">math</span></code> module, or , much better, use either <code class="docutils literal notranslate"><span class="pre">numpy</span></code> or <code class="docutils literal notranslate"><span class="pre">scipy</span></code> modules</p>
+<p>Python has an extensive standard library (<a class="reference external" href="https://docs.python.org/3/library/">https://docs.python.org/3/library/</a>) to perform several task in optimized and easy-to-use way. For basic mathematical operations you can just use the normal operators, but for other standard functions, like <code class="docutils literal notranslate"><span class="pre">sin</span></code>, you could import the standard <code class="docutils literal notranslate"><span class="pre">math</span></code> module, or , much better, use either <code class="docutils literal notranslate"><span class="pre">numpy</span></code> or <code class="docutils literal notranslate"><span class="pre">scipy</span></code> modules</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">math</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">m</span> <span class="c1"># imports the math module with an alias m</span>
 <span class="c1"># import math # imports math module but you need to use math.sin or math.cos</span>
 <span class="c1"># from math import * # DO NOT do this: exposes all inners from math</span>
@@ -516,19 +565,20 @@ document.write(`
 <b>Exercise:</b> Copy and execute the previous code in the following cell (use shift+enter to execute) 
 </div><div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># YOUR CODE HERE</span>
-<span class="k">raise</span> <span class="ne">NotImplementedError</span><span class="p">()</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">### BEGIN SOLUTION</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">math</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">m</span> <span class="c1"># imports the math module with an alias m</span>
+<span class="c1"># import math # imports math module but you need to use math.sin or math.cos</span>
+<span class="c1"># from math import * # DO NOT do this: exposes all inners from math</span>
+
+<span class="n">x</span> <span class="o">=</span> <span class="mf">5.2</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">m</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+<span class="c1">### END SOLUTION</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
-<span class="ne">NotImplementedError</span><span class="g g-Whitespace">                       </span>Traceback (most recent call last)
-<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">line</span> <span class="mi">2</span>
-<span class="g g-Whitespace">      </span><span class="mi">1</span> <span class="c1"># YOUR CODE HERE</span>
-<span class="ne">----&gt; </span><span class="mi">2</span> <span class="k">raise</span> <span class="ne">NotImplementedError</span><span class="p">()</span>
-
-<span class="ne">NotImplementedError</span>: 
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>5.2 -0.8834546557201531
 </pre></div>
 </div>
 </div>
@@ -537,8 +587,18 @@ document.write(`
 <b>Exercise:</b> Now replace math by numpy and execute it. Is there any difference?
 </div><div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># YOUR CODE HERE</span>
-<span class="k">raise</span> <span class="ne">NotImplementedError</span><span class="p">()</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">### BEGIN SOLUTION</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span> 
+
+<span class="n">x</span> <span class="o">=</span> <span class="mf">5.2</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+<span class="c1">### END SOLUTION</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>5.2 -0.8834546557201531
 </pre></div>
 </div>
 </div>
@@ -559,6 +619,84 @@ np.sin?
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Help on ufunc in module numpy:
+
+sin = &lt;ufunc &#39;sin&#39;&gt;
+    sin(x, /, out=None, *, where=True, casting=&#39;same_kind&#39;, order=&#39;K&#39;, dtype=None, subok=True[, signature])
+    
+    Trigonometric sine, element-wise.
+    
+    Parameters
+    ----------
+    x : array_like
+        Angle, in radians (:math:`2 \pi` rad equals 360 degrees).
+    out : ndarray, None, or tuple of ndarray and None, optional
+        A location into which the result is stored. If provided, it must have
+        a shape that the inputs broadcast to. If not provided or None,
+        a freshly-allocated array is returned. A tuple (possible only as a
+        keyword argument) must have length equal to the number of outputs.
+    where : array_like, optional
+        This condition is broadcast over the input. At locations where the
+        condition is True, the `out` array will be set to the ufunc result.
+        Elsewhere, the `out` array will retain its original value.
+        Note that if an uninitialized `out` array is created via the default
+        ``out=None``, locations within it where the condition is False will
+        remain uninitialized.
+    **kwargs
+        For other keyword-only arguments, see the
+        :ref:`ufunc docs &lt;ufuncs.kwargs&gt;`.
+    
+    Returns
+    -------
+    y : array_like
+        The sine of each element of x.
+        This is a scalar if `x` is a scalar.
+    
+    See Also
+    --------
+    arcsin, sinh, cos
+    
+    Notes
+    -----
+    The sine is one of the fundamental functions of trigonometry (the
+    mathematical study of triangles).  Consider a circle of radius 1
+    centered on the origin.  A ray comes in from the :math:`+x` axis, makes
+    an angle at the origin (measured counter-clockwise from that axis), and
+    departs from the origin.  The :math:`y` coordinate of the outgoing
+    ray&#39;s intersection with the unit circle is the sine of that angle.  It
+    ranges from -1 for :math:`x=3\pi / 2` to +1 for :math:`\pi / 2.`  The
+    function has zeroes where the angle is a multiple of :math:`\pi`.
+    Sines of angles between :math:`\pi` and :math:`2\pi` are negative.
+    The numerous properties of the sine and related functions are included
+    in any standard trigonometry text.
+    
+    Examples
+    --------
+    &gt;&gt;&gt; import numpy as np
+    
+    Print sine of one angle:
+    
+    &gt;&gt;&gt; np.sin(np.pi/2.)
+    1.0
+    
+    Print sines of an array of angles given in degrees:
+    
+    &gt;&gt;&gt; np.sin(np.array((0., 30., 45., 60., 90.)) * np.pi / 180. )
+    array([ 0.        ,  0.5       ,  0.70710678,  0.8660254 ,  1.        ])
+    
+    Plot the sine function:
+    
+    &gt;&gt;&gt; import matplotlib.pylab as plt
+    &gt;&gt;&gt; x = np.linspace(-np.pi, np.pi, 201)
+    &gt;&gt;&gt; plt.plot(x, np.sin(x))
+    &gt;&gt;&gt; plt.xlabel(&#39;Angle [rad]&#39;)
+    &gt;&gt;&gt; plt.ylabel(&#39;sin(x)&#39;)
+    &gt;&gt;&gt; plt.axis(&#39;tight&#39;)
+    &gt;&gt;&gt; plt.show()
+</pre></div>
+</div>
+</div>
 </div>
 </section>
 <section id="printing-and-reading-to-and-from-the-screen">
@@ -569,6 +707,29 @@ np.sin?
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">var</span> <span class="o">=</span> <span class="nb">input</span><span class="p">(</span><span class="s2">&quot;Please write something :</span><span class="se">\t</span><span class="s2">&quot;</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;You have written : &quot;</span> <span class="o">+</span> <span class="n">var</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;You have written : </span><span class="si">{</span><span class="n">var</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span> <span class="c1"># uses a f-string: https://realpython.com/python-f-strings/</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">StdinNotImplementedError</span><span class="g g-Whitespace">                  </span>Traceback (most recent call last)
+<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">4</span><span class="p">],</span> <span class="n">line</span> <span class="mi">1</span>
+<span class="ne">----&gt; </span><span class="mi">1</span> <span class="n">var</span> <span class="o">=</span> <span class="nb">input</span><span class="p">(</span><span class="s2">&quot;Please write something :</span><span class="se">\t</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="g g-Whitespace">      </span><span class="mi">2</span> <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;You have written : &quot;</span> <span class="o">+</span> <span class="n">var</span><span class="p">)</span>
+<span class="g g-Whitespace">      </span><span class="mi">3</span> <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;You have written : </span><span class="si">{</span><span class="n">var</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span> <span class="c1"># uses a f-string: https://realpython.com/python-f-strings/</span>
+
+<span class="nn">File /opt/hostedtoolcache/Python/3.11.13/x64/lib/python3.11/site-packages/ipykernel/kernelbase.py:1274,</span> in <span class="ni">Kernel.raw_input</span><span class="nt">(self, prompt)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1272</span> <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">_allow_stdin</span><span class="p">:</span>
+<span class="g g-Whitespace">   </span><span class="mi">1273</span>     <span class="n">msg</span> <span class="o">=</span> <span class="s2">&quot;raw_input was called, but this frontend does not support input requests.&quot;</span>
+<span class="ne">-&gt; </span><span class="mi">1274</span>     <span class="k">raise</span> <span class="n">StdinNotImplementedError</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1275</span> <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_input_request</span><span class="p">(</span>
+<span class="g g-Whitespace">   </span><span class="mi">1276</span>     <span class="nb">str</span><span class="p">(</span><span class="n">prompt</span><span class="p">),</span>
+<span class="g g-Whitespace">   </span><span class="mi">1277</span>     <span class="bp">self</span><span class="o">.</span><span class="n">_parent_ident</span><span class="p">[</span><span class="s2">&quot;shell&quot;</span><span class="p">],</span>
+<span class="g g-Whitespace">   </span><span class="mi">1278</span>     <span class="bp">self</span><span class="o">.</span><span class="n">get_parent</span><span class="p">(</span><span class="s2">&quot;shell&quot;</span><span class="p">),</span>
+<span class="g g-Whitespace">   </span><span class="mi">1279</span>     <span class="n">password</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">1280</span> <span class="p">)</span>
+
+<span class="ne">StdinNotImplementedError</span>: raw_input was called, but this frontend does not support input requests.
 </pre></div>
 </div>
 </div>
@@ -583,6 +744,15 @@ np.sin?
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>x = 0005 	 y = 2.3 
+ y=2.3399999999999999e+00
+
+x = 0005 	 y = 2.3 
+ y=2.3399999999999999e+00
+</pre></div>
+</div>
+</div>
 </div>
 <p>Note: if you need to manipulate strings and numbers, you should cast the number to string by using <code class="docutils literal notranslate"><span class="pre">str</span></code>, as in <code class="docutils literal notranslate"><span class="pre">str(x)</span></code> .</p>
 <div class="alert alert-block alert-info">
@@ -591,8 +761,14 @@ np.sin?
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="mf">32.6</span>
 <span class="n">y</span> <span class="o">=</span> <span class="o">-</span><span class="mf">4.7</span>
-<span class="c1"># YOUR CODE HERE</span>
-<span class="k">raise</span> <span class="ne">NotImplementedError</span><span class="p">()</span>
+<span class="c1">### BEGIN SOLUTION</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">x</span><span class="o">+</span><span class="n">y</span><span class="si">:</span><span class="s2">010.5f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="c1">### END SOLUTION</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0027.90000
 </pre></div>
 </div>
 </div>
@@ -613,6 +789,11 @@ np.sin?
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>5 is larger than 4
+</pre></div>
+</div>
+</div>
 </div>
 <p>You can also compare values directly, or even compare several values</p>
 <div class="cell docutils container">
@@ -625,13 +806,33 @@ np.sin?
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>False
+False
+False
+False
+True
+</pre></div>
+</div>
+</div>
 </div>
 <div class="alert alert-block alert-info">
 <b>Exercise:</b> Read a number and indicate if the number is even or odd 
 </div><div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># YOUR CODE HERE</span>
-<span class="k">raise</span> <span class="ne">NotImplementedError</span><span class="p">()</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">### BEGIN SOLUTION</span>
+<span class="n">num</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="nb">input</span><span class="p">())</span>
+<span class="k">if</span> <span class="p">(</span><span class="n">num</span><span class="o">%</span><span class="k">2</span> == 0):
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">num</span><span class="si">}</span><span class="s2"> is even&quot;</span><span class="p">)</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">num</span><span class="si">}</span><span class="s2"> is odd&quot;</span><span class="p">)</span>
+<span class="c1">### END SOLUTION</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>10939384
+10939384 is even
 </pre></div>
 </div>
 </div>
@@ -649,11 +850,21 @@ np.sin?
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0 1 2 3 4 
+</pre></div>
+</div>
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">ii</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">10</span><span class="p">):</span>
     <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">ii</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="s2">&quot; &quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1 2 3 4 5 6 7 8 9 
 </pre></div>
 </div>
 </div>
@@ -669,6 +880,13 @@ np.sin?
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>M-y- -n-a-m-e-
+M
+e
+</pre></div>
+</div>
+</div>
 </div>
 <div class="alert alert-block alert-info">
 <b>Exercise:</b> Print values from 0.0, to 1.0 (exclusive), in steps of 0.05 
@@ -678,8 +896,38 @@ np.sin?
 <span class="c1"># while ii &lt; 1.0:</span>
 <span class="c1">#     print(ii)</span>
 <span class="c1">#     ii = ii + 0.05</span>
-<span class="c1"># YOUR CODE HERE</span>
-<span class="k">raise</span> <span class="ne">NotImplementedError</span><span class="p">()</span>
+<span class="c1">### BEGIN SOLUTION</span>
+<span class="n">xmin</span> <span class="o">=</span> <span class="mf">0.0</span>
+<span class="n">xmax</span> <span class="o">=</span> <span class="mf">1.0</span>
+<span class="n">dx</span> <span class="o">=</span> <span class="mf">0.05</span>
+<span class="n">N</span> <span class="o">=</span> <span class="nb">int</span><span class="p">((</span><span class="n">xmax</span> <span class="o">-</span> <span class="n">xmin</span><span class="p">)</span><span class="o">/</span><span class="n">dx</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">ii</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">N</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">xmin</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">ii</span><span class="o">*</span><span class="n">dx</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="c1">### END SOLUTION</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.0
+0.05
+0.1
+0.15000000000000002
+0.2
+0.25
+0.30000000000000004
+0.35000000000000003
+0.4
+0.45
+0.5
+0.55
+0.6000000000000001
+0.65
+0.7000000000000001
+0.75
+0.8
+0.8500000000000001
+0.9
+0.9500000000000001
 </pre></div>
 </div>
 </div>
@@ -688,8 +936,17 @@ np.sin?
 <b>Exercise:</b> Now use numpy to do the same (check for the linspace function) 
 </div><div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># YOUR CODE HERE</span>
-<span class="k">raise</span> <span class="ne">NotImplementedError</span><span class="p">()</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">### BEGIN SOLUTION</span>
+<span class="c1"># numpy solution</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="n">endpoint</span><span class="o">=</span><span class="kc">False</span><span class="p">))</span>
+<span class="c1">### END SOLUTION</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[0.   0.05 0.1  0.15 0.2  0.25 0.3  0.35 0.4  0.45 0.5  0.55 0.6  0.65
+ 0.7  0.75 0.8  0.85 0.9  0.95]
 </pre></div>
 </div>
 </div>
@@ -707,6 +964,11 @@ np.sin?
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>I am the function
+</pre></div>
+</div>
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -720,6 +982,12 @@ np.sin?
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Value of argument is -3
+Value of argument is 0.9
+</pre></div>
+</div>
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -729,6 +997,12 @@ np.sin?
     
 <span class="n">my_function</span><span class="p">()</span> <span class="c1"># no longer an error</span>
 <span class="n">my_function</span><span class="p">(</span><span class="o">-</span><span class="mi">3</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Value of argument is 0
+Value of argument is -3
 </pre></div>
 </div>
 </div>
@@ -747,6 +1021,19 @@ np.sin?
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Calling my_function
+x 0
+y 1
+Calling my_function
+x -3
+y 2
+Calling my_function
+x 2
+y -3
+</pre></div>
+</div>
+</div>
 </div>
 </section>
 <section id="exercises">
@@ -757,8 +1044,9 @@ np.sin?
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">FtoC</span><span class="p">(</span><span class="n">f</span><span class="p">):</span>
-<span class="c1"># YOUR CODE HERE</span>
-<span class="k">raise</span> <span class="ne">NotImplementedError</span><span class="p">()</span>
+<span class="c1">### BEGIN SOLUTION</span>
+    <span class="k">return</span> <span class="sa">f</span><span class="s2">&quot;The temperature </span><span class="si">{</span><span class="n">f</span><span class="si">}</span><span class="s2"> F is equivalent to </span><span class="si">{</span><span class="p">(</span><span class="n">f</span><span class="o">-</span><span class="mi">32</span><span class="p">)</span><span class="o">*</span><span class="mf">5.0</span><span class="o">/</span><span class="mf">9.0</span><span class="si">:</span><span class="s2">4.2f</span><span class="si">}</span><span class="s2"> C&quot;</span>
+<span class="c1">### END SOLUTION</span>
 </pre></div>
 </div>
 </div>
@@ -767,6 +1055,9 @@ np.sin?
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">assert</span> <span class="n">FtoC</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span> <span class="o">==</span> <span class="s2">&quot;The temperature 0 F is equivalent to -17.78 C&quot;</span>
 <span class="k">assert</span> <span class="n">FtoC</span><span class="p">(</span><span class="mf">10.3</span><span class="p">)</span> <span class="o">==</span> <span class="s2">&quot;The temperature 10.3 F is equivalent to -12.06 C&quot;</span>
+<span class="c1">### BEGIN HIDDEN TESTS</span>
+<span class="k">assert</span> <span class="n">FtoC</span><span class="p">(</span><span class="o">-</span><span class="mf">10.3</span><span class="p">)</span> <span class="o">==</span> <span class="s2">&quot;The temperature -10.3 F is equivalent to -23.50 C&quot;</span>
+<span class="c1">### END HIDDEN TESTS</span>
 </pre></div>
 </div>
 </div>
@@ -807,7 +1098,7 @@ np.sin?
     {
         requestKernel: true,
         binderOptions: {
-            repo: "binder-examples/jupyter-stacks-datascience",
+            repo: "iluvatar1/ProgCPP-lectures-jupyter",
             ref: "master",
         },
         codeMirrorConfig: {

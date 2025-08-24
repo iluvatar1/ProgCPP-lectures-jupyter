@@ -34,6 +34,18 @@
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
     <link rel="stylesheet" type="text/css" href="../_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../_static/exercise.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/tabs.css?v=4c969af8" />
+    <link rel="stylesheet" type="text/css" href="../_static/proof.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-examples.css?v=e236af4b" />
+    <link rel="stylesheet" type="text/css" href="../_static/css/tooltipster.custom.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/css/tooltipster.bundle.min.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/css/tooltipster-sideTip-shadow.min.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/css/tooltipster-sideTip-punk.min.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/css/tooltipster-sideTip-noir.min.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/css/tooltipster-sideTip-light.min.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/css/tooltipster-sideTip-borderless.min.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/css/micromodal.css" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
     <link rel="stylesheet" type="text/css" href="../_static/styles.css?v=03b9d5b1" />
   
@@ -42,21 +54,40 @@
 <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
   <script src="../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
 
+    <script src="../_static/jquery.js?v=5d32c60e"></script>
+    <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
     <script src="../_static/documentation_options.js?v=9eb32ce0"></script>
     <script src="../_static/doctools.js?v=9a2dae69"></script>
     <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
     <script src="../_static/copybutton.js?v=f281be69"></script>
     <script src="../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script src="../_static/tabs.js?v=3ee01567"></script>
+    <script src="../_static/js/hoverxref.js"></script>
+    <script src="../_static/js/tooltipster.bundle.min.js"></script>
+    <script src="../_static/js/micromodal.min.js"></script>
     <script>let toggleHintShow = 'Click to show';</script>
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
     <script src="../_static/togglebutton.js?v=4a39c7ea"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
     <script src="../_static/design-tabs.js?v=f930bc37"></script>
+    <script async="async" src="https://www.googletagmanager.com/gtag/js?id=G-DX59QS1P22"></script>
+    <script>
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){ dataLayer.push(arguments); }
+                gtag('js', new Date());
+                gtag('config', 'G-DX59QS1P22');
+            </script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
     <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){ dataLayer.push(arguments); }
+                gtag('js', new Date());
+                gtag('config', 'G-DX59QS1P22');
+            </script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
     <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
@@ -311,6 +342,24 @@
   </span>
 <span class="btn__text-container">Colab</span>
 </a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="initThebeSBT()"
+  class="btn btn-sm btn-launch-thebe dropdown-item"
+  title="Launch Thebe"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-play"></i>
+  </span>
+<span class="btn__text-container">Live Code</span>
+</button>
 </li>
       
   </ul>
@@ -637,8 +686,8 @@ optimized velocity verlet and so on. They try to integrate the evolution with a
 high order while reducing the number of force evaluations per time step. In
 particular, the leap-frog algorithm can be written as
 (<a class="reference external" href="https://en.wikipedia.org/wiki/Leapfrog_integration">https://en.wikipedia.org/wiki/Leapfrog_integration</a>)</p>
-<div class="amsmath math notranslate nohighlight" id="equation-6528a778-2e87-403c-8fe9-d03d749d6d80">
-<span class="eqno">(55)<a class="headerlink" href="#equation-6528a778-2e87-403c-8fe9-d03d749d6d80" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-064513c1-27a6-4f58-b238-f15fa22426f5">
+<span class="eqno">(55)<a class="headerlink" href="#equation-064513c1-27a6-4f58-b238-f15fa22426f5" title="Permalink to this equation">#</a></span>\[\begin{align}
 \vec V (t + \delta t/2) &amp;= \vec V (t - \delta t/2) + \vec F(t) \delta t/m + O(\delta t^3),\\
 \vec R(t+\delta t) &amp;= \vec R(t) + \vec V (t + \delta t/2) \delta t + O(\delta t^3).
 \end{align}\]</div>
@@ -646,15 +695,15 @@ particular, the leap-frog algorithm can be written as
 and symplectic. One important detail for the implementation: To perform the
 first step, you need to put your variables in the correct time. If we put t=0,
 the next step would be</p>
-<div class="amsmath math notranslate nohighlight" id="equation-bd6d40b2-5f99-43ae-b863-a6092188ec99">
-<span class="eqno">(56)<a class="headerlink" href="#equation-bd6d40b2-5f99-43ae-b863-a6092188ec99" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-789e350a-9892-43b0-b5fb-04f1f8f84d30">
+<span class="eqno">(56)<a class="headerlink" href="#equation-789e350a-9892-43b0-b5fb-04f1f8f84d30" title="Permalink to this equation">#</a></span>\[\begin{align}
 \vec V (0 + \delta t/2) &amp;= \vec V (0 - \delta t/2) + \vec F(0) \delta t/m + O(\delta t^3),\\
 \vec R(0+\delta t) &amp;= \vec R(0) + \vec V (0 + \delta t/2) \delta t + O(\delta t^3).
 \end{align}\]</div>
 <p>Therefore, we will need first to move the velocity from time 0 to time <span class="math notranslate nohighlight">\(0 -
 \delta t\)</span>. We could do that as follows</p>
-<div class="amsmath math notranslate nohighlight" id="equation-3dbcffb1-93c9-47c0-8475-06e04281a2cc">
-<span class="eqno">(57)<a class="headerlink" href="#equation-3dbcffb1-93c9-47c0-8475-06e04281a2cc" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-9fbeb82f-61cf-4904-bb40-bd303f864396">
+<span class="eqno">(57)<a class="headerlink" href="#equation-9fbeb82f-61cf-4904-bb40-bd303f864396" title="Permalink to this equation">#</a></span>\[\begin{equation}
 \vec V(0 - \delta t/2) = \vec V(0) - \delta t \vec F(0)/2m.
 \end{equation}\]</div>
 <p><a id="orgd0444a6"></a></p>
@@ -703,14 +752,14 @@ class (only use <code class="docutils literal notranslate"><span class="pre">int
 <p>In this case, we will play with keeping the particle inside a disc (sphere) of radius <code class="docutils literal notranslate"><span class="pre">REXT</span></code>, centering at the origin for simplicity. How to do that? at each step, we check the distance of the external border of our particle, and if it is larger than the external radius, we move the particle back to the inside of the region and invert its normal velocity. To do this, we will create a new class to manage this kind of boundaries, called <code class="docutils literal notranslate"><span class="pre">Boundary</span></code>. It will have the needed parameters and will apply the needed constraints.</p>
 <p>In our case, we want to keep all particles inside the sphere. To do so, for each particle, we can compute its external border with the spherical boundary, and detect if the particle is outside. Then, we can correct the particle position in the normal direction towards the center, and also invert the velocity, even adding a restitution coefficient.</p>
 <p>The particle position relative to the sphere center is <span class="math notranslate nohighlight">\(\vec R' = \vec R - \vec C\)</span>.  If <span class="math notranslate nohighlight">\(\delta = R'+ r - r_b&gt; 0\)</span>, where <span class="math notranslate nohighlight">\(r\)</span> is the sphere radius, and <span class="math notranslate nohighlight">\(r_b\)</span> is the boundary radius, then the particle is outside the sphere, and we need to both correct back it’s position and invert the normal velocity as (deduce it)</p>
-<div class="amsmath math notranslate nohighlight" id="equation-7d47b9c2-cfc7-41c0-a1fe-9ca88d76022b">
-<span class="eqno">(58)<a class="headerlink" href="#equation-7d47b9c2-cfc7-41c0-a1fe-9ca88d76022b" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-a88ee239-32bc-489e-882d-d54de437db9b">
+<span class="eqno">(58)<a class="headerlink" href="#equation-a88ee239-32bc-489e-882d-d54de437db9b" title="Permalink to this equation">#</a></span>\[\begin{align}
 \vec R &amp;= \vec R - \delta\hat n, \\
 \vec V &amp;= \vec V - (1+e)(\vec V \cdot \hat n)\hat n,
 \end{align}\]</div>
 <p>where</p>
-<div class="amsmath math notranslate nohighlight" id="equation-9fae5d4a-f39e-4b57-b7f6-40d1a55037fc">
-<span class="eqno">(59)<a class="headerlink" href="#equation-9fae5d4a-f39e-4b57-b7f6-40d1a55037fc" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-4bcd4de1-1e19-4da7-bf4c-003b1e13adc7">
+<span class="eqno">(59)<a class="headerlink" href="#equation-4bcd4de1-1e19-4da7-bf4c-003b1e13adc7" title="Permalink to this equation">#</a></span>\[\begin{equation}
 \hat n = \dfrac{\vec R'}{R'}
 \end{equation}\]</div>
 <p>is the normal vector from the inner boundary side to the particle, and <span class="math notranslate nohighlight">\(e\)</span> is the restitution coefficient.</p>
@@ -882,19 +931,19 @@ scales with the number of particles?</p>
 <p>Here we will implemement a physical force among particles. But, still, how would you do it using constraints?</p>
 <p>If two particles are colliding, with interpenetration <span class="math notranslate nohighlight">\(\delta\)</span>, then we can
 model the force that particle <span class="math notranslate nohighlight">\(i\)</span> exerts on particle <span class="math notranslate nohighlight">\(j\)</span> as,</p>
-<div class="amsmath math notranslate nohighlight" id="equation-deef02bd-2fc9-480e-aa47-4b245ca197f6">
-<span class="eqno">(60)<a class="headerlink" href="#equation-deef02bd-2fc9-480e-aa47-4b245ca197f6" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-ef7b131b-d293-43de-b7e5-db5ab3de4220">
+<span class="eqno">(60)<a class="headerlink" href="#equation-ef7b131b-d293-43de-b7e5-db5ab3de4220" title="Permalink to this equation">#</a></span>\[\begin{equation}
 \vec F_{ij} = k \delta \hat n_{ij},
 \end{equation}\]</div>
 <p>where <span class="math notranslate nohighlight">\(k\)</span> is a constant proportional to the effective Young modulus, and <span class="math notranslate nohighlight">\(\hat
 n_{ij}\)</span> is the normal vector from particle <span class="math notranslate nohighlight">\(i\)</span> to <span class="math notranslate nohighlight">\(j\)</span>, that is</p>
-<div class="amsmath math notranslate nohighlight" id="equation-73b8aae8-3a62-4a74-b203-c222974bfbfb">
-<span class="eqno">(61)<a class="headerlink" href="#equation-73b8aae8-3a62-4a74-b203-c222974bfbfb" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-8ed2cf64-c748-4ff9-b9ec-d57001016ea8">
+<span class="eqno">(61)<a class="headerlink" href="#equation-8ed2cf64-c748-4ff9-b9ec-d57001016ea8" title="Permalink to this equation">#</a></span>\[\begin{equation}
 \hat n_{ij} = \frac{\vec R_{ij}}{|\vec R_{ij}|},
 \end{equation}\]</div>
 <p>with <span class="math notranslate nohighlight">\(\vec R_{ij} = \vec R_j - \vec R_i\)</span>, and</p>
-<div class="amsmath math notranslate nohighlight" id="equation-f504501d-266d-40ca-b1a1-69ec0112419e">
-<span class="eqno">(62)<a class="headerlink" href="#equation-f504501d-266d-40ca-b1a1-69ec0112419e" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-577f8245-ea60-45b7-b882-fe729187d670">
+<span class="eqno">(62)<a class="headerlink" href="#equation-577f8245-ea60-45b7-b882-fe729187d670" title="Permalink to this equation">#</a></span>\[\begin{equation}
 \delta = r_i + r_j - |\vec R_{ij}|.
 \end{equation}\]</div>
 <p>For a more realistic force model, check
@@ -1122,7 +1171,7 @@ Now you have your system visualized and if you press play, you can see your syst
     {
         requestKernel: true,
         binderOptions: {
-            repo: "binder-examples/jupyter-stacks-datascience",
+            repo: "iluvatar1/ProgCPP-lectures-jupyter",
             ref: "master",
         },
         codeMirrorConfig: {

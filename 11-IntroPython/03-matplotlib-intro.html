@@ -34,6 +34,18 @@
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
     <link rel="stylesheet" type="text/css" href="../_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../_static/exercise.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/tabs.css?v=4c969af8" />
+    <link rel="stylesheet" type="text/css" href="../_static/proof.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-examples.css?v=e236af4b" />
+    <link rel="stylesheet" type="text/css" href="../_static/css/tooltipster.custom.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/css/tooltipster.bundle.min.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/css/tooltipster-sideTip-shadow.min.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/css/tooltipster-sideTip-punk.min.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/css/tooltipster-sideTip-noir.min.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/css/tooltipster-sideTip-light.min.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/css/tooltipster-sideTip-borderless.min.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/css/micromodal.css" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
     <link rel="stylesheet" type="text/css" href="../_static/styles.css?v=03b9d5b1" />
   
@@ -42,21 +54,40 @@
 <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
   <script src="../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
 
+    <script src="../_static/jquery.js?v=5d32c60e"></script>
+    <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
     <script src="../_static/documentation_options.js?v=9eb32ce0"></script>
     <script src="../_static/doctools.js?v=9a2dae69"></script>
     <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
     <script src="../_static/copybutton.js?v=f281be69"></script>
     <script src="../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script src="../_static/tabs.js?v=3ee01567"></script>
+    <script src="../_static/js/hoverxref.js"></script>
+    <script src="../_static/js/tooltipster.bundle.min.js"></script>
+    <script src="../_static/js/micromodal.min.js"></script>
     <script>let toggleHintShow = 'Click to show';</script>
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
     <script src="../_static/togglebutton.js?v=4a39c7ea"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
     <script src="../_static/design-tabs.js?v=f930bc37"></script>
+    <script async="async" src="https://www.googletagmanager.com/gtag/js?id=G-DX59QS1P22"></script>
+    <script>
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){ dataLayer.push(arguments); }
+                gtag('js', new Date());
+                gtag('config', 'G-DX59QS1P22');
+            </script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
     <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){ dataLayer.push(arguments); }
+                gtag('js', new Date());
+                gtag('config', 'G-DX59QS1P22');
+            </script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
     <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
@@ -311,6 +342,24 @@
   </span>
 <span class="btn__text-container">Colab</span>
 </a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="initThebeSBT()"
+  class="btn btn-sm btn-launch-thebe dropdown-item"
+  title="Launch Thebe"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-play"></i>
+  </span>
+<span class="btn__text-container">Live Code</span>
+</button>
 </li>
       
   </ul>
@@ -921,7 +970,7 @@ plot(*args: &#39;float | ArrayLike | str&#39;, scalex: &#39;bool&#39; = True, sc
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x7eff4df79010&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x7ffb689e2250&gt;
 </pre></div>
 </div>
 <img alt="../_images/143c1d35e89f8ce94a9fc3c994d167145830b96d982e23c20705a9b27bb67365.png" src="../_images/143c1d35e89f8ce94a9fc3c994d167145830b96d982e23c20705a9b27bb67365.png" />
@@ -935,7 +984,7 @@ plot(*args: &#39;float | ArrayLike | str&#39;, scalex: &#39;bool&#39; = True, sc
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x7eff4daeb3d0&gt;]
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x7ffb68869950&gt;]
 </pre></div>
 </div>
 <img alt="../_images/ba14b98e1e759f517a78af98632a037d001bdbd6674b21794fa98b0240490173.png" src="../_images/ba14b98e1e759f517a78af98632a037d001bdbd6674b21794fa98b0240490173.png" />
@@ -991,7 +1040,7 @@ plot(*args: &#39;float | ArrayLike | str&#39;, scalex: &#39;bool&#39; = True, sc
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x7eff4d4fdd50&gt;]
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x7ffb61ef0450&gt;]
 </pre></div>
 </div>
 <img alt="../_images/03919382fe55715c2c602ab294096d323e0252396ca9a0a496590b74f426f12d.png" src="../_images/03919382fe55715c2c602ab294096d323e0252396ca9a0a496590b74f426f12d.png" />
@@ -1010,7 +1059,7 @@ plot(*args: &#39;float | ArrayLike | str&#39;, scalex: &#39;bool&#39; = True, sc
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x7eff4d403a10&gt;]
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x7ffb61db1dd0&gt;]
 </pre></div>
 </div>
 <img alt="../_images/ff4f1babc4855389ae5162879da45979d603d238adbefa95a9eb0a3063b35f36.png" src="../_images/ff4f1babc4855389ae5162879da45979d603d238adbefa95a9eb0a3063b35f36.png" />
@@ -1030,7 +1079,7 @@ plot(*args: &#39;float | ArrayLike | str&#39;, scalex: &#39;bool&#39; = True, sc
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x7eff4d263850&gt;]
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x7ffb61c10f90&gt;]
 </pre></div>
 </div>
 <img alt="../_images/40c34dfe7b92e2dd1834d871bd2ac1a1506728812894fe4c06751ab87e1b006a.png" src="../_images/40c34dfe7b92e2dd1834d871bd2ac1a1506728812894fe4c06751ab87e1b006a.png" />
@@ -1117,6 +1166,9 @@ plot(*args: &#39;float | ArrayLike | str&#39;, scalex: &#39;bool&#39; = True, sc
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<img alt="../_images/fc12de58581eee04d5fb3b80c42041e741fbd0c37063c44a7b8acb3dd30dfd71.png" src="../_images/fc12de58581eee04d5fb3b80c42041e741fbd0c37063c44a7b8acb3dd30dfd71.png" />
+</div>
 </div>
 </section>
 <section id="logarithmic-scale">
@@ -1131,6 +1183,9 @@ plot(*args: &#39;float | ArrayLike | str&#39;, scalex: &#39;bool&#39; = True, sc
 <span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s2">&quot;Logarithmic scale (y)&quot;</span><span class="p">);</span>
 </pre></div>
 </div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/7fea94324f1b65f76a71a762b0df0fe7c5e669acde031231355de9f265cffad0.png" src="../_images/7fea94324f1b65f76a71a762b0df0fe7c5e669acde031231355de9f265cffad0.png" />
 </div>
 </div>
 </section>
@@ -1158,6 +1213,9 @@ plot(*args: &#39;float | ArrayLike | str&#39;, scalex: &#39;bool&#39; = True, sc
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<img alt="../_images/c19f8353aaef39bf5e37822d287d163531eca4c3ecb3ecfbad8c3cb96045412e.png" src="../_images/c19f8353aaef39bf5e37822d287d163531eca4c3ecb3ecfbad8c3cb96045412e.png" />
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1168,6 +1226,9 @@ plot(*args: &#39;float | ArrayLike | str&#39;, scalex: &#39;bool&#39; = True, sc
 <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">t</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;blue&quot;</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mi">3</span><span class="p">);</span>
 </pre></div>
 </div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/8909dce4479fc82ef9ead6997f7115b1c5cc612db18437238d5110e743646468.png" src="../_images/8909dce4479fc82ef9ead6997f7115b1c5cc612db18437238d5110e743646468.png" />
 </div>
 </div>
 </section>
@@ -1209,6 +1270,9 @@ plot(*args: &#39;float | ArrayLike | str&#39;, scalex: &#39;bool&#39; = True, sc
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<img alt="../_images/c467bc7a4360db0099d61ec682c3b56ed9fb910bbd7c343f44903e8aba75319e.png" src="../_images/c467bc7a4360db0099d61ec682c3b56ed9fb910bbd7c343f44903e8aba75319e.png" />
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1223,6 +1287,9 @@ plot(*args: &#39;float | ArrayLike | str&#39;, scalex: &#39;bool&#39; = True, sc
 <span class="n">ax</span><span class="o">.</span><span class="n">set_zlim3d</span><span class="p">(</span><span class="o">-</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">,</span> <span class="mi">2</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">);</span>
 </pre></div>
 </div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/9793a9caa2b9d8215c6db88f02ab38e143c64f4ed3564480f403dedf237ef94b.png" src="../_images/9793a9caa2b9d8215c6db88f02ab38e143c64f4ed3564480f403dedf237ef94b.png" />
 </div>
 </div>
 </section>
@@ -1240,6 +1307,14 @@ plot(*args: &#39;float | ArrayLike | str&#39;, scalex: &#39;bool&#39; = True, sc
 <span class="n">anim</span> <span class="o">=</span> <span class="n">animation</span><span class="o">.</span><span class="n">FuncAnimation</span><span class="p">(</span><span class="n">fig</span><span class="p">,</span> <span class="n">update</span><span class="p">,</span> <span class="n">init_func</span><span class="o">=</span><span class="n">init</span><span class="p">,</span> <span class="n">frames</span><span class="o">=</span><span class="mi">200</span><span class="p">,</span> <span class="n">blit</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 
 <span class="n">anim</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="s2">&quot;animation.mp4&quot;</span><span class="p">,</span> <span class="n">fps</span><span class="o">=</span><span class="mi">30</span><span class="p">)</span> <span class="c1"># fps = frames per second</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">  File</span><span class="nn"> &quot;&lt;ipython-input-83-e3a1ffe5ed9e&gt;&quot;</span><span class="gt">, line </span><span class="mi">4</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">update</span><span class="p">(</span><span class="n">frame_counter</span><span class="p">):</span>
+      <span class="o">^</span>
+<span class="ne">IndentationError</span>: expected an indented block
 </pre></div>
 </div>
 </div>
@@ -1315,6 +1390,9 @@ plot(*args: &#39;float | ArrayLike | str&#39;, scalex: &#39;bool&#39; = True, sc
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<img alt="../_images/4e755a924863acae43270f34bb757abaf8869178e5bc2fe367c52ff9eeb19e08.png" src="../_images/4e755a924863acae43270f34bb757abaf8869178e5bc2fe367c52ff9eeb19e08.png" />
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1329,6 +1407,12 @@ plot(*args: &#39;float | ArrayLike | str&#39;, scalex: &#39;bool&#39; = True, sc
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.collections.PolyCollection at 0x10ca9dfd0&gt;
+</pre></div>
+</div>
+<img alt="../_images/82dc37e48e627e6fcf9d8333dc2a8fdd9232eca2eadc8b272fea9b7ab86c7f2b.png" src="../_images/82dc37e48e627e6fcf9d8333dc2a8fdd9232eca2eadc8b272fea9b7ab86c7f2b.png" />
+</div>
 </div>
 </section>
 <section id="scatter-plot">
@@ -1339,6 +1423,9 @@ plot(*args: &#39;float | ArrayLike | str&#39;, scalex: &#39;bool&#39; = True, sc
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">Image</span><span class="p">(</span><span class="s1">&#39;ex-02-scatter.png&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/9b76cf246f02c7ab0b1f272332f36ab663fde2879524f713a10bd589af8aa083.png" src="../_images/9b76cf246f02c7ab0b1f272332f36ab663fde2879524f713a10bd589af8aa083.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -1351,6 +1438,12 @@ plot(*args: &#39;float | ArrayLike | str&#39;, scalex: &#39;bool&#39; = True, sc
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.collections.PathCollection at 0x10ccc80d0&gt;
+</pre></div>
+</div>
+<img alt="../_images/d2a466daf7094acedb7f33a240bd270fedd03bd0f2fc9653065509fe038b1d78.png" src="../_images/d2a466daf7094acedb7f33a240bd270fedd03bd0f2fc9653065509fe038b1d78.png" />
+</div>
 </div>
 </section>
 <section id="bar-plots">
@@ -1361,6 +1454,9 @@ plot(*args: &#39;float | ArrayLike | str&#39;, scalex: &#39;bool&#39; = True, sc
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">Image</span><span class="p">(</span><span class="s2">&quot;ex-03-bars.png&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/72087f7e077da29e473111873cabef2a53ac0b81515a03e4c2c7aa52f00e314a.png" src="../_images/72087f7e077da29e473111873cabef2a53ac0b81515a03e4c2c7aa52f00e314a.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -1377,6 +1473,12 @@ plot(*args: &#39;float | ArrayLike | str&#39;, scalex: &#39;bool&#39; = True, sc
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(-1.25, 1.25)
+</pre></div>
+</div>
+<img alt="../_images/e4b6f3818af1a85dbb49eb5b5bb4119b58a49d260957b395ae4f626a20a8f699.png" src="../_images/e4b6f3818af1a85dbb49eb5b5bb4119b58a49d260957b395ae4f626a20a8f699.png" />
+</div>
 </div>
 </section>
 <section id="contour-plots">
@@ -1387,6 +1489,9 @@ plot(*args: &#39;float | ArrayLike | str&#39;, scalex: &#39;bool&#39; = True, sc
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">Image</span><span class="p">(</span><span class="s2">&quot;ex-04-contour.png&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/db6740b0475bcd87a4f4c1c6887321046d40bb37a349c6512d4bc3969214fa05.png" src="../_images/db6740b0475bcd87a4f4c1c6887321046d40bb37a349c6512d4bc3969214fa05.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -1402,6 +1507,9 @@ plot(*args: &#39;float | ArrayLike | str&#39;, scalex: &#39;bool&#39; = True, sc
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<img alt="../_images/490f72c06dac6fcbb8e2a5dda8bf79b237c60d3c0b06d082ab4601573fe6a2f1.png" src="../_images/490f72c06dac6fcbb8e2a5dda8bf79b237c60d3c0b06d082ab4601573fe6a2f1.png" />
+</div>
 </div>
 </section>
 <section id="imshow">
@@ -1412,6 +1520,9 @@ plot(*args: &#39;float | ArrayLike | str&#39;, scalex: &#39;bool&#39; = True, sc
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">Image</span><span class="p">(</span><span class="s2">&quot;ex-05-imshow.png&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/2047163c73eb728b58da5773aa0e1c9b53930e2bc8f8cc9946499f4481dc8c58.png" src="../_images/2047163c73eb728b58da5773aa0e1c9b53930e2bc8f8cc9946499f4481dc8c58.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -1426,6 +1537,12 @@ plot(*args: &#39;float | ArrayLike | str&#39;, scalex: &#39;bool&#39; = True, sc
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.image.AxesImage at 0x1111d7cd0&gt;
+</pre></div>
+</div>
+<img alt="../_images/af82cc6adb8503e644dd2e6886d615956275d7e316743b2ad8a97cb0e0d4dde9.png" src="../_images/af82cc6adb8503e644dd2e6886d615956275d7e316743b2ad8a97cb0e0d4dde9.png" />
+</div>
 </div>
 </section>
 <section id="pie-chart">
@@ -1438,6 +1555,9 @@ plot(*args: &#39;float | ArrayLike | str&#39;, scalex: &#39;bool&#39; = True, sc
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<img alt="../_images/5ad2469023520179c96de8ec474594c09cccbdda0d271210b5c996dfa1752abd.png" src="../_images/5ad2469023520179c96de8ec474594c09cccbdda0d271210b5c996dfa1752abd.png" />
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1445,6 +1565,51 @@ plot(*args: &#39;float | ArrayLike | str&#39;, scalex: &#39;bool&#39; = True, sc
 <span class="n">plt</span><span class="o">.</span><span class="n">pie</span><span class="p">(</span><span class="n">Z</span><span class="p">)</span>
 </pre></div>
 </div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>([&lt;matplotlib.patches.Wedge at 0x111a04450&gt;,
+  &lt;matplotlib.patches.Wedge at 0x111a04e10&gt;,
+  &lt;matplotlib.patches.Wedge at 0x111a317d0&gt;,
+  &lt;matplotlib.patches.Wedge at 0x111a1b190&gt;,
+  &lt;matplotlib.patches.Wedge at 0x111a1bb10&gt;,
+  &lt;matplotlib.patches.Wedge at 0x111a224d0&gt;,
+  &lt;matplotlib.patches.Wedge at 0x111a22e50&gt;,
+  &lt;matplotlib.patches.Wedge at 0x111a25810&gt;,
+  &lt;matplotlib.patches.Wedge at 0x111a2a1d0&gt;,
+  &lt;matplotlib.patches.Wedge at 0x111a2ab50&gt;,
+  &lt;matplotlib.patches.Wedge at 0x111a2e510&gt;,
+  &lt;matplotlib.patches.Wedge at 0x111a2ee90&gt;,
+  &lt;matplotlib.patches.Wedge at 0x111a34850&gt;,
+  &lt;matplotlib.patches.Wedge at 0x111a3a210&gt;,
+  &lt;matplotlib.patches.Wedge at 0x111a3ab90&gt;,
+  &lt;matplotlib.patches.Wedge at 0x111a3f550&gt;,
+  &lt;matplotlib.patches.Wedge at 0x111a3fed0&gt;,
+  &lt;matplotlib.patches.Wedge at 0x111cad890&gt;,
+  &lt;matplotlib.patches.Wedge at 0x111cae250&gt;,
+  &lt;matplotlib.patches.Wedge at 0x111caebd0&gt;],
+ [&lt;matplotlib.text.Text at 0x111a04a10&gt;,
+  &lt;matplotlib.text.Text at 0x111a31410&gt;,
+  &lt;matplotlib.text.Text at 0x111a31d90&gt;,
+  &lt;matplotlib.text.Text at 0x111a1b750&gt;,
+  &lt;matplotlib.text.Text at 0x111a22110&gt;,
+  &lt;matplotlib.text.Text at 0x111a22a90&gt;,
+  &lt;matplotlib.text.Text at 0x111a25450&gt;,
+  &lt;matplotlib.text.Text at 0x111a25dd0&gt;,
+  &lt;matplotlib.text.Text at 0x111a2a790&gt;,
+  &lt;matplotlib.text.Text at 0x111a2e150&gt;,
+  &lt;matplotlib.text.Text at 0x111a2ead0&gt;,
+  &lt;matplotlib.text.Text at 0x111a34490&gt;,
+  &lt;matplotlib.text.Text at 0x111a34e10&gt;,
+  &lt;matplotlib.text.Text at 0x111a3a7d0&gt;,
+  &lt;matplotlib.text.Text at 0x111a3f190&gt;,
+  &lt;matplotlib.text.Text at 0x111a3fb10&gt;,
+  &lt;matplotlib.text.Text at 0x111cad4d0&gt;,
+  &lt;matplotlib.text.Text at 0x111cade50&gt;,
+  &lt;matplotlib.text.Text at 0x111cae810&gt;,
+  &lt;matplotlib.text.Text at 0x111cab1d0&gt;])
+</pre></div>
+</div>
+<img alt="../_images/b73c9c19ad1b3d368cd65bb543f60aec1afa155aeb7bc5ce78d31e685b44d2b6.png" src="../_images/b73c9c19ad1b3d368cd65bb543f60aec1afa155aeb7bc5ce78d31e685b44d2b6.png" />
 </div>
 </div>
 </section>
@@ -1458,6 +1623,9 @@ plot(*args: &#39;float | ArrayLike | str&#39;, scalex: &#39;bool&#39; = True, sc
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<img alt="../_images/816c05c8308004928aebde44c71be7093c62429267a0523044ef71d294133f4c.png" src="../_images/816c05c8308004928aebde44c71be7093c62429267a0523044ef71d294133f4c.png" />
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1466,6 +1634,12 @@ plot(*args: &#39;float | ArrayLike | str&#39;, scalex: &#39;bool&#39; = True, sc
 <span class="n">plt</span><span class="o">.</span><span class="n">quiver</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">Y</span><span class="p">)</span>
 </pre></div>
 </div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.quiver.Quiver at 0x111cb40d0&gt;
+</pre></div>
+</div>
+<img alt="../_images/6c637f9bb7c8bb5087b9c379f72a1e9b5180380ff403cf1fd4d485f43fc5b154.png" src="../_images/6c637f9bb7c8bb5087b9c379f72a1e9b5180380ff403cf1fd4d485f43fc5b154.png" />
 </div>
 </div>
 </section>
@@ -1478,6 +1652,9 @@ plot(*args: &#39;float | ArrayLike | str&#39;, scalex: &#39;bool&#39; = True, sc
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<img alt="../_images/706fa0b7547b215e7cb9e1728a628ae325027b4926ef8593ea9044dcf62c2849.png" src="../_images/706fa0b7547b215e7cb9e1728a628ae325027b4926ef8593ea9044dcf62c2849.png" />
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1488,6 +1665,12 @@ plot(*args: &#39;float | ArrayLike | str&#39;, scalex: &#39;bool&#39; = True, sc
 <span class="n">axes</span><span class="o">.</span><span class="n">set_yticklabels</span><span class="p">([])</span>
 </pre></div>
 </div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[]
+</pre></div>
+</div>
+<img alt="../_images/6d14f5249b24ec305fa49a81e2e2239f609dc5d19e32843b43dec14d467460a0.png" src="../_images/6d14f5249b24ec305fa49a81e2e2239f609dc5d19e32843b43dec14d467460a0.png" />
 </div>
 </div>
 </section>
@@ -1500,6 +1683,9 @@ plot(*args: &#39;float | ArrayLike | str&#39;, scalex: &#39;bool&#39; = True, sc
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<img alt="../_images/31a71a8a503035d79a4c22634cc1846ca71a28ffec8bc97c5a429c8e646dd59a.png" src="../_images/31a71a8a503035d79a4c22634cc1846ca71a28ffec8bc97c5a429c8e646dd59a.png" />
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1508,6 +1694,12 @@ plot(*args: &#39;float | ArrayLike | str&#39;, scalex: &#39;bool&#39; = True, sc
 <span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">4</span><span class="p">)</span>
 </pre></div>
 </div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.axes.AxesSubplot at 0x111a45ad0&gt;
+</pre></div>
+</div>
+<img alt="../_images/b887e60686f44246d0237f1e0145fe4dfb53502073e12ccd0d9ea44fbe5b152c.png" src="../_images/b887e60686f44246d0237f1e0145fe4dfb53502073e12ccd0d9ea44fbe5b152c.png" />
 </div>
 </div>
 </section>
@@ -1519,6 +1711,9 @@ plot(*args: &#39;float | ArrayLike | str&#39;, scalex: &#39;bool&#39; = True, sc
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">Image</span><span class="p">(</span><span class="s2">&quot;ex-10-polar.png&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/9e0b2cd2c52a300552afc8a58733247f729d407fc5c9a28a0bad4859c8811979.png" src="../_images/9e0b2cd2c52a300552afc8a58733247f729d407fc5c9a28a0bad4859c8811979.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -1535,6 +1730,9 @@ plot(*args: &#39;float | ArrayLike | str&#39;, scalex: &#39;bool&#39; = True, sc
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<img alt="../_images/fa711b6ee4e0f7cf54ee0fa7de17476c60302d641ee709e08a57bdb6f82c6df3.png" src="../_images/fa711b6ee4e0f7cf54ee0fa7de17476c60302d641ee709e08a57bdb6f82c6df3.png" />
+</div>
 </div>
 </section>
 <section id="d-plots">
@@ -1545,6 +1743,9 @@ plot(*args: &#39;float | ArrayLike | str&#39;, scalex: &#39;bool&#39; = True, sc
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">Image</span><span class="p">(</span><span class="s2">&quot;ex-11-3d.png&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/f65abcb793ce93b1b99084933379bb7868ecbf5868b43c903d75adfe1aec75c9.png" src="../_images/f65abcb793ce93b1b99084933379bb7868ecbf5868b43c903d75adfe1aec75c9.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -1560,6 +1761,12 @@ plot(*args: &#39;float | ArrayLike | str&#39;, scalex: &#39;bool&#39; = True, sc
 <span class="n">ax</span><span class="o">.</span><span class="n">plot_surface</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">Y</span><span class="p">,</span> <span class="n">Z</span><span class="p">,</span> <span class="n">rstride</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">cstride</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;hot&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;mpl_toolkits.mplot3d.art3d.Poly3DCollection at 0x1125e8d90&gt;
+</pre></div>
+</div>
+<img alt="../_images/650558ae1e892bb6cf04df3ded125dc6c8f9dd848557568089a1295f983fa7a3.png" src="../_images/650558ae1e892bb6cf04df3ded125dc6c8f9dd848557568089a1295f983fa7a3.png" />
 </div>
 </div>
 </section>
@@ -1578,6 +1785,9 @@ plot(*args: &#39;float | ArrayLike | str&#39;, scalex: &#39;bool&#39; = True, sc
 <span class="n">line</span><span class="p">,</span> <span class="o">=</span> <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">([],</span> <span class="p">[],</span> <span class="n">lw</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
 </pre></div>
 </div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/6643c023a4d64dfd5def0293b5ea2f6d08e2451afa2fc37899c1c626b2145428.png" src="../_images/6643c023a4d64dfd5def0293b5ea2f6d08e2451afa2fc37899c1c626b2145428.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -1662,6 +1872,9 @@ plot(*args: &#39;float | ArrayLike | str&#39;, scalex: &#39;bool&#39; = True, sc
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<img alt="../_images/70c10e35babfbe4d8fa3a8c661b124daae5cd671ae158ac152139cf022a0d34d.png" src="../_images/70c10e35babfbe4d8fa3a8c661b124daae5cd671ae158ac152139cf022a0d34d.png" />
+</div>
 </div>
 </section>
 </section>
@@ -1670,7 +1883,7 @@ plot(*args: &#39;float | ArrayLike | str&#39;, scalex: &#39;bool&#39; = True, sc
     {
         requestKernel: true,
         binderOptions: {
-            repo: "binder-examples/jupyter-stacks-datascience",
+            repo: "iluvatar1/ProgCPP-lectures-jupyter",
             ref: "master",
         },
         codeMirrorConfig: {

@@ -34,6 +34,18 @@
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
     <link rel="stylesheet" type="text/css" href="../_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../_static/exercise.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/tabs.css?v=4c969af8" />
+    <link rel="stylesheet" type="text/css" href="../_static/proof.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-examples.css?v=e236af4b" />
+    <link rel="stylesheet" type="text/css" href="../_static/css/tooltipster.custom.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/css/tooltipster.bundle.min.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/css/tooltipster-sideTip-shadow.min.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/css/tooltipster-sideTip-punk.min.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/css/tooltipster-sideTip-noir.min.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/css/tooltipster-sideTip-light.min.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/css/tooltipster-sideTip-borderless.min.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/css/micromodal.css" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
     <link rel="stylesheet" type="text/css" href="../_static/styles.css?v=03b9d5b1" />
   
@@ -42,21 +54,40 @@
 <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
   <script src="../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
 
+    <script src="../_static/jquery.js?v=5d32c60e"></script>
+    <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
     <script src="../_static/documentation_options.js?v=9eb32ce0"></script>
     <script src="../_static/doctools.js?v=9a2dae69"></script>
     <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
     <script src="../_static/copybutton.js?v=f281be69"></script>
     <script src="../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script src="../_static/tabs.js?v=3ee01567"></script>
+    <script src="../_static/js/hoverxref.js"></script>
+    <script src="../_static/js/tooltipster.bundle.min.js"></script>
+    <script src="../_static/js/micromodal.min.js"></script>
     <script>let toggleHintShow = 'Click to show';</script>
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
     <script src="../_static/togglebutton.js?v=4a39c7ea"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
     <script src="../_static/design-tabs.js?v=f930bc37"></script>
+    <script async="async" src="https://www.googletagmanager.com/gtag/js?id=G-DX59QS1P22"></script>
+    <script>
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){ dataLayer.push(arguments); }
+                gtag('js', new Date());
+                gtag('config', 'G-DX59QS1P22');
+            </script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
     <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){ dataLayer.push(arguments); }
+                gtag('js', new Date());
+                gtag('config', 'G-DX59QS1P22');
+            </script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
     <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
@@ -313,6 +344,24 @@
 </a>
 </li>
       
+      
+      
+      
+      <li>
+<button onclick="initThebeSBT()"
+  class="btn btn-sm btn-launch-thebe dropdown-item"
+  title="Launch Thebe"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-play"></i>
+  </span>
+<span class="btn__text-container">Live Code</span>
+</button>
+</li>
+      
   </ul>
 </div>
 
@@ -511,7 +560,7 @@ document.write(`
                   
   <section class="tex2jax_ignore mathjax_ignore" id="scipy-library-of-scientific-algorithms-for-python">
 <h1>SciPy - Library of scientific algorithms for Python<a class="headerlink" href="#scipy-library-of-scientific-algorithms-for-python" title="Link to this heading">#</a></h1>
-<p>Based on : J.R. Johansson (robert&#64;riken.jp) http://dml.riken.jp/~rob/</p>
+<p>Based on : J.R. Johansson (<a class="reference external" href="mailto:robert&#37;&#52;&#48;riken&#46;jp">robert<span>&#64;</span>riken<span>&#46;</span>jp</a>) <a class="reference external" href="http://dml.riken.jp/~rob/">http://dml.riken.jp/~rob/</a></p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">IPython.display</span><span class="w"> </span><span class="kn">import</span> <span class="n">Image</span>
@@ -561,7 +610,7 @@ document.write(`
 </section>
 <section id="special-functions">
 <h2>Special functions<a class="headerlink" href="#special-functions" title="Link to this heading">#</a></h2>
-<p>A large number of mathematical special functions are important for many computional physics problems. SciPy provides implementations of a very extensive set of special functions. For details, see the list of functions in the reference documention at http://docs.scipy.org/doc/scipy/reference/special.html#module-scipy.special.</p>
+<p>A large number of mathematical special functions are important for many computional physics problems. SciPy provides implementations of a very extensive set of special functions. For details, see the list of functions in the reference documention at <a class="reference external" href="http://docs.scipy.org/doc/scipy/reference/special.html#module-scipy.special">http://docs.scipy.org/doc/scipy/reference/special.html#module-scipy.special</a>.</p>
 <p>To demonstrate the typical usage of special functions we will look in more detail at the Bessel functions:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -591,6 +640,12 @@ document.write(`
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>J_0(0.000000) = 1.000000
+Y_0(1.000000) = 0.088257
+</pre></div>
+</div>
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -603,6 +658,9 @@ document.write(`
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<img alt="../_images/df532ca63b3162b9663b86c4d908dec8ee41b1a83f87b75e7b8cb261773e8069.png" src="../_images/df532ca63b3162b9663b86c4d908dec8ee41b1a83f87b75e7b8cb261773e8069.png" />
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -610,6 +668,11 @@ document.write(`
 <span class="n">n</span> <span class="o">=</span> <span class="mi">0</span> <span class="c1"># order</span>
 <span class="n">m</span> <span class="o">=</span> <span class="mi">4</span> <span class="c1"># number of roots to compute</span>
 <span class="n">jn_zeros</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">m</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([  2.40482556,   5.52007811,   8.65372791,  11.79153444])
 </pre></div>
 </div>
 </div>
@@ -651,6 +714,11 @@ document.write(`
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>integral value = 0.5 , absolute error = 5.55111512313e-15
+</pre></div>
+</div>
+</div>
 </div>
 <p>If we need to pass extra arguments to integrand function we can use the <code class="docutils literal notranslate"><span class="pre">args</span></code> keyword argument:</p>
 <div class="cell docutils container">
@@ -671,6 +739,11 @@ document.write(`
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.736675137081 9.3891268825e-13
+</pre></div>
+</div>
+</div>
 </div>
 <p>For simple functions we can use a lambda function (name-less function) instead of explicitly defining a function for the integrand:</p>
 <div class="cell docutils container">
@@ -681,6 +754,12 @@ document.write(`
 
 <span class="n">analytical</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">)</span>
 <span class="nb">print</span> <span class="s2">&quot;analytical =&quot;</span><span class="p">,</span> <span class="n">analytical</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>numerical  = 1.77245385091 1.42026367809e-08
+analytical = 1.77245385091
 </pre></div>
 </div>
 </div>
@@ -700,6 +779,11 @@ document.write(`
 <span class="n">val</span><span class="p">,</span> <span class="n">abserr</span> <span class="o">=</span> <span class="n">dblquad</span><span class="p">(</span><span class="n">integrand</span><span class="p">,</span> <span class="n">x_lower</span><span class="p">,</span> <span class="n">x_upper</span><span class="p">,</span> <span class="k">lambda</span> <span class="n">x</span> <span class="p">:</span> <span class="n">y_lower</span><span class="p">,</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">y_upper</span><span class="p">)</span>
 
 <span class="nb">print</span> <span class="n">val</span><span class="p">,</span> <span class="n">abserr</span> 
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.785398163397 1.63822994214e-13
 </pre></div>
 </div>
 </div>
@@ -733,7 +817,7 @@ document.write(`
 <p>We will see how we can implement <code class="docutils literal notranslate"><span class="pre">f</span></code> and <code class="docutils literal notranslate"><span class="pre">y_0</span></code> in Python code in the examples below.</p>
 <section id="example-damped-harmonic-oscillator">
 <h3>Example: Damped harmonic oscillator<a class="headerlink" href="#example-damped-harmonic-oscillator" title="Link to this heading">#</a></h3>
-<p>ODE problems are important in computational physics, so we will look at one more example: the damped harmonic oscillation. This problem is well described on the wiki page: http://en.wikipedia.org/wiki/Damping</p>
+<p>ODE problems are important in computational physics, so we will look at one more example: the damped harmonic oscillation. This problem is well described on the wiki page: <a class="reference external" href="http://en.wikipedia.org/wiki/Damping">http://en.wikipedia.org/wiki/Damping</a></p>
 <p>The equation of motion for the damped oscillator is:</p>
 <p><span class="math notranslate nohighlight">\(\displaystyle \frac{\mathrm{d}^2x}{\mathrm{d}t^2} + 2\zeta\omega_0\frac{\mathrm{d}x}{\mathrm{d}t} + \omega^2_0 x = 0\)</span></p>
 <p>where <span class="math notranslate nohighlight">\(x\)</span> is the position of the oscillator, <span class="math notranslate nohighlight">\(\omega_0\)</span> is the frequency, and <span class="math notranslate nohighlight">\(\zeta\)</span> is the damping ratio. To write this second-order ODE on standard form we introduce <span class="math notranslate nohighlight">\(p = \frac{\mathrm{d}x}{\mathrm{d}t}\)</span>:</p>
@@ -796,6 +880,9 @@ document.write(`
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<img alt="../_images/46107f92e38366d09b85dce931857c0075229cdbccf103809c20cffcb23b0aaa.png" src="../_images/46107f92e38366d09b85dce931857c0075229cdbccf103809c20cffcb23b0aaa.png" />
+</div>
 </div>
 </section>
 </section>
@@ -833,6 +920,9 @@ document.write(`
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<img alt="../_images/474b84dfb3d25439b98f8fbb37dc8e4d202e2876efedc04237f71f165165345f.png" src="../_images/474b84dfb3d25439b98f8fbb37dc8e4d202e2876efedc04237f71f165165345f.png" />
+</div>
 </div>
 <p>Since the signal is real, the spectrum is symmetric. We therefore only need to plot the part that corresponds to the postive frequencies. To extract that part of the <code class="docutils literal notranslate"><span class="pre">w</span></code> and <code class="docutils literal notranslate"><span class="pre">F</span></code> we can use some of the indexing tricks for NumPy arrays that we saw in Lecture 2:</p>
 <div class="cell docutils container">
@@ -852,13 +942,16 @@ document.write(`
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<img alt="../_images/be4ac28e7f68730dd589715a7d523d8d91967fb7eda3cedc42c6a6e1e42c9c21.png" src="../_images/be4ac28e7f68730dd589715a7d523d8d91967fb7eda3cedc42c6a6e1e42c9c21.png" />
+</div>
 </div>
 <p>As expected, we now see a peak in the spectrum that is centered around 1, which is the frequency we used in the damped oscillator example.</p>
 </section>
 <section id="linear-algebra">
 <h2>Linear algebra<a class="headerlink" href="#linear-algebra" title="Link to this heading">#</a></h2>
 <p>The linear algebra module contains a lot of matrix related functions, including linear equation solving, eigenvalue solvers, matrix functions (for example matrix-exponentiation), a number of different decompositions (SVD, LU, cholesky), etc.</p>
-<p>Detailed documetation is available at: http://docs.scipy.org/doc/scipy/reference/linalg.html</p>
+<p>Detailed documetation is available at: <a class="reference external" href="http://docs.scipy.org/doc/scipy/reference/linalg.html">http://docs.scipy.org/doc/scipy/reference/linalg.html</a></p>
 <p>Here we will look at how to use some of these functions:</p>
 <section id="linear-equation-systems">
 <h3>Linear equation systems<a class="headerlink" href="#linear-equation-systems" title="Link to this heading">#</a></h3>
@@ -882,11 +975,21 @@ document.write(`
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([-0.33333333,  0.66666667,  0.        ])
+</pre></div>
+</div>
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># check</span>
 <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">x</span><span class="p">)</span> <span class="o">-</span> <span class="n">b</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([  0.00000000e+00,  -2.22044605e-16,   0.00000000e+00])
 </pre></div>
 </div>
 </div>
@@ -915,11 +1018,23 @@ document.write(`
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[ 7.04412542, -1.69713022, -1.22645937],
+       [-3.49438376,  1.90487436,  1.45826249],
+       [-6.89176509,  1.04049208,  1.5698228 ]])
+</pre></div>
+</div>
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># check</span>
 <span class="n">sp</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">X</span><span class="p">)</span> <span class="o">-</span> <span class="n">B</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1.0877919644084146e-15
 </pre></div>
 </div>
 </div>
@@ -944,6 +1059,11 @@ document.write(`
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([ 1.50569201+0.j, -0.05004716+0.j,  0.30217995+0.j])
+</pre></div>
+</div>
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -958,10 +1078,22 @@ document.write(`
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([ 1.50569201+0.j, -0.05004716+0.j,  0.30217995+0.j])
+</pre></div>
+</div>
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">evecs</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[-0.43460213, -0.73755056, -0.0946659 ],
+       [-0.50624035,  0.47034829, -0.05460117],
+       [-0.74487697,  0.48455305,  0.9940106 ]])
 </pre></div>
 </div>
 </div>
@@ -972,6 +1104,11 @@ document.write(`
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">n</span> <span class="o">=</span> <span class="mi">1</span>
 
 <span class="n">sp</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">evecs</span><span class="p">[:,</span><span class="n">n</span><span class="p">])</span> <span class="o">-</span> <span class="n">evals</span><span class="p">[</span><span class="n">n</span><span class="p">]</span> <span class="o">*</span> <span class="n">evecs</span><span class="p">[:,</span><span class="n">n</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>4.614886137953688e-16
 </pre></div>
 </div>
 </div>
@@ -987,11 +1124,23 @@ document.write(`
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[-12.52807781,  12.53180763,  -0.8199178 ],
+       [  8.4639547 ,  -6.95826218,   0.24207763],
+       [  8.25319969, -11.22647312,   3.47861859]])
+</pre></div>
+</div>
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># determinant</span>
 <span class="n">sp</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">det</span><span class="p">(</span><span class="n">A</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>-0.022770953853931183
 </pre></div>
 </div>
 </div>
@@ -1003,12 +1152,17 @@ document.write(`
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(1.8704700159952448, 2.1337761994439552)
+</pre></div>
+</div>
+</div>
 </div>
 </section>
 </section>
 <section id="optimization">
 <h2>Optimization<a class="headerlink" href="#optimization" title="Link to this heading">#</a></h2>
-<p>Optimization (finding minima or maxima of a function) is a large field in mathematics, and optimization of complicated functions or in many variables can be rather involved. Here we will only look at a few very simple cases. For a more detailed introduction to optimization with SciPy see: http://scipy-lectures.github.com/advanced/mathematical_optimization/index.html</p>
+<p>Optimization (finding minima or maxima of a function) is a large field in mathematics, and optimization of complicated functions or in many variables can be rather involved. Here we will only look at a few very simple cases. For a more detailed introduction to optimization with SciPy see: <a class="reference external" href="http://scipy-lectures.github.com/advanced/mathematical_optimization/index.html">http://scipy-lectures.github.com/advanced/mathematical_optimization/index.html</a></p>
 <p>To use the optimization module in scipy first include the <code class="docutils literal notranslate"><span class="pre">optimize</span></code> module:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1036,6 +1190,9 @@ document.write(`
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<img alt="../_images/2b6c197c8d48693623c452bb063836420f9cb5447064c77bdf4dd0cf19fc06cb.png" src="../_images/2b6c197c8d48693623c452bb063836420f9cb5447064c77bdf4dd0cf19fc06cb.png" />
+</div>
 </div>
 <p>We can use the <code class="docutils literal notranslate"><span class="pre">fmin_bfgs</span></code> function to find the minima of a function:</p>
 <div class="cell docutils container">
@@ -1045,10 +1202,34 @@ document.write(`
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Optimization terminated successfully.
+         Current function value: -3.506641
+         Iterations: 6
+         Function evaluations: 30
+         Gradient evaluations: 10
+</pre></div>
+</div>
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([-2.67298167])
+</pre></div>
+</div>
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">optimize</span><span class="o">.</span><span class="n">fmin_bfgs</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">)</span> 
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Optimization terminated successfully.
+         Current function value: 2.804988
+         Iterations: 3
+         Function evaluations: 15
+         Gradient evaluations: 5
+</pre></div>
+</div>
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([ 0.46961745])
 </pre></div>
 </div>
 </div>
@@ -1060,10 +1241,20 @@ document.write(`
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.46961743402759754
+</pre></div>
+</div>
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">optimize</span><span class="o">.</span><span class="n">fminbound</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="o">-</span><span class="mi">4</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>-2.6729822917513886
 </pre></div>
 </div>
 </div>
@@ -1095,10 +1286,18 @@ document.write(`
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<img alt="../_images/c1b4d0e5467829f2a7b7c110f166f72e8068c5249f151f2f801e40a3728c8613.png" src="../_images/c1b4d0e5467829f2a7b7c110f166f72e8068c5249f151f2f801e40a3728c8613.png" />
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">optimize</span><span class="o">.</span><span class="n">fsolve</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([ 0.23743014])
 </pre></div>
 </div>
 </div>
@@ -1109,10 +1308,20 @@ document.write(`
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([ 0.71286972])
+</pre></div>
+</div>
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">optimize</span><span class="o">.</span><span class="n">fsolve</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="mf">1.1</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([ 1.18990285])
 </pre></div>
 </div>
 </div>
@@ -1165,12 +1374,15 @@ document.write(`
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<img alt="../_images/7d1adb146dfd67db25060f0a5f4d2f247de1c19a27fd9294aaff3d04526ddc37.png" src="../_images/7d1adb146dfd67db25060f0a5f4d2f247de1c19a27fd9294aaff3d04526ddc37.png" />
+</div>
 </div>
 </section>
 <section id="statistics">
 <h2>Statistics<a class="headerlink" href="#statistics" title="Link to this heading">#</a></h2>
-<p>The <code class="docutils literal notranslate"><span class="pre">scipy.stats</span></code> module contains a large number of statistical distributions, statistical functions and tests. For a complete documentation of its features, see http://docs.scipy.org/doc/scipy/reference/stats.html.</p>
-<p>There is also a very powerful python package for statistical modelling called statsmodels. See http://statsmodels.sourceforge.net for more details.</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">scipy.stats</span></code> module contains a large number of statistical distributions, statistical functions and tests. For a complete documentation of its features, see <a class="reference external" href="http://docs.scipy.org/doc/scipy/reference/stats.html">http://docs.scipy.org/doc/scipy/reference/stats.html</a>.</p>
+<p>There is also a very powerful python package for statistical modelling called statsmodels. See <a class="reference external" href="http://statsmodels.sourceforge.net">http://statsmodels.sourceforge.net</a> for more details.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">scipy</span><span class="w"> </span><span class="kn">import</span> <span class="n">stats</span>
@@ -1204,6 +1416,9 @@ document.write(`
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<img alt="../_images/1001e19d64625886d7538389f81a9c7657b4894b811eddf7215d063fe34f06e9.png" src="../_images/1001e19d64625886d7538389f81a9c7657b4894b811eddf7215d063fe34f06e9.png" />
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1230,6 +1445,9 @@ document.write(`
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<img alt="../_images/f6ca8b0a65f1a46155f53d4fbb384061c5efe11b6cb5ce9bbfc2b99a5208c2d8.png" src="../_images/f6ca8b0a65f1a46155f53d4fbb384061c5efe11b6cb5ce9bbfc2b99a5208c2d8.png" />
+</div>
 </div>
 <p>Statistics:</p>
 <div class="cell docutils container">
@@ -1238,10 +1456,20 @@ document.write(`
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(3.5, 1.8708286933869707, 3.5)
+</pre></div>
+</div>
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">Y</span><span class="o">.</span><span class="n">mean</span><span class="p">(),</span> <span class="n">Y</span><span class="o">.</span><span class="n">std</span><span class="p">(),</span> <span class="n">Y</span><span class="o">.</span><span class="n">var</span><span class="p">()</span> <span class="c1"># normal distribution</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(0.0, 1.0, 1.0)
 </pre></div>
 </div>
 </div>
@@ -1258,12 +1486,23 @@ document.write(`
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>t-statistic = -0.244622880865
+p-value = 0.806773564698
+</pre></div>
+</div>
+</div>
 </div>
 <p>Since the p value is very large we cannot reject the hypothesis that the two sets of random data have <em>different</em> means.</p>
 <p>To test if the mean of a single sample of data has mean 0.1 (the true mean is 0.0):</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">stats</span><span class="o">.</span><span class="n">ttest_1samp</span><span class="p">(</span><span class="n">Y</span><span class="o">.</span><span class="n">rvs</span><span class="p">(</span><span class="n">size</span><span class="o">=</span><span class="mi">1000</span><span class="p">),</span> <span class="mf">0.1</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(-4.4661322772225356, 8.8726783620609218e-06)
 </pre></div>
 </div>
 </div>
@@ -1275,10 +1514,20 @@ document.write(`
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.0
+</pre></div>
+</div>
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">stats</span><span class="o">.</span><span class="n">ttest_1samp</span><span class="p">(</span><span class="n">Y</span><span class="o">.</span><span class="n">rvs</span><span class="p">(</span><span class="n">size</span><span class="o">=</span><span class="mi">1000</span><span class="p">),</span> <span class="n">Y</span><span class="o">.</span><span class="n">mean</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(0.51679431628006112, 0.60541413382728715)
 </pre></div>
 </div>
 </div>
@@ -1288,9 +1537,9 @@ document.write(`
 <section id="further-reading">
 <h2>Further reading<a class="headerlink" href="#further-reading" title="Link to this heading">#</a></h2>
 <ul class="simple">
-<li><p>http://www.scipy.org - The official web page for the SciPy project.</p></li>
-<li><p>http://docs.scipy.org/doc/scipy/reference/tutorial/index.html - A tutorial on how to get started using SciPy.</p></li>
-<li><p>https://github.com/scipy/scipy/ - The SciPy source code.</p></li>
+<li><p><a class="reference external" href="http://www.scipy.org">http://www.scipy.org</a> - The official web page for the SciPy project.</p></li>
+<li><p><a class="reference external" href="http://docs.scipy.org/doc/scipy/reference/tutorial/index.html">http://docs.scipy.org/doc/scipy/reference/tutorial/index.html</a> - A tutorial on how to get started using SciPy.</p></li>
+<li><p><a class="github reference external" href="https://github.com/scipy/scipy/">scipy/scipy</a> - The SciPy source code.</p></li>
 </ul>
 </section>
 </section>
@@ -1299,7 +1548,7 @@ document.write(`
     {
         requestKernel: true,
         binderOptions: {
-            repo: "binder-examples/jupyter-stacks-datascience",
+            repo: "iluvatar1/ProgCPP-lectures-jupyter",
             ref: "master",
         },
         codeMirrorConfig: {

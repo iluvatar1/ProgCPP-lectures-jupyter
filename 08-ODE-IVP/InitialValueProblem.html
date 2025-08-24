@@ -34,6 +34,18 @@
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
     <link rel="stylesheet" type="text/css" href="../_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../_static/exercise.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/tabs.css?v=4c969af8" />
+    <link rel="stylesheet" type="text/css" href="../_static/proof.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-examples.css?v=e236af4b" />
+    <link rel="stylesheet" type="text/css" href="../_static/css/tooltipster.custom.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/css/tooltipster.bundle.min.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/css/tooltipster-sideTip-shadow.min.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/css/tooltipster-sideTip-punk.min.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/css/tooltipster-sideTip-noir.min.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/css/tooltipster-sideTip-light.min.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/css/tooltipster-sideTip-borderless.min.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/css/micromodal.css" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
     <link rel="stylesheet" type="text/css" href="../_static/styles.css?v=03b9d5b1" />
   
@@ -42,21 +54,40 @@
 <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
   <script src="../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
 
+    <script src="../_static/jquery.js?v=5d32c60e"></script>
+    <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
     <script src="../_static/documentation_options.js?v=9eb32ce0"></script>
     <script src="../_static/doctools.js?v=9a2dae69"></script>
     <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
     <script src="../_static/copybutton.js?v=f281be69"></script>
     <script src="../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script src="../_static/tabs.js?v=3ee01567"></script>
+    <script src="../_static/js/hoverxref.js"></script>
+    <script src="../_static/js/tooltipster.bundle.min.js"></script>
+    <script src="../_static/js/micromodal.min.js"></script>
     <script>let toggleHintShow = 'Click to show';</script>
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
     <script src="../_static/togglebutton.js?v=4a39c7ea"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
     <script src="../_static/design-tabs.js?v=f930bc37"></script>
+    <script async="async" src="https://www.googletagmanager.com/gtag/js?id=G-DX59QS1P22"></script>
+    <script>
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){ dataLayer.push(arguments); }
+                gtag('js', new Date());
+                gtag('config', 'G-DX59QS1P22');
+            </script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
     <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){ dataLayer.push(arguments); }
+                gtag('js', new Date());
+                gtag('config', 'G-DX59QS1P22');
+            </script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
     <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
@@ -313,6 +344,24 @@
 </a>
 </li>
       
+      
+      
+      
+      <li>
+<button onclick="initThebeSBT()"
+  class="btn btn-sm btn-launch-thebe dropdown-item"
+  title="Launch Thebe"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-play"></i>
+  </span>
+<span class="btn__text-container">Live Code</span>
+</button>
+</li>
+      
   </ul>
 </div>
 
@@ -513,11 +562,11 @@ document.write(`
   <p><a id="org83faa3b"></a></p>
 <section class="tex2jax_ignore mathjax_ignore" id="ordinary-differential-equations-and-initial-value-problems">
 <h1>Ordinary differential equations (and initial value problems)<a class="headerlink" href="#ordinary-differential-equations-and-initial-value-problems" title="Link to this heading">#</a></h1>
-<p>In mathematics, an ordinary differential equation (ODE) is a differential equation (DE) dependent on only a single independent variable. As with other DE, its unknown(s) consists of one (or more) function(s) and involves the derivatives of those functions The term “ordinary” is used in contrast with partial differential equations which may be with respect to more than one independent variable.(see https://en.wikipedia.org/wiki/Ordinary_differential_equation?useskin=vector)</p>
+<p>In mathematics, an ordinary differential equation (ODE) is a differential equation (DE) dependent on only a single independent variable. As with other DE, its unknown(s) consists of one (or more) function(s) and involves the derivatives of those functions The term “ordinary” is used in contrast with partial differential equations which may be with respect to more than one independent variable.(see <a class="reference external" href="https://en.wikipedia.org/wiki/Ordinary_differential_equation?useskin=vector">https://en.wikipedia.org/wiki/Ordinary_differential_equation?useskin=vector</a>)</p>
 <p><a class="reference external" href="https://en.wikipedia.org/wiki/Initial_value_problem?useskin=vector">An initial value problem</a>, IVP, is a a problem specified by an ordinary differential equation and its initial conditions.</p>
 <p>You have been already solving a differential equation: The second Newton law</p>
-<div class="amsmath math notranslate nohighlight" id="equation-4bacc514-d302-40f1-8aa1-fdd17a3c9b06">
-<span class="eqno">(44)<a class="headerlink" href="#equation-4bacc514-d302-40f1-8aa1-fdd17a3c9b06" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-c246896d-4427-4380-9f40-1dda77fafac7">
+<span class="eqno">(44)<a class="headerlink" href="#equation-c246896d-4427-4380-9f40-1dda77fafac7" title="Permalink to this equation">#</a></span>\[\begin{equation}
 ma = m\frac{dv}{dt} = m\frac{d^2x}{dt^2} = \sum F = f(t, x, v),
 \end{equation}\]</div>
 <p>Can be seen as a first order differential equation (when talking about <span class="math notranslate nohighlight">\(v\)</span>) or as a second order differential equation (regarding <span class="math notranslate nohighlight">\(x\)</span>).</p>
@@ -535,13 +584,13 @@ ma = m\frac{dv}{dt} = m\frac{d^2x}{dt^2} = \sum F = f(t, x, v),
 <li><p><a class="reference external" href="https://www.youtube.com/watch?v=ly4S0oi3Yz8&amp;amp;t=0s">Partial differential equations intro</a></p></li>
 </ul>
 <p>A numerical solution for and IVP corresponds to finding an algorithm that allows you to move from time <span class="math notranslate nohighlight">\(t\)</span> to time <span class="math notranslate nohighlight">\(t+\delta t\)</span>, given a time discretization. It is assumed that the general problem is represented as</p>
-<div class="amsmath math notranslate nohighlight" id="equation-4984f6e1-9e01-4175-9fd3-e6bece55425b">
-<span class="eqno">(45)<a class="headerlink" href="#equation-4984f6e1-9e01-4175-9fd3-e6bece55425b" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-c08108a5-50be-4155-9a39-17e849ba7ac9">
+<span class="eqno">(45)<a class="headerlink" href="#equation-c08108a5-50be-4155-9a39-17e849ba7ac9" title="Permalink to this equation">#</a></span>\[\begin{equation}
 \dot y = \frac{dy}{dt} = f(t, y),
 \end{equation}\]</div>
 <p>where <span class="math notranslate nohighlight">\(y\)</span> represents the state of the system. All linear differential equations of any order can be cast to this form by introducing auxiliary derivatives, so the problem becomes vectorial, but its form remains</p>
-<div class="amsmath math notranslate nohighlight" id="equation-b94920da-a42f-4033-8d5e-633c3f13fd26">
-<span class="eqno">(46)<a class="headerlink" href="#equation-b94920da-a42f-4033-8d5e-633c3f13fd26" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-48afa7d6-8246-4052-b5a2-1369ef57ce07">
+<span class="eqno">(46)<a class="headerlink" href="#equation-48afa7d6-8246-4052-b5a2-1369ef57ce07" title="Permalink to this equation">#</a></span>\[\begin{equation}
 \frac{d\vec y}{dt} = \vec f(t, \vec y).
 \end{equation}\]</div>
 <p>So the key question is how to go numerically from <span class="math notranslate nohighlight">\(\vec y(t)\)</span> to <span class="math notranslate nohighlight">\(\vec y(t+\delta t)\)</span>. There are several algorithms, with both advantages and disadvantages (in sinplicity, precision, stability, etc), to do so. Here we will see Euler algorithm which is the most straight forward (but lacks precision and stability), and later  one of the most common, the Runge-Kutta. After that, specific algorithms for second order equations will be discussed (like Leap-Frog and Verlet), and, finally some numerical libraries will be shown.</p>
@@ -549,13 +598,13 @@ ma = m\frac{dv}{dt} = m\frac{d^2x}{dt^2} = \sum F = f(t, x, v),
 <section id="first-order-algorithm-the-euler-algorithm">
 <h2>First order algorithm: The Euler algorithm<a class="headerlink" href="#first-order-algorithm-the-euler-algorithm" title="Link to this heading">#</a></h2>
 <p>The <a class="reference external" href="https://en.wikipedia.org/wiki/Euler_method?useskin=vector">Euler method</a> is based on the forward derivative:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-d4cf4c29-b055-43cf-a159-00004165cdd4">
-<span class="eqno">(47)<a class="headerlink" href="#equation-d4cf4c29-b055-43cf-a159-00004165cdd4" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-a0945305-cec2-4b77-bb46-22289a4ff579">
+<span class="eqno">(47)<a class="headerlink" href="#equation-a0945305-cec2-4b77-bb46-22289a4ff579" title="Permalink to this equation">#</a></span>\[\begin{equation}
 \frac{d\vec y}{dt} = \frac{\vec y(t+h) - \vec y(t)}{h} + O(h).
 \end{equation}\]</div>
 <p>Here, <span class="math notranslate nohighlight">\(h = \delta t\)</span>. Since we are looking for <span class="math notranslate nohighlight">\(f(t + \delta t)\)</span>, and we actually know the derivatives (they are given by the differential equation we want to solve), then</p>
-<div class="amsmath math notranslate nohighlight" id="equation-06844779-a2d9-4f30-a5fa-2499b2f94ac6">
-<span class="eqno">(48)<a class="headerlink" href="#equation-06844779-a2d9-4f30-a5fa-2499b2f94ac6" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-53eacae2-2e66-4bce-a0d6-2ec549951f5d">
+<span class="eqno">(48)<a class="headerlink" href="#equation-53eacae2-2e66-4bce-a0d6-2ec549951f5d" title="Permalink to this equation">#</a></span>\[\begin{align}
 \vec y(t+\delta t) &amp;= \vec y(t) + \delta t \frac{d \vec y}{dt} + O(\delta t^2), \\
 &amp;= \vec y(t) + \delta t \vec f(t, \vec y) + O(\delta  t^2),
 \end{align}\]</div>
@@ -575,8 +624,8 @@ ma = m\frac{dv}{dt} = m\frac{d^2x}{dt^2} = \sum F = f(t, x, v),
 <a class="reference internal image-reference" href="https://upload.wikimedia.org/wikipedia/commons/5/52/Heun%27s_Method_Diagram.jpg"><img alt="https://upload.wikimedia.org/wikipedia/commons/5/52/Heun%27s_Method_Diagram.jpg" class="align-center" src="https://upload.wikimedia.org/wikipedia/commons/5/52/Heun%27s_Method_Diagram.jpg" style="width: 50%;" /></a>
 <p>The Heun method, also known as the improved Euler method, mid-point method, or second order Runge-Kuta mehtod, is an improvement over the initial Euler method.</p>
 <p>Here, you need to compute intermediate values to estimate better the final value at each step:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-4236788b-05ae-4d41-8654-9b12ea25ef6a">
-<span class="eqno">(49)<a class="headerlink" href="#equation-4236788b-05ae-4d41-8654-9b12ea25ef6a" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-d35e9345-4b2e-4295-b970-d5d5c48ddaac">
+<span class="eqno">(49)<a class="headerlink" href="#equation-d35e9345-4b2e-4295-b970-d5d5c48ddaac" title="Permalink to this equation">#</a></span>\[\begin{align}
 \vec k_{1i} &amp;= f(t_i, \vec y_i),\\
 \vec k_{2i} &amp;= f(t_i + h, \vec y_i + h k_{1i}),\\
 \vec y_{i+1} &amp;= \vec y_i + \frac{h}{2}\left[\vec k_{1i} + \vec k_{2i} \right].
@@ -593,13 +642,13 @@ ma = m\frac{dv}{dt} = m\frac{d^2x}{dt^2} = \sum F = f(t, x, v),
     <figcaption>From: "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7e/Runge-Kutta_slopes.svg/600px-Runge-Kutta_slopes.svg.png"</figcaption>
 </div>
 <p>For the RK4 algorithm , we can compute the evolution as</p>
-<div class="amsmath math notranslate nohighlight" id="equation-4e57930e-5a20-48c3-8b87-a7d98201b3d1">
-<span class="eqno">(50)<a class="headerlink" href="#equation-4e57930e-5a20-48c3-8b87-a7d98201b3d1" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-12540d42-2e9c-4c32-8712-0342d0da4793">
+<span class="eqno">(50)<a class="headerlink" href="#equation-12540d42-2e9c-4c32-8712-0342d0da4793" title="Permalink to this equation">#</a></span>\[\begin{equation}
 \vec y(t+\delta t) = \vec y (t) + \frac{h}{6}(\vec k_1 + 2\vec k_2 + 2\vec k_3 + \vec k_4) + O(\delta t^5),
 \end{equation}\]</div>
 <p>with the <span class="math notranslate nohighlight">\(\vec k_i\)</span> functions evaluating the derivatives at different stages</p>
-<div class="amsmath math notranslate nohighlight" id="equation-50a42f30-377d-477e-a64e-60cc23459c7d">
-<span class="eqno">(51)<a class="headerlink" href="#equation-50a42f30-377d-477e-a64e-60cc23459c7d" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-e7ebda1a-1e81-44c8-82d6-e7bd04d6fb2e">
+<span class="eqno">(51)<a class="headerlink" href="#equation-e7ebda1a-1e81-44c8-82d6-e7bd04d6fb2e" title="Permalink to this equation">#</a></span>\[\begin{align}
 \vec k_1 &amp;= \vec f(t, \vec y(t)),\\
 \vec k_2 &amp;= \vec f(t + \frac{h}{2}, \vec y(t) + h\frac{\vec k_1}{2}),\\
 \vec k_3 &amp;= \vec f(t + \frac{h}{2}, \vec y(t) + h\frac{\vec k_2}{2}),\\
@@ -727,8 +776,8 @@ ma = m\frac{dv}{dt} = m\frac{d^2x}{dt^2} = \sum F = f(t, x, v),
     <figcaption>From: "https://upload.wikimedia.org/wikipedia/commons/1/13/A_Trajectory_Through_Phase_Space_in_a_Lorenz_Attractor.gif"</figcaption>
 </div>
 <p>It is represented as the following set of coupled equations:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-876345f7-c054-4c74-a0de-2a1f7da6b928">
-<span class="eqno">(52)<a class="headerlink" href="#equation-876345f7-c054-4c74-a0de-2a1f7da6b928" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-060e71a5-e941-4ab8-9aea-bf2229e0a320">
+<span class="eqno">(52)<a class="headerlink" href="#equation-060e71a5-e941-4ab8-9aea-bf2229e0a320" title="Permalink to this equation">#</a></span>\[\begin{align}
 \frac{dx}{dt} = \sigma(y-x),\\
 \frac{dy}{dt} = x(\rho  - z) - y, \\
 \frac{dz}{dt} = xy - \beta z.
@@ -746,14 +795,14 @@ ma = m\frac{dv}{dt} = m\frac{d^2x}{dt^2} = \sum F = f(t, x, v),
 <section id="solving-a-second-order-differential-equation">
 <h2>Solving a second order differential equation<a class="headerlink" href="#solving-a-second-order-differential-equation" title="Link to this heading">#</a></h2>
 <p>A typical second order example is the famous harmonic oscillator, described by</p>
-<div class="amsmath math notranslate nohighlight" id="equation-b270b728-b37e-4650-b9b2-67627ebc7ca2">
-<span class="eqno">(53)<a class="headerlink" href="#equation-b270b728-b37e-4650-b9b2-67627ebc7ca2" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-b86024d2-0add-45c8-aadd-66790220fb52">
+<span class="eqno">(53)<a class="headerlink" href="#equation-b86024d2-0add-45c8-aadd-66790220fb52" title="Permalink to this equation">#</a></span>\[\begin{equation}
 \frac{d^2x}{dt^2} + \omega^2 x = 0,
 \end{equation}\]</div>
 <p>which can be transformed into a system of 2 differential equations using the
 velocity, <span class="math notranslate nohighlight">\(v = dx/dt\)</span>, as <span class="math notranslate nohighlight">\(\vec y = (y_0, y_1) = (x, dx/dt) = (x, v)\)</span>,</p>
-<div class="amsmath math notranslate nohighlight" id="equation-29c0119e-6feb-4317-8b46-315a8365a679">
-<span class="eqno">(54)<a class="headerlink" href="#equation-29c0119e-6feb-4317-8b46-315a8365a679" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-63e65f66-8336-4c5a-bf07-48cc37ff1f78">
+<span class="eqno">(54)<a class="headerlink" href="#equation-63e65f66-8336-4c5a-bf07-48cc37ff1f78" title="Permalink to this equation">#</a></span>\[\begin{align}
 \frac{dy_0}{dt} &amp;= \frac{dx}{dt} = v = y_1\\
 \frac{dy_1}{dt} &amp;= \frac{dv}{dt} = -\omega^2 x = -\omega^2 y_0.
 \end{align}\]</div>
@@ -808,6 +857,14 @@ following implementation</p>
 <span class="w">        </span><span class="n">fderiv</span><span class="p">(</span><span class="n">aux</span><span class="p">,</span><span class="w"> </span><span class="n">k2</span><span class="p">,</span><span class="w"> </span><span class="n">t</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">dt</span><span class="o">/</span><span class="mi">2</span><span class="p">);</span>
 <span class="w">        </span><span class="c1">// TODO</span>
 <span class="w">        </span>
+<span class="w">        </span><span class="c1">//=== BEGIN MARK SCHEME ===</span>
+<span class="w">        </span><span class="c1">// k3 -&gt; t+h/2, y+h*k2/2</span>
+<span class="w">        </span><span class="n">aux</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">s</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">k1</span><span class="o">*</span><span class="n">dt</span><span class="o">/</span><span class="mi">2</span><span class="p">;</span>
+<span class="w">        </span><span class="n">fderiv</span><span class="p">(</span><span class="n">aux</span><span class="p">,</span><span class="w"> </span><span class="n">k3</span><span class="p">,</span><span class="w"> </span><span class="n">t</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">dt</span><span class="o">/</span><span class="mi">2</span><span class="p">);</span>
+<span class="w">        </span><span class="c1">// k4 -&gt; t+h, y+h*k3</span>
+<span class="w">        </span><span class="n">aux</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">s</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">k3</span><span class="o">*</span><span class="n">dt</span><span class="p">;</span>
+<span class="w">        </span><span class="n">fderiv</span><span class="p">(</span><span class="n">aux</span><span class="p">,</span><span class="w"> </span><span class="n">k4</span><span class="p">,</span><span class="w"> </span><span class="n">t</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">dt</span><span class="p">);</span>
+<span class="w">        </span><span class="c1">//=== END MARK SCHEME ===</span>
 <span class="w">        </span>
 <span class="w">        </span><span class="c1">// use all k</span>
 <span class="w">        </span><span class="n">s</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">s</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">dt</span><span class="o">*</span><span class="p">(</span><span class="n">k1</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">2</span><span class="o">*</span><span class="n">k2</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">2</span><span class="o">*</span><span class="n">k3</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">k4</span><span class="p">)</span><span class="o">/</span><span class="mf">6.0</span><span class="p">;</span>
@@ -836,8 +893,8 @@ where <span class="math notranslate nohighlight">\(m\)</span> is the mass and <s
 Comment about the solution.</p></li>
 <li><p>Solve many dynamical system that you can find in any numerical programming
 book.</p></li>
-<li><p>Implement the leap-frog method: https://en.wikipedia.org/wiki/Leapfrog_integration?useskin=vector. Notice that you need a spetial treatment to start the algorithm.</p></li>
-<li><p>Implement the Verlet method: https://en.wikipedia.org/wiki/Verlet_integration?useskin=vector . Notice that you need a spetial treatment to start the algorithm.</p></li>
+<li><p>Implement the leap-frog method: <a class="reference external" href="https://en.wikipedia.org/wiki/Leapfrog_integration?useskin=vector">https://en.wikipedia.org/wiki/Leapfrog_integration?useskin=vector</a>. Notice that you need a spetial treatment to start the algorithm.</p></li>
+<li><p>Implement the Verlet method: <a class="reference external" href="https://en.wikipedia.org/wiki/Verlet_integration?useskin=vector">https://en.wikipedia.org/wiki/Verlet_integration?useskin=vector</a> . Notice that you need a spetial treatment to start the algorithm.</p></li>
 </ol>
 <p><a id="orgb989128"></a></p>
 </section>
@@ -914,13 +971,13 @@ speed.</p></li>
 <ul class="simple">
 <li><p>Odeint: Odeint is a modern and fast library that provides a variety of ODE solvers, including Runge-Kutta methods, Adams-Bashforth methods, and backward difference formulas. It is also very flexible and can be used with a variety of different data structures and numerical types.</p>
 <ul>
-<li><p>http://scholarpedia.org/article/Odeint_library</p></li>
-<li><p>https://headmyshoulder.github.io/odeint-v2/</p></li>
-<li><p>https://github.com/headmyshoulder/odeint-v2</p></li>
-<li><p>https://www.boost.org/doc/libs/1_82_0/libs/numeric/odeint/doc/html/index.html</p></li>
+<li><p><a class="reference external" href="http://scholarpedia.org/article/Odeint_library">http://scholarpedia.org/article/Odeint_library</a></p></li>
+<li><p><a class="reference external" href="https://headmyshoulder.github.io/odeint-v2/">https://headmyshoulder.github.io/odeint-v2/</a></p></li>
+<li><p><a class="github reference external" href="https://github.com/headmyshoulder/odeint-v2">headmyshoulder/odeint-v2</a></p></li>
+<li><p><a class="reference external" href="https://www.boost.org/doc/libs/1_82_0/libs/numeric/odeint/doc/html/index.html">https://www.boost.org/doc/libs/1_82_0/libs/numeric/odeint/doc/html/index.html</a></p></li>
 </ul>
 </li>
-<li><p>gsl, https://www.gnu.org/software/gsl/doc/html/ode-initval.html: The GNU Scientific Library (GSL) is a general-purpose library that contains a variety of mathematical and scientific functions. It also includes a number of ODE solvers, including Runge-Kutta methods, Adams-Bashforth methods, and backward difference formulas. Here is an example:</p></li>
+<li><p>gsl, <a class="reference external" href="https://www.gnu.org/software/gsl/doc/html/ode-initval.html:">https://www.gnu.org/software/gsl/doc/html/ode-initval.html:</a> The GNU Scientific Library (GSL) is a general-purpose library that contains a variety of mathematical and scientific functions. It also includes a number of ODE solvers, including Runge-Kutta methods, Adams-Bashforth methods, and backward difference formulas. Here is an example:</p></li>
 </ul>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">include</span><span class="w"> </span><span class="o">&lt;</span><span class="n">iostream</span><span class="o">&gt;</span>
 <span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;gsl/gsl_errno.h&gt;</span>
@@ -962,11 +1019,11 @@ speed.</p></li>
 </pre></div>
 </div>
 <ul class="simple">
-<li><p>sundials, https://computing.llnl.gov/projects/sundials: Sundials is another library for solving initial value problems for ordinary differential equations (ODEs). It is written in C and provides solvers for both non-stiff and stiff systems. Sundials includes CVODE, which is a solver for non-stiff problems, and IDA, which is a solver for stiff problems. Sundials also offers sensitivity analysis capabilities for systems with parametric dependencies.</p>
+<li><p>sundials, <a class="reference external" href="https://computing.llnl.gov/projects/sundials:">https://computing.llnl.gov/projects/sundials:</a> Sundials is another library for solving initial value problems for ordinary differential equations (ODEs). It is written in C and provides solvers for both non-stiff and stiff systems. Sundials includes CVODE, which is a solver for non-stiff problems, and IDA, which is a solver for stiff problems. Sundials also offers sensitivity analysis capabilities for systems with parametric dependencies.</p>
 <ul>
-<li><p>https://sundials.readthedocs.io/en/latest/</p></li>
-<li><p>https://computing.llnl.gov/projects/sundials/sundials-software
-Here is an examples for using this library (see also https://github.com/basilwong/simple-sundials/):</p></li>
+<li><p><a class="reference external" href="https://sundials.readthedocs.io/en/latest/">https://sundials.readthedocs.io/en/latest/</a></p></li>
+<li><p><a class="reference external" href="https://computing.llnl.gov/projects/sundials/sundials-software">https://computing.llnl.gov/projects/sundials/sundials-software</a>
+Here is an examples for using this library (see also <a class="github reference external" href="https://github.com/basilwong/simple-sundials/">basilwong/simple-sundials</a>):</p></li>
 </ul>
 </li>
 </ul>
@@ -1047,10 +1104,10 @@ Here is an examples for using this library (see also https://github.com/basilwon
 </div>
 <ul class="simple">
 <li><p>Eigen: Eigen is a C++ template library for linear algebra that can be used to solve initial value problems. It provides a variety of linear algebra operations and algorithms, including matrix operations, vector operations, and numerical solvers. Eigen’s numerical solvers can be used to solve systems of ordinary differential equations by converting them into matrix form and solving the resulting linear system[1].</p></li>
-<li><p>NR, https://numerical.recipes/: Numerical Recipes is a popular book series that provides recipes for a variety of numerical algorithms. The book series also includes a number of ODE solvers, which are implemented in C++.</p></li>
-<li><p>ODEPACK, https://computing.llnl.gov/projects/odepack: ODEPACK is a collection of Fortran solvers for ordinary differential equation (ODE) initial value problems. It includes solvers for both stiff and non-stiff systems of ODEs. LSODE is one of the solvers in ODEPACK that can handle both stiff and non-stiff systems. It uses Adams methods for non-stiff problems and Backward Differentiation Formula (BDF) methods for stiff problems. LSODE is available in separate double and single precision versions[3].</p>
+<li><p>NR, <a class="reference external" href="https://numerical.recipes/:">https://numerical.recipes/:</a> Numerical Recipes is a popular book series that provides recipes for a variety of numerical algorithms. The book series also includes a number of ODE solvers, which are implemented in C++.</p></li>
+<li><p>ODEPACK, <a class="reference external" href="https://computing.llnl.gov/projects/odepack:">https://computing.llnl.gov/projects/odepack:</a> ODEPACK is a collection of Fortran solvers for ordinary differential equation (ODE) initial value problems. It includes solvers for both stiff and non-stiff systems of ODEs. LSODE is one of the solvers in ODEPACK that can handle both stiff and non-stiff systems. It uses Adams methods for non-stiff problems and Backward Differentiation Formula (BDF) methods for stiff problems. LSODE is available in separate double and single precision versions[3].</p>
 <ul>
-<li><p>https://computing.llnl.gov/projects/odepack</p></li>
+<li><p><a class="reference external" href="https://computing.llnl.gov/projects/odepack">https://computing.llnl.gov/projects/odepack</a></p></li>
 </ul>
 </li>
 </ul>
@@ -1090,7 +1147,7 @@ leap-frog or verlet integration algorithms. This will be done in the next chapte
     {
         requestKernel: true,
         binderOptions: {
-            repo: "binder-examples/jupyter-stacks-datascience",
+            repo: "iluvatar1/ProgCPP-lectures-jupyter",
             ref: "master",
         },
         codeMirrorConfig: {

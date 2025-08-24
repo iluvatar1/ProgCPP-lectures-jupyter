@@ -34,6 +34,18 @@
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
     <link rel="stylesheet" type="text/css" href="../_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../_static/exercise.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/tabs.css?v=4c969af8" />
+    <link rel="stylesheet" type="text/css" href="../_static/proof.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-examples.css?v=e236af4b" />
+    <link rel="stylesheet" type="text/css" href="../_static/css/tooltipster.custom.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/css/tooltipster.bundle.min.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/css/tooltipster-sideTip-shadow.min.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/css/tooltipster-sideTip-punk.min.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/css/tooltipster-sideTip-noir.min.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/css/tooltipster-sideTip-light.min.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/css/tooltipster-sideTip-borderless.min.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/css/micromodal.css" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
     <link rel="stylesheet" type="text/css" href="../_static/styles.css?v=03b9d5b1" />
   
@@ -42,22 +54,43 @@
 <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
   <script src="../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
 
+    <script src="../_static/jquery.js?v=5d32c60e"></script>
+    <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
     <script src="../_static/documentation_options.js?v=9eb32ce0"></script>
     <script src="../_static/doctools.js?v=9a2dae69"></script>
     <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
     <script src="../_static/copybutton.js?v=f281be69"></script>
     <script src="../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script src="../_static/tabs.js?v=3ee01567"></script>
+    <script src="../_static/js/hoverxref.js"></script>
+    <script src="../_static/js/tooltipster.bundle.min.js"></script>
+    <script src="../_static/js/micromodal.min.js"></script>
     <script>let toggleHintShow = 'Click to show';</script>
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
     <script src="../_static/togglebutton.js?v=4a39c7ea"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
     <script src="../_static/design-tabs.js?v=f930bc37"></script>
+    <script async="async" src="https://www.googletagmanager.com/gtag/js?id=G-DX59QS1P22"></script>
+    <script>
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){ dataLayer.push(arguments); }
+                gtag('js', new Date());
+                gtag('config', 'G-DX59QS1P22');
+            </script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
     <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){ dataLayer.push(arguments); }
+                gtag('js', new Date());
+                gtag('config', 'G-DX59QS1P22');
+            </script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = '01-IntroCPP/Resources';</script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
@@ -311,6 +344,24 @@
 </a>
 </li>
       
+      
+      
+      
+      <li>
+<button onclick="initThebeSBT()"
+  class="btn btn-sm btn-launch-thebe dropdown-item"
+  title="Launch Thebe"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-play"></i>
+  </span>
+<span class="btn__text-container">Live Code</span>
+</button>
+</li>
+      
   </ul>
 </div>
 
@@ -488,44 +539,44 @@ document.write(`
 <section id="presentations-and-resources">
 <h2>Presentations and resources<a class="headerlink" href="#presentations-and-resources" title="Link to this heading">#</a></h2>
 <ul class="simple">
-<li><p>https://tinyurl.com/ProgCPP-Presentations</p></li>
-<li><p>https://www.learncpp.com/</p></li>
-<li><p>https://en.cppreference.com/w/</p></li>
-<li><p>https://hackingcpp.com/cpp/cheat_sheets.html</p></li>
-<li><p>https://quickref.me/cpp</p></li>
-<li><p>https://www.udacity.com/course/c-for-programmers–ud210</p></li>
-<li><p>https://iluvatar.bitbucket.io/ProgCPP/</p></li>
-<li><p>https://github.com/federico-busato/Modern-CPP-Programming</p></li>
-<li><p>https://nick-black.com/dankwiki/index.php/Book_list_for_streetfighting_computer_scientists</p></li>
-<li><p>https://www.youtube.com/watch?v=l0qvxPPISuY&amp;list=PLVlQHNRLflP8_DGKcMoRw-TYJJALgGu4J</p></li>
+<li><p><a class="reference external" href="https://tinyurl.com/ProgCPP-Presentations">https://tinyurl.com/ProgCPP-Presentations</a></p></li>
+<li><p><a class="reference external" href="https://www.learncpp.com/">https://www.learncpp.com/</a></p></li>
+<li><p><a class="reference external" href="https://en.cppreference.com/w/">https://en.cppreference.com/w/</a></p></li>
+<li><p><a class="reference external" href="https://hackingcpp.com/cpp/cheat_sheets.html">https://hackingcpp.com/cpp/cheat_sheets.html</a></p></li>
+<li><p><a class="reference external" href="https://quickref.me/cpp">https://quickref.me/cpp</a></p></li>
+<li><p><a class="reference external" href="https://www.udacity.com/course/c-for-programmers--ud210">https://www.udacity.com/course/c-for-programmers–ud210</a></p></li>
+<li><p><a class="reference external" href="https://iluvatar.bitbucket.io/ProgCPP/">https://iluvatar.bitbucket.io/ProgCPP/</a></p></li>
+<li><p><a class="github reference external" href="https://github.com/federico-busato/Modern-CPP-Programming">federico-busato/Modern-CPP-Programming</a></p></li>
+<li><p><a class="reference external" href="https://nick-black.com/dankwiki/index.php/Book_list_for_streetfighting_computer_scientists">https://nick-black.com/dankwiki/index.php/Book_list_for_streetfighting_computer_scientists</a></p></li>
+<li><p><a class="reference external" href="https://www.youtube.com/watch?v=l0qvxPPISuY&amp;amp;list=PLVlQHNRLflP8_DGKcMoRw-TYJJALgGu4J">https://www.youtube.com/watch?v=l0qvxPPISuY&amp;list=PLVlQHNRLflP8_DGKcMoRw-TYJJALgGu4J</a></p></li>
 </ul>
 </section>
 <section id="shell-bash-terminal">
 <h2>Shell/bash/terminal<a class="headerlink" href="#shell-bash-terminal" title="Link to this heading">#</a></h2>
 <ul class="simple">
-<li><p>https://swcarpentry.github.io/shell-novice/</p></li>
-<li><p>http://swcarpentry.github.io/shell-novice-es</p></li>
-<li><p>https://github.com/phyver/GameShell</p></li>
-<li><p>https://overthewire.org/wargames/bandit/</p></li>
-<li><p>https://github.com/learnbyexample/TUI-apps/tree/main</p></li>
+<li><p><a class="reference external" href="https://swcarpentry.github.io/shell-novice/">https://swcarpentry.github.io/shell-novice/</a></p></li>
+<li><p><a class="reference external" href="http://swcarpentry.github.io/shell-novice-es">http://swcarpentry.github.io/shell-novice-es</a></p></li>
+<li><p><a class="github reference external" href="https://github.com/phyver/GameShell">phyver/GameShell</a></p></li>
+<li><p><a class="reference external" href="https://overthewire.org/wargames/bandit/">https://overthewire.org/wargames/bandit/</a></p></li>
+<li><p><a class="github reference external" href="https://github.com/learnbyexample/TUI-apps/tree/main">learnbyexample/TUI-apps</a></p></li>
 </ul>
 </section>
 <section id="git">
 <h2>git<a class="headerlink" href="#git" title="Link to this heading">#</a></h2>
 <ul class="simple">
-<li><p>https://swcarpentry.github.io/git-novice/</p></li>
-<li><p>http://swcarpentry.github.io/git-novice-es</p></li>
-<li><p>https://ohmygit.org/</p></li>
+<li><p><a class="reference external" href="https://swcarpentry.github.io/git-novice/">https://swcarpentry.github.io/git-novice/</a></p></li>
+<li><p><a class="reference external" href="http://swcarpentry.github.io/git-novice-es">http://swcarpentry.github.io/git-novice-es</a></p></li>
+<li><p><a class="reference external" href="https://ohmygit.org/">https://ohmygit.org/</a></p></li>
 </ul>
 </section>
 <section id="about-c">
 <h2>About c++<a class="headerlink" href="#about-c" title="Link to this heading">#</a></h2>
 <ul class="simple">
-<li><p>https://survey.stackoverflow.co/2022/#technology-top-paying-technologies</p></li>
-<li><p>https://survey.stackoverflow.co/2022/#most-popular-technologies-language-prof</p></li>
-<li><p>https://www.codecademy.com/resources/blog/what-is-c-plus-plus-used-for/</p></li>
-<li><p>https://github.com/fffaraz/awesome-cpp</p></li>
-<li><p>https://theartofhpc.com/</p></li>
+<li><p><a class="reference external" href="https://survey.stackoverflow.co/2022/#technology-top-paying-technologies">https://survey.stackoverflow.co/2022/#technology-top-paying-technologies</a></p></li>
+<li><p><a class="reference external" href="https://survey.stackoverflow.co/2022/#most-popular-technologies-language-prof">https://survey.stackoverflow.co/2022/#most-popular-technologies-language-prof</a></p></li>
+<li><p><a class="reference external" href="https://www.codecademy.com/resources/blog/what-is-c-plus-plus-used-for/">https://www.codecademy.com/resources/blog/what-is-c-plus-plus-used-for/</a></p></li>
+<li><p><a class="github reference external" href="https://github.com/fffaraz/awesome-cpp">fffaraz/awesome-cpp</a></p></li>
+<li><p><a class="reference external" href="https://theartofhpc.com/">https://theartofhpc.com/</a></p></li>
 </ul>
 </section>
 </section>
@@ -534,7 +585,7 @@ document.write(`
     {
         requestKernel: true,
         binderOptions: {
-            repo: "binder-examples/jupyter-stacks-datascience",
+            repo: "iluvatar1/ProgCPP-lectures-jupyter",
             ref: "master",
         },
         codeMirrorConfig: {
