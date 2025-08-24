@@ -1,16 +1,38 @@
 name: Binder
-
 on:
   push:
     branches:
-      - master # Trigger the workflow on push to the master branch
+      - master
+    paths:
+      - 'requirements.txt'
+      - 'environment.yml'
+      - 'Dockerfile'
+      - '.github/workflows/mybinder.yml'
 
 jobs:
-  Create-MyBinderOrg-Cache:
+  cache-binder-image:
     runs-on: ubuntu-latest
     steps:
-    - name: cache binder build on mybinder.org
-      uses: jupyterhub/repo2docker-action@master
-      with:
-        NO_PUSH: true
-        MYBINDERORG_TAG: ${{ github.event.ref }} # This builds the container on mybinder.org with the branch that was pushed on.
+      # - name: Warm Binder cache
+      #   uses: jupyterhub/repo2docker-action@master
+      #   with:
+      #     # NO_PUSH: true # triggers local build, which is discarded
+      #     MYBINDERORG_TAG: ${{ github.ref_name }} # master
+      - name: Trigger Binder build via curl
+        # -sS: Silent mode but still show errors
+        # --fail: Fail the step if the HTTP request returns an error code (like 404)
+        run: |
+          curl --max-time 300 -sS --fail "https://mybinder.org/build/gh/${{ github.repository }}/${{ github.ref_name }}"
+
+# name: Binder
+# on: [push]
+
+# jobs:
+#   Create-MyBinderOrg-Cache:
+#     runs-on: ubuntu-latest
+#     steps:
+#     - name: cache binder build on mybinder.org
+#       uses: jupyterhub/repo2docker-action@master
+#       with:
+#         NO_PUSH: true
+#         MYBINDERORG_TAG: ${{ github.event.ref }} # This builds the container on mybinder.org with the branch that was pushed on.

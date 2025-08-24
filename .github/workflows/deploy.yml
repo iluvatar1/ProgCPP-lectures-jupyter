@@ -25,10 +25,29 @@ jobs:
 
       - name: Install dependencies
         run: |
-          pip install -r requirements.txt
+           pip install -r requirements.txt
+
+      # - name: Install uv
+      #   uses: astral-sh/setup-uv@v6
+      #   #run: |
+      #   #  curl -LsSf https://astral.sh/uv/install.sh | sh
+      #   #  echo "$HOME/.cargo/bin" >> $GITHUB_PATH
+
+      # - name: Enable caching
+      #   uses: astral-sh/setup-uv@v6
+      #   with:
+      #     enable-cache: true
+
+      # - name: Install Python deps with uv
+      #   run: |
+      #     uv venv
+      #     source .venv/bin/activate
+      #     uv pip install -r ./requirements.txt
+
 
       - name: Build the book
         run: |
+          #source .venv/bin/activate
           jupyter-book build .
 
       # For GitHub environment - actual deployment
