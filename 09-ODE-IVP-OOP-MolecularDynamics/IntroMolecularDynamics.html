@@ -686,8 +686,8 @@ optimized velocity verlet and so on. They try to integrate the evolution with a
 high order while reducing the number of force evaluations per time step. In
 particular, the leap-frog algorithm can be written as
 (<a class="reference external" href="https://en.wikipedia.org/wiki/Leapfrog_integration">https://en.wikipedia.org/wiki/Leapfrog_integration</a>)</p>
-<div class="amsmath math notranslate nohighlight" id="equation-064513c1-27a6-4f58-b238-f15fa22426f5">
-<span class="eqno">(55)<a class="headerlink" href="#equation-064513c1-27a6-4f58-b238-f15fa22426f5" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-c3e4c51a-b0eb-40c4-9860-1c382e58825b">
+<span class="eqno">(55)<a class="headerlink" href="#equation-c3e4c51a-b0eb-40c4-9860-1c382e58825b" title="Permalink to this equation">#</a></span>\[\begin{align}
 \vec V (t + \delta t/2) &amp;= \vec V (t - \delta t/2) + \vec F(t) \delta t/m + O(\delta t^3),\\
 \vec R(t+\delta t) &amp;= \vec R(t) + \vec V (t + \delta t/2) \delta t + O(\delta t^3).
 \end{align}\]</div>
@@ -695,15 +695,15 @@ particular, the leap-frog algorithm can be written as
 and symplectic. One important detail for the implementation: To perform the
 first step, you need to put your variables in the correct time. If we put t=0,
 the next step would be</p>
-<div class="amsmath math notranslate nohighlight" id="equation-789e350a-9892-43b0-b5fb-04f1f8f84d30">
-<span class="eqno">(56)<a class="headerlink" href="#equation-789e350a-9892-43b0-b5fb-04f1f8f84d30" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-425977af-4a1d-462a-a3dd-ef63b145f562">
+<span class="eqno">(56)<a class="headerlink" href="#equation-425977af-4a1d-462a-a3dd-ef63b145f562" title="Permalink to this equation">#</a></span>\[\begin{align}
 \vec V (0 + \delta t/2) &amp;= \vec V (0 - \delta t/2) + \vec F(0) \delta t/m + O(\delta t^3),\\
 \vec R(0+\delta t) &amp;= \vec R(0) + \vec V (0 + \delta t/2) \delta t + O(\delta t^3).
 \end{align}\]</div>
 <p>Therefore, we will need first to move the velocity from time 0 to time <span class="math notranslate nohighlight">\(0 -
 \delta t\)</span>. We could do that as follows</p>
-<div class="amsmath math notranslate nohighlight" id="equation-9fbeb82f-61cf-4904-bb40-bd303f864396">
-<span class="eqno">(57)<a class="headerlink" href="#equation-9fbeb82f-61cf-4904-bb40-bd303f864396" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-8271c8ae-54d7-4744-b6c1-7f2833632db4">
+<span class="eqno">(57)<a class="headerlink" href="#equation-8271c8ae-54d7-4744-b6c1-7f2833632db4" title="Permalink to this equation">#</a></span>\[\begin{equation}
 \vec V(0 - \delta t/2) = \vec V(0) - \delta t \vec F(0)/2m.
 \end{equation}\]</div>
 <p><a id="orgd0444a6"></a></p>
@@ -752,14 +752,14 @@ class (only use <code class="docutils literal notranslate"><span class="pre">int
 <p>In this case, we will play with keeping the particle inside a disc (sphere) of radius <code class="docutils literal notranslate"><span class="pre">REXT</span></code>, centering at the origin for simplicity. How to do that? at each step, we check the distance of the external border of our particle, and if it is larger than the external radius, we move the particle back to the inside of the region and invert its normal velocity. To do this, we will create a new class to manage this kind of boundaries, called <code class="docutils literal notranslate"><span class="pre">Boundary</span></code>. It will have the needed parameters and will apply the needed constraints.</p>
 <p>In our case, we want to keep all particles inside the sphere. To do so, for each particle, we can compute its external border with the spherical boundary, and detect if the particle is outside. Then, we can correct the particle position in the normal direction towards the center, and also invert the velocity, even adding a restitution coefficient.</p>
 <p>The particle position relative to the sphere center is <span class="math notranslate nohighlight">\(\vec R' = \vec R - \vec C\)</span>.  If <span class="math notranslate nohighlight">\(\delta = R'+ r - r_b&gt; 0\)</span>, where <span class="math notranslate nohighlight">\(r\)</span> is the sphere radius, and <span class="math notranslate nohighlight">\(r_b\)</span> is the boundary radius, then the particle is outside the sphere, and we need to both correct back it’s position and invert the normal velocity as (deduce it)</p>
-<div class="amsmath math notranslate nohighlight" id="equation-a88ee239-32bc-489e-882d-d54de437db9b">
-<span class="eqno">(58)<a class="headerlink" href="#equation-a88ee239-32bc-489e-882d-d54de437db9b" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-a44a5420-ad7f-40f7-bc92-afd1c01ddffd">
+<span class="eqno">(58)<a class="headerlink" href="#equation-a44a5420-ad7f-40f7-bc92-afd1c01ddffd" title="Permalink to this equation">#</a></span>\[\begin{align}
 \vec R &amp;= \vec R - \delta\hat n, \\
 \vec V &amp;= \vec V - (1+e)(\vec V \cdot \hat n)\hat n,
 \end{align}\]</div>
 <p>where</p>
-<div class="amsmath math notranslate nohighlight" id="equation-4bcd4de1-1e19-4da7-bf4c-003b1e13adc7">
-<span class="eqno">(59)<a class="headerlink" href="#equation-4bcd4de1-1e19-4da7-bf4c-003b1e13adc7" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-52a53571-7488-4cf6-8afa-113f29da116f">
+<span class="eqno">(59)<a class="headerlink" href="#equation-52a53571-7488-4cf6-8afa-113f29da116f" title="Permalink to this equation">#</a></span>\[\begin{equation}
 \hat n = \dfrac{\vec R'}{R'}
 \end{equation}\]</div>
 <p>is the normal vector from the inner boundary side to the particle, and <span class="math notranslate nohighlight">\(e\)</span> is the restitution coefficient.</p>
@@ -931,19 +931,19 @@ scales with the number of particles?</p>
 <p>Here we will implemement a physical force among particles. But, still, how would you do it using constraints?</p>
 <p>If two particles are colliding, with interpenetration <span class="math notranslate nohighlight">\(\delta\)</span>, then we can
 model the force that particle <span class="math notranslate nohighlight">\(i\)</span> exerts on particle <span class="math notranslate nohighlight">\(j\)</span> as,</p>
-<div class="amsmath math notranslate nohighlight" id="equation-ef7b131b-d293-43de-b7e5-db5ab3de4220">
-<span class="eqno">(60)<a class="headerlink" href="#equation-ef7b131b-d293-43de-b7e5-db5ab3de4220" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-727ba8ff-95e9-4fcb-bafe-cef5c0e9dfdc">
+<span class="eqno">(60)<a class="headerlink" href="#equation-727ba8ff-95e9-4fcb-bafe-cef5c0e9dfdc" title="Permalink to this equation">#</a></span>\[\begin{equation}
 \vec F_{ij} = k \delta \hat n_{ij},
 \end{equation}\]</div>
 <p>where <span class="math notranslate nohighlight">\(k\)</span> is a constant proportional to the effective Young modulus, and <span class="math notranslate nohighlight">\(\hat
 n_{ij}\)</span> is the normal vector from particle <span class="math notranslate nohighlight">\(i\)</span> to <span class="math notranslate nohighlight">\(j\)</span>, that is</p>
-<div class="amsmath math notranslate nohighlight" id="equation-8ed2cf64-c748-4ff9-b9ec-d57001016ea8">
-<span class="eqno">(61)<a class="headerlink" href="#equation-8ed2cf64-c748-4ff9-b9ec-d57001016ea8" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-f349849a-df27-4fa7-b7da-510796862ecd">
+<span class="eqno">(61)<a class="headerlink" href="#equation-f349849a-df27-4fa7-b7da-510796862ecd" title="Permalink to this equation">#</a></span>\[\begin{equation}
 \hat n_{ij} = \frac{\vec R_{ij}}{|\vec R_{ij}|},
 \end{equation}\]</div>
 <p>with <span class="math notranslate nohighlight">\(\vec R_{ij} = \vec R_j - \vec R_i\)</span>, and</p>
-<div class="amsmath math notranslate nohighlight" id="equation-577f8245-ea60-45b7-b882-fe729187d670">
-<span class="eqno">(62)<a class="headerlink" href="#equation-577f8245-ea60-45b7-b882-fe729187d670" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-6a622662-351b-4d80-b6e5-b7d3a6f6180b">
+<span class="eqno">(62)<a class="headerlink" href="#equation-6a622662-351b-4d80-b6e5-b7d3a6f6180b" title="Permalink to this equation">#</a></span>\[\begin{equation}
 \delta = r_i + r_j - |\vec R_{ij}|.
 \end{equation}\]</div>
 <p>For a more realistic force model, check
