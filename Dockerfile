@@ -108,9 +108,9 @@ COPY requirements.txt .
 # Download and run the uv installer
 RUN curl -Lsf https://astral.sh/uv/install.sh | sh
 # Set the PATH to include both cargo bin and current directory
-#ENV PATH="$NB_HOME/.cargo/bin:/usr/local/bin:$PATH"
-RUN ${HOME}/.cargo/bin/uv venv --python 3.12 && ${HOME}/.cargo/bin/uv pip install -r requirements.txt
-RUN echo 'source $HOME/.cargo/env' >> ${HOME}/.bashrc
+#ENV PATH="$NB_HOME/.local/bin:/usr/local/bin:$PATH"
+RUN ${HOME}/.local/bin/uv venv --python 3.12 && ${HOME}/.local/bin/uv pip install -r requirements.txt
+RUN echo 'source $HOME/.local/env' >> ${HOME}/.bashrc
 RUN echo "source .venv/bin/activate" >> ${HOME}/.bashrc
 RUN echo 'export PATH=$HOME/.cargo/bin:$HOME/.venv/bin:$PATH' >> ${HOME}/.bashrc
 
