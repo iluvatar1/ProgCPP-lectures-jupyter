@@ -520,7 +520,7 @@ document.write(`
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-cache-role">The cache role</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#initial-exercises">Initial exercises</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#array-and-vector-example-visualized">Array and vector: Example visualized</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#using-std-array-fixed-size-goes-to-the-stack-automatic-for">Using <code class="docutils literal notranslate"><span class="pre">std::array</span></code> : Fixed size, goes to the stack, automatic for</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercises">Exercises</a></li>
 </ul>
@@ -589,11 +589,14 @@ block memory block that can be accessed very fast: <a class="reference external"
 <section id="the-cache-role">
 <h2>The cache role<a class="headerlink" href="#the-cache-role" title="Link to this heading">#</a></h2>
 <p><a class="reference external" href="https://planetscale.com/blog/caching">https://planetscale.com/blog/caching</a></p>
+</section>
+<section id="array-and-vector-example-visualized">
+<h2>Array and vector: Example visualized<a class="headerlink" href="#array-and-vector-example-visualized" title="Link to this heading">#</a></h2>
 <p>The following example shows the basic features for both of them and also a new
 kind of <code class="docutils literal notranslate"><span class="pre">for</span></code>. It is recommended to run this on a graphical debugger , either
 locally in emacs or visual code, or online on the python tutor or <a class="reference external" href="https://www.onlinegdb.com/">onlinegdb</a>, at
 the link <a class="reference external" href="https://onlinegdb.com/CKeYkLEiz">https://onlinegdb.com/CKeYkLEiz</a> .</p>
-<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;iostream&gt;</span>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;print&gt;</span>
 <span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;array&gt;</span>
 <span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;vector&gt;</span>
 
@@ -603,9 +606,9 @@ the link <a class="reference external" href="https://onlinegdb.com/CKeYkLEiz">ht
 <span class="w">  </span><span class="n">data1</span><span class="p">[</span><span class="mi">5</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">9.87</span><span class="p">;</span>
 <span class="w">  </span><span class="n">data1</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">-7.8765</span><span class="p">;</span>
 <span class="w">  </span><span class="n">data1</span><span class="p">[</span><span class="mi">9</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">1000.343</span><span class="p">;</span>
-<span class="w">  </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">data1</span><span class="p">[</span><span class="mi">5</span><span class="p">]</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">;</span>
+<span class="w">  </span><span class="n">std</span><span class="o">::</span><span class="n">println</span><span class="p">(</span><span class="s">&quot;{}&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">data1</span><span class="p">[</span><span class="mi">5</span><span class="p">]);</span>
 <span class="w">  </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="k">auto</span><span class="w"> </span><span class="n">val</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">data1</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">val</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">;</span>
+<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">println</span><span class="p">(</span><span class="s">&quot;{}&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">val</span><span class="p">);</span>
 <span class="w">  </span><span class="p">}</span>
 
 <span class="w">  </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;</span><span class="w"> </span><span class="n">data2</span><span class="p">;</span>
@@ -615,8 +618,8 @@ the link <a class="reference external" href="https://onlinegdb.com/CKeYkLEiz">ht
 <span class="w">  </span><span class="n">data2</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">1000.343</span><span class="p">;</span>
 <span class="w">  </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">data2</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
 <span class="w">  </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="k">auto</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">val</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">data2</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="c1">// reference</span>
-<span class="w">    </span><span class="n">val</span><span class="w"> </span><span class="o">*=</span><span class="w"> </span><span class="mi">2</span><span class="p">;</span><span class="w"> </span><span class="c1">// modify the value</span>
-<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">val</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">;</span>
+<span class="w">    </span><span class="n">val</span><span class="w"> </span><span class="o">*=</span><span class="w"> </span><span class="mi">2</span><span class="p">;</span><span class="w"> </span><span class="c1">// modify the value    </span>
+<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">println</span><span class="p">(</span><span class="s">&quot;{}&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">val</span><span class="p">);</span>
 <span class="w">  </span><span class="p">}</span>
 <span class="w">  </span><span class="n">data2</span><span class="p">.</span><span class="n">resize</span><span class="p">(</span><span class="mi">5</span><span class="p">);</span><span class="w"> </span><span class="c1">// size = 5, capacity = 8 (double the initial, to avoid frequent mallocs)</span>
 <span class="w">  </span><span class="n">data2</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="mf">0.987</span><span class="p">);</span><span class="w"> </span><span class="c1">// size = 6, capacity = 8</span>
@@ -628,26 +631,37 @@ the link <a class="reference external" href="https://onlinegdb.com/CKeYkLEiz">ht
 <span class="p">}</span>
 </pre></div>
 </div>
-<p>As you can see, a vector is a dynamc array of homogeneous contigous elements.</p>
+<p>As you can see, a vector is a dynamic array of homogeneous contigous elements.</p>
 <p><a id="orga3d147a"></a></p>
+<div class="exercise admonition" id="04-vector-containers/ModernArrays-exercise-0">
+
+<p class="admonition-title"><span class="caption-number">Exercise 7 </span> (Maximum size)</p>
+<section id="exercise-content">
+<p>Find the maximum size you can use for a <code class="docutils literal notranslate"><span class="pre">std::array</span></code> and a <code class="docutils literal notranslate"><span class="pre">std::vector</span></code> .
+Are they the same?</p>
 </section>
-<section id="initial-exercises">
-<h2>Initial exercises<a class="headerlink" href="#initial-exercises" title="Link to this heading">#</a></h2>
-<ol class="arabic simple">
-<li><p>Find the maximum size you can use for a <code class="docutils literal notranslate"><span class="pre">std::array</span></code> and a <code class="docutils literal notranslate"><span class="pre">std::vector</span></code> .
-Are they the same?</p></li>
-<li><p>Print the address of the first and second elements in a <code class="docutils literal notranslate"><span class="pre">std::array</span></code> and
-<code class="docutils literal notranslate"><span class="pre">std::vector</span></code>. Are they contigous? To print the memory address of the first
-element use the <code class="docutils literal notranslate"><span class="pre">&amp;</span></code> operator as <code class="docutils literal notranslate"><span class="pre">&amp;data[0]</span></code></p></li>
-<li><p>Use the algorithm <a class="reference external" href="https://en.cppreference.com/w/cpp/algorithm/for_each">for<sub>each</sub></a> with a lambda function to divide by two each
-element in an array. Use also for each to print the elements and their memory
-address.</p></li>
-</ol>
-<p><a id="orgb9267a4"></a></p>
+</div>
+<div class="exercise admonition" id="04-vector-containers/ModernArrays-exercise-1">
+
+<p class="admonition-title"><span class="caption-number">Exercise 8 </span> (Are vectors elements really contiguous?)</p>
+<section id="exercise-content">
+<p>Print the address of the first and second elements in a <code class="docutils literal notranslate"><span class="pre">std::array</span></code> and <code class="docutils literal notranslate"><span class="pre">std::vector</span></code>. Are they contigous? To print the memory address of the first
+element use the <code class="docutils literal notranslate"><span class="pre">&amp;</span></code> operator as <code class="docutils literal notranslate"><span class="pre">&amp;data[0]</span></code></p>
+</section>
+</div>
+<div class="exercise admonition" id="04-vector-containers/ModernArrays-exercise-2">
+
+<p class="admonition-title"><span class="caption-number">Exercise 9 </span> (Using <code class="docutils literal notranslate"><span class="pre">algorithm</span></code>)</p>
+<section id="exercise-content">
+<p>Use the algorithm <a class="reference external" href="https://en.cppreference.com/w/cpp/algorithm/for_each">for<sub>each</sub></a> with a lambda function to divide by two each
+element in an array. Use also for each to print the elements and their memory address.</p>
+</section>
+</div>
 </section>
 <section id="using-std-array-fixed-size-goes-to-the-stack-automatic-for">
 <h2>Using <code class="docutils literal notranslate"><span class="pre">std::array</span></code> : Fixed size, goes to the stack, automatic for<a class="headerlink" href="#using-std-array-fixed-size-goes-to-the-stack-automatic-for" title="Link to this heading">#</a></h2>
-<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="c1">// g++ -g -fsanitize=address</span>
+<p>The following examples shows how to define a fixed size <code class="docutils literal notranslate"><span class="pre">std::array</span></code>, fill it, and manipulate its elements</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="c1">// g++ -g -fsanitize=address</span>
 <span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;iostream&gt;</span>
 <span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;array&gt;</span>
 
@@ -657,24 +671,24 @@ address.</p></li>
 <span class="w">  </span><span class="c1">//double data[N] {0};</span>
 <span class="w">  </span><span class="n">std</span><span class="o">::</span><span class="n">array</span><span class="o">&lt;</span><span class="kt">double</span><span class="p">,</span><span class="w"> </span><span class="n">N</span><span class="o">&gt;</span><span class="w"> </span><span class="n">data</span><span class="p">;</span>
 
-<span class="w">  </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;size: &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">data</span><span class="p">.</span><span class="n">size</span><span class="p">()</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
-<span class="w">  </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;max_size: &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">data</span><span class="p">.</span><span class="n">max_size</span><span class="p">()</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
-<span class="w">  </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;&amp;data[0]: &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="o">&amp;</span><span class="n">data</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
-<span class="w">  </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;&amp;data[1]: &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="o">&amp;</span><span class="n">data</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+<span class="w">  </span><span class="n">std</span><span class="o">::</span><span class="n">println</span><span class="p">(</span><span class="s">&quot;size: {}&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">data</span><span class="p">.</span><span class="n">size</span><span class="p">());</span>
+<span class="w">  </span><span class="n">std</span><span class="o">::</span><span class="n">println</span><span class="p">(</span><span class="s">&quot;max_size: {}&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">data</span><span class="p">.</span><span class="n">max_size</span><span class="p">());</span>
+<span class="w">  </span><span class="n">std</span><span class="o">::</span><span class="n">println</span><span class="p">(</span><span class="s">&quot;&amp;data[0]: {}&quot;</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">data</span><span class="p">[</span><span class="mi">0</span><span class="p">]);</span>
+<span class="w">  </span><span class="n">std</span><span class="o">::</span><span class="n">println</span><span class="p">(</span><span class="s">&quot;&amp;data[1]: {}&quot;</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">data</span><span class="p">[</span><span class="mi">1</span><span class="p">]);</span>
 
-<span class="w">  </span><span class="c1">//std::cout &lt;&lt; data[-1] &lt;&lt; std::endl; // detected by sanitizers address</span>
+<span class="w">  </span><span class="c1">//std::println(&quot;{}&quot;, data[-1]); // detected by sanitizers address</span>
+<span class="w">  </span><span class="c1">//std::println(&quot;{}&quot;, data[11]); // detected by sanitizers address</span>
 
-<span class="c1">// initialize the array with even numbers</span>
+<span class="w">  </span><span class="c1">// initialize the array with even numbers</span>
 <span class="w">  </span><span class="k">for</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">ii</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">ii</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">N</span><span class="p">;</span><span class="w"> </span><span class="o">++</span><span class="n">ii</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
 <span class="w">    </span><span class="n">data</span><span class="p">[</span><span class="n">ii</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">2</span><span class="o">*</span><span class="n">ii</span><span class="p">;</span>
 <span class="w">  </span><span class="p">}</span>
 
-
-<span class="c1">// print the array</span>
+<span class="w">  </span><span class="c1">// print the array</span>
 <span class="w">  </span><span class="k">for</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="k">auto</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">val</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">data</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">val</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;  &quot;</span><span class="p">;</span>
+<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">print</span><span class="p">(</span><span class="s">&quot;{} &quot;</span><span class="p">,</span><span class="w"> </span><span class="n">val</span><span class="p">);</span>
 <span class="w">  </span><span class="p">}</span>
-<span class="w">  </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">;</span><span class="w">    </span>
+<span class="w">  </span><span class="n">std</span><span class="o">::</span><span class="n">println</span><span class="p">(</span><span class="s">&quot;&quot;</span><span class="p">);</span><span class="w">    </span>
 
 <span class="c1">// TODO: compute the mean</span>
 <span class="c1">//=== BEGIN MARK SCHEME ===    </span>
@@ -683,7 +697,7 @@ address.</p></li>
 <span class="w">    </span><span class="n">sum</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="n">val</span><span class="p">;</span>
 <span class="w">  </span><span class="p">}</span>
 <span class="c1">//=== END MARK SCHEME ===</span>
-<span class="w">  </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;Average = &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">sum</span><span class="o">/</span><span class="n">data</span><span class="p">.</span><span class="n">size</span><span class="p">()</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+<span class="w">  </span><span class="n">std</span><span class="o">::</span><span class="n">println</span><span class="p">(</span><span class="s">&quot;Average: {}&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">sum</span><span class="o">/</span><span class="n">data</span><span class="p">.</span><span class="n">size</span><span class="p">());</span>
 
 <span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
 <span class="p">}</span>
@@ -691,7 +705,7 @@ address.</p></li>
 </div>
 <p>You might visualize this in the python/c++ tutor.</p>
 <p>And we can simplified the code even more if we use the standard library:</p>
-<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="c1">// g++ -g -fsanitize=address</span>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="c1">// g++ -g -fsanitize=address</span>
 <span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;numeric&gt;</span>
 <span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;algorithm&gt;</span>
 <span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;iostream&gt;</span>
@@ -729,20 +743,30 @@ address.</p></li>
 <p><a id="org942e5a1"></a></p>
 <section id="exercises">
 <h3>Exercises<a class="headerlink" href="#exercises" title="Link to this heading">#</a></h3>
-<ol class="arabic">
-<li><p>Find the largest <code class="docutils literal notranslate"><span class="pre">std::array</span></code> size you can get in your system. Is it related
-to the ram size? check the command</p>
-<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>ulimit -s
+<div class="exercise admonition" id="04-vector-containers/ModernArrays-exercise-3">
+
+<p class="admonition-title"><span class="caption-number">Exercise 10 </span> (Maximum <code class="docutils literal notranslate"><span class="pre">std::array</span></code> size)</p>
+<section id="exercise-content">
+<p>Find the largest <code class="docutils literal notranslate"><span class="pre">std::array</span></code> size you can get in your system. Is it related to the ram size? check the command</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">ulimit</span><span class="w"> </span>-s
 </pre></div>
 </div>
-</li>
-<li><p>Write a program that computes the dot product between two <code class="docutils literal notranslate"><span class="pre">std::arrays</span></code>. You
-can use either indexes or the <code class="docutils literal notranslate"><span class="pre">inner_product</span></code> or <code class="docutils literal notranslate"><span class="pre">transform_reduce</span></code>
-algorithms.</p></li>
-<li><p>Can you read the <code class="docutils literal notranslate"><span class="pre">std::array</span></code> size from the command line using <code class="docutils literal notranslate"><span class="pre">argv</span></code>? try
-it.</p></li>
-</ol>
-<p><a id="org02d3539"></a></p>
+</section>
+</div>
+<div class="exercise admonition" id="04-vector-containers/ModernArrays-exercise-4">
+
+<p class="admonition-title"><span class="caption-number">Exercise 11 </span> (Dot product)</p>
+<section id="exercise-content">
+<p>Write a program that computes the dot product between two <code class="docutils literal notranslate"><span class="pre">std::arrays</span></code>. You can use either indexes or the <code class="docutils literal notranslate"><span class="pre">inner_product</span></code> or <code class="docutils literal notranslate"><span class="pre">transform_reduce</span></code> algorithms. What could be the advantage of using <code class="docutils literal notranslate"><span class="pre">algorithm</span></code>?</p>
+</section>
+</div>
+<div class="exercise admonition" id="04-vector-containers/ModernArrays-exercise-5">
+
+<p class="admonition-title"><span class="caption-number">Exercise 12 </span> (Initializing array from command line)</p>
+<section id="exercise-content">
+<p>Can you read the <code class="docutils literal notranslate"><span class="pre">std::array</span></code> size from the command line using <code class="docutils literal notranslate"><span class="pre">argv</span></code>? try it.</p>
+</section>
+</div>
 </section>
 </section>
 <section id="using-std-vector-dynamic-size-uses-the-heap">
@@ -758,18 +782,18 @@ info here:</p>
 <li><p><a class="reference external" href="https://www.learncpp.com/cpp-tutorial/stdvector-capacity-and-stack-behavior/">https://www.learncpp.com/cpp-tutorial/stdvector-capacity-and-stack-behavior/</a></p></li>
 </ul>
 <p>To declare a vector of <code class="docutils literal notranslate"><span class="pre">double</span></code>, you just use</p>
-<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="p">...</span>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="p">...</span>
 <span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;</span><span class="w"> </span><span class="n">data1</span><span class="p">(</span><span class="mi">1000</span><span class="p">);</span><span class="w"> </span><span class="c1">// 1000 doubles</span>
 <span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;</span><span class="w"> </span><span class="n">data2</span><span class="p">;</span><span class="w"> </span><span class="c1">// no size yet</span>
 <span class="n">data2</span><span class="p">.</span><span class="n">resize</span><span class="p">(</span><span class="mi">1200</span><span class="p">);</span><span class="w"> </span><span class="c1">// reserve space to store 1200 double</span>
-<span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;</span><span class="w"> </span><span class="n">data3</span><span class="w"> </span><span class="p">{</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="mi">3</span><span class="p">};</span><span class="w"> </span><span class="c1">// 3 ints, type deduced</span>
+<span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;</span><span class="w"> </span><span class="n">data3</span><span class="w"> </span><span class="p">{</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="mi">3</span><span class="p">};</span><span class="w"> </span><span class="c1">// 3 ints, size and type deduced</span>
 </pre></div>
 </div>
 <section id="exploration-declaration-and-operation-on-a-vector">
 <h3>Exploration : Declaration and operation on a vector<a class="headerlink" href="#exploration-declaration-and-operation-on-a-vector" title="Link to this heading">#</a></h3>
 <p>Declare a vector of double whose size is read from the command line as an argument. Fill it as</p>
-<div class="amsmath math notranslate nohighlight" id="equation-f9c13a80-72c0-444a-8c59-99e489196ab5">
-<span class="eqno">(27)<a class="headerlink" href="#equation-f9c13a80-72c0-444a-8c59-99e489196ab5" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-a1332cce-80dc-49e4-b655-7222b140d4e3">
+<span class="eqno">(27)<a class="headerlink" href="#equation-a1332cce-80dc-49e4-b655-7222b140d4e3" title="Permalink to this equation">#</a></span>\[\begin{equation}
 x[i] = i
 \end{equation}\]</div>
 <p>Compute the average.</p>
@@ -784,11 +808,11 @@ x[i] = i
 </section>
 <section id="exploration-vectors-and-std-algorithms">
 <h3>Exploration: Vectors and <code class="docutils literal notranslate"><span class="pre">std</span></code> algorithms<a class="headerlink" href="#exploration-vectors-and-std-algorithms" title="Link to this heading">#</a></h3>
-<p>Same as before, but use lambda functions and standar algorithms to do the same</p>
-<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="c1">// g++ -g -fsanitize=address</span>
+<p>Same as before, but use lambda functions and standard algorithms to do the same</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="c1">// g++ -g -fsanitize=address</span>
 <span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;algorithm&gt;</span>
 <span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;numeric&gt;</span>
-<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;iostream&gt;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;print&gt;</span>
 <span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;vector&gt;</span>
 
 <span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">argc</span><span class="p">,</span><span class="w"> </span><span class="kt">char</span><span class="w"> </span><span class="o">**</span><span class="n">argv</span><span class="p">)</span>
@@ -800,13 +824,14 @@ x[i] = i
 <span class="w">  </span><span class="n">data</span><span class="p">.</span><span class="n">reserve</span><span class="p">(</span><span class="mi">5</span><span class="p">);</span><span class="w"> </span><span class="c1">//affects capacity, can store 15 numbers but its size is still 0</span>
 <span class="w">  </span><span class="n">data</span><span class="p">.</span><span class="n">resize</span><span class="p">(</span><span class="n">N</span><span class="p">);</span><span class="w"> </span><span class="c1">// real size, capacity &gt;= N</span>
 
-<span class="w">  </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;size: &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">data</span><span class="p">.</span><span class="n">size</span><span class="p">()</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
-<span class="w">  </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;capacity: &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">data</span><span class="p">.</span><span class="n">capacity</span><span class="p">()</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
-<span class="w">  </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;max_size: &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">data</span><span class="p">.</span><span class="n">max_size</span><span class="p">()</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
-<span class="w">  </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;&amp;data[0]: &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="o">&amp;</span><span class="n">data</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
-<span class="w">  </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;&amp;data[1]: &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="o">&amp;</span><span class="n">data</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
-
-<span class="w">  </span><span class="c1">//std::cout &lt;&lt; data[-1] &lt;&lt; std::endl; // detected by sanitizers address</span>
+<span class="w">  </span><span class="n">std</span><span class="o">::</span><span class="n">println</span><span class="p">(</span><span class="s">&quot;size: {}&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">data</span><span class="p">.</span><span class="n">size</span><span class="p">());</span>
+<span class="w">  </span><span class="n">std</span><span class="o">::</span><span class="n">println</span><span class="p">(</span><span class="s">&quot;capacity: {}&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">data</span><span class="p">.</span><span class="n">capacity</span><span class="p">());</span>
+<span class="w">  </span><span class="n">std</span><span class="o">::</span><span class="n">println</span><span class="p">(</span><span class="s">&quot;max_size: {}&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">data</span><span class="p">.</span><span class="n">max_size</span><span class="p">());</span>
+<span class="w">  </span><span class="n">std</span><span class="o">::</span><span class="n">println</span><span class="p">(</span><span class="s">&quot;&amp;data[0]: {}&quot;</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">data</span><span class="p">[</span><span class="mi">0</span><span class="p">]);</span>
+<span class="w">  </span><span class="n">std</span><span class="o">::</span><span class="n">println</span><span class="p">(</span><span class="s">&quot;&amp;data[1]: {}&quot;</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">data</span><span class="p">[</span><span class="mi">1</span><span class="p">]);</span>
+<span class="w">  </span>
+<span class="w">  </span><span class="c1">//std::println(&quot;{}&quot;, data[-1]); // detected by sanitizers address</span>
+<span class="w">  </span><span class="c1">//std::println(&quot;{}&quot;, data[N]); // detected by sanitizers address</span>
 
 <span class="c1">// initialize the array with even numbers</span>
 <span class="w">  </span><span class="kt">int</span><span class="w"> </span><span class="n">ii</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
@@ -814,15 +839,15 @@ x[i] = i
 <span class="w">  </span><span class="n">std</span><span class="o">::</span><span class="n">for_each</span><span class="p">(</span><span class="n">data</span><span class="p">.</span><span class="n">begin</span><span class="p">(),</span><span class="w"> </span><span class="n">data</span><span class="p">.</span><span class="n">end</span><span class="p">(),</span><span class="w"> </span><span class="n">init</span><span class="p">);</span>
 
 <span class="c1">// print the array</span>
-<span class="w">  </span><span class="k">auto</span><span class="w"> </span><span class="n">print</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[](</span><span class="k">const</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">x</span><span class="p">){</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;  &quot;</span><span class="p">;};</span>
+<span class="w">  </span><span class="k">auto</span><span class="w"> </span><span class="n">print</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[](</span><span class="k">const</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">x</span><span class="p">){</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">print</span><span class="p">(</span><span class="s">&quot;{}  &quot;</span><span class="p">,</span><span class="w"> </span><span class="n">val</span><span class="p">);</span><span class="w"> </span><span class="p">};</span>
 <span class="w">  </span><span class="n">std</span><span class="o">::</span><span class="n">for_each</span><span class="p">(</span><span class="n">data</span><span class="p">.</span><span class="n">begin</span><span class="p">(),</span><span class="w"> </span><span class="n">data</span><span class="p">.</span><span class="n">end</span><span class="p">(),</span><span class="w"> </span><span class="n">print</span><span class="p">);</span>
-<span class="w">  </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">;</span>
+<span class="w">  </span><span class="n">std</span><span class="o">::</span><span class="n">println</span><span class="p">(</span><span class="s">&quot;&quot;</span><span class="p">);</span>
 
 <span class="c1">// compute mean</span>
-<span class="w">  </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;Average: &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">accumulate</span><span class="p">(</span><span class="n">data</span><span class="p">.</span><span class="n">begin</span><span class="p">(),</span><span class="w"> </span><span class="n">data</span><span class="p">.</span><span class="n">end</span><span class="p">(),</span><span class="w"> </span><span class="mf">0.0</span><span class="p">)</span><span class="o">/</span><span class="n">data</span><span class="p">.</span><span class="n">size</span><span class="p">()</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">;</span>
+<span class="w">  </span><span class="n">std</span><span class="o">::</span><span class="n">println</span><span class="p">(</span><span class="s">&quot;Average: {}&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">accumulate</span><span class="p">(</span><span class="n">data</span><span class="p">.</span><span class="n">begin</span><span class="p">(),</span><span class="w"> </span><span class="n">data</span><span class="p">.</span><span class="n">end</span><span class="p">(),</span><span class="w"> </span><span class="mf">0.0</span><span class="p">)</span><span class="o">/</span><span class="n">data</span><span class="p">.</span><span class="n">size</span><span class="p">());</span>
+
 <span class="c1">//=== END MARK SCHEME ===</span>
 <span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
-<span class="w">    </span>
 <span class="p">}</span>
 </pre></div>
 </div>
@@ -903,11 +928,14 @@ Declare a primitive array of doubles of large size. What is the maximum size tha
 <li><p>Iterator support: Can be used with standard iterators</p></li>
 </ul>
 <p>Almost always prefer to use <code class="docutils literal notranslate"><span class="pre">std::vector</span></code>.</p>
-<blockquote>
-<div><p><strong>EXERCISE: Comparing primitive arrays, dynamics memory and <code class="docutils literal notranslate"><span class="pre">std::vector</span></code></strong>
-Please write two programs. The first one, using a primitive array and dynamic memory, that starts with 5 elemments like <code class="docutils literal notranslate"><span class="pre">{2,</span> <span class="pre">3,</span> <span class="pre">4,</span> <span class="pre">5,</span> <span class="pre">6}</span></code>; then, print the memory address of the first element (<code class="docutils literal notranslate"><span class="pre">&amp;data[0]</span></code>), and then append the number 10 at the end. Print the final array.
+<div class="exercise admonition" id="04-vector-containers/ModernArrays-exercise-6">
+
+<p class="admonition-title"><span class="caption-number">Exercise 13 </span> (Comparing primitive arrays, dynamics memory and <code class="docutils literal notranslate"><span class="pre">std::vector</span></code>)</p>
+<section id="exercise-content">
+<p>Please write two programs. The first one, using a primitive array and dynamic memory, that starts with 5 elemments like <code class="docutils literal notranslate"><span class="pre">{2,</span> <span class="pre">3,</span> <span class="pre">4,</span> <span class="pre">5,</span> <span class="pre">6}</span></code>; then, print the memory address of the first element (<code class="docutils literal notranslate"><span class="pre">&amp;data[0]</span></code>), and then append the number 10 at the end. Print the final array.
 Now write the second program doing the same but using a <code class="docutils literal notranslate"><span class="pre">std::vector</span></code>.</p>
-</div></blockquote>
+</section>
+</div>
 </section>
 </section>
 <section id="id1">
@@ -930,8 +958,8 @@ vector.</p>
 <li><p>Compute the argmin (index of the min) of a vector</p></li>
 <li><p>Compute the argmax (index of the max) of a vector</p></li>
 <li><p>Compute the pnorm</p>
-<div class="amsmath math notranslate nohighlight" id="equation-b473727e-1c04-45e3-9ff4-a52ee4e0705b">
-<span class="eqno">(28)<a class="headerlink" href="#equation-b473727e-1c04-45e3-9ff4-a52ee4e0705b" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-455b4f7a-eb0a-48b1-9096-1fa4f224fbcd">
+<span class="eqno">(28)<a class="headerlink" href="#equation-455b4f7a-eb0a-48b1-9096-1fa4f224fbcd" title="Permalink to this equation">#</a></span>\[\begin{equation}
 \left(\sum_{i} x_{i}^{p}\right)^{1/p} \ .
 \end{equation}\]</div>
 </li>
@@ -939,7 +967,7 @@ vector.</p>
 the median, the 25, 50, 75 percentiles, the min value, and the max value.</p></li>
 <li><p>Use the standard algorithm sort to sort a data array.</p></li>
 <li><p>Fill a vector with random numbers</p>
-<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="w">    </span><span class="c1">// llenar un vector con numeros aleatorios</span>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="w">    </span><span class="c1">// llenar un vector con numeros aleatorios</span>
 <span class="w">    </span>
 <span class="w">    </span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;iostream&gt;</span>
 <span class="w">    </span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;string&gt;</span>
@@ -1048,7 +1076,7 @@ line. Also, you must compute the histogram and print it to a file.</p></li>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-cache-role">The cache role</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#initial-exercises">Initial exercises</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#array-and-vector-example-visualized">Array and vector: Example visualized</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#using-std-array-fixed-size-goes-to-the-stack-automatic-for">Using <code class="docutils literal notranslate"><span class="pre">std::array</span></code> : Fixed size, goes to the stack, automatic for</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercises">Exercises</a></li>
 </ul>
