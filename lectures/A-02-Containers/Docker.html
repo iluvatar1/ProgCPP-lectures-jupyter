@@ -1,0 +1,1360 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Docker Containers - Introductory Lesson &#8212; Introduction to C++ and Numerical Methods</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="../../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../../_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../../_static/exercise.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/tabs.css?v=4c969af8" />
+    <link rel="stylesheet" type="text/css" href="../../_static/proof.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/styles/sphinx-examples.css?v=e236af4b" />
+    <link rel="stylesheet" type="text/css" href="../../_static/css/tooltipster.custom.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/css/tooltipster.bundle.min.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/css/tooltipster-sideTip-shadow.min.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/css/tooltipster-sideTip-punk.min.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/css/tooltipster-sideTip-noir.min.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/css/tooltipster-sideTip-light.min.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/css/tooltipster-sideTip-borderless.min.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/css/micromodal.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-design.min.css?v=95c83b7e" />
+    <link rel="stylesheet" type="text/css" href="../../_static/styles.css?v=03b9d5b1" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="../../_static/jquery.js?v=5d32c60e"></script>
+    <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+    <script src="../../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script src="../../_static/tabs.js?v=3ee01567"></script>
+    <script src="../../_static/js/hoverxref.js"></script>
+    <script src="../../_static/js/tooltipster.bundle.min.js"></script>
+    <script src="../../_static/js/micromodal.min.js"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../../_static/design-tabs.js?v=f930bc37"></script>
+    <script async="async" src="https://www.googletagmanager.com/gtag/js?id=G-DX59QS1P22"></script>
+    <script>
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){ dataLayer.push(arguments); }
+                gtag('js', new Date());
+                gtag('config', 'G-DX59QS1P22');
+            </script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){ dataLayer.push(arguments); }
+                gtag('js', new Date());
+                gtag('config', 'G-DX59QS1P22');
+            </script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'lectures/A-02-Containers/Docker';</script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="prev" title="Git introduction" href="../A-01-Git/VersionControlGit.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../../README.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="https://upload.wikimedia.org/wikipedia/commons/1/18/ISO_C%2B%2B_Logo.svg" class="logo__image only-light" alt="Introduction to C++ and Numerical Methods - Home"/>
+    <script>document.write(`<img src="https://upload.wikimedia.org/wikipedia/commons/1/18/ISO_C%2B%2B_Logo.svg" class="logo__image only-dark" alt="Introduction to C++ and Numerical Methods - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../../README.html">
+                    Introduction to C++ and Numerical Methods
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Introduction to C++</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../01-IntroCPP/IntroProgrammingCourse.html">Introduction to Programming and C++</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../01-IntroCPP/Resources.html">Resources</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../01-IntroCPP/CPP-FastPacedIntro.html">Very fast intro to the basics of c++</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Numerical Calculus</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../02-derivatives/NumericalDifferentiation.html">Numerical differentiation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../03-integration/NumericalIntegration_Basics.html">Numerical Integration</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Modern and primitive arrays, and basic Linear Algebra</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../04-vector-containers/ModernArrays.html">Modern arrays</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../05-matrixI/2D-matrices-to-1D-arrays.html">1D Arrays for 2D Matrices</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../06-ArrayComputing/ArrayComputing-Valarray.html">Vector operations: Coefficient-wise , array computing</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Linear Algebra and Numerical Libraries</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../07-LinearAlgebra/LinearAlgebraEigen.html">Linear Systems : Matrices, Vectors, eigen systems</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Ordinary differential equations: Initial value problems</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../08-ODE-IVP/InitialValueProblem.html">Ordinary differential equations (and initial value problems)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../09-ODE-IVP-OOP-MolecularDynamics/IntroMolecularDynamics.html">Introduction to molecular dynamics through OOP</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Random Numbers and Applications</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../10-RandomSystems/RandomNumbers.html">Random Numbers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../10-RandomSystems/RandomNumbersInSimulations.html">Random numbers in simulations</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Python introduction</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../11-IntroPython/01-IntroProgrammingPython.html">Python Programming (very fast) Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../11-IntroPython/02-IntroProgrammingPython-DataStructs.html">Basic data structures</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../11-IntroPython/03-matplotlib-intro.html">Matplotlib</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../11-IntroPython/04-numpy-basic-reduced.html">Efficient Python arrays : Numpy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../11-IntroPython/05-Scipy.html">SciPy - Library of scientific algorithms for Python</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Appendix</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../A-01-Git/VersionControlGit.html">Git introduction</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Docker Containers - Introductory Lesson</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-launch-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Launch interactive content">
+    <i class="fas fa-rocket"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://mybinder.org/v2/gh/iluvatar1/ProgCPP-lectures-jupyter/master?urlpath=lab/tree/lectures/A-02-Containers/Docker.ipynb" target="_blank"
+   class="btn btn-sm dropdown-item"
+   title="Launch on Binder"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  
+    <img alt="Binder logo" src="../../_static/images/logo_binder.svg">
+  </span>
+<span class="btn__text-container">Binder</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://colab.research.google.com/github/iluvatar1/ProgCPP-lectures-jupyter/blob/master/lectures/A-02-Containers/Docker.ipynb" target="_blank"
+   class="btn btn-sm dropdown-item"
+   title="Launch on Colab"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  
+    <img alt="Colab logo" src="../../_static/images/logo_colab.png">
+  </span>
+<span class="btn__text-container">Colab</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="initThebeSBT()"
+  class="btn btn-sm btn-launch-thebe dropdown-item"
+  title="Launch Thebe"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-play"></i>
+  </span>
+<span class="btn__text-container">Live Code</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/iluvatar1/ProgCPP-lectures-jupyter" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/iluvatar1/ProgCPP-lectures-jupyter/issues/new?title=Issue%20on%20page%20%2Flectures/A-02-Containers/Docker.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../../_sources/lectures/A-02-Containers/Docker.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Docker Containers - Introductory Lesson</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#what-are-containers">What are Containers?</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#key-benefits">Key Benefits:</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#docker-basics">Docker Basics</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#architecture-overview">Architecture Overview</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#working-with-docker-images">Working with Docker Images</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pulling-images-from-docker-hub">Pulling Images from Docker Hub</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#understanding-image-tags">Understanding Image Tags</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#running-your-first-container">Running Your First Container</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#basic-container-execution">Basic Container Execution</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#command-breakdown">Command Breakdown:</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#example-installing-libraries-in-containers">Example: Installing Libraries in Containers</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#method-1-install-during-runtime">Method 1: Install During Runtime</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#method-2-create-a-custom-dockerfile">Method 2: Create a Custom Dockerfile</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#sharing-local-directories-with-containers">Sharing Local Directories with Containers</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#volume-mounting">Volume Mounting</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#volume-mount-syntax">Volume Mount Syntax:</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#read-only-mounts">Read-Only Mounts:</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#practical-example-c-development-with-eigen">Practical Example: C++ Development with Eigen</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#step-1-create-project-structure">Step 1: Create Project Structure</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#step-2-create-a-simple-c-program">Step 2: Create a Simple C++ Program</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#step-3-enhanced-dockerfile">Step 3: Enhanced Dockerfile</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#step-5-build-and-run">Step 5: Build and Run</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#expected-output">Expected Output:</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#important-note-file-permissions"><strong>IMPORTANT NOTE: File permissions</strong></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#solution-with-apptainer-singularity">Solution with apptainer/singularity</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#common-docker-commands">Common Docker Commands</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#container-management">Container Management</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#image-management">Image Management</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#debugging-and-inspection">Debugging and Inspection</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#best-practices">Best Practices</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#use-specific-image-tags">1. Use Specific Image Tags</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#minimize-image-layers">2. Minimize Image Layers</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#use-dockerignore">3. Use .dockerignore</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dont-run-as-root">4. Don’t Run as Root</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#clean-up-package-caches">5. Clean Up Package Caches</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#exercises">Exercises</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-1-basic-container-operations">Exercise 1: Basic Container Operations</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-2-volume-mounting-practice">Exercise 2: Volume Mounting Practice</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-3-custom-development-environment">Exercise 3: Custom Development Environment</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-4-multi-step-build">Exercise 4: Multi-Step Build</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-5-container-networking">Exercise 5: Container Networking</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#solutions-hints">Solutions Hints:</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#conclusion">Conclusion</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="docker-containers-introductory-lesson">
+<h1>Docker Containers - Introductory Lesson<a class="headerlink" href="#docker-containers-introductory-lesson" title="Link to this heading">#</a></h1>
+<a class="reference internal image-reference" href="https://hub.docker.com/api/media/repos_logo/v1/library%2Fdocker?type=logo"><img alt="https://hub.docker.com/api/media/repos_logo/v1/library%2Fdocker?type=logo" src="https://hub.docker.com/api/media/repos_logo/v1/library%2Fdocker?type=logo" style="width: 10%;" /></a>
+<section id="what-are-containers">
+<h2>What are Containers?<a class="headerlink" href="#what-are-containers" title="Link to this heading">#</a></h2>
+<p>Containers are lightweight, portable, and isolated environments that package applications along with their dependencies. Think of them as:</p>
+<ul class="simple">
+<li><p><strong>Virtual machines</strong> but much more efficient and less resource hungry.</p></li>
+<li><p><strong>Shipping containers</strong> for software - they work the same way everywhere</p></li>
+<li><p><strong>Isolated bubbles</strong> where your application runs independently</p></li>
+</ul>
+<section id="key-benefits">
+<h3>Key Benefits:<a class="headerlink" href="#key-benefits" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p><strong>Consistency</strong>: “It works on my machine” becomes “It works everywhere”</p></li>
+<li><p><strong>Isolation</strong>: Applications don’t interfere with each other</p></li>
+<li><p><strong>Portability</strong>: Run the same container on development, testing, and production</p></li>
+<li><p><strong>Efficiency</strong>: Share the host OS kernel, unlike traditional VMs</p></li>
+</ul>
+</section>
+</section>
+<section id="docker-basics">
+<h2>Docker Basics<a class="headerlink" href="#docker-basics" title="Link to this heading">#</a></h2>
+<p>Docker is the most popular containerization platform. It uses:</p>
+<ul class="simple">
+<li><p><strong>Images</strong>: Read-only templates used to create containers</p></li>
+<li><p><strong>Containers</strong>: Running instances of images</p></li>
+<li><p><strong>Dockerfile</strong>: Text file with instructions to build an image</p></li>
+<li><p><strong>Docker Hub</strong>: Public registry for sharing images</p></li>
+<li><p><strong>Docker Compose</strong>: Tool for defining and running multi-container Docker applications</p></li>
+</ul>
+<section id="architecture-overview">
+<h3>Architecture Overview<a class="headerlink" href="#architecture-overview" title="Link to this heading">#</a></h3>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>┌─────────────────┐    ┌─────────────────┐    ┌─────────────────┐
+│   Application   │    │   Application   │    │   Application   │
+├─────────────────┤    ├─────────────────┤    ├─────────────────┤
+│   Container     │    │   Container     │    │   Container     │
+├─────────────────┤    ├─────────────────┤    ├─────────────────┤
+│              Docker Engine                                    │
+├───────────────────────────────────────────────────────────────┤
+│                    Host Operating System                      │
+└───────────────────────────────────────────────────────────────┘
+</pre></div>
+</div>
+<div style="text-align: center;">
+<figure>
+<img src="https://docs.docker.com/get-started/images/docker-architecture.webp" width=90%>
+<figcaption> Docker arquitecture </figcaption>
+</figure>
+</div>
+</section>
+</section>
+<section id="working-with-docker-images">
+<h2>Working with Docker Images<a class="headerlink" href="#working-with-docker-images" title="Link to this heading">#</a></h2>
+<section id="pulling-images-from-docker-hub">
+<h3>Pulling Images from Docker Hub<a class="headerlink" href="#pulling-images-from-docker-hub" title="Link to this heading">#</a></h3>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Pull the official Ubuntu image</span>
+docker<span class="w"> </span>pull<span class="w"> </span>ubuntu:22.04
+
+<span class="c1"># Pull the latest Ubuntu (defaults to latest tag)</span>
+docker<span class="w"> </span>pull<span class="w"> </span>ubuntu
+
+<span class="c1"># List downloaded images</span>
+docker<span class="w"> </span>images
+</pre></div>
+</div>
+</section>
+<section id="understanding-image-tags">
+<h3>Understanding Image Tags<a class="headerlink" href="#understanding-image-tags" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">ubuntu:22.04</span></code> - Specific version</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">ubuntu:latest</span></code> - Latest stable version</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">ubuntu</span></code> - Defaults to latest</p></li>
+</ul>
+</section>
+</section>
+<section id="running-your-first-container">
+<h2>Running Your First Container<a class="headerlink" href="#running-your-first-container" title="Link to this heading">#</a></h2>
+<section id="basic-container-execution">
+<h3>Basic Container Execution<a class="headerlink" href="#basic-container-execution" title="Link to this heading">#</a></h3>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Run a simple hello-world container</span>
+docker<span class="w"> </span>run<span class="w"> </span>hello-world
+
+<span class="c1"># Run a simple command in Ubuntu container</span>
+docker<span class="w"> </span>run<span class="w"> </span>ubuntu:22.04<span class="w"> </span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;Hello, Docker!&quot;</span>
+
+<span class="c1"># Run an interactive terminal session</span>
+docker<span class="w"> </span>run<span class="w"> </span>-it<span class="w"> </span>ubuntu:22.04<span class="w"> </span>/bin/bash
+
+<span class="c1"># Run container in background (detached mode)</span>
+docker<span class="w"> </span>run<span class="w"> </span>-d<span class="w"> </span>ubuntu:22.04<span class="w"> </span>sleep<span class="w"> </span><span class="m">3600</span>
+
+<span class="c1"># List running containers</span>
+docker<span class="w"> </span>ps
+
+<span class="c1"># List all containers (including stopped)</span>
+docker<span class="w"> </span>ps<span class="w"> </span>-a
+</pre></div>
+</div>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>CONTAINER<span class="w"> </span>ID<span class="w">   </span>IMAGE<span class="w">         </span>COMMAND<span class="w">       </span>CREATED<span class="w">          </span>STATUS<span class="w">                      </span>PORTS<span class="w">     </span>NAMES
+2fa15b7ae800<span class="w">   </span>ubuntu<span class="w">        </span><span class="s2">&quot;/bin/bash&quot;</span><span class="w">   </span><span class="m">8</span><span class="w"> </span>seconds<span class="w"> </span>ago<span class="w">    </span>Exited<span class="w"> </span><span class="o">(</span><span class="m">0</span><span class="o">)</span><span class="w"> </span><span class="m">4</span><span class="w"> </span>seconds<span class="w"> </span>ago<span class="w">              </span>naughty_curran
+fbcfe62bfcdb<span class="w">   </span>ubuntu<span class="w">        </span><span class="s2">&quot;/bin/bash&quot;</span><span class="w">   </span><span class="m">26</span><span class="w"> </span>seconds<span class="w"> </span>ago<span class="w">   </span>Exited<span class="w"> </span><span class="o">(</span><span class="m">0</span><span class="o">)</span><span class="w"> </span><span class="m">9</span><span class="w"> </span>seconds<span class="w"> </span>ago<span class="w">              </span>adoring_dhawan
+c5fe4f91519a<span class="w">   </span>hello-world<span class="w">   </span><span class="s2">&quot;/hello&quot;</span><span class="w">      </span><span class="m">49</span><span class="w"> </span>seconds<span class="w"> </span>ago<span class="w">   </span>Exited<span class="w"> </span><span class="o">(</span><span class="m">0</span><span class="o">)</span><span class="w"> </span><span class="m">48</span><span class="w"> </span>seconds<span class="w"> </span>ago<span class="w">             </span>vibrant_bhaskara
+</pre></div>
+</div>
+</section>
+<section id="command-breakdown">
+<h3>Command Breakdown:<a class="headerlink" href="#command-breakdown" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">docker</span> <span class="pre">run</span></code>: Create and start a new container</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">-it</span></code>: Interactive mode with TTY (terminal)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">-d</span></code>: Detached mode (run in background)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">ubuntu:22.04</span></code>: Image name and tag</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">/bin/bash</span></code>: Command to run inside container</p></li>
+</ul>
+</section>
+</section>
+<section id="example-installing-libraries-in-containers">
+<h2>Example: Installing Libraries in Containers<a class="headerlink" href="#example-installing-libraries-in-containers" title="Link to this heading">#</a></h2>
+<section id="method-1-install-during-runtime">
+<h3>Method 1: Install During Runtime<a class="headerlink" href="#method-1-install-during-runtime" title="Link to this heading">#</a></h3>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Start an interactive Ubuntu container</span>
+docker<span class="w"> </span>run<span class="w"> </span>-it<span class="w"> </span>ubuntu:22.04<span class="w"> </span>/bin/bash
+
+<span class="c1"># Inside the container, update package list</span>
+apt<span class="w"> </span>update
+
+<span class="c1"># Install development tools and Eigen library</span>
+apt<span class="w"> </span>install<span class="w"> </span>-y<span class="w"> </span>build-essential<span class="w"> </span>libeigen3-dev
+
+<span class="c1"># Verify installation</span>
+pkg-config<span class="w"> </span>--modversion<span class="w"> </span>eigen3
+</pre></div>
+</div>
+<p>All this changes will be deleted after exiting the container.</p>
+</section>
+<section id="method-2-create-a-custom-dockerfile">
+<h3>Method 2: Create a Custom Dockerfile<a class="headerlink" href="#method-2-create-a-custom-dockerfile" title="Link to this heading">#</a></h3>
+<p>Create a file named <code class="docutils literal notranslate"><span class="pre">Dockerfile</span></code>:</p>
+<div class="highlight-dockerfile notranslate"><div class="highlight"><pre><span></span><span class="c"># Use Ubuntu 24.04 as base image</span>
+<span class="k">FROM</span><span class="w"> </span><span class="s">ubuntu:24.04</span>
+
+<span class="c"># Avoid interactive prompts during installation</span>
+<span class="k">ENV</span><span class="w"> </span><span class="nv">DEBIAN_FRONTEND</span><span class="o">=</span>noninteractive
+
+<span class="c"># Update package list and install dependencies</span>
+<span class="k">RUN</span><span class="w"> </span>apt<span class="w"> </span>update<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>apt<span class="w"> </span>install<span class="w"> </span>-y<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>build-essential<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>libeigen3-dev<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>cmake<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>pkg-config<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span><span class="o">&amp;&amp;</span><span class="w"> </span>rm<span class="w"> </span>-rf<span class="w"> </span>/var/lib/apt/lists/*
+
+<span class="c"># # Updating gcc/g++</span>
+<span class="c"># RUN apt-get update</span>
+<span class="c"># RUN apt install software-properties-common -y</span>
+<span class="c"># RUN apt install g++-14 -y</span>
+
+<span class="c"># # Installing starship: https://starship.rs/guide/</span>
+<span class="c"># RUN apt install curl</span>
+<span class="c"># RUN cd /tmp &amp;&amp; curl -sS https://starship.rs/install.sh &gt; install_starship.sh  &amp;&amp;  sh install_starship.sh --yes</span>
+<span class="c"># RUN echo &#39;eval &quot;$(starship init bash)&quot;&#39; &gt;&gt; ~/.bashrc</span>
+
+<span class="c"># Exercise: Install git</span>
+
+<span class="c"># Exercise: Install lazygit</span>
+
+<span class="c"># Exercise: Install uv for python management: https://docs.astral.sh/uv/#highlights</span>
+
+
+<span class="c"># Set working directory</span>
+<span class="k">WORKDIR</span><span class="w"> </span><span class="s">/workspace</span>
+
+<span class="c"># Default command</span>
+<span class="k">CMD</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;/bin/bash&quot;</span><span class="p">]</span>
+</pre></div>
+</div>
+<p>Build the custom image:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Build image with tag &#39;cpp-dev&#39;</span>
+docker<span class="w"> </span>build<span class="w"> </span>-t<span class="w"> </span>cpp-dev<span class="w"> </span>.
+
+<span class="c1"># Chek the available images</span>
+docker<span class="w"> </span>image<span class="w"> </span>ls
+
+<span class="c1"># Run container from custom image</span>
+docker<span class="w"> </span>run<span class="w"> </span>-it<span class="w"> </span>cpp-dev
+</pre></div>
+</div>
+</section>
+</section>
+<section id="sharing-local-directories-with-containers">
+<h2>Sharing Local Directories with Containers<a class="headerlink" href="#sharing-local-directories-with-containers" title="Link to this heading">#</a></h2>
+<section id="volume-mounting">
+<h3>Volume Mounting<a class="headerlink" href="#volume-mounting" title="Link to this heading">#</a></h3>
+<p>Volume mounting allows you to share files between your host system and the container.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Mount current directory to /workspace in container</span>
+docker<span class="w"> </span>run<span class="w"> </span>-it<span class="w"> </span>-v<span class="w"> </span><span class="k">$(</span><span class="nb">pwd</span><span class="k">)</span>:/workspace<span class="w"> </span>ubuntu:22.04<span class="w"> </span>/bin/bash
+
+<span class="c1"># On Windows PowerShell, use:</span>
+docker<span class="w"> </span>run<span class="w"> </span>-it<span class="w"> </span>-v<span class="w"> </span><span class="si">${</span><span class="nv">PWD</span><span class="si">}</span>:/workspace<span class="w"> </span>ubuntu:22.04<span class="w"> </span>/bin/bash
+
+<span class="c1"># On Windows Command Prompt, use:</span>
+docker<span class="w"> </span>run<span class="w"> </span>-it<span class="w"> </span>-v<span class="w"> </span>%cd%:/workspace<span class="w"> </span>ubuntu:22.04<span class="w"> </span>/bin/bash
+</pre></div>
+</div>
+</section>
+<section id="volume-mount-syntax">
+<h3>Volume Mount Syntax:<a class="headerlink" href="#volume-mount-syntax" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">-v</span> <span class="pre">host_path:container_path</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">-v</span> <span class="pre">$(pwd):/workspace</span></code> - Mount current directory to /workspace</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">-v</span> <span class="pre">/home/user/data:/data</span></code> - Mount specific host directory</p></li>
+</ul>
+</section>
+<section id="read-only-mounts">
+<h3>Read-Only Mounts:<a class="headerlink" href="#read-only-mounts" title="Link to this heading">#</a></h3>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Mount as read-only</span>
+docker<span class="w"> </span>run<span class="w"> </span>-it<span class="w"> </span>-v<span class="w"> </span><span class="k">$(</span><span class="nb">pwd</span><span class="k">)</span>:/workspace:ro<span class="w"> </span>ubuntu:22.04
+</pre></div>
+</div>
+</section>
+</section>
+<section id="practical-example-c-development-with-eigen">
+<h2>Practical Example: C++ Development with Eigen<a class="headerlink" href="#practical-example-c-development-with-eigen" title="Link to this heading">#</a></h2>
+<p>Let’s create a complete example that demonstrates using Docker for C++ development with the Eigen library.</p>
+<section id="step-1-create-project-structure">
+<h3>Step 1: Create Project Structure<a class="headerlink" href="#step-1-create-project-structure" title="Link to this heading">#</a></h3>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>mkdir<span class="w"> </span>docker-cpp-example
+<span class="nb">cd</span><span class="w"> </span>docker-cpp-example
+</pre></div>
+</div>
+</section>
+<section id="step-2-create-a-simple-c-program">
+<h3>Step 2: Create a Simple C++ Program<a class="headerlink" href="#step-2-create-a-simple-c-program" title="Link to this heading">#</a></h3>
+<p>Create <code class="docutils literal notranslate"><span class="pre">main.cpp</span></code>:</p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;iostream&gt;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;Eigen/Dense&gt;</span>
+
+<span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="c1">// Create a 3x3 matrix</span>
+<span class="w">    </span><span class="n">Eigen</span><span class="o">::</span><span class="n">Matrix3d</span><span class="w"> </span><span class="n">matrix</span><span class="p">;</span>
+<span class="w">    </span><span class="n">matrix</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span>
+<span class="w">              </span><span class="mi">4</span><span class="p">,</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w"> </span><span class="mi">6</span><span class="p">,</span>
+<span class="w">              </span><span class="mi">7</span><span class="p">,</span><span class="w"> </span><span class="mi">8</span><span class="p">,</span><span class="w"> </span><span class="mi">9</span><span class="p">;</span>
+<span class="w">    </span>
+<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;Matrix:</span><span class="se">\n</span><span class="s">&quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">matrix</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+<span class="w">    </span>
+<span class="w">    </span><span class="c1">// Calculate determinant</span>
+<span class="w">    </span><span class="kt">double</span><span class="w"> </span><span class="n">det</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">matrix</span><span class="p">.</span><span class="n">determinant</span><span class="p">();</span>
+<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;Determinant: &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">det</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+<span class="w">    </span>
+<span class="w">    </span><span class="c1">// Create a vector and multiply</span>
+<span class="w">    </span><span class="n">Eigen</span><span class="o">::</span><span class="n">Vector3d</span><span class="w"> </span><span class="n">vector</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="mi">3</span><span class="p">);</span>
+<span class="w">    </span><span class="n">Eigen</span><span class="o">::</span><span class="n">Vector3d</span><span class="w"> </span><span class="n">result</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">matrix</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">vector</span><span class="p">;</span>
+<span class="w">    </span>
+<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;Matrix * Vector result:</span><span class="se">\n</span><span class="s">&quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">result</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+<span class="w">    </span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</section>
+<section id="step-3-enhanced-dockerfile">
+<h3>Step 3: Enhanced Dockerfile<a class="headerlink" href="#step-3-enhanced-dockerfile" title="Link to this heading">#</a></h3>
+<p>Create <code class="docutils literal notranslate"><span class="pre">Dockerfile</span></code>:</p>
+<div class="highlight-dockerfile notranslate"><div class="highlight"><pre><span></span><span class="k">FROM</span><span class="w"> </span><span class="s">ubuntu:22.04</span>
+
+<span class="k">ENV</span><span class="w"> </span><span class="nv">DEBIAN_FRONTEND</span><span class="o">=</span>noninteractive
+
+<span class="c"># Install development tools</span>
+<span class="k">RUN</span><span class="w"> </span>apt<span class="w"> </span>update<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>apt<span class="w"> </span>install<span class="w"> </span>-y<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>build-essential<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>cmake<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>libeigen3-dev<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>pkg-config<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span><span class="o">&amp;&amp;</span><span class="w"> </span>rm<span class="w"> </span>-rf<span class="w"> </span>/var/lib/apt/lists/*
+
+<span class="c"># Avoid running as root</span>
+<span class="c"># RUN useradd -m -s /bin/bash developer</span>
+<span class="c"># USER developer</span>
+
+<span class="k">WORKDIR</span><span class="w"> </span><span class="s">/workspace</span>
+
+<span class="c"># Copy source files (optional, we&#39;ll use volume mounting)</span>
+<span class="c"># COPY . /workspace</span>
+
+<span class="k">CMD</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;/bin/bash&quot;</span><span class="p">]</span>
+</pre></div>
+</div>
+</section>
+<section id="step-5-build-and-run">
+<h3>Step 5: Build and Run<a class="headerlink" href="#step-5-build-and-run" title="Link to this heading">#</a></h3>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Build the Docker image</span>
+docker<span class="w"> </span>build<span class="w"> </span>-t<span class="w"> </span>cpp-eigen-dev<span class="w"> </span>.
+
+<span class="c1"># Run container with volume mounting</span>
+docker<span class="w"> </span>run<span class="w"> </span>-it<span class="w"> </span>-v<span class="w"> </span><span class="k">$(</span><span class="nb">pwd</span><span class="k">)</span>:/workspace<span class="w"> </span>cpp-eigen-dev
+
+<span class="c1"># Inside the container, build the project</span>
+g++<span class="w"> </span>-I<span class="w"> </span>/usr/include/eigen3/<span class="w"> </span>main.cpp<span class="w"> </span>-o<span class="w"> </span>eigen_example.x
+
+<span class="c1"># Run the program</span>
+./eigen_example.x
+</pre></div>
+</div>
+</section>
+<section id="expected-output">
+<h3>Expected Output:<a class="headerlink" href="#expected-output" title="Link to this heading">#</a></h3>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Matrix</span><span class="p">:</span>
+<span class="mi">1</span> <span class="mi">2</span> <span class="mi">3</span>
+<span class="mi">4</span> <span class="mi">5</span> <span class="mi">6</span>
+<span class="mi">7</span> <span class="mi">8</span> <span class="mi">9</span>
+<span class="n">Determinant</span><span class="p">:</span> <span class="mi">0</span>
+<span class="n">Matrix</span> <span class="o">*</span> <span class="n">Vector</span> <span class="n">result</span><span class="p">:</span>
+<span class="mi">14</span>
+<span class="mi">32</span>
+<span class="mi">50</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="important-note-file-permissions">
+<h2><strong>IMPORTANT NOTE: File permissions</strong><a class="headerlink" href="#important-note-file-permissions" title="Link to this heading">#</a></h2>
+<p>Notice that you are running as root inside the container, so any file produced will belong to root. On other words, you, as a normal user, will not be able to edit those files in the local host. In this case it will be better to run as the local user, like</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>docker<span class="w"> </span>run<span class="w"> </span>-it<span class="w"> </span>-v<span class="w"> </span><span class="k">$(</span><span class="nb">pwd</span><span class="k">)</span>:/workspace<span class="w"> </span>--rm<span class="w"> </span>--user<span class="w"> </span><span class="s2">&quot;</span><span class="k">$(</span>id<span class="w"> </span>-u<span class="k">)</span><span class="s2">:</span><span class="k">$(</span>id<span class="w"> </span>-g<span class="k">)</span><span class="s2">&quot;</span><span class="w">  </span>cpp-eigen-dev
+</pre></div>
+</div>
+<p><strong>WARNING</strong>: Abusing this root permission will bring consequences.</p>
+<p>In this case you can run docker using explicit args for the user, like:</p>
+<div class="highlight-dockerfile notranslate"><div class="highlight"><pre><span></span><span class="k">FROM</span><span class="w"> </span><span class="s">ubuntu:latest</span>
+
+<span class="c"># Replace 1000 with your host user&#39;s UID/GID</span>
+<span class="k">ARG</span><span class="w"> </span><span class="nv">USER_UID</span><span class="o">=</span><span class="m">1000</span>
+<span class="k">ARG</span><span class="w"> </span><span class="nv">GROUP_GID</span><span class="o">=</span><span class="m">1000</span>
+
+<span class="c"># Create a group and user with matching IDs</span>
+<span class="k">RUN</span><span class="w"> </span>groupadd<span class="w"> </span>-g<span class="w"> </span><span class="si">${</span><span class="nv">GROUP_GID</span><span class="si">}</span><span class="w"> </span>appgroup<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>useradd<span class="w"> </span>-u<span class="w"> </span><span class="si">${</span><span class="nv">USER_UID</span><span class="si">}</span><span class="w"> </span>-g<span class="w"> </span>appgroup<span class="w"> </span>-s<span class="w"> </span>/bin/bash<span class="w"> </span>-m<span class="w"> </span>appuser
+
+<span class="c"># Set ownership for application directory</span>
+<span class="k">RUN</span><span class="w"> </span>mkdir<span class="w"> </span>/app<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>chown<span class="w"> </span>appuser:appgroup<span class="w"> </span>/app
+
+<span class="c"># Switch to the non-root user</span>
+<span class="k">USER</span><span class="w"> </span><span class="s">appuser</span>
+
+<span class="k">WORKDIR</span><span class="w"> </span><span class="s">/app</span>
+
+<span class="c"># Copy your application code</span>
+<span class="k">COPY</span><span class="w"> </span>.<span class="w"> </span>.
+
+<span class="k">CMD</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;/bin/bash&quot;</span><span class="p">]</span><span class="w"> </span>#<span class="w"> </span>Or<span class="w"> </span>your<span class="w"> </span>application<span class="err">&#39;</span>s<span class="w"> </span>command
+</pre></div>
+</div>
+<p>And then build and run as</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>docker<span class="w"> </span>build<span class="w"> </span>--build-arg<span class="w"> </span><span class="nv">USER_UID</span><span class="o">=</span><span class="k">$(</span>id<span class="w"> </span>-u<span class="k">)</span><span class="w"> </span>--build-arg<span class="w"> </span><span class="nv">GROUP_GID</span><span class="o">=</span><span class="k">$(</span>id<span class="w"> </span>-g<span class="k">)</span><span class="w"> </span>-t<span class="w"> </span>my-app<span class="w"> </span>.
+docker<span class="w"> </span>run<span class="w"> </span>-it<span class="w"> </span>--rm<span class="w"> </span>-v<span class="w"> </span>/host/path:/app<span class="w"> </span>my-app
+</pre></div>
+</div>
+<section id="solution-with-apptainer-singularity">
+<h3>Solution with apptainer/singularity<a class="headerlink" href="#solution-with-apptainer-singularity" title="Link to this heading">#</a></h3>
+<p>In the HPC and scientific computing world it is better to use <a class="reference external" href="https://apptainer.org/">https://apptainer.org/</a>, like</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>apptainer<span class="w"> </span>shell<span class="w"> </span>docker://alpine
+</pre></div>
+</div>
+<p>You can create a sif apptainer image using</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># get image name and tag</span>
+docker<span class="w"> </span>images
+
+<span class="c1"># build the sif image</span>
+apptainer<span class="w"> </span>build<span class="w"> </span>cpp-eigen-dev.sif<span class="w"> </span>docker-daemon:cpp-eigen-dev:latest
+</pre></div>
+</div>
+<p>and then run a shell as</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>apptainer<span class="w"> </span>shell<span class="w"> </span>cpp-eigen-dev.sif
+</pre></div>
+</div>
+<p>You can also use your Dockerfile to create an apptainer <code class="docutils literal notranslate"><span class="pre">def</span></code> file, using spython</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># install the utility</span>
+pip3<span class="w"> </span>install<span class="w"> </span>spython
+
+<span class="c1"># Create the def file</span>
+spython<span class="w"> </span>recipe<span class="w"> </span>Dockerfile<span class="w"> </span>&gt;<span class="w"> </span>cpp-eigen-dev.def
+
+<span class="c1"># Build your image</span>
+apptainer<span class="w"> </span>build<span class="w"> </span>cpp-eigen-dev.sif<span class="w"> </span>cpp-eigen-dev.def
+
+<span class="c1"># Easier way but requires more recent apptainer</span>
+<span class="c1"># apptainer build --oci your_image.sif dockerfile://./Dockerfile</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="common-docker-commands">
+<h2>Common Docker Commands<a class="headerlink" href="#common-docker-commands" title="Link to this heading">#</a></h2>
+<section id="container-management">
+<h3>Container Management<a class="headerlink" href="#container-management" title="Link to this heading">#</a></h3>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Start a stopped container</span>
+docker<span class="w"> </span>start<span class="w"> </span>&lt;container_id&gt;
+
+<span class="c1"># Stop a running container</span>
+docker<span class="w"> </span>stop<span class="w"> </span>&lt;container_id&gt;
+
+<span class="c1"># Remove a container</span>
+docker<span class="w"> </span>rm<span class="w"> </span>&lt;container_id&gt;
+
+<span class="c1"># Remove all stopped containers</span>
+docker<span class="w"> </span>container<span class="w"> </span>prune
+</pre></div>
+</div>
+</section>
+<section id="image-management">
+<h3>Image Management<a class="headerlink" href="#image-management" title="Link to this heading">#</a></h3>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># List images</span>
+docker<span class="w"> </span>images
+
+<span class="c1"># Remove an image</span>
+docker<span class="w"> </span>rmi<span class="w"> </span>&lt;image_id&gt;
+
+<span class="c1"># Remove unused images</span>
+docker<span class="w"> </span>image<span class="w"> </span>prune
+
+<span class="c1"># View image history</span>
+docker<span class="w"> </span><span class="nb">history</span><span class="w"> </span>&lt;image_name&gt;
+</pre></div>
+</div>
+</section>
+<section id="debugging-and-inspection">
+<h3>Debugging and Inspection<a class="headerlink" href="#debugging-and-inspection" title="Link to this heading">#</a></h3>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># View container logs</span>
+docker<span class="w"> </span>logs<span class="w"> </span>&lt;container_id&gt;
+
+<span class="c1"># Execute command in running container</span>
+docker<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>-it<span class="w"> </span>&lt;container_id&gt;<span class="w"> </span>/bin/bash
+
+<span class="c1"># Inspect container details</span>
+docker<span class="w"> </span>inspect<span class="w"> </span>&lt;container_id&gt;
+
+<span class="c1"># View container resource usage</span>
+docker<span class="w"> </span>stats
+</pre></div>
+</div>
+</section>
+</section>
+<section id="best-practices">
+<h2>Best Practices<a class="headerlink" href="#best-practices" title="Link to this heading">#</a></h2>
+<section id="use-specific-image-tags">
+<h3>1. Use Specific Image Tags<a class="headerlink" href="#use-specific-image-tags" title="Link to this heading">#</a></h3>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Good</span>
+FROM<span class="w"> </span>ubuntu:22.04
+
+<span class="c1"># Avoid</span>
+FROM<span class="w"> </span>ubuntu:latest
+</pre></div>
+</div>
+</section>
+<section id="minimize-image-layers">
+<h3>2. Minimize Image Layers<a class="headerlink" href="#minimize-image-layers" title="Link to this heading">#</a></h3>
+<div class="highlight-dockerfile notranslate"><div class="highlight"><pre><span></span><span class="c"># Good - Single RUN command</span>
+<span class="k">RUN</span><span class="w"> </span>apt<span class="w"> </span>update<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>apt<span class="w"> </span>install<span class="w"> </span>-y<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>package1<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>package2<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span><span class="o">&amp;&amp;</span><span class="w"> </span>rm<span class="w"> </span>-rf<span class="w"> </span>/var/lib/apt/lists/*
+
+<span class="c"># Avoid - Multiple RUN commands</span>
+<span class="k">RUN</span><span class="w"> </span>apt<span class="w"> </span>update
+<span class="k">RUN</span><span class="w"> </span>apt<span class="w"> </span>install<span class="w"> </span>-y<span class="w"> </span>package1
+<span class="k">RUN</span><span class="w"> </span>apt<span class="w"> </span>install<span class="w"> </span>-y<span class="w"> </span>package2
+</pre></div>
+</div>
+</section>
+<section id="use-dockerignore">
+<h3>3. Use .dockerignore<a class="headerlink" href="#use-dockerignore" title="Link to this heading">#</a></h3>
+<p>Create <code class="docutils literal notranslate"><span class="pre">.dockerignore</span></code> to exclude unnecessary files:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">.</span><span class="n">git</span>
+<span class="o">.</span><span class="n">gitignore</span>
+<span class="n">README</span><span class="o">.</span><span class="n">md</span>
+<span class="n">Dockerfile</span>
+<span class="o">.</span><span class="n">dockerignore</span>
+<span class="n">node_modules</span>
+<span class="o">*.</span><span class="n">log</span>
+</pre></div>
+</div>
+</section>
+<section id="dont-run-as-root">
+<h3>4. Don’t Run as Root<a class="headerlink" href="#dont-run-as-root" title="Link to this heading">#</a></h3>
+<div class="highlight-dockerfile notranslate"><div class="highlight"><pre><span></span><span class="c"># Create non-root user</span>
+<span class="k">RUN</span><span class="w"> </span>useradd<span class="w"> </span>-m<span class="w"> </span>-s<span class="w"> </span>/bin/bash<span class="w"> </span>developer
+<span class="k">USER</span><span class="w"> </span><span class="s">developer</span>
+</pre></div>
+</div>
+</section>
+<section id="clean-up-package-caches">
+<h3>5. Clean Up Package Caches<a class="headerlink" href="#clean-up-package-caches" title="Link to this heading">#</a></h3>
+<div class="highlight-dockerfile notranslate"><div class="highlight"><pre><span></span><span class="k">RUN</span><span class="w"> </span>apt<span class="w"> </span>update<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>apt<span class="w"> </span>install<span class="w"> </span>-y<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>package1<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>package2<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span><span class="o">&amp;&amp;</span><span class="w"> </span>rm<span class="w"> </span>-rf<span class="w"> </span>/var/lib/apt/lists/*
+</pre></div>
+</div>
+</section>
+</section>
+<section id="exercises">
+<h2>Exercises<a class="headerlink" href="#exercises" title="Link to this heading">#</a></h2>
+<section id="exercise-1-basic-container-operations">
+<h3>Exercise 1: Basic Container Operations<a class="headerlink" href="#exercise-1-basic-container-operations" title="Link to this heading">#</a></h3>
+<ol class="arabic simple">
+<li><p>Pull the Python 3.9 image from Docker Hub</p></li>
+<li><p>Run a Python container and execute: <code class="docutils literal notranslate"><span class="pre">python</span> <span class="pre">-c</span> <span class="pre">&quot;print('Hello</span> <span class="pre">from</span> <span class="pre">Docker!')&quot;</span></code></p></li>
+<li><p>Start an interactive Python session in a container</p></li>
+</ol>
+</section>
+<section id="exercise-2-volume-mounting-practice">
+<h3>Exercise 2: Volume Mounting Practice<a class="headerlink" href="#exercise-2-volume-mounting-practice" title="Link to this heading">#</a></h3>
+<ol class="arabic simple">
+<li><p>Create a local directory with a text file</p></li>
+<li><p>Mount it to a container and read the file from inside the container</p></li>
+<li><p>Create a new file inside the container and verify it appears on your host</p></li>
+</ol>
+</section>
+<section id="exercise-3-custom-development-environment">
+<h3>Exercise 3: Custom Development Environment<a class="headerlink" href="#exercise-3-custom-development-environment" title="Link to this heading">#</a></h3>
+<ol class="arabic simple">
+<li><p>Create a Dockerfile for a Node.js development environment</p></li>
+<li><p>Include Node.js, npm, and git</p></li>
+<li><p>Set up a working directory</p></li>
+<li><p>Build and test your custom image</p></li>
+</ol>
+</section>
+<section id="exercise-4-multi-step-build">
+<h3>Exercise 4: Multi-Step Build<a class="headerlink" href="#exercise-4-multi-step-build" title="Link to this heading">#</a></h3>
+<ol class="arabic simple">
+<li><p>Extend the C++ Eigen example</p></li>
+<li><p>Add additional mathematical operations</p></li>
+<li><p>Build and run everything in Docker</p></li>
+</ol>
+</section>
+<section id="exercise-5-container-networking">
+<h3>Exercise 5: Container Networking<a class="headerlink" href="#exercise-5-container-networking" title="Link to this heading">#</a></h3>
+<ol class="arabic simple">
+<li><p>Run a web server (like nginx) in a container</p></li>
+<li><p>Map port 80 in the container to port 8080 on your host</p></li>
+<li><p>Access the web server from your browser</p></li>
+</ol>
+</section>
+<section id="solutions-hints">
+<h3>Solutions Hints:<a class="headerlink" href="#solutions-hints" title="Link to this heading">#</a></h3>
+<p><strong>Exercise 1:</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>docker<span class="w"> </span>pull<span class="w"> </span>python:3.9
+docker<span class="w"> </span>run<span class="w"> </span>python:3.9<span class="w"> </span>python<span class="w"> </span>-c<span class="w"> </span><span class="s2">&quot;print(&#39;Hello from Docker!&#39;)&quot;</span>
+docker<span class="w"> </span>run<span class="w"> </span>-it<span class="w"> </span>python:3.9<span class="w"> </span>python
+</pre></div>
+</div>
+<p><strong>Exercise 2:</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>mkdir<span class="w"> </span>test-data
+<span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;Hello from host&quot;</span><span class="w"> </span>&gt;<span class="w"> </span>test-data/hello.txt
+docker<span class="w"> </span>run<span class="w"> </span>-it<span class="w"> </span>-v<span class="w"> </span><span class="k">$(</span><span class="nb">pwd</span><span class="k">)</span>/test-data:/data<span class="w"> </span>ubuntu:22.04<span class="w"> </span>/bin/bash
+<span class="c1"># Inside container: cat /data/hello.txt</span>
+<span class="c1"># Inside container: echo &quot;Hello from container&quot; &gt; /data/container.txt</span>
+</pre></div>
+</div>
+<p><strong>Exercise 5:</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>docker<span class="w"> </span>run<span class="w"> </span>-d<span class="w"> </span>-p<span class="w"> </span><span class="m">8080</span>:80<span class="w"> </span>nginx:alpine
+<span class="c1"># Open browser to http://localhost:8080</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="conclusion">
+<h2>Conclusion<a class="headerlink" href="#conclusion" title="Link to this heading">#</a></h2>
+<p>Docker containers provide a powerful way to:</p>
+<ul class="simple">
+<li><p>Standardize development environments</p></li>
+<li><p>Ensure consistent deployments</p></li>
+<li><p>Isolate applications and dependencies</p></li>
+<li><p>Share and distribute software easily</p></li>
+</ul>
+<p>Key concepts covered:</p>
+<ul class="simple">
+<li><p>Images vs. Containers</p></li>
+<li><p>Volume mounting for file sharing</p></li>
+<li><p>Installing libraries and dependencies</p></li>
+<li><p>Building custom images with Dockerfiles</p></li>
+<li><p>Practical C++ development example</p></li>
+</ul>
+<p>Continue practicing with different base images, programming languages, and use cases to master containerization!</p>
+<p>ROOTLESS containers</p>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "iluvatar1/ProgCPP-lectures-jupyter",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./lectures/A-02-Containers"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="../A-01-Git/VersionControlGit.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Git introduction</p>
+      </div>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#what-are-containers">What are Containers?</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#key-benefits">Key Benefits:</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#docker-basics">Docker Basics</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#architecture-overview">Architecture Overview</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#working-with-docker-images">Working with Docker Images</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pulling-images-from-docker-hub">Pulling Images from Docker Hub</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#understanding-image-tags">Understanding Image Tags</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#running-your-first-container">Running Your First Container</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#basic-container-execution">Basic Container Execution</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#command-breakdown">Command Breakdown:</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#example-installing-libraries-in-containers">Example: Installing Libraries in Containers</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#method-1-install-during-runtime">Method 1: Install During Runtime</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#method-2-create-a-custom-dockerfile">Method 2: Create a Custom Dockerfile</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#sharing-local-directories-with-containers">Sharing Local Directories with Containers</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#volume-mounting">Volume Mounting</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#volume-mount-syntax">Volume Mount Syntax:</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#read-only-mounts">Read-Only Mounts:</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#practical-example-c-development-with-eigen">Practical Example: C++ Development with Eigen</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#step-1-create-project-structure">Step 1: Create Project Structure</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#step-2-create-a-simple-c-program">Step 2: Create a Simple C++ Program</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#step-3-enhanced-dockerfile">Step 3: Enhanced Dockerfile</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#step-5-build-and-run">Step 5: Build and Run</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#expected-output">Expected Output:</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#important-note-file-permissions"><strong>IMPORTANT NOTE: File permissions</strong></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#solution-with-apptainer-singularity">Solution with apptainer/singularity</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#common-docker-commands">Common Docker Commands</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#container-management">Container Management</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#image-management">Image Management</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#debugging-and-inspection">Debugging and Inspection</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#best-practices">Best Practices</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#use-specific-image-tags">1. Use Specific Image Tags</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#minimize-image-layers">2. Minimize Image Layers</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#use-dockerignore">3. Use .dockerignore</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dont-run-as-root">4. Don’t Run as Root</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#clean-up-package-caches">5. Clean Up Package Caches</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#exercises">Exercises</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-1-basic-container-operations">Exercise 1: Basic Container Operations</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-2-volume-mounting-practice">Exercise 2: Volume Mounting Practice</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-3-custom-development-environment">Exercise 3: Custom Development Environment</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-4-multi-step-build">Exercise 4: Multi-Step Build</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-5-container-networking">Exercise 5: Container Networking</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#solutions-hints">Solutions Hints:</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#conclusion">Conclusion</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By William Oquendo
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2024.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
