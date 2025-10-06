@@ -10,45 +10,44 @@ parts:
   - caption: "Introduction to C++"
     numbered: false
     chapters:
-    - file: 01-IntroCPP/IntroProgrammingCourse.ipynb
-    - file: 01-IntroCPP/Resources.ipynb
-    - file: 01-IntroCPP/CPP-FastPacedIntro.ipynb
+    - file: lectures/01-IntroCPP/IntroProgrammingCourse.ipynb
+    - file: lectures/01-IntroCPP/Resources.ipynb
+    - file: lectures/01-IntroCPP/CPP-FastPacedIntro.ipynb
   - caption: "Numerical Calculus"
     numbered: false
     chapters:
-    - file: 02-derivatives/NumericalDifferentiation.ipynb
-    - file: 03-integration/NumericalIntegration_Basics.ipynb
+    - file: lectures/02-derivatives/NumericalDifferentiation.ipynb
+    - file: lectures/03-integration/NumericalIntegration_Basics.ipynb
   - caption: "Modern and primitive arrays, and basic Linear Algebra"
     numbered: false
     chapters:
-    - file: 04-vector-containers/ModernArrays.ipynb
-    - file: 05-matrixI/2D-matrices-to-1D-arrays.ipynb
-    - file: 06-ArrayComputing/ArrayComputing-Valarray.ipynb
+    - file: lectures/04-vector-containers/ModernArrays.ipynb
+    - file: lectures/05-matrixI/2D-matrices-to-1D-arrays.ipynb
+    - file: lectures/06-ArrayComputing/ArrayComputing-Valarray.ipynb
   - caption: "Linear Algebra and Numerical Libraries"
     numbered: false
     chapters:
-    - file: 07-LinearAlgebra/LinearAlgebraEigen.ipynb
+    - file: lectures/07-LinearAlgebra/LinearAlgebraEigen.ipynb
   - caption: "Ordinary differential equations: Initial value problems"
     numbered: false
     chapters:
-    - file: 08-ODE-IVP/InitialValueProblem.ipynb
-    - file: 09-ODE-IVP-OOP-MolecularDynamics/IntroMolecularDynamics.ipynb
+    - file: lectures/08-ODE-IVP/InitialValueProblem.ipynb
+    - file: lectures/09-ODE-IVP-OOP-MolecularDynamics/IntroMolecularDynamics.ipynb
   - caption: "Random Numbers and Applications"
     numbered: false
     chapters:
-    - file: 10-RandomSystems/RandomNumbers.ipynb
-    - file: 10-RandomSystems/RandomNumbersInSimulations.ipynb
+    - file: lectures/10-RandomSystems/RandomNumbers.ipynb
+    - file: lectures/10-RandomSystems/RandomNumbersInSimulations.ipynb
   - caption: "Python introduction"
     numbered: false
     chapters:
-    - file: 11-IntroPython/01-IntroProgrammingPython.ipynb
-    - file: 11-IntroPython/02-IntroProgrammingPython-DataStructs.ipynb
-    - file: 11-IntroPython/03-matplotlib-intro.ipynb
-    - file: 11-IntroPython/04-numpy-basic-reduced.ipynb
-    - file: 11-IntroPython/05-Scipy.ipynb
+    - file: lectures/11-IntroPython/01-IntroProgrammingPython.ipynb
+    - file: lectures/11-IntroPython/02-IntroProgrammingPython-DataStructs.ipynb
+    - file: lectures/11-IntroPython/03-matplotlib-intro.ipynb
+    - file: lectures/11-IntroPython/04-numpy-basic-reduced.ipynb
+    - file: lectures/11-IntroPython/05-Scipy.ipynb
   - caption: "Appendix"
     numbered: false
     chapters:
-    - file: A-01-Git/VersionControlGit.ipynb
-    - file: A-02-Containers/Docker.ipynb
-    
+    - file: lectures/A-01-Git/VersionControlGit.ipynb
+    - file: lectures/A-02-Containers/Docker.ipynb
