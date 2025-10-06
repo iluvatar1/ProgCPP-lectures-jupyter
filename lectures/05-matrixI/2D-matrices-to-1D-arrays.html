@@ -707,13 +707,13 @@ inside each cell correspond to indexes)</p>
 <p>In a row-major language, like c++, it will be organized as a 1D array, row after row. We want to go through it in the same order, so we want to get a mapping like:</p>
 <a class="reference internal image-reference" href="../../_images/2d-array-memory.png"><img alt="../../_images/2d-array-memory.png" src="../../_images/2d-array-memory.png" style="width: 95%;" /></a>
 <p>This will allow having an <code class="docutils literal notranslate"><span class="pre">MxN</span></code> size 1d array, but interpreting it as a 2D array, using the following mapping</p>
-<div class="amsmath math notranslate nohighlight" id="equation-5fa25a5a-949f-432f-bfeb-d20fb5635c18">
-<span class="eqno">(29)<a class="headerlink" href="#equation-5fa25a5a-949f-432f-bfeb-d20fb5635c18" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-3a2c16ca-ed1a-438a-bd28-caa1de0f13b1">
+<span class="eqno">(29)<a class="headerlink" href="#equation-3a2c16ca-ed1a-438a-bd28-caa1de0f13b1" title="Permalink to this equation">#</a></span>\[\begin{equation}
 id = iN + j,
 \end{equation}\]</div>
 <p>while , from 1D to 2D</p>
-<div class="amsmath math notranslate nohighlight" id="equation-12e6a5f8-dc72-4859-a955-d2c264bd5f93">
-<span class="eqno">(30)<a class="headerlink" href="#equation-12e6a5f8-dc72-4859-a955-d2c264bd5f93" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-5958c649-9ed0-4670-b13a-5ec710db90ca">
+<span class="eqno">(30)<a class="headerlink" href="#equation-5958c649-9ed0-4670-b13a-5ec710db90ca" title="Permalink to this equation">#</a></span>\[\begin{align}
 i &amp;= id/N, // \text{uses integer truncation: 5/3 -&gt; 1 row}\\ 
 j &amp;= id\%N. // \text{the modulus represents here the columns displacement}
 \end{align}\]</div>
@@ -724,8 +724,8 @@ j &amp;= id\%N. // \text{the modulus represents here the columns displacement}
 <section id="practical-example-transposing-a-matrix">
 <h2>Practical Example: transposing a matrix<a class="headerlink" href="#practical-example-transposing-a-matrix" title="Link to this heading">#</a></h2>
 <p>In this example, you will implement a matrix transpose but using 1d arrays. We will use two matrices, <code class="docutils literal notranslate"><span class="pre">A</span></code> and <code class="docutils literal notranslate"><span class="pre">B</span></code>, whose dimensions will be read from the command line, and will be modelled using 1d arrays. We will initialize <code class="docutils literal notranslate"><span class="pre">A</span></code> as</p>
-<div class="amsmath math notranslate nohighlight" id="equation-de60b456-f9b0-4054-8b10-a5a770424631">
-<span class="eqno">(31)<a class="headerlink" href="#equation-de60b456-f9b0-4054-8b10-a5a770424631" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-fe18e01a-2bd0-405c-bbc3-3ea57e738720">
+<span class="eqno">(31)<a class="headerlink" href="#equation-fe18e01a-2bd0-405c-bbc3-3ea57e738720" title="Permalink to this equation">#</a></span>\[\begin{equation}
 A[i][j] = i*N + j;
 \end{equation}\]</div>
 <p>Since <span class="math notranslate nohighlight">\(B = A^T\)</span>, if A is of size <code class="docutils literal notranslate"><span class="pre">MxN</span></code>, then B is of size <code class="docutils literal notranslate"><span class="pre">NxM</span></code> (although their total size is the same, <code class="docutils literal notranslate"><span class="pre">M*N</span></code>). Complete the following code:</p>
