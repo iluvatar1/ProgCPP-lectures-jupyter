@@ -1,0 +1,1366 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Random Numbers &#8212; Introduction to C++ and Numerical Methods</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="../../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../../_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../../_static/exercise.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/tabs.css?v=4c969af8" />
+    <link rel="stylesheet" type="text/css" href="../../_static/proof.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/styles/sphinx-examples.css?v=e236af4b" />
+    <link rel="stylesheet" type="text/css" href="../../_static/css/tooltipster.custom.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/css/tooltipster.bundle.min.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/css/tooltipster-sideTip-shadow.min.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/css/tooltipster-sideTip-punk.min.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/css/tooltipster-sideTip-noir.min.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/css/tooltipster-sideTip-light.min.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/css/tooltipster-sideTip-borderless.min.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/css/micromodal.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-design.min.css?v=95c83b7e" />
+    <link rel="stylesheet" type="text/css" href="../../_static/styles.css?v=03b9d5b1" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="../../_static/jquery.js?v=5d32c60e"></script>
+    <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+    <script src="../../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script src="../../_static/tabs.js?v=3ee01567"></script>
+    <script src="../../_static/js/hoverxref.js"></script>
+    <script src="../../_static/js/tooltipster.bundle.min.js"></script>
+    <script src="../../_static/js/micromodal.min.js"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../../_static/design-tabs.js?v=f930bc37"></script>
+    <script async="async" src="https://www.googletagmanager.com/gtag/js?id=G-DX59QS1P22"></script>
+    <script>
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){ dataLayer.push(arguments); }
+                gtag('js', new Date());
+                gtag('config', 'G-DX59QS1P22');
+            </script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){ dataLayer.push(arguments); }
+                gtag('js', new Date());
+                gtag('config', 'G-DX59QS1P22');
+            </script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'lectures/10-RandomSystems/RandomNumbers';</script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Random numbers in simulations" href="RandomNumbersInSimulations.html" />
+    <link rel="prev" title="Introduction to molecular dynamics through OOP" href="../09-ODE-IVP-OOP-MolecularDynamics/IntroMolecularDynamics.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../../README.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="https://upload.wikimedia.org/wikipedia/commons/1/18/ISO_C%2B%2B_Logo.svg" class="logo__image only-light" alt="Introduction to C++ and Numerical Methods - Home"/>
+    <script>document.write(`<img src="https://upload.wikimedia.org/wikipedia/commons/1/18/ISO_C%2B%2B_Logo.svg" class="logo__image only-dark" alt="Introduction to C++ and Numerical Methods - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../../README.html">
+                    Introduction to C++ and Numerical Methods
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Introduction to C++</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../01-IntroCPP/IntroProgrammingCourse.html">Introduction to Programming and C++</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../01-IntroCPP/Resources.html">Resources</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../01-IntroCPP/CPP-FastPacedIntro.html">Very fast intro to the basics of c++</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Numerical Calculus</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../02-derivatives/NumericalDifferentiation.html">Numerical differentiation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../03-integration/NumericalIntegration_Basics.html">Numerical Integration</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Modern and primitive arrays, and basic Linear Algebra</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../04-vector-containers/ModernArrays.html">Modern arrays</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../05-matrixI/2D-matrices-to-1D-arrays.html">1D Arrays for 2D Matrices</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../06-ArrayComputing/ArrayComputing-Valarray.html">Vector operations: Coefficient-wise , array computing</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Linear Algebra and Numerical Libraries</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../07-LinearAlgebra/LinearAlgebraEigen.html">Linear Systems : Matrices, Vectors, eigen systems</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Ordinary differential equations: Initial value problems</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../08-ODE-IVP/InitialValueProblem.html">Ordinary differential equations (and initial value problems)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../09-ODE-IVP-OOP-MolecularDynamics/IntroMolecularDynamics.html">Introduction to molecular dynamics through OOP</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Random Numbers and Applications</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Random Numbers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="RandomNumbersInSimulations.html">Random numbers in simulations</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Python introduction</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../11-IntroPython/01-IntroProgrammingPython.html">Python Programming (very fast) Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../11-IntroPython/02-IntroProgrammingPython-DataStructs.html">Basic data structures</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../11-IntroPython/03-matplotlib-intro.html">Matplotlib</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../11-IntroPython/04-numpy-basic-reduced.html">Efficient Python arrays : Numpy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../11-IntroPython/05-Scipy.html">SciPy - Library of scientific algorithms for Python</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Appendix</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../A-01-Git/VersionControlGit.html">Git introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../A-02-Containers/Docker.html">Docker Containers - Introductory Lesson</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-launch-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Launch interactive content">
+    <i class="fas fa-rocket"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://mybinder.org/v2/gh/iluvatar1/ProgCPP-lectures-jupyter/master?urlpath=lab/tree/lectures/10-RandomSystems/RandomNumbers.ipynb" target="_blank"
+   class="btn btn-sm dropdown-item"
+   title="Launch on Binder"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  
+    <img alt="Binder logo" src="../../_static/images/logo_binder.svg">
+  </span>
+<span class="btn__text-container">Binder</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://colab.research.google.com/github/iluvatar1/ProgCPP-lectures-jupyter/blob/master/lectures/10-RandomSystems/RandomNumbers.ipynb" target="_blank"
+   class="btn btn-sm dropdown-item"
+   title="Launch on Colab"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  
+    <img alt="Colab logo" src="../../_static/images/logo_colab.png">
+  </span>
+<span class="btn__text-container">Colab</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="initThebeSBT()"
+  class="btn btn-sm btn-launch-thebe dropdown-item"
+  title="Launch Thebe"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-play"></i>
+  </span>
+<span class="btn__text-container">Live Code</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/iluvatar1/ProgCPP-lectures-jupyter" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/iluvatar1/ProgCPP-lectures-jupyter/issues/new?title=Issue%20on%20page%20%2Flectures/10-RandomSystems/RandomNumbers.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../../_sources/lectures/10-RandomSystems/RandomNumbers.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Random Numbers</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#a-simple-example-linear-congruential-random-number-generator">A simple example: Linear congruential Random Number Generator</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#random-number-generators-from-c">Random number generators from C++</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#example-computing-pi">Example: computing <span class="math notranslate nohighlight">\(\pi\)</span></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#computing-the-histogram">Computing the histogram</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#generating-numbers-with-a-given-distribution">Generating numbers with a given distribution</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#inverse-transform-method">Inverse transform method</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#example-exponential-distribution">Example: Exponential distribution</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#rejection-method">Rejection method</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#sampling-regions">Sampling regions</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#computing-multi-dimensional-integrals">Computing multi-dimensional integrals</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#example-2d-integral">Example: 2D Integral</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#example-volume">Example: Volume</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercises">Exercises</a></li>
+</ul>
+</li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="random-numbers">
+<h1>Random Numbers<a class="headerlink" href="#random-numbers" title="Link to this heading">#</a></h1>
+<hr class="docutils" />
+<p>REFS:</p>
+<ul class="simple">
+<li><p>Boudreau, Applied Computational Physics</p></li>
+<li><p>Heath, Scientific Computing</p></li>
+<li><p>Landau y Paez, Computational physics, problem solving with computers</p></li>
+<li><p>Anagnostoupulos, A practical introduction to computational physics and scientific computing</p></li>
+<li><p>Ward, Numerical Mathematicas and Computing</p></li>
+</ul>
+<p>Go to <a class="reference external" href="https://tinyurl.com/ProgCPP-presentations">https://tinyurl.com/ProgCPP-presentations</a> for a presentation regarding the topic.</p>
+<hr class="docutils" />
+<p>Generating random numbers is a very old computer science problem with
+many useful applications. Here we will study how to use the rng (random
+number generators) in c++, and then use to sample regions, compute
+integral, and perform simulations.</p>
+<p>A random number routine is a mathematical rule allows to generate random numbers from a starting point (seed) , numbers which hopefully are</p>
+<ul class="simple">
+<li><p>not correlated</p></li>
+<li><p>have a long period</p></li>
+<li><p>are produced efficiently</p></li>
+</ul>
+<p>Having a general rng for any purpose is not easy task. There are test, like <a class="reference external" href="https://en.wikipedia.org/wiki/TestU01?useskin=vector">https://en.wikipedia.org/wiki/TestU01?useskin=vector</a>, that check for some desirable rng properties. Still some rng are better than others (see <a class="reference external" href="https://www.pcg-random.org/">https://www.pcg-random.org/</a>), and some that might work well for something like MC simulations, might not be ideal for cryptographic applications. In the following, we are going to check the quality of a simple linear congruential random number generator and, then, we are going to check for the C++ specific routines.</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>Do not use the <code class="docutils literal notranslate"><span class="pre">rand</span></code> generator from C. Its quality is noy good.</p>
+</div>
+<figure class="align-center">
+<a class="reference internal image-reference" href="../../_images/intro.png"><img alt="../../_images/intro.png" src="../../_images/intro.png" style="width: 60%;" /></a>
+</figure>
+<section id="a-simple-example-linear-congruential-random-number-generator">
+<h2>A simple example: Linear congruential Random Number Generator<a class="headerlink" href="#a-simple-example-linear-congruential-random-number-generator" title="Link to this heading">#</a></h2>
+<p>Represented by</p>
+<div class="amsmath math notranslate nohighlight" id="equation-eb946d2f-398a-483f-8025-2f951c92d755">
+<span class="eqno">(64)<a class="headerlink" href="#equation-eb946d2f-398a-483f-8025-2f951c92d755" title="Permalink to this equation">#</a></span>\[\begin{equation}
+x' = (ax + c) \mod m,
+\end{equation}\]</div>
+<p>where <span class="math notranslate nohighlight">\(a, c, m\)</span> are integers constants. The random generator quality depends on those constants. There are several proposal for them, check
+<a class="reference external" href="https://en.wikipedia.org/wiki/Linear_congruential_generator">https://en.wikipedia.org/wiki/Linear_congruential_generator</a> .</p>
+<div class="exercise admonition" id="lectures/10-RandomSystems/RandomNumbers-exercise-0">
+
+<p class="admonition-title"><span class="caption-number">Exercise 14 </span></p>
+<section id="exercise-content">
+<!-- <div style="background-color: #f0f7fb; color: #055781; padding: 10px; border-left: 5px solid #055781; font-weight: bold; font-size: 20px; margin: 10px 0;">EXERCISE</div> -->
+<p>To test the procedure, we will use three diferent pairs of constant and apply the following algorithm to all of them:</p>
+<ol class="arabic">
+<li><p>Generate N = 10000 points of the form <span class="math notranslate nohighlight">\((x_i, x_{i+1}, x_{i+2})\)</span>,
+where <span class="math notranslate nohighlight">\(x_{i+1} = (a x_i + c) \mod m\)</span>. In toal you will need to call
+the LCRNG <span class="math notranslate nohighlight">\(3N\)</span> times.</p></li>
+<li><p>Normalize by dividing by <span class="math notranslate nohighlight">\(m-1\)</span> so the points are normalized to
+<span class="math notranslate nohighlight">\([0, 1)\)</span>.</p></li>
+<li><p>Plot it. For gnuplot you can use the command:</p>
+<div class="highlight-gnuplot notranslate"><div class="highlight"><pre><span></span><span class="k">splot</span><span class="w"> </span><span class="s">&#39;data.txt&#39;</span><span class="w"> </span><span class="nb">w</span><span class="w"> </span><span class="n">points</span><span class="w"> </span><span class="n">ps</span><span class="w"> </span><span class="mf">0.1</span><span class="w"> </span><span class="n">pt</span><span class="w"> </span><span class="mi">2</span>
+</pre></div>
+</div>
+</li>
+</ol>
+<p>Use the following constants:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(a = 1277, c = 0, m = 2^{17}\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(a = 1664525, c = 1013904223, m=4294967296\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(a=37, c=0, m=128\)</span></p></li>
+</ul>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="c1">// Implements a simple linear congruential generator (LCG)</span>
+<span class="c1">// to generate random numbers.</span>
+
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;string&gt;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;fstream&gt;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;iostream&gt;</span>
+
+<span class="k">struct</span><span class="w"> </span><span class="nc">LCG</span><span class="w"> </span><span class="p">{</span>
+<span class="w">	</span><span class="kt">unsigned</span><span class="w"> </span><span class="kt">long</span><span class="w"> </span><span class="kt">long</span><span class="w"> </span><span class="n">x</span><span class="p">;</span>
+<span class="w">	</span><span class="kt">unsigned</span><span class="w"> </span><span class="kt">long</span><span class="w"> </span><span class="kt">long</span><span class="w"> </span><span class="n">a</span><span class="p">;</span>
+<span class="w">	</span><span class="kt">unsigned</span><span class="w"> </span><span class="kt">long</span><span class="w"> </span><span class="kt">long</span><span class="w"> </span><span class="n">c</span><span class="p">;</span>
+<span class="w">	</span><span class="kt">unsigned</span><span class="w"> </span><span class="kt">long</span><span class="w"> </span><span class="kt">long</span><span class="w"> </span><span class="n">m</span><span class="p">;</span>
+<span class="p">};</span>
+
+<span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">argc</span><span class="p">,</span><span class="w"> </span><span class="kt">char</span><span class="w"> </span><span class="o">**</span><span class="n">argv</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+
+<span class="w">	</span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">argc</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="mi">7</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">		</span><span class="n">std</span><span class="o">::</span><span class="n">cerr</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;Usage: &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">argv</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot; &lt;seed&gt; &lt;a&gt; &lt;c&gt; &lt;m&gt; &lt;NSAMPLES&gt; &lt;OUT_FNAME&gt;&quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+<span class="w">		</span><span class="k">return</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span>
+<span class="w">	</span><span class="p">}</span>
+
+<span class="w">	</span><span class="n">LCG</span><span class="w"> </span><span class="n">lcg</span><span class="p">;</span>
+<span class="w">	</span><span class="n">lcg</span><span class="p">.</span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">2</span><span class="o">*</span><span class="n">std</span><span class="o">::</span><span class="n">stoull</span><span class="p">(</span><span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">]);</span><span class="w"> </span><span class="c1">// the seed acts as initial value</span>
+<span class="w">	</span><span class="n">lcg</span><span class="p">.</span><span class="n">a</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">stoull</span><span class="p">(</span><span class="n">argv</span><span class="p">[</span><span class="mi">2</span><span class="p">]);</span>
+<span class="w">	</span><span class="n">lcg</span><span class="p">.</span><span class="n">c</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">stoull</span><span class="p">(</span><span class="n">argv</span><span class="p">[</span><span class="mi">3</span><span class="p">]);</span>
+<span class="w">	</span><span class="n">lcg</span><span class="p">.</span><span class="n">m</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">stoull</span><span class="p">(</span><span class="n">argv</span><span class="p">[</span><span class="mi">4</span><span class="p">]);</span>
+<span class="w">	</span><span class="k">const</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">NSAMPLES</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">stoull</span><span class="p">(</span><span class="n">argv</span><span class="p">[</span><span class="mi">5</span><span class="p">]);</span>
+<span class="w">	</span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">fname</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="p">(</span><span class="n">argv</span><span class="p">[</span><span class="mi">6</span><span class="p">]);</span>
+<span class="w">	</span><span class="k">const</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">NCOLS</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">3</span><span class="p">;</span>
+
+<span class="w">	</span><span class="n">std</span><span class="o">::</span><span class="n">ofstream</span><span class="w"> </span><span class="n">fout</span><span class="p">(</span><span class="n">fname</span><span class="p">);</span>
+<span class="w">	</span><span class="c1">// TODO</span>
+
+<span class="w">	</span><span class="n">fout</span><span class="p">.</span><span class="n">close</span><span class="p">();</span>
+
+<span class="w">	</span><span class="k">return</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>For the first and second cases you should get something like</p>
+<!-- |First case|Second case|
+|-|-|
+|<img src="fig-RandomNumbers/bad-lcg.png" alt="" width="90%" align="center">|<img src="fig-RandomNumbers/good-lcg.png" alt="" width="90%" align="center">| -->
+<figure class="align-center" id="bad-case">
+<a class="reference internal image-reference" href="../../_images/bad-lcg.png"><img alt="../../_images/bad-lcg.png" src="../../_images/bad-lcg.png" style="width: 50%;" /></a>
+</figure>
+</section>
+</div>
+<figure class="align-center" id="good-case">
+<a class="reference internal image-reference" href="../../_images/good-lcg.png"><img alt="../../_images/good-lcg.png" src="../../_images/good-lcg.png" style="width: 50%;" /></a>
+</figure>
+<div class="docutils">
+</div>
+</section>
+<section id="random-number-generators-from-c">
+<h2>Random number generators from C++<a class="headerlink" href="#random-number-generators-from-c" title="Link to this heading">#</a></h2>
+<p>Since C++ 11, there are several waves to generate random numbers and there is standard header, to do so, and which is much more general and powerful than the simple rand function. As  described in <a class="reference external" href="https://en.cppreference.com/w/cpp/numeric/random">https://en.cppreference.com/w/cpp/numeric/random</a>, generally you will need three tools: a random device, or a seed, to initialize the random sequence; a random engine, to generate random bits, and a random generator which uses the random engine to produce random numbers with a given distribution.</p>
+<p>The following shows overview of the random number distributions that you can use from the C++ standard library:</p>
+<a class="reference internal image-reference" href="https://hackingcpp.com/cpp/std/random_distributions.png"><img alt="rng c++" class="align-center" src="https://hackingcpp.com/cpp/std/random_distributions.png" style="width: 60%;" /></a>
+<p>You can also handle integer or discrete distributions,</p>
+<a class="reference internal image-reference" href="https://hackingcpp.com/cpp/std/random_sampling_distributions.png"><img alt="discrete rng c++" class="align-center" src="https://hackingcpp.com/cpp/std/random_sampling_distributions.png" style="width: 60%;" /></a>
+<p>A more detailed illustration can be found at <a class="reference external" href="https://hackingcpp.com/cpp/std/random.html">https://hackingcpp.com/cpp/std/random.html</a></p>
+<p>If we want, for instance, to generate random numbers uniformly distributed on the interval <code class="docutils literal notranslate"><span class="pre">[a,</span> <span class="pre">b)</span></code> (notice the open value at the right), we can use the <code class="docutils literal notranslate"><span class="pre">uniform_real_distribution</span></code> generator as</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;iostream&gt;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;fstream&gt;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;random&gt;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;string&gt;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;map&gt;</span>
+
+<span class="k">using</span><span class="w"> </span><span class="n">param_t</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">map</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="p">,</span><span class="w"> </span><span class="kt">double</span><span class="o">&gt;</span><span class="w"> </span><span class="p">;</span>
+
+<span class="kt">void</span><span class="w"> </span><span class="nf">check_args</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">argc</span><span class="p">,</span><span class="w"> </span><span class="kt">char</span><span class="w"> </span><span class="o">**</span><span class="n">argv</span><span class="p">);</span>
+<span class="kt">void</span><span class="w"> </span><span class="nf">generate_samples</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">seed</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">nsamples</span><span class="p">,</span><span class="w"> </span><span class="n">param_t</span><span class="w"> </span><span class="o">&amp;</span><span class="n">p</span><span class="p">);</span>
+
+<span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">argc</span><span class="p">,</span><span class="w"> </span><span class="kt">char</span><span class="w"> </span><span class="o">**</span><span class="n">argv</span><span class="p">)</span>
+<span class="p">{</span>
+<span class="w">	</span><span class="n">check_args</span><span class="p">(</span><span class="n">argc</span><span class="p">,</span><span class="w"> </span><span class="n">argv</span><span class="p">);</span>
+<span class="w">	</span><span class="n">param_t</span><span class="w"> </span><span class="n">params</span><span class="p">;</span><span class="w"> </span><span class="c1">// Store the read params here</span>
+
+<span class="w">	</span><span class="k">const</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">SEED</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">stoi</span><span class="p">(</span><span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">]);;</span>
+<span class="w">	</span><span class="k">const</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">SAMPLES</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">stoi</span><span class="p">(</span><span class="n">argv</span><span class="p">[</span><span class="mi">2</span><span class="p">]);</span>
+<span class="w">	</span><span class="n">params</span><span class="p">[</span><span class="s">&quot;A&quot;</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">stod</span><span class="p">(</span><span class="n">argv</span><span class="p">[</span><span class="mi">3</span><span class="p">]);;</span>
+<span class="w">	</span><span class="n">params</span><span class="p">[</span><span class="s">&quot;B&quot;</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">stod</span><span class="p">(</span><span class="n">argv</span><span class="p">[</span><span class="mi">4</span><span class="p">]);</span>
+
+<span class="w">	</span><span class="n">generate_samples</span><span class="p">(</span><span class="n">SEED</span><span class="p">,</span><span class="w"> </span><span class="n">SAMPLES</span><span class="p">,</span><span class="w"> </span><span class="n">params</span><span class="p">);</span>
+
+<span class="w">	</span><span class="k">return</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kt">void</span><span class="w"> </span><span class="nf">check_args</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">argc</span><span class="p">,</span><span class="w"> </span><span class="kt">char</span><span class="w"> </span><span class="o">**</span><span class="n">argv</span><span class="p">)</span>
+<span class="p">{</span>
+<span class="w">	</span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="mi">5</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="n">argc</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">		</span><span class="n">std</span><span class="o">::</span><span class="n">cerr</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;Error. Usage: </span><span class="se">\n</span><span class="s">&quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">argv</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot; SEED SAMPLES A B</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">;</span>
+<span class="w">		</span><span class="n">exit</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>
+<span class="w">	</span><span class="p">}</span>
+<span class="p">}</span>
+
+<span class="kt">void</span><span class="w"> </span><span class="nf">generate_samples</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">seed</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">nsamples</span><span class="p">,</span><span class="w"> </span><span class="n">param_t</span><span class="w"> </span><span class="o">&amp;</span><span class="n">p</span><span class="p">)</span>
+<span class="p">{</span>
+<span class="w">    </span><span class="c1">// TODO</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<div class="exercise admonition" id="lectures/10-RandomSystems/RandomNumbers-exercise-1">
+
+<p class="admonition-title"><span class="caption-number">Exercise 15 </span></p>
+<section id="exercise-content">
+<p>Plot the random samples in gnuplot. Play with other two-parameter distributions.</p>
+</section>
+</div>
+</section>
+<section id="example-computing-pi">
+<h2>Example: computing <span class="math notranslate nohighlight">\(\pi\)</span><a class="headerlink" href="#example-computing-pi" title="Link to this heading">#</a></h2>
+<p>You can approximate \pi by estimating the area of a circle inscribed in a square. To do so, generate <span class="math notranslate nohighlight">\(N\)</span> pairs of random numbers in the square,  and count the numbers that fall inside the inner circunscribed circle, <span class="math notranslate nohighlight">\(N_c\)</span>. Since the areas of either the circle or the square can be estimated by counting the points inside each, then</p>
+<div class="amsmath math notranslate nohighlight" id="equation-ca2ece57-a169-48ad-b74a-143c4a0190d0">
+<span class="eqno">(65)<a class="headerlink" href="#equation-ca2ece57-a169-48ad-b74a-143c4a0190d0" title="Permalink to this equation">#</a></span>\[\begin{equation}
+\frac{Ac}{As} = \frac{\pi r^2}{(2r)^2} = \frac{\pi}{4} \simeq \frac{Nc}{N},
+\end{equation}\]</div>
+<p>so</p>
+<div class="amsmath math notranslate nohighlight" id="equation-f7e84134-80b5-414b-bf36-ed099c17400b">
+<span class="eqno">(66)<a class="headerlink" href="#equation-f7e84134-80b5-414b-bf36-ed099c17400b" title="Permalink to this equation">#</a></span>\[\begin{equation}
+\pi \simeq 4\frac{N}{N_c}.
+\end{equation}\]</div>
+<div class="exercise admonition" id="lectures/10-RandomSystems/RandomNumbers-exercise-2">
+
+<p class="admonition-title"><span class="caption-number">Exercise 16 </span></p>
+<section id="exercise-content">
+<p>Create a program to approximate <span class="math notranslate nohighlight">\(\pi\)</span>. The program must read the number of of samples to generate and print the approximate pi-value  in scientific notation and at least 10 decimal places.</p>
+</section>
+</div>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;random&gt;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;print&gt;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;cmath&gt;</span>
+
+<span class="kt">double</span><span class="w"> </span><span class="nf">compute_pi</span><span class="p">(</span><span class="kt">long</span><span class="w"> </span><span class="kt">long</span><span class="w"> </span><span class="n">samples</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">seed</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">10</span><span class="p">;</span>
+<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">mt19937</span><span class="w"> </span><span class="n">gen</span><span class="p">(</span><span class="n">seed</span><span class="p">);</span>
+<span class="c1">// TODO</span>
+
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="mf">4.0</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">inside_circle</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="k">static_cast</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;</span><span class="p">(</span><span class="n">samples</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">argc</span><span class="p">,</span><span class="w"> </span><span class="kt">char</span><span class="o">*</span><span class="w"> </span><span class="n">argv</span><span class="p">[])</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">argc</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="mi">2</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">std</span><span class="o">::</span><span class="n">print</span><span class="p">(</span><span class="s">&quot;Usage: {} &lt;number_of_samples&gt;</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">argv</span><span class="p">[</span><span class="mi">0</span><span class="p">]);</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="kt">long</span><span class="w"> </span><span class="kt">long</span><span class="w"> </span><span class="n">samples</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">stoll</span><span class="p">(</span><span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">]);</span>
+<span class="w">    </span><span class="kt">double</span><span class="w"> </span><span class="n">pi_approx</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">compute_pi</span><span class="p">(</span><span class="n">samples</span><span class="p">);</span>
+<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">print</span><span class="p">(</span><span class="s">&quot;{:.10e}</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">pi_approx</span><span class="p">);</span>
+
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<section id="computing-the-histogram">
+<h3>Computing the histogram<a class="headerlink" href="#computing-the-histogram" title="Link to this heading">#</a></h3>
+<p>A histogram is basically counter that counts how many samples fall into a bin or box. A histogram needs a minimum or a maximum limit and also a number of bins. Then you can just count how many samples for into a single bin I’m from that you can estimate for instance, the probability density function or the cummulative probability, or whatever you need.</p>
+<p>The following program shows how to compute the histogram from samples read from a file (create first a file with the random samples), and then print a pdf from the histogram (you have to complete some parts). If I have a count histogram, <span class="math notranslate nohighlight">\(c_i\)</span>, the probability can be estimated as <span class="math notranslate nohighlight">\(p_i = c_i/\sum_i c_i\)</span>. And the the probability density function as <span class="math notranslate nohighlight">\(\text{pdf}_i = p_i/\Delta x\)</span>, where <span class="math notranslate nohighlight">\(\Delta x\)</span> is the bin width.</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;iostream&gt;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;fstream&gt;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;random&gt;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;string&gt;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;vector&gt;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;map&gt;</span>
+
+<span class="c1">// to store params of different type, ;)</span>
+<span class="k">struct</span><span class="w"> </span><span class="nc">param_t</span>
+<span class="p">{</span>
+<span class="w">	</span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">IFNAME</span><span class="p">;</span>
+<span class="w">	</span><span class="kt">double</span><span class="w"> </span><span class="n">XMIN</span><span class="p">;</span>
+<span class="w">	</span><span class="kt">double</span><span class="w"> </span><span class="n">XMAX</span><span class="p">;</span>
+<span class="w">	</span><span class="kt">int</span><span class="w"> </span><span class="n">NBINS</span><span class="p">;</span>
+<span class="w">	</span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">OFNAME</span><span class="p">;</span>
+<span class="p">};</span>
+
+<span class="c1">// forward declarations</span>
+<span class="kt">void</span><span class="w"> </span><span class="nf">check_args</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">argc</span><span class="p">,</span><span class="w"> </span><span class="kt">char</span><span class="w"> </span><span class="o">**</span><span class="n">argv</span><span class="p">,</span><span class="w"> </span><span class="n">param_t</span><span class="w"> </span><span class="o">&amp;</span><span class="n">params</span><span class="p">);</span>
+<span class="kt">void</span><span class="w"> </span><span class="nf">compute_histogram</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">param_t</span><span class="w"> </span><span class="o">&amp;</span><span class="n">params</span><span class="p">);</span>
+
+<span class="c1">// main function</span>
+<span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">argc</span><span class="p">,</span><span class="w"> </span><span class="kt">char</span><span class="w"> </span><span class="o">**</span><span class="n">argv</span><span class="p">)</span>
+<span class="p">{</span>
+<span class="w">	</span><span class="n">param_t</span><span class="w"> </span><span class="n">p</span><span class="p">;</span>
+<span class="w">	</span><span class="n">check_args</span><span class="p">(</span><span class="n">argc</span><span class="p">,</span><span class="w"> </span><span class="n">argv</span><span class="p">,</span><span class="w"> </span><span class="n">p</span><span class="p">);</span>
+
+<span class="w">	</span><span class="n">compute_histogram</span><span class="p">(</span><span class="n">p</span><span class="p">);</span>
+<span class="w">	</span><span class="k">return</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="c1">// function definitions</span>
+
+<span class="kt">void</span><span class="w"> </span><span class="nf">check_args</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">argc</span><span class="p">,</span><span class="w"> </span><span class="kt">char</span><span class="w"> </span><span class="o">**</span><span class="n">argv</span><span class="p">,</span><span class="w"> </span><span class="n">param_t</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">p</span><span class="p">)</span>
+<span class="p">{</span>
+<span class="w">	</span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="mi">6</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="n">argc</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">		</span><span class="n">std</span><span class="o">::</span><span class="n">cerr</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;Error. Usage:</span><span class="se">\n</span><span class="s">&quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">argv</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot; SAMPLES_FNAME XMIN XMAX NBINS HISTO_FNAME</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">;</span>
+<span class="w">		</span><span class="n">exit</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>
+<span class="w">	</span><span class="p">}</span>
+
+<span class="w">	</span><span class="n">p</span><span class="p">.</span><span class="n">IFNAME</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="p">(</span><span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">]);</span>
+<span class="w">	</span><span class="n">p</span><span class="p">.</span><span class="n">XMIN</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">stod</span><span class="p">(</span><span class="n">argv</span><span class="p">[</span><span class="mi">2</span><span class="p">]);</span>
+<span class="w">	</span><span class="n">p</span><span class="p">.</span><span class="n">XMAX</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">stod</span><span class="p">(</span><span class="n">argv</span><span class="p">[</span><span class="mi">3</span><span class="p">]);</span>
+<span class="w">	</span><span class="n">p</span><span class="p">.</span><span class="n">NBINS</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">atoi</span><span class="p">(</span><span class="n">argv</span><span class="p">[</span><span class="mi">4</span><span class="p">]);</span>
+<span class="w">	</span><span class="n">p</span><span class="p">.</span><span class="n">OFNAME</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="p">(</span><span class="n">argv</span><span class="p">[</span><span class="mi">5</span><span class="p">]);</span>
+<span class="p">}</span>
+
+<span class="kt">void</span><span class="w"> </span><span class="nf">compute_histogram</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">param_t</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">p</span><span class="p">)</span>
+<span class="p">{</span>
+<span class="w">	</span><span class="kt">double</span><span class="w"> </span><span class="n">DX</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">p</span><span class="p">.</span><span class="n">XMAX</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">p</span><span class="p">.</span><span class="n">XMIN</span><span class="p">)</span><span class="o">/</span><span class="n">p</span><span class="p">.</span><span class="n">NBINS</span><span class="p">;</span>
+
+<span class="w">	</span><span class="n">std</span><span class="o">::</span><span class="n">ifstream</span><span class="w"> </span><span class="n">fin</span><span class="p">(</span><span class="n">p</span><span class="p">.</span><span class="n">IFNAME</span><span class="p">);</span>
+<span class="w">	</span><span class="kt">double</span><span class="w"> </span><span class="n">x</span><span class="p">;</span>
+<span class="w">	</span><span class="kt">int</span><span class="w"> </span><span class="n">nsamples</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="w">	</span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;</span><span class="w"> </span><span class="n">histo</span><span class="p">(</span><span class="n">p</span><span class="p">.</span><span class="n">NBINS</span><span class="p">,</span><span class="w"> </span><span class="mf">0.0</span><span class="p">);</span>
+<span class="w">	</span><span class="k">while</span><span class="w"> </span><span class="p">(</span><span class="n">fin</span><span class="w"> </span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="n">x</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">		</span><span class="n">nsamples</span><span class="o">++</span><span class="p">;</span>
+<span class="w">		</span><span class="kt">int</span><span class="w"> </span><span class="n">bin</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kt">int</span><span class="p">((</span><span class="n">x</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">p</span><span class="p">.</span><span class="n">XMIN</span><span class="p">)</span><span class="o">/</span><span class="n">DX</span><span class="p">);</span><span class="w"> </span><span class="c1">// compute the bin where the sample lies</span>
+<span class="w">		</span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="mi">0</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="n">bin</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">bin</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">p</span><span class="p">.</span><span class="n">NBINS</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="c1">// check if the bin is included</span>
+<span class="w">			</span><span class="n">histo</span><span class="p">[</span><span class="n">bin</span><span class="p">]</span><span class="o">++</span><span class="p">;</span><span class="w"> </span><span class="c1">// increase the counter in that bin</span>
+<span class="w">		</span><span class="p">}</span>
+<span class="w">	</span><span class="p">}</span>
+<span class="w">	</span><span class="n">fin</span><span class="p">.</span><span class="n">close</span><span class="p">();</span>
+
+<span class="w">	</span><span class="c1">// TODO: write the pdf to the output file</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<div class="exercise admonition" id="lectures/10-RandomSystems/RandomNumbers-exercise-3">
+
+<p class="admonition-title"><span class="caption-number">Exercise 17 </span></p>
+<section id="exercise-content">
+<p>Compute the CDF (cummulative distribution function). See <a class="reference external" href="https://en.wikipedia.org/wiki/Gamma_distribution">https://en.wikipedia.org/wiki/Gamma_distribution</a> and  <a class="reference external" href="https://en.wikipedia.org/wiki/Cumulative_distribution_function">https://en.wikipedia.org/wiki/Cumulative_distribution_function</a></p>
+</section>
+</div>
+</section>
+</section>
+<section id="generating-numbers-with-a-given-distribution">
+<h2>Generating numbers with a given distribution<a class="headerlink" href="#generating-numbers-with-a-given-distribution" title="Link to this heading">#</a></h2>
+<p>If your distribution is not on those already implemented, you will a method to generate variates, like the <a class="reference external" href="https://en.wikipedia.org/wiki/Rejection_sampling#Algorithm">Rejection method</a>, <a class="reference external" href="https://en.wikipedia.org/wiki/Ratio_of_uniforms">Ratio of uniforms</a>, the <a class="reference external" href="https://en.wikipedia.org/wiki/Inverse_transform_sampling">inverse transform method</a>, or <a class="reference external" href="https://en.wikipedia.org/wiki/Non-uniform_random_variate_generation">many others</a>. If you have the analytical distribution, you can apply the inverse transform method, based in the probability conservation, to generate the target distribution from a uniform distribution in <code class="docutils literal notranslate"><span class="pre">[0,</span> <span class="pre">1)</span></code> .</p>
+<section id="inverse-transform-method">
+<h3>Inverse transform method<a class="headerlink" href="#inverse-transform-method" title="Link to this heading">#</a></h3>
+<p>In this case we are able to estimate, theoretically, the inverse cummulative distribution of the target distribution, and from it we can generate samples. Check <a class="reference external" href="https://en.wikipedia.org/wiki/Inverse_transform_sampling">inverse transform method</a></p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Inverse method illustration</p></th>
+<th class="head"><p>Animation</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><a class="reference internal" href="https://upload.wikimedia.org/wikipedia/commons/8/87/Generalized_inversion_method.svg"><img alt="inverse rng" class="align-center" src="https://upload.wikimedia.org/wikipedia/commons/8/87/Generalized_inversion_method.svg" style="width: 80%;" /></a></p></td>
+<td><p><a class="reference internal" href="https://upload.wikimedia.org/wikipedia/commons/c/cc/Inverse_Transform_Sampling_Example.gif"><img alt="inverse rng" class="align-center" src="https://upload.wikimedia.org/wikipedia/commons/c/cc/Inverse_Transform_Sampling_Example.gif" style="width: 90%;" /></a></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="example-exponential-distribution">
+<h3>Example: Exponential distribution<a class="headerlink" href="#example-exponential-distribution" title="Link to this heading">#</a></h3>
+<p>In this case you want to invert the cumulative probability function. Let’s say that you have an exponential distribution, whose density is</p>
+<div class="amsmath math notranslate nohighlight" id="equation-28b4825d-3f4c-43ce-a5c7-b8910bcfbd73">
+<span class="eqno">(67)<a class="headerlink" href="#equation-28b4825d-3f4c-43ce-a5c7-b8910bcfbd73" title="Permalink to this equation">#</a></span>\[\begin{equation}
+f(t) = \lambda e^{-\lambda t}, t &gt; 0
+\end{equation}\]</div>
+<p>whose cumulative distribution is</p>
+<div class="amsmath math notranslate nohighlight" id="equation-6349b5da-4eb3-4a0e-9197-b77452af9a42">
+<span class="eqno">(68)<a class="headerlink" href="#equation-6349b5da-4eb3-4a0e-9197-b77452af9a42" title="Permalink to this equation">#</a></span>\[\begin{equation}
+F(x) = \int_0^x f(t) dt = 1 - e^{-\lambda x} = z.
+\end{equation}\]</div>
+<p>Now, the cumulative distribution is in the range <span class="math notranslate nohighlight">\([0, 1)\)</span>. If we equate it to a uniform random number in the same interval, <span class="math notranslate nohighlight">\(z = F(x)\)</span>, then we can invert this expression and obtain <span class="math notranslate nohighlight">\(x = F^{-1}(z)\)</span>. For the exponential distribution we get</p>
+<div class="amsmath math notranslate nohighlight" id="equation-97308561-0376-4656-a2c9-2ec9bc8fa8a3">
+<span class="eqno">(69)<a class="headerlink" href="#equation-97308561-0376-4656-a2c9-2ec9bc8fa8a3" title="Permalink to this equation">#</a></span>\[\begin{equation}
+x = -\frac{\ln (1-z)}{\lambda}
+\end{equation}\]</div>
+<div class="exercise admonition" id="lectures/10-RandomSystems/RandomNumbers-exercise-4">
+
+<p class="admonition-title"><span class="caption-number">Exercise 18 </span></p>
+<section id="exercise-content">
+<p>Generate N random samples, following the exponential distribution, but using the inverse transform method. Show the histogram.</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;iostream&gt;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;fstream&gt;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;random&gt;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;string&gt;</span>
+
+<span class="kt">double</span><span class="w"> </span><span class="nf">f</span><span class="p">(</span><span class="kt">double</span><span class="w"> </span><span class="n">x</span><span class="p">);</span>
+
+<span class="kt">void</span><span class="w"> </span><span class="nf">exponential_inverse_method</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">seed</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">samples</span><span class="p">,</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">fname</span><span class="p">,</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="n">mylambda</span><span class="p">);</span>
+
+<span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">argc</span><span class="p">,</span><span class="w"> </span><span class="kt">char</span><span class="w"> </span><span class="o">**</span><span class="n">argv</span><span class="p">)</span>
+<span class="p">{</span>
+<span class="w">	</span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">argc</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="mi">5</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">		</span><span class="n">std</span><span class="o">::</span><span class="n">cerr</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;Usage: &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">argv</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot; &lt;seed&gt; &lt;samples&gt; &lt;fname&gt; &lt;lambda&gt;</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">;</span>
+<span class="w">		</span><span class="k">return</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span>
+<span class="w">	</span><span class="p">}</span>
+
+<span class="w">	</span><span class="k">const</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">SEED</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">stoi</span><span class="p">(</span><span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">]);;</span>
+<span class="w">	</span><span class="k">const</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">SAMPLES</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">stoi</span><span class="p">(</span><span class="n">argv</span><span class="p">[</span><span class="mi">2</span><span class="p">]);</span>
+<span class="w">	</span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">fname</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">argv</span><span class="p">[</span><span class="mi">3</span><span class="p">];</span>
+<span class="w">	</span><span class="k">const</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="n">mylambda</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">stod</span><span class="p">(</span><span class="n">argv</span><span class="p">[</span><span class="mi">4</span><span class="p">]);</span>
+
+<span class="w">	</span><span class="n">exponential_inverse_method</span><span class="p">(</span><span class="n">SEED</span><span class="p">,</span><span class="w"> </span><span class="n">SAMPLES</span><span class="p">,</span><span class="w"> </span><span class="n">fname</span><span class="p">,</span><span class="w"> </span><span class="n">mylambda</span><span class="p">);</span>
+
+<span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+
+
+<span class="kt">void</span><span class="w"> </span><span class="nf">exponential_inverse_method</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">seed</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">samples</span><span class="p">,</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">fname</span><span class="p">,</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="n">mylambda</span><span class="p">)</span>
+<span class="p">{</span>
+<span class="w">	</span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;Generating exponential random numbers using inverse method</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">;</span>
+<span class="w">	</span><span class="c1">// TODO</span>
+<span class="w">	</span><span class="n">std</span><span class="o">::</span><span class="n">mt19937</span><span class="w"> </span><span class="n">gen</span><span class="p">(</span><span class="n">seed</span><span class="p">);</span>
+<span class="w">	</span><span class="n">std</span><span class="o">::</span><span class="n">ofstream</span><span class="w"> </span><span class="n">fout</span><span class="p">(</span><span class="n">fname</span><span class="p">);</span>
+
+
+<span class="w">	</span><span class="n">fout</span><span class="p">.</span><span class="n">close</span><span class="p">();</span>
+<span class="w">	</span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;Done. Check the file &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">fname</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</section>
+</div>
+</section>
+<section id="rejection-method">
+<h3>Rejection method<a class="headerlink" href="#rejection-method" title="Link to this heading">#</a></h3>
+<p>In the <a class="reference external" href="https://en.wikipedia.org/wiki/Rejection_sampling#Algorithm">Rejection method</a> one uses another auxiliary distribution to compute samples with the target distribution. The general algorithm is as follows (from Wikipedia)</p>
+<ul class="simple">
+<li><p>Sample a point on the x‑axis from the proposal distribution.</p></li>
+<li><p>Draw a vertical line at this x‑position, up to the maximum y-value of the probability density function of the proposal distribution.</p></li>
+<li><p>Sample uniformly along this line from 0 to the maximum of the probability density function. If the sampled value is greater than the value of the desired distribution at this vertical line, reject the x ‑value and return to step 1; else the x‑value is a sample from the desired distribution.</p></li>
+</ul>
+<p>You can check more at <a class="reference external" href="https://bookdown.org/rdpeng/advstatcomp/rejection-sampling.html">https://bookdown.org/rdpeng/advstatcomp/rejection-sampling.html</a></p>
+<p>For instance, if we want to generate samples with the pdf</p>
+<div class="amsmath math notranslate nohighlight" id="equation-95b33aac-1de2-42ce-8358-4ebda17baeac">
+<span class="eqno">(70)<a class="headerlink" href="#equation-95b33aac-1de2-42ce-8358-4ebda17baeac" title="Permalink to this equation">#</a></span>\[\begin{equation}
+f(x) = \frac{3}{4} (1 - x^2).
+\end{equation}\]</div>
+<p>Since this is always than 3.0/4.0, we can use , as auxiliary,</p>
+<div class="amsmath math notranslate nohighlight" id="equation-4dd5de66-f753-4dd8-8675-9467a6e9a472">
+<span class="eqno">(71)<a class="headerlink" href="#equation-4dd5de66-f753-4dd8-8675-9467a6e9a472" title="Permalink to this equation">#</a></span>\[\begin{equation}
+g(x) = 3/4. 
+\end{equation}\]</div>
+<p>So, we generate a random sample <span class="math notranslate nohighlight">\(x\)</span> in <span class="math notranslate nohighlight">\([-1, 1)\)</span> (where <span class="math notranslate nohighlight">\(f\)</span> is defined), then generate a uniform <span class="math notranslate nohighlight">\(r\)</span>, and accept only if <span class="math notranslate nohighlight">\(r &lt; f(x) \)</span>.</p>
+<div class="exercise admonition" id="lectures/10-RandomSystems/RandomNumbers-exercise-5">
+
+<p class="admonition-title"><span class="caption-number">Exercise 19 </span></p>
+<section id="exercise-content">
+<p>Implement rejection sampling for the previous example and plot the histogram.</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;iostream&gt;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;fstream&gt;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;random&gt;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;string&gt;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;vector&gt;</span>
+
+<span class="kt">double</span><span class="w"> </span><span class="nf">f</span><span class="p">(</span><span class="kt">double</span><span class="w"> </span><span class="n">x</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">	</span><span class="k">return</span><span class="w"> </span><span class="mf">3.0</span><span class="o">*</span><span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">x</span><span class="o">*</span><span class="n">x</span><span class="p">)</span><span class="o">/</span><span class="mf">4.0</span><span class="p">;</span>
+<span class="p">}</span>
+
+
+<span class="kt">void</span><span class="w"> </span><span class="nf">rejection</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">seed</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">nsamples</span><span class="p">,</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">fname</span><span class="p">);</span>
+
+
+<span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">argc</span><span class="p">,</span><span class="w"> </span><span class="kt">char</span><span class="w"> </span><span class="o">**</span><span class="n">argv</span><span class="p">)</span>
+<span class="p">{</span>
+<span class="w">	</span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">argc</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="mi">4</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">		</span><span class="n">std</span><span class="o">::</span><span class="n">cerr</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;Usage: &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">argv</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot; &lt;seed&gt; &lt;samples&gt; &lt;filename&gt;</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">;</span>
+<span class="w">		</span><span class="k">return</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span>
+<span class="w">	</span><span class="p">}</span>
+
+<span class="w">	</span><span class="k">const</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">SEED</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">stoi</span><span class="p">(</span><span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">]);;</span>
+<span class="w">	</span><span class="k">const</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">SAMPLES</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">stoi</span><span class="p">(</span><span class="n">argv</span><span class="p">[</span><span class="mi">2</span><span class="p">]);</span>
+<span class="w">	</span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">FNAME</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">argv</span><span class="p">[</span><span class="mi">3</span><span class="p">];</span>
+
+<span class="w">	</span><span class="n">rejection</span><span class="p">(</span><span class="n">SEED</span><span class="p">,</span><span class="w"> </span><span class="n">SAMPLES</span><span class="p">,</span><span class="w"> </span><span class="n">FNAME</span><span class="p">);</span>
+
+<span class="w">	</span><span class="k">return</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kt">void</span><span class="w"> </span><span class="nf">rejection</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">seed</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">nsamples</span><span class="p">,</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">fname</span><span class="p">)</span>
+<span class="p">{</span>
+<span class="w">	</span><span class="c1">// TODO</span>
+
+<span class="p">}</span>
+</pre></div>
+</div>
+</section>
+</div>
+</section>
+</section>
+<section id="sampling-regions">
+<h2>Sampling regions<a class="headerlink" href="#sampling-regions" title="Link to this heading">#</a></h2>
+<p>Let’s assume that you want to generate random samples uniformly distributed inside the ellipse <span class="math notranslate nohighlight">\(x^2 + 4y^2 = 4\)</span>.  To do so, you can just use rejection sampling as before, using as limits the limits of the rectangle circumscribing the ellipse, or even optimize, by not generating samples across the whole rectangle but inside the region (for a given <span class="math notranslate nohighlight">\(x\)</span>, generate <span class="math notranslate nohighlight">\(y\)</span> in <span class="math notranslate nohighlight">\([-\sqrt{1-x^2/4}, +\sqrt{1-x^2/4})\)</span>. Are the results the same?</p>
+<ol class="arabic simple">
+<li><p>Generate random numbers <span class="math notranslate nohighlight">\(-2 \le x \le 2\)</span>, and <span class="math notranslate nohighlight">\(-1 \le y \le 1\)</span>, reject those outside the region.</p></li>
+<li><p>As another approach, do the same but, to avoid wasting number, generate <span class="math notranslate nohighlight">\(|y| \le \frac{1}{2}\sqrt{4-x^2}\)</span> so you always accept it.</p></li>
+</ol>
+<p>Do you notice any difference?</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;iostream&gt;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;fstream&gt;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;cmath&gt;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;random&gt;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;string&gt;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;vector&gt;</span>
+
+<span class="kt">double</span><span class="w"> </span><span class="nf">f</span><span class="p">(</span><span class="kt">double</span><span class="w"> </span><span class="n">x</span><span class="p">);</span>
+<span class="kt">void</span><span class="w"> </span><span class="nf">generate_in_region</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">seed</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">nsamples</span><span class="p">,</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">fname</span><span class="p">);</span>
+<span class="kt">bool</span><span class="w"> </span><span class="nf">in_region</span><span class="p">(</span><span class="kt">double</span><span class="w"> </span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="n">y</span><span class="p">);</span>
+
+
+<span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">argc</span><span class="p">,</span><span class="w"> </span><span class="kt">char</span><span class="w"> </span><span class="o">**</span><span class="n">argv</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+
+<span class="w">	</span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">argc</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="mi">4</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">		</span><span class="n">std</span><span class="o">::</span><span class="n">cerr</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;Usage: &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">argv</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot; &lt;seed&gt; &lt;samples&gt; &lt;output file&gt;&quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+<span class="w">		</span><span class="k">return</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span>
+<span class="w">	</span><span class="p">}</span>
+
+<span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">SEED</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">stoi</span><span class="p">(</span><span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">]);;</span>
+<span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">SAMPLES</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">stoi</span><span class="p">(</span><span class="n">argv</span><span class="p">[</span><span class="mi">2</span><span class="p">]);</span>
+<span class="w">	</span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">fname</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">argv</span><span class="p">[</span><span class="mi">3</span><span class="p">];</span>
+
+<span class="w">	</span><span class="n">generate_in_region</span><span class="p">(</span><span class="n">SEED</span><span class="p">,</span><span class="w"> </span><span class="n">SAMPLES</span><span class="p">,</span><span class="w"> </span><span class="n">fname</span><span class="p">);</span>
+
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kt">bool</span><span class="w"> </span><span class="nf">in_region</span><span class="p">(</span><span class="kt">double</span><span class="w"> </span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="n">y</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="c1">// TODO</span>
+<span class="p">}</span>
+
+
+<span class="kt">void</span><span class="w"> </span><span class="nf">generate_in_region</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">seed</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">nsamples</span><span class="p">,</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">fname</span><span class="p">)</span>
+<span class="p">{</span>
+<span class="w">	</span><span class="c1">// TODO</span>
+
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>This is a simple example of what you can get with both approaches</p>
+<figure class="align-center">
+<a class="reference internal image-reference" href="../../_images/ellipse-good.png"><img alt="../../_images/ellipse-good.png" src="../../_images/ellipse-good.png" style="width: 40%;" /></a>
+</figure>
+<p>|</p>
+<figure class="align-center">
+<a class="reference internal image-reference" href="../../_images/ellipse-bad.png"><img alt="../../_images/ellipse-bad.png" src="../../_images/ellipse-bad.png" style="width: 40%;" /></a>
+</figure>
+<p>|</p>
+<div class="exercise admonition" id="lectures/10-RandomSystems/RandomNumbers-exercise-6">
+
+<p class="admonition-title"><span class="caption-number">Exercise 20 </span></p>
+<section id="exercise-content">
+<p>Now generate random number uniformly distributed inside a triange.</p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;iostream&gt;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;fstream&gt;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;cmath&gt;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;random&gt;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;string&gt;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;vector&gt;</span>
+
+<span class="kt">bool</span><span class="w"> </span><span class="nf">in_region</span><span class="p">(</span><span class="kt">double</span><span class="w"> </span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="n">y</span><span class="p">);</span>
+<span class="kt">void</span><span class="w"> </span><span class="nf">generate_in_region</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">seed</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">nsamples</span><span class="p">,</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">fname</span><span class="p">);</span>
+
+
+<span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">argc</span><span class="p">,</span><span class="w"> </span><span class="kt">char</span><span class="w"> </span><span class="o">**</span><span class="n">argv</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+
+<span class="w">	</span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">argc</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="mi">4</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">		</span><span class="n">std</span><span class="o">::</span><span class="n">cerr</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;Usage: &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">argv</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot; &lt;seed&gt; &lt;samples&gt; &lt;output file&gt;&quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+<span class="w">		</span><span class="k">return</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span>
+<span class="w">	</span><span class="p">}</span>
+
+<span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">SEED</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">stoi</span><span class="p">(</span><span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">]);;</span>
+<span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">SAMPLES</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">stoi</span><span class="p">(</span><span class="n">argv</span><span class="p">[</span><span class="mi">2</span><span class="p">]);</span>
+<span class="w">	</span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">fname</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">argv</span><span class="p">[</span><span class="mi">3</span><span class="p">];</span>
+
+<span class="w">	</span><span class="n">generate_in_region</span><span class="p">(</span><span class="n">SEED</span><span class="p">,</span><span class="w"> </span><span class="n">SAMPLES</span><span class="p">,</span><span class="w"> </span><span class="n">fname</span><span class="p">);</span>
+
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kt">bool</span><span class="w"> </span><span class="nf">in_region</span><span class="p">(</span><span class="kt">double</span><span class="w"> </span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="n">y</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="c1">// TODO</span>
+<span class="w">	</span><span class="k">const</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="n">SQRT3</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">sqrt</span><span class="p">(</span><span class="mi">3</span><span class="p">);</span>
+
+<span class="p">}</span>
+
+
+<span class="kt">void</span><span class="w"> </span><span class="nf">generate_in_region</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">seed</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">nsamples</span><span class="p">,</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">fname</span><span class="p">)</span>
+<span class="p">{</span>
+<span class="w">	</span><span class="c1">// TODO</span>
+<span class="w">	</span><span class="k">const</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="n">SQRT3</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">sqrt</span><span class="p">(</span><span class="mi">3</span><span class="p">);</span>
+
+
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>You should get something like</p>
+<figure class="align-center">
+<a class="reference internal image-reference" href="../../_images/triangle.png"><img alt="../../_images/triangle.png" src="../../_images/triangle.png" style="width: 50%;" /></a>
+</figure>
+</section>
+</div>
+<!-- <img src="fig-RandomNumbers/triangle.png" alt="triangle" width="40%" align="center"> -->
+<div class="docutils">
+</div>
+<div class="exercise admonition" id="lectures/10-RandomSystems/RandomNumbers-exercise-7">
+
+<p class="admonition-title"><span class="caption-number">Exercise 21 </span></p>
+<section id="exercise-content">
+<ul class="simple">
+<li><p>[ ] Can you estimate the area from the previous computation (method 1)</p></li>
+<li><p>[ ] Generate a random sample in the triangular region delimited by the x and y axis and the straight line <span class="math notranslate nohighlight">\(y = 1-x\)</span>.</p></li>
+<li><p>[ ] Generate a random uniform sample in the diamond figure with vertexes at <span class="math notranslate nohighlight">\((1, 0), (0, 1), (-1, 0), (0, -1)\)</span>.</p></li>
+<li><p>[ ] Generate a random uniform sample in a sphere, <span class="math notranslate nohighlight">\(x^2 + y^2 + z^2 = R^2\)</span>. Count the fraction of numbers that are in the first octant.</p></li>
+</ul>
+</section>
+</div>
+</section>
+<section id="computing-multi-dimensional-integrals">
+<h2>Computing multi-dimensional integrals<a class="headerlink" href="#computing-multi-dimensional-integrals" title="Link to this heading">#</a></h2>
+<p>Computing integrals using random numbers is easy and practical, specially for large dimensions. In the unit interval, one can compute</p>
+<div class="amsmath math notranslate nohighlight" id="equation-7bd05906-eab4-4d4a-803a-2556c7419c7f">
+<span class="eqno">(72)<a class="headerlink" href="#equation-7bd05906-eab4-4d4a-803a-2556c7419c7f" title="Permalink to this equation">#</a></span>\[\begin{equation}
+\int_0^1 f(x) dx \simeq \frac{1}{n} \sum_{i=1}^n f(x_i),
+\end{equation}\]</div>
+<p>so the integral is approximated as the average function value. For a general interval, one has</p>
+<div class="amsmath math notranslate nohighlight" id="equation-1559f960-56e8-46f6-a832-ee82c49068ea">
+<span class="eqno">(73)<a class="headerlink" href="#equation-1559f960-56e8-46f6-a832-ee82c49068ea" title="Permalink to this equation">#</a></span>\[\begin{equation}
+\frac{1}{b-a}\int_a^b f(x) dx \simeq \frac{1}{n} \sum_{i=1}^n f(x_i),
+\end{equation}\]</div>
+<p>or , in higher dimensions</p>
+<div class="amsmath math notranslate nohighlight" id="equation-71092085-b141-4dd6-834e-a563e147840c">
+<span class="eqno">(74)<a class="headerlink" href="#equation-71092085-b141-4dd6-834e-a563e147840c" title="Permalink to this equation">#</a></span>\[\begin{equation}
+\frac{1}{8}\int_1^3\int_{-1}^1 \int_0^2 f(x, y, z) dxdydz \simeq \frac{1}{n} \sum_{i=1}^n f(x_i, y_i, z_i).
+\end{equation}\]</div>
+<p>In general one has</p>
+<div class="amsmath math notranslate nohighlight" id="equation-dd6d38a3-e6e9-40c2-a044-34b60c06251b">
+<span class="eqno">(75)<a class="headerlink" href="#equation-dd6d38a3-e6e9-40c2-a044-34b60c06251b" title="Permalink to this equation">#</a></span>\[\begin{equation}
+\int_A f \simeq (\text{measure of}\ A) \times (\text{average of}\ f\ \text{over}\ n\ \text{random points on}\ A)
+\end{equation}\]</div>
+<section id="example-2d-integral">
+<h3>Example: 2D Integral<a class="headerlink" href="#example-2d-integral" title="Link to this heading">#</a></h3>
+<p>Compute the following integral</p>
+<div class="amsmath math notranslate nohighlight" id="equation-3c52f148-26ab-4a51-ab1d-73274b15699a">
+<span class="eqno">(76)<a class="headerlink" href="#equation-3c52f148-26ab-4a51-ab1d-73274b15699a" title="Permalink to this equation">#</a></span>\[\begin{equation}
+\iint_{\Omega}\sin\sqrt{\ln(x+y+1)} dx dy, 
+\end{equation}\]</div>
+<p>where the integration region <span class="math notranslate nohighlight">\(\Omega\)</span> is the disk defined as <span class="math notranslate nohighlight">\((x-1/2)^2 + (y-1/2)^2 \le 1/4\)</span>. Exact value is close to 0.57 .</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;iostream&gt;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;fstream&gt;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;cmath&gt;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;random&gt;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;string&gt;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;vector&gt;</span>
+
+
+<span class="kt">double</span><span class="w"> </span><span class="nf">f</span><span class="p">(</span><span class="kt">double</span><span class="w"> </span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="n">y</span><span class="p">);</span><span class="w"> </span><span class="c1">// function to integrate</span>
+<span class="kt">bool</span><span class="w"> </span><span class="nf">in_region</span><span class="p">(</span><span class="kt">double</span><span class="w"> </span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="n">y</span><span class="p">);</span><span class="w"> </span><span class="c1">// check if point is in region</span>
+<span class="kt">double</span><span class="w"> </span><span class="nf">integral</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">seed</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">nsamples</span><span class="p">,</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">fname</span><span class="p">);</span>
+
+<span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">argc</span><span class="p">,</span><span class="w"> </span><span class="kt">char</span><span class="w"> </span><span class="o">**</span><span class="n">argv</span><span class="p">)</span>
+<span class="p">{</span>
+<span class="w">	</span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">argc</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="mi">4</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">		</span><span class="n">std</span><span class="o">::</span><span class="n">cerr</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;Usage: &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">argv</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot; &lt;seed&gt; &lt;samples&gt; &lt;output file&gt;</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">;</span>
+<span class="w">		</span><span class="k">return</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span>
+<span class="w">	</span><span class="p">}</span>
+
+<span class="w">	</span><span class="k">const</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">SEED</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">atoi</span><span class="p">(</span><span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">]);;</span>
+<span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">SAMPLES</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">atoi</span><span class="p">(</span><span class="n">argv</span><span class="p">[</span><span class="mi">2</span><span class="p">]);</span>
+<span class="w">	</span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">fname</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">argv</span><span class="p">[</span><span class="mi">3</span><span class="p">];</span>
+
+<span class="w">    </span><span class="n">integral</span><span class="p">(</span><span class="n">SEED</span><span class="p">,</span><span class="w"> </span><span class="n">SAMPLES</span><span class="p">,</span><span class="w"> </span><span class="n">fname</span><span class="p">);</span>
+
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kt">double</span><span class="w"> </span><span class="nf">f</span><span class="p">(</span><span class="kt">double</span><span class="w"> </span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="n">y</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">sin</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">sqrt</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">log</span><span class="p">(</span><span class="n">x</span><span class="o">+</span><span class="n">y</span><span class="o">+</span><span class="mi">1</span><span class="p">)));</span>
+<span class="p">}</span>
+
+<span class="kt">bool</span><span class="w"> </span><span class="nf">in_region</span><span class="p">(</span><span class="kt">double</span><span class="w"> </span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="n">y</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">	</span><span class="c1">// TODO</span>
+<span class="p">}</span>
+
+<span class="kt">double</span><span class="w"> </span><span class="nf">integral</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">seed</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">nsamples</span><span class="p">,</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">fname</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">	</span><span class="c1">// TODO</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</section>
+<section id="example-volume">
+<h3>Example: Volume<a class="headerlink" href="#example-volume" title="Link to this heading">#</a></h3>
+<p>Now compute the volume of the following region</p>
+<p>\begin{cases}
+&amp;0 \le x\le 1,\ 0 \le y\le 1, \ 0 \le z\le 1, \
+&amp;x^2 + \sin y\le z, \
+&amp;x  -z + e^y \le 1.
+\end{cases}
+The expected value is around 0.14</p>
+</section>
+<section id="exercises">
+<h3>Exercises<a class="headerlink" href="#exercises" title="Link to this heading">#</a></h3>
+<ul>
+<li><p>[ ] (Ward) Compute</p>
+<div class="amsmath math notranslate nohighlight" id="equation-ec96c670-1082-431c-bbb7-1a02a8c9e08c">
+<span class="eqno">(77)<a class="headerlink" href="#equation-ec96c670-1082-431c-bbb7-1a02a8c9e08c" title="Permalink to this equation">#</a></span>\[\begin{equation}
+\int_0^2\int_3^6\int_{-1}^1 (y x^2 + z\log y + e^x) dx dy dz
+\end{equation}\]</div>
+</li>
+<li><p>[ ] Compute the area under the curve <span class="math notranslate nohighlight">\(y = e^{-(x+1)^2}\)</span></p></li>
+<li><p>(Boudreau, 7.8.7) Estimate the volume of an hypersphere in 10 dimensions. The convergence rate is equal to <span class="math notranslate nohighlight">\(C/\sqrt M\)</span>, where <span class="math notranslate nohighlight">\(M\)</span> is the total number of samples. Estimate the value of <span class="math notranslate nohighlight">\(C\)</span>. Is it the same for 20 dimensions?</p></li>
+</ul>
+</section>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "iluvatar1/ProgCPP-lectures-jupyter",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./lectures/10-RandomSystems"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="../09-ODE-IVP-OOP-MolecularDynamics/IntroMolecularDynamics.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Introduction to molecular dynamics through OOP</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="RandomNumbersInSimulations.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Random numbers in simulations</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#a-simple-example-linear-congruential-random-number-generator">A simple example: Linear congruential Random Number Generator</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#random-number-generators-from-c">Random number generators from C++</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#example-computing-pi">Example: computing <span class="math notranslate nohighlight">\(\pi\)</span></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#computing-the-histogram">Computing the histogram</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#generating-numbers-with-a-given-distribution">Generating numbers with a given distribution</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#inverse-transform-method">Inverse transform method</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#example-exponential-distribution">Example: Exponential distribution</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#rejection-method">Rejection method</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#sampling-regions">Sampling regions</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#computing-multi-dimensional-integrals">Computing multi-dimensional integrals</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#example-2d-integral">Example: 2D Integral</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#example-volume">Example: Volume</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercises">Exercises</a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By William Oquendo
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2024.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

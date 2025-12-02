@@ -240,6 +240,11 @@
 <li class="toctree-l1"><a class="reference internal" href="../08-ODE-IVP/InitialValueProblem.html">Ordinary differential equations (and initial value problems)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../09-ODE-IVP-OOP-MolecularDynamics/IntroMolecularDynamics.html">Introduction to molecular dynamics through OOP</a></li>
 </ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Random Numbers and Applications</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../10-RandomSystems/RandomNumbers.html">Random Numbers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../10-RandomSystems/RandomNumbersInSimulations.html">Random numbers in simulations</a></li>
+</ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Python introduction</span></p>
 <ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="../11-IntroPython/01-IntroProgrammingPython.html">Python Programming (very fast) Introduction</a></li>
@@ -716,13 +721,13 @@ inside each cell correspond to indexes)</p>
 <a class="reference internal image-reference" href="../../_images/2d-array-memory.png"><img alt="../../_images/2d-array-memory.png" src="../../_images/2d-array-memory.png" style="width: 90%;" /></a>
 </figure>
 <p>This will allow having an <code class="docutils literal notranslate"><span class="pre">MxN</span></code> size 1d array, but interpreting it as a 2D array, using the following mapping</p>
-<div class="amsmath math notranslate nohighlight" id="equation-40c02a30-344b-46ad-ac5f-0053f130ad06">
-<span class="eqno">(29)<a class="headerlink" href="#equation-40c02a30-344b-46ad-ac5f-0053f130ad06" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-d7905d6d-114f-4008-9d03-83d71576200a">
+<span class="eqno">(29)<a class="headerlink" href="#equation-d7905d6d-114f-4008-9d03-83d71576200a" title="Permalink to this equation">#</a></span>\[\begin{equation}
 id = iN + j,
 \end{equation}\]</div>
 <p>while , from 1D to 2D</p>
-<div class="amsmath math notranslate nohighlight" id="equation-8d2f06e8-601a-4906-b215-7b85ce891117">
-<span class="eqno">(30)<a class="headerlink" href="#equation-8d2f06e8-601a-4906-b215-7b85ce891117" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-5e0bb2c6-7299-46ed-959c-06e72de42420">
+<span class="eqno">(30)<a class="headerlink" href="#equation-5e0bb2c6-7299-46ed-959c-06e72de42420" title="Permalink to this equation">#</a></span>\[\begin{align}
 i &amp;= id/N, // \text{uses integer truncation: 5/3 -&gt; 1 row}\\ 
 j &amp;= id\%N. // \text{the modulus represents here the columns displacement}
 \end{align}\]</div>
@@ -739,8 +744,8 @@ j &amp;= id\%N. // \text{the modulus represents here the columns displacement}
 <section id="practical-example-transposing-a-matrix">
 <h2>Practical Example: transposing a matrix<a class="headerlink" href="#practical-example-transposing-a-matrix" title="Link to this heading">#</a></h2>
 <p>In this example, you will implement a matrix transpose but using 1d arrays. We will use two matrices, <code class="docutils literal notranslate"><span class="pre">A</span></code> and <code class="docutils literal notranslate"><span class="pre">B</span></code>, whose dimensions will be read from the command line, and will be modelled using 1d arrays. We will initialize <code class="docutils literal notranslate"><span class="pre">A</span></code> as</p>
-<div class="amsmath math notranslate nohighlight" id="equation-6cb5a3a0-b9ee-49ef-9a8f-0048f4066a30">
-<span class="eqno">(31)<a class="headerlink" href="#equation-6cb5a3a0-b9ee-49ef-9a8f-0048f4066a30" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-d4b15788-ec20-4a58-96d2-de8d76f39a23">
+<span class="eqno">(31)<a class="headerlink" href="#equation-d4b15788-ec20-4a58-96d2-de8d76f39a23" title="Permalink to this equation">#</a></span>\[\begin{equation}
 A[i][j] = i*N + j;
 \end{equation}\]</div>
 <p>Since <span class="math notranslate nohighlight">\(B = A^T\)</span>, if A is of size <code class="docutils literal notranslate"><span class="pre">MxN</span></code>, then B is of size <code class="docutils literal notranslate"><span class="pre">NxM</span></code> (although their total size is the same, <code class="docutils literal notranslate"><span class="pre">M*N</span></code>). Complete the following code:</p>
