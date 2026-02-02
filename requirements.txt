@@ -32,3 +32,6 @@ sphinx-inline_tabs
 sphinx_proof
 sphinx_examples
 sphinx_hoverxref
+sphinx-inline-tabs
+
+jupyterlab-rise

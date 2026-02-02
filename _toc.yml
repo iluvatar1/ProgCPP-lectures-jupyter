@@ -49,5 +49,6 @@ parts:
   - caption: "Appendix"
     numbered: false
     chapters:
+    - file: lectures/00-IntroCourse/CourseIntroAndRules.ipynb
     - file: lectures/A-01-Git/VersionControlGit.ipynb
     - file: lectures/A-02-Containers/Docker.ipynb
