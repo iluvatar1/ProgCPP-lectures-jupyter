@@ -30,7 +30,7 @@
 
     <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=03e43079" />
     <link rel="stylesheet" type="text/css" href="../../_static/styles/sphinx-book-theme.css?v=eba8b062" />
-    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css?v=9c3e77be" />
     <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
     <link rel="stylesheet" type="text/css" href="../../_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css?v=4fa983c6" />
@@ -69,7 +69,7 @@
     <script>let toggleHintShow = 'Click to show';</script>
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
-    <script src="../../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script src="../../_static/togglebutton.js?v=1ae7504c"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
     <script src="../../_static/design-tabs.js?v=f930bc37"></script>
     <script async="async" src="https://www.googletagmanager.com/gtag/js?id=G-DX59QS1P22"></script>
@@ -255,6 +255,7 @@
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Appendix</span></p>
 <ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../00-IntroCourse/CourseIntroAndRules.html">Programación e Introducción a los Métodos Numéricos</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../A-01-Git/VersionControlGit.html">Git introduction</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../A-02-Containers/Docker.html">Docker Containers - Introductory Lesson</a></li>
 </ul>
@@ -721,13 +722,13 @@ inside each cell correspond to indexes)</p>
 <a class="reference internal image-reference" href="../../_images/2d-array-memory.png"><img alt="../../_images/2d-array-memory.png" src="../../_images/2d-array-memory.png" style="width: 90%;" /></a>
 </figure>
 <p>This will allow having an <code class="docutils literal notranslate"><span class="pre">MxN</span></code> size 1d array, but interpreting it as a 2D array, using the following mapping</p>
-<div class="amsmath math notranslate nohighlight" id="equation-d7905d6d-114f-4008-9d03-83d71576200a">
-<span class="eqno">(29)<a class="headerlink" href="#equation-d7905d6d-114f-4008-9d03-83d71576200a" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-0a52a891-daa8-41d5-bb65-eb80e500331d">
+<span class="eqno">(29)<a class="headerlink" href="#equation-0a52a891-daa8-41d5-bb65-eb80e500331d" title="Permalink to this equation">#</a></span>\[\begin{equation}
 id = iN + j,
 \end{equation}\]</div>
 <p>while , from 1D to 2D</p>
-<div class="amsmath math notranslate nohighlight" id="equation-5e0bb2c6-7299-46ed-959c-06e72de42420">
-<span class="eqno">(30)<a class="headerlink" href="#equation-5e0bb2c6-7299-46ed-959c-06e72de42420" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-7a5fed75-0fcc-4d5a-a6e4-8beed852354b">
+<span class="eqno">(30)<a class="headerlink" href="#equation-7a5fed75-0fcc-4d5a-a6e4-8beed852354b" title="Permalink to this equation">#</a></span>\[\begin{align}
 i &amp;= id/N, // \text{uses integer truncation: 5/3 -&gt; 1 row}\\ 
 j &amp;= id\%N. // \text{the modulus represents here the columns displacement}
 \end{align}\]</div>
@@ -744,8 +745,8 @@ j &amp;= id\%N. // \text{the modulus represents here the columns displacement}
 <section id="practical-example-transposing-a-matrix">
 <h2>Practical Example: transposing a matrix<a class="headerlink" href="#practical-example-transposing-a-matrix" title="Link to this heading">#</a></h2>
 <p>In this example, you will implement a matrix transpose but using 1d arrays. We will use two matrices, <code class="docutils literal notranslate"><span class="pre">A</span></code> and <code class="docutils literal notranslate"><span class="pre">B</span></code>, whose dimensions will be read from the command line, and will be modelled using 1d arrays. We will initialize <code class="docutils literal notranslate"><span class="pre">A</span></code> as</p>
-<div class="amsmath math notranslate nohighlight" id="equation-d4b15788-ec20-4a58-96d2-de8d76f39a23">
-<span class="eqno">(31)<a class="headerlink" href="#equation-d4b15788-ec20-4a58-96d2-de8d76f39a23" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-84f4c7d6-bf4a-430d-a207-9006d3fa94a8">
+<span class="eqno">(31)<a class="headerlink" href="#equation-84f4c7d6-bf4a-430d-a207-9006d3fa94a8" title="Permalink to this equation">#</a></span>\[\begin{equation}
 A[i][j] = i*N + j;
 \end{equation}\]</div>
 <p>Since <span class="math notranslate nohighlight">\(B = A^T\)</span>, if A is of size <code class="docutils literal notranslate"><span class="pre">MxN</span></code>, then B is of size <code class="docutils literal notranslate"><span class="pre">NxM</span></code> (although their total size is the same, <code class="docutils literal notranslate"><span class="pre">M*N</span></code>). Complete the following code:</p>
@@ -1162,7 +1163,7 @@ By William Oquendo
 
   <p class="copyright">
     
-      © Copyright 2024.
+      © Copyright 2026.
       <br/>
     
   </p>

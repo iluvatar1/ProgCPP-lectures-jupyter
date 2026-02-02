@@ -30,7 +30,7 @@
 
     <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=03e43079" />
     <link rel="stylesheet" type="text/css" href="../../_static/styles/sphinx-book-theme.css?v=eba8b062" />
-    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css?v=9c3e77be" />
     <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
     <link rel="stylesheet" type="text/css" href="../../_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css?v=4fa983c6" />
@@ -69,7 +69,7 @@
     <script>let toggleHintShow = 'Click to show';</script>
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
-    <script src="../../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script src="../../_static/togglebutton.js?v=1ae7504c"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
     <script src="../../_static/design-tabs.js?v=f930bc37"></script>
     <script async="async" src="https://www.googletagmanager.com/gtag/js?id=G-DX59QS1P22"></script>
@@ -255,6 +255,7 @@
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Appendix</span></p>
 <ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../00-IntroCourse/CourseIntroAndRules.html">Programación e Introducción a los Métodos Numéricos</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../A-01-Git/VersionControlGit.html">Git introduction</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../A-02-Containers/Docker.html">Docker Containers - Introductory Lesson</a></li>
 </ul>
@@ -519,12 +520,21 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-c-language">The C++ Language</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#why-c-and-not-just-python">Why c++ and not just python?</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-two-language-reality-of-ml-and-scientific-computing">The “Two-Language” Reality of ML and Scientific Computing</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#unmatched-performance-control-hpc-context">Unmatched Performance &amp; Control (HPC Context)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-evolution-c-is-modernizing">The Evolution: C++ is “Modernizing”</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#educational-value-understanding-the-inner-workings">Educational Value: Understanding the “Inner Workings”</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#summary-table-python-vs-c-in-2026">Summary Table: Python vs. C++ in 2026</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#verdict">Verdict</a></li>
+</ul>
+</li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#typical-basic-workflow">Typical basic workflow</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#understanding-helloworld">Understanding helloworld</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#comments">Comments</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pre-processor">Pre-processor</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-main-function">The main function</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#std-cout-to-print"><code class="docutils literal notranslate"><span class="pre">std::cout</span></code> to print</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#return-statement">Return statement</a></li>
 </ul>
 </li>
@@ -557,6 +567,8 @@ document.write(`
                   
   <section class="tex2jax_ignore mathjax_ignore" id="introduction-to-programming-and-c">
 <h1>Introduction to Programming and C++<a class="headerlink" href="#introduction-to-programming-and-c" title="Link to this heading">#</a></h1>
+<section id="the-c-language">
+<h2>The C++ Language<a class="headerlink" href="#the-c-language" title="Link to this heading">#</a></h2>
 <div style="text-align: center;">
     <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/18/ISO_C%2B%2B_Logo.svg/612px-ISO_C%2B%2B_Logo.svg.png" alt="Image Description" width="200">
 </div>
@@ -568,14 +580,34 @@ document.write(`
 <li><p>A compiled language (using compilers like <code class="docutils literal notranslate"><span class="pre">g++</span></code> or <code class="docutils literal notranslate"><span class="pre">icc</span></code>)</p></li>
 <li><p>Highly performant, used vastly on scientific and many other applications: <a class="reference external" href="http://amazon.com">amazon.com</a>, intel, IBM, facebook, Google, Microsoft, Apple, Adobe, …</p></li>
 <li><p>Games written in c++: Assasins creed, Call of Duty, Mass Effect, World of Warcraft, Starcraft, Halo, Among Us, …</p></li>
+<li><p>Aviation (10%) <a class="reference external" href="https://www.youtube.com/watch?v=Gv4sDL9Ljww">https://www.youtube.com/watch?v=Gv4sDL9Ljww</a></p></li>
 </ul>
-<p>The main idea at the end of this course is to be able to program something like <a class="reference external" href="https://www.youtube.com/watch?v=lS_qeBy3aQI">https://www.youtube.com/watch?v=lS_qeBy3aQI</a>, where more complex systems are available <a class="reference external" href="https://flyover.github.io/box2d.ts/testbed/">https://flyover.github.io/box2d.ts/testbed/</a></p>
-<p>C++ allows you to really exploit your computational resources:
-<a class="reference external" href="https://computers-are-fast.github.io/">https://computers-are-fast.github.io/</a></p>
-<p>Also, if you want to know more about a computer, please check <a class="reference external" href="https://www.youtube.com/watch?v=d86ws7mQYIg">https://www.youtube.com/watch?v=d86ws7mQYIg</a></p>
-<ul class="simple">
-<li><p>Moore law <a class="reference external" href="https://www.youtube.com/watch?v=Qlv5pB6u534">https://www.youtube.com/watch?v=Qlv5pB6u534</a></p></li>
-</ul>
+<p>The main idea at the end of this course is to be able to program something like</p>
+<div class="cell tag_hide-input docutils container">
+<details class="admonition hide above-input">
+<summary aria-label="Toggle hidden content">
+<p class="collapsed admonition-title">Show code cell source</p>
+<p class="expanded admonition-title">Hide code cell source</p>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">IPython.display</span><span class="w"> </span><span class="kn">import</span> <span class="n">YouTubeVideo</span>
+<span class="n">YouTubeVideo</span><span class="p">(</span><span class="s2">&quot;lS_qeBy3aQI&quot;</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="mi">640</span><span class="p">,</span> <span class="n">height</span><span class="o">=</span><span class="mi">350</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</details>
+<div class="cell_output docutils container">
+<div class="output text_html">
+        <iframe
+            width="640"
+            height="350"
+            src="https://www.youtube.com/embed/lS_qeBy3aQI"
+            frameborder="0"
+            allowfullscreen
+            
+        ></iframe>
+        </div></div>
+</div>
 <div style="text-align: center;">
     <img src="https://global-uploads.webflow.com/5d0dc87aac109e1ffdbe379c/60c747b9e5f372c3bc2cfb12_pieT5veoNqVqJjagsCTj8_Cg1zDJTJDUF5mlKj0SaHM4MHCp2EGw6TwkBWEQEFd5qg0GAbAIBgJss6tjDvvng_Tk6gse8dRQrstEBaL9lq8BdZ54523gEQPROzireFIDMMRk20k.png" alt="Image Description" width="600">
     <figcaption>From: "https://global-uploads.webflow.com/5d0dc87aac109e1ffdbe379c/60c747b9e5f372c3bc2cfb12_pieT5veoNqVqJjagsCTj8_Cg1zDJTJDUF5mlKj0SaHM4MHCp2EGw6TwkBWEQEFd5qg0GAbAIBgJss6tjDvvng_Tk6gse8dRQrstEBaL9lq8BdZ54523gEQPROzireFIDMMRk20k.png"</figcaption>
@@ -593,6 +625,143 @@ document.write(`
     <figcaption>From: "https://media.springernature.com/m685/springer-static/image/art%3A10.1038%2Fs41550-020-1208-y/MediaObjects/41550_2020_1208_Fig3_HTML.png"</figcaption>
 </div>
 <p>Here is an <a class="reference external" href="https://en.wikipedia.org/wiki/Outline_of_C%2B%2B?useskin=vector">outline</a></p>
+<p>where more complex systems are available <a class="reference external" href="https://flyover.github.io/box2d.ts/testbed/">https://flyover.github.io/box2d.ts/testbed/</a></p>
+<p>C++ allows you to really exploit your computational resources:
+<a class="reference external" href="https://computers-are-fast.github.io/">https://computers-are-fast.github.io/</a></p>
+<p>Also, if you want to know more about a computer, please check</p>
+<div class="cell tag_hide-input docutils container">
+<details class="admonition hide above-input">
+<summary aria-label="Toggle hidden content">
+<p class="collapsed admonition-title">Show code cell source</p>
+<p class="expanded admonition-title">Hide code cell source</p>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">IPython.display</span><span class="w"> </span><span class="kn">import</span> <span class="n">YouTubeVideo</span>
+<span class="n">YouTubeVideo</span><span class="p">(</span><span class="s2">&quot;d86ws7mQYIg&quot;</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="mi">700</span><span class="p">,</span> <span class="n">height</span><span class="o">=</span><span class="mi">400</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</details>
+<div class="cell_output docutils container">
+<div class="output text_html">
+        <iframe
+            width="700"
+            height="400"
+            src="https://www.youtube.com/embed/d86ws7mQYIg"
+            frameborder="0"
+            allowfullscreen
+            
+        ></iframe>
+        </div></div>
+</div>
+</section>
+<section id="why-c-and-not-just-python">
+<h2>Why c++ and not just python?<a class="headerlink" href="#why-c-and-not-just-python" title="Link to this heading">#</a></h2>
+<p>In the context of 2026, learning C++ is arguably more valuable now than it has been in the last decade, particularly for <strong>Scientific Computing, High-Performance Computing (HPC), and Machine Learning (ML)</strong>.</p>
+<p>While Python remains the dominant “frontend” language for these fields, C++ is the “engine room.” Learning it allows you to cross the barrier from being a <strong>user</strong> of tools to a <strong>builder</strong> of them.</p>
+<p>Here is a breakdown of why you should learn C++ this year, grounded in performance, evolution, and career differentiation.</p>
+<section id="the-two-language-reality-of-ml-and-scientific-computing">
+<h3>The “Two-Language” Reality of ML and Scientific Computing<a class="headerlink" href="#the-two-language-reality-of-ml-and-scientific-computing" title="Link to this heading">#</a></h3>
+<p>In 2026, the industry has solidified into a two-tier structure.</p>
+<ul class="simple">
+<li><p><strong>Python</strong> is for <strong>exploration, prototyping, and glue code</strong>. It is easy to write but slow to execute (if you are not using libraries like numpy, pandas, polars, and so on).</p></li>
+<li><p><strong>C++</strong> is for <strong>production, infrastructure, and optimization</strong>.</p></li>
+</ul>
+<p><strong>Why this matters:</strong>
+Almost every major Python library you use (NumPy, PyTorch, TensorFlow, SciPy) wraps a C++ or C backend.</p>
+<ul class="simple">
+<li><p><strong>The Differentiator:</strong> If you only know Python, you are limited to the performance of the libraries you download. If you know C++, you can write custom operators, optimize bottlenecks that Python cannot handle, and deploy models to environments where Python is too heavy (like embedded devices, robots, or high-frequency trading servers).</p></li>
+<li><p><strong>Job Market:</strong> Companies hiring for “ML Engineer” or “HPC Engineer” roles often pay a premium for candidates who can take a Python prototype and rewrite the critical paths in C++ for production.</p></li>
+</ul>
+</section>
+<section id="unmatched-performance-control-hpc-context">
+<h3>Unmatched Performance &amp; Control (HPC Context)<a class="headerlink" href="#unmatched-performance-control-hpc-context" title="Link to this heading">#</a></h3>
+<p>In Scientific Computing and HPC, “close enough” is not good enough. You often need to squeeze every ounce of performance out of the hardware.</p>
+<ul class="simple">
+<li><p><strong>Deterministic Memory Management:</strong> Unlike Python (which uses a Garbage Collector that pauses your program unpredictably), C++ allows you to control exactly when memory is allocated and freed. In simulations or real-time processing, this determinism is non-negotiable.</p></li>
+<li><p><strong>Hardware Access:</strong> C++ gives you direct control over hardware resources, including SIMD (Single Instruction, Multiple Data) instructions and GPU compute kernels (CUDA is C++ based).</p></li>
+<li><p><strong>Energy Efficiency:</strong> As data centers face power constraints, “Green Computing” is becoming a priority. C++ programs generally consume significantly less energy than equivalent Python programs because they waste fewer CPU cycles.</p></li>
+</ul>
+</section>
+<section id="the-evolution-c-is-modernizing">
+<h3>The Evolution: C++ is “Modernizing”<a class="headerlink" href="#the-evolution-c-is-modernizing" title="Link to this heading">#</a></h3>
+<p>If you heard C++ is “scary” or “messy” years ago or on the internet, you should look again. The language has evolved massively with the <strong>C++20</strong> and <strong>C++23</strong> standards, making it more approachable for scientific work.</p>
+<ul class="simple">
+<li><p><strong>C++20 Modules:</strong> This fixes the archaic header file system, speeding up compilation and making code organization more like Python’s <code class="docutils literal notranslate"><span class="pre">import</span></code>.</p></li>
+<li><p><strong>Ranges (C++20):</strong> Allows you to compose algorithms in a readable, functional style (similar to Python’s lists or Linq) without sacrificing speed.</p></li>
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">std::span</span></code> &amp; <code class="docutils literal notranslate"><span class="pre">std::mdspan</span></code> (C++23):</strong> These are game-changers for scientific computing. They provide a safe, standardized way to handle multi-dimensional arrays (like NumPy arrays) without the overhead of copying data.</p></li>
+</ul>
+</section>
+<section id="educational-value-understanding-the-inner-workings">
+<h3>Educational Value: Understanding the “Inner Workings”<a class="headerlink" href="#educational-value-understanding-the-inner-workings" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p><strong>How a Computer Works:</strong> C++ forces you to deal with <strong>pointers, memory addresses, stacks, and heaps</strong>. You learn that “variables” are just labeled memory addresses. This demystifies how a CPU actually executes code.</p></li>
+<li><p><strong>Transferable Knowledge:</strong> Once you understand C++, learning other languages is easier because you understand the <em>abstractions</em> they use.</p>
+<ul>
+<li><p><em>Example:</em> When you learn “pass by reference” in Python or Java, it might seem abstract. In C++, you literally see that you are passing a memory address rather than copying a data value.</p></li>
+<li><p><em>Example:</em> You will understand <em>why</em> Python is slow (type checking at runtime, indirection) versus <em>why</em> C++ is fast (static typing, direct memory access).</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="summary-table-python-vs-c-in-2026">
+<h3>Summary Table: Python vs. C++ in 2026<a class="headerlink" href="#summary-table-python-vs-c-in-2026" title="Link to this heading">#</a></h3>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head text-left"><p>Feature</p></th>
+<th class="head text-left"><p>Python</p></th>
+<th class="head text-left"><p>C++</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td class="text-left"><p><strong>Primary Role</strong></p></td>
+<td class="text-left"><p>Prototyping, Data Analysis, Scripts</p></td>
+<td class="text-left"><p>Production, Infrastructure, Engines</p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p><strong>Execution</strong></p></td>
+<td class="text-left"><p>Interpreted (Slow)</p></td>
+<td class="text-left"><p>Compiled (Native Metal Speed)</p></td>
+</tr>
+<tr class="row-even"><td class="text-left"><p><strong>Memory</strong></p></td>
+<td class="text-left"><p>Automatic (Garbage Collection)</p></td>
+<td class="text-left"><p>Manual / RAII (Deterministic)</p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p><strong>HPC Use Case</strong></p></td>
+<td class="text-left"><p>orchestrating simulations</p></td>
+<td class="text-left"><p><em>Running</em> the simulation loops</p></td>
+</tr>
+<tr class="row-even"><td class="text-left"><p><strong>ML Use Case</strong></p></td>
+<td class="text-left"><p>Designing/Training models</p></td>
+<td class="text-left"><p>Inference (Edge/Mobile), Custom Ops</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="verdict">
+<h3>Verdict<a class="headerlink" href="#verdict" title="Link to this heading">#</a></h3>
+<p>There are millions of Data Scientists who know Python. There are far fewer who can debug a segmentation fault in a TensorFlow custom kernel or optimize a simulation to run 100x faster. Mastering C++ signals that you are an <strong>engineer</strong>, not just a scripter. This extends also to computational modelling.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">IPython.display</span><span class="w"> </span><span class="kn">import</span> <span class="n">YouTubeVideo</span>
+<span class="n">YouTubeVideo</span><span class="p">(</span><span class="s2">&quot;KpcRiUp_57g&quot;</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="mi">640</span><span class="p">,</span> <span class="n">height</span><span class="o">=</span><span class="mi">350</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html">
+        <iframe
+            width="640"
+            height="350"
+            src="https://www.youtube.com/embed/KpcRiUp_57g"
+            frameborder="0"
+            allowfullscreen
+            
+        ></iframe>
+        </div></div>
+</div>
+</section>
+</section>
 <section id="typical-basic-workflow">
 <h2>Typical basic workflow<a class="headerlink" href="#typical-basic-workflow" title="Link to this heading">#</a></h2>
 <div class="cell docutils container">
@@ -651,34 +820,65 @@ graph TD;
 <p>The following shows the workflow for a helloworld program.</p>
 <p><strong>Step 0: Think</strong>
 We want a program that prints the message “Hello world” to the standard output (the screen, normally). So we need a standard header like <code class="docutils literal notranslate"><span class="pre">iostream</span></code>, and use <code class="docutils literal notranslate"><span class="pre">std::cout</span></code>. Therefore our general program flow would be</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>library<span class="w"> </span>to<span class="w"> </span>print<span class="w"> </span>to<span class="w"> </span>the<span class="w"> </span>screen:<span class="w"> </span>include<span class="w"> </span>iostream
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>library<span class="w"> </span>to<span class="w"> </span>print<span class="w"> </span>to<span class="w"> </span>the<span class="w"> </span>screen:<span class="w"> </span>include<span class="w"> </span><span class="sb">`</span>print<span class="sb">`</span><span class="w"> </span>or<span class="w"> </span><span class="sb">`</span>iostream<span class="sb">`</span>
 <span class="k">in</span><span class="w"> </span>the<span class="w"> </span>main<span class="w"> </span><span class="k">function</span>
 <span class="w">  </span>use<span class="w"> </span>cout<span class="w"> </span>or<span class="w"> </span>print<span class="w"> </span>or<span class="w"> </span>println<span class="w"> </span>or<span class="w"> </span><span class="nb">printf</span><span class="w"> </span>to<span class="w"> </span>write<span class="w"> </span><span class="s2">&quot;Hellow world&quot;</span>
 </pre></div>
 </div>
 <p><strong>Step 1: Edit</strong>
-We will edit the code now. Please use an editor and write the following code</p>
-<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="c1">// This prints a comment</span>
-<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;iostream&gt;</span>
+We will edit the c++ code now. Please use an editor and write the following code</p>
+<div class="sd-tab-set docutils">
+<input checked="checked" id="sd-tab-item-0" name="sd-tab-set-0" type="radio">
+<label class="sd-tab-label" for="sd-tab-item-0">
+C++</label><div class="sd-tab-content docutils">
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="c1">// This is a comment</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;print&gt;</span><span class="c1"> // uses the modern print, c++23</span>
 
 <span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span>
 <span class="p">{</span>
-<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;Hello world</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">;</span>
+<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">println</span><span class="p">(</span><span class="s">&quot;Hello world&quot;</span><span class="p">);</span>
 <span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
 <span class="p">}</span>
 </pre></div>
 </div>
-<p><strong>Step 2: Compile</strong>
-Now we will compile with the compiler <code class="docutils literal notranslate"><span class="pre">g++</span></code> (there are a <a class="reference external" href="https://en.wikipedia.org/w/index.php?title=List_of_compilers&amp;amp;useskin=vector#C++_compilers">lot more</a>). In a terminal, in the same directory where the fie was saved, just run</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>g++<span class="w"> </span>helloworld.cpp
+</div>
+<input id="sd-tab-item-1" name="sd-tab-set-0" type="radio">
+<label class="sd-tab-label" for="sd-tab-item-1">
+Python</label><div class="sd-tab-content docutils">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># This is a comment in python</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">main</span><span class="p">():</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Hello from Python!&quot;</span><span class="p">)</span>
+
+<span class="n">main</span><span class="p">()</span>
+
+<span class="c1"># This does not require compilation</span>
 </pre></div>
 </div>
-<p>You have terminals available in a local or remote linux installation, in vscode in a code space, in binder, but not in google collab. There you need to either pay to have a terminal (is not that expensive), or just run a cell prepending <code class="docutils literal notranslate"><span class="pre">!</span></code> as follows</p>
+</div>
+<input id="sd-tab-item-2" name="sd-tab-set-0" type="radio">
+<label class="sd-tab-label" for="sd-tab-item-2">
+Bash</label><div class="sd-tab-content docutils">
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># This is a comment in bash</span>
+<span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;Hello from Bash!&quot;</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>Step 2: Compile</strong>
+Now we will compile with the compiler <code class="docutils literal notranslate"><span class="pre">g++</span></code> (there are a <a class="reference external" href="https://en.wikipedia.org/w/index.php?title=List_of_compilers&amp;amp;useskin=vector#C++_compilers">lot more</a>). In a terminal, in the same directory where the fie was saved, just run</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>g++<span class="w"> </span>-std<span class="o">=</span>C++23<span class="w"> </span>helloworld.cpp
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Executing bash commands in google collab
+You have terminals available in a local or remote linux installation, in vscode in a code space, in binder, but not in google collab. There you need to either pay to have a terminal (is not that expensive), or just run a cell prepending <code class="docutils literal notranslate"><span class="pre">!</span></code> as follows</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>!g++<span class="w"> </span>helloworld.cpp
 </pre></div>
 </div>
-<p>This produces the executable <code class="docutils literal notranslate"><span class="pre">a.out</span></code> (you can change the name using the compilation flag <code class="docutils literal notranslate"><span class="pre">-o</span> <span class="pre">name.x</span></code>), as</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>g++<span class="w"> </span>helloworld.cpp<span class="w"> </span>-o<span class="w"> </span>hello.x
+</div>
+<p>By default, the compiler produces the executable <code class="docutils literal notranslate"><span class="pre">a.out</span></code> (you can change the name using the compilation flag <code class="docutils literal notranslate"><span class="pre">-o</span> <span class="pre">name.x</span></code>), as</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>g++<span class="w"> </span>-std<span class="o">=</span>c++23<span class="w"> </span>helloworld.cpp<span class="w"> </span>-o<span class="w"> </span>hello.x
 </pre></div>
 </div>
 <p>You can check the contents of the current dir with</p>
@@ -692,7 +892,13 @@ To execute, we need to specify the path to the executable. We are going to use t
 </pre></div>
 </div>
 <p>(or <code class="docutils literal notranslate"><span class="pre">./a.out</span></code>)</p>
-<p>Congratulation! Now you are a c++ developer … not so fast!</p>
+<p>Congratulation! Now you are a c++ developer!</p>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>C++ cycle
+Remeber: You will always need to follow the cycle:</p>
+<p><code class="docutils literal notranslate"><span class="pre">think</span></code> -&gt; <code class="docutils literal notranslate"><span class="pre">edit</span></code> -&gt; <code class="docutils literal notranslate"><span class="pre">save</span></code> -&gt; <code class="docutils literal notranslate"><span class="pre">compile</span></code> -&gt; <code class="docutils literal notranslate"><span class="pre">execute</span></code> -&gt; <code class="docutils literal notranslate"><span class="pre">check</span></code> -&gt; <code class="docutils literal notranslate"><span class="pre">think</span></code> -&gt; <code class="docutils literal notranslate"><span class="pre">edit</span></code> -&gt; …</p>
+</div>
 </section>
 <section id="understanding-helloworld">
 <h2>Understanding helloworld<a class="headerlink" href="#understanding-helloworld" title="Link to this heading">#</a></h2>
@@ -700,7 +906,10 @@ To execute, we need to specify the path to the executable. We are going to use t
 <section id="comments">
 <h3>Comments<a class="headerlink" href="#comments" title="Link to this heading">#</a></h3>
 <p>You can add comments, ignored by the compiler, using either <code class="docutils literal notranslate"><span class="pre">//</span></code>, for single line comments, or</p>
-<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cm">/* </span>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="c1">// one line comment</span>
+<span class="c1">// another one line comment </span>
+
+<span class="cm">/* </span>
 <span class="cm">  large multiline </span>
 <span class="cm">  comment</span>
 <span class="cm">*/</span>
@@ -710,40 +919,56 @@ To execute, we need to specify the path to the executable. We are going to use t
 </section>
 <section id="pre-processor">
 <h3>Pre-processor<a class="headerlink" href="#pre-processor" title="Link to this heading">#</a></h3>
-<p>The line</p>
-<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;iostream&gt;</span>
+<p>The lines like</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;print&gt;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;iostream&gt;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;map&gt;</span>
 </pre></div>
 </div>
-<p>Tells the <strong>pre-processor</strong> to include the <strong>standard</strong> library <code class="docutils literal notranslate"><span class="pre">iostream</span></code>, which is the one in cahrge of (i)npunt and (o)utput of (stream)s. It also gives you <code class="docutils literal notranslate"><span class="pre">std::cin</span></code> to read from the standard input, <code class="docutils literal notranslate"><span class="pre">std::cerr</span></code> and <code class="docutils literal notranslate"><span class="pre">std::clog</span></code> for the standard error, and so on. There are many standard headers, and you should get familiar and use them extensively. Please see <a class="reference external" href="https://en.cppreference.com/w/">cppreference</a>  .</p>
+<p>Tells the <strong>pre-processor</strong> to include some part of the <strong>standard</strong> library. In this case,  <code class="docutils literal notranslate"><span class="pre">print</span></code> (or the old <code class="docutils literal notranslate"><span class="pre">iostream</span></code>),  is the one in charge of (i)npunt and (o)utput for the program. The library <code class="docutils literal notranslate"><span class="pre">iostream</span></code> is still needed to read from the standard input, <code class="docutils literal notranslate"><span class="pre">std::cerr</span></code> and <code class="docutils literal notranslate"><span class="pre">std::clog</span></code> for the standard error, and so on. There are many standard headers, and you should get familiar and use them extensively. Please see <a class="reference external" href="https://en.cppreference.com/w/">cppreference</a>  .</p>
 <p>The pre-processor allows conditional compilation, activates possible parallelism with openmp and does many more things, but for now we will keep it usage like that. Actually, it is in the path to be eliminated in favor of modules.</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
 <p>Do not use <code class="docutils literal notranslate"><span class="pre">.h</span></code> headers. Those come from C , are not using the <code class="docutils literal notranslate"><span class="pre">std</span></code> namespace, and are a bad practice.</p>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>Do not use</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="k">using</span><span class="w"> </span><span class="k">namespace</span><span class="w"> </span><span class="nn">std</span><span class="p">;</span>
+</pre></div>
+</div>
+</div>
+<p>as in many web codes, that is a very bad practice.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>
+</pre></div>
+</div>
 </section>
 <section id="the-main-function">
 <h3>The main function<a class="headerlink" href="#the-main-function" title="Link to this heading">#</a></h3>
 <p>Good programming is based on splitting a daunting task into several smaller tasks that are isolated from each other and perform one thing well. Therefore, the concept of a <em>function</em> is of paramount importance. In c++, a function has a name, a set of arguments (parameters that it receives, like the domain, although the parameter number and type can be any), and a result type (a range) if it returns something. The typical function prototype is</p>
-<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">return_type</span><span class="w"> </span><span class="nf">function_name</span><span class="p">(</span><span class="n">type1</span><span class="w"> </span><span class="n">par1</span><span class="p">,</span><span class="w"> </span><span class="n">type2</span><span class="w"> </span><span class="n">par2</span><span class="p">);</span>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="n">return_type</span><span class="w"> </span><span class="nf">function_name</span><span class="p">(</span><span class="n">type1</span><span class="w"> </span><span class="n">par1</span><span class="p">,</span><span class="w"> </span><span class="n">type2</span><span class="w"> </span><span class="n">par2</span><span class="p">);</span>
 </pre></div>
 </div>
 <p>As an example, the following is the declaration (how is called, what it receives and what it returns) for a that receives two integers and return their sum</p>
-<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">int</span><span class="w"> </span><span class="nf">sum</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">a</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">b</span><span class="p">);</span>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="kt">int</span><span class="w"> </span><span class="nf">sum</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">a</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">b</span><span class="p">);</span>
 </pre></div>
 </div>
 <p>and this would be the implementation</p>
-<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">int</span><span class="w"> </span><span class="nf">sum</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">a</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">b</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="kt">int</span><span class="w"> </span><span class="nf">sum</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">a</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">b</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
 <span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">a</span><span class="o">+</span><span class="n">b</span><span class="p">;</span><span class="w">   </span>
 <span class="p">}</span>
 </pre></div>
 </div>
 <p>For reasons that we will learn later, modularization is very important.</p>
 <p>There is a very important function, called the <code class="docutils literal notranslate"><span class="pre">main</span></code> function, which is mandatory per program (and only can be per executable) and is the one that talks to the operating system. Usually, it is expected that the main function calls other functions in the program. Some signatures of the main function are</p>
-<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span>
 <span class="p">{</span>
 <span class="w"> </span><span class="p">...</span><span class="w">   </span>
 <span class="p">}</span>
 </pre></div>
 </div>
 <p>which means that the executable does not receive any arguments, or</p>
-<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">argc</span><span class="p">,</span><span class="w"> </span><span class="kt">char</span><span class="w"> </span><span class="o">**</span><span class="n">argv</span><span class="p">)</span>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">argc</span><span class="p">,</span><span class="w"> </span><span class="kt">char</span><span class="w"> </span><span class="o">**</span><span class="n">argv</span><span class="p">)</span>
 <span class="p">{</span>
 <span class="w"> </span><span class="p">...</span><span class="w">   </span>
 <span class="p">}</span>
@@ -753,14 +978,6 @@ To execute, we need to specify the path to the executable. We are going to use t
 <div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>./program.x<span class="w"> </span><span class="m">1</span>.2<span class="w"> </span><span class="m">3</span>
 </pre></div>
 </div>
-</section>
-<section id="std-cout-to-print">
-<h3><code class="docutils literal notranslate"><span class="pre">std::cout</span></code> to print<a class="headerlink" href="#std-cout-to-print" title="Link to this heading">#</a></h3>
-<p>The instruction <code class="docutils literal notranslate"><span class="pre">std::cout</span></code> allows to print to the standard output. The <code class="docutils literal notranslate"><span class="pre">\n</span></code> prints a new line. <strong>Warning:</strong> Do not use</p>
-<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">using</span><span class="w"> </span><span class="k">namespace</span><span class="w"> </span><span class="nn">std</span><span class="p">;</span><span class="w"> </span><span class="c1">// DO NOT DO THIS</span>
-</pre></div>
-</div>
-<p>it is a bad practice, frowned upon. You can use a linter or static analysis tool, like cpplint, to chech for advice and errors.</p>
 </section>
 <section id="return-statement">
 <h3>Return statement<a class="headerlink" href="#return-statement" title="Link to this heading">#</a></h3>
@@ -948,12 +1165,21 @@ Sometimes it is useful to try several compilers to find possible bugs in the cod
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-c-language">The C++ Language</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#why-c-and-not-just-python">Why c++ and not just python?</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-two-language-reality-of-ml-and-scientific-computing">The “Two-Language” Reality of ML and Scientific Computing</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#unmatched-performance-control-hpc-context">Unmatched Performance &amp; Control (HPC Context)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-evolution-c-is-modernizing">The Evolution: C++ is “Modernizing”</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#educational-value-understanding-the-inner-workings">Educational Value: Understanding the “Inner Workings”</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#summary-table-python-vs-c-in-2026">Summary Table: Python vs. C++ in 2026</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#verdict">Verdict</a></li>
+</ul>
+</li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#typical-basic-workflow">Typical basic workflow</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#understanding-helloworld">Understanding helloworld</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#comments">Comments</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pre-processor">Pre-processor</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-main-function">The main function</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#std-cout-to-print"><code class="docutils literal notranslate"><span class="pre">std::cout</span></code> to print</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#return-statement">Return statement</a></li>
 </ul>
 </li>
@@ -997,7 +1223,7 @@ By William Oquendo
 
   <p class="copyright">
     
-      © Copyright 2024.
+      © Copyright 2026.
       <br/>
     
   </p>

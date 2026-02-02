@@ -1,0 +1,891 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Programación e Introducción a los Métodos Numéricos &#8212; Introduction to C++ and Numerical Methods</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="../../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../../_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css?v=9c3e77be" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../../_static/exercise.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/tabs.css?v=4c969af8" />
+    <link rel="stylesheet" type="text/css" href="../../_static/proof.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/styles/sphinx-examples.css?v=e236af4b" />
+    <link rel="stylesheet" type="text/css" href="../../_static/css/tooltipster.custom.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/css/tooltipster.bundle.min.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/css/tooltipster-sideTip-shadow.min.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/css/tooltipster-sideTip-punk.min.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/css/tooltipster-sideTip-noir.min.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/css/tooltipster-sideTip-light.min.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/css/tooltipster-sideTip-borderless.min.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/css/micromodal.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-design.min.css?v=95c83b7e" />
+    <link rel="stylesheet" type="text/css" href="../../_static/styles.css?v=03b9d5b1" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="../../_static/jquery.js?v=5d32c60e"></script>
+    <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+    <script src="../../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script src="../../_static/tabs.js?v=3ee01567"></script>
+    <script src="../../_static/js/hoverxref.js"></script>
+    <script src="../../_static/js/tooltipster.bundle.min.js"></script>
+    <script src="../../_static/js/micromodal.min.js"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../_static/togglebutton.js?v=1ae7504c"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../../_static/design-tabs.js?v=f930bc37"></script>
+    <script async="async" src="https://www.googletagmanager.com/gtag/js?id=G-DX59QS1P22"></script>
+    <script>
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){ dataLayer.push(arguments); }
+                gtag('js', new Date());
+                gtag('config', 'G-DX59QS1P22');
+            </script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){ dataLayer.push(arguments); }
+                gtag('js', new Date());
+                gtag('config', 'G-DX59QS1P22');
+            </script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'lectures/00-IntroCourse/CourseIntroAndRules';</script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Git introduction" href="../A-01-Git/VersionControlGit.html" />
+    <link rel="prev" title="SciPy - Library of scientific algorithms for Python" href="../11-IntroPython/05-Scipy.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../../README.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="https://upload.wikimedia.org/wikipedia/commons/1/18/ISO_C%2B%2B_Logo.svg" class="logo__image only-light" alt="Introduction to C++ and Numerical Methods - Home"/>
+    <script>document.write(`<img src="https://upload.wikimedia.org/wikipedia/commons/1/18/ISO_C%2B%2B_Logo.svg" class="logo__image only-dark" alt="Introduction to C++ and Numerical Methods - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../../README.html">
+                    Introduction to C++ and Numerical Methods
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Introduction to C++</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../01-IntroCPP/IntroProgrammingCourse.html">Introduction to Programming and C++</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../01-IntroCPP/Resources.html">Resources</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../01-IntroCPP/CPP-FastPacedIntro.html">Very fast intro to the basics of c++</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Numerical Calculus</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../02-derivatives/NumericalDifferentiation.html">Numerical differentiation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../03-integration/NumericalIntegration_Basics.html">Numerical Integration</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Modern and primitive arrays, and basic Linear Algebra</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../04-vector-containers/ModernArrays.html">Modern arrays</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../05-matrixI/2D-matrices-to-1D-arrays.html">1D Arrays for 2D Matrices</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../06-ArrayComputing/ArrayComputing-Valarray.html">Vector operations: Coefficient-wise , array computing</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Linear Algebra and Numerical Libraries</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../07-LinearAlgebra/LinearAlgebraEigen.html">Linear Systems : Matrices, Vectors, eigen systems</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Ordinary differential equations: Initial value problems</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../08-ODE-IVP/InitialValueProblem.html">Ordinary differential equations (and initial value problems)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../09-ODE-IVP-OOP-MolecularDynamics/IntroMolecularDynamics.html">Introduction to molecular dynamics through OOP</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Random Numbers and Applications</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../10-RandomSystems/RandomNumbers.html">Random Numbers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../10-RandomSystems/RandomNumbersInSimulations.html">Random numbers in simulations</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Python introduction</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../11-IntroPython/01-IntroProgrammingPython.html">Python Programming (very fast) Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../11-IntroPython/02-IntroProgrammingPython-DataStructs.html">Basic data structures</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../11-IntroPython/03-matplotlib-intro.html">Matplotlib</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../11-IntroPython/04-numpy-basic-reduced.html">Efficient Python arrays : Numpy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../11-IntroPython/05-Scipy.html">SciPy - Library of scientific algorithms for Python</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Appendix</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Programación e Introducción a los Métodos Numéricos</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../A-01-Git/VersionControlGit.html">Git introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../A-02-Containers/Docker.html">Docker Containers - Introductory Lesson</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-launch-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Launch interactive content">
+    <i class="fas fa-rocket"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://mybinder.org/v2/gh/iluvatar1/ProgCPP-lectures-jupyter/master?urlpath=lab/tree/lectures/00-IntroCourse/CourseIntroAndRules.ipynb" target="_blank"
+   class="btn btn-sm dropdown-item"
+   title="Launch on Binder"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  
+    <img alt="Binder logo" src="../../_static/images/logo_binder.svg">
+  </span>
+<span class="btn__text-container">Binder</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://colab.research.google.com/github/iluvatar1/ProgCPP-lectures-jupyter/blob/master/lectures/00-IntroCourse/CourseIntroAndRules.ipynb" target="_blank"
+   class="btn btn-sm dropdown-item"
+   title="Launch on Colab"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  
+    <img alt="Colab logo" src="../../_static/images/logo_colab.png">
+  </span>
+<span class="btn__text-container">Colab</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="initThebeSBT()"
+  class="btn btn-sm btn-launch-thebe dropdown-item"
+  title="Launch Thebe"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-play"></i>
+  </span>
+<span class="btn__text-container">Live Code</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/iluvatar1/ProgCPP-lectures-jupyter" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/iluvatar1/ProgCPP-lectures-jupyter/issues/new?title=Issue%20on%20page%20%2Flectures/00-IntroCourse/CourseIntroAndRules.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../../_sources/lectures/00-IntroCourse/CourseIntroAndRules.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Programación e Introducción a los Métodos Numéricos</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#objetivo-general">Objetivo General</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#contenidos-generales-y-programa-tentativo">Contenidos generales y programa tentativo</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#modulo-i-fundamentos-de-programacion-de-computadores">Módulo I: Fundamentos de Programación de Computadores</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#modulo-ii-aplicaciones-numericas-basicas">Módulo II: Aplicaciones numéricas básicas</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#modulo-iii-aplicaciones-matriciales-basicas-y-librerias">Módulo III: Aplicaciones matriciales básicas y librerías</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#modulo-iv-ecuaciones-differenciales-de-valor-inicial">Módulo IV: Ecuaciones differenciales de valor inicial</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#modulo-v-introduccion-a-python">Módulo V: introducción a Python</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#temas-opcionales">Temas opcionales</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#evaluacion">Evaluación</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#metodologia-de-evaluacion">Metodología de evaluación</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#recursos-basicos-del-curso">Recursos básicos del curso</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#instrucciones-de-acceso-remoto-a-la-sala-de-computo-recursos-usb-live-etc">Instrucciones de acceso remoto a la sala de cómputo, recursos, usb live, etc</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#listas-de-videos">Listas de videos:</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#complementary-tools">Complementary tools</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#bibliografia">Bibliografía</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="programacion-e-introduccion-a-los-metodos-numericos">
+<h1>Programación e Introducción a los Métodos Numéricos<a class="headerlink" href="#programacion-e-introduccion-a-los-metodos-numericos" title="Link to this heading">#</a></h1>
+<figure class="align-center">
+<a class="reference internal image-reference" href="../../_images/Core-programming.jpg"><img alt="../../_images/Core-programming.jpg" src="../../_images/Core-programming.jpg" style="width: 50%;" /></a>
+</figure>
+<!-- <img src="img/Core-programming.jpg" width=20%> -->
+<section id="objetivo-general">
+<h2>Objetivo General<a class="headerlink" href="#objetivo-general" title="Link to this heading">#</a></h2>
+<p>Introducir al estudiante a las técnicas básicas de programación y su aplicación numérica
+usando el lenguaje C++, con aplicaciones a diversos métodos numéricos
+básicos: diferenciación e integración, problemas matriciales, solución
+de ecuaciones algebraicas, solución de ecuaciones diferenciales
+ordinarias, etc.</p>
+<p>Simulation: <a class="reference external" href="https://youtu.be/lS_qeBy3aQI?si=ECDSZHouSlh2PQLq&amp;amp;t=446">https://youtu.be/lS_qeBy3aQI?si=ECDSZHouSlh2PQLq&amp;t=446</a></p>
+</section>
+<section id="contenidos-generales-y-programa-tentativo">
+<h2>Contenidos generales y programa tentativo<a class="headerlink" href="#contenidos-generales-y-programa-tentativo" title="Link to this heading">#</a></h2>
+<section id="modulo-i-fundamentos-de-programacion-de-computadores">
+<h3>Módulo I: Fundamentos de Programación de Computadores<a class="headerlink" href="#modulo-i-fundamentos-de-programacion-de-computadores" title="Link to this heading">#</a></h3>
+<ol class="arabic simple">
+<li><p><strong>Introducción al curso y al desarrollo en c++ :</strong> Entorno de
+trabajo (google collab, muestra de acceso remoto a la sala de
+cómputo, binder, etc). Lenguajes de programación. Compiladores,
+editores (emacs, vs code). Estructura básica, compilación y
+ejecución de un programa en c++.</p></li>
+<li><p><strong>Introducción básica a <code class="docutils literal notranslate"><span class="pre">C++</span></code></strong>: Función <code class="docutils literal notranslate"><span class="pre">main</span></code>. Variables y tipos
+(<code class="docutils literal notranslate"><span class="pre">int,</span>&#160;&#160; <span class="pre">float,</span> <span class="pre">double</span></code>). Operadores aritmeticos (<code class="docutils literal notranslate"><span class="pre">+,</span> <span class="pre">-,</span> <span class="pre">*,</span> <span class="pre">++</span></code>, etc),
+lógicos (<code class="docutils literal notranslate"><span class="pre">&amp;&amp;,</span>&#160;&#160; <span class="pre">and,</span> <span class="pre">or</span></code>), de comparación (<code class="docutils literal notranslate"><span class="pre">==,!=</span></code>). Precedencia de operadores.
+Condicional <code class="docutils literal notranslate"><span class="pre">if</span></code> , <code class="docutils literal notranslate"><span class="pre">else</span></code> . Aplicación: números pares, divisores.
+Introducción a loops.</p></li>
+<li><p><strong>Funciones y modularización de archivos:</strong> Más sobre funciones.
+Modularización de archivos, separando declaración, implementación, y
+función main. Parámetros de la línea de comandos. Aplicación: Testing
+de funciones con catch2.</p></li>
+</ol>
+</section>
+<section id="modulo-ii-aplicaciones-numericas-basicas">
+<h3>Módulo II: Aplicaciones numéricas básicas<a class="headerlink" href="#modulo-ii-aplicaciones-numericas-basicas" title="Link to this heading">#</a></h3>
+<ol class="arabic simple">
+<li><p><strong>Loops y funciones</strong>: loops clásicos (<code class="docutils literal notranslate"><span class="pre">for</span></code>, <code class="docutils literal notranslate"><span class="pre">while</span></code>, <code class="docutils literal notranslate"><span class="pre">do-while</span></code>).
+Loops modernos automáticos en rangos, Funciones básicas como modelo
+base de programación. Aplicación: Sumas de series, aproximación de
+número <span class="math notranslate nohighlight">\(\pi\)</span>. Búsqueda de raíces.</p></li>
+<li><p><strong>Derivadas numéricas</strong>: Método forward, central, y aplicación de la
+extrapolación de Richardson. Escritura con formato usando ofstream.
+Introducción a la derivación automática usando clases.</p></li>
+<li><p><strong>Cuadraturas numéricas</strong>: Trapecio, Simpson, y Gauss. Errores matemáticos y errores  numéricos.</p></li>
+</ol>
+</section>
+<section id="modulo-iii-aplicaciones-matriciales-basicas-y-librerias">
+<h3>Módulo III: Aplicaciones matriciales básicas y librerías<a class="headerlink" href="#modulo-iii-aplicaciones-matriciales-basicas-y-librerias" title="Link to this heading">#</a></h3>
+<ol class="arabic simple">
+<li><p><strong>Arreglos modernos <code class="docutils literal notranslate"><span class="pre">std::vector</span></code>, <code class="docutils literal notranslate"><span class="pre">std::array</span></code></strong>: Arreglos
+modernos, heap y stack, acceso de memoria. Ejemplos con vectores
+matemáticos, aleatorios y normas. Introducción al deugging y a los
+sanitizers.</p></li>
+<li><p><strong>Matrices representadas en arreglos</strong>: Colapso de índices.
+problemas matriciales y escalamiento.</p></li>
+<li><p><strong>Array computing</strong>: Operaciones a nivel de coeficientes,
+<code class="docutils literal notranslate"><span class="pre">std::valarray</span></code>. Representación vectorial de las operaciones.</p></li>
+<li><p><strong>Álgebra lineal computacional</strong>: Algoritmos, librerías como
+<code class="docutils literal notranslate"><span class="pre">eigen</span></code>, matrices complejas, problemas y aplicaciones. Matrices
+aleatorias. Problemas de valor propio.</p></li>
+</ol>
+</section>
+<section id="modulo-iv-ecuaciones-differenciales-de-valor-inicial">
+<h3>Módulo IV: Ecuaciones differenciales de valor inicial<a class="headerlink" href="#modulo-iv-ecuaciones-differenciales-de-valor-inicial" title="Link to this heading">#</a></h3>
+<ol class="arabic simple">
+<li><p><strong>ODE y problemas de valor inicial</strong>: Ecuaciones diferenciales
+ordinarias de valor inicial. Algoritmo de Euler, Runge-Kutta, etc.
+Órdenes de convergencia, Aplicaciones a sistemas dinámicos.</p></li>
+<li><p><strong>Introducción a la dinamica molecular</strong>: Simulaciones de dinámica
+molecular, algoritmos, modularización, visualización de datos
+(post-processing), visualización del sistema con opengl.</p></li>
+</ol>
+</section>
+<section id="modulo-v-introduccion-a-python">
+<h3>Módulo V: introducción a Python<a class="headerlink" href="#modulo-v-introduccion-a-python" title="Link to this heading">#</a></h3>
+<ol class="arabic simple">
+<li><p><strong>Programación básica en python</strong>: Variables, selección, loops y funciones.</p></li>
+<li><p><strong>Estructuras básicas de datos</strong>: Listas, arreglos y diccionarios.</p></li>
+</ol>
+</section>
+<section id="temas-opcionales">
+<h3>Temas opcionales<a class="headerlink" href="#temas-opcionales" title="Link to this heading">#</a></h3>
+<ol class="arabic simple">
+<li><p><strong>(Opt) Librería estándar de algoritmos STL</strong>. Ejemplo: Ordenamiento de
+datos con la librería estándar, números aleatorios, contenedores.</p></li>
+<li><p><strong>(Opt) ODE y problemas de valor de frontera</strong>: Ecuaciones
+diferenciales ordinarias de valor inicial. Algoritmo de Euler,
+Runge-Kutta, etc. Órdenes de convergencia, Aplicaciones a sistemas
+dinámicos.</p></li>
+<li><p><strong>(Opt) Introducción a la solución numérica de ecuaciones
+diferenciales parciales:</strong> Ecuación de Laplace y método de
+relajación.</p></li>
+<li><p><strong>(Opt) Números aleatorios</strong>: Distribuciones, cálculo de integrales,
+métodos básicos de MonteCarlo.</p></li>
+<li><p><strong>(Opt) Errores en computación numérica:</strong> Substracción cancelativa,
+round-off, precisión, etc.</p></li>
+</ol>
+</section>
+</section>
+<section id="evaluacion">
+<h2>Evaluación<a class="headerlink" href="#evaluacion" title="Link to this heading">#</a></h2>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Item</p></th>
+<th class="head"><p>Porcentaje</p></th>
+<th class="head"><p>Fecha</p></th>
+<th class="head"><p>Información adicional</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Examen Parcial 1</p></td>
+<td><p>15</p></td>
+<td><p>Semana 4-5</p></td>
+<td><p>Presencial</p></td>
+</tr>
+<tr class="row-odd"><td><p>Examen Parcial 2</p></td>
+<td><p>20</p></td>
+<td><p>Semana 9-11</p></td>
+<td><p>Presencial</p></td>
+</tr>
+<tr class="row-even"><td><p>Tareas y práctica</p></td>
+<td><p>40</p></td>
+<td><p>Cada clase</p></td>
+<td><p>Evaluación permanente</p></td>
+</tr>
+<tr class="row-odd"><td><p>Proyecto Final</p></td>
+<td><p>25</p></td>
+<td><p>Última semana</p></td>
+<td><p>Se sustenta con video, informe y código</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Atención de dudas:</p>
+<ol class="arabic simple">
+<li><p><strong>Reservas usando el calendario de google</strong></p></li>
+<li><p><strong>Foro en moodle: <a class="reference external" href="http://micampus.unal.edu.co">micampus.unal.edu.co</a></strong></p></li>
+<li><p>Email con la pregunta claramente detallada.</p></li>
+<li><p>Email proponiendo al menos dos horarios de reunión e indicando la pregunta</p></li>
+</ol>
+<section id="metodologia-de-evaluacion">
+<h3>Metodología de evaluación<a class="headerlink" href="#metodologia-de-evaluacion" title="Link to this heading">#</a></h3>
+<p>La metodología de evaluacion es mixta, usando diferentes recursos que evalúan diferentes aspectos del aprendizaje:</p>
+<p>a) Tareas normales que se califican sobre 5.0. Estas puede ser tareas sencillas de un día para otro, o workshops en donde ustedes entregan y además revisan el trabajo de sus compañeros, y la nota final depende de la calidad de lo que entregó y de lo bien que evaluó (se castigan calificaciones demasiado buenas, demasiado malas, etc)</p>
+<p>b) Minitareas, que normalmente valen entre 1.0 a 2.0, y se van acumulando hasta convertirse en una tarea completa qu puede sumar más de 5.0 (ahí está la ayuda en bonos). Estas muchas veces se hacen en clase y al sumar más de 5.0 permiten que usted no presente alguna y aún así aspire a sacar 5.0. Adicionalmente, pueden consistir de videos de preparación de clase y otras actividades.</p>
+<p>c) Evaluaciones tipo parcial, en ambientes limitados y de tiempo limitado. Normalmente son de selección múltiple o programas que deben cumplir ciertos casos de prueba, ya sean explícitos u ocultos.</p>
+<p>d) Proyectos se busca la solución de problemas más complejos , en grupo. Allí se deben fotalecer las habilidades blandas y usar herramientas apropiadas para coordinar el trabajo en grupo. Adicionalmente, la nota final de estos trabajos en grupo depende también de una evaluación anónima que hagan sus propios compañeros sobre su contribución, de manera que si usted no trabaja, no obtendrá la misma nota que los demás aunque estén en el mismo grupo.</p>
+</section>
+</section>
+<section id="recursos-basicos-del-curso">
+<h2>Recursos básicos del curso<a class="headerlink" href="#recursos-basicos-del-curso" title="Link to this heading">#</a></h2>
+<section id="instrucciones-de-acceso-remoto-a-la-sala-de-computo-recursos-usb-live-etc">
+<h3>Instrucciones de acceso remoto a la sala de cómputo, recursos, usb live, etc<a class="headerlink" href="#instrucciones-de-acceso-remoto-a-la-sala-de-computo-recursos-usb-live-etc" title="Link to this heading">#</a></h3>
+<p><a class="reference external" href="https://iluvatar1.github.io/salafis/">https://iluvatar1.github.io/salafis/</a></p>
+</section>
+<section id="listas-de-videos">
+<h3>Listas de videos:<a class="headerlink" href="#listas-de-videos" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p><a class="reference external" href="https://www.youtube.com/playlist?list=PLxbXsIEaf05oYYsYbMfB5_gTthmFfH0R1">Programación en c++ - videos básicos</a></p></li>
+<li><p><a class="reference external" href="https://www.youtube.com/playlist?list=PLxbXsIEaf05rfmmfUi16B_R3unWY84xZQ">2024-II</a></p></li>
+<li><p><a class="reference external" href="https://www.youtube.com/playlist?list=PLxbXsIEaf05pd-AyF7G-BWuIxAmIyhyAd">2024-1s</a></p></li>
+</ul>
+</section>
+<section id="complementary-tools">
+<h3>Complementary tools<a class="headerlink" href="#complementary-tools" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p><a class="reference external" href="https://tinyurl.com/ProgCPP-presentations">https://tinyurl.com/ProgCPP-presentations</a></p></li>
+<li><p><strong><a class="reference external" href="https://www.learncpp.com/">https://www.learncpp.com/</a></strong></p></li>
+<li><p><strong><a class="reference external" href="https://en.cppreference.com/w/">https://en.cppreference.com/w/</a></strong></p></li>
+<li><p><a class="reference external" href="https://projecteuler.net/archives">https://projecteuler.net/archives</a></p></li>
+<li><p><strong><a class="reference external" href="https://hackingcpp.com/cpp/cheat_sheets.html">https://hackingcpp.com/cpp/cheat_sheets.html</a></strong></p></li>
+<li><p><a class="reference external" href="https://quickref.me/cpp">https://quickref.me/cpp</a></p></li>
+<li><p><a class="reference external" href="https://codecombat.com/">https://codecombat.com/</a></p></li>
+<li><p><a class="reference external" href="https://algorithm-visualizer.org/backtracking/hamiltonean-cycles">https://algorithm-visualizer.org/backtracking/hamiltonean-cycles</a></p></li>
+<li><p><a class="reference external" href="https://courses.cs.washington.edu/courses/cse391/23sp/">https://courses.cs.washington.edu/courses/cse391/23sp/</a></p></li>
+</ul>
+</section>
+</section>
+<section id="bibliografia">
+<h2>Bibliografía<a class="headerlink" href="#bibliografia" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p>Canale, R.P., and D. Steven C. Chapra. Numerical Methods for Engineers. McGraw-Hill Education, 2014. <a class="reference external" href="https://books.google.com.co/books?id=avsMnQEACAAJ">https://books.google.com.co/books?id=avsMnQEACAAJ</a>.</p></li>
+<li><p>Deitel, P., and H. Deitel. C++ How to Program. How to Program. Prentice Hall PTR, 2013. <a class="reference external" href="https://books.google.com.co/books?id=S9oxoAEACAAJ">https://books.google.com.co/books?id=S9oxoAEACAAJ</a>.</p></li>
+<li><p>Garcia, A.L. Numerical Methods for Physics. Prentice Hall, 2000. <a class="reference external" href="https://books.google.com.co/books?id=MPVAAQAAIAAJ">https://books.google.com.co/books?id=MPVAAQAAIAAJ</a>.</p></li>
+<li><p>Langtangen, H.P. A Primer on Scientific Programming with Python. Texts in Computational Science and Engineering. Springer Berlin Heidelberg, 2016. <a class="reference external" href="https://books.google.com.co/books?id=nUzADAAAQBAJ">https://books.google.com.co/books?id=nUzADAAAQBAJ</a>.</p></li>
+<li><p>Nunez-Iglesias, J., S.Ø. van der Walt, and H. Dashnow. Elegant SciPy: The Art of Scientific Python. O’Reilly Media, 2017. <a class="reference external" href="https://books.google.com.co/books?id=4tOdjgEACAAJ">https://books.google.com.co/books?id=4tOdjgEACAAJ</a>.</p></li>
+<li><p>Pitt-Francis, J., and J. Whiteley. Guide to Scientific Computing in C++. Undergraduate Topics in Computer Science. Springer International Publishing, 2018. <a class="reference external" href="https://books.google.com.co/books?id=e1FTDwAAQBAJ">https://books.google.com.co/books?id=e1FTDwAAQBAJ</a>.</p></li>
+<li><p>Širca, S., and M. Horvat. Computational Methods in Physics: Compendium for Students. Graduate Texts in Physics. Springer International Publishing, 2018. <a class="reference external" href="https://books.google.com.co/books?id=9XhhDwAAQBAJ">https://books.google.com.co/books?id=9XhhDwAAQBAJ</a>.</p></li>
+<li><p>Smith, E. Introduction to the Tools of Scientific Computing. Texts in Computational Science and Engineering. Springer International Publishing, 2020. <a class="reference external" href="https://books.google.com.co/books?id=B5YMEAAAQBAJ">https://books.google.com.co/books?id=B5YMEAAAQBAJ</a>.</p></li>
+<li><p>Stroustrup, B. Programming: Principles and Practice Using C++. Pearson Education, 2014. <a class="reference external" href="https://books.google.com.co/books?id=We21AwAAQBAJ">https://books.google.com.co/books?id=We21AwAAQBAJ</a>.</p></li>
+</ul>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "iluvatar1/ProgCPP-lectures-jupyter",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./lectures/00-IntroCourse"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="../11-IntroPython/05-Scipy.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">SciPy - Library of scientific algorithms for Python</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="../A-01-Git/VersionControlGit.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Git introduction</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#objetivo-general">Objetivo General</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#contenidos-generales-y-programa-tentativo">Contenidos generales y programa tentativo</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#modulo-i-fundamentos-de-programacion-de-computadores">Módulo I: Fundamentos de Programación de Computadores</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#modulo-ii-aplicaciones-numericas-basicas">Módulo II: Aplicaciones numéricas básicas</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#modulo-iii-aplicaciones-matriciales-basicas-y-librerias">Módulo III: Aplicaciones matriciales básicas y librerías</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#modulo-iv-ecuaciones-differenciales-de-valor-inicial">Módulo IV: Ecuaciones differenciales de valor inicial</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#modulo-v-introduccion-a-python">Módulo V: introducción a Python</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#temas-opcionales">Temas opcionales</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#evaluacion">Evaluación</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#metodologia-de-evaluacion">Metodología de evaluación</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#recursos-basicos-del-curso">Recursos básicos del curso</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#instrucciones-de-acceso-remoto-a-la-sala-de-computo-recursos-usb-live-etc">Instrucciones de acceso remoto a la sala de cómputo, recursos, usb live, etc</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#listas-de-videos">Listas de videos:</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#complementary-tools">Complementary tools</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#bibliografia">Bibliografía</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By William Oquendo
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2026.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
