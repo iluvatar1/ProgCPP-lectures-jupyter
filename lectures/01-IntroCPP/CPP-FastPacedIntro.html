@@ -605,7 +605,8 @@ document.write(`
                   
   <section class="tex2jax_ignore mathjax_ignore" id="very-fast-intro-to-the-basics-of-c">
 <h1>Very fast intro to the basics of c++<a class="headerlink" href="#very-fast-intro-to-the-basics-of-c" title="Link to this heading">#</a></h1>
-<p>Although the c++ standard is really large, for this course we need to handle well a small subset of it. What is more important is to learn how to THINK like a programmer, not to memorize the actual syntax, which can actually obtained from google bard or chatGPT. In this section, we will learn the very basics and then we start practicing. Practice is the key in everything. For more details, see <a class="reference external" href="https://www.learncpp.com/">https://www.learncpp.com/</a> or a reference book.</p>
+<p>Although the c++ standard is really large, for this course we need to handle well a small subset of it. What is more important is to learn how to THINK like a programmer, not to memorize the actual syntax, which can actually obtained from google gemini or chatGPT. In this section, we will learn the very basics and then we start practicing. Practice is the key in everything. For more details, see
+<a class="reference external" href="https://www.learncpp.com/">https://www.learncpp.com/</a> or a reference book.</p>
 <p>Some good practices</p>
 <ul class="simple">
 <li><p><a class="reference external" href="https://reprog.wordpress.com/2010/03/06/programming-books-part-2-the-elements-of-programming-style/">https://reprog.wordpress.com/2010/03/06/programming-books-part-2-the-elements-of-programming-style/</a></p></li>
@@ -640,6 +641,9 @@ document.write(`
 </section>
 <section id="variables">
 <h2>Variables<a class="headerlink" href="#variables" title="Link to this heading">#</a></h2>
+<figure class="align-center">
+<a class="reference internal image-reference" href="https://hackingcpp.com/cpp/lang/variables_crop.svg"><img alt="https://hackingcpp.com/cpp/lang/variables_crop.svg" src="https://hackingcpp.com/cpp/lang/variables_crop.svg" style="width: 80%;" /></a>
+</figure>
 <p>See</p>
 <ul class="simple">
 <li><p><a class="reference external" href="https://en.cppreference.com/w/cpp/language/types">https://en.cppreference.com/w/cpp/language/types</a></p></li>
@@ -655,17 +659,41 @@ document.write(`
 <li><p>A scope (the sourronding <code class="docutils literal notranslate"><span class="pre">{}</span></code>)</p></li>
 </ul>
 <p>C++ is a typed lang. It means that you have to specify the type of the variable you are going to use. You have booleans, char, integers, float and double, arrays/vectors, structs, … See <a class="reference external" href="https://hackingcpp.com/cpp/lang/fundamental_types.html">https://hackingcpp.com/cpp/lang/fundamental_types.html</a></p>
-<p>A variable in memory:</p>
-<div style="text-align: center;">
-    <img src="https://hackingcpp.com/cpp/lang/variables_crop.svg" alt="Image Description" width="700">
-    <figcaption>From: "https://hackingcpp.com/cpp/lang/variables_crop.svg"</figcaption>
-</div>
 <p>How to represent “reals”:</p>
 <div style="text-align: center;">
     <img src="https://hackingcpp.com/cs/number_representations_crop.png" alt="Image Description" width="900">
     <figcaption>From: "https://hackingcpp.com/cs/number_representations_crop.png"</figcaption>
+</div><p>Bugs: Gandhi the destroyer (unsigned char):</p>
+<div class="cell tag_hide-input docutils container">
+<details class="admonition hide above-input">
+<summary aria-label="Toggle hidden content">
+<p class="collapsed admonition-title">Show code cell source</p>
+<p class="expanded admonition-title">Hide code cell source</p>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">IPython.display</span><span class="w"> </span><span class="kn">import</span> <span class="n">YouTubeVideo</span>
+<span class="n">YouTubeVideo</span><span class="p">(</span><span class="s2">&quot;Iq_r7IcNmUk&quot;</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="mi">640</span><span class="p">,</span> <span class="n">height</span><span class="o">=</span><span class="mi">350</span><span class="p">)</span>
+</pre></div>
 </div>
-<p>Bugs: Gandhi the destroyer (unsigned char): <a class="reference external" href="https://www.youtube.com/watch?v=Iq_r7IcNmUk">https://www.youtube.com/watch?v=Iq_r7IcNmUk</a></p>
+</div>
+</details>
+<div class="cell_output docutils container">
+<div class="output text_html">
+        <iframe
+            width="640"
+            height="350"
+            src="https://www.youtube.com/embed/Iq_r7IcNmUk"
+            frameborder="0"
+            allowfullscreen
+            
+        ></iframe>
+        </div></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Numerical limits
+<a class="reference external" href="https://en.cppreference.com/w/cpp/language/types.html">https://en.cppreference.com/w/cpp/language/types.html</a></p>
+</div>
 <section id="exercises">
 <h3>Exercises<a class="headerlink" href="#exercises" title="Link to this heading">#</a></h3>
 <section id="initialization">
@@ -677,7 +705,6 @@ document.write(`
 <li><p><code class="docutils literal notranslate"><span class="pre">std::string</span></code> initialized with your first name .</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">std::vector&lt;double&gt;</span></code> with 10 values not initialized.</p></li>
 </ul>
-<p>// TODO</p>
 </section>
 <section id="python-c-tutor">
 <h4>Python/C++ tutor<a class="headerlink" href="#python-c-tutor" title="Link to this heading">#</a></h4>
