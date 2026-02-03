@@ -1,9 +1,16 @@
 
-.PHONY: book clean actions repo2docker binder devcontainer
+.PHONY: book clean actions repo2docker binder devcontainer serve
 
 book:
 	@echo "Building book with jupyter-book"
 	jupyter-book build -v ./
+
+serve: book
+	@echo "Serving Jupyter Book at http://localhost:8000"
+	@cd _build/html && \
+	python -m http.server 8000 & \
+	sleep 1 && open http://localhost:8000
+
 
 # Check https://github.com/nektos/act/issues/1658
 actions:
