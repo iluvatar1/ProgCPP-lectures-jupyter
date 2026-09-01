@@ -27,8 +27,8 @@
   </noscript>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="../../_static/styles/theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
-<link href="../../_static/styles/pydata-sphinx-theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+  <link href="../../_static/styles/theme.css?digest=55c26ed414f5f8a31ebb" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=55c26ed414f5f8a31ebb" rel="stylesheet" />
 
     <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=03e43079" />
     <link rel="stylesheet" type="text/css" href="../../_static/styles/sphinx-book-theme.css?v=3c74b3bc" />
@@ -40,25 +40,15 @@
     <link rel="stylesheet" type="text/css" href="../../_static/tabs.css?v=4c969af8" />
     <link rel="stylesheet" type="text/css" href="../../_static/proof.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/styles/sphinx-examples.css?v=e236af4b" />
-    <link rel="stylesheet" type="text/css" href="../../_static/css/tooltipster.custom.css" />
-    <link rel="stylesheet" type="text/css" href="../../_static/css/tooltipster.bundle.min.css" />
-    <link rel="stylesheet" type="text/css" href="../../_static/css/tooltipster-sideTip-shadow.min.css" />
-    <link rel="stylesheet" type="text/css" href="../../_static/css/tooltipster-sideTip-punk.min.css" />
-    <link rel="stylesheet" type="text/css" href="../../_static/css/tooltipster-sideTip-noir.min.css" />
-    <link rel="stylesheet" type="text/css" href="../../_static/css/tooltipster-sideTip-light.min.css" />
-    <link rel="stylesheet" type="text/css" href="../../_static/css/tooltipster-sideTip-borderless.min.css" />
-    <link rel="stylesheet" type="text/css" href="../../_static/css/micromodal.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/sphinx-design.min.css?v=95c83b7e" />
     <link rel="stylesheet" type="text/css" href="../../_static/styles.css?v=03b9d5b1" />
   
   <!-- So that users can add custom icons -->
-  <script src="../../_static/scripts/fontawesome.js?digest=8878045cc6db502f8baf"></script>
+  <script defer src="../../_static/scripts/fontawesome.js?digest=55c26ed414f5f8a31ebb"></script>
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
-<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=55c26ed414f5f8a31ebb" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=55c26ed414f5f8a31ebb" />
 
-    <script src="../../_static/jquery.js?v=5d32c60e"></script>
-    <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
     <script src="../../_static/documentation_options.js?v=9eb32ce0"></script>
     <script src="../../_static/doctools.js?v=9a2dae69"></script>
     <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
@@ -66,9 +56,6 @@
     <script src="../../_static/copybutton.js?v=f281be69"></script>
     <script src="../../_static/scripts/sphinx-book-theme.js?v=fab101a9"></script>
     <script src="../../_static/tabs.js?v=3ee01567"></script>
-    <script src="../../_static/js/hoverxref.js"></script>
-    <script src="../../_static/js/tooltipster.bundle.min.js"></script>
-    <script src="../../_static/js/micromodal.min.js"></script>
     <script>let toggleHintShow = 'Click to show';</script>
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
@@ -79,6 +66,12 @@
     <script>
                 window.dataLayer = window.dataLayer || [];
                 function gtag(){ dataLayer.push(arguments); }
+                gtag('consent', 'default', {
+                    'ad_storage': 'denied',
+                    'ad_user_data': 'denied',
+                    'ad_personalization': 'denied',
+                    'analytics_storage': 'denied'
+                });
                 gtag('js', new Date());
                 gtag('config', 'G-DX59QS1P22');
             </script>
@@ -88,6 +81,12 @@
     <script>
                 window.dataLayer = window.dataLayer || [];
                 function gtag(){ dataLayer.push(arguments); }
+                gtag('consent', 'default', {
+                    'ad_storage': 'denied',
+                    'ad_user_data': 'denied',
+                    'ad_personalization': 'denied',
+                    'analytics_storage': 'denied'
+                });
                 gtag('js', new Date());
                 gtag('config', 'G-DX59QS1P22');
             </script>
@@ -95,6 +94,7 @@
     <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'lectures/11-IntroPython/02-IntroProgrammingPython-DataStructs';</script>
+    <script>DOCUMENTATION_OPTIONS.search_as_you_type = false;</script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
@@ -103,20 +103,26 @@
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   <meta name="docsearch:version" content="" />
+  
+    
+    <script src="../../_static/searchtools.js"></script>
+    <script src="../../_static/language_data.js"></script>
+    <script src="../../searchindex.js"></script>
+  
   </head>
-  
-  
-  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
-
+  <body data-default-mode="">
   
   
   <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+
   
   <div id="pst-scroll-pixel-helper"></div>
   
   <button type="button" class="btn rounded-pill" id="pst-back-to-top">
     <i class="fa-solid fa-arrow-up"></i>Back to top</button>
-
+  
+  
+  
   
   <dialog id="pst-search-dialog">
     
@@ -142,7 +148,51 @@
 </div>
 
   
-    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    <header id="pst-header" class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Site navigation">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+        </div>
+      
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+    </div>
+  
+
+  
+    <button class="pst-navbar-icon sidebar-toggle secondary-toggle" aria-label="On this page">
+      <span class="fa-solid fa-outdent"></span>
+    </button>
+  
+</div>
+
     </header>
   
 
@@ -505,7 +555,7 @@
                 <h2> Contents </h2>
             </div>
             <nav aria-label="Page">
-                <ul class="visible nav section-nav flex-column">
+                <ul class="pst-show_toc_level nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#lists">Lists</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercises">Exercises</a></li>
 </ul>
@@ -546,14 +596,14 @@
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">xdata</span> <span class="o">=</span> <span class="p">[]</span> <span class="c1"># declares empty list</span>
 <span class="nb">print</span> <span class="p">(</span><span class="n">xdata</span><span class="p">)</span>
-<span class="n">xdata</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mf">6.5</span><span class="p">,</span> <span class="s1">&#39;hello&#39;</span><span class="p">]</span> <span class="c1"># heterogeneous list</span>
+<span class="n">xdata</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mf">6.5</span><span class="p">,</span> <span class="s1">'hello'</span><span class="p">]</span> <span class="c1"># heterogeneous list</span>
 <span class="nb">print</span> <span class="p">(</span><span class="n">xdata</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[]
-[1, 2, 3, 6.5, &#39;hello&#39;]
+[1, 2, 3, 6.5, 'hello']
 </pre></div>
 </div>
 </div>
@@ -595,8 +645,8 @@ l
 [1, 2, 3]
 [1, 2, 3, 6.5]
 [1, 3]
-[1, 2, 3, 6.5, &#39;hello&#39;]
-[&#39;hello&#39;, 6.5, 3, 2, 1]
+[1, 2, 3, 6.5, 'hello']
+['hello', 6.5, 3, 2, 1]
 [1, 2, 3, 6.5]
 </pre></div>
 </div>
@@ -624,12 +674,12 @@ l
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Check memory address</span>
 <span class="n">a</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="mi">55</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="nb">id</span><span class="p">(</span><span class="n">a</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span><span class="si">}</span><span class="s2">, </span><span class="si">{</span><span class="nb">id</span><span class="p">(</span><span class="n">a</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span><span class="si">}</span><span class="s2">, </span><span class="si">{</span><span class="nb">id</span><span class="p">(</span><span class="n">a</span><span class="p">[</span><span class="mi">2</span><span class="p">])</span><span class="si">}</span><span class="s2">, </span><span class="si">{</span><span class="nb">id</span><span class="p">(</span><span class="n">a</span><span class="p">[</span><span class="mi">3</span><span class="p">])</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="nb">id</span><span class="p">(</span><span class="n">a</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span><span class="si">}</span><span class="s2">, </span><span class="si">{</span><span class="nb">id</span><span class="p">(</span><span class="n">a</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span><span class="si">}</span><span class="s2">, </span><span class="si">{</span><span class="nb">id</span><span class="p">(</span><span class="n">a</span><span class="p">[</span><span class="mi">2</span><span class="p">])</span><span class="si">}</span><span class="s2">, </span><span class="si">{</span><span class="nb">id</span><span class="p">(</span><span class="n">a</span><span class="p">[</span><span class="mi">3</span><span class="p">])</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>140132505330376, 140132505330408, 140132505330440, 140132505332072
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>140654320788200, 140654320788232, 140654320788264, 140654320789896
 </pre></div>
 </div>
 </div>
@@ -682,7 +732,7 @@ l
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">printreversed</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">])</span>
-<span class="n">printreversed</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span> <span class="p">,</span> <span class="s2">&quot;hola&quot;</span><span class="p">,</span> <span class="s2">&quot;mundo&quot;</span><span class="p">])</span>
+<span class="n">printreversed</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span> <span class="p">,</span> <span class="s2">"hola"</span><span class="p">,</span> <span class="s2">"mundo"</span><span class="p">])</span>
 </pre></div>
 </div>
 </div>
@@ -691,7 +741,7 @@ l
 <span class="ne">NotImplementedError</span><span class="g g-Whitespace">                       </span>Traceback (most recent call last)
 <span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">9</span><span class="p">],</span> <span class="n">line</span> <span class="mi">1</span>
 <span class="ne">----&gt; </span><span class="mi">1</span> <span class="n">printreversed</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">])</span>
-<span class="g g-Whitespace">      </span><span class="mi">2</span> <span class="n">printreversed</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span> <span class="p">,</span> <span class="s2">&quot;hola&quot;</span><span class="p">,</span> <span class="s2">&quot;mundo&quot;</span><span class="p">])</span>
+<span class="g g-Whitespace">      </span><span class="mi">2</span> <span class="n">printreversed</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span> <span class="p">,</span> <span class="s2">"hola"</span><span class="p">,</span> <span class="s2">"mundo"</span><span class="p">])</span>
 
 <span class="nn">Cell In[8], line 3,</span> in <span class="ni">printreversed</span><span class="nt">(l)</span>
 <span class="g g-Whitespace">      </span><span class="mi">1</span> <span class="k">def</span><span class="w"> </span><span class="nf">printreversed</span><span class="p">(</span><span class="n">l</span><span class="p">):</span>
@@ -714,9 +764,9 @@ l
     <span class="k">raise</span> <span class="ne">NotImplementedError</span><span class="p">()</span>
 
 <span class="c1"># def primefactors(n):</span>
-<span class="c1">#     &quot;&quot;&quot;</span>
+<span class="c1">#     """</span>
 <span class="c1">#     From chatgpt</span>
-<span class="c1">#     &quot;&quot;&quot;</span>
+<span class="c1">#     """</span>
 <span class="c1">#     factors = []</span>
 <span class="c1">#     divisor = 2</span>
 <span class="c1">#     while divisor &lt;= n:</span>
@@ -804,12 +854,12 @@ l
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">class</span><span class="w"> </span><span class="nc">Point2D</span> <span class="p">:</span> 
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;This is a doctring. This allows to embed documentation inside the class definition.</span>
+<span class="w">    </span><span class="sd">"""This is a doctring. This allows to embed documentation inside the class definition.</span>
 <span class="sd">    You can split it </span>
 <span class="sd">    across several lines.</span>
-<span class="sd">    &quot;&quot;&quot;</span>
+<span class="sd">    """</span>
     <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="mi">0</span><span class="p">):</span> 
-<span class="w">        </span><span class="sd">&quot;&quot;&quot; This is the constructor&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">""" This is the constructor"""</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">x_</span> <span class="o">=</span> <span class="n">x</span> <span class="c1"># attribute x_</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">y_</span> <span class="o">=</span> <span class="n">y</span> <span class="c1"># attribute y_</span>
         
@@ -817,8 +867,8 @@ l
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">x_</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">y_</span>
     
     <span class="k">def</span><span class="w"> </span><span class="fm">__str__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Cast method to convert to string&quot;&quot;&quot;</span>
-        <span class="k">return</span> <span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Coordinates : ( </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">x_</span><span class="si">:</span><span class="s2">25.16e</span><span class="si">}</span><span class="s2">, </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">y_</span><span class="si">:</span><span class="s2">25.16e</span><span class="si">}</span><span class="s2"> )&quot;</span><span class="p">)</span>
+<span class="w">        </span><span class="sd">"""Cast method to convert to string"""</span>
+        <span class="k">return</span> <span class="p">(</span><span class="sa">f</span><span class="s2">"Coordinates : ( </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">x_</span><span class="si">:</span><span class="s2">25.16e</span><span class="si">}</span><span class="s2">, </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">y_</span><span class="si">:</span><span class="s2">25.16e</span><span class="si">}</span><span class="s2"> )"</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -837,7 +887,7 @@ l
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%html</span>
-<span class="p">&lt;</span><span class="nt">iframe</span> <span class="na">width</span><span class="o">=</span><span class="s">&quot;800&quot;</span> <span class="na">height</span><span class="o">=</span><span class="s">&quot;500&quot;</span> <span class="na">frameborder</span><span class="o">=</span><span class="s">&quot;0&quot;</span> <span class="na">src</span><span class="o">=</span><span class="s">&quot;https://pythontutor.com/iframe-embed.html#code=class%20Point2D%20%3A%0A%20%20%20%20%22%22%22This%20is%20a%20doctring.%20This%20allows%20to%20embed%20documentation%20inside%20the%20class%20definition.%0A%20%20%20%20You%20can%20split%20it%20%0A%20%20%20%20across%20several%20lines.%0A%20%20%20%20%22%22%22%0A%20%20%20%20def%20__init__%28self,%20x%20%3D%200,%20y%20%3D%200%29%3A%20%0A%20%20%20%20%20%20%20%20%22%22%22%20This%20is%20the%20constructor%22%22%22%0A%20%20%20%20%20%20%20%20self.x_%20%3D%20x%20%23%20attribute%20x_%0A%20%20%20%20%20%20%20%20self.y_%20%3D%20y%20%23%20attribute%20y_%0A%20%20%20%20%20%20%20%20%0A%20%20%20%20def%20coordinates%28self%29%3A%0A%20%20%20%20%20%20%20%20return%20self.x_,%20self.y_%0A%20%20%20%20%0A%20%20%20%20def%20__str__%28self%29%3A%0A%20%20%20%20%20%20%20%20%22%22%22Cast%20method%20to%20convert%20to%20string%22%22%22%0A%20%20%20%20%20%20%20%20return%20%28f%22Coordinates%20%3A%20%28%20%7Bself.x_%3A25.16e%7D,%20%7Bself.y_%3A25.16e%7D%20%29%22%29%0A%20%20%20%20%20%20%20%20%0A%0Ap1%20%3D%20Point2D%28%29%20%23%20constructs%20a%20point%20with%20default%20internal%20attributes%0Aprint%20%28p1%29%20%23%20Uses%20the%20str%20cast%20method%0A%0Ap2%20%3D%20Point2D%282,%20-3%29%0Aprint%20%28p2%29&amp;codeDivHeight=400&amp;codeDivWidth=350&amp;cumulative=false&amp;curInstr=0&amp;heapPrimitives=nevernest&amp;origin=opt-frontend.js&amp;py=3&amp;rawInputLstJSON=%5B%5D&amp;textReferences=false&quot;</span><span class="p">&gt;</span> <span class="p">&lt;/</span><span class="nt">iframe</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">iframe</span> <span class="na">width</span><span class="o">=</span><span class="s">"800"</span> <span class="na">height</span><span class="o">=</span><span class="s">"500"</span> <span class="na">frameborder</span><span class="o">=</span><span class="s">"0"</span> <span class="na">src</span><span class="o">=</span><span class="s">"https://pythontutor.com/iframe-embed.html#code=class%20Point2D%20%3A%0A%20%20%20%20%22%22%22This%20is%20a%20doctring.%20This%20allows%20to%20embed%20documentation%20inside%20the%20class%20definition.%0A%20%20%20%20You%20can%20split%20it%20%0A%20%20%20%20across%20several%20lines.%0A%20%20%20%20%22%22%22%0A%20%20%20%20def%20__init__%28self,%20x%20%3D%200,%20y%20%3D%200%29%3A%20%0A%20%20%20%20%20%20%20%20%22%22%22%20This%20is%20the%20constructor%22%22%22%0A%20%20%20%20%20%20%20%20self.x_%20%3D%20x%20%23%20attribute%20x_%0A%20%20%20%20%20%20%20%20self.y_%20%3D%20y%20%23%20attribute%20y_%0A%20%20%20%20%20%20%20%20%0A%20%20%20%20def%20coordinates%28self%29%3A%0A%20%20%20%20%20%20%20%20return%20self.x_,%20self.y_%0A%20%20%20%20%0A%20%20%20%20def%20__str__%28self%29%3A%0A%20%20%20%20%20%20%20%20%22%22%22Cast%20method%20to%20convert%20to%20string%22%22%22%0A%20%20%20%20%20%20%20%20return%20%28f%22Coordinates%20%3A%20%28%20%7Bself.x_%3A25.16e%7D,%20%7Bself.y_%3A25.16e%7D%20%29%22%29%0A%20%20%20%20%20%20%20%20%0A%0Ap1%20%3D%20Point2D%28%29%20%23%20constructs%20a%20point%20with%20default%20internal%20attributes%0Aprint%20%28p1%29%20%23%20Uses%20the%20str%20cast%20method%0A%0Ap2%20%3D%20Point2D%282,%20-3%29%0Aprint%20%28p2%29&amp;codeDivHeight=400&amp;codeDivWidth=350&amp;cumulative=false&amp;curInstr=0&amp;heapPrimitives=nevernest&amp;origin=opt-frontend.js&amp;py=3&amp;rawInputLstJSON=%5B%5D&amp;textReferences=false"</span><span class="p">&gt;</span> <span class="p">&lt;/</span><span class="nt">iframe</span><span class="p">&gt;</span>
 </pre></div>
 </div>
 </div>
@@ -847,12 +897,12 @@ l
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%file</span> Point3D.py 
 <span class="k">class</span><span class="w"> </span><span class="nc">Point3D</span> <span class="p">:</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;This is a doctring. This allows to embed documentation inside the class definition.</span>
+<span class="w">    </span><span class="sd">"""This is a doctring. This allows to embed documentation inside the class definition.</span>
 <span class="sd">    You can split it </span>
 <span class="sd">    across several lines.</span>
-<span class="sd">    &quot;&quot;&quot;</span>
+<span class="sd">    """</span>
     <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="n">z</span> <span class="o">=</span> <span class="mi">0</span><span class="p">):</span> 
-<span class="w">        </span><span class="sd">&quot;&quot;&quot; This is the constructor&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">""" This is the constructor"""</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">x_</span> <span class="o">=</span> <span class="n">x</span> <span class="c1"># attribute x_</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">y_</span> <span class="o">=</span> <span class="n">y</span> <span class="c1"># attribute y_</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">z_</span> <span class="o">=</span> <span class="n">z</span> <span class="c1"># attribute z_</span>
@@ -861,8 +911,8 @@ l
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">x_</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">y_</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">z_</span>
     
     <span class="k">def</span><span class="w"> </span><span class="fm">__str__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Cast method to convert to string&quot;&quot;&quot;</span>
-        <span class="k">return</span> <span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Coordinates : ( </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">x_</span><span class="si">:</span><span class="s2">25.16e</span><span class="si">}</span><span class="s2">, </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">y_</span><span class="si">:</span><span class="s2">25.16e</span><span class="si">}</span><span class="s2">, , </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">z_</span><span class="si">:</span><span class="s2">25.16e</span><span class="si">}</span><span class="s2"> )&quot;</span><span class="p">)</span>
+<span class="w">        </span><span class="sd">"""Cast method to convert to string"""</span>
+        <span class="k">return</span> <span class="p">(</span><span class="sa">f</span><span class="s2">"Coordinates : ( </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">x_</span><span class="si">:</span><span class="s2">25.16e</span><span class="si">}</span><span class="s2">, </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">y_</span><span class="si">:</span><span class="s2">25.16e</span><span class="si">}</span><span class="s2">, , </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">z_</span><span class="si">:</span><span class="s2">25.16e</span><span class="si">}</span><span class="s2"> )"</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -889,15 +939,15 @@ l
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># creates a dictionary with several key:value pairs. Keys are strings</span>
-<span class="n">tel</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;jack&#39;</span><span class="p">:</span> <span class="mi">4098</span><span class="p">,</span> <span class="s1">&#39;sape&#39;</span><span class="p">:</span> <span class="mi">4139</span><span class="p">}</span>  
+<span class="n">tel</span> <span class="o">=</span> <span class="p">{</span><span class="s1">'jack'</span><span class="p">:</span> <span class="mi">4098</span><span class="p">,</span> <span class="s1">'sape'</span><span class="p">:</span> <span class="mi">4139</span><span class="p">}</span>  
 <span class="nb">print</span> <span class="p">(</span><span class="n">tel</span><span class="p">)</span>
 <span class="c1"># acces  by key. If key does not exists, creates a new entry</span>
-<span class="n">tel</span><span class="p">[</span><span class="s1">&#39;guido&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">4127</span> 
+<span class="n">tel</span><span class="p">[</span><span class="s1">'guido'</span><span class="p">]</span> <span class="o">=</span> <span class="mi">4127</span> 
 <span class="nb">print</span> <span class="p">(</span><span class="n">tel</span><span class="p">)</span>
 <span class="c1"># Access by key</span>
-<span class="nb">print</span> <span class="p">(</span><span class="n">tel</span><span class="p">[</span><span class="s1">&#39;jack&#39;</span><span class="p">])</span>
+<span class="nb">print</span> <span class="p">(</span><span class="n">tel</span><span class="p">[</span><span class="s1">'jack'</span><span class="p">])</span>
 <span class="c1"># Delete by key</span>
-<span class="k">del</span> <span class="n">tel</span><span class="p">[</span><span class="s1">&#39;sape&#39;</span><span class="p">]</span>    
+<span class="k">del</span> <span class="n">tel</span><span class="p">[</span><span class="s1">'sape'</span><span class="p">]</span>    
 <span class="nb">print</span> <span class="p">(</span><span class="n">tel</span><span class="p">)</span>
 <span class="c1"># key a list of the keys</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">tel</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span>   
@@ -912,7 +962,7 @@ l
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%html</span>
-<span class="p">&lt;</span><span class="nt">iframe</span> <span class="na">width</span><span class="o">=</span><span class="s">&quot;800&quot;</span> <span class="na">height</span><span class="o">=</span><span class="s">&quot;500&quot;</span> <span class="na">frameborder</span><span class="o">=</span><span class="s">&quot;0&quot;</span> <span class="na">src</span><span class="o">=</span><span class="s">&quot;https://pythontutor.com/iframe-embed.html#code=%23%20creates%20a%20dictionary%20with%20several%20key%3Avalue%20pairs.%20Keys%20are%20strings%0Atel%20%3D%20%7B&#39;jack&#39;%3A%204098,%20&#39;sape&#39;%3A%204139%7D%20%20%0Aprint%20%28tel%29%0A%23%20acces%20%20by%20key.%20If%20key%20does%20not%20exists,%20creates%20a%20new%20entry%0Atel%5B&#39;guido&#39;%5D%20%3D%204127%20%0Aprint%20%28tel%29%0A%23%20Access%20by%20key%0Aprint%20%28tel%5B&#39;jack&#39;%5D%29%0A%23%20Delete%20by%20key%0Adel%20tel%5B&#39;sape&#39;%5D%20%20%20%20%0Aprint%20%28tel%29%0A%23%20key%20a%20list%20of%20the%20keys%0Aprint%28tel.keys%28%29%29%20%20%20%0A%23%20list%20of%20values%0Aprint%28tel.values%28%29%29%0A%23%20keys%20and%20values%0Aprint%28tel.items%28%29%29&amp;codeDivHeight=400&amp;codeDivWidth=350&amp;cumulative=false&amp;curInstr=0&amp;heapPrimitives=nevernest&amp;origin=opt-frontend.js&amp;py=3&amp;rawInputLstJSON=%5B%5D&amp;textReferences=false&quot;</span><span class="p">&gt;</span> <span class="p">&lt;/</span><span class="nt">iframe</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">iframe</span> <span class="na">width</span><span class="o">=</span><span class="s">"800"</span> <span class="na">height</span><span class="o">=</span><span class="s">"500"</span> <span class="na">frameborder</span><span class="o">=</span><span class="s">"0"</span> <span class="na">src</span><span class="o">=</span><span class="s">"https://pythontutor.com/iframe-embed.html#code=%23%20creates%20a%20dictionary%20with%20several%20key%3Avalue%20pairs.%20Keys%20are%20strings%0Atel%20%3D%20%7B'jack'%3A%204098,%20'sape'%3A%204139%7D%20%20%0Aprint%20%28tel%29%0A%23%20acces%20%20by%20key.%20If%20key%20does%20not%20exists,%20creates%20a%20new%20entry%0Atel%5B'guido'%5D%20%3D%204127%20%0Aprint%20%28tel%29%0A%23%20Access%20by%20key%0Aprint%20%28tel%5B'jack'%5D%29%0A%23%20Delete%20by%20key%0Adel%20tel%5B'sape'%5D%20%20%20%20%0Aprint%20%28tel%29%0A%23%20key%20a%20list%20of%20the%20keys%0Aprint%28tel.keys%28%29%29%20%20%20%0A%23%20list%20of%20values%0Aprint%28tel.values%28%29%29%0A%23%20keys%20and%20values%0Aprint%28tel.items%28%29%29&amp;codeDivHeight=400&amp;codeDivWidth=350&amp;cumulative=false&amp;curInstr=0&amp;heapPrimitives=nevernest&amp;origin=opt-frontend.js&amp;py=3&amp;rawInputLstJSON=%5B%5D&amp;textReferences=false"</span><span class="p">&gt;</span> <span class="p">&lt;/</span><span class="nt">iframe</span><span class="p">&gt;</span>
 </pre></div>
 </div>
 </div>
@@ -920,14 +970,14 @@ l
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">key</span><span class="p">,</span> <span class="n">val</span> <span class="ow">in</span> <span class="n">tel</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
-    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">key</span><span class="si">=}</span><span class="s2">, </span><span class="si">{</span><span class="n">val</span><span class="si">=}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">key</span><span class="si">=}</span><span class="s2">, </span><span class="si">{</span><span class="n">val</span><span class="si">=}</span><span class="s2">"</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="s1">&#39;guido&#39;</span> <span class="ow">in</span> <span class="n">tel</span>   <span class="c1"># check if a key is in the dictionary</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="s1">'guido'</span> <span class="ow">in</span> <span class="n">tel</span>   <span class="c1"># check if a key is in the dictionary</span>
 </pre></div>
 </div>
 </div>
@@ -988,7 +1038,7 @@ E : ==
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">dict</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;A&#39;</span><span class="p">:</span><span class="mi">8</span><span class="p">,</span> <span class="s1">&#39;B&#39;</span><span class="p">:</span><span class="mi">12</span><span class="p">,</span> <span class="s1">&#39;C&#39;</span><span class="p">:</span><span class="mi">5</span><span class="p">,</span> <span class="s1">&#39;D&#39;</span><span class="p">:</span><span class="mi">2</span><span class="p">,</span> <span class="s1">&#39;E&#39;</span><span class="p">:</span><span class="mi">2</span><span class="p">}</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">dict</span> <span class="o">=</span> <span class="p">{</span><span class="s1">'A'</span><span class="p">:</span><span class="mi">8</span><span class="p">,</span> <span class="s1">'B'</span><span class="p">:</span><span class="mi">12</span><span class="p">,</span> <span class="s1">'C'</span><span class="p">:</span><span class="mi">5</span><span class="p">,</span> <span class="s1">'D'</span><span class="p">:</span><span class="mi">2</span><span class="p">,</span> <span class="s1">'E'</span><span class="p">:</span><span class="mi">2</span><span class="p">}</span>
 
 <span class="c1"># YOUR CODE HERE</span>
 <span class="k">raise</span> <span class="ne">NotImplementedError</span><span class="p">()</span>
@@ -1102,7 +1152,7 @@ E : ==
     <i class="fa-solid fa-list"></i> Contents
   </div>
   <nav id="pst-page-toc-nav" class="page-toc" aria-labelledby="pst-page-navigation-heading-2">
-    <ul class="visible nav section-nav flex-column">
+    <ul class="pst-show_toc_level nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#lists">Lists</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercises">Exercises</a></li>
 </ul>
@@ -1168,8 +1218,8 @@ By William Oquendo
   </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script defer src="../../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf"></script>
-<script defer src="../../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf"></script>
+  <script defer src="../../_static/scripts/bootstrap.js?digest=55c26ed414f5f8a31ebb"></script>
+<script defer src="../../_static/scripts/pydata-sphinx-theme.js?digest=55c26ed414f5f8a31ebb"></script>
 
   <footer class="bd-footer">
   </footer>

@@ -27,8 +27,8 @@
   </noscript>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="../../_static/styles/theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
-<link href="../../_static/styles/pydata-sphinx-theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+  <link href="../../_static/styles/theme.css?digest=55c26ed414f5f8a31ebb" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=55c26ed414f5f8a31ebb" rel="stylesheet" />
 
     <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=03e43079" />
     <link rel="stylesheet" type="text/css" href="../../_static/styles/sphinx-book-theme.css?v=3c74b3bc" />
@@ -40,25 +40,15 @@
     <link rel="stylesheet" type="text/css" href="../../_static/tabs.css?v=4c969af8" />
     <link rel="stylesheet" type="text/css" href="../../_static/proof.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/styles/sphinx-examples.css?v=e236af4b" />
-    <link rel="stylesheet" type="text/css" href="../../_static/css/tooltipster.custom.css" />
-    <link rel="stylesheet" type="text/css" href="../../_static/css/tooltipster.bundle.min.css" />
-    <link rel="stylesheet" type="text/css" href="../../_static/css/tooltipster-sideTip-shadow.min.css" />
-    <link rel="stylesheet" type="text/css" href="../../_static/css/tooltipster-sideTip-punk.min.css" />
-    <link rel="stylesheet" type="text/css" href="../../_static/css/tooltipster-sideTip-noir.min.css" />
-    <link rel="stylesheet" type="text/css" href="../../_static/css/tooltipster-sideTip-light.min.css" />
-    <link rel="stylesheet" type="text/css" href="../../_static/css/tooltipster-sideTip-borderless.min.css" />
-    <link rel="stylesheet" type="text/css" href="../../_static/css/micromodal.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/sphinx-design.min.css?v=95c83b7e" />
     <link rel="stylesheet" type="text/css" href="../../_static/styles.css?v=03b9d5b1" />
   
   <!-- So that users can add custom icons -->
-  <script src="../../_static/scripts/fontawesome.js?digest=8878045cc6db502f8baf"></script>
+  <script defer src="../../_static/scripts/fontawesome.js?digest=55c26ed414f5f8a31ebb"></script>
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
-<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=55c26ed414f5f8a31ebb" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=55c26ed414f5f8a31ebb" />
 
-    <script src="../../_static/jquery.js?v=5d32c60e"></script>
-    <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
     <script src="../../_static/documentation_options.js?v=9eb32ce0"></script>
     <script src="../../_static/doctools.js?v=9a2dae69"></script>
     <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
@@ -66,9 +56,6 @@
     <script src="../../_static/copybutton.js?v=f281be69"></script>
     <script src="../../_static/scripts/sphinx-book-theme.js?v=fab101a9"></script>
     <script src="../../_static/tabs.js?v=3ee01567"></script>
-    <script src="../../_static/js/hoverxref.js"></script>
-    <script src="../../_static/js/tooltipster.bundle.min.js"></script>
-    <script src="../../_static/js/micromodal.min.js"></script>
     <script>let toggleHintShow = 'Click to show';</script>
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
@@ -79,6 +66,12 @@
     <script>
                 window.dataLayer = window.dataLayer || [];
                 function gtag(){ dataLayer.push(arguments); }
+                gtag('consent', 'default', {
+                    'ad_storage': 'denied',
+                    'ad_user_data': 'denied',
+                    'ad_personalization': 'denied',
+                    'analytics_storage': 'denied'
+                });
                 gtag('js', new Date());
                 gtag('config', 'G-DX59QS1P22');
             </script>
@@ -88,13 +81,18 @@
     <script>
                 window.dataLayer = window.dataLayer || [];
                 function gtag(){ dataLayer.push(arguments); }
+                gtag('consent', 'default', {
+                    'ad_storage': 'denied',
+                    'ad_user_data': 'denied',
+                    'ad_personalization': 'denied',
+                    'analytics_storage': 'denied'
+                });
                 gtag('js', new Date());
                 gtag('config', 'G-DX59QS1P22');
             </script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
-    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
-    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'lectures/A-02-Containers/Docker';</script>
+    <script>DOCUMENTATION_OPTIONS.search_as_you_type = false;</script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
@@ -102,20 +100,26 @@
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   <meta name="docsearch:version" content="" />
+  
+    
+    <script src="../../_static/searchtools.js"></script>
+    <script src="../../_static/language_data.js"></script>
+    <script src="../../searchindex.js"></script>
+  
   </head>
-  
-  
-  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
-
+  <body data-default-mode="">
   
   
   <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+
   
   <div id="pst-scroll-pixel-helper"></div>
   
   <button type="button" class="btn rounded-pill" id="pst-back-to-top">
     <i class="fa-solid fa-arrow-up"></i>Back to top</button>
-
+  
+  
+  
   
   <dialog id="pst-search-dialog">
     
@@ -141,7 +145,51 @@
 </div>
 
   
-    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    <header id="pst-header" class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Site navigation">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+        </div>
+      
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+    </div>
+  
+
+  
+    <button class="pst-navbar-icon sidebar-toggle secondary-toggle" aria-label="On this page">
+      <span class="fa-solid fa-outdent"></span>
+    </button>
+  
+</div>
+
     </header>
   
 
@@ -504,7 +552,7 @@
                 <h2> Contents </h2>
             </div>
             <nav aria-label="Page">
-                <ul class="visible nav section-nav flex-column">
+                <ul class="pst-show_toc_level nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#what-are-containers">What are Containers?</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#key-benefits">Key Benefits:</a></li>
 </ul>
@@ -672,7 +720,7 @@ docker<span class="w"> </span>images
 docker<span class="w"> </span>run<span class="w"> </span>hello-world
 
 <span class="c1"># Run a simple command in Ubuntu container</span>
-docker<span class="w"> </span>run<span class="w"> </span>ubuntu:22.04<span class="w"> </span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;Hello, Docker!&quot;</span>
+docker<span class="w"> </span>run<span class="w"> </span>ubuntu:22.04<span class="w"> </span><span class="nb">echo</span><span class="w"> </span><span class="s2">"Hello, Docker!"</span>
 
 <span class="c1"># Run an interactive terminal session</span>
 docker<span class="w"> </span>run<span class="w"> </span>-it<span class="w"> </span>ubuntu:22.04<span class="w"> </span>/bin/bash
@@ -688,9 +736,9 @@ docker<span class="w"> </span>ps<span class="w"> </span>-a
 </pre></div>
 </div>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>CONTAINER<span class="w"> </span>ID<span class="w">   </span>IMAGE<span class="w">         </span>COMMAND<span class="w">       </span>CREATED<span class="w">          </span>STATUS<span class="w">                      </span>PORTS<span class="w">     </span>NAMES
-2fa15b7ae800<span class="w">   </span>ubuntu<span class="w">        </span><span class="s2">&quot;/bin/bash&quot;</span><span class="w">   </span><span class="m">8</span><span class="w"> </span>seconds<span class="w"> </span>ago<span class="w">    </span>Exited<span class="w"> </span><span class="o">(</span><span class="m">0</span><span class="o">)</span><span class="w"> </span><span class="m">4</span><span class="w"> </span>seconds<span class="w"> </span>ago<span class="w">              </span>naughty_curran
-fbcfe62bfcdb<span class="w">   </span>ubuntu<span class="w">        </span><span class="s2">&quot;/bin/bash&quot;</span><span class="w">   </span><span class="m">26</span><span class="w"> </span>seconds<span class="w"> </span>ago<span class="w">   </span>Exited<span class="w"> </span><span class="o">(</span><span class="m">0</span><span class="o">)</span><span class="w"> </span><span class="m">9</span><span class="w"> </span>seconds<span class="w"> </span>ago<span class="w">              </span>adoring_dhawan
-c5fe4f91519a<span class="w">   </span>hello-world<span class="w">   </span><span class="s2">&quot;/hello&quot;</span><span class="w">      </span><span class="m">49</span><span class="w"> </span>seconds<span class="w"> </span>ago<span class="w">   </span>Exited<span class="w"> </span><span class="o">(</span><span class="m">0</span><span class="o">)</span><span class="w"> </span><span class="m">48</span><span class="w"> </span>seconds<span class="w"> </span>ago<span class="w">             </span>vibrant_bhaskara
+2fa15b7ae800<span class="w">   </span>ubuntu<span class="w">        </span><span class="s2">"/bin/bash"</span><span class="w">   </span><span class="m">8</span><span class="w"> </span>seconds<span class="w"> </span>ago<span class="w">    </span>Exited<span class="w"> </span><span class="o">(</span><span class="m">0</span><span class="o">)</span><span class="w"> </span><span class="m">4</span><span class="w"> </span>seconds<span class="w"> </span>ago<span class="w">              </span>naughty_curran
+fbcfe62bfcdb<span class="w">   </span>ubuntu<span class="w">        </span><span class="s2">"/bin/bash"</span><span class="w">   </span><span class="m">26</span><span class="w"> </span>seconds<span class="w"> </span>ago<span class="w">   </span>Exited<span class="w"> </span><span class="o">(</span><span class="m">0</span><span class="o">)</span><span class="w"> </span><span class="m">9</span><span class="w"> </span>seconds<span class="w"> </span>ago<span class="w">              </span>adoring_dhawan
+c5fe4f91519a<span class="w">   </span>hello-world<span class="w">   </span><span class="s2">"/hello"</span><span class="w">      </span><span class="m">49</span><span class="w"> </span>seconds<span class="w"> </span>ago<span class="w">   </span>Exited<span class="w"> </span><span class="o">(</span><span class="m">0</span><span class="o">)</span><span class="w"> </span><span class="m">48</span><span class="w"> </span>seconds<span class="w"> </span>ago<span class="w">             </span>vibrant_bhaskara
 </pre></div>
 </div>
 </section>
@@ -749,7 +797,7 @@ pkg-config<span class="w"> </span>--modversion<span class="w"> </span>eigen3
 <span class="c"># # Installing starship: https://starship.rs/guide/</span>
 <span class="c"># RUN apt install curl</span>
 <span class="c"># RUN cd /tmp &amp;&amp; curl -sS https://starship.rs/install.sh &gt; install_starship.sh  &amp;&amp;  sh install_starship.sh --yes</span>
-<span class="c"># RUN echo &#39;eval &quot;$(starship init bash)&quot;&#39; &gt;&gt; ~/.bashrc</span>
+<span class="c"># RUN echo 'eval "$(starship init bash)"' &gt;&gt; ~/.bashrc</span>
 
 <span class="c"># Exercise: Install git</span>
 
@@ -762,11 +810,11 @@ pkg-config<span class="w"> </span>--modversion<span class="w"> </span>eigen3
 <span class="k">WORKDIR</span><span class="w"> </span><span class="s">/workspace</span>
 
 <span class="c"># Default command</span>
-<span class="k">CMD</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;/bin/bash&quot;</span><span class="p">]</span>
+<span class="k">CMD</span><span class="w"> </span><span class="p">[</span><span class="s2">"/bin/bash"</span><span class="p">]</span>
 </pre></div>
 </div>
 <p>Build the custom image:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Build image with tag &#39;cpp-dev&#39;</span>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Build image with tag 'cpp-dev'</span>
 docker<span class="w"> </span>build<span class="w"> </span>-t<span class="w"> </span>cpp-dev<span class="w"> </span>.
 
 <span class="c1"># Chek the available images</span>
@@ -833,17 +881,17 @@ docker<span class="w"> </span>run<span class="w"> </span>-it<span class="w"> </s
 <span class="w">              </span><span class="mi">4</span><span class="p">,</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w"> </span><span class="mi">6</span><span class="p">,</span>
 <span class="w">              </span><span class="mi">7</span><span class="p">,</span><span class="w"> </span><span class="mi">8</span><span class="p">,</span><span class="w"> </span><span class="mi">9</span><span class="p">;</span>
 <span class="w">    </span>
-<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;Matrix:</span><span class="se">\n</span><span class="s">&quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">matrix</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">"Matrix:</span><span class="se">\n</span><span class="s">"</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">matrix</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
 <span class="w">    </span>
 <span class="w">    </span><span class="c1">// Calculate determinant</span>
 <span class="w">    </span><span class="kt">double</span><span class="w"> </span><span class="n">det</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">matrix</span><span class="p">.</span><span class="n">determinant</span><span class="p">();</span>
-<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;Determinant: &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">det</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">"Determinant: "</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">det</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
 <span class="w">    </span>
 <span class="w">    </span><span class="c1">// Create a vector and multiply</span>
 <span class="w">    </span><span class="n">Eigen</span><span class="o">::</span><span class="n">Vector3d</span><span class="w"> </span><span class="n">vector</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="mi">3</span><span class="p">);</span>
 <span class="w">    </span><span class="n">Eigen</span><span class="o">::</span><span class="n">Vector3d</span><span class="w"> </span><span class="n">result</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">matrix</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">vector</span><span class="p">;</span>
 <span class="w">    </span>
-<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;Matrix * Vector result:</span><span class="se">\n</span><span class="s">&quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">result</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">"Matrix * Vector result:</span><span class="se">\n</span><span class="s">"</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">result</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
 <span class="w">    </span>
 <span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
 <span class="p">}</span>
@@ -871,10 +919,10 @@ docker<span class="w"> </span>run<span class="w"> </span>-it<span class="w"> </s
 
 <span class="k">WORKDIR</span><span class="w"> </span><span class="s">/workspace</span>
 
-<span class="c"># Copy source files (optional, we&#39;ll use volume mounting)</span>
+<span class="c"># Copy source files (optional, we'll use volume mounting)</span>
 <span class="c"># COPY . /workspace</span>
 
-<span class="k">CMD</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;/bin/bash&quot;</span><span class="p">]</span>
+<span class="k">CMD</span><span class="w"> </span><span class="p">[</span><span class="s2">"/bin/bash"</span><span class="p">]</span>
 </pre></div>
 </div>
 </section>
@@ -912,14 +960,14 @@ g++<span class="w"> </span>-I<span class="w"> </span>/usr/include/eigen3/<span c
 <section id="important-note-file-permissions">
 <h2><strong>IMPORTANT NOTE: File permissions</strong><a class="headerlink" href="#important-note-file-permissions" title="Link to this heading">#</a></h2>
 <p>Notice that you are running as root inside the container, so any file produced will belong to root. On other words, you, as a normal user, will not be able to edit those files in the local host. In this case it will be better to run as the local user, like</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>docker<span class="w"> </span>run<span class="w"> </span>-it<span class="w"> </span>-v<span class="w"> </span><span class="k">$(</span><span class="nb">pwd</span><span class="k">)</span>:/workspace<span class="w"> </span>--rm<span class="w"> </span>--user<span class="w"> </span><span class="s2">&quot;</span><span class="k">$(</span>id<span class="w"> </span>-u<span class="k">)</span><span class="s2">:</span><span class="k">$(</span>id<span class="w"> </span>-g<span class="k">)</span><span class="s2">&quot;</span><span class="w">  </span>cpp-eigen-dev
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>docker<span class="w"> </span>run<span class="w"> </span>-it<span class="w"> </span>-v<span class="w"> </span><span class="k">$(</span><span class="nb">pwd</span><span class="k">)</span>:/workspace<span class="w"> </span>--rm<span class="w"> </span>--user<span class="w"> </span><span class="s2">"</span><span class="k">$(</span>id<span class="w"> </span>-u<span class="k">)</span><span class="s2">:</span><span class="k">$(</span>id<span class="w"> </span>-g<span class="k">)</span><span class="s2">"</span><span class="w">  </span>cpp-eigen-dev
 </pre></div>
 </div>
 <p><strong>WARNING</strong>: Abusing this root permission will bring consequences.</p>
 <p>In this case you can run docker using explicit args for the user, like:</p>
 <div class="highlight-dockerfile notranslate"><div class="highlight"><pre><span></span><span class="k">FROM</span><span class="w"> </span><span class="s">ubuntu:latest</span>
 
-<span class="c"># Replace 1000 with your host user&#39;s UID/GID</span>
+<span class="c"># Replace 1000 with your host user's UID/GID</span>
 <span class="k">ARG</span><span class="w"> </span><span class="nv">USER_UID</span><span class="o">=</span><span class="m">1000</span>
 <span class="k">ARG</span><span class="w"> </span><span class="nv">GROUP_GID</span><span class="o">=</span><span class="m">1000</span>
 
@@ -938,7 +986,7 @@ g++<span class="w"> </span>-I<span class="w"> </span>/usr/include/eigen3/<span c
 <span class="c"># Copy your application code</span>
 <span class="k">COPY</span><span class="w"> </span>.<span class="w"> </span>.
 
-<span class="k">CMD</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;/bin/bash&quot;</span><span class="p">]</span><span class="w"> </span>#<span class="w"> </span>Or<span class="w"> </span>your<span class="w"> </span>application<span class="err">&#39;</span>s<span class="w"> </span>command
+<span class="k">CMD</span><span class="w"> </span><span class="p">[</span><span class="s2">"/bin/bash"</span><span class="p">]</span><span class="w"> </span>#<span class="w"> </span>Or<span class="w"> </span>your<span class="w"> </span>application<span class="err">'</span>s<span class="w"> </span>command
 </pre></div>
 </div>
 <p>And then build and run as</p>
@@ -1136,16 +1184,16 @@ FROM<span class="w"> </span>ubuntu:latest
 <h3>Solutions Hints:<a class="headerlink" href="#solutions-hints" title="Link to this heading">#</a></h3>
 <p><strong>Exercise 1:</strong></p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>docker<span class="w"> </span>pull<span class="w"> </span>python:3.9
-docker<span class="w"> </span>run<span class="w"> </span>python:3.9<span class="w"> </span>python<span class="w"> </span>-c<span class="w"> </span><span class="s2">&quot;print(&#39;Hello from Docker!&#39;)&quot;</span>
+docker<span class="w"> </span>run<span class="w"> </span>python:3.9<span class="w"> </span>python<span class="w"> </span>-c<span class="w"> </span><span class="s2">"print('Hello from Docker!')"</span>
 docker<span class="w"> </span>run<span class="w"> </span>-it<span class="w"> </span>python:3.9<span class="w"> </span>python
 </pre></div>
 </div>
 <p><strong>Exercise 2:</strong></p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>mkdir<span class="w"> </span>test-data
-<span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;Hello from host&quot;</span><span class="w"> </span>&gt;<span class="w"> </span>test-data/hello.txt
+<span class="nb">echo</span><span class="w"> </span><span class="s2">"Hello from host"</span><span class="w"> </span>&gt;<span class="w"> </span>test-data/hello.txt
 docker<span class="w"> </span>run<span class="w"> </span>-it<span class="w"> </span>-v<span class="w"> </span><span class="k">$(</span><span class="nb">pwd</span><span class="k">)</span>/test-data:/data<span class="w"> </span>ubuntu:22.04<span class="w"> </span>/bin/bash
 <span class="c1"># Inside container: cat /data/hello.txt</span>
-<span class="c1"># Inside container: echo &quot;Hello from container&quot; &gt; /data/container.txt</span>
+<span class="c1"># Inside container: echo "Hello from container" &gt; /data/container.txt</span>
 </pre></div>
 </div>
 <p><strong>Exercise 5:</strong></p>
@@ -1233,7 +1281,7 @@ docker<span class="w"> </span>run<span class="w"> </span>-it<span class="w"> </s
     <i class="fa-solid fa-list"></i> Contents
   </div>
   <nav id="pst-page-toc-nav" class="page-toc" aria-labelledby="pst-page-navigation-heading-2">
-    <ul class="visible nav section-nav flex-column">
+    <ul class="pst-show_toc_level nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#what-are-containers">What are Containers?</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#key-benefits">Key Benefits:</a></li>
 </ul>
@@ -1347,8 +1395,8 @@ By William Oquendo
   </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script defer src="../../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf"></script>
-<script defer src="../../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf"></script>
+  <script defer src="../../_static/scripts/bootstrap.js?digest=55c26ed414f5f8a31ebb"></script>
+<script defer src="../../_static/scripts/pydata-sphinx-theme.js?digest=55c26ed414f5f8a31ebb"></script>
 
   <footer class="bd-footer">
   </footer>
