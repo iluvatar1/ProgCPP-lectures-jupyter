@@ -134,4 +134,4 @@ sphinx:
     - sphinx_inline_tabs
     - sphinx_proof
     - sphinx_examples
-    - hoverxref.extension
+    #- hoverxref.extension
