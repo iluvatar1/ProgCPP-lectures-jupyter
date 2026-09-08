@@ -621,8 +621,8 @@ integral, and perform simulations.</p>
 <section id="a-simple-example-linear-congruential-random-number-generator">
 <h2>A simple example: Linear congruential Random Number Generator<a class="headerlink" href="#a-simple-example-linear-congruential-random-number-generator" title="Link to this heading">#</a></h2>
 <p>Represented by</p>
-<div class="amsmath math notranslate nohighlight" id="equation-c6a647c9-8d4d-4954-8c22-61dc41febcbe">
-<span class="eqno">(65)<a class="headerlink" href="#equation-c6a647c9-8d4d-4954-8c22-61dc41febcbe" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-a807f1e2-ec12-4b4c-b086-1ca978ba7a5e">
+<span class="eqno">(65)<a class="headerlink" href="#equation-a807f1e2-ec12-4b4c-b086-1ca978ba7a5e" title="Permalink to this equation">#</a></span>\[\begin{equation}
 x' = (ax + c) \mod m,
 \end{equation}\]</div>
 <p>where <span class="math notranslate nohighlight">\(a, c, m\)</span> are integers constants. The random generator quality depends on those constants. There are several proposal for them, check
@@ -769,13 +769,13 @@ the LCRNG <span class="math notranslate nohighlight">\(3N\)</span> times.</p></l
 <section id="example-computing-pi">
 <h2>Example: computing <span class="math notranslate nohighlight">\(\pi\)</span><a class="headerlink" href="#example-computing-pi" title="Link to this heading">#</a></h2>
 <p>You can approximate \pi by estimating the area of a circle inscribed in a square. To do so, generate <span class="math notranslate nohighlight">\(N\)</span> pairs of random numbers in the square,  and count the numbers that fall inside the inner circunscribed circle, <span class="math notranslate nohighlight">\(N_c\)</span>. Since the areas of either the circle or the square can be estimated by counting the points inside each, then</p>
-<div class="amsmath math notranslate nohighlight" id="equation-d4bf9ae7-7ddd-41bb-8c78-8c1204ef738d">
-<span class="eqno">(66)<a class="headerlink" href="#equation-d4bf9ae7-7ddd-41bb-8c78-8c1204ef738d" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-e04300a5-0d31-4abc-899d-67e68b23950e">
+<span class="eqno">(66)<a class="headerlink" href="#equation-e04300a5-0d31-4abc-899d-67e68b23950e" title="Permalink to this equation">#</a></span>\[\begin{equation}
 \frac{Ac}{As} = \frac{\pi r^2}{(2r)^2} = \frac{\pi}{4} \simeq \frac{Nc}{N},
 \end{equation}\]</div>
 <p>so</p>
-<div class="amsmath math notranslate nohighlight" id="equation-8e9067d4-ad80-4564-970b-2488ac12dcb1">
-<span class="eqno">(67)<a class="headerlink" href="#equation-8e9067d4-ad80-4564-970b-2488ac12dcb1" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-9acc90b3-64c0-46cb-8b30-637a81825ba4">
+<span class="eqno">(67)<a class="headerlink" href="#equation-9acc90b3-64c0-46cb-8b30-637a81825ba4" title="Permalink to this equation">#</a></span>\[\begin{equation}
 \pi \simeq 4\frac{N}{N_c}.
 \end{equation}\]</div>
 <div class="exercise admonition" id="lectures/10-RandomSystems/RandomNumbers-exercise-2">
@@ -915,18 +915,18 @@ the LCRNG <span class="math notranslate nohighlight">\(3N\)</span> times.</p></l
 <section id="example-exponential-distribution">
 <h3>Example: Exponential distribution<a class="headerlink" href="#example-exponential-distribution" title="Link to this heading">#</a></h3>
 <p>In this case you want to invert the cumulative probability function. Let’s say that you have an exponential distribution, whose density is</p>
-<div class="amsmath math notranslate nohighlight" id="equation-97133312-90cf-440e-b4bf-285110fd23d8">
-<span class="eqno">(68)<a class="headerlink" href="#equation-97133312-90cf-440e-b4bf-285110fd23d8" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-b7b25b19-cb62-4248-9367-a2d830a7bbe0">
+<span class="eqno">(68)<a class="headerlink" href="#equation-b7b25b19-cb62-4248-9367-a2d830a7bbe0" title="Permalink to this equation">#</a></span>\[\begin{equation}
 f(t) = \lambda e^{-\lambda t}, t &gt; 0
 \end{equation}\]</div>
 <p>whose cumulative distribution is</p>
-<div class="amsmath math notranslate nohighlight" id="equation-f5fb1846-7cbe-46ea-8d55-4812449d801b">
-<span class="eqno">(69)<a class="headerlink" href="#equation-f5fb1846-7cbe-46ea-8d55-4812449d801b" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-305c5890-a893-40dd-8ef0-bb356e4864a5">
+<span class="eqno">(69)<a class="headerlink" href="#equation-305c5890-a893-40dd-8ef0-bb356e4864a5" title="Permalink to this equation">#</a></span>\[\begin{equation}
 F(x) = \int_0^x f(t) dt = 1 - e^{-\lambda x} = z.
 \end{equation}\]</div>
 <p>Now, the cumulative distribution is in the range <span class="math notranslate nohighlight">\([0, 1)\)</span>. If we equate it to a uniform random number in the same interval, <span class="math notranslate nohighlight">\(z = F(x)\)</span>, then we can invert this expression and obtain <span class="math notranslate nohighlight">\(x = F^{-1}(z)\)</span>. For the exponential distribution we get</p>
-<div class="amsmath math notranslate nohighlight" id="equation-d39a139c-0a4b-4c82-b787-d69a4896a3af">
-<span class="eqno">(70)<a class="headerlink" href="#equation-d39a139c-0a4b-4c82-b787-d69a4896a3af" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-82aafd93-3ea7-4395-adbb-1ba23536914b">
+<span class="eqno">(70)<a class="headerlink" href="#equation-82aafd93-3ea7-4395-adbb-1ba23536914b" title="Permalink to this equation">#</a></span>\[\begin{equation}
 x = -\frac{\ln (1-z)}{\lambda}
 \end{equation}\]</div>
 <div class="exercise admonition" id="lectures/10-RandomSystems/RandomNumbers-exercise-4">
@@ -987,13 +987,13 @@ x = -\frac{\ln (1-z)}{\lambda}
 </ul>
 <p>You can check more at <a class="reference external" href="https://bookdown.org/rdpeng/advstatcomp/rejection-sampling.html">https://bookdown.org/rdpeng/advstatcomp/rejection-sampling.html</a></p>
 <p>For instance, if we want to generate samples with the pdf</p>
-<div class="amsmath math notranslate nohighlight" id="equation-5bb7b366-080e-448c-8760-f90d492c1fc1">
-<span class="eqno">(71)<a class="headerlink" href="#equation-5bb7b366-080e-448c-8760-f90d492c1fc1" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-891f3e9e-351d-4aeb-9952-dafc55d449c6">
+<span class="eqno">(71)<a class="headerlink" href="#equation-891f3e9e-351d-4aeb-9952-dafc55d449c6" title="Permalink to this equation">#</a></span>\[\begin{equation}
 f(x) = \frac{3}{4} (1 - x^2).
 \end{equation}\]</div>
 <p>Since this is always than 3.0/4.0, we can use , as auxiliary,</p>
-<div class="amsmath math notranslate nohighlight" id="equation-830db4de-b2c1-48d8-b08b-2f7dc45445c0">
-<span class="eqno">(72)<a class="headerlink" href="#equation-830db4de-b2c1-48d8-b08b-2f7dc45445c0" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-973a21f9-435a-49e6-8cdb-27016a5dbb8f">
+<span class="eqno">(72)<a class="headerlink" href="#equation-973a21f9-435a-49e6-8cdb-27016a5dbb8f" title="Permalink to this equation">#</a></span>\[\begin{equation}
 g(x) = 3/4. 
 \end{equation}\]</div>
 <p>So, we generate a random sample <span class="math notranslate nohighlight">\(x\)</span> in <span class="math notranslate nohighlight">\([-1, 1)\)</span> (where <span class="math notranslate nohighlight">\(f\)</span> is defined), then generate a uniform <span class="math notranslate nohighlight">\(r\)</span>, and accept only if <span class="math notranslate nohighlight">\(r &lt; f(x) \)</span>.</p>
@@ -1176,30 +1176,30 @@ g(x) = 3/4.
 <section id="computing-multi-dimensional-integrals">
 <h2>Computing multi-dimensional integrals<a class="headerlink" href="#computing-multi-dimensional-integrals" title="Link to this heading">#</a></h2>
 <p>Computing integrals using random numbers is easy and practical, specially for large dimensions. In the unit interval, one can compute</p>
-<div class="amsmath math notranslate nohighlight" id="equation-d6cf1c06-8113-49f1-9f21-53dab2d94f18">
-<span class="eqno">(73)<a class="headerlink" href="#equation-d6cf1c06-8113-49f1-9f21-53dab2d94f18" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-7d1e5624-8be3-4375-9819-209c43955231">
+<span class="eqno">(73)<a class="headerlink" href="#equation-7d1e5624-8be3-4375-9819-209c43955231" title="Permalink to this equation">#</a></span>\[\begin{equation}
 \int_0^1 f(x) dx \simeq \frac{1}{n} \sum_{i=1}^n f(x_i),
 \end{equation}\]</div>
 <p>so the integral is approximated as the average function value. For a general interval, one has</p>
-<div class="amsmath math notranslate nohighlight" id="equation-6f7ba1e1-ee27-43b6-9002-ee6828e776be">
-<span class="eqno">(74)<a class="headerlink" href="#equation-6f7ba1e1-ee27-43b6-9002-ee6828e776be" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-63587603-fdfe-4d2f-aa48-a2e6ce485a81">
+<span class="eqno">(74)<a class="headerlink" href="#equation-63587603-fdfe-4d2f-aa48-a2e6ce485a81" title="Permalink to this equation">#</a></span>\[\begin{equation}
 \frac{1}{b-a}\int_a^b f(x) dx \simeq \frac{1}{n} \sum_{i=1}^n f(x_i),
 \end{equation}\]</div>
 <p>or , in higher dimensions</p>
-<div class="amsmath math notranslate nohighlight" id="equation-3d226c31-7cc3-49d4-986c-1912c3c79a97">
-<span class="eqno">(75)<a class="headerlink" href="#equation-3d226c31-7cc3-49d4-986c-1912c3c79a97" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-0d053706-52c8-4d66-95bd-d1798e36db00">
+<span class="eqno">(75)<a class="headerlink" href="#equation-0d053706-52c8-4d66-95bd-d1798e36db00" title="Permalink to this equation">#</a></span>\[\begin{equation}
 \frac{1}{8}\int_1^3\int_{-1}^1 \int_0^2 f(x, y, z) dxdydz \simeq \frac{1}{n} \sum_{i=1}^n f(x_i, y_i, z_i).
 \end{equation}\]</div>
 <p>In general one has</p>
-<div class="amsmath math notranslate nohighlight" id="equation-d38fdbfa-7a26-48d8-aa29-66242a16f491">
-<span class="eqno">(76)<a class="headerlink" href="#equation-d38fdbfa-7a26-48d8-aa29-66242a16f491" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-c0e0527f-4fec-49e1-b838-b507f8ba1be9">
+<span class="eqno">(76)<a class="headerlink" href="#equation-c0e0527f-4fec-49e1-b838-b507f8ba1be9" title="Permalink to this equation">#</a></span>\[\begin{equation}
 \int_A f \simeq (\text{measure of}\ A) \times (\text{average of}\ f\ \text{over}\ n\ \text{random points on}\ A)
 \end{equation}\]</div>
 <section id="example-2d-integral">
 <h3>Example: 2D Integral<a class="headerlink" href="#example-2d-integral" title="Link to this heading">#</a></h3>
 <p>Compute the following integral</p>
-<div class="amsmath math notranslate nohighlight" id="equation-00fe752c-114d-4821-b37d-5179e607104a">
-<span class="eqno">(77)<a class="headerlink" href="#equation-00fe752c-114d-4821-b37d-5179e607104a" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-c37d89ab-1d8e-45ca-840a-4cf207f23cef">
+<span class="eqno">(77)<a class="headerlink" href="#equation-c37d89ab-1d8e-45ca-840a-4cf207f23cef" title="Permalink to this equation">#</a></span>\[\begin{equation}
 \iint_{\Omega}\sin\sqrt{\ln(x+y+1)} dx dy, 
 \end{equation}\]</div>
 <p>where the integration region <span class="math notranslate nohighlight">\(\Omega\)</span> is the disk defined as <span class="math notranslate nohighlight">\((x-1/2)^2 + (y-1/2)^2 \le 1/4\)</span>. Exact value is close to 0.57 .</p>
@@ -1259,8 +1259,8 @@ The expected value is around 0.14</p>
 <h3>Exercises<a class="headerlink" href="#exercises" title="Link to this heading">#</a></h3>
 <ul>
 <li><p>[ ] (Ward) Compute</p>
-<div class="amsmath math notranslate nohighlight" id="equation-6b84c201-fcd6-44f3-990a-bef413502cbe">
-<span class="eqno">(78)<a class="headerlink" href="#equation-6b84c201-fcd6-44f3-990a-bef413502cbe" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-b794d17f-eb6e-412e-b2f4-873466f91161">
+<span class="eqno">(78)<a class="headerlink" href="#equation-b794d17f-eb6e-412e-b2f4-873466f91161" title="Permalink to this equation">#</a></span>\[\begin{equation}
 \int_0^2\int_3^6\int_{-1}^1 (y x^2 + z\log y + e^x) dx dy dz
 \end{equation}\]</div>
 </li>
