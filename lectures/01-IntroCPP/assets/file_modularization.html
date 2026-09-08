@@ -1,0 +1,534 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Splitting C++ into files</title>
+<style>
+  :root{
+    --paper:#F6F5F1; --panel:#FFFFFF; --ink:#1C1D1B; --ink-soft:#5B5C57; --ink-faint:#8B8C86;
+    --line:#DDDBD3; --line-strong:#C6C3B8;
+    --teal:#0F6E56; --teal-bg:#E1F5EE;
+    --amber:#854F0B; --amber-bg:#FAEEDA;
+    --coral:#993C1D; --coral-bg:#FAECE7;
+    --blue:#0C447C; --blue-bg:#E6F1FB;
+    --violet:#5B3E8C; --violet-bg:#EFE8F5;
+    --slate:#3F4A52; --slate-bg:#E7EAEB;
+    --mono:"SFMono-Regular",Consolas,"Liberation Mono",Menlo,monospace;
+    --sans:-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif;
+  }
+  *{box-sizing:border-box;}
+  html,body{margin:0;padding:0;background:var(--paper);color:var(--ink);font-family:var(--sans);}
+  body{padding:0 0 4rem;}
+  .wrap{max-width:1020px;margin:0 auto;padding:0 1.5rem;}
+
+  header{padding:2.5rem 0 1.5rem;border-bottom:1px solid var(--line);}
+  header h1{font-size:26px;font-weight:600;margin:0 0 .4rem;letter-spacing:-0.01em;}
+  header p{font-size:15px;color:var(--ink-soft);margin:0;max-width:700px;line-height:1.55;}
+
+  nav{position:sticky;top:0;background:var(--paper);z-index:10;border-bottom:1px solid var(--line);padding:.75rem 0;margin-bottom:2rem;}
+  nav .wrap{display:flex;gap:6px;flex-wrap:wrap;}
+  nav button{font-family:var(--sans);font-size:13.5px;padding:7px 14px;border-radius:6px;border:1px solid var(--line-strong);background:var(--panel);color:var(--ink-soft);cursor:pointer;}
+  nav button.active{background:var(--ink);color:#fff;border-color:var(--ink);}
+  nav button:hover:not(.active){border-color:var(--ink);color:var(--ink);}
+
+  section{display:none;margin-bottom:3rem;}
+  section.active{display:block;}
+  h2{font-size:19px;font-weight:600;margin:0 0 .5rem;}
+  h3{font-size:15px;font-weight:600;margin:1.75rem 0 .6rem;}
+  p.lede{color:var(--ink-soft);font-size:14.5px;line-height:1.6;margin:0 0 1.5rem;max-width:720px;}
+
+  .panel{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:1.25rem 1.4rem;margin-bottom:1.25rem;}
+
+  label{font-size:13px;color:var(--ink-soft);display:block;margin-bottom:4px;}
+  select,input[type=text]{font-family:var(--mono);font-size:14px;padding:7px 10px;border-radius:6px;border:1px solid var(--line-strong);background:#fff;color:var(--ink);width:100%;}
+
+  .btnset{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:1rem;}
+  .btnset button{font-family:var(--sans);font-size:13px;padding:6px 12px;border-radius:6px;border:1px solid var(--line-strong);background:#fff;color:var(--ink-soft);cursor:pointer;}
+  .btnset button.active{background:var(--ink);color:#fff;border-color:var(--ink);}
+  .btnset button:hover:not(.active){border-color:var(--ink);color:var(--ink);}
+  .btnset button.primary{background:var(--teal);color:#fff;border-color:var(--teal);}
+  .btnset button:disabled{opacity:.4;cursor:default;}
+
+  code{font-family:var(--mono);font-size:13px;background:#F0EFE9;padding:1px 5px;border-radius:4px;}
+  pre.code{background:#1C1D1B;color:#EDEBE3;padding:1rem 1.2rem;border-radius:8px;font-family:var(--mono);font-size:12.8px;line-height:1.7;overflow-x:auto;margin:0 0 1rem;}
+  pre.code .tok-decl{color:#FAEEDA;background:rgba(133,79,11,.35);border-radius:3px;padding:0 2px;}
+  pre.code .tok-def{color:#EFE8F5;background:rgba(91,62,140,.35);border-radius:3px;padding:0 2px;}
+  pre.code .tok-type{color:#E1F5EE;background:rgba(15,110,86,.35);border-radius:3px;padding:0 2px;}
+  pre.code .tok-main{color:#E7EAEB;background:rgba(63,74,82,.45);border-radius:3px;padding:0 2px;}
+  pre.code.err{background:#2A1815;color:#F6D9CE;}
+  pre.code.term{background:#14161a;color:#CFE8DD;}
+
+  .filecard{border:1px solid var(--line-strong);border-radius:8px;overflow:hidden;flex:1;min-width:260px;}
+  .filecard .fname{font-family:var(--mono);font-size:12.5px;padding:.45rem .8rem;background:#F0EFE9;color:var(--ink-soft);border-bottom:1px solid var(--line);}
+  .filecard pre.code{border-radius:0;margin:0;}
+
+  .fade{transition:opacity .3s ease;}
+  .fade.hidden{opacity:0;}
+
+  .stage-dots{display:flex;gap:10px;justify-content:center;margin:1rem 0;}
+  .stage-dots .dot{display:flex;align-items:center;gap:8px;font-size:12.5px;color:var(--ink-faint);}
+  .stage-dots .circle{width:22px;height:22px;border-radius:50%;background:#F0EFE9;border:1px solid var(--line-strong);display:flex;align-items:center;justify-content:center;font-family:var(--mono);font-size:11px;transition:all .25s ease;}
+  .stage-dots .dot.active .circle{background:var(--teal);border-color:var(--teal);color:#fff;}
+  .stage-dots .dot.active{color:var(--teal);font-weight:600;}
+
+  .legend{display:flex;gap:16px;flex-wrap:wrap;font-size:12.5px;color:var(--ink-soft);margin-bottom:1rem;}
+  .legend span{display:inline-flex;align-items:center;gap:6px;}
+  .swatch{width:11px;height:11px;border-radius:3px;display:inline-block;}
+
+  .pipeline{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin:1.25rem 0;}
+  .pbox{padding:.7rem 1rem;border-radius:8px;background:#fff;border:1.5px solid var(--line-strong);font-family:var(--mono);font-size:12.5px;color:var(--ink-soft);text-align:center;transition:all .25s ease;min-width:90px;}
+  .pbox.active{transform:scale(1.05);}
+  .parrow{font-size:16px;color:var(--line-strong);}
+
+  .phase-banner{font-family:var(--mono);font-size:14px;padding:.7rem 1rem;border-radius:8px;background:#F0EFE9;color:var(--ink-soft);margin-bottom:1rem;min-height:20px;transition:all .2s ease;}
+
+  .note{font-size:13px;color:var(--ink-soft);background:#F0EFE9;border-left:3px solid var(--line-strong);padding:.6rem .9rem;border-radius:0 6px 6px 0;margin:1rem 0;}
+  .note.warn{border-left-color:var(--coral);background:var(--coral-bg);color:var(--coral);}
+
+  .tree{font-family:var(--mono);font-size:13px;line-height:1.9;color:var(--ink-soft);}
+  .tree .dim{color:var(--ink-faint);text-decoration:line-through;opacity:.5;}
+  .tree .hl{color:var(--teal);font-weight:600;}
+
+  footer{color:var(--ink-faint);font-size:12.5px;text-align:center;padding-top:2rem;}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap">
+    <h1>Splitting C++ into files</h1>
+    <p>An interactive walkthrough of turning one big <code>.cpp</code> file into headers and sources, why that pays off, how the compiler and linker put the pieces back together, and how the same module gets reused by more than one <code>main()</code> &mdash; including a test program. Single self-contained file, no external dependencies.</p>
+  </div>
+</header>
+
+<nav>
+  <div class="wrap">
+    <button data-tab="why" class="active">Why modularize?</button>
+    <button data-tab="split">Split a file</button>
+    <button data-tab="build">Compile &amp; link</button>
+    <button data-tab="reuse">Multiple mains &amp; tests</button>
+  </div>
+</nav>
+
+<div class="wrap">
+
+  <!-- ===================== WHY ===================== -->
+  <section id="tab-why" class="active">
+    <h2>Why bother splitting one file into several?</h2>
+    <p class="lede">A single <code>.cpp</code> file works fine for a 50-line program. Past that, everything you gain by splitting comes from one idea: the compiler only has to redo the work that actually changed, and other programs only need to see <em>what</em> your code does, not <em>how</em>.</p>
+
+    <div class="panel" style="padding:0;">
+      <table style="width:100%;border-collapse:collapse;font-size:13.5px;">
+        <thead><tr style="text-align:left;color:var(--ink-soft);font-size:12.5px;">
+          <th style="padding:9px 12px;border-bottom:1px solid var(--line);">Benefit</th>
+          <th style="padding:9px 12px;border-bottom:1px solid var(--line);">What it means in practice</th>
+        </tr></thead>
+        <tbody>
+          <tr><td style="padding:9px 12px;border-bottom:1px solid var(--line);font-weight:600;">Faster rebuilds</td><td style="padding:9px 12px;border-bottom:1px solid var(--line);">Change one <code>.cpp</code>, only that file (and whatever includes its header) needs recompiling &mdash; not the whole program.</td></tr>
+          <tr><td style="padding:9px 12px;border-bottom:1px solid var(--line);font-weight:600;">Reuse</td><td style="padding:9px 12px;border-bottom:1px solid var(--line);">A module compiled once can be linked into several different executables: the real app, a test binary, a benchmark tool.</td></tr>
+          <tr><td style="padding:9px 12px;border-bottom:1px solid var(--line);font-weight:600;">A clear interface</td><td style="padding:9px 12px;border-bottom:1px solid var(--line);">The header is a promise of what's available; callers never need to read the implementation to use it.</td></tr>
+          <tr><td style="padding:9px 12px;border-bottom:1px solid var(--line);font-weight:600;">Parallel work</td><td style="padding:9px 12px;border-bottom:1px solid var(--line);">Two people can edit two different <code>.cpp</code> files at once without touching the same lines.</td></tr>
+          <tr><td style="padding:9px 12px;font-weight:600;">Testability</td><td style="padding:9px 12px;">A test program can link against your module's compiled code without dragging in your app's <code>main()</code>.</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="note">None of this requires anything exotic &mdash; just two file types (<code>.h</code>/<code>.hpp</code> and <code>.cpp</code>) and a rule about what goes in each, covered next.</div>
+  </section>
+
+  <!-- ===================== SPLIT ===================== -->
+  <section id="tab-split">
+    <h2>Splitting a monolith</h2>
+    <p class="lede">Start from one file that compiles and runs fine on its own. The goal is to pull out the reusable pieces &mdash; the <code>Point</code> type and the two functions &mdash; into their own header and source, leaving <code>main</code> behind on its own.</p>
+
+    <div class="stage-dots" id="split-dots"></div>
+
+    <div class="panel">
+      <div class="legend">
+        <span><span class="swatch" style="background:var(--teal-bg);border:1px solid var(--teal);"></span>type definition &rarr; header</span>
+        <span><span class="swatch" style="background:var(--amber-bg);border:1px solid var(--amber);"></span>function declaration &rarr; header</span>
+        <span><span class="swatch" style="background:var(--violet-bg);border:1px solid var(--violet);"></span>function body &rarr; source .cpp</span>
+        <span><span class="swatch" style="background:var(--slate-bg);border:1px solid var(--slate);"></span>main() &rarr; its own .cpp</span>
+      </div>
+      <div id="split-stage" class="fade"></div>
+      <div class="btnset" style="margin-top:1rem;">
+        <button id="split-prev">&larr; Prev</button>
+        <button id="split-play" class="primary">Play ▶▶</button>
+        <button id="split-next">Next &rarr;</button>
+      </div>
+    </div>
+    <div class="note">Notice <code>Point</code> is defined <em>in full</em> in the header, not just declared &mdash; the compiler needs to know a type's complete layout everywhere it's used. Free functions are different: only their signature needs to be visible at the call site, so the body can live in the <code>.cpp</code>.</div>
+  </section>
+
+  <!-- ===================== BUILD & LINK ===================== -->
+  <section id="tab-build">
+    <h2>How the pieces get compiled and linked back together</h2>
+    <p class="lede">Each <code>.cpp</code> file is compiled independently into an object file; the linker then stitches the object files together into one executable, matching up every function call with its one definition.</p>
+
+    <div class="panel">
+      <div class="pipeline" id="build-pipeline"></div>
+      <div class="phase-banner" id="build-banner">Press Step or Play to begin.</div>
+      <pre class="code" id="build-cmd"></pre>
+      <div class="btnset">
+        <button id="build-step">Step ▶</button>
+        <button id="build-play" class="primary">Play ▶▶</button>
+        <button id="build-reset">Reset ↺</button>
+      </div>
+    </div>
+
+    <h3>What could go wrong: the one-definition rule</h3>
+    <p class="lede">A header can be <code>#include</code>d into many <code>.cpp</code> files without trouble, because it only <em>declares</em> things. The moment a header contains a full function body instead of a declaration, every file that includes it gets its own copy &mdash; and the linker refuses to pick one.</p>
+    <div class="panel">
+      <label for="odr-scenario">Try a setup</label>
+      <select id="odr-scenario">
+        <option value="correct">Correct: declaration in header, one definition in shapes.cpp</option>
+        <option value="duplicate">Mistake: full function body written in the header</option>
+        <option value="missing">Mistake: declared in header, never defined anywhere</option>
+      </select>
+      <pre class="code term" id="odr-output"></pre>
+    </div>
+  </section>
+
+  <!-- ===================== REUSE / TESTS ===================== -->
+  <section id="tab-reuse">
+    <h2>One module, more than one <code>main()</code></h2>
+    <p class="lede">Because <code>shapes.h</code>/<code>shapes.cpp</code> don't contain a <code>main</code>, they can be linked into any number of different programs. Here the same module backs both the real app and a small test runner.</p>
+
+    <div class="panel">
+      <div class="btnset" id="reuse-mode">
+        <button data-m="app" class="active">Build the app</button>
+        <button data-m="tests">Build the tests</button>
+      </div>
+      <div class="tree" id="reuse-tree"></div>
+      <pre class="code" id="reuse-cmd"></pre>
+      <div style="font-size:13px;color:var(--ink-soft);margin-bottom:.4rem;">Program output:</div>
+      <pre class="code term" id="reuse-output"></pre>
+    </div>
+
+    <div class="panel">
+      <div class="btnset">
+        <button id="reuse-both-btn">Try linking both mains together</button>
+        <button id="reuse-both-reset" style="display:none;">Hide error</button>
+      </div>
+      <pre class="code err" id="reuse-both-output" style="display:none;"></pre>
+      <div class="note">Exactly one <code>main()</code> is allowed per executable. <code>main.cpp</code> and <code>test_main.cpp</code> each define one, so they go into two <em>separate</em> executables that both happen to link the same <code>shapes.o</code> &mdash; that's the whole trick.</div>
+    </div>
+    <div class="note">This hand-rolled <code>assert</code>-based test runner is the simplest version of the idea; real projects usually reach for a framework like Catch2 or GoogleTest, which give you the same "separate test executable, shared module" structure with much better reporting.</div>
+  </section>
+
+</div>
+
+<footer>Single self-contained HTML file &mdash; no external dependencies, safe to open directly or embed in a Jupyter notebook with <code>IFrame</code>.</footer>
+
+<script>
+// ---------- tab navigation ----------
+document.querySelectorAll('nav button').forEach(btn=>{
+  btn.addEventListener('click', ()=>{
+    document.querySelectorAll('nav button').forEach(b=>b.classList.remove('active'));
+    btn.classList.add('active');
+    document.querySelectorAll('section').forEach(s=>s.classList.remove('active'));
+    document.getElementById('tab-'+btn.dataset.tab).classList.add('active');
+  });
+});
+
+/* =========================================================
+   SPLIT A FILE
+   ========================================================= */
+const monolithPlain =
+'#include &lt;cmath&gt;\n' +
+'#include &lt;iostream&gt;\n' +
+'\n' +
+'struct Point {\n' +
+'    double x, y;\n' +
+'};\n' +
+'\n' +
+'double distance(Point a, Point b) {\n' +
+'    double dx = a.x - b.x;\n' +
+'    double dy = a.y - b.y;\n' +
+'    return std::sqrt(dx*dx + dy*dy);\n' +
+'}\n' +
+'\n' +
+'Point midpoint(Point a, Point b) {\n' +
+'    return { (a.x+b.x)/2, (a.y+b.y)/2 };\n' +
+'}\n' +
+'\n' +
+'int main() {\n' +
+'    Point p1{0,0}, p2{3,4};\n' +
+'    std::cout &lt;&lt; "distance = " &lt;&lt; distance(p1,p2) &lt;&lt; "\\n";\n' +
+'    Point m = midpoint(p1,p2);\n' +
+'    std::cout &lt;&lt; "midpoint = (" &lt;&lt; m.x &lt;&lt; ", " &lt;&lt; m.y &lt;&lt; ")\\n";\n' +
+'}';
+
+const monolithHighlighted =
+'#include &lt;cmath&gt;\n' +
+'#include &lt;iostream&gt;\n' +
+'\n' +
+'<span class="tok-type">struct Point {\n' +
+'    double x, y;\n' +
+'};</span>\n' +
+'\n' +
+'<span class="tok-decl">double distance(Point a, Point b)</span> <span class="tok-def">{\n' +
+'    double dx = a.x - b.x;\n' +
+'    double dy = a.y - b.y;\n' +
+'    return std::sqrt(dx*dx + dy*dy);\n' +
+'}</span>\n' +
+'\n' +
+'<span class="tok-decl">Point midpoint(Point a, Point b)</span> <span class="tok-def">{\n' +
+'    return { (a.x+b.x)/2, (a.y+b.y)/2 };\n' +
+'}</span>\n' +
+'\n' +
+'<span class="tok-main">int main() {\n' +
+'    Point p1{0,0}, p2{3,4};\n' +
+'    std::cout &lt;&lt; "distance = " &lt;&lt; distance(p1,p2) &lt;&lt; "\\n";\n' +
+'    Point m = midpoint(p1,p2);\n' +
+'    std::cout &lt;&lt; "midpoint = (" &lt;&lt; m.x &lt;&lt; ", " &lt;&lt; m.y &lt;&lt; ")\\n";\n' +
+'}</span>';
+
+const headerCode =
+'#pragma once\n' +
+'\n' +
+'<span class="tok-type">struct Point {\n' +
+'    double x, y;\n' +
+'};</span>\n' +
+'\n' +
+'<span class="tok-decl">double distance(Point a, Point b);\n' +
+'Point midpoint(Point a, Point b);</span>';
+
+const sourceCode =
+'#include "shapes.h"\n' +
+'#include &lt;cmath&gt;\n' +
+'\n' +
+'<span class="tok-def">double distance(Point a, Point b) {\n' +
+'    double dx = a.x - b.x;\n' +
+'    double dy = a.y - b.y;\n' +
+'    return std::sqrt(dx*dx + dy*dy);\n' +
+'}\n' +
+'\n' +
+'Point midpoint(Point a, Point b) {\n' +
+'    return { (a.x+b.x)/2, (a.y+b.y)/2 };\n' +
+'}</span>';
+
+const mainCode =
+'#include "shapes.h"\n' +
+'#include &lt;iostream&gt;\n' +
+'\n' +
+'<span class="tok-main">int main() {\n' +
+'    Point p1{0,0}, p2{3,4};\n' +
+'    std::cout &lt;&lt; "distance = " &lt;&lt; distance(p1,p2) &lt;&lt; "\\n";\n' +
+'    Point m = midpoint(p1,p2);\n' +
+'    std::cout &lt;&lt; "midpoint = (" &lt;&lt; m.x &lt;&lt; ", " &lt;&lt; m.y &lt;&lt; ")\\n";\n' +
+'}</span>';
+
+const splitStageLabels = ['1. One big file', '2. Spot the pieces', '3. Split into files'];
+let splitStage = 0, splitTimer = null;
+
+function renderSplitDots(){
+  const el = document.getElementById('split-dots');
+  el.innerHTML = '';
+  splitStageLabels.forEach((label,i)=>{
+    const dot = document.createElement('div');
+    dot.className = 'dot' + (i===splitStage ? ' active' : '');
+    dot.innerHTML = '<span class="circle">' + (i+1) + '</span><span>' + label + '</span>';
+    el.appendChild(dot);
+  });
+}
+
+function renderSplitStage(){
+  renderSplitDots();
+  const container = document.getElementById('split-stage');
+  container.classList.add('hidden');
+  setTimeout(()=>{
+    if (splitStage === 0){
+      container.innerHTML = '<div class="filecard"><div class="fname">everything.cpp</div><pre class="code">' + monolithPlain + '</pre></div>';
+    } else if (splitStage === 1){
+      container.innerHTML = '<div class="filecard"><div class="fname">everything.cpp</div><pre class="code">' + monolithHighlighted + '</pre></div>';
+    } else {
+      container.innerHTML =
+        '<div style="display:flex;gap:12px;flex-wrap:wrap;">' +
+          '<div class="filecard"><div class="fname">shapes.h</div><pre class="code">' + headerCode + '</pre></div>' +
+          '<div class="filecard"><div class="fname">shapes.cpp</div><pre class="code">' + sourceCode + '</pre></div>' +
+          '<div class="filecard"><div class="fname">main.cpp</div><pre class="code">' + mainCode + '</pre></div>' +
+        '</div>';
+    }
+    container.classList.remove('hidden');
+  }, 180);
+  document.getElementById('split-prev').disabled = splitStage === 0;
+  document.getElementById('split-next').disabled = splitStage === splitStageLabels.length - 1;
+}
+
+document.getElementById('split-prev').addEventListener('click', ()=>{
+  clearInterval(splitTimer);
+  if (splitStage > 0){ splitStage--; renderSplitStage(); }
+});
+document.getElementById('split-next').addEventListener('click', ()=>{
+  clearInterval(splitTimer);
+  if (splitStage < splitStageLabels.length-1){ splitStage++; renderSplitStage(); }
+});
+document.getElementById('split-play').addEventListener('click', ()=>{
+  clearInterval(splitTimer);
+  splitStage = 0; renderSplitStage();
+  splitTimer = setInterval(()=>{
+    if (splitStage >= splitStageLabels.length-1){ clearInterval(splitTimer); return; }
+    splitStage++; renderSplitStage();
+  }, 1700);
+});
+renderSplitStage();
+
+/* =========================================================
+   COMPILE & LINK
+   ========================================================= */
+const buildSteps = [
+  {label:'compile shapes.cpp', cmd:'g++ -c shapes.cpp -o shapes.o', text:'Compiling shapes.cpp on its own \u2014 the compiler only needs shapes.h to know what Point looks like.', boxes:['shapes.cpp','shapes.o']},
+  {label:'compile main.cpp', cmd:'g++ -c main.cpp -o main.o', text:'Compiling main.cpp separately \u2014 it can call distance()/midpoint() having only seen their declarations in shapes.h.', boxes:['main.cpp','main.o']},
+  {label:'link', cmd:'g++ shapes.o main.o -o app', text:'The linker matches every call in main.o to its one definition in shapes.o and produces the final executable.', boxes:['shapes.o','main.o','app']},
+  {label:'done', cmd:'./app', text:'Done \u2014 only shapes.cpp needs recompiling next time you change distance() or midpoint().', boxes:['app']},
+];
+let buildIndex = 0, buildTimer = null;
+
+function renderBuildPipeline(activeBoxes){
+  const pipe = document.getElementById('build-pipeline');
+  pipe.innerHTML = '';
+  const items = ['shapes.cpp','shapes.o','app','main.cpp','main.o'];
+  // Render as two source rows converging into one app box
+  const row1 = ['shapes.cpp','shapes.o'];
+  const row2 = ['main.cpp','main.o'];
+  function makeBox(name){
+    const box = document.createElement('div');
+    box.className = 'pbox' + (activeBoxes && activeBoxes.includes(name) ? ' active' : '');
+    if (activeBoxes && activeBoxes.includes(name)){
+      box.style.borderColor = 'var(--teal)'; box.style.background = 'var(--teal-bg)'; box.style.color = 'var(--teal)';
+    }
+    box.textContent = name;
+    return box;
+  }
+  function arrow(){ const a = document.createElement('div'); a.className = 'parrow'; a.textContent = '\u2192'; return a; }
+
+  const col = document.createElement('div');
+  col.style.display = 'flex'; col.style.flexDirection = 'column'; col.style.gap = '10px';
+  const r1 = document.createElement('div'); r1.style.display='flex'; r1.style.alignItems='center'; r1.style.gap='8px';
+  r1.appendChild(makeBox('shapes.cpp')); r1.appendChild(arrow()); r1.appendChild(makeBox('shapes.o'));
+  const r2 = document.createElement('div'); r2.style.display='flex'; r2.style.alignItems='center'; r2.style.gap='8px';
+  r2.appendChild(makeBox('main.cpp')); r2.appendChild(arrow()); r2.appendChild(makeBox('main.o'));
+  col.appendChild(r1); col.appendChild(r2);
+  pipe.appendChild(col);
+  pipe.appendChild(arrow());
+  pipe.appendChild(makeBox('app'));
+}
+
+function resetBuild(){
+  clearInterval(buildTimer);
+  buildIndex = 0;
+  renderBuildPipeline([]);
+  document.getElementById('build-banner').textContent = 'Press Step or Play to begin.';
+  document.getElementById('build-cmd').textContent = '';
+}
+
+function buildStepOnce(){
+  if (buildIndex >= buildSteps.length) return;
+  const step = buildSteps[buildIndex];
+  renderBuildPipeline(step.boxes);
+  document.getElementById('build-banner').textContent = step.text;
+  document.getElementById('build-cmd').textContent = '$ ' + step.cmd;
+  buildIndex++;
+  if (buildIndex >= buildSteps.length) clearInterval(buildTimer);
+}
+document.getElementById('build-step').addEventListener('click', buildStepOnce);
+document.getElementById('build-play').addEventListener('click', ()=>{
+  clearInterval(buildTimer);
+  buildTimer = setInterval(()=>{
+    if (buildIndex >= buildSteps.length){ clearInterval(buildTimer); return; }
+    buildStepOnce();
+  }, 1100);
+});
+document.getElementById('build-reset').addEventListener('click', resetBuild);
+resetBuild();
+
+const odrOutputs = {
+  correct:
+'$ g++ shapes.cpp main.cpp -o app\n' +
+'$ ./app\n' +
+'distance = 5\n' +
+'midpoint = (1.5, 2)\n' +
+'\n' +
+'\u2713 One declaration in shapes.h, one definition in shapes.cpp \u2014 every file that\n' +
+'  includes the header agrees on the signature, and the linker finds exactly\n' +
+'  one body for each function.',
+  duplicate:
+'$ g++ shapes.cpp main.cpp -o app\n' +
+'duplicate symbol \'distance(Point, Point)\' in:\n' +
+'    shapes.o\n' +
+'    main.o\n' +
+'ld: 1 duplicate symbol\n' +
+'\n' +
+'\u2717 Writing the full function body directly in shapes.h means every .cpp file\n' +
+'  that includes it compiles its own copy of distance(). The linker now sees\n' +
+'  two identical functions with the same name and refuses to pick one.',
+  missing:
+'$ g++ shapes.cpp main.cpp -o app\n' +
+'Undefined symbols for architecture:\n' +
+'  "distance(Point, Point)", referenced from:\n' +
+'      _main in main.o\n' +
+'ld: symbol(s) not found\n' +
+'\n' +
+'\u2717 shapes.h declared distance(), so main.cpp compiled fine \u2014 it took the\n' +
+'  header\'s word that the function exists. But no .cpp file ever supplied a\n' +
+'  body, so the linker has nothing to point the call at.',
+};
+function renderOdr(){
+  document.getElementById('odr-output').textContent = odrOutputs[document.getElementById('odr-scenario').value];
+}
+document.getElementById('odr-scenario').addEventListener('change', renderOdr);
+renderOdr();
+
+/* =========================================================
+   REUSE / TESTS
+   ========================================================= */
+function renderReuse(){
+  const mode = document.querySelector('#reuse-mode button.active').dataset.m;
+  const tree = document.getElementById('reuse-tree');
+  const app = mode === 'app';
+  tree.innerHTML =
+    'project/\n' +
+    '\u251c\u2500\u2500 <span class="hl">shapes.h</span>\n' +
+    '\u251c\u2500\u2500 <span class="hl">shapes.cpp</span>\n' +
+    '\u251c\u2500\u2500 <span class="' + (app ? 'hl' : 'dim') + '">main.cpp</span>' + (app ? '        \u2190 used' : '        (not linked this time)') + '\n' +
+    '\u2514\u2500\u2500 <span class="' + (!app ? 'hl' : 'dim') + '">test_main.cpp</span>' + (!app ? '   \u2190 used' : '   (not linked this time)');
+
+  document.getElementById('reuse-cmd').textContent =
+    app ? '$ g++ shapes.cpp main.cpp -o app\n$ ./app'
+        : '$ g++ shapes.cpp test_main.cpp -o run_tests\n$ ./run_tests';
+
+  document.getElementById('reuse-output').textContent =
+    app ? 'distance = 5\nmidpoint = (1.5, 2)'
+        : 'test distance(0,0 -> 3,4) ... ok\ntest midpoint(0,0 -> 3,4) ... ok\nAll tests passed!';
+}
+document.querySelectorAll('#reuse-mode button').forEach(b=>{
+  b.addEventListener('click', ()=>{
+    document.querySelectorAll('#reuse-mode button').forEach(x=>x.classList.remove('active'));
+    b.classList.add('active');
+    renderReuse();
+  });
+});
+renderReuse();
+
+document.getElementById('reuse-both-btn').addEventListener('click', ()=>{
+  const out = document.getElementById('reuse-both-output');
+  out.style.display = 'block';
+  out.textContent =
+'$ g++ shapes.cpp main.cpp test_main.cpp -o everything\n' +
+'main.o: multiple definition of \'main()\'\n' +
+'test_main.o: first defined here\n' +
+'collect2: error: ld returned 1 exit status\n' +
+'\n' +
+'A program needs exactly one entry point. main.cpp and test_main.cpp both\n' +
+'supply one, so this only works as two separate builds, each picking a\n' +
+'different main and linking the shared shapes.o alongside it.';
+  document.getElementById('reuse-both-reset').style.display = 'inline-block';
+});
+document.getElementById('reuse-both-reset').addEventListener('click', ()=>{
+  document.getElementById('reuse-both-output').style.display = 'none';
+  document.getElementById('reuse-both-reset').style.display = 'none';
+});
+</script>
+
+</body>
+</html>

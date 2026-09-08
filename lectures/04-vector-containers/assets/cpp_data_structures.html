@@ -1,0 +1,654 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>How C++ data structures live in memory</title>
+<style>
+  :root{
+    --paper:#F6F5F1; --panel:#FFFFFF; --ink:#1C1D1B; --ink-soft:#5B5C57; --ink-faint:#8B8C86;
+    --line:#DDDBD3; --line-strong:#C6C3B8;
+    --teal:#0F6E56; --teal-bg:#E1F5EE;
+    --amber:#854F0B; --amber-bg:#FAEEDA;
+    --coral:#993C1D; --coral-bg:#FAECE7;
+    --blue:#0C447C; --blue-bg:#E6F1FB;
+    --violet:#5B3E8C; --violet-bg:#EFE8F5;
+    --slate:#3F4A52; --slate-bg:#E7EAEB;
+    --red:#791F1F; --red-bg:#FCEBEB;
+    --mono:"SFMono-Regular",Consolas,"Liberation Mono",Menlo,monospace;
+    --sans:-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif;
+  }
+  *{box-sizing:border-box;}
+  html,body{margin:0;padding:0;background:var(--paper);color:var(--ink);font-family:var(--sans);}
+  body{padding:0 0 4rem;}
+  .wrap{max-width:960px;margin:0 auto;padding:0 1.5rem;}
+
+  header{padding:2.5rem 0 1.5rem;border-bottom:1px solid var(--line);}
+  header h1{font-size:26px;font-weight:600;margin:0 0 .4rem;letter-spacing:-0.01em;}
+  header p{font-size:15px;color:var(--ink-soft);margin:0;max-width:660px;line-height:1.55;}
+
+  nav{position:sticky;top:0;background:var(--paper);z-index:10;border-bottom:1px solid var(--line);padding:.75rem 0;margin-bottom:2rem;}
+  nav .wrap{display:flex;gap:6px;flex-wrap:wrap;}
+  nav button{font-family:var(--sans);font-size:13.5px;padding:7px 14px;border-radius:6px;border:1px solid var(--line-strong);background:var(--panel);color:var(--ink-soft);cursor:pointer;}
+  nav button.active{background:var(--ink);color:#fff;border-color:var(--ink);}
+  nav button:hover:not(.active){border-color:var(--ink);color:var(--ink);}
+
+  section{display:none;margin-bottom:3rem;}
+  section.active{display:block;}
+  h2{font-size:19px;font-weight:600;margin:0 0 .5rem;}
+  h3{font-size:15px;font-weight:600;margin:1.75rem 0 .6rem;}
+  p.lede{color:var(--ink-soft);font-size:14.5px;line-height:1.6;margin:0 0 1.5rem;max-width:680px;}
+
+  .panel{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:1.25rem 1.4rem;margin-bottom:1.25rem;}
+
+  label{font-size:13px;color:var(--ink-soft);display:block;margin-bottom:4px;}
+  input[type=number],input[type=text],select{font-family:var(--mono);font-size:14px;padding:7px 10px;border-radius:6px;border:1px solid var(--line-strong);background:#fff;color:var(--ink);width:100%;}
+  .row{display:flex;gap:16px;flex-wrap:wrap;margin-bottom:1rem;align-items:end;}
+  .row > div{flex:1;min-width:140px;}
+
+  .btnset{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:1rem;}
+  .btnset button{font-family:var(--sans);font-size:13px;padding:6px 12px;border-radius:6px;border:1px solid var(--line-strong);background:#fff;color:var(--ink-soft);cursor:pointer;}
+  .btnset button.active{background:var(--ink);color:#fff;border-color:var(--ink);}
+  .btnset button:hover:not(.active){border-color:var(--ink);color:var(--ink);}
+
+  table{width:100%;border-collapse:collapse;font-size:13.5px;}
+  th,td{text-align:left;padding:7px 10px;border-bottom:1px solid var(--line);}
+  th{color:var(--ink-soft);font-weight:600;font-size:12.5px;}
+  td.mono, th.mono{font-family:var(--mono);}
+  tr:hover td{background:#FBFAF7;}
+
+  pre{background:#1C1D1B;color:#EDEBE3;padding:1.1rem 1.3rem;border-radius:8px;font-family:var(--mono);font-size:13px;line-height:1.6;overflow-x:auto;margin:0 0 1rem;}
+  code{font-family:var(--mono);font-size:13px;background:#F0EFE9;padding:1px 5px;border-radius:4px;}
+
+  .note{font-size:13px;color:var(--ink-soft);background:#F0EFE9;border-left:3px solid var(--line-strong);padding:.6rem .9rem;border-radius:0 6px 6px 0;margin:1rem 0;}
+  .note.warn{border-left-color:var(--coral);background:var(--coral-bg);color:var(--coral);}
+  .err{font-size:13px;color:var(--red);display:none;margin:.5rem 0;}
+
+  .byte{display:flex;align-items:center;justify-content:center;height:34px;border-radius:4px;font-size:11.5px;font-family:var(--mono);flex-shrink:0;padding:0 4px;text-align:center;white-space:nowrap;overflow:hidden;}
+  .byte.pad{background:repeating-linear-gradient(45deg,#EDEBE3,#EDEBE3 4px,#E1DFD5 4px,#E1DFD5 8px);color:var(--ink-faint);}
+  .field-row{display:flex;flex-wrap:wrap;gap:2px;margin:1rem 0;}
+  .legend{display:flex;gap:14px;flex-wrap:wrap;font-size:12.5px;color:var(--ink-soft);margin-bottom:1rem;}
+  .legend span{display:inline-flex;align-items:center;gap:6px;}
+  .swatch{width:11px;height:11px;border-radius:3px;display:inline-block;}
+
+  .memberRow{display:flex;gap:8px;align-items:center;margin-bottom:6px;}
+  .memberRow select{width:150px;}
+  .memberRow input{width:100px;}
+  .memberRow button{flex-shrink:0;font-size:12px;padding:5px 9px;border-radius:6px;border:1px solid var(--line-strong);background:#fff;color:var(--ink-soft);cursor:pointer;}
+  .memberRow button:hover{border-color:var(--red);color:var(--red);}
+
+  .slot{width:32px;height:32px;display:flex;align-items:center;justify-content:center;border-radius:5px;font-size:11px;font-family:var(--mono);flex-shrink:0;}
+  .slot.filled{background:var(--teal-bg);color:var(--teal);border:1px solid var(--teal);}
+  .slot.empty{background:#fff;color:var(--ink-faint);border:1px dashed var(--line-strong);}
+  .vec-row{display:flex;flex-wrap:wrap;gap:3px;margin:1rem 0;}
+
+  .bucket{display:flex;align-items:center;gap:6px;margin-bottom:6px;}
+  .bucket-idx{width:28px;font-family:var(--mono);font-size:12px;color:var(--ink-faint);flex-shrink:0;}
+  .bucket-chain{display:flex;gap:4px;flex-wrap:wrap;flex:1;min-height:30px;align-items:center;padding:3px;border-radius:6px;background:#FBFAF7;border:1px solid var(--line);}
+  .chain-item{background:var(--teal-bg);color:var(--teal);border-radius:5px;padding:4px 9px;font-family:var(--mono);font-size:12.5px;}
+
+  footer{color:var(--ink-faint);font-size:12.5px;text-align:center;padding-top:2rem;}
+  svg text{font-family:var(--mono);font-size:12px;fill:var(--ink);}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap">
+    <h1>How C++ data structures live in memory</h1>
+    <p>An interactive reference for <code>struct</code> / <code>class</code> layout and padding, <code>std::vector</code>'s growth strategy, <code>std::complex</code>, and the tree vs. hash-table shape behind <code>map</code>/<code>set</code> and <code>unordered_map</code>/<code>unordered_set</code>. Single self-contained file, no external dependencies.</p>
+  </div>
+</header>
+
+<nav>
+  <div class="wrap">
+    <button data-tab="overview" class="active">Overview</button>
+    <button data-tab="struct">Struct &amp; class</button>
+    <button data-tab="vector">std::vector</button>
+    <button data-tab="complex">std::complex</button>
+    <button data-tab="assoc">map / set</button>
+  </div>
+</nav>
+
+<div class="wrap">
+
+  <!-- ===================== OVERVIEW ===================== -->
+  <section id="tab-overview" class="active">
+    <h2>At a glance</h2>
+    <p class="lede">The containers below fall into two very different families: contiguous / flat (an array of bytes you can index straight into) and node-based (separately allocated pieces linked by pointers). That distinction drives almost everything about their performance.</p>
+    <div class="panel" style="padding:0;">
+      <table>
+        <thead><tr><th>Type</th><th>Memory shape</th><th>Ordering</th><th>Typical lookup</th><th>Typical insert</th></tr></thead>
+        <tbody>
+          <tr><td class="mono">struct / class</td><td>fixed-size, inline (on stack or embedded in parent)</td><td>&mdash;</td><td>O(1) field access</td><td>&mdash;</td></tr>
+          <tr><td class="mono">std::vector</td><td>one contiguous heap buffer</td><td>insertion order</td><td class="mono">O(1) by index</td><td class="mono">O(1) amortized at end</td></tr>
+          <tr><td class="mono">std::complex</td><td>two values, inline, contiguous</td><td>&mdash;</td><td class="mono">O(1)</td><td>&mdash;</td></tr>
+          <tr><td class="mono">std::map / std::set</td><td>node-based, red-black tree</td><td>sorted by key</td><td class="mono">O(log n)</td><td class="mono">O(log n)</td></tr>
+          <tr><td class="mono">std::unordered_map / set</td><td>bucket array + chained nodes</td><td>none</td><td class="mono">O(1) average, O(n) worst</td><td class="mono">O(1) average</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="note">"Contiguous" containers are cache-friendly &mdash; walking through them sequentially touches nearby memory. "Node-based" containers scatter their elements across the heap, trading raw iteration speed for stable addresses and, in the sorted case, ordering.</div>
+  </section>
+
+  <!-- ===================== STRUCT / CLASS ===================== -->
+  <section id="tab-struct">
+    <h2>struct &amp; class layout</h2>
+    <p class="lede">In C++, <code>struct</code> and <code>class</code> are the same kind of thing &mdash; the only difference is that members default to <code>public</code> in a struct and <code>private</code> in a class. Both get laid out the same way: fields in declaration order, each one pushed forward to satisfy its own alignment, which is where padding comes from.</p>
+
+    <div class="panel">
+      <h3 style="margin-top:0;">Build a type</h3>
+      <div id="member-list"></div>
+      <div class="btnset" style="margin-top:.5rem;">
+        <button id="member-add">+ add member</button>
+      </div>
+      <label style="display:flex;align-items:center;gap:8px;margin-top:.5rem;">
+        <input type="checkbox" id="has-virtual" style="width:auto;">
+        <span>has at least one <code>virtual</code> function (adds a hidden vtable pointer)</span>
+      </label>
+
+      <h3>Byte layout</h3>
+      <div class="field-row" id="struct-bytes"></div>
+      <div class="legend" id="struct-legend"></div>
+      <table>
+        <tr><th style="width:170px;">sizeof(T)</th><td class="mono" id="struct-size"></td></tr>
+        <tr><th>alignof(T)</th><td class="mono" id="struct-align"></td></tr>
+        <tr><th>Padding bytes</th><td class="mono" id="struct-padding"></td></tr>
+      </table>
+    </div>
+
+    <div class="note">Reordering members from largest-alignment to smallest often shrinks a struct by eliminating padding &mdash; try moving <code>double</code>/<code>pointer</code> fields before <code>char</code>/<code>bool</code> fields above and watch the total size drop.</div>
+  </section>
+
+  <!-- ===================== VECTOR ===================== -->
+  <section id="tab-vector">
+    <h2>std::vector: one contiguous buffer</h2>
+    <p class="lede">A <code>std::vector&lt;T&gt;</code> object itself is small and fixed-size &mdash; typically just three pointers (24 bytes on a 64-bit system): begin, end, and end-of-storage. The actual elements live in a separate heap buffer that <code>size()</code> elements currently occupy out of <code>capacity()</code> allocated slots.</p>
+
+    <div class="panel">
+      <div class="btnset">
+        <button id="vec-push">push_back()</button>
+        <button id="vec-pop">pop_back()</button>
+        <button id="vec-clear">clear / reset</button>
+      </div>
+      <div class="vec-row" id="vec-slots"></div>
+      <table>
+        <tr><th style="width:170px;">size()</th><td class="mono" id="vec-size"></td></tr>
+        <tr><th>capacity()</th><td class="mono" id="vec-capacity"></td></tr>
+      </table>
+      <div class="note warn" id="vec-realloc-note" style="display:none;"></div>
+    </div>
+
+    <h3>Why capacity grows the way it does</h3>
+    <p class="lede">When <code>size()</code> would exceed <code>capacity()</code>, the vector allocates a new, larger buffer (commonly double the old capacity in libstdc++), copies or moves every existing element over, then frees the old buffer. That's why push_back is only <i>amortized</i> O(1): most calls are cheap, but occasionally one call does O(n) work.</p>
+    <div class="note">This is also why growing a vector invalidates every iterator, pointer, and reference into it &mdash; the elements may have just moved to a completely different address.</div>
+
+    <table>
+      <tr><th style="width:170px;">Object itself</th><td class="mono">~24 bytes: data pointer, size, capacity (or three pointers)</td></tr>
+      <tr><th>Element storage</th><td class="mono">contiguous heap buffer, sizeof(T) &times; capacity() bytes</td></tr>
+    </table>
+  </section>
+
+  <!-- ===================== COMPLEX ===================== -->
+  <section id="tab-complex">
+    <h2>std::complex&lt;T&gt;</h2>
+    <p class="lede"><code>std::complex&lt;T&gt;</code> is about as simple as a class gets: two values of the same type, stored contiguously with no padding (since both members share the same alignment) &mdash; real part first, then imaginary.</p>
+
+    <div class="panel">
+      <div class="btnset" id="complex-width">
+        <button data-w="32" class="active">complex&lt;float&gt;</button>
+        <button data-w="64">complex&lt;double&gt;</button>
+      </div>
+      <div class="row">
+        <div>
+          <label for="complex-re">Real part</label>
+          <input type="text" id="complex-re" value="3.5">
+        </div>
+        <div>
+          <label for="complex-im">Imaginary part</label>
+          <input type="text" id="complex-im" value="-2.25">
+        </div>
+      </div>
+      <div class="err" id="complex-err"></div>
+
+      <div class="field-row" id="complex-bytes"></div>
+      <div class="legend">
+        <span><span class="swatch" style="background:var(--blue-bg)"></span>real part</span>
+        <span><span class="swatch" style="background:var(--violet-bg)"></span>imaginary part</span>
+      </div>
+      <table>
+        <tr><th style="width:170px;">Real, as hex bytes</th><td class="mono" id="complex-re-hex"></td></tr>
+        <tr><th>Imaginary, as hex bytes</th><td class="mono" id="complex-im-hex"></td></tr>
+        <tr><th>sizeof(complex&lt;T&gt;)</th><td class="mono" id="complex-size"></td></tr>
+      </table>
+    </div>
+    <div class="note">Because there's no padding, an array of <code>std::complex&lt;double&gt;</code> is bit-for-bit the same layout as an interleaved array of doubles: <code>[re0, im0, re1, im1, ...]</code>. That's what makes it safe to reinterpret one as the other, which the standard explicitly guarantees.</div>
+  </section>
+
+  <!-- ===================== MAP / SET ===================== -->
+  <section id="tab-assoc">
+    <h2>Ordered vs. hashed associative containers</h2>
+    <p class="lede"><code>std::map</code>/<code>std::set</code> keep keys sorted using a self-balancing binary search tree (a red-black tree). <code>std::unordered_map</code>/<code>std::unordered_set</code> give up ordering for average O(1) access using a hash table with chaining.</p>
+
+    <div class="btnset" id="assoc-mode">
+      <button data-m="tree" class="active">map / set (tree)</button>
+      <button data-m="hash">unordered_map / unordered_set (hash table)</button>
+    </div>
+
+    <div class="panel" id="tree-panel">
+      <div class="row">
+        <div>
+          <label for="tree-insert">Insert a number</label>
+          <input type="text" id="tree-insert" value="">
+        </div>
+        <div style="flex:0 0 auto;">
+          <button id="tree-insert-btn" style="padding:8px 16px;border-radius:6px;border:1px solid var(--line-strong);background:#fff;cursor:pointer;">Insert</button>
+        </div>
+        <div style="flex:0 0 auto;">
+          <button id="tree-reset-btn" style="padding:8px 16px;border-radius:6px;border:1px solid var(--line-strong);background:#fff;cursor:pointer;">Reset</button>
+        </div>
+      </div>
+      <svg id="tree-svg" viewBox="0 0 880 260" style="width:100%;height:auto;"></svg>
+      <div class="note">Every node stores a key (and, for <code>map</code>, a value), plus parent/left/right pointers and a red/black color bit used to keep the tree balanced. This demo inserts plainly without the real rebalancing rotations, just to show the node-and-pointer shape &mdash; the real container guarantees O(log n) height no matter the insertion order.</div>
+    </div>
+
+    <div class="panel" id="hash-panel" style="display:none;">
+      <div class="row">
+        <div>
+          <label for="hash-insert">Insert a number</label>
+          <input type="text" id="hash-insert" value="">
+        </div>
+        <div style="flex:0 0 auto;">
+          <button id="hash-insert-btn" style="padding:8px 16px;border-radius:6px;border:1px solid var(--line-strong);background:#fff;cursor:pointer;">Insert</button>
+        </div>
+        <div style="flex:0 0 auto;">
+          <button id="hash-reset-btn" style="padding:8px 16px;border-radius:6px;border:1px solid var(--line-strong);background:#fff;cursor:pointer;">Reset</button>
+        </div>
+      </div>
+      <div id="hash-buckets"></div>
+      <div class="note">This toy hash is just <code>key % 8</code> (8 buckets) so collisions are easy to trigger &mdash; insert both 3 and 11 and watch them land in the same bucket, chained together. A real <code>unordered_map</code> uses a much better hash and grows/rehashes its bucket array as it fills up.</div>
+    </div>
+  </section>
+
+</div>
+
+<footer>Single self-contained HTML file &mdash; no external dependencies, safe to open directly or embed in a Jupyter notebook with <code>IFrame</code>.</footer>
+
+<script>
+// ---------- tab navigation ----------
+document.querySelectorAll('nav button').forEach(btn=>{
+  btn.addEventListener('click', ()=>{
+    document.querySelectorAll('nav button').forEach(b=>b.classList.remove('active'));
+    btn.classList.add('active');
+    document.querySelectorAll('section').forEach(s=>s.classList.remove('active'));
+    document.getElementById('tab-'+btn.dataset.tab).classList.add('active');
+  });
+});
+
+// ================= STRUCT / CLASS =================
+const typeInfo = {
+  bool:     {size:1, align:1, cls:'coral'},
+  char:     {size:1, align:1, cls:'coral'},
+  short:    {size:2, align:2, cls:'amber'},
+  int:      {size:4, align:4, cls:'blue'},
+  float:    {size:4, align:4, cls:'teal'},
+  double:   {size:8, align:8, cls:'violet'},
+  'pointer (8B)': {size:8, align:8, cls:'slate'},
+};
+const clsBg = {coral:'coral-bg', amber:'amber-bg', blue:'blue-bg', teal:'teal-bg', violet:'violet-bg', slate:'slate-bg'};
+const clsFg = {coral:'coral', amber:'amber', blue:'blue', teal:'teal', violet:'violet', slate:'slate'};
+
+let members = [
+  {type:'char', name:'c'},
+  {type:'int', name:'i'},
+  {type:'double', name:'d'},
+  {type:'bool', name:'b'},
+];
+
+const memberListEl = document.getElementById('member-list');
+const hasVirtualEl = document.getElementById('has-virtual');
+
+function renderMemberList(){
+  memberListEl.innerHTML = '';
+  members.forEach((m, idx)=>{
+    const row = document.createElement('div');
+    row.className = 'memberRow';
+
+    const sel = document.createElement('select');
+    Object.keys(typeInfo).forEach(t=>{
+      const opt = document.createElement('option');
+      opt.value = t; opt.textContent = t;
+      if (t === m.type) opt.selected = true;
+      sel.appendChild(opt);
+    });
+    sel.addEventListener('change', ()=>{ members[idx].type = sel.value; renderStruct(); });
+
+    const name = document.createElement('input');
+    name.type = 'text';
+    name.value = m.name;
+    name.addEventListener('input', ()=>{ members[idx].name = name.value; renderStruct(); });
+
+    const del = document.createElement('button');
+    del.textContent = '\u2715';
+    del.title = 'remove';
+    del.addEventListener('click', ()=>{ members.splice(idx,1); renderMemberList(); renderStruct(); });
+
+    row.appendChild(sel);
+    row.appendChild(name);
+    row.appendChild(del);
+    memberListEl.appendChild(row);
+  });
+}
+
+document.getElementById('member-add').addEventListener('click', ()=>{
+  members.push({type:'int', name:'m'+members.length});
+  renderMemberList();
+  renderStruct();
+});
+hasVirtualEl.addEventListener('change', renderStruct);
+
+function computeLayout(members, hasVirtual){
+  const segments = [];
+  let offset = 0;
+  if (hasVirtual){
+    segments.push({kind:'field', name:'vtable ptr', type:'pointer (8B)', size:8, cls:'slate'});
+    offset = 8;
+  }
+  let maxAlign = hasVirtual ? 8 : 1;
+  members.forEach(m=>{
+    const info = typeInfo[m.type];
+    maxAlign = Math.max(maxAlign, info.align);
+    const aligned = Math.ceil(offset / info.align) * info.align;
+    if (aligned > offset){
+      segments.push({kind:'pad', size: aligned - offset});
+    }
+    offset = aligned;
+    segments.push({kind:'field', name: m.name || '?', type: m.type, size: info.size, cls: info.cls});
+    offset += info.size;
+  });
+  const finalSize = Math.ceil(offset / maxAlign) * maxAlign || maxAlign;
+  if (finalSize > offset){
+    segments.push({kind:'pad', size: finalSize - offset});
+  }
+  return {segments, totalSize: Math.max(finalSize, 1), structAlign: maxAlign};
+}
+
+function renderStruct(){
+  const {segments, totalSize, structAlign} = computeLayout(members, hasVirtualEl.checked);
+  const bytesEl = document.getElementById('struct-bytes');
+  bytesEl.innerHTML = '';
+  let padTotal = 0;
+  const usedCls = new Set();
+  segments.forEach(seg=>{
+    const box = document.createElement('div');
+    if (seg.kind === 'pad'){
+      box.className = 'byte pad';
+      box.style.width = (seg.size * 16) + 'px';
+      box.textContent = seg.size === 1 ? 'pad' : 'pad \u00d7' + seg.size;
+      padTotal += seg.size;
+    } else {
+      box.className = 'byte';
+      box.style.background = 'var(--' + clsBg[seg.cls] + ')';
+      box.style.color = 'var(--' + clsFg[seg.cls] + ')';
+      box.style.width = Math.max(seg.size * 16, 40) + 'px';
+      box.textContent = seg.name + ' (' + seg.size + 'B)';
+      usedCls.add(seg.cls);
+    }
+    bytesEl.appendChild(box);
+  });
+
+  const legend = document.getElementById('struct-legend');
+  legend.innerHTML = '';
+  usedCls.forEach(cls=>{
+    const span = document.createElement('span');
+    const sw = document.createElement('span');
+    sw.className = 'swatch';
+    sw.style.background = 'var(--' + clsBg[cls] + ')';
+    span.appendChild(sw);
+    span.appendChild(document.createTextNode('field'));
+    legend.appendChild(span);
+  });
+  const padSwatch = document.createElement('span');
+  padSwatch.innerHTML = '<span class="swatch" style="background:repeating-linear-gradient(45deg,#EDEBE3,#EDEBE3 3px,#E1DFD5 3px,#E1DFD5 6px);"></span>padding';
+  legend.appendChild(padSwatch);
+
+  document.getElementById('struct-size').textContent = totalSize + ' bytes';
+  document.getElementById('struct-align').textContent = structAlign + ' bytes';
+  document.getElementById('struct-padding').textContent = padTotal + ' bytes' + (padTotal>0 ? '  (' + (100*padTotal/totalSize).toFixed(0) + '% of the struct)' : '');
+}
+
+renderMemberList();
+renderStruct();
+
+// ================= VECTOR =================
+let vecState = {size:0, capacity:0};
+const vecSlots = document.getElementById('vec-slots');
+const vecReallocNote = document.getElementById('vec-realloc-note');
+
+function renderVec(){
+  vecSlots.innerHTML = '';
+  for (let i=0;i<vecState.capacity;i++){
+    const box = document.createElement('div');
+    box.className = 'slot ' + (i < vecState.size ? 'filled' : 'empty');
+    box.textContent = i < vecState.size ? i : '';
+    vecSlots.appendChild(box);
+  }
+  document.getElementById('vec-size').textContent = vecState.size;
+  document.getElementById('vec-capacity').textContent = vecState.capacity;
+}
+
+document.getElementById('vec-push').addEventListener('click', ()=>{
+  if (vecState.size >= vecState.capacity){
+    const oldCap = vecState.capacity;
+    vecState.capacity = vecState.capacity === 0 ? 1 : vecState.capacity * 2;
+    vecReallocNote.style.display = 'block';
+    vecReallocNote.textContent = 'Reallocation: capacity ' + oldCap + ' \u2192 ' + vecState.capacity +
+      '. All ' + vecState.size + ' existing element(s) were copied/moved to the new buffer; the old buffer was freed.';
+  } else {
+    vecReallocNote.style.display = 'none';
+  }
+  vecState.size++;
+  renderVec();
+});
+document.getElementById('vec-pop').addEventListener('click', ()=>{
+  if (vecState.size > 0) vecState.size--;
+  vecReallocNote.style.display = 'none';
+  renderVec();
+});
+document.getElementById('vec-clear').addEventListener('click', ()=>{
+  vecState = {size:0, capacity:0};
+  vecReallocNote.style.display = 'none';
+  renderVec();
+});
+renderVec();
+
+// ================= COMPLEX =================
+let complexWidth = 32;
+const complexWidthBtns = document.querySelectorAll('#complex-width button');
+const complexRe = document.getElementById('complex-re');
+const complexIm = document.getElementById('complex-im');
+const complexErr = document.getElementById('complex-err');
+
+function hexBytes(view, bytes){
+  let h = '';
+  for (let i=0;i<bytes;i++) h += view.getUint8(i).toString(16).padStart(2,'0');
+  return '0x' + h;
+}
+
+function renderComplex(){
+  const reV = parseFloat(complexRe.value);
+  const imV = parseFloat(complexIm.value);
+  if (isNaN(reV) || isNaN(imV)){
+    complexErr.style.display = 'block';
+    complexErr.textContent = 'Enter numeric real and imaginary parts';
+    return;
+  }
+  complexErr.style.display = 'none';
+
+  const bytes = complexWidth === 32 ? 4 : 8;
+  const bufRe = new ArrayBuffer(bytes), bufIm = new ArrayBuffer(bytes);
+  const viewRe = new DataView(bufRe), viewIm = new DataView(bufIm);
+  if (bytes === 4){ viewRe.setFloat32(0, reV, false); viewIm.setFloat32(0, imV, false); }
+  else { viewRe.setFloat64(0, reV, false); viewIm.setFloat64(0, imV, false); }
+
+  const bytesEl = document.getElementById('complex-bytes');
+  bytesEl.innerHTML = '';
+  const perByteWidth = bytes === 8 ? 22 : 30;
+  for (let i=0;i<bytes;i++){
+    const box = document.createElement('div');
+    box.className = 'byte';
+    box.style.background = 'var(--blue-bg)'; box.style.color = 'var(--blue)';
+    box.style.width = perByteWidth + 'px';
+    box.textContent = viewRe.getUint8(i).toString(16).padStart(2,'0');
+    bytesEl.appendChild(box);
+  }
+  for (let i=0;i<bytes;i++){
+    const box = document.createElement('div');
+    box.className = 'byte';
+    box.style.background = 'var(--violet-bg)'; box.style.color = 'var(--violet)';
+    box.style.width = perByteWidth + 'px';
+    box.textContent = viewIm.getUint8(i).toString(16).padStart(2,'0');
+    bytesEl.appendChild(box);
+  }
+
+  document.getElementById('complex-re-hex').textContent = hexBytes(viewRe, bytes);
+  document.getElementById('complex-im-hex').textContent = hexBytes(viewIm, bytes);
+  document.getElementById('complex-size').textContent = (bytes*2) + ' bytes  (' + bytes + ' + ' + bytes + ', no padding)';
+}
+complexWidthBtns.forEach(b=>b.addEventListener('click', ()=>{
+  complexWidthBtns.forEach(x=>x.classList.remove('active'));
+  b.classList.add('active');
+  complexWidth = parseInt(b.dataset.w, 10);
+  renderComplex();
+}));
+complexRe.addEventListener('input', renderComplex);
+complexIm.addEventListener('input', renderComplex);
+renderComplex();
+
+// ================= MAP / SET (tree) =================
+let treeRoot = null;
+function bstInsert(root, value){
+  if (!root) return {value, left:null, right:null};
+  if (value < root.value) root.left = bstInsert(root.left, value);
+  else if (value > root.value) root.right = bstInsert(root.right, value);
+  return root;
+}
+function seedTree(){
+  treeRoot = null;
+  [50,30,70,20,40,60,80].forEach(v=>{ treeRoot = bstInsert(treeRoot, v); });
+}
+seedTree();
+
+function renderTree(){
+  const svg = document.getElementById('tree-svg');
+  svg.innerHTML = '';
+  if (!treeRoot) return;
+
+  // inorder positions for x, depth for y
+  let xCounter = 0;
+  const positions = [];
+  function walk(node, depth){
+    if (!node) return;
+    walk(node.left, depth+1);
+    positions.push({node, x: xCounter, depth});
+    xCounter++;
+    walk(node.right, depth+1);
+  }
+  walk(treeRoot, 0);
+
+  const spacingX = 860 / Math.max(xCounter, 1);
+  const posMap = new Map();
+  positions.forEach(p=>{
+    posMap.set(p.node, {x: 20 + p.x*spacingX + spacingX/2, y: 30 + p.depth*55});
+  });
+
+  function drawEdges(node){
+    if (!node) return;
+    const p = posMap.get(node);
+    [node.left, node.right].forEach(child=>{
+      if (child){
+        const c = posMap.get(child);
+        const line = document.createElementNS('http://www.w3.org/2000/svg','line');
+        line.setAttribute('x1', p.x); line.setAttribute('y1', p.y);
+        line.setAttribute('x2', c.x); line.setAttribute('y2', c.y);
+        line.setAttribute('stroke', '#C6C3B8'); line.setAttribute('stroke-width', '1.5');
+        svg.appendChild(line);
+      }
+    });
+    drawEdges(node.left); drawEdges(node.right);
+  }
+  drawEdges(treeRoot);
+
+  positions.forEach(p=>{
+    const pos = posMap.get(p.node);
+    const circle = document.createElementNS('http://www.w3.org/2000/svg','circle');
+    circle.setAttribute('cx', pos.x); circle.setAttribute('cy', pos.y); circle.setAttribute('r', 16);
+    circle.setAttribute('fill', '#E1F5EE'); circle.setAttribute('stroke', '#0F6E56'); circle.setAttribute('stroke-width','1.5');
+    svg.appendChild(circle);
+    const text = document.createElementNS('http://www.w3.org/2000/svg','text');
+    text.setAttribute('x', pos.x); text.setAttribute('y', pos.y+4);
+    text.setAttribute('text-anchor','middle'); text.setAttribute('fill', '#0F6E56');
+    text.textContent = p.node.value;
+    svg.appendChild(text);
+  });
+}
+renderTree();
+
+document.getElementById('tree-insert-btn').addEventListener('click', ()=>{
+  const v = parseInt(document.getElementById('tree-insert').value, 10);
+  if (!isNaN(v)){ treeRoot = bstInsert(treeRoot, v); renderTree(); document.getElementById('tree-insert').value=''; }
+});
+document.getElementById('tree-reset-btn').addEventListener('click', ()=>{ seedTree(); renderTree(); });
+
+// ================= UNORDERED MAP / SET (hash table) =================
+const NUM_BUCKETS = 8;
+let buckets = Array.from({length:NUM_BUCKETS}, ()=>[]);
+function seedHash(){
+  buckets = Array.from({length:NUM_BUCKETS}, ()=>[]);
+  [5,12,3,20,9].forEach(v=>{ buckets[v % NUM_BUCKETS].push(v); });
+}
+seedHash();
+
+function renderHash(){
+  const container = document.getElementById('hash-buckets');
+  container.innerHTML = '';
+  buckets.forEach((chain, i)=>{
+    const row = document.createElement('div');
+    row.className = 'bucket';
+    const idx = document.createElement('div');
+    idx.className = 'bucket-idx';
+    idx.textContent = i;
+    const chainEl = document.createElement('div');
+    chainEl.className = 'bucket-chain';
+    chain.forEach(v=>{
+      const item = document.createElement('div');
+      item.className = 'chain-item';
+      item.textContent = v;
+      chainEl.appendChild(item);
+    });
+    row.appendChild(idx);
+    row.appendChild(chainEl);
+    container.appendChild(row);
+  });
+}
+renderHash();
+
+document.getElementById('hash-insert-btn').addEventListener('click', ()=>{
+  const v = parseInt(document.getElementById('hash-insert').value, 10);
+  if (!isNaN(v)){ buckets[((v % NUM_BUCKETS) + NUM_BUCKETS) % NUM_BUCKETS].push(v); renderHash(); document.getElementById('hash-insert').value=''; }
+});
+document.getElementById('hash-reset-btn').addEventListener('click', ()=>{ seedHash(); renderHash(); });
+
+// ================= assoc mode toggle =================
+document.querySelectorAll('#assoc-mode button').forEach(b=>{
+  b.addEventListener('click', ()=>{
+    document.querySelectorAll('#assoc-mode button').forEach(x=>x.classList.remove('active'));
+    b.classList.add('active');
+    const isTree = b.dataset.m === 'tree';
+    document.getElementById('tree-panel').style.display = isTree ? 'block' : 'none';
+    document.getElementById('hash-panel').style.display = isTree ? 'none' : 'block';
+  });
+});
+</script>
+
+</body>
+</html>

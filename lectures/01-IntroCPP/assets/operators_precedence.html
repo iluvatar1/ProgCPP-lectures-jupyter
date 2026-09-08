@@ -1,0 +1,1024 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Operators &amp; precedence</title>
+<style>
+  :root{
+    --paper:#F6F5F1; --panel:#FFFFFF; --ink:#1C1D1B; --ink-soft:#5B5C57; --ink-faint:#8B8C86;
+    --line:#DDDBD3; --line-strong:#C6C3B8;
+    --teal:#0F6E56; --teal-bg:#E1F5EE;
+    --amber:#854F0B; --amber-bg:#FAEEDA;
+    --coral:#993C1D; --coral-bg:#FAECE7;
+    --blue:#0C447C; --blue-bg:#E6F1FB;
+    --violet:#5B3E8C; --violet-bg:#EFE8F5;
+    --slate:#3F4A52; --slate-bg:#E7EAEB;
+    --mono:"SFMono-Regular",Consolas,"Liberation Mono",Menlo,monospace;
+    --sans:-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif;
+  }
+  *{box-sizing:border-box;}
+  html,body{margin:0;padding:0;background:var(--paper);color:var(--ink);font-family:var(--sans);}
+  body{padding:0 0 4rem;}
+  .wrap{max-width:980px;margin:0 auto;padding:0 1.5rem;}
+
+  header{padding:2.5rem 0 1.5rem;border-bottom:1px solid var(--line);}
+  header h1{font-size:26px;font-weight:600;margin:0 0 .4rem;letter-spacing:-0.01em;}
+  header p{font-size:15px;color:var(--ink-soft);margin:0;max-width:680px;line-height:1.55;}
+
+  nav{position:sticky;top:0;background:var(--paper);z-index:10;border-bottom:1px solid var(--line);padding:.75rem 0;margin-bottom:2rem;}
+  nav .wrap{display:flex;gap:6px;flex-wrap:wrap;}
+  nav button{font-family:var(--sans);font-size:13.5px;padding:7px 14px;border-radius:6px;border:1px solid var(--line-strong);background:var(--panel);color:var(--ink-soft);cursor:pointer;}
+  nav button.active{background:var(--ink);color:#fff;border-color:var(--ink);}
+  nav button:hover:not(.active){border-color:var(--ink);color:var(--ink);}
+
+  section{display:none;margin-bottom:3rem;}
+  section.active{display:block;}
+  h2{font-size:19px;font-weight:600;margin:0 0 .5rem;display:flex;align-items:center;gap:10px;}
+  h3{font-size:15px;font-weight:600;margin:1.75rem 0 .6rem;}
+  p.lede{color:var(--ink-soft);font-size:14.5px;line-height:1.6;margin:0 0 1.5rem;max-width:700px;}
+
+  .badge{display:inline-flex;align-items:center;justify-content:center;width:30px;height:30px;border-radius:8px;font-size:15px;flex-shrink:0;}
+  .badge.blue{background:var(--blue-bg);color:var(--blue);}
+  .badge.amber{background:var(--amber-bg);color:var(--amber);}
+  .badge.violet{background:var(--violet-bg);color:var(--violet);}
+
+  .panel{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:1.25rem 1.4rem;margin-bottom:1.25rem;}
+
+  label{font-size:13px;color:var(--ink-soft);display:block;margin-bottom:4px;}
+  input[type=number],input[type=text],select{font-family:var(--mono);font-size:14px;padding:7px 10px;border-radius:6px;border:1px solid var(--line-strong);background:#fff;color:var(--ink);width:100%;}
+  .row{display:flex;gap:16px;flex-wrap:wrap;margin-bottom:1rem;align-items:end;}
+  .row > div{flex:1;min-width:130px;}
+
+  .btnset{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:1rem;}
+  .btnset button{font-family:var(--sans);font-size:13px;padding:6px 12px;border-radius:6px;border:1px solid var(--line-strong);background:#fff;color:var(--ink-soft);cursor:pointer;}
+  .btnset button.active{background:var(--ink);color:#fff;border-color:var(--ink);}
+  .btnset button:hover:not(.active){border-color:var(--ink);color:var(--ink);}
+  .btnset button.primary{background:var(--teal);color:#fff;border-color:var(--teal);}
+
+  table{width:100%;border-collapse:collapse;font-size:13.5px;}
+  th,td{text-align:left;padding:7px 10px;border-bottom:1px solid var(--line);}
+  th{color:var(--ink-soft);font-weight:600;font-size:12.5px;}
+  td.mono, th.mono{font-family:var(--mono);}
+  tr:hover td{background:#FBFAF7;}
+  td.center, th.center{text-align:center;}
+
+  .chip{display:inline-block;padding:2px 9px;border-radius:99px;font-size:11.5px;font-weight:600;}
+  .chip.arith{background:var(--blue-bg);color:var(--blue);}
+  .chip.cmp{background:var(--amber-bg);color:var(--amber);}
+  .chip.logic{background:var(--violet-bg);color:var(--violet);}
+  .chip.bit{background:var(--slate-bg);color:var(--slate);}
+  .chip.other{background:#F0EFE9;color:var(--ink-faint);}
+  tr.dim td{color:var(--ink-faint);}
+
+  .bit-line{display:flex;align-items:center;gap:10px;margin:5px 0;}
+  .bit-line .bl-label{width:130px;flex-shrink:0;font-family:var(--mono);font-size:13px;color:var(--ink-soft);}
+  .bit-line .bl-bits{display:flex;gap:2px;}
+  .bit-box{width:28px;height:30px;display:flex;align-items:center;justify-content:center;border-radius:4px;font-family:var(--mono);font-size:13px;flex-shrink:0;transition:all .2s ease;}
+  .bit-box.one{background:var(--violet-bg);color:var(--violet);}
+  .bit-box.zero{background:#F0EFE9;color:var(--ink-faint);}
+
+  code{font-family:var(--mono);font-size:13px;background:#F0EFE9;padding:1px 5px;border-radius:4px;}
+  .note{font-size:13px;color:var(--ink-soft);background:#F0EFE9;border-left:3px solid var(--line-strong);padding:.6rem .9rem;border-radius:0 6px 6px 0;margin:1rem 0;}
+  .note.warn{border-left-color:var(--coral);background:var(--coral-bg);color:var(--coral);}
+  .err{font-size:13px;color:var(--coral);display:none;margin:.5rem 0;}
+
+  #expr-svg circle, #expr-svg rect, #expr-svg text, #expr-svg line{transition:all .25s ease;}
+  .log{font-family:var(--mono);font-size:12.5px;line-height:1.8;background:#1C1D1B;color:#EDEBE3;border-radius:8px;padding:.9rem 1.1rem;max-height:220px;overflow-y:auto;}
+  .log .skip{color:#B9A6D6;}
+  .result-banner{font-family:var(--mono);font-size:16px;font-weight:600;padding:.8rem 1rem;border-radius:8px;background:var(--teal-bg);color:var(--teal);margin-top:1rem;display:none;}
+
+  .indicator{display:inline-flex;flex-direction:column;align-items:center;gap:6px;}
+  .indicator .dot{width:52px;height:52px;border-radius:50%;background:#F0EFE9;border:2px solid var(--line-strong);display:flex;align-items:center;justify-content:center;font-family:var(--mono);font-size:14px;color:var(--ink-faint);transition:all .3s ease;}
+  .indicator .dot.lit-true{background:var(--teal-bg);border-color:var(--teal);color:var(--teal);}
+  .indicator .dot.lit-false{background:var(--coral-bg);border-color:var(--coral);color:var(--coral);}
+  .indicator .dot.skipped{background:#F0EFE9;border-color:var(--line-strong);color:var(--ink-faint);opacity:.5;}
+  .indicator span.lbl{font-size:12px;color:var(--ink-soft);}
+
+  footer{color:var(--ink-faint);font-size:12.5px;text-align:center;padding-top:2rem;}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap">
+    <h1>Operators &amp; precedence</h1>
+    <p>An interactive reference for C++ arithmetic, comparison and logical operators &mdash; how they're written, how they combine, and, in the playground, exactly what order they run in. Single self-contained file, no external dependencies.</p>
+  </div>
+</header>
+
+<nav>
+  <div class="wrap">
+    <button data-tab="table" class="active">Precedence table</button>
+    <button data-tab="playground">Try an expression</button>
+    <button data-tab="arith">Arithmetic</button>
+    <button data-tab="cmp">Comparison</button>
+    <button data-tab="logic">Logical</button>
+  </div>
+</nav>
+
+<div class="wrap">
+
+  <!-- ===================== PRECEDENCE TABLE ===================== -->
+  <section id="tab-table" class="active">
+    <h2>How C++ decides what happens first</h2>
+    <p class="lede">Higher rows bind tighter. Within the same row, associativity says which direction ties break. Arithmetic, comparison and logical operators &mdash; the focus of this page &mdash; are shown in full color; a few neighbors are included in gray for context.</p>
+    <div class="panel" style="padding:0;">
+      <table>
+        <thead><tr><th style="width:60px;">Rank</th><th>Operators</th><th>Category</th><th>Associativity</th><th>Example</th></tr></thead>
+        <tbody>
+          <tr class="dim"><td class="mono">1</td><td class="mono">() [] -&gt; . ++ --(postfix)</td><td><span class="chip other">postfix</span></td><td>left&rarr;right</td><td class="mono">a[i], f(x), p-&gt;m</td></tr>
+          <tr><td class="mono">2</td><td class="mono">! + - (unary) ++ --(prefix) ~</td><td><span class="chip logic">unary</span></td><td>right&rarr;left</td><td class="mono">!done, -x, ++i, ~a</td></tr>
+          <tr><td class="mono">3</td><td class="mono">* / %</td><td><span class="chip arith">arithmetic</span></td><td>left&rarr;right</td><td class="mono">a * b % c</td></tr>
+          <tr><td class="mono">4</td><td class="mono">+ -</td><td><span class="chip arith">arithmetic</span></td><td>left&rarr;right</td><td class="mono">a + b - c</td></tr>
+          <tr><td class="mono">5</td><td class="mono">&lt;&lt; &gt;&gt;</td><td><span class="chip bit">bitwise shift</span></td><td>left&rarr;right</td><td class="mono">x &lt;&lt; 2</td></tr>
+          <tr><td class="mono">6</td><td class="mono">&lt; &lt;= &gt; &gt;=</td><td><span class="chip cmp">comparison</span></td><td>left&rarr;right</td><td class="mono">a &lt; b</td></tr>
+          <tr><td class="mono">7</td><td class="mono">== !=</td><td><span class="chip cmp">comparison</span></td><td>left&rarr;right</td><td class="mono">a == b</td></tr>
+          <tr><td class="mono">8</td><td class="mono">&amp;</td><td><span class="chip bit">bitwise AND</span></td><td>left&rarr;right</td><td class="mono">flags &amp; mask</td></tr>
+          <tr><td class="mono">9</td><td class="mono">^</td><td><span class="chip bit">bitwise XOR</span></td><td>left&rarr;right</td><td class="mono">a ^ b</td></tr>
+          <tr><td class="mono">10</td><td class="mono">|</td><td><span class="chip bit">bitwise OR</span></td><td>left&rarr;right</td><td class="mono">flags | bit</td></tr>
+          <tr><td class="mono">11</td><td class="mono">&amp;&amp;</td><td><span class="chip logic">logical</span></td><td>left&rarr;right</td><td class="mono">a &amp;&amp; b</td></tr>
+          <tr><td class="mono">12</td><td class="mono">||</td><td><span class="chip logic">logical</span></td><td>left&rarr;right</td><td class="mono">a || b</td></tr>
+          <tr class="dim"><td class="mono">13</td><td class="mono">?: (ternary)</td><td><span class="chip other">conditional</span></td><td>right&rarr;left</td><td class="mono">a ? b : c</td></tr>
+          <tr class="dim"><td class="mono">14</td><td class="mono">= += -= *= ...</td><td><span class="chip other">assignment</span></td><td>right&rarr;left</td><td class="mono">a = b = 3</td></tr>
+          <tr class="dim"><td class="mono">15</td><td class="mono">,</td><td><span class="chip other">comma</span></td><td>left&rarr;right</td><td class="mono">a, b</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="note">Multiplicative (<code>* / %</code>) outranks additive (<code>+ -</code>), which is why <code>2 + 3 * 4</code> is 14, not 20. Both comparison rows outrank both logical rows, which is why <code>a &lt; b &amp;&amp; c &gt; d</code> parses as <code>(a &lt; b) &amp;&amp; (c &gt; d)</code> with no extra parentheses needed.</div>
+  </section>
+
+  <!-- ===================== PLAYGROUND ===================== -->
+  <section id="tab-playground">
+    <h2><span class="badge blue">&fnof;</span>Try an expression</h2>
+    <p class="lede">Type an expression using <code>+ - * / % == != &lt; &gt; &lt;= &gt;= &amp;&amp; || !</code>, parentheses, numbers, <code>true</code>/<code>false</code>, and the variables <code>a</code>, <code>b</code>, <code>c</code>. It's parsed into a tree shaped by precedence, then evaluated one step at a time so you can watch the order.</p>
+
+    <div class="panel">
+      <div class="row">
+        <div style="flex:3;min-width:260px;">
+          <label for="expr-input">Expression</label>
+          <input type="text" id="expr-input" value="2 + 3 * 4 &gt; 10 &amp;&amp; 5 % 2 == 1">
+        </div>
+        <div>
+          <label for="var-a">a</label>
+          <input type="number" id="var-a" value="5">
+        </div>
+        <div>
+          <label for="var-b">b</label>
+          <input type="number" id="var-b" value="0">
+        </div>
+        <div>
+          <label for="var-c">c</label>
+          <input type="number" id="var-c" value="1">
+        </div>
+      </div>
+      <div class="btnset">
+        <button data-preset="2 + 3 * 4">2 + 3 * 4</button>
+        <button data-preset="a > 3 && b == 0">a &gt; 3 &amp;&amp; b == 0</button>
+        <button data-preset="!(a == b) || c">!(a == b) || c</button>
+        <button data-preset="1 < 2 < 0">1 &lt; 2 &lt; 0 (pitfall)</button>
+        <button data-preset="10 % 3 * 2 + 1">10 % 3 * 2 + 1</button>
+      </div>
+      <div class="err" id="expr-err"></div>
+
+      <svg id="expr-svg" viewBox="0 0 900 260" style="width:100%;height:auto;"></svg>
+
+      <div class="btnset">
+        <button id="expr-step">Step ▶</button>
+        <button id="expr-play" class="primary">Play ▶▶</button>
+        <button id="expr-reset">Reset ↺</button>
+      </div>
+      <div class="log" id="expr-log">Evaluation steps will appear here.</div>
+      <div class="result-banner" id="expr-result"></div>
+    </div>
+    <div class="note">Colors match the precedence table: <span class="chip arith">arithmetic</span> <span class="chip cmp">comparison</span> <span class="chip logic">logical</span>. Faded, dashed nodes were skipped entirely thanks to short-circuit evaluation.</div>
+  </section>
+
+  <!-- ===================== ARITHMETIC ===================== -->
+  <section id="tab-arith">
+    <h2><span class="badge blue">+</span>Arithmetic operators</h2>
+    <p class="lede">Straightforward on paper, with two sharp edges in C++: integer division truncates toward zero, and <code>%</code> is only defined for integers.</p>
+
+    <div class="panel" style="padding:0;">
+      <table>
+        <thead><tr><th style="width:70px;">Op</th><th>Meaning</th><th>Example</th><th>Result</th></tr></thead>
+        <tbody>
+          <tr><td class="mono">+</td><td>addition</td><td class="mono">5 + 2</td><td class="mono">7</td></tr>
+          <tr><td class="mono">-</td><td>subtraction (or unary negation)</td><td class="mono">5 - 2</td><td class="mono">3</td></tr>
+          <tr><td class="mono">*</td><td>multiplication</td><td class="mono">5 * 2</td><td class="mono">10</td></tr>
+          <tr><td class="mono">/</td><td>division &mdash; <b>truncates</b> if both operands are integers</td><td class="mono">5 / 2</td><td class="mono">2</td></tr>
+          <tr><td class="mono">%</td><td>remainder &mdash; integers only; result has the sign of the dividend</td><td class="mono">-5 % 2</td><td class="mono">-1</td></tr>
+          <tr><td class="mono">++ / --</td><td>increment / decrement, prefix or postfix</td><td class="mono">++i, i++</td><td class="mono">i + 1</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3>Try it</h3>
+    <div class="panel">
+      <div class="row">
+        <div>
+          <label for="ar-a">Left operand</label>
+          <input type="text" id="ar-a" value="7">
+        </div>
+        <div>
+          <label for="ar-op">Operator</label>
+          <select id="ar-op">
+            <option value="+">+</option>
+            <option value="-">&minus;</option>
+            <option value="*">&times;</option>
+            <option value="/" selected>/</option>
+            <option value="%">%</option>
+          </select>
+        </div>
+        <div>
+          <label for="ar-b">Right operand</label>
+          <input type="text" id="ar-b" value="2">
+        </div>
+      </div>
+      <table>
+        <tr><th style="width:170px;">As written</th><td class="mono" id="ar-expr"></td></tr>
+        <tr><th>Operand type</th><td class="mono" id="ar-type"></td></tr>
+        <tr><th>Result</th><td class="mono" id="ar-result"></td></tr>
+      </table>
+      <div class="note" id="ar-note" style="display:none;"></div>
+    </div>
+
+    <h3>Pre-increment vs. post-increment</h3>
+    <p class="lede"><code>++i</code> increments <code>i</code> first, then produces the new value. <code>i++</code> produces the current value first, then increments <code>i</code> as a side effect. They only differ when you use the <em>result</em> of the expression &mdash; <code>i</code> ends up the same either way.</p>
+    <div class="panel">
+      <div class="row">
+        <div>
+          <label for="inc-i0">Starting value of i</label>
+          <input type="number" id="inc-i0" value="5">
+        </div>
+        <div>
+          <label for="inc-op">Operator</label>
+          <select id="inc-op">
+            <option value="++">++ (increment)</option>
+            <option value="--">-- (decrement)</option>
+          </select>
+        </div>
+      </div>
+      <div class="row">
+        <div class="panel" style="margin:0;">
+          <div style="font-family:var(--mono);font-size:13.5px;margin-bottom:.5rem;" id="inc-post-code"></div>
+          <div id="inc-post-steps" style="font-size:13.5px;color:var(--ink-soft);line-height:1.9;"></div>
+          <div class="note" id="inc-post-result" style="margin-top:.75rem;"></div>
+        </div>
+        <div class="panel" style="margin:0;">
+          <div style="font-family:var(--mono);font-size:13.5px;margin-bottom:.5rem;" id="inc-pre-code"></div>
+          <div id="inc-pre-steps" style="font-size:13.5px;color:var(--ink-soft);line-height:1.9;"></div>
+          <div class="note" id="inc-pre-result" style="margin-top:.75rem;"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== COMPARISON ===================== -->
+  <section id="tab-cmp">
+    <h2><span class="badge amber">?</span>Comparison operators</h2>
+    <p class="lede">Every comparison produces a <code>bool</code> &mdash; and that bool can itself be compared again, which is the source of a classic beginner trap.</p>
+
+    <div class="panel" style="padding:0;">
+      <table>
+        <thead><tr><th style="width:70px;">Op</th><th>Meaning</th><th>Example</th><th>Result</th></tr></thead>
+        <tbody>
+          <tr><td class="mono">==</td><td>equal to</td><td class="mono">3 == 3</td><td class="mono">true</td></tr>
+          <tr><td class="mono">!=</td><td>not equal to</td><td class="mono">3 != 4</td><td class="mono">true</td></tr>
+          <tr><td class="mono">&lt;</td><td>less than</td><td class="mono">3 &lt; 4</td><td class="mono">true</td></tr>
+          <tr><td class="mono">&gt;</td><td>greater than</td><td class="mono">3 &gt; 4</td><td class="mono">false</td></tr>
+          <tr><td class="mono">&lt;=</td><td>less than or equal to</td><td class="mono">3 &lt;= 3</td><td class="mono">true</td></tr>
+          <tr><td class="mono">&gt;=</td><td>greater than or equal to</td><td class="mono">3 &gt;= 4</td><td class="mono">false</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3>The chaining pitfall</h3>
+    <p class="lede">Unlike math notation, <code>a &lt; b &lt; c</code> in C++ does <b>not</b> check whether <code>b</code> is between <code>a</code> and <code>c</code>. Comparisons are left-associative, so it evaluates as <code>(a &lt; b) &lt; c</code>: the true/false result of the first comparison (as 1 or 0) gets compared to <code>c</code>.</p>
+    <div class="panel">
+      <div class="row">
+        <div><label for="cmp-a">a</label><input type="number" id="cmp-a" value="1"></div>
+        <div><label for="cmp-b">b</label><input type="number" id="cmp-b" value="5"></div>
+        <div><label for="cmp-c">c</label><input type="number" id="cmp-c" value="3"></div>
+      </div>
+      <table>
+        <tr><th style="width:280px;">What C++ actually does: (a &lt; b) &lt; c</th><td class="mono" id="cmp-cpp"></td></tr>
+        <tr><th>What you probably meant: (a &lt; b) &amp;&amp; (b &lt; c)</th><td class="mono" id="cmp-intended"></td></tr>
+      </table>
+      <div class="note warn" id="cmp-warn" style="display:none;"></div>
+    </div>
+    <div class="note">Comparing floating-point values with <code>==</code> is its own hazard: rounding means two mathematically equal computations can end up as slightly different bit patterns. Prefer checking that the difference is within a small tolerance.</div>
+  </section>
+
+  <!-- ===================== LOGICAL ===================== -->
+  <section id="tab-logic">
+    <h2><span class="badge violet">&and;</span>Logical operators</h2>
+    <p class="lede"><code>&amp;&amp;</code> and <code>||</code> are <b>short-circuiting</b>: the right-hand side is only evaluated if it's actually needed to determine the result. This matters whenever the right side has a side effect, like a function call.</p>
+
+    <div class="row">
+      <div class="panel" style="flex:1;min-width:220px;">
+        <h3 style="margin-top:0;">a &amp;&amp; b</h3>
+        <table>
+          <thead><tr><th class="center">a</th><th class="center">b</th><th class="center">a &amp;&amp; b</th></tr></thead>
+          <tbody>
+            <tr><td class="mono center">true</td><td class="mono center">true</td><td class="mono center">true</td></tr>
+            <tr><td class="mono center">true</td><td class="mono center">false</td><td class="mono center">false</td></tr>
+            <tr><td class="mono center">false</td><td class="mono center">true</td><td class="mono center">false</td></tr>
+            <tr><td class="mono center">false</td><td class="mono center">false</td><td class="mono center">false</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="panel" style="flex:1;min-width:220px;">
+        <h3 style="margin-top:0;">a || b</h3>
+        <table>
+          <thead><tr><th class="center">a</th><th class="center">b</th><th class="center">a || b</th></tr></thead>
+          <tbody>
+            <tr><td class="mono center">true</td><td class="mono center">true</td><td class="mono center">true</td></tr>
+            <tr><td class="mono center">true</td><td class="mono center">false</td><td class="mono center">true</td></tr>
+            <tr><td class="mono center">false</td><td class="mono center">true</td><td class="mono center">true</td></tr>
+            <tr><td class="mono center">false</td><td class="mono center">false</td><td class="mono center">false</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="panel" style="flex:1;min-width:180px;">
+        <h3 style="margin-top:0;">!a</h3>
+        <table>
+          <thead><tr><th class="center">a</th><th class="center">!a</th></tr></thead>
+          <tbody>
+            <tr><td class="mono center">true</td><td class="mono center">false</td></tr>
+            <tr><td class="mono center">false</td><td class="mono center">true</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <h3>Watch short-circuiting happen</h3>
+    <p class="lede">Set <code>p</code> and <code>q</code>, then run either operator. Whichever operand isn't needed to decide the result will show as skipped &mdash; in real code, that would be a function call that never happened.</p>
+    <div class="panel">
+      <div class="btnset">
+        <button id="sc-p-toggle">p = <span id="sc-p-label">true</span></button>
+        <button id="sc-q-toggle">q = <span id="sc-q-label">true</span></button>
+      </div>
+      <div class="btnset">
+        <button id="sc-and-btn">Run p &amp;&amp; q</button>
+        <button id="sc-or-btn">Run p || q</button>
+        <button id="sc-reset-btn">Reset</button>
+      </div>
+      <div style="display:flex;gap:40px;justify-content:center;margin:1.5rem 0;">
+        <div class="indicator"><div class="dot" id="sc-p-dot">p</div><span class="lbl">left operand</span></div>
+        <div class="indicator"><div class="dot" id="sc-q-dot">q</div><span class="lbl">right operand</span></div>
+        <div class="indicator"><div class="dot" id="sc-result-dot">?</div><span class="lbl">result</span></div>
+      </div>
+      <div class="note" id="sc-note">Pick an operator above to run it.</div>
+    </div>
+
+    <h3>Bitwise AND / OR / XOR / NOT &mdash; the same names, working on bits</h3>
+    <p class="lede">Don't confuse these with <code>&amp;&amp;</code>, <code>||</code>, <code>!</code> above: <code>&amp;</code>, <code>|</code>, <code>^</code> and <code>~</code> don't treat their operand as one true/false value. They line up every bit of the operands and combine each column independently &mdash; no short-circuiting, and the result is a number, not a bool.</p>
+    <div class="panel">
+      <div class="row">
+        <div><label for="bw-a">A (0&ndash;255)</label><input type="number" id="bw-a" min="0" max="255" value="204"></div>
+        <div><label for="bw-b">B (0&ndash;255)</label><input type="number" id="bw-b" min="0" max="255" value="170"></div>
+      </div>
+      <div id="bw-grid"></div>
+      <table>
+        <tr><th style="width:170px;">A &amp; B &nbsp;(AND)</th><td class="mono" id="bw-and-val"></td></tr>
+        <tr><th>A | B &nbsp;(OR)</th><td class="mono" id="bw-or-val"></td></tr>
+        <tr><th>A ^ B &nbsp;(XOR)</th><td class="mono" id="bw-xor-val"></td></tr>
+        <tr><th>~A &nbsp;(NOT)</th><td class="mono" id="bw-not-val"></td></tr>
+      </table>
+
+      <h3 style="margin-top:1.5rem;">Shifts</h3>
+      <div class="row">
+        <div><label for="bw-shift">Shift amount n</label><input type="number" id="bw-shift" min="0" max="7" value="2"></div>
+      </div>
+      <div id="bw-shift-grid"></div>
+      <table>
+        <tr><th style="width:170px;">A &lt;&lt; n</th><td class="mono" id="bw-shl-val"></td></tr>
+        <tr><th>A &gt;&gt; n</th><td class="mono" id="bw-shr-val"></td></tr>
+      </table>
+      <div class="note">A left shift by n is the same as multiplying by 2<sup>n</sup> (until bits fall off the top); a right shift on an unsigned type is the same as dividing by 2<sup>n</sup> and discarding the remainder.</div>
+    </div>
+  </section>
+
+</div>
+
+<footer>Single self-contained HTML file &mdash; no external dependencies, safe to open directly or embed in a Jupyter notebook with <code>IFrame</code>.</footer>
+
+<script>
+// ---------- tab navigation ----------
+document.querySelectorAll('nav button').forEach(btn=>{
+  btn.addEventListener('click', ()=>{
+    document.querySelectorAll('nav button').forEach(b=>b.classList.remove('active'));
+    btn.classList.add('active');
+    document.querySelectorAll('section').forEach(s=>s.classList.remove('active'));
+    document.getElementById('tab-'+btn.dataset.tab).classList.add('active');
+  });
+});
+
+/* =========================================================
+   PLAYGROUND: tokenizer, parser, evaluator, tree renderer
+   ========================================================= */
+function tokenize(str){
+  const tokens = [];
+  const multi = ['==','!=','<=','>=','&&','||'];
+  let i = 0;
+  while (i < str.length){
+    const c = str[i];
+    if (/\s/.test(c)){ i++; continue; }
+    let matched = false;
+    for (const m of multi){
+      if (str.substr(i, m.length) === m){ tokens.push({type:'op', value:m}); i += m.length; matched = true; break; }
+    }
+    if (matched) continue;
+    if ('()'.includes(c)){ tokens.push({type:'paren', value:c}); i++; continue; }
+    if ('+-*/%<>!'.includes(c)){ tokens.push({type:'op', value:c}); i++; continue; }
+    if (/[0-9]/.test(c) || (c === '.' && /[0-9]/.test(str[i+1] || ''))){
+      let j = i;
+      while (j < str.length && /[0-9.]/.test(str[j])) j++;
+      tokens.push({type:'num', value: parseFloat(str.slice(i,j))});
+      i = j; continue;
+    }
+    if (/[a-zA-Z_]/.test(c)){
+      let j = i;
+      while (j < str.length && /[a-zA-Z0-9_]/.test(str[j])) j++;
+      const word = str.slice(i,j);
+      if (word === 'true') tokens.push({type:'bool', value:true});
+      else if (word === 'false') tokens.push({type:'bool', value:false});
+      else tokens.push({type:'id', value:word});
+      i = j; continue;
+    }
+    throw new Error('Unexpected character "' + c + '"');
+  }
+  return tokens;
+}
+
+let nodeIdCounter = 0;
+function nn(obj){ obj.id = 'n' + (nodeIdCounter++); if (!obj.children) obj.children = []; return obj; }
+
+function parseExpression(str){
+  nodeIdCounter = 0;
+  const tokens = tokenize(str);
+  let pos = 0;
+  const peek = () => tokens[pos];
+  const next = () => tokens[pos++];
+
+  function parseOr(){
+    let node = parseAnd();
+    while (peek() && peek().type === 'op' && peek().value === '||'){
+      next(); const right = parseAnd();
+      node = nn({type:'BinOp', op:'||', children:[node, right]});
+    }
+    return node;
+  }
+  function parseAnd(){
+    let node = parseEquality();
+    while (peek() && peek().type === 'op' && peek().value === '&&'){
+      next(); const right = parseEquality();
+      node = nn({type:'BinOp', op:'&&', children:[node, right]});
+    }
+    return node;
+  }
+  function parseEquality(){
+    let node = parseRelational();
+    while (peek() && peek().type === 'op' && (peek().value === '==' || peek().value === '!=')){
+      const op = next().value; const right = parseRelational();
+      node = nn({type:'BinOp', op, children:[node, right]});
+    }
+    return node;
+  }
+  function parseRelational(){
+    let node = parseAdditive();
+    while (peek() && peek().type === 'op' && ['<','>','<=','>='].includes(peek().value)){
+      const op = next().value; const right = parseAdditive();
+      node = nn({type:'BinOp', op, children:[node, right]});
+    }
+    return node;
+  }
+  function parseAdditive(){
+    let node = parseMultiplicative();
+    while (peek() && peek().type === 'op' && (peek().value === '+' || peek().value === '-')){
+      const op = next().value; const right = parseMultiplicative();
+      node = nn({type:'BinOp', op, children:[node, right]});
+    }
+    return node;
+  }
+  function parseMultiplicative(){
+    let node = parseUnary();
+    while (peek() && peek().type === 'op' && ['*','/','%'].includes(peek().value)){
+      const op = next().value; const right = parseUnary();
+      node = nn({type:'BinOp', op, children:[node, right]});
+    }
+    return node;
+  }
+  function parseUnary(){
+    if (peek() && peek().type === 'op' && ['!','-','+'].includes(peek().value)){
+      const op = next().value; const operand = parseUnary();
+      return nn({type:'UnOp', op, children:[operand]});
+    }
+    return parsePrimary();
+  }
+  function parsePrimary(){
+    const t = peek();
+    if (!t) throw new Error('Unexpected end of expression');
+    if (t.type === 'num'){ next(); return nn({type:'Num', value:t.value}); }
+    if (t.type === 'bool'){ next(); return nn({type:'Bool', value:t.value}); }
+    if (t.type === 'id'){ next(); return nn({type:'Var', name:t.value}); }
+    if (t.type === 'paren' && t.value === '('){
+      next();
+      const node = parseOr();
+      const close = next();
+      if (!close || close.value !== ')') throw new Error('Expected closing )');
+      return node;
+    }
+    throw new Error('Unexpected token near "' + t.value + '"');
+  }
+
+  const ast = parseOr();
+  if (pos < tokens.length) throw new Error('Unexpected extra token "' + tokens[pos].value + '"');
+  return ast;
+}
+
+function fmtVal(v){
+  if (typeof v === 'boolean') return v ? 'true' : 'false';
+  if (typeof v !== 'number' || isNaN(v)) return 'NaN';
+  return Number.isInteger(v) ? String(v) : String(Math.round(v*10000)/10000);
+}
+function truthy(v){ return typeof v === 'boolean' ? v : v !== 0; }
+function cppDivide(l,r){
+  if (r === 0) return NaN;
+  if (Number.isInteger(l) && Number.isInteger(r)) return Math.trunc(l/r);
+  return l/r;
+}
+function cppMod(l,r){
+  if (r === 0) return NaN;
+  return l % r;
+}
+
+function evaluateWithSteps(ast, vars){
+  const steps = [];
+  const skipped = new Set();
+  function markSkipped(node){
+    skipped.add(node.id);
+    node.children.forEach(markSkipped);
+  }
+  function evalNode(node){
+    switch(node.type){
+      case 'Num':
+        steps.push({id:node.id, text:'literal ' + fmtVal(node.value)});
+        return node.value;
+      case 'Bool':
+        steps.push({id:node.id, text:'literal ' + fmtVal(node.value)});
+        return node.value;
+      case 'Var': {
+        const v = vars[node.name] !== undefined ? vars[node.name] : 0;
+        steps.push({id:node.id, text: node.name + ' = ' + fmtVal(v)});
+        return v;
+      }
+      case 'UnOp': {
+        const v = evalNode(node.children[0]);
+        let result;
+        if (node.op === '!') result = !truthy(v);
+        else if (node.op === '-') result = -v;
+        else result = +v;
+        steps.push({id:node.id, text: node.op + fmtVal(v) + ' \u2192 ' + fmtVal(result)});
+        return result;
+      }
+      case 'BinOp': {
+        if (node.op === '&&'){
+          const l = evalNode(node.children[0]);
+          if (!truthy(l)){
+            markSkipped(node.children[1]);
+            steps.push({id:node.id, text: fmtVal(l) + ' && \u2026 \u2192 false  (short-circuit: right side skipped)', skip:true});
+            return false;
+          }
+          const r = evalNode(node.children[1]);
+          const result = truthy(r);
+          steps.push({id:node.id, text: fmtVal(l) + ' && ' + fmtVal(r) + ' \u2192 ' + fmtVal(result)});
+          return result;
+        }
+        if (node.op === '||'){
+          const l = evalNode(node.children[0]);
+          if (truthy(l)){
+            markSkipped(node.children[1]);
+            steps.push({id:node.id, text: fmtVal(l) + ' || \u2026 \u2192 true  (short-circuit: right side skipped)', skip:true});
+            return true;
+          }
+          const r = evalNode(node.children[1]);
+          const result = truthy(r);
+          steps.push({id:node.id, text: fmtVal(l) + ' || ' + fmtVal(r) + ' \u2192 ' + fmtVal(result)});
+          return result;
+        }
+        const l = evalNode(node.children[0]);
+        const r = evalNode(node.children[1]);
+        let result;
+        switch(node.op){
+          case '+': result = l + r; break;
+          case '-': result = l - r; break;
+          case '*': result = l * r; break;
+          case '/': result = cppDivide(l, r); break;
+          case '%': result = cppMod(l, r); break;
+          case '==': result = l === r; break;
+          case '!=': result = l !== r; break;
+          case '<': result = l < r; break;
+          case '>': result = l > r; break;
+          case '<=': result = l <= r; break;
+          case '>=': result = l >= r; break;
+        }
+        steps.push({id:node.id, text: fmtVal(l) + ' ' + node.op + ' ' + fmtVal(r) + ' \u2192 ' + fmtVal(result)});
+        return result;
+      }
+    }
+  }
+  const finalValue = evalNode(ast);
+  return {steps, skipped, finalValue};
+}
+
+// ---- layout ----
+function countLeaves(node){ return node.children.length === 0 ? 1 : node.children.reduce((s,c)=>s+countLeaves(c),0); }
+function assignX(node, leftBound, unit){
+  if (node.children.length === 0){ node.x = leftBound + unit/2; return leftBound + unit; }
+  let cur = leftBound; const xs = [];
+  node.children.forEach(c=>{ cur = assignX(c, cur, unit); xs.push(c.x); });
+  node.x = (xs[0] + xs[xs.length-1]) / 2;
+  return cur;
+}
+function assignY(node, depth){ node.y = 36 + depth*66; node.children.forEach(c=>assignY(c, depth+1)); }
+function maxDepth(node, depth){ return node.children.length === 0 ? depth : Math.max(...node.children.map(c=>maxDepth(c, depth+1))); }
+
+function categoryColor(node){
+  if (node.type === 'BinOp'){
+    if (['+','-','*','/','%'].includes(node.op)) return 'blue';
+    if (['==','!=','<','>','<=','>='].includes(node.op)) return 'amber';
+    return 'violet';
+  }
+  if (node.type === 'UnOp') return node.op === '!' ? 'violet' : 'blue';
+  return 'teal';
+}
+function nodeLabel(node, vars){
+  if (node.type === 'BinOp' || node.type === 'UnOp') return node.op;
+  if (node.type === 'Num') return fmtVal(node.value);
+  if (node.type === 'Bool') return fmtVal(node.value);
+  if (node.type === 'Var') return node.name;
+}
+
+let currentAst = null, currentSteps = [], currentSkipped = new Set(), stepIndex = 0, playTimer = null;
+
+function collectAllNodes(node, arr){ arr.push(node); node.children.forEach(c=>collectAllNodes(c, arr)); }
+
+function renderTree(){
+  const svg = document.getElementById('expr-svg');
+  svg.innerHTML = '';
+  if (!currentAst) return;
+  const leaves = countLeaves(currentAst);
+  const unit = Math.max(55, Math.min(100, 840/leaves));
+  assignX(currentAst, 30, unit);
+  assignY(currentAst, 0);
+  const depth = maxDepth(currentAst, 0);
+  const w = Math.max(500, leaves*unit + 60);
+  const h = 80 + depth*66;
+  svg.setAttribute('viewBox', '0 0 ' + w + ' ' + h);
+
+  const allNodes = [];
+  collectAllNodes(currentAst, allNodes);
+
+  function drawEdges(node){
+    node.children.forEach(c=>{
+      const line = document.createElementNS('http://www.w3.org/2000/svg','line');
+      line.setAttribute('x1', node.x); line.setAttribute('y1', node.y+14);
+      line.setAttribute('x2', c.x); line.setAttribute('y2', c.y-14);
+      line.setAttribute('stroke', currentSkipped.has(c.id) ? '#DDDBD3' : '#C6C3B8');
+      line.setAttribute('stroke-width', '1.5');
+      if (currentSkipped.has(c.id)) line.setAttribute('stroke-dasharray', '4 3');
+      svg.appendChild(line);
+      drawEdges(c);
+    });
+  }
+  drawEdges(currentAst);
+
+  const bg = {blue:'#E6F1FB', amber:'#FAEEDA', violet:'#EFE8F5', teal:'#E1F5EE'};
+  const fg = {blue:'#0C447C', amber:'#854F0B', violet:'#5B3E8C', teal:'#0F6E56'};
+
+  allNodes.forEach(node=>{
+    const isLeaf = node.children.length === 0;
+    const cat = categoryColor(node);
+    const label = nodeLabel(node);
+    const skippedNode = currentSkipped.has(node.id);
+    const w2 = Math.max(isLeaf ? 34 : 30, label.length*9 + 16);
+    const h2 = 28;
+
+    const rect = document.createElementNS('http://www.w3.org/2000/svg','rect');
+    rect.setAttribute('id', 'box-'+node.id);
+    rect.setAttribute('x', node.x - w2/2); rect.setAttribute('y', node.y - h2/2);
+    rect.setAttribute('width', w2); rect.setAttribute('height', h2);
+    rect.setAttribute('rx', isLeaf ? 14 : 7);
+    rect.setAttribute('fill', skippedNode ? '#F0EFE9' : bg[cat]);
+    rect.setAttribute('stroke', skippedNode ? '#C6C3B8' : fg[cat]);
+    rect.setAttribute('stroke-width', '1.4');
+    rect.setAttribute('opacity', skippedNode ? '0.45' : '1');
+    if (skippedNode) rect.setAttribute('stroke-dasharray', '4 3');
+    svg.appendChild(rect);
+
+    const text = document.createElementNS('http://www.w3.org/2000/svg','text');
+    text.setAttribute('id', 'txt-'+node.id);
+    text.setAttribute('x', node.x); text.setAttribute('y', node.y+4);
+    text.setAttribute('text-anchor', 'middle');
+    text.setAttribute('fill', skippedNode ? '#8B8C86' : fg[cat]);
+    text.textContent = label;
+    svg.appendChild(text);
+  });
+}
+
+function highlightNode(id, on){
+  const rect = document.getElementById('box-'+id);
+  if (!rect) return;
+  if (on){
+    rect.setAttribute('stroke', '#993C1D');
+    rect.setAttribute('stroke-width', '3');
+  }
+}
+
+function tryParse(){
+  const exprInput = document.getElementById('expr-input');
+  const err = document.getElementById('expr-err');
+  const vars = {
+    a: parseFloat(document.getElementById('var-a').value) || 0,
+    b: parseFloat(document.getElementById('var-b').value) || 0,
+    c: parseFloat(document.getElementById('var-c').value) || 0,
+  };
+  clearInterval(playTimer);
+  document.getElementById('expr-result').style.display = 'none';
+  document.getElementById('expr-log').innerHTML = 'Evaluation steps will appear here.';
+  try {
+    currentAst = parseExpression(exprInput.value);
+    const {steps, skipped, finalValue} = evaluateWithSteps(currentAst, vars);
+    currentSteps = steps;
+    currentSkipped = skipped;
+    stepIndex = 0;
+    err.style.display = 'none';
+    renderTree();
+    window._finalValue = finalValue;
+  } catch(e){
+    err.style.display = 'block';
+    err.textContent = 'Parse error: ' + e.message;
+    currentAst = null;
+    document.getElementById('expr-svg').innerHTML = '';
+  }
+}
+
+function doStep(){
+  if (!currentAst || stepIndex >= currentSteps.length) return;
+  const step = currentSteps[stepIndex];
+  highlightNode(step.id, true);
+  const log = document.getElementById('expr-log');
+  if (stepIndex === 0) log.innerHTML = '';
+  const line = document.createElement('div');
+  if (step.skip) line.className = 'skip';
+  line.textContent = (stepIndex+1) + '.  ' + step.text;
+  log.appendChild(line);
+  log.scrollTop = log.scrollHeight;
+  stepIndex++;
+  if (stepIndex >= currentSteps.length){
+    clearInterval(playTimer);
+    const banner = document.getElementById('expr-result');
+    banner.style.display = 'block';
+    banner.textContent = 'Final result: ' + fmtVal(window._finalValue);
+  }
+}
+
+document.getElementById('expr-step').addEventListener('click', doStep);
+document.getElementById('expr-play').addEventListener('click', ()=>{
+  clearInterval(playTimer);
+  playTimer = setInterval(()=>{
+    if (stepIndex >= currentSteps.length){ clearInterval(playTimer); return; }
+    doStep();
+  }, 750);
+});
+document.getElementById('expr-reset').addEventListener('click', ()=>{
+  tryParse();
+});
+document.getElementById('expr-input').addEventListener('input', tryParse);
+['var-a','var-b','var-c'].forEach(id=>document.getElementById(id).addEventListener('input', tryParse));
+document.querySelectorAll('#tab-playground .btnset button[data-preset]').forEach(b=>{
+  b.addEventListener('click', ()=>{
+    document.getElementById('expr-input').value = b.dataset.preset;
+    tryParse();
+  });
+});
+tryParse();
+
+/* =========================================================
+   ARITHMETIC TAB
+   ========================================================= */
+function renderArith(){
+  const rawA = document.getElementById('ar-a').value.trim();
+  const rawB = document.getElementById('ar-b').value.trim();
+  const op = document.getElementById('ar-op').value;
+  const a = parseFloat(rawA), b = parseFloat(rawB);
+  const noteEl = document.getElementById('ar-note');
+  if (isNaN(a) || isNaN(b)){
+    document.getElementById('ar-result').textContent = 'enter valid numbers';
+    return;
+  }
+  const bothInt = Number.isInteger(a) && Number.isInteger(b) && !rawA.includes('.') && !rawB.includes('.');
+  let result;
+  switch(op){
+    case '+': result = a+b; break;
+    case '-': result = a-b; break;
+    case '*': result = a*b; break;
+    case '/': result = cppDivide(a,b); break;
+    case '%': result = cppMod(a,b); break;
+  }
+  document.getElementById('ar-expr').textContent = rawA + ' ' + op + ' ' + rawB;
+  document.getElementById('ar-type').textContent = bothInt ? 'int (both operands whole numbers)' : 'double (at least one operand has a fraction)';
+  document.getElementById('ar-result').textContent = isNaN(result) ? 'undefined (division by zero)' : fmtVal(result);
+  if (op === '/' && bothInt && a/b !== Math.trunc(a/b)){
+    noteEl.style.display = 'block';
+    noteEl.textContent = 'Integer division truncates toward zero: the mathematical result ' + (a/b).toFixed(4) + ' becomes ' + Math.trunc(a/b) + ', not ' + Math.floor(a/b) + '.';
+  } else if (op === '%' && !bothInt){
+    noteEl.style.display = 'block';
+    noteEl.textContent = '%% technically requires integer operands in C++ (use std::fmod for floating-point remainders) \u2014 shown here for illustration.';
+  } else {
+    noteEl.style.display = 'none';
+  }
+}
+['ar-a','ar-b','ar-op'].forEach(id=>document.getElementById(id).addEventListener('input', renderArith));
+document.getElementById('ar-op').addEventListener('change', renderArith);
+renderArith();
+
+function renderIncDemo(){
+  const i0 = parseInt(document.getElementById('inc-i0').value, 10);
+  const op = document.getElementById('inc-op').value;
+  if (isNaN(i0)) return;
+  const delta = op === '++' ? 1 : -1;
+  const verb = op === '++' ? 'increments' : 'decrements';
+
+  const postY = i0, postI = i0 + delta;
+  const preI = i0 + delta, preY = preI;
+
+  document.getElementById('inc-post-code').textContent = 'y = i' + op + ';   // postfix';
+  document.getElementById('inc-post-steps').innerHTML =
+    '1. y takes i\'s <b>current</b> value \u2192 y = ' + postY + '<br>' +
+    '2. i ' + verb + ' \u2192 i = ' + postI;
+  document.getElementById('inc-post-result').textContent = 'Result: y = ' + postY + ', i = ' + postI;
+
+  document.getElementById('inc-pre-code').textContent = 'y = ' + op + 'i;   // prefix';
+  document.getElementById('inc-pre-steps').innerHTML =
+    '1. i ' + verb + ' first \u2192 i = ' + preI + '<br>' +
+    '2. y takes i\'s <b>new</b> value \u2192 y = ' + preY;
+  document.getElementById('inc-pre-result').textContent = 'Result: y = ' + preY + ', i = ' + preI;
+}
+['inc-i0','inc-op'].forEach(id=>document.getElementById(id).addEventListener('input', renderIncDemo));
+document.getElementById('inc-op').addEventListener('change', renderIncDemo);
+renderIncDemo();
+
+/* =========================================================
+   COMPARISON TAB
+   ========================================================= */
+function renderCmp(){
+  const a = parseFloat(document.getElementById('cmp-a').value);
+  const b = parseFloat(document.getElementById('cmp-b').value);
+  const c = parseFloat(document.getElementById('cmp-c').value);
+  if ([a,b,c].some(isNaN)) return;
+  const step1 = a < b;
+  const cppResult = (step1 ? 1 : 0) < c;
+  const intended = (a < b) && (b < c);
+  document.getElementById('cmp-cpp').textContent =
+    '(' + a + ' < ' + b + ') = ' + fmtVal(step1) + '  \u2192  ' + fmtVal(step1?1:0) + ' < ' + c + '  \u2192  ' + fmtVal(cppResult);
+  document.getElementById('cmp-intended').textContent = fmtVal(intended);
+  const warn = document.getElementById('cmp-warn');
+  if (cppResult !== intended){
+    warn.style.display = 'block';
+    warn.textContent = 'These disagree for a=' + a + ', b=' + b + ', c=' + c + ' \u2014 exactly the kind of surprise chained comparisons cause.';
+  } else {
+    warn.style.display = 'none';
+  }
+}
+['cmp-a','cmp-b','cmp-c'].forEach(id=>document.getElementById(id).addEventListener('input', renderCmp));
+renderCmp();
+
+/* =========================================================
+   LOGICAL TAB: short-circuit demo
+   ========================================================= */
+let scP = true, scQ = true;
+function updateScLabels(){
+  document.getElementById('sc-p-label').textContent = scP ? 'true' : 'false';
+  document.getElementById('sc-q-label').textContent = scQ ? 'true' : 'false';
+}
+document.getElementById('sc-p-toggle').addEventListener('click', ()=>{ scP = !scP; updateScLabels(); resetScDots(); });
+document.getElementById('sc-q-toggle').addEventListener('click', ()=>{ scQ = !scQ; updateScLabels(); resetScDots(); });
+
+function resetScDots(){
+  const pDot = document.getElementById('sc-p-dot');
+  const qDot = document.getElementById('sc-q-dot');
+  const rDot = document.getElementById('sc-result-dot');
+  [pDot,qDot,rDot].forEach(d=>{ d.className='dot'; });
+  pDot.textContent = 'p'; qDot.textContent = 'q'; rDot.textContent = '?';
+  document.getElementById('sc-note').textContent = 'Pick an operator above to run it.';
+}
+
+function runShortCircuit(op){
+  resetScDots();
+  const pDot = document.getElementById('sc-p-dot');
+  const qDot = document.getElementById('sc-q-dot');
+  const rDot = document.getElementById('sc-result-dot');
+  const note = document.getElementById('sc-note');
+
+  setTimeout(()=>{
+    pDot.className = 'dot ' + (scP ? 'lit-true' : 'lit-false');
+    pDot.textContent = scP ? 'true' : 'false';
+
+    const shortCircuits = (op === '&&' && !scP) || (op === '||' && scP);
+    if (shortCircuits){
+      setTimeout(()=>{
+        qDot.className = 'dot skipped';
+        qDot.textContent = 'skipped';
+        const result = op === '&&' ? false : true;
+        rDot.className = 'dot ' + (result ? 'lit-true' : 'lit-false');
+        rDot.textContent = result ? 'true' : 'false';
+        note.textContent = 'p alone (' + scP + ') already determines the result of "p ' + op + ' q" \u2014 q was never evaluated. If q were a function call, it would not have run.';
+      }, 700);
+    } else {
+      setTimeout(()=>{
+        qDot.className = 'dot ' + (scQ ? 'lit-true' : 'lit-false');
+        qDot.textContent = scQ ? 'true' : 'false';
+        const result = op === '&&' ? (scP && scQ) : (scP || scQ);
+        setTimeout(()=>{
+          rDot.className = 'dot ' + (result ? 'lit-true' : 'lit-false');
+          rDot.textContent = result ? 'true' : 'false';
+          note.textContent = 'p (' + scP + ') did not determine the result on its own, so q was evaluated too.';
+        }, 400);
+      }, 700);
+    }
+  }, 200);
+}
+document.getElementById('sc-and-btn').addEventListener('click', ()=>runShortCircuit('&&'));
+document.getElementById('sc-or-btn').addEventListener('click', ()=>runShortCircuit('||'));
+document.getElementById('sc-reset-btn').addEventListener('click', resetScDots);
+updateScLabels();
+resetScDots();
+
+/* =========================================================
+   LOGICAL TAB: bit-level AND/OR/XOR/NOT/shift
+   ========================================================= */
+function bitLine(container, label, value, width, highlightOnes){
+  const row = document.createElement('div');
+  row.className = 'bit-line';
+  const lbl = document.createElement('div');
+  lbl.className = 'bl-label';
+  lbl.textContent = label;
+  const bits = document.createElement('div');
+  bits.className = 'bl-bits';
+  const bin = (value >>> 0).toString(2).padStart(width, '0').slice(-width);
+  for (const ch of bin){
+    const box = document.createElement('div');
+    box.className = 'bit-box ' + (ch === '1' && highlightOnes !== false ? 'one' : 'zero');
+    box.textContent = ch;
+    bits.appendChild(box);
+  }
+  row.appendChild(lbl);
+  row.appendChild(bits);
+  container.appendChild(row);
+}
+
+function clamp8(n){ n = parseInt(n, 10); if (isNaN(n)) n = 0; return ((n % 256) + 256) % 256; }
+
+function renderBitwise(){
+  const aEl = document.getElementById('bw-a'), bEl = document.getElementById('bw-b');
+  const a = clamp8(aEl.value), b = clamp8(bEl.value);
+  aEl.value = a; bEl.value = b;
+
+  const andV = a & b, orV = a | b, xorV = a ^ b, notA = (~a) & 0xFF;
+
+  const grid = document.getElementById('bw-grid');
+  grid.innerHTML = '';
+  bitLine(grid, 'A', a, 8);
+  bitLine(grid, 'B', b, 8);
+  bitLine(grid, 'A & B', andV, 8);
+  bitLine(grid, 'A | B', orV, 8);
+  bitLine(grid, 'A ^ B', xorV, 8);
+  bitLine(grid, '~A', notA, 8);
+
+  document.getElementById('bw-and-val').textContent = andV + ' (0x' + andV.toString(16).toUpperCase().padStart(2,'0') + ')';
+  document.getElementById('bw-or-val').textContent = orV + ' (0x' + orV.toString(16).toUpperCase().padStart(2,'0') + ')';
+  document.getElementById('bw-xor-val').textContent = xorV + ' (0x' + xorV.toString(16).toUpperCase().padStart(2,'0') + ')';
+  document.getElementById('bw-not-val').textContent = notA + ' (0x' + notA.toString(16).toUpperCase().padStart(2,'0') + ')  \u2014 flips every bit of A';
+
+  const n = Math.max(0, Math.min(7, parseInt(document.getElementById('bw-shift').value, 10) || 0));
+  const rawShl = a << n;
+  const shl = rawShl & 0xFF;
+  const shr = a >>> n;
+
+  const shiftGrid = document.getElementById('bw-shift-grid');
+  shiftGrid.innerHTML = '';
+  bitLine(shiftGrid, 'A', a, 8);
+  bitLine(shiftGrid, 'A << ' + n, shl, 8);
+  bitLine(shiftGrid, 'A >> ' + n, shr, 8);
+
+  document.getElementById('bw-shl-val').textContent = a + ' << ' + n + ' = ' + shl + (rawShl > 255 ? '  (bits shifted past bit 7 were lost)' : '');
+  document.getElementById('bw-shr-val').textContent = a + ' >> ' + n + ' = ' + shr;
+}
+['bw-a','bw-b','bw-shift'].forEach(id=>document.getElementById(id).addEventListener('input', renderBitwise));
+renderBitwise();
+</script>
+
+</body>
+</html>

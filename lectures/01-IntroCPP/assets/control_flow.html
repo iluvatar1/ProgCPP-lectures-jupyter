@@ -1,0 +1,785 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Control flow: if/else &amp; loops</title>
+<style>
+  :root{
+    --paper:#F6F5F1; --panel:#FFFFFF; --ink:#1C1D1B; --ink-soft:#5B5C57; --ink-faint:#8B8C86;
+    --line:#DDDBD3; --line-strong:#C6C3B8;
+    --teal:#0F6E56; --teal-bg:#E1F5EE;
+    --amber:#854F0B; --amber-bg:#FAEEDA;
+    --coral:#993C1D; --coral-bg:#FAECE7;
+    --blue:#0C447C; --blue-bg:#E6F1FB;
+    --violet:#5B3E8C; --violet-bg:#EFE8F5;
+    --slate:#3F4A52; --slate-bg:#E7EAEB;
+    --mono:"SFMono-Regular",Consolas,"Liberation Mono",Menlo,monospace;
+    --sans:-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif;
+  }
+  *{box-sizing:border-box;}
+  html,body{margin:0;padding:0;background:var(--paper);color:var(--ink);font-family:var(--sans);}
+  body{padding:0 0 4rem;}
+  .wrap{max-width:980px;margin:0 auto;padding:0 1.5rem;}
+
+  header{padding:2.5rem 0 1.5rem;border-bottom:1px solid var(--line);}
+  header h1{font-size:26px;font-weight:600;margin:0 0 .4rem;letter-spacing:-0.01em;}
+  header p{font-size:15px;color:var(--ink-soft);margin:0;max-width:680px;line-height:1.55;}
+
+  nav{position:sticky;top:0;background:var(--paper);z-index:10;border-bottom:1px solid var(--line);padding:.75rem 0;margin-bottom:2rem;}
+  nav .wrap{display:flex;gap:6px;flex-wrap:wrap;}
+  nav button{font-family:var(--sans);font-size:13.5px;padding:7px 14px;border-radius:6px;border:1px solid var(--line-strong);background:var(--panel);color:var(--ink-soft);cursor:pointer;}
+  nav button.active{background:var(--ink);color:#fff;border-color:var(--ink);}
+  nav button:hover:not(.active){border-color:var(--ink);color:var(--ink);}
+
+  section{display:none;margin-bottom:3rem;}
+  section.active{display:block;}
+  h2{font-size:19px;font-weight:600;margin:0 0 .5rem;}
+  h3{font-size:15px;font-weight:600;margin:1.75rem 0 .6rem;}
+  p.lede{color:var(--ink-soft);font-size:14.5px;line-height:1.6;margin:0 0 1.5rem;max-width:700px;}
+
+  .panel{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:1.25rem 1.4rem;margin-bottom:1.25rem;}
+
+  label{font-size:13px;color:var(--ink-soft);display:block;margin-bottom:4px;}
+  input[type=number],input[type=text],select{font-family:var(--mono);font-size:14px;padding:7px 10px;border-radius:6px;border:1px solid var(--line-strong);background:#fff;color:var(--ink);width:100%;}
+  .row{display:flex;gap:16px;flex-wrap:wrap;margin-bottom:1rem;align-items:end;}
+  .row > div{flex:1;min-width:120px;}
+
+  .btnset{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:1rem;}
+  .btnset button{font-family:var(--sans);font-size:13px;padding:6px 12px;border-radius:6px;border:1px solid var(--line-strong);background:#fff;color:var(--ink-soft);cursor:pointer;}
+  .btnset button.active{background:var(--ink);color:#fff;border-color:var(--ink);}
+  .btnset button:hover:not(.active){border-color:var(--ink);color:var(--ink);}
+  .btnset button.primary{background:var(--teal);color:#fff;border-color:var(--teal);}
+
+  code{font-family:var(--mono);font-size:13px;background:#F0EFE9;padding:1px 5px;border-radius:4px;}
+  pre.code{background:#1C1D1B;color:#EDEBE3;padding:1.1rem 1.3rem;border-radius:8px;font-family:var(--mono);font-size:13.5px;line-height:1.85;margin:0 0 1rem;overflow-x:auto;}
+  pre.code .clause{padding:2px 4px;border-radius:4px;transition:all .25s ease;}
+  pre.code .c-init{background:rgba(15,110,86,.28);}
+  pre.code .c-cond{background:rgba(133,79,11,.32);}
+  pre.code .c-incr{background:rgba(91,62,140,.32);}
+  pre.code .c-body{background:rgba(63,74,82,.35);}
+  pre.code .c-continue{background:rgba(12,68,124,.30);}
+  pre.code .c-break{background:rgba(153,60,29,.32);}
+  pre.code .clause.active{outline:2px solid #fff;box-shadow:0 0 0 3px currentColor;}
+
+  .note{font-size:13px;color:var(--ink-soft);background:#F0EFE9;border-left:3px solid var(--line-strong);padding:.6rem .9rem;border-radius:0 6px 6px 0;margin:1rem 0;}
+  .note.warn{border-left-color:var(--coral);background:var(--coral-bg);color:var(--coral);}
+  .legend{display:flex;gap:16px;flex-wrap:wrap;font-size:12.5px;color:var(--ink-soft);margin-bottom:1rem;}
+  .legend span{display:inline-flex;align-items:center;gap:6px;}
+  .swatch{width:11px;height:11px;border-radius:3px;display:inline-block;}
+
+  .phase-banner{font-family:var(--mono);font-size:14px;padding:.7rem 1rem;border-radius:8px;background:#F0EFE9;color:var(--ink-soft);margin-bottom:1rem;min-height:20px;transition:all .2s ease;}
+  .phase-banner.p-init{background:var(--teal-bg);color:var(--teal);}
+  .phase-banner.p-check{background:var(--amber-bg);color:var(--amber);}
+  .phase-banner.p-incr{background:var(--violet-bg);color:var(--violet);}
+  .phase-banner.p-body{background:var(--slate-bg);color:var(--slate);}
+  .phase-banner.p-continue{background:var(--blue-bg);color:var(--blue);}
+  .phase-banner.p-break{background:var(--coral-bg);color:var(--coral);}
+  .phase-banner.p-done{background:var(--coral-bg);color:var(--coral);}
+
+  .track{display:flex;flex-wrap:wrap;gap:4px;margin:1rem 0;min-height:38px;}
+  .track .slot{min-width:34px;height:34px;padding:0 6px;display:flex;align-items:center;justify-content:center;border-radius:6px;font-family:var(--mono);font-size:12.5px;background:var(--teal-bg);color:var(--teal);border:1px solid var(--teal);}
+  .track .slot.skip{background:var(--blue-bg);color:var(--blue);border:1px dashed var(--blue);}
+  .track .slot.brk{background:var(--coral-bg);color:var(--coral);border:1px solid var(--coral);font-weight:600;}
+
+  .inline-cond{display:flex;align-items:center;gap:6px;flex-wrap:wrap;font-size:13px;color:var(--ink-soft);}
+  .inline-cond input[type=checkbox]{width:auto;}
+  .inline-cond input[type=number]{width:56px;padding:5px 6px;}
+
+  svg text{font-family:var(--mono);font-size:12.5px;}
+  #if-svg rect, #if-svg polygon, #if-svg line, #if-svg text{transition:all .25s ease;}
+
+  footer{color:var(--ink-faint);font-size:12.5px;text-align:center;padding-top:2rem;}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap">
+    <h1>Control flow: if/else &amp; loops</h1>
+    <p>An interactive walk through branching and repetition in C++ &mdash; <code>if</code>/<code>else</code>, <code>for</code>, <code>while</code>, <code>do&#8209;while</code>, and range-based <code>for</code> &mdash; with the moving parts of each loop (start, end condition, increment) color-coded and animated as they execute. Single self-contained file, no external dependencies.</p>
+  </div>
+</header>
+
+<nav>
+  <div class="wrap">
+    <button data-tab="ifelse" class="active">if / else</button>
+    <button data-tab="for">for loop</button>
+    <button data-tab="while">while &amp; do-while</button>
+    <button data-tab="range">range-based for</button>
+  </div>
+</nav>
+
+<div class="wrap">
+
+  <!-- ===================== IF / ELSE ===================== -->
+  <section id="tab-ifelse" class="active">
+    <h2>if / else if / else</h2>
+    <p class="lede">Exactly one branch runs. C++ checks conditions top to bottom and takes the first one that's true; if none are true, the final <code>else</code> (if present) runs.</p>
+
+    <div class="panel">
+      <div class="row">
+        <div>
+          <label for="if-value">Value of <code>score</code></label>
+          <input type="number" id="if-value" value="72">
+        </div>
+      </div>
+
+      <pre class="code" id="if-code"></pre>
+
+      <svg id="if-svg" viewBox="0 0 900 190" style="width:100%;height:auto;"></svg>
+    </div>
+    <div class="note">Change the value and watch both the code and the diagram update: the taken path highlights in the branch color, everything else stays neutral.</div>
+  </section>
+
+  <!-- ===================== FOR LOOP ===================== -->
+  <section id="tab-for">
+    <h2>for loop: init ; condition ; increment</h2>
+    <p class="lede">A <code>for</code> loop packs three clauses into its header, each with a distinct job: <span class="legend"><span><span class="swatch" style="background:var(--teal-bg);border:1px solid var(--teal);"></span>init &mdash; runs once</span> <span><span class="swatch" style="background:var(--amber-bg);border:1px solid var(--amber);"></span>condition &mdash; checked before every iteration</span> <span><span class="swatch" style="background:var(--violet-bg);border:1px solid var(--violet);"></span>increment &mdash; runs after every body</span></span></p>
+
+    <div class="panel">
+      <div class="row">
+        <div><label for="for-start">Start (init)</label><input type="number" id="for-start" value="0"></div>
+        <div>
+          <label for="for-cmp">Condition</label>
+          <select id="for-cmp">
+            <option value="<" selected>i &lt; end</option>
+            <option value="<=">i &lt;= end</option>
+            <option value=">">i &gt; end</option>
+            <option value=">=">i &gt;= end</option>
+          </select>
+        </div>
+        <div><label for="for-end">End</label><input type="number" id="for-end" value="5"></div>
+        <div><label for="for-step">Increment (i += step)</label><input type="number" id="for-step" value="1"></div>
+      </div>
+      <div class="btnset">
+        <button data-preset="0,5,1,<">count up 0&hellip;4</button>
+        <button data-preset="5,0,-1,>=">count down 5&hellip;0</button>
+        <button data-preset="0,10,2,<">step by 2</button>
+        <button data-preset="10,0,1,<">start past end (0 iterations)</button>
+      </div>
+      <div class="inline-cond">
+        <input type="checkbox" id="for-continue-en"> <label for="for-continue-en" style="margin:0;">continue if i %</label>
+        <input type="number" id="for-continue-mod" value="2"> <span>==</span>
+        <input type="number" id="for-continue-rem" value="0">
+        <span style="margin-left:18px;"></span>
+        <input type="checkbox" id="for-break-en"> <label for="for-break-en" style="margin:0;">break if i ==</label>
+        <input type="number" id="for-break-val" value="3">
+      </div>
+
+      <pre class="code" id="for-code"></pre>
+
+      <div class="btnset">
+        <button id="for-step-btn">Step ▶</button>
+        <button id="for-play-btn" class="primary">Play ▶▶</button>
+        <button id="for-reset-btn">Reset ↺</button>
+      </div>
+      <div class="phase-banner" id="for-banner">Press Step or Play to begin.</div>
+      <div class="track" id="for-track"></div>
+    </div>
+  </section>
+
+  <!-- ===================== WHILE / DO-WHILE ===================== -->
+  <section id="tab-while">
+    <h2>while vs. do-while</h2>
+    <p class="lede">Same three ingredients as a <code>for</code> loop &mdash; a starting value, a condition, and something that changes it &mdash; just written out separately instead of packed into a header. The one real difference: <code>while</code> checks the condition <b>before</b> the first iteration; <code>do&#8209;while</code> checks it <b>after</b>, so the body always runs at least once.</p>
+
+    <div class="panel">
+      <div class="row">
+        <div><label for="wh-start">Start</label><input type="number" id="wh-start" value="8"></div>
+        <div>
+          <label for="wh-cmp">Condition</label>
+          <select id="wh-cmp">
+            <option value="<" selected>i &lt; end</option>
+            <option value="<=">i &lt;= end</option>
+            <option value=">">i &gt; end</option>
+            <option value=">=">i &gt;= end</option>
+          </select>
+        </div>
+        <div><label for="wh-end">End</label><input type="number" id="wh-end" value="5"></div>
+        <div><label for="wh-step">Increment (i += step)</label><input type="number" id="wh-step" value="1"></div>
+      </div>
+      <div class="btnset">
+        <button data-preset="0,5,1,<">condition true at start</button>
+        <button data-preset="8,5,1,<">condition false at start (the interesting case)</button>
+      </div>
+      <div class="inline-cond">
+        <input type="checkbox" id="wh-continue-en"> <label for="wh-continue-en" style="margin:0;">continue if i %</label>
+        <input type="number" id="wh-continue-mod" value="2"> <span>==</span>
+        <input type="number" id="wh-continue-rem" value="0">
+        <span style="margin-left:18px;"></span>
+        <input type="checkbox" id="wh-break-en"> <label for="wh-break-en" style="margin:0;">break if i ==</label>
+        <input type="number" id="wh-break-val" value="3">
+      </div>
+      <div class="btnset">
+        <button id="wh-play-btn" class="primary">Play both ▶▶</button>
+        <button id="wh-reset-btn">Reset ↺</button>
+      </div>
+      <div class="note warn">In <code>while</code>/<code>do-while</code>, the increment is ordinary code inside the body. Written after <code>continue</code> (as below), it gets skipped right along with the rest of the body &mdash; try continue with mod 1 / rem 0 (always true) to see <code>i</code> get stuck.</div>
+    </div>
+
+    <div class="row" style="align-items:stretch;">
+      <div class="panel" style="flex:1;min-width:280px;">
+        <h3 style="margin-top:0;">while</h3>
+        <pre class="code" id="while-code"></pre>
+        <div class="phase-banner" id="while-banner">&nbsp;</div>
+        <div class="track" id="while-track"></div>
+      </div>
+      <div class="panel" style="flex:1;min-width:280px;">
+        <h3 style="margin-top:0;">do-while</h3>
+        <pre class="code" id="dowhile-code"></pre>
+        <div class="phase-banner" id="dowhile-banner">&nbsp;</div>
+        <div class="track" id="dowhile-track"></div>
+      </div>
+    </div>
+    <div class="note" id="wh-compare-note"></div>
+  </section>
+
+  <!-- ===================== RANGE-BASED FOR ===================== -->
+  <section id="tab-range">
+    <h2>Range-based for</h2>
+    <p class="lede">No index, no explicit start/end/increment to write &mdash; the compiler generates the equivalent of an iterator walk from <code>begin()</code> to <code>end()</code> for you.</p>
+
+    <div class="panel">
+      <label for="range-list">Container contents (comma-separated)</label>
+      <input type="text" id="range-list" value="10, 20, 30, 40, 50">
+      <label style="display:flex;align-items:center;gap:8px;margin-top:.75rem;">
+        <input type="checkbox" id="range-ref" style="width:auto;">
+        <span>iterate by reference (<code>auto&amp;</code>) instead of by value (<code>auto</code>)</span>
+      </label>
+      <div class="inline-cond" style="margin-top:.75rem;">
+        <input type="checkbox" id="range-continue-en"> <label for="range-continue-en" style="margin:0;">continue if index %</label>
+        <input type="number" id="range-continue-mod" value="2"> <span>==</span>
+        <input type="number" id="range-continue-rem" value="0">
+        <span style="margin-left:18px;"></span>
+        <input type="checkbox" id="range-break-en"> <label for="range-break-en" style="margin:0;">break if index ==</label>
+        <input type="number" id="range-break-val" value="3">
+      </div>
+
+      <pre class="code" id="range-code"></pre>
+
+      <div class="btnset">
+        <button id="range-step-btn">Step ▶</button>
+        <button id="range-play-btn" class="primary">Play ▶▶</button>
+        <button id="range-reset-btn">Reset ↺</button>
+      </div>
+      <div class="phase-banner" id="range-banner">Press Step or Play to begin.</div>
+      <div class="track" id="range-track"></div>
+    </div>
+
+    <div class="note">Equivalent iterator form: <code>for (auto it = container.begin(); it != container.end(); ++it)</code>, using <code>*it</code> where the range-based version uses the loop variable. <code>begin()</code> points at the first element; <code>end()</code> is a sentinel one-past-the-last element &mdash; never dereferenced, just used to know when to stop.</div>
+  </section>
+
+</div>
+
+<footer>Single self-contained HTML file &mdash; no external dependencies, safe to open directly or embed in a Jupyter notebook with <code>IFrame</code>.</footer>
+
+<script>
+// ---------- tab navigation ----------
+document.querySelectorAll('nav button').forEach(btn=>{
+  btn.addEventListener('click', ()=>{
+    document.querySelectorAll('nav button').forEach(b=>b.classList.remove('active'));
+    btn.classList.add('active');
+    document.querySelectorAll('section').forEach(s=>s.classList.remove('active'));
+    document.getElementById('tab-'+btn.dataset.tab).classList.add('active');
+  });
+});
+
+/* =========================================================
+   IF / ELSE
+   ========================================================= */
+function renderIf(){
+  const v = parseFloat(document.getElementById('if-value').value);
+  if (isNaN(v)) return;
+  let branch;
+  if (v >= 90) branch = 'A';
+  else if (v >= 60) branch = 'B';
+  else branch = 'C';
+
+  const codeEl = document.getElementById('if-code');
+  codeEl.innerHTML =
+    'if (score &gt;= 90) {\n' +
+    '    grade = <span class="clause ' + (branch==='A'?'c-init active':'c-init') + '">&quot;A&quot;</span>;\n' +
+    '} else if (score &gt;= 60) {\n' +
+    '    grade = <span class="clause ' + (branch==='B'?'c-cond active':'c-cond') + '">&quot;B&quot;</span>;\n' +
+    '} else {\n' +
+    '    grade = <span class="clause ' + (branch==='C'?'c-incr active':'c-incr') + '">&quot;C&quot;</span>;\n' +
+    '}';
+
+  const svg = document.getElementById('if-svg');
+  svg.innerHTML = '';
+  const neutralFill = '#FFFFFF', neutralStroke = '#C6C3B8', neutralText='#5B5C57';
+  const activeColors = {A:['#E1F5EE','#0F6E56'], B:['#FAEEDA','#854F0B'], C:['#EFE8F5','#5B3E8C']};
+
+  function box(x,y,w,h,label,active,key){
+    const g = document.createElementNS('http://www.w3.org/2000/svg','g');
+    const rect = document.createElementNS('http://www.w3.org/2000/svg','rect');
+    rect.setAttribute('x',x); rect.setAttribute('y',y); rect.setAttribute('width',w); rect.setAttribute('height',h);
+    rect.setAttribute('rx',8);
+    const [fill,stroke] = active ? activeColors[key] : [neutralFill, neutralStroke];
+    rect.setAttribute('fill', fill); rect.setAttribute('stroke', stroke); rect.setAttribute('stroke-width', active ? 2.2 : 1.3);
+    g.appendChild(rect);
+    const text = document.createElementNS('http://www.w3.org/2000/svg','text');
+    text.setAttribute('x', x+w/2); text.setAttribute('y', y+h/2+4); text.setAttribute('text-anchor','middle');
+    text.setAttribute('fill', active ? stroke : neutralText);
+    text.textContent = label;
+    g.appendChild(text);
+    svg.appendChild(g);
+    return g;
+  }
+  function arrow(x1,y1,x2,y2,active,key,dashed){
+    const line = document.createElementNS('http://www.w3.org/2000/svg','line');
+    line.setAttribute('x1',x1); line.setAttribute('y1',y1); line.setAttribute('x2',x2); line.setAttribute('y2',y2);
+    line.setAttribute('stroke', active ? activeColors[key][1] : neutralStroke);
+    line.setAttribute('stroke-width', active ? 2.2 : 1.3);
+    if (dashed) line.setAttribute('stroke-dasharray','4 3');
+    svg.appendChild(line);
+  }
+
+  box(20,80,110,40,'score', false);
+  arrow(130,100,180,100,false);
+  box(180,80,140,40,'score >= 90 ?', branch==='A', 'A');
+  arrow(320,100,380,50, branch==='A','A');
+  arrow(320,100,380,150, true,'B');
+  box(380,30,120,40,'grade = "A"', branch==='A','A');
+  box(380,130,150,40,'score >= 60 ?', branch==='B' || branch==='C', branch==='B' ? 'B':'C');
+  arrow(530,150,600,90, branch==='B','B');
+  arrow(530,150,600,180, branch==='C','C');
+  box(600,70,110,40,'grade = "B"', branch==='B','B');
+  box(600,160,110,40,'grade = "C"', branch==='C','C');
+}
+document.getElementById('if-value').addEventListener('input', renderIf);
+renderIf();
+
+/* =========================================================
+   SHARED loop-simulation helpers
+   ========================================================= */
+function compare(i, end, cmp){
+  switch(cmp){
+    case '<': return i < end;
+    case '<=': return i <= end;
+    case '>': return i > end;
+    case '>=': return i >= end;
+  }
+}
+
+function mod(n, m){ return m === 0 ? NaN : ((n % m) + m) % m; }
+
+function buildLoopSteps(opts){
+  // opts: start, end, step, cmp, checkFirst, continueSkipsIncrement,
+  //       continueEnabled, continueMod, continueRem, breakEnabled, breakValue
+  const steps = [{phase:'init', i:opts.start}];
+  let i = opts.start, guard = 0;
+  const shouldBreak = v => opts.breakEnabled && v === opts.breakValue;
+  const shouldContinue = v => opts.continueEnabled && mod(v, opts.continueMod) === opts.continueRem;
+
+  if (opts.checkFirst){
+    while (guard++ < 500){
+      const passed = compare(i, opts.end, opts.cmp);
+      steps.push({phase:'check', i, passed});
+      if (!passed) break;
+      if (shouldBreak(i)){ steps.push({phase:'break', i}); steps.push({phase:'done', i}); return steps; }
+      let didContinue = false;
+      if (shouldContinue(i)){ steps.push({phase:'continue', i}); didContinue = true; }
+      else { steps.push({phase:'body', i}); }
+      if (didContinue && opts.continueSkipsIncrement) continue;
+      const next = i + opts.step;
+      steps.push({phase:'incr', i:next, from:i});
+      i = next;
+    }
+    steps.push({phase:'done', i, warn: guard>=500});
+  } else {
+    while (guard++ < 500){
+      if (shouldBreak(i)){ steps.push({phase:'break', i}); steps.push({phase:'done', i}); return steps; }
+      let didContinue = false;
+      if (shouldContinue(i)){ steps.push({phase:'continue', i}); didContinue = true; }
+      else { steps.push({phase:'body', i}); }
+      if (!(didContinue && opts.continueSkipsIncrement)){
+        const next = i + opts.step;
+        steps.push({phase:'incr', i:next, from:i});
+        i = next;
+      }
+      const passed = compare(i, opts.end, opts.cmp);
+      steps.push({phase:'check', i, passed});
+      if (!passed) break;
+    }
+    steps.push({phase:'done', i, warn: guard>=500});
+  }
+  return steps;
+}
+
+function phaseText(step, cmp, endLabel){
+  switch(step.phase){
+    case 'init': return 'init: i = ' + step.i;
+    case 'check': return 'check condition: i(' + step.i + ') ' + cmp + ' ' + endLabel + '  \u2192  ' + (step.passed ? 'true, continue' : 'false, stop');
+    case 'body': return 'run loop body  (i = ' + step.i + ')';
+    case 'continue': return 'continue \u2014 skip the rest of the body (i = ' + step.i + ')';
+    case 'break': return 'break \u2014 exit the loop immediately (i = ' + step.i + ')';
+    case 'incr': return 'increment: i goes from ' + step.from + ' to ' + step.i;
+    case 'done': return step.warn ? 'stopped after 500 iterations \u2014 this looks like it would run forever' : 'loop finished';
+  }
+}
+function phaseClass(step){
+  return {init:'p-init', check:'p-check', body:'p-body', continue:'p-continue', break:'p-break', incr:'p-incr', done:'p-done'}[step.phase];
+}
+
+/* =========================================================
+   FOR LOOP TAB
+   ========================================================= */
+let forSteps = [], forIndex = 0, forTimer = null;
+
+function renderForCode(activePhase){
+  const start = document.getElementById('for-start').value;
+  const end = document.getElementById('for-end').value;
+  const step = document.getElementById('for-step').value;
+  const cmp = document.getElementById('for-cmp').value;
+  const contEn = document.getElementById('for-continue-en').checked;
+  const contMod = document.getElementById('for-continue-mod').value;
+  const contRem = document.getElementById('for-continue-rem').value;
+  const brkEn = document.getElementById('for-break-en').checked;
+  const brkVal = document.getElementById('for-break-val').value;
+  const a = p => activePhase===p ? ' active' : '';
+  let body = '';
+  if (brkEn) body += '    if (i == ' + brkVal + ') <span class="clause c-break' + a('break') + '">break</span>;\n';
+  if (contEn) body += '    if (i % ' + contMod + ' == ' + contRem + ') <span class="clause c-continue' + a('continue') + '">continue</span>;\n';
+  body += '    <span class="clause c-body' + a('body') + '">/* body */</span>\n';
+  document.getElementById('for-code').innerHTML =
+    'for (int i = <span class="clause c-init' + a('init') + '">' + start + '</span>; ' +
+    'i <span class="clause c-cond' + a('check') + '">' + cmp + ' ' + end + '</span>; ' +
+    'i <span class="clause c-incr' + a('incr') + '">+= ' + step + '</span>) {\n' +
+    body +
+    '}';
+}
+
+function buildForSteps(){
+  const start = parseFloat(document.getElementById('for-start').value);
+  const end = parseFloat(document.getElementById('for-end').value);
+  const step = parseFloat(document.getElementById('for-step').value);
+  const cmp = document.getElementById('for-cmp').value;
+  if ([start,end,step].some(isNaN)) return [];
+  return buildLoopSteps({
+    start, end, step, cmp, checkFirst:true, continueSkipsIncrement:false,
+    continueEnabled: document.getElementById('for-continue-en').checked,
+    continueMod: parseFloat(document.getElementById('for-continue-mod').value) || 1,
+    continueRem: parseFloat(document.getElementById('for-continue-rem').value) || 0,
+    breakEnabled: document.getElementById('for-break-en').checked,
+    breakValue: parseFloat(document.getElementById('for-break-val').value),
+  });
+}
+
+function resetFor(){
+  clearInterval(forTimer);
+  forSteps = buildForSteps();
+  forIndex = 0;
+  document.getElementById('for-banner').className = 'phase-banner';
+  document.getElementById('for-banner').textContent = 'Press Step or Play to begin.';
+  document.getElementById('for-track').innerHTML = '';
+  renderForCode(null);
+}
+
+function forStepOnce(){
+  if (forIndex >= forSteps.length) return;
+  const step = forSteps[forIndex];
+  const cmp = document.getElementById('for-cmp').value;
+  const end = document.getElementById('for-end').value;
+  renderForCode(step.phase === 'done' ? null : step.phase);
+  const banner = document.getElementById('for-banner');
+  banner.className = 'phase-banner ' + phaseClass(step);
+  banner.textContent = phaseText(step, cmp, end);
+  const track = document.getElementById('for-track');
+  if (step.phase === 'body'){
+    const slot = document.createElement('div');
+    slot.className = 'slot';
+    slot.textContent = 'i=' + step.i;
+    track.appendChild(slot);
+  } else if (step.phase === 'continue'){
+    const slot = document.createElement('div');
+    slot.className = 'slot skip';
+    slot.textContent = 'skip i=' + step.i;
+    track.appendChild(slot);
+  } else if (step.phase === 'break'){
+    const slot = document.createElement('div');
+    slot.className = 'slot brk';
+    slot.textContent = 'break!';
+    track.appendChild(slot);
+  }
+  forIndex++;
+  if (forIndex >= forSteps.length) clearInterval(forTimer);
+}
+
+document.getElementById('for-step-btn').addEventListener('click', forStepOnce);
+document.getElementById('for-play-btn').addEventListener('click', ()=>{
+  clearInterval(forTimer);
+  forTimer = setInterval(()=>{
+    if (forIndex >= forSteps.length){ clearInterval(forTimer); return; }
+    forStepOnce();
+  }, 550);
+});
+document.getElementById('for-reset-btn').addEventListener('click', resetFor);
+['for-start','for-end','for-step','for-cmp','for-continue-en','for-continue-mod','for-continue-rem','for-break-en','for-break-val']
+  .forEach(id=>document.getElementById(id).addEventListener('input', resetFor));
+document.getElementById('for-cmp').addEventListener('change', resetFor);
+document.querySelectorAll('#tab-for .btnset button[data-preset]').forEach(b=>{
+  b.addEventListener('click', ()=>{
+    const [s,e,st,c] = b.dataset.preset.split(',');
+    document.getElementById('for-start').value = s;
+    document.getElementById('for-end').value = e;
+    document.getElementById('for-step').value = st;
+    document.getElementById('for-cmp').value = c;
+    resetFor();
+  });
+});
+resetFor();
+
+/* =========================================================
+   WHILE / DO-WHILE TAB
+   ========================================================= */
+let whileSteps = [], whileIndex = 0, doWhileSteps = [], doWhileIndex = 0, whTimer = null;
+
+function renderWhileCode(activePhase){
+  const start = document.getElementById('wh-start').value;
+  const end = document.getElementById('wh-end').value;
+  const step = document.getElementById('wh-step').value;
+  const cmp = document.getElementById('wh-cmp').value;
+  const contEn = document.getElementById('wh-continue-en').checked;
+  const contMod = document.getElementById('wh-continue-mod').value;
+  const contRem = document.getElementById('wh-continue-rem').value;
+  const brkEn = document.getElementById('wh-break-en').checked;
+  const brkVal = document.getElementById('wh-break-val').value;
+  const a = p => activePhase===p ? ' active' : '';
+  let body = '';
+  if (brkEn) body += '    if (i == ' + brkVal + ') <span class="clause c-break' + a('break') + '">break</span>;\n';
+  if (contEn) body += '    if (i % ' + contMod + ' == ' + contRem + ') <span class="clause c-continue' + a('continue') + '">continue</span>;\n';
+  body += '    <span class="clause c-body' + a('body') + '">/* body */</span>\n' +
+          '    i <span class="clause c-incr' + a('incr') + '">+= ' + step + '</span>;\n';
+
+  document.getElementById('while-code').innerHTML =
+    'int i = <span class="clause c-init' + a('init') + '">' + start + '</span>;\n' +
+    'while (i <span class="clause c-cond' + a('check') + '">' + cmp + ' ' + end + '</span>) {\n' +
+    body +
+    '}';
+  document.getElementById('dowhile-code').innerHTML =
+    'int i = <span class="clause c-init' + a('init') + '">' + start + '</span>;\n' +
+    'do {\n' +
+    body +
+    '} while (i <span class="clause c-cond' + a('check') + '">' + cmp + ' ' + end + '</span>);';
+}
+
+function buildWhilePair(){
+  const start = parseFloat(document.getElementById('wh-start').value);
+  const end = parseFloat(document.getElementById('wh-end').value);
+  const step = parseFloat(document.getElementById('wh-step').value);
+  const cmp = document.getElementById('wh-cmp').value;
+  if ([start,end,step].some(isNaN)) return [[],[]];
+  const common = {
+    start, end, step, cmp, continueSkipsIncrement:true,
+    continueEnabled: document.getElementById('wh-continue-en').checked,
+    continueMod: parseFloat(document.getElementById('wh-continue-mod').value) || 1,
+    continueRem: parseFloat(document.getElementById('wh-continue-rem').value) || 0,
+    breakEnabled: document.getElementById('wh-break-en').checked,
+    breakValue: parseFloat(document.getElementById('wh-break-val').value),
+  };
+  return [
+    buildLoopSteps({...common, checkFirst:true}),
+    buildLoopSteps({...common, checkFirst:false}),
+  ];
+}
+
+function countBodyRuns(steps){ return steps.filter(s=>s.phase==='body' || s.phase==='continue').length; }
+
+function resetWhile(){
+  clearInterval(whTimer);
+  [whileSteps, doWhileSteps] = buildWhilePair();
+  whileIndex = 0; doWhileIndex = 0;
+  document.getElementById('while-banner').className = 'phase-banner';
+  document.getElementById('while-banner').innerHTML = '&nbsp;';
+  document.getElementById('dowhile-banner').className = 'phase-banner';
+  document.getElementById('dowhile-banner').innerHTML = '&nbsp;';
+  document.getElementById('while-track').innerHTML = '';
+  document.getElementById('dowhile-track').innerHTML = '';
+  renderWhileCode(null);
+  const wCount = countBodyRuns(whileSteps), dCount = countBodyRuns(doWhileSteps);
+  const noteEl = document.getElementById('wh-compare-note');
+  if (wCount !== dCount){
+    noteEl.textContent = 'With these values: while reaches the body ' + wCount + ' time(s), do-while ' + dCount + ' time(s) \u2014 do-while always executes at least once.';
+  } else {
+    noteEl.textContent = 'With these values both reach the body ' + wCount + ' time(s) \u2014 try "condition false at start" above to see them diverge.';
+  }
+}
+
+function stepOneSide(steps, indexRef, trackId, bannerId, cmp, end){
+  if (indexRef.i >= steps.length) return;
+  const step = steps[indexRef.i];
+  renderWhileCode(step.phase === 'done' ? null : step.phase);
+  const banner = document.getElementById(bannerId);
+  banner.className = 'phase-banner ' + phaseClass(step);
+  banner.textContent = phaseText(step, cmp, end);
+  const track = document.getElementById(trackId);
+  if (step.phase === 'body'){
+    const slot = document.createElement('div');
+    slot.className = 'slot';
+    slot.textContent = 'i=' + step.i;
+    track.appendChild(slot);
+  } else if (step.phase === 'continue'){
+    const slot = document.createElement('div');
+    slot.className = 'slot skip';
+    slot.textContent = 'skip i=' + step.i;
+    track.appendChild(slot);
+  } else if (step.phase === 'break'){
+    const slot = document.createElement('div');
+    slot.className = 'slot brk';
+    slot.textContent = 'break!';
+    track.appendChild(slot);
+  }
+  indexRef.i++;
+}
+
+document.getElementById('wh-play-btn').addEventListener('click', ()=>{
+  clearInterval(whTimer);
+  const wRef = {i: whileIndex}, dRef = {i: doWhileIndex};
+  const cmp = document.getElementById('wh-cmp').value, end = document.getElementById('wh-end').value;
+  whTimer = setInterval(()=>{
+    let doneW = wRef.i >= whileSteps.length, doneD = dRef.i >= doWhileSteps.length;
+    if (!doneW) stepOneSide(whileSteps, wRef, 'while-track', 'while-banner', cmp, end);
+    if (!doneD) stepOneSide(doWhileSteps, dRef, 'dowhile-track', 'dowhile-banner', cmp, end);
+    whileIndex = wRef.i; doWhileIndex = dRef.i;
+    if (doneW && doneD) clearInterval(whTimer);
+  }, 550);
+});
+document.getElementById('wh-reset-btn').addEventListener('click', resetWhile);
+['wh-start','wh-end','wh-step','wh-cmp','wh-continue-en','wh-continue-mod','wh-continue-rem','wh-break-en','wh-break-val']
+  .forEach(id=>document.getElementById(id).addEventListener('input', resetWhile));
+document.getElementById('wh-cmp').addEventListener('change', resetWhile);
+document.querySelectorAll('#tab-while .btnset button[data-preset]').forEach(b=>{
+  b.addEventListener('click', ()=>{
+    const [s,e,st,c] = b.dataset.preset.split(',');
+    document.getElementById('wh-start').value = s;
+    document.getElementById('wh-end').value = e;
+    document.getElementById('wh-step').value = st;
+    document.getElementById('wh-cmp').value = c;
+    resetWhile();
+  });
+});
+resetWhile();
+
+/* =========================================================
+   RANGE-BASED FOR TAB
+   ========================================================= */
+let rangeItems = [], rangeIndex = 0, rangeTimer = null;
+
+function renderRangeCode(activeIdx, activePhase){
+  const ref = document.getElementById('range-ref').checked;
+  const decl = ref ? 'auto&amp;' : 'auto';
+  const contEn = document.getElementById('range-continue-en').checked;
+  const contMod = document.getElementById('range-continue-mod').value;
+  const contRem = document.getElementById('range-continue-rem').value;
+  const brkEn = document.getElementById('range-break-en').checked;
+  const brkVal = document.getElementById('range-break-val').value;
+  const hasIdx = activeIdx !== null && activeIdx !== undefined;
+  const a = p => activePhase===p ? ' active' : '';
+
+  let body = '';
+  if (brkEn) body += '    <span style="color:#8B8C86;">// demo only: break at index ' + brkVal + '</span>\n    if (index == ' + brkVal + ') <span class="clause c-break' + a('break') + '">break</span>;\n';
+  if (contEn) body += '    if (index % ' + contMod + ' == ' + contRem + ') <span class="clause c-continue' + a('continue') + '">continue</span>;\n';
+  body += '    <span class="clause c-body' + a('body') + '">use(x)</span>;  <span style="color:#8B8C86;">// x = ' + (hasIdx ? rangeItems[activeIdx] : '\u2014') + '</span>\n';
+
+  document.getElementById('range-code').innerHTML =
+    'for (' + decl + ' x : container) {\n' + body + '}';
+}
+
+function shouldRangeBreak(i){
+  return document.getElementById('range-break-en').checked && i === parseInt(document.getElementById('range-break-val').value, 10);
+}
+function shouldRangeContinue(i){
+  if (!document.getElementById('range-continue-en').checked) return false;
+  const m = parseInt(document.getElementById('range-continue-mod').value, 10) || 1;
+  const r = parseInt(document.getElementById('range-continue-rem').value, 10) || 0;
+  return mod(i, m) === r;
+}
+
+function resetRange(){
+  clearInterval(rangeTimer);
+  const raw = document.getElementById('range-list').value;
+  rangeItems = raw.split(',').map(s=>s.trim()).filter(s=>s.length>0);
+  rangeIndex = 0;
+  document.getElementById('range-banner').className = 'phase-banner';
+  document.getElementById('range-banner').textContent = 'Press Step or Play to begin.';
+  const track = document.getElementById('range-track');
+  track.innerHTML = '';
+  rangeItems.forEach((v,i)=>{
+    const slot = document.createElement('div');
+    slot.className = 'slot';
+    slot.id = 'range-slot-' + i;
+    slot.textContent = v;
+    slot.style.background = '#FFFFFF';
+    slot.style.color = 'var(--ink-faint)';
+    slot.style.border = '1px dashed var(--line-strong)';
+    track.appendChild(slot);
+  });
+  renderRangeCode(null, null);
+}
+
+function styleSlot(el, mode){
+  if (mode === 'current'){ el.style.background = 'var(--violet-bg)'; el.style.color = 'var(--violet)'; el.style.border = '1px solid var(--violet)'; }
+  else if (mode === 'skip'){ el.style.background = 'var(--blue-bg)'; el.style.color = 'var(--blue)'; el.style.border = '1px dashed var(--blue)'; }
+  else if (mode === 'brk'){ el.style.background = 'var(--coral-bg)'; el.style.color = 'var(--coral)'; el.style.border = '1px solid var(--coral)'; }
+  else { el.style.background = '#FFFFFF'; el.style.color = 'var(--ink-faint)'; el.style.border = '1px dashed var(--line-strong)'; }
+}
+
+function rangeStepOnce(){
+  if (rangeIndex >= rangeItems.length){
+    document.getElementById('range-banner').className = 'phase-banner p-done';
+    document.getElementById('range-banner').textContent = 'loop finished \u2014 reached end(), stopping';
+    clearInterval(rangeTimer);
+    return;
+  }
+  const i = rangeIndex;
+  const banner = document.getElementById('range-banner');
+
+  if (shouldRangeBreak(i)){
+    styleSlot(document.getElementById('range-slot-' + i), 'brk');
+    renderRangeCode(i, 'break');
+    banner.className = 'phase-banner p-break';
+    banner.textContent = 'break at index ' + i + ' \u2014 exit the loop immediately, remaining elements never visited';
+    rangeIndex = rangeItems.length;
+    clearInterval(rangeTimer);
+    return;
+  }
+
+  if (shouldRangeContinue(i)){
+    styleSlot(document.getElementById('range-slot-' + i), 'skip');
+    renderRangeCode(i, 'continue');
+    banner.className = 'phase-banner p-continue';
+    banner.textContent = 'continue at index ' + i + ' \u2014 skip use(x), advance to the next element';
+    rangeIndex++;
+    return;
+  }
+
+  document.querySelectorAll('#range-track .slot').forEach(el=>styleSlot(el, 'none'));
+  styleSlot(document.getElementById('range-slot-' + i), 'current');
+  renderRangeCode(i, 'body');
+  banner.className = 'phase-banner p-body';
+  banner.textContent = 'x = container[' + i + '] = ' + rangeItems[i];
+  rangeIndex++;
+  if (rangeIndex >= rangeItems.length){
+    setTimeout(()=>{
+      document.querySelectorAll('#range-track .slot').forEach(el=>styleSlot(el, 'none'));
+    }, 300);
+  }
+}
+document.getElementById('range-step-btn').addEventListener('click', rangeStepOnce);
+document.getElementById('range-play-btn').addEventListener('click', ()=>{
+  clearInterval(rangeTimer);
+  rangeTimer = setInterval(()=>{
+    if (rangeIndex >= rangeItems.length){ rangeStepOnce(); clearInterval(rangeTimer); return; }
+    rangeStepOnce();
+  }, 600);
+});
+document.getElementById('range-reset-btn').addEventListener('click', resetRange);
+['range-list','range-continue-en','range-continue-mod','range-continue-rem','range-break-en','range-break-val']
+  .forEach(id=>document.getElementById(id).addEventListener('input', resetRange));
+document.getElementById('range-ref').addEventListener('change', ()=>renderRangeCode(null, null));
+resetRange();
+</script>
+
+</body>
+</html>

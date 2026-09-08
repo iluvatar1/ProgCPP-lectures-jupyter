@@ -1,0 +1,872 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>How numbers live in memory</title>
+<style>
+  :root{
+    --paper:#F6F5F1;
+    --panel:#FFFFFF;
+    --ink:#1C1D1B;
+    --ink-soft:#5B5C57;
+    --ink-faint:#8B8C86;
+    --line:#DDDBD3;
+    --line-strong:#C6C3B8;
+    --teal:#0F6E56;
+    --teal-bg:#E1F5EE;
+    --amber:#854F0B;
+    --amber-bg:#FAEEDA;
+    --coral:#993C1D;
+    --coral-bg:#FAECE7;
+    --blue:#0C447C;
+    --blue-bg:#E6F1FB;
+    --red:#791F1F;
+    --red-bg:#FCEBEB;
+    --mono: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
+    --sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+  }
+  *{box-sizing:border-box;}
+  html,body{margin:0;padding:0;background:var(--paper);color:var(--ink);font-family:var(--sans);}
+  body{padding:0 0 4rem;}
+  .wrap{max-width:920px;margin:0 auto;padding:0 1.5rem;}
+
+  header{padding:2.5rem 0 1.5rem;border-bottom:1px solid var(--line);}
+  header h1{font-size:26px;font-weight:600;margin:0 0 .4rem;letter-spacing:-0.01em;}
+  header p{font-size:15px;color:var(--ink-soft);margin:0;max-width:640px;line-height:1.55;}
+
+  nav{position:sticky;top:0;background:var(--paper);z-index:10;border-bottom:1px solid var(--line);padding:0.75rem 0;margin-bottom:2rem;}
+  nav .wrap{display:flex;gap:6px;flex-wrap:wrap;padding-left:1.5rem;padding-right:1.5rem;}
+  nav button{
+    font-family:var(--sans);font-size:13.5px;padding:7px 14px;border-radius:6px;
+    border:1px solid var(--line-strong);background:var(--panel);color:var(--ink-soft);cursor:pointer;
+  }
+  nav button.active{background:var(--ink);color:#fff;border-color:var(--ink);}
+  nav button:hover:not(.active){border-color:var(--ink);color:var(--ink);}
+
+  section{display:none;margin-bottom:3rem;}
+  section.active{display:block;}
+  h2{font-size:19px;font-weight:600;margin:0 0 .5rem;}
+  h3{font-size:15px;font-weight:600;margin:1.75rem 0 .6rem;}
+  p.lede{color:var(--ink-soft);font-size:14.5px;line-height:1.6;margin:0 0 1.5rem;max-width:680px;}
+
+  .panel{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:1.25rem 1.4rem;margin-bottom:1.25rem;}
+
+  label{font-size:13px;color:var(--ink-soft);display:block;margin-bottom:4px;}
+  input[type=number],input[type=text],select{
+    font-family:var(--mono);font-size:14px;padding:7px 10px;border-radius:6px;
+    border:1px solid var(--line-strong);background:#fff;color:var(--ink);width:100%;
+  }
+  input[type=range]{width:100%;}
+  .row{display:flex;gap:16px;flex-wrap:wrap;margin-bottom:1rem;}
+  .row > div{flex:1;min-width:150px;}
+
+  .btnset{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:1rem;}
+  .btnset button{
+    font-family:var(--sans);font-size:13px;padding:6px 12px;border-radius:6px;
+    border:1px solid var(--line-strong);background:#fff;color:var(--ink-soft);cursor:pointer;
+  }
+  .btnset button.active{background:var(--ink);color:#fff;border-color:var(--ink);}
+
+  .bitrow{display:flex;flex-wrap:wrap;gap:2px;font-family:var(--mono);margin:1rem 0;justify-content:flex-start;}
+  .bit{
+    width:26px;height:32px;display:flex;align-items:center;justify-content:center;
+    border-radius:4px;font-size:13px;flex-shrink:0;
+  }
+  .bit.small{width:16px;height:26px;font-size:10px;}
+  .bit.sign{background:var(--coral-bg);color:var(--coral);}
+  .bit.exp{background:var(--amber-bg);color:var(--amber);}
+  .bit.mant{background:var(--teal-bg);color:var(--teal);}
+  .bit.val{background:var(--blue-bg);color:var(--blue);}
+
+  .legend{display:flex;gap:18px;flex-wrap:wrap;font-size:12.5px;color:var(--ink-soft);margin-bottom:1.25rem;}
+  .legend span{display:inline-flex;align-items:center;gap:6px;}
+  .swatch{width:11px;height:11px;border-radius:3px;display:inline-block;}
+
+  table{width:100%;border-collapse:collapse;font-size:13.5px;}
+  th,td{text-align:left;padding:7px 10px;border-bottom:1px solid var(--line);}
+  th{color:var(--ink-soft);font-weight:600;font-size:12.5px;text-transform:none;}
+  td.mono, th.mono{font-family:var(--mono);}
+  tr:hover td{background:#FBFAF7;}
+
+  .scroll{max-height:340px;overflow-y:auto;border:1px solid var(--line);border-radius:8px;}
+  .scroll table{margin:0;}
+  .scroll thead th{position:sticky;top:0;background:var(--panel);}
+
+  pre{
+    background:#1C1D1B;color:#EDEBE3;padding:1.1rem 1.3rem;border-radius:8px;
+    font-family:var(--mono);font-size:13px;line-height:1.6;overflow-x:auto;margin:0 0 1rem;
+  }
+  code{font-family:var(--mono);font-size:13px;background:#F0EFE9;padding:1px 5px;border-radius:4px;}
+
+  .note{font-size:13px;color:var(--ink-soft);background:#F0EFE9;border-left:3px solid var(--line-strong);padding:.6rem .9rem;border-radius:0 6px 6px 0;margin:1rem 0;}
+  .err{font-size:13px;color:var(--red);display:none;margin:.5rem 0;}
+
+  .grid2{display:grid;grid-template-columns:1fr 1fr;gap:1rem;}
+  @media (max-width:640px){.grid2{grid-template-columns:1fr;}}
+
+  footer{color:var(--ink-faint);font-size:12.5px;text-align:center;padding-top:2rem;}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap">
+    <h1>How numbers live in memory</h1>
+    <p>An interactive reference for how C++ stores integers, floats and doubles as bits &mdash; with base conversions, IEEE&nbsp;754 breakdowns, the ASCII table, and a <code>&lt;limits&gt;</code> example. Self-contained, works offline, safe to embed in a notebook.</p>
+  </div>
+</header>
+
+<nav>
+  <div class="wrap">
+    <button data-tab="units" class="active">Bits &amp; bytes</button>
+    <button data-tab="int">Integers</button>
+    <button data-tab="float">Float &amp; double</button>
+    <button data-tab="ascii">ASCII table</button>
+    <button data-tab="cpp">C++ example</button>
+  </div>
+</nav>
+
+<div class="wrap">
+
+  <!-- ===================== UNITS ===================== -->
+  <section id="tab-units" class="active">
+    <h2>Bits, bytes &amp; the units built from them</h2>
+    <p class="lede">Before getting into how specific numbers are stored, here's the vocabulary the rest of this page builds on: bits, bytes, the decimal-vs-binary prefixes used to measure them, and how the same ideas extend to memory sizes, bandwidth, and clock frequency.</p>
+
+    <div class="panel">
+      <h3 style="margin-top:0;">A byte is 8 bits</h3>
+      <div class="bitrow" id="byte-grid" style="margin:1rem 0;"></div>
+      <table>
+        <tr><th style="width:170px;">bit</th><td>a single binary digit: 0 or 1</td></tr>
+        <tr><th>nibble</th><td>4 bits &mdash; exactly one hexadecimal digit (0&ndash;F)</td></tr>
+        <tr><th>byte</th><td>8 bits &mdash; the smallest addressable unit in C++; <code>sizeof(char) == 1</code> by definition</td></tr>
+        <tr><th>word</th><td>the CPU's native register size &mdash; 16-bit historically, 32-bit on classic x86, 64-bit on modern x86-64 / ARM64</td></tr>
+      </table>
+    </div>
+
+    <h3>Decimal (SI) vs. binary (IEC) prefixes</h3>
+    <p class="lede">The same prefix letter means two different things depending on context &mdash; this is why a "1&nbsp;TB" drive shows up as roughly 931&nbsp;GB in your file manager.</p>
+    <div class="panel" style="padding:0;">
+      <table>
+        <thead><tr><th>Prefix</th><th>SI (decimal)</th><th>Bytes</th><th>IEC (binary)</th><th>Bytes</th></tr></thead>
+        <tbody>
+          <tr><td class="mono">kilo / kibi</td><td class="mono">1000<sup>1</sup></td><td class="mono">1,000</td><td class="mono">1024<sup>1</sup> (KiB)</td><td class="mono">1,024</td></tr>
+          <tr><td class="mono">mega / mebi</td><td class="mono">1000<sup>2</sup></td><td class="mono">1,000,000</td><td class="mono">1024<sup>2</sup> (MiB)</td><td class="mono">1,048,576</td></tr>
+          <tr><td class="mono">giga / gibi</td><td class="mono">1000<sup>3</sup></td><td class="mono">1,000,000,000</td><td class="mono">1024<sup>3</sup> (GiB)</td><td class="mono">1,073,741,824</td></tr>
+          <tr><td class="mono">tera / tebi</td><td class="mono">1000<sup>4</sup></td><td class="mono">1,000,000,000,000</td><td class="mono">1024<sup>4</sup> (TiB)</td><td class="mono">1,099,511,627,776</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="panel">
+      <label for="unit-bytes">Convert a size (in bytes)</label>
+      <input type="text" id="unit-bytes" value="1500000000">
+      <table style="margin-top:1rem;">
+        <tr><th style="width:170px;">Decimal (SI)</th><td class="mono" id="unit-si"></td></tr>
+        <tr><th>Binary (IEC)</th><td class="mono" id="unit-iec"></td></tr>
+      </table>
+    </div>
+
+    <h3>Typical sizes, to scale</h3>
+    <p class="lede">Bars use a logarithmic scale &mdash; otherwise a byte would be an invisible sliver next to a hard drive.</p>
+    <div class="panel" id="size-bars"></div>
+
+    <h3>Bandwidth: bits vs. bytes per second</h3>
+    <p class="lede">Network and link speeds are almost always quoted in <b>bits</b> per second; file-transfer speeds shown by your OS are in <b>bytes</b> per second &mdash; divide by 8 to go from one to the other.</p>
+    <div class="panel">
+      <div class="row">
+        <div>
+          <label for="bw-value">Value</label>
+          <input type="text" id="bw-value" value="1">
+        </div>
+        <div>
+          <label for="bw-unit">Unit</label>
+          <select id="bw-unit">
+            <option value="1">bit/s</option>
+            <option value="1e3">Kbit/s (Kbps)</option>
+            <option value="1e6" selected>Mbit/s (Mbps)</option>
+            <option value="1e9">Gbit/s (Gbps)</option>
+            <option value="8">byte/s (B/s)</option>
+            <option value="8e3">KB/s</option>
+            <option value="8e6">MB/s</option>
+            <option value="8e9">GB/s</option>
+          </select>
+        </div>
+      </div>
+      <table>
+        <tr><th style="width:170px;">In bits/second</th><td class="mono" id="bw-bits"></td></tr>
+        <tr><th>In bytes/second</th><td class="mono" id="bw-bytes"></td></tr>
+      </table>
+      <div class="scroll" style="max-height:220px;">
+        <table>
+          <thead><tr><th>Link / device</th><th>Typical speed</th><th>&asymp; Bytes/second</th></tr></thead>
+          <tbody>
+            <tr><td>USB 2.0</td><td class="mono">480 Mbps</td><td class="mono">60 MB/s</td></tr>
+            <tr><td>USB 3.0</td><td class="mono">5 Gbps</td><td class="mono">625 MB/s</td></tr>
+            <tr><td>Gigabit Ethernet</td><td class="mono">1 Gbps</td><td class="mono">125 MB/s</td></tr>
+            <tr><td>Wi-Fi 6 (theoretical)</td><td class="mono">9.6 Gbps</td><td class="mono">1.2 GB/s</td></tr>
+            <tr><td>SATA III (SSD/HDD)</td><td class="mono">6 Gbps</td><td class="mono">~550 MB/s</td></tr>
+            <tr><td>NVMe SSD (PCIe 4.0 x4)</td><td class="mono">~64 Gbps</td><td class="mono">~8 GB/s</td></tr>
+            <tr><td>DDR4-3200 (dual channel RAM)</td><td class="mono">&mdash;</td><td class="mono">~51 GB/s</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <h3>Frequency &amp; clock period</h3>
+    <p class="lede">Frequency and time are reciprocals: a 3&nbsp;GHz CPU completes one clock cycle roughly every third of a nanosecond.</p>
+    <div class="panel">
+      <div class="row">
+        <div>
+          <label for="freq-value">Frequency value</label>
+          <input type="text" id="freq-value" value="3">
+        </div>
+        <div>
+          <label for="freq-unit">Unit</label>
+          <select id="freq-unit">
+            <option value="1">Hz</option>
+            <option value="1e3">kHz</option>
+            <option value="1e6">MHz</option>
+            <option value="1e9" selected>GHz</option>
+          </select>
+        </div>
+      </div>
+      <table>
+        <tr><th style="width:170px;">Frequency</th><td class="mono" id="freq-hz"></td></tr>
+        <tr><th>Period (1 / f)</th><td class="mono" id="freq-period"></td></tr>
+      </table>
+      <div class="note">For reference: human hearing tops out around 20&nbsp;kHz, CD audio samples at 44.1&nbsp;kHz, 2.4/5&nbsp;GHz is common Wi-Fi, and desktop CPUs typically run 2&ndash;5&nbsp;GHz.</div>
+    </div>
+  </section>
+
+  <!-- ===================== INTEGERS ===================== -->
+  <section id="tab-int">
+    <h2>Integers &amp; two's complement</h2>
+    <p class="lede">Pick a width and signedness, type a value, and watch the bit pattern and base conversions update. Negative numbers use two's complement: invert every bit of the positive value, then add 1.</p>
+
+    <div class="panel">
+      <div class="btnset" id="int-width">
+        <button data-w="8">8-bit</button>
+        <button data-w="16">16-bit</button>
+        <button data-w="32" class="active">32-bit</button>
+        <button data-w="64">64-bit</button>
+      </div>
+      <div class="btnset" id="int-sign">
+        <button data-s="signed" class="active">signed</button>
+        <button data-s="unsigned">unsigned</button>
+      </div>
+
+      <div class="row">
+        <div>
+          <label for="int-num">Decimal value</label>
+          <input type="text" id="int-num" value="10">
+        </div>
+        <div>
+          <label for="int-range">Slide</label>
+          <input type="range" id="int-range" min="-128" max="127" step="1" value="10">
+        </div>
+      </div>
+      <div class="err" id="int-err"></div>
+
+      <div class="btnset">
+        <button id="int-minus">value &minus; 1</button>
+        <button id="int-plus">value + 1</button>
+        <button id="int-set-max">jump to max</button>
+        <button id="int-set-min">jump to min</button>
+      </div>
+      <div class="note" id="int-wrap-msg" style="display:none;"></div>
+
+      <div class="bitrow" id="int-bits"></div>
+      <div class="legend">
+        <span><span class="swatch" style="background:var(--coral-bg)"></span>sign bit (signed only)</span>
+        <span><span class="swatch" style="background:var(--blue-bg)"></span>value bits</span>
+      </div>
+
+      <table>
+        <tr><th style="width:110px;">Binary</th><td class="mono" id="int-bin"></td></tr>
+        <tr><th>Octal</th><td class="mono" id="int-oct"></td></tr>
+        <tr><th>Hexadecimal</th><td class="mono" id="int-hex"></td></tr>
+        <tr><th>Decimal</th><td class="mono" id="int-dec"></td></tr>
+      </table>
+    </div>
+
+    <h3>Range limits by width</h3>
+    <div class="panel" style="padding:0;">
+      <table>
+        <thead><tr><th>Type</th><th>Bits</th><th>Signed range</th><th>Unsigned range</th></tr></thead>
+        <tbody>
+          <tr><td class="mono">int8_t / uint8_t</td><td class="mono">8</td><td class="mono">-128 .. 127</td><td class="mono">0 .. 255</td></tr>
+          <tr><td class="mono">int16_t / uint16_t</td><td class="mono">16</td><td class="mono">-32,768 .. 32,767</td><td class="mono">0 .. 65,535</td></tr>
+          <tr><td class="mono">int32_t / uint32_t</td><td class="mono">32</td><td class="mono">-2,147,483,648 .. 2,147,483,647</td><td class="mono">0 .. 4,294,967,295</td></tr>
+          <tr><td class="mono">int64_t / uint64_t</td><td class="mono">64</td><td class="mono">-9,223,372,036,854,775,808 .. 9,223,372,036,854,775,807</td><td class="mono">0 .. 18,446,744,073,709,551,615</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="note">In C++, <code>int</code> is usually 32-bit but this is only guaranteed to be at least 16-bit by the standard &mdash; use <code>&lt;cstdint&gt;</code> types like <code>int32_t</code> when the exact width matters.</div>
+  </section>
+
+  <!-- ===================== FLOAT / DOUBLE ===================== -->
+  <section id="tab-float">
+    <h2>IEEE 754 floating point</h2>
+    <p class="lede">Every float or double is <code>sign &times; 1.mantissa &times; 2<sup>exponent&nbsp;&minus;&nbsp;bias</sup></code>. Type any decimal value, including one that can't be stored exactly, like 0.1.</p>
+
+    <div class="panel">
+      <div class="btnset" id="float-width">
+        <button data-w="32" class="active">float (32-bit)</button>
+        <button data-w="64">double (64-bit)</button>
+      </div>
+
+      <label for="float-num">Decimal value</label>
+      <input type="text" id="float-num" value="10.5" style="margin-bottom:1rem;">
+      <div class="err" id="float-err"></div>
+
+      <div class="btnset">
+        <button data-preset="inf">+Infinity</button>
+        <button data-preset="-inf">&minus;Infinity</button>
+        <button data-preset="nan">NaN</button>
+        <button data-preset="overflow">Overflow demo</button>
+        <button data-preset="underflow">Underflow demo</button>
+      </div>
+
+      <div class="bitrow" id="float-bits"></div>
+      <div class="legend">
+        <span><span class="swatch" style="background:var(--coral-bg)"></span>sign</span>
+        <span><span class="swatch" style="background:var(--amber-bg)"></span>exponent</span>
+        <span><span class="swatch" style="background:var(--teal-bg)"></span>mantissa (fraction)</span>
+      </div>
+
+      <table>
+        <tr><th style="width:170px;">Sign</th><td class="mono" id="f-sign"></td></tr>
+        <tr><th>Exponent field</th><td class="mono" id="f-exp"></td></tr>
+        <tr><th>Exponent &minus; bias</th><td class="mono" id="f-expval"></td></tr>
+        <tr><th>Mantissa (fraction)</th><td class="mono" id="f-mant"></td></tr>
+        <tr><th>Reconstructed value</th><td class="mono" id="f-value"></td></tr>
+        <tr><th>Hex bytes</th><td class="mono" id="f-hex"></td></tr>
+      </table>
+      <div class="note" id="f-note" style="display:none;"></div>
+    </div>
+
+    <h3>Format comparison</h3>
+    <div class="panel" style="padding:0;">
+      <table>
+        <thead><tr><th>Type</th><th>Total bits</th><th>Sign</th><th>Exponent</th><th>Mantissa</th><th>Exponent bias</th><th>~decimal digits</th></tr></thead>
+        <tbody>
+          <tr><td class="mono">float</td><td class="mono">32</td><td class="mono">1</td><td class="mono">8</td><td class="mono">23</td><td class="mono">127</td><td class="mono">~7</td></tr>
+          <tr><td class="mono">double</td><td class="mono">64</td><td class="mono">1</td><td class="mono">11</td><td class="mono">52</td><td class="mono">1023</td><td class="mono">~15&ndash;17</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="note">Use the preset buttons above (Infinity, NaN, overflow demo, underflow demo) to see these special bit patterns directly: all-ones exponent + zero mantissa is &plusmn;infinity (overflow, or division by zero); all-ones exponent + nonzero mantissa is NaN; all-zero exponent + nonzero mantissa is a subnormal number (gradual underflow); all-zero exponent + zero mantissa is exact zero.</div>
+  </section>
+
+  <!-- ===================== ASCII ===================== -->
+  <section id="tab-ascii">
+    <h2>ASCII table</h2>
+    <p class="lede">A <code>char</code> in C++ is just a small integer &mdash; here's what each of the 128 standard ASCII codes decodes to, in every base.</p>
+    <div class="row">
+      <div>
+        <label for="ascii-filter">Filter (type a character, code, or search text)</label>
+        <input type="text" id="ascii-filter" placeholder="e.g. A or 65 or 0x41">
+      </div>
+    </div>
+    <div class="scroll">
+      <table>
+        <thead><tr><th>Dec</th><th>Hex</th><th>Oct</th><th>Bin</th><th>Char</th></tr></thead>
+        <tbody id="ascii-body"></tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- ===================== C++ EXAMPLE ===================== -->
+  <section id="tab-cpp">
+    <h2>Checking limits in C++</h2>
+    <p class="lede"><code>&lt;limits&gt;</code> gives you the min, max, and precision of any numeric type at compile time &mdash; no need to hardcode the table above.</p>
+    <pre id="cpp-code"></pre>
+    <div class="note">Compile with <code>g++ -std=c++17 limits_demo.cpp -o limits_demo &amp;&amp; ./limits_demo</code></div>
+  </section>
+
+</div>
+
+<footer>Single self-contained HTML file &mdash; no external dependencies, safe to open directly or embed in a Jupyter notebook with <code>IFrame</code>.</footer>
+
+<script>
+// ---------- tab navigation ----------
+document.querySelectorAll('nav button').forEach(btn=>{
+  btn.addEventListener('click', ()=>{
+    document.querySelectorAll('nav button').forEach(b=>b.classList.remove('active'));
+    btn.classList.add('active');
+    document.querySelectorAll('section').forEach(s=>s.classList.remove('active'));
+    document.getElementById('tab-'+btn.dataset.tab).classList.add('active');
+  });
+});
+
+// ---------- INTEGERS ----------
+let intWidth = 32, intSigned = true;
+const intWidthBtns = document.querySelectorAll('#int-width button');
+const intSignBtns = document.querySelectorAll('#int-sign button');
+const intNum = document.getElementById('int-num');
+const intRange = document.getElementById('int-range');
+const intErr = document.getElementById('int-err');
+const intBits = document.getElementById('int-bits');
+
+function bitBox(text, cls, small){
+  const d = document.createElement('div');
+  d.className = 'bit ' + cls + (small ? ' small' : '');
+  d.textContent = text;
+  return d;
+}
+
+function limitsFor(width, signed){
+  const max = signed ? (2n ** BigInt(width-1)) - 1n : (2n ** BigInt(width)) - 1n;
+  const min = signed ? -(2n ** BigInt(width-1)) : 0n;
+  return {min, max};
+}
+
+function renderInt(){
+  const {min, max} = limitsFor(intWidth, intSigned);
+  intRange.min = min.toString();
+  intRange.max = max.toString();
+
+  let raw = intNum.value.trim();
+  let v;
+  try {
+    v = BigInt(raw);
+  } catch(e){
+    intErr.style.display = 'block';
+    intErr.textContent = 'Enter a whole number (base 10, or 0x.. / 0o.. / 0b..)';
+    return;
+  }
+  if (v < min || v > max){
+    v = v < min ? min : max;
+    intNum.value = v.toString();
+  }
+  intErr.style.display = 'none';
+  intRange.value = v.toString();
+
+  // two's complement bit pattern
+  let uval = v < 0n ? (2n ** BigInt(intWidth)) + v : v;
+  let bin = uval.toString(2).padStart(intWidth, '0');
+
+  intBits.innerHTML = '';
+  const small = intWidth > 32;
+  for (let i=0;i<intWidth;i++){
+    const isSign = intSigned && i===0;
+    intBits.appendChild(bitBox(bin[i], isSign ? 'sign' : 'val', small));
+  }
+
+  document.getElementById('int-bin').textContent = bin.replace(/(.{4})/g, '$1 ').trim();
+  document.getElementById('int-oct').textContent = '0' + uval.toString(8);
+  document.getElementById('int-hex').textContent = '0x' + uval.toString(16).toUpperCase().padStart(Math.ceil(intWidth/4), '0');
+  document.getElementById('int-dec').textContent = v.toString();
+}
+
+const intWrapMsg = document.getElementById('int-wrap-msg');
+
+intWidthBtns.forEach(b=>b.addEventListener('click', ()=>{
+  intWidthBtns.forEach(x=>x.classList.remove('active'));
+  b.classList.add('active');
+  intWidth = parseInt(b.dataset.w, 10);
+  intWrapMsg.style.display = 'none';
+  renderInt();
+}));
+intSignBtns.forEach(b=>b.addEventListener('click', ()=>{
+  intSignBtns.forEach(x=>x.classList.remove('active'));
+  b.classList.add('active');
+  intSigned = b.dataset.s === 'signed';
+  intWrapMsg.style.display = 'none';
+  renderInt();
+}));
+intNum.addEventListener('input', ()=>{ intWrapMsg.style.display = 'none'; renderInt(); });
+intRange.addEventListener('input', ()=>{ intWrapMsg.style.display = 'none'; intNum.value = intRange.value; renderInt(); });
+
+function stepInt(delta){
+  const {min, max} = limitsFor(intWidth, intSigned);
+  let v;
+  try { v = BigInt(intNum.value.trim()); } catch(e){ v = 0n; }
+  let next = v + delta;
+
+  const ubNote = intSigned
+    ? ' (Signed overflow is technically undefined behavior in C++ \u2014 this is what happens in practice on virtually all real hardware.)'
+    : ' (Unsigned wraparound is well-defined by the C++ standard: arithmetic is done modulo 2^N.)';
+  if (next > max){
+    const wrapped = min + (next - max - 1n);
+    intWrapMsg.style.display = 'block';
+    intWrapMsg.textContent = 'Overflow: ' + v + ' + 1 = ' + next + ', past the max of ' + max + '. The stored bits wrap around to ' + wrapped + '.' + ubNote;
+    next = wrapped;
+  } else if (next < min){
+    const wrapped = max - (min - next - 1n);
+    intWrapMsg.style.display = 'block';
+    intWrapMsg.textContent = 'Underflow: ' + v + ' - 1 = ' + next + ', below the min of ' + min + '. The stored bits wrap around to ' + wrapped + '.' + ubNote;
+    next = wrapped;
+  } else {
+    intWrapMsg.style.display = 'none';
+  }
+  intNum.value = next.toString();
+  renderInt();
+}
+document.getElementById('int-plus').addEventListener('click', ()=>stepInt(1n));
+document.getElementById('int-minus').addEventListener('click', ()=>stepInt(-1n));
+document.getElementById('int-set-max').addEventListener('click', ()=>{
+  intWrapMsg.style.display = 'none';
+  intNum.value = limitsFor(intWidth, intSigned).max.toString();
+  renderInt();
+});
+document.getElementById('int-set-min').addEventListener('click', ()=>{
+  intWrapMsg.style.display = 'none';
+  intNum.value = limitsFor(intWidth, intSigned).min.toString();
+  renderInt();
+});
+
+// ---------- FLOAT / DOUBLE ----------
+let floatWidth = 32;
+const floatWidthBtns = document.querySelectorAll('#float-width button');
+const floatNum = document.getElementById('float-num');
+const floatErr = document.getElementById('float-err');
+const floatBits = document.getElementById('float-bits');
+
+function parseSpecialFloat(raw){
+  const t = raw.trim().toLowerCase();
+  if (t === 'nan') return NaN;
+  if (t === 'inf' || t === '+inf' || t === 'infinity' || t === '+infinity') return Infinity;
+  if (t === '-inf' || t === '-infinity') return -Infinity;
+  return parseFloat(raw);
+}
+
+function renderFloat(){
+  const raw = floatNum.value;
+  let v = parseSpecialFloat(raw);
+  if (isNaN(v) && raw.trim().toLowerCase() !== 'nan'){
+    floatErr.style.display = 'block';
+    floatErr.textContent = 'Enter a decimal number, or "inf", "-inf", "nan"';
+    return;
+  }
+  floatErr.style.display = 'none';
+
+  const bytes = floatWidth === 32 ? 4 : 8;
+  const buf = new ArrayBuffer(bytes);
+  const view = new DataView(buf);
+  if (bytes === 4) view.setFloat32(0, v, false); else view.setFloat64(0, v, false);
+
+  let bits = '';
+  for (let i=0;i<bytes;i++) bits += view.getUint8(i).toString(2).padStart(8,'0');
+
+  const expBits = bytes === 4 ? 8 : 11;
+  const mantBits = bytes === 4 ? 23 : 52;
+  const bias = bytes === 4 ? 127 : 1023;
+
+  const sign = bits[0];
+  const exp = bits.slice(1, 1+expBits);
+  const mant = bits.slice(1+expBits);
+  const expInt = parseInt(exp, 2);
+  const expVal = expInt - bias;
+
+  floatBits.innerHTML = '';
+  const small = bytes === 8;
+  for (let i=0;i<bits.length;i++){
+    const cls = i===0 ? 'sign' : (i < 1+expBits ? 'exp' : 'mant');
+    floatBits.appendChild(bitBox(bits[i], cls, small));
+  }
+
+  const actual = bytes === 4 ? view.getFloat32(0,false) : view.getFloat64(0,false);
+  document.getElementById('f-sign').textContent = sign + (sign==='1' ? '  (negative)' : '  (positive)');
+  document.getElementById('f-exp').textContent = exp + '  =  ' + expInt + ' (binary to decimal)';
+  document.getElementById('f-expval').textContent = expInt + ' - ' + bias + ' = ' + expVal;
+  document.getElementById('f-mant').textContent = mant.match(/.{1,4}/g).join(' ');
+  document.getElementById('f-value').textContent = String(actual);
+  let hex = '';
+  for (let i=0;i<bytes;i++) hex += view.getUint8(i).toString(16).padStart(2,'0');
+  document.getElementById('f-hex').textContent = '0x' + hex;
+
+  const note = document.getElementById('f-note');
+  const expAllOnes = exp.split('').every(c => c === '1');
+  const expAllZeros = exp.split('').every(c => c === '0');
+  const mantAllZeros = mant.split('').every(c => c === '0');
+
+  if (expAllOnes && mantAllZeros){
+    note.style.display = 'block';
+    note.textContent = 'All-ones exponent with a zero mantissa is how ' + (sign==='1' ? 'negative' : 'positive') + ' infinity is encoded \u2014 the result of overflow (a value too large in magnitude to fit) or of dividing a finite number by zero.';
+  } else if (expAllOnes){
+    note.style.display = 'block';
+    note.textContent = 'All-ones exponent with a nonzero mantissa is NaN ("not a number") \u2014 the result of an undefined operation like 0/0 or sqrt(-1).';
+  } else if (expAllZeros && !mantAllZeros){
+    note.style.display = 'block';
+    note.textContent = 'All-zero exponent with a nonzero mantissa is a subnormal (denormal) number \u2014 there\u2019s no implicit leading 1, which lets the format represent values closer to zero than the smallest normal number, at the cost of precision. This is the gradual "underflow" zone before hitting exact zero.';
+  } else if (expAllZeros && mantAllZeros){
+    note.style.display = 'block';
+    note.textContent = 'All-zero exponent and mantissa represents exact zero (with the sign bit distinguishing +0 from -0). A magnitude too small to represent even as a subnormal underflows to this.';
+  } else if (actual !== v && !isNaN(v)){
+    note.style.display = 'block';
+    note.textContent = 'The value you typed (' + v + ') is not exactly representable in this format \u2014 it was rounded to the nearest representable value shown above. This is the source of classic floating-point surprises like 0.1 + 0.2 \u2260 0.3.';
+  } else {
+    note.style.display = 'none';
+  }
+}
+
+floatWidthBtns.forEach(b=>b.addEventListener('click', ()=>{
+  floatWidthBtns.forEach(x=>x.classList.remove('active'));
+  b.classList.add('active');
+  floatWidth = parseInt(b.dataset.w, 10);
+  renderFloat();
+}));
+floatNum.addEventListener('input', renderFloat);
+
+document.querySelectorAll('#tab-float .btnset button[data-preset]').forEach(b=>{
+  b.addEventListener('click', ()=>{
+    const p = b.dataset.preset;
+    if (p === 'inf') floatNum.value = 'Infinity';
+    else if (p === '-inf') floatNum.value = '-Infinity';
+    else if (p === 'nan') floatNum.value = 'NaN';
+    else if (p === 'overflow') floatNum.value = floatWidth === 32 ? '5e38' : '2e308';
+    else if (p === 'underflow') floatNum.value = floatWidth === 32 ? '1e-46' : '1e-324';
+    renderFloat();
+  });
+});
+
+// ---------- ASCII ----------
+const asciiBody = document.getElementById('ascii-body');
+const asciiFilter = document.getElementById('ascii-filter');
+const asciiNames = {0:'NUL',1:'SOH',2:'STX',3:'ETX',4:'EOT',5:'ENQ',6:'ACK',7:'BEL',8:'BS',9:'TAB',10:'LF',11:'VT',12:'FF',13:'CR',14:'SO',15:'SI',16:'DLE',17:'DC1',18:'DC2',19:'DC3',20:'DC4',21:'NAK',22:'SYN',23:'ETB',24:'CAN',25:'EM',26:'SUB',27:'ESC',28:'FS',29:'GS',30:'RS',31:'US',32:'SPACE',127:'DEL'};
+
+function buildAscii(){
+  asciiBody.innerHTML = '';
+  for (let i=0;i<128;i++){
+    const tr = document.createElement('tr');
+    const printable = i>32 && i<127;
+    const charDisp = printable ? String.fromCharCode(i) : (asciiNames[i] || '');
+    tr.innerHTML =
+      '<td class="mono">'+i+'</td>' +
+      '<td class="mono">0x'+i.toString(16).toUpperCase().padStart(2,'0')+'</td>' +
+      '<td class="mono">0'+i.toString(8)+'</td>' +
+      '<td class="mono">'+i.toString(2).padStart(8,'0')+'</td>' +
+      '<td class="mono">'+charDisp+'</td>';
+    tr.dataset.search = (i+' 0x'+i.toString(16)+' '+charDisp).toLowerCase();
+    asciiBody.appendChild(tr);
+  }
+}
+buildAscii();
+asciiFilter.addEventListener('input', ()=>{
+  const q = asciiFilter.value.trim().toLowerCase();
+  document.querySelectorAll('#ascii-body tr').forEach(tr=>{
+    tr.style.display = (!q || tr.dataset.search.includes(q)) ? '' : 'none';
+  });
+});
+
+// ---------- C++ EXAMPLE ----------
+document.getElementById('cpp-code').textContent =
+`#include <iostream>
+#include <limits>
+#include <cstdint>
+#include <cmath>
+
+template <typename T>
+void show(const char* name) {
+    std::cout << name
+              << "  size=" << sizeof(T) << " bytes"
+              << "  min=" << +std::numeric_limits<T>::min()
+              << "  max=" << +std::numeric_limits<T>::max()
+              << "\\n";
+}
+
+int main() {
+    show<int8_t>("int8_t ");
+    show<uint8_t>("uint8_t");
+    show<int16_t>("int16_t");
+    show<int32_t>("int32_t");
+    show<int64_t>("int64_t");
+
+    std::cout << "\\nfloat   digits10=" << std::numeric_limits<float>::digits10
+              << "  max=" << std::numeric_limits<float>::max()
+              << "  epsilon=" << std::numeric_limits<float>::epsilon() << "\\n";
+
+    std::cout << "double  digits10=" << std::numeric_limits<double>::digits10
+              << "  max=" << std::numeric_limits<double>::max()
+              << "  epsilon=" << std::numeric_limits<double>::epsilon() << "\\n";
+
+    // classic float rounding surprise
+    float a = 0.1f + 0.2f;
+    std::cout << "\\n0.1f + 0.2f = " << a
+              << "  (exactly 0.3f? " << (a == 0.3f ? "yes" : "no") << ")\\n";
+
+    // unsigned wraparound -- well-defined, wraps modulo 2^N
+    uint8_t u = std::numeric_limits<uint8_t>::max(); // 255
+    std::cout << "\\nuint8_t max + 1 = " << +static_cast<uint8_t>(u + 1) << "\\n";
+
+    // signed overflow -- undefined behavior (shown here for illustration only)
+    int8_t s = std::numeric_limits<int8_t>::max(); // 127
+    std::cout << "int8_t max + 1 = " << +static_cast<int8_t>(s + 1)
+              << "  (UB in real code -- do not rely on this)\\n";
+
+    // floating point overflow -> infinity, and 0/0 -> NaN
+    float big = std::numeric_limits<float>::max();
+    float overflowed = big * 10.0f;
+    float nanValue = 0.0f / 0.0f;
+    std::cout << "\\nfloat max * 10          = " << overflowed
+              << "  (isinf: " << std::isinf(overflowed) << ")\\n";
+    std::cout << "0.0f / 0.0f              = " << nanValue
+              << "  (isnan: " << std::isnan(nanValue) << ")\\n";
+    std::cout << "numeric_limits infinity  = " << std::numeric_limits<float>::infinity() << "\\n";
+    std::cout << "numeric_limits quiet_NaN = " << std::numeric_limits<float>::quiet_NaN() << "\\n";
+
+    // floating point underflow -> subnormal, then zero
+    float smallest_normal = std::numeric_limits<float>::min();       // smallest *normal* value
+    float underflowed     = smallest_normal / 1e8f;                  // subnormal or flushes to 0
+    std::cout << "\\nsmallest normal float / 1e8 = " << underflowed
+              << "  (is it exactly 0? " << (underflowed == 0.0f ? "yes" : "no") << ")\\n";
+
+    return 0;
+}
+`;
+
+// ---------- UNITS TAB ----------
+function buildByteGrid(){
+  const container = document.getElementById('byte-grid');
+  const values = [128,64,32,16,8,4,2,1];
+  values.forEach((val,i)=>{
+    const wrap = document.createElement('div');
+    wrap.style.display = 'flex';
+    wrap.style.flexDirection = 'column';
+    wrap.style.alignItems = 'center';
+    wrap.style.gap = '3px';
+    const box = document.createElement('div');
+    box.className = 'bit val';
+    box.style.width = '38px';
+    box.textContent = 'b' + (7-i);
+    const lbl = document.createElement('span');
+    lbl.style.fontSize = '11px';
+    lbl.style.color = 'var(--ink-faint)';
+    lbl.textContent = val;
+    wrap.appendChild(box);
+    wrap.appendChild(lbl);
+    container.appendChild(wrap);
+  });
+}
+
+function renderUnitBytes(){
+  let n = parseFloat(document.getElementById('unit-bytes').value);
+  if (isNaN(n) || n < 0) n = 0;
+  const fmt = x => x.toLocaleString(undefined, {maximumFractionDigits:3});
+  document.getElementById('unit-si').textContent =
+    fmt(n) + ' B  =  ' + fmt(n/1e3) + ' kB  =  ' + fmt(n/1e6) + ' MB  =  ' + fmt(n/1e9) + ' GB  =  ' + fmt(n/1e12) + ' TB';
+  document.getElementById('unit-iec').textContent =
+    fmt(n) + ' B  =  ' + fmt(n/1024) + ' KiB  =  ' + fmt(n/1024**2) + ' MiB  =  ' + fmt(n/1024**3) + ' GiB  =  ' + fmt(n/1024**4) + ' TiB';
+}
+document.getElementById('unit-bytes').addEventListener('input', renderUnitBytes);
+
+function humanBytes(b){
+  const units = ['B','KiB','MiB','GiB','TiB'];
+  let i=0, v=b;
+  while (v >= 1024 && i < units.length-1){ v/=1024; i++; }
+  return (v>=100? v.toFixed(0): v>=10? v.toFixed(1): v.toFixed(2)) + ' ' + units[i];
+}
+
+const sizeData = [
+  {label:'char (1 B)', bytes:1},
+  {label:'int32_t (4 B)', bytes:4},
+  {label:'double (8 B)', bytes:8},
+  {label:'CPU cache line (64 B)', bytes:64},
+  {label:'memory page (4 KiB)', bytes:4*1024},
+  {label:'L1 cache (~32 KiB)', bytes:32*1024},
+  {label:'L2 cache (~1 MiB)', bytes:1024*1024},
+  {label:'L3 cache (~16 MiB)', bytes:16*1024*1024},
+  {label:'typical RAM (16 GiB)', bytes:16*1024**3},
+  {label:'SSD (1 TB)', bytes:1e12},
+  {label:'HDD (8 TB)', bytes:8e12},
+];
+
+function buildSizeBars(){
+  const container = document.getElementById('size-bars');
+  container.innerHTML = '';
+  const logs = sizeData.map(d => Math.log10(d.bytes));
+  const minLog = Math.min(...logs), maxLog = Math.max(...logs);
+  sizeData.forEach(d=>{
+    const row = document.createElement('div');
+    row.style.display = 'flex';
+    row.style.alignItems = 'center';
+    row.style.gap = '10px';
+    row.style.margin = '7px 0';
+
+    const label = document.createElement('div');
+    label.style.width = '180px';
+    label.style.flexShrink = '0';
+    label.style.fontSize = '13px';
+    label.style.color = 'var(--ink-soft)';
+    label.textContent = d.label;
+
+    const barOuter = document.createElement('div');
+    barOuter.style.flex = '1';
+    barOuter.style.background = '#F0EFE9';
+    barOuter.style.borderRadius = '4px';
+    barOuter.style.height = '15px';
+    barOuter.style.overflow = 'hidden';
+    const barInner = document.createElement('div');
+    const pct = 3 + 97 * ((Math.log10(d.bytes) - minLog) / (maxLog - minLog));
+    barInner.style.width = pct + '%';
+    barInner.style.height = '100%';
+    barInner.style.background = 'var(--teal)';
+    barOuter.appendChild(barInner);
+
+    const val = document.createElement('div');
+    val.style.width = '85px';
+    val.style.textAlign = 'right';
+    val.style.fontFamily = 'var(--mono)';
+    val.style.fontSize = '12.5px';
+    val.style.color = 'var(--ink-soft)';
+    val.textContent = humanBytes(d.bytes);
+
+    row.appendChild(label);
+    row.appendChild(barOuter);
+    row.appendChild(val);
+    container.appendChild(row);
+  });
+}
+
+function formatSI(x){
+  const units = ['','K','M','G','T'];
+  let i=0, v=x;
+  while (v >= 1000 && i < units.length-1){ v/=1000; i++; }
+  return (v>=100? v.toFixed(1): v>=10? v.toFixed(2): v.toFixed(3)) + ' ' + units[i];
+}
+
+function renderBandwidth(){
+  const val = parseFloat(document.getElementById('bw-value').value);
+  const mult = parseFloat(document.getElementById('bw-unit').value);
+  if (isNaN(val)) return;
+  const bits = val * mult;
+  const bytes = bits / 8;
+  document.getElementById('bw-bits').textContent = formatSI(bits) + 'bit/s';
+  document.getElementById('bw-bytes').textContent = formatSI(bytes) + 'B/s';
+}
+document.getElementById('bw-value').addEventListener('input', renderBandwidth);
+document.getElementById('bw-unit').addEventListener('change', renderBandwidth);
+
+function formatTime(s){
+  if (s >= 1) return s.toFixed(3) + ' s';
+  if (s >= 1e-3) return (s*1e3).toFixed(3) + ' ms';
+  if (s >= 1e-6) return (s*1e6).toFixed(3) + ' \u00b5s';
+  if (s >= 1e-9) return (s*1e9).toFixed(3) + ' ns';
+  return (s*1e12).toFixed(3) + ' ps';
+}
+
+function renderFreq(){
+  const val = parseFloat(document.getElementById('freq-value').value);
+  const mult = parseFloat(document.getElementById('freq-unit').value);
+  if (isNaN(val) || val <= 0) return;
+  const hz = val * mult;
+  document.getElementById('freq-hz').textContent = formatSI(hz) + 'Hz';
+  document.getElementById('freq-period').textContent = formatTime(1/hz);
+}
+document.getElementById('freq-value').addEventListener('input', renderFreq);
+document.getElementById('freq-unit').addEventListener('change', renderFreq);
+
+// ---------- init ----------
+buildByteGrid();
+renderUnitBytes();
+buildSizeBars();
+renderBandwidth();
+renderFreq();
+renderInt();
+renderFloat();
+</script>
+
+</body>
+</html>
