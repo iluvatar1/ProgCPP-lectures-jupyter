@@ -1,0 +1,748 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Interactive Numerical Integration & Error Analysis</title>
+  <style>
+    :root {
+      --bg: #0f172a;
+      --card-bg: #1e293b;
+      --border: #334155;
+      --text: #f8fafc;
+      --text-muted: #94a3b8;
+      --primary: #38bdf8;
+      --trap-color: rgba(56, 189, 248, 0.35);
+      --simp-color: rgba(168, 85, 247, 0.4);
+      --rich-color: #f59e0b;
+      --error-color: #ef4444;
+      --success-color: #22c55e;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      background-color: var(--bg);
+      color: var(--text);
+      padding: 14px;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+    .header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 10px;
+    }
+    .header h1 { font-size: 1.25rem; font-weight: 700; color: var(--primary); }
+    .header p { font-size: 0.82rem; color: var(--text-muted); }
+    
+    .dashboard {
+      display: grid;
+      grid-template-columns: 310px 1fr;
+      gap: 14px;
+    }
+    @media (max-width: 900px) {
+      .dashboard { grid-template-columns: 1fr; }
+    }
+    
+    .panel {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 14px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+    
+    .control-group {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+    label {
+      font-size: 0.78rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--text-muted);
+    }
+    select, input[type="range"] {
+      width: 100%;
+      background: #0f172a;
+      border: 1px solid var(--border);
+      color: var(--text);
+      padding: 6px 8px;
+      border-radius: 4px;
+      font-size: 0.88rem;
+      outline: none;
+    }
+    .slider-container {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .slider-val {
+      min-width: 50px;
+      font-weight: 700;
+      color: var(--primary);
+      text-align: right;
+      font-family: monospace;
+      font-size: 0.95rem;
+    }
+
+    .btn-group {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 6px;
+    }
+    .btn {
+      background: #0f172a;
+      border: 1px solid var(--border);
+      color: var(--text);
+      padding: 6px;
+      font-size: 0.78rem;
+      font-weight: 600;
+      border-radius: 4px;
+      cursor: pointer;
+      text-align: center;
+      transition: all 0.2s;
+    }
+    .btn.active {
+      background: var(--primary);
+      color: #0f172a;
+      border-color: var(--primary);
+    }
+    
+    .metrics-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 8px;
+      margin-top: 4px;
+    }
+    .metric-card {
+      background: #0f172a;
+      padding: 8px 10px;
+      border-radius: 6px;
+      border-left: 3px solid var(--primary);
+    }
+    .metric-title { font-size: 0.7rem; color: var(--text-muted); text-transform: uppercase; }
+    .metric-val { font-family: monospace; font-size: 0.92rem; font-weight: bold; margin-top: 2px; }
+    
+    .canvas-container {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+    .canvas-box {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 10px;
+      position: relative;
+    }
+    .canvas-title {
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: var(--text-muted);
+      margin-bottom: 6px;
+      display: flex;
+      justify-content: space-between;
+    }
+    canvas {
+      width: 100%;
+      height: 250px;
+      display: block;
+      background: #0b1120;
+      border-radius: 4px;
+    }
+    .legend {
+      display: flex;
+      gap: 14px;
+      font-size: 0.72rem;
+      margin-top: 6px;
+      flex-wrap: wrap;
+    }
+    .legend-item { display: flex; align-items: center; gap: 5px; }
+    .legend-dot { width: 10px; height: 10px; border-radius: 2px; }
+    
+    .warning-box {
+      font-size: 0.76rem;
+      padding: 8px;
+      border-radius: 4px;
+      background: rgba(239, 68, 68, 0.1);
+      border: 1px solid rgba(239, 68, 68, 0.3);
+      color: #fca5a5;
+      display: none;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="header">
+    <div>
+      <h1>Numerical Integration & Asymptotic Error Dynamics</h1>
+      <p>Trapezoid, Simpson 1/3, Richardson Extrapolation, and Finite-Precision Catastrophe</p>
+    </div>
+  </div>
+
+  <div class="dashboard">
+    <!-- Controls Sidebar -->
+    <div class="panel">
+      <div class="control-group">
+        <label for="funcSelect">Test Function f(x)</label>
+        <select id="funcSelect">
+          <option value="sin">f(x) = sin(x) on [0, π] (Exact = 2.0)</option>
+          <option value="exp">f(x) = exp(x) on [0, 1] (Exact = e - 1)</option>
+          <option value="poly">f(x) = x⁴ - 2x + 1 on [0, 2] (Exact = 5.4)</option>
+          <option value="runge">f(x) = 1/(1 + 25x²) on [-1, 1] (Runge function)</option>
+        </select>
+      </div>
+
+      <div class="control-group">
+        <label>Method Visualized on Function Plot</label>
+        <div class="btn-group">
+          <button class="btn active" id="btnTrap" onclick="setMethod('trap')">Trapezoid (O(h²))</button>
+          <button class="btn" id="btnSimp" onclick="setMethod('simp')">Simpson (O(h⁴))</button>
+        </div>
+      </div>
+
+      <div class="control-group">
+        <label>Arithmetic Precision</label>
+        <div class="btn-group">
+          <button class="btn active" id="btnF64" onclick="setPrecision('f64')">Float64 (Double)</button>
+          <button class="btn" id="btnF32" onclick="setPrecision('f32')">Float32 (Single)</button>
+        </div>
+      </div>
+
+      <div class="control-group">
+        <label for="nSlider">Number of Bins (N)</label>
+        <div class="slider-container">
+          <input type="range" id="nSlider" min="2" max="64" step="2" value="4">
+          <span class="slider-val" id="nVal">4</span>
+        </div>
+        <p style="font-size:0.7rem; color:var(--text-muted); margin-top:2px;">
+          Note: Simpson requires even N. Range limited to 64 for visual panels; log-log plot scans up to N = 2²⁰.
+        </p>
+      </div>
+
+      <div id="roundoffAlert" class="warning-box">
+        <strong>⚠️ Roundoff Error Regime:</strong> Bin width $h$ is so small that $\epsilon_{\text{mach}}$ accumulation overwhelms discretization improvements!
+      </div>
+
+      <!-- Live Readouts -->
+      <div class="metrics-grid">
+        <div class="metric-card" style="border-color: #38bdf8;">
+          <div class="metric-title">Trapezoidal Estimate & Error</div>
+          <div class="metric-val" id="trapReadout">--</div>
+        </div>
+        <div class="metric-card" style="border-color: #a855f7;">
+          <div class="metric-title">Simpson 1/3 Estimate & Error</div>
+          <div class="metric-val" id="simpReadout">--</div>
+        </div>
+        <div class="metric-card" style="border-color: #f59e0b;">
+          <div class="metric-title">Richardson Extrapolation (from Trap)</div>
+          <div class="metric-val" id="richReadout">--</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Plots Column -->
+    <div class="canvas-container">
+      <!-- Plot 1: Geometry -->
+      <div class="canvas-box">
+        <div class="canvas-title">
+          <span>Geometric Discretization (Intervals & Panels)</span>
+          <span id="geometryStatus" style="font-family: monospace;">h = --</span>
+        </div>
+        <canvas id="geomCanvas"></canvas>
+        <div class="legend">
+          <div class="legend-item"><div class="legend-dot" style="background:#38bdf8;"></div> f(x) exact curve</div>
+          <div class="legend-item"><div class="legend-dot" style="background:var(--trap-color); border:1px solid #38bdf8;"></div> Numerical panels</div>
+          <div class="legend-item"><div class="legend-dot" style="background:#ef4444;"></div> Quadrature sample nodes</div>
+        </div>
+      </div>
+
+      <!-- Plot 2: Convergence Log-Log -->
+      <div class="canvas-box">
+        <div class="canvas-title">
+          <span>Global Convergence & "Too Many Bins" Bathtub Curve (Log₁₀ |Error| vs Log₁₀ N)</span>
+          <span style="color:var(--text-muted);">Scanned N = 2¹ to 2²⁰</span>
+        </div>
+        <canvas id="convCanvas"></canvas>
+        <div class="legend">
+          <div class="legend-item"><div class="legend-dot" style="background:#38bdf8;"></div> Trapezoid Error</div>
+          <div class="legend-item"><div class="legend-dot" style="background:#a855f7;"></div> Simpson Error</div>
+          <div class="legend-item"><div class="legend-dot" style="background:#f59e0b;"></div> Richardson Extrap.</div>
+          <div class="legend-item"><div class="legend-dot" style="background:#ef4444; border-radius:50%;"></div> Current N position</div>
+          <div class="legend-item" style="color:#64748b;">-- Theoretical slopes (O(h²), O(h⁴))</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Mathematical configurations
+    const FUNCTIONS = {
+      sin: {
+        f: Math.sin,
+        a: 0.0,
+        b: Math.PI,
+        exact: 2.0,
+        label: "sin(x)"
+      },
+      exp: {
+        f: Math.exp,
+        a: 0.0,
+        b: 1.0,
+        exact: Math.E - 1.0,
+        label: "exp(x)"
+      },
+      poly: {
+        f: (x) => Math.pow(x, 4) - 2 * x + 1,
+        a: 0.0,
+        b: 2.0,
+        exact: (32.0 / 5.0) - 4.0 + 2.0, // 5.4
+        label: "x⁴ - 2x + 1"
+      },
+      runge: {
+        f: (x) => 1.0 / (1.0 + 25.0 * x * x),
+        a: -1.0,
+        b: 1.0,
+        exact: (2.0 / 5.0) * Math.atan(5.0), // ~0.5493603067780068
+        label: "1/(1 + 25x²)"
+      }
+    };
+
+    let currentFuncKey = "sin";
+    let currentMethod = "trap";
+    let currentPrecision = "f64"; // 'f64' or 'f32'
+    let currentN = 4;
+
+    const funcSelect = document.getElementById("funcSelect");
+    const nSlider = document.getElementById("nSlider");
+    const nVal = document.getElementById("nVal");
+    const roundoffAlert = document.getElementById("roundoffAlert");
+
+    // UI event hooks
+    funcSelect.addEventListener("change", (e) => {
+      currentFuncKey = e.target.value;
+      updateAll();
+    });
+
+    nSlider.addEventListener("input", (e) => {
+      currentN = parseInt(e.target.value);
+      nVal.textContent = currentN;
+      updateAll();
+    });
+
+    function setMethod(m) {
+      currentMethod = m;
+      document.getElementById("btnTrap").classList.toggle("active", m === 'trap');
+      document.getElementById("btnSimp").classList.toggle("active", m === 'simp');
+      drawGeometry();
+    }
+
+    function setPrecision(p) {
+      currentPrecision = p;
+      document.getElementById("btnF64").classList.toggle("active", p === 'f64');
+      document.getElementById("btnF32").classList.toggle("active", p === 'f32');
+      updateAll();
+    }
+
+    // High DPI Canvas helper
+    function setupCanvas(canvas) {
+      const dpr = window.devicePixelRatio || 1;
+      const rect = canvas.getBoundingClientRect();
+      canvas.width = rect.width * dpr;
+      canvas.height = rect.height * dpr;
+      const ctx = canvas.getContext("2d");
+      ctx.resetTransform();
+      ctx.scale(dpr, dpr);
+      return { ctx, width: rect.width, height: rect.height };
+    }
+
+    // Quadrature implementations supporting float32 simulation
+    function evalF(f, x, isF32) {
+      return isF32 ? Math.fround(f(Math.fround(x))) : f(x);
+    }
+
+    function integrateTrapezoid(f, a, b, N, isF32) {
+      if (isF32) {
+        let a32 = Math.fround(a), b32 = Math.fround(b), n32 = Math.fround(N);
+        let h = Math.fround((b32 - a32) / n32);
+        let sum = Math.fround(Math.fround(evalF(f, a32, true) + evalF(f, b32, true)) * 0.5);
+        for (let i = 1; i < N; i++) {
+          let x = Math.fround(a32 + Math.fround(i * h));
+          sum = Math.fround(sum + evalF(f, x, true));
+        }
+        return Math.fround(sum * h);
+      } else {
+        const h = (b - a) / N;
+        let sum = 0.5 * (f(a) + f(b));
+        for (let i = 1; i < N; i++) {
+          sum += f(a + i * h);
+        }
+        return sum * h;
+      }
+    }
+
+    function integrateSimpson(f, a, b, N, isF32) {
+      if (N % 2 !== 0) N += 1;
+      if (isF32) {
+        let a32 = Math.fround(a), b32 = Math.fround(b), n32 = Math.fround(N);
+        let h = Math.fround((b32 - a32) / n32);
+        let sum = Math.fround(evalF(f, a32, true) + evalF(f, b32, true));
+        for (let i = 1; i < N; i++) {
+          let x = Math.fround(a32 + Math.fround(i * h));
+          let weight = (i % 2 === 1) ? 4.0 : 2.0;
+          sum = Math.fround(sum + Math.fround(weight * evalF(f, x, true)));
+        }
+        return Math.fround(Math.fround(sum * h) / 3.0);
+      } else {
+        const h = (b - a) / N;
+        let sum = f(a) + f(b);
+        for (let i = 1; i < N; i++) {
+          sum += (i % 2 === 1 ? 4.0 : 2.0) * f(a + i * h);
+        }
+        return (sum * h) / 3.0;
+      }
+    }
+
+    function integrateRichardson(f, a, b, N, isF32) {
+      // Richardson extrapolation on trapezoid: R_N = (4 * T_2N - T_N) / 3
+      const tN = integrateTrapezoid(f, a, b, N, isF32);
+      const t2N = integrateTrapezoid(f, a, b, 2 * N, isF32);
+      if (isF32) {
+        return Math.fround(Math.fround(Math.fround(4.0 * t2N) - tN) / 3.0);
+      }
+      return (4.0 * t2N - tN) / 3.0;
+    }
+
+    // Geometry visualization
+    function drawGeometry() {
+      const canvas = document.getElementById("geomCanvas");
+      const { ctx, width, height } = setupCanvas(canvas);
+      const { f, a, b } = FUNCTIONS[currentFuncKey];
+      const isF32 = (currentPrecision === "f32");
+      const N = currentN;
+      const h = (b - a) / N;
+
+      document.getElementById("geometryStatus").textContent = `h = ${h.toFixed(5)} (${N} bins)`;
+
+      // Determine y range
+      let yMin = 0, yMax = -Infinity;
+      const samples = 200;
+      for (let i = 0; i <= samples; i++) {
+        const x = a + (i / samples) * (b - a);
+        const y = f(x);
+        if (y > yMax) yMax = y;
+        if (y < yMin) yMin = y;
+      }
+      yMax *= 1.15;
+      if (yMin > 0) yMin = 0;
+
+      const pad = { left: 45, right: 20, top: 15, bottom: 30 };
+      const plotW = width - pad.left - pad.right;
+      const plotH = height - pad.top - pad.bottom;
+
+      const toScreenX = (x) => pad.left + ((x - a) / (b - a)) * plotW;
+      const toScreenY = (y) => pad.top + plotH - ((y - yMin) / (yMax - yMin)) * plotH;
+
+      ctx.clearRect(0, 0, width, height);
+
+      // Grid & Axes
+      ctx.strokeStyle = "#1e293b";
+      ctx.lineWidth = 1;
+      ctx.beginPath();
+      for (let i = 0; i <= 4; i++) {
+        const yVal = yMin + (i / 4) * (yMax - yMin);
+        const py = toScreenY(yVal);
+        ctx.moveTo(pad.left, py);
+        ctx.lineTo(width - pad.right, py);
+      }
+      ctx.stroke();
+
+      // Zero baseline
+      const yZero = toScreenY(0);
+      ctx.strokeStyle = "#475569";
+      ctx.lineWidth = 1.5;
+      ctx.beginPath();
+      ctx.moveTo(pad.left, yZero);
+      ctx.lineTo(width - pad.right, yZero);
+      ctx.stroke();
+
+      // Draw numerical approximation panels
+      if (currentMethod === "trap") {
+        for (let i = 0; i < N; i++) {
+          const x0 = a + i * h;
+          const x1 = a + (i + 1) * h;
+          const y0 = f(x0);
+          const y1 = f(x1);
+
+          ctx.fillStyle = "rgba(56, 189, 248, 0.25)";
+          ctx.strokeStyle = "#38bdf8";
+          ctx.lineWidth = 1.2;
+
+          ctx.beginPath();
+          ctx.moveTo(toScreenX(x0), yZero);
+          ctx.lineTo(toScreenX(x0), toScreenY(y0));
+          ctx.lineTo(toScreenX(x1), toScreenY(y1));
+          ctx.lineTo(toScreenX(x1), yZero);
+          ctx.closePath();
+          ctx.fill();
+          ctx.stroke();
+        }
+      } else {
+        // Simpson parabolic arcs across pairs of panels
+        for (let i = 0; i < N; i += 2) {
+          const x0 = a + i * h;
+          const x1 = a + (i + 1) * h;
+          const x2 = a + (i + 2) * h;
+          const y0 = f(x0), y1 = f(x1), y2 = f(x2);
+
+          // Interpolating parabola: P(x) = y0*L0 + y1*L1 + y2*L2
+          ctx.fillStyle = "rgba(168, 85, 247, 0.25)";
+          ctx.strokeStyle = "#c084fc";
+          ctx.lineWidth = 1.5;
+
+          ctx.beginPath();
+          ctx.moveTo(toScreenX(x0), yZero);
+          ctx.lineTo(toScreenX(x0), toScreenY(y0));
+
+          const subDiv = 20;
+          for (let s = 1; s <= subDiv; s++) {
+            const x = x0 + (s / subDiv) * (2 * h);
+            // Lagrange polynomial evaluation
+            const l0 = ((x - x1) * (x - x2)) / ((x0 - x1) * (x0 - x2));
+            const l1 = ((x - x0) * (x - x2)) / ((x1 - x0) * (x1 - x2));
+            const l2 = ((x - x0) * (x - x1)) / ((x2 - x0) * (x2 - x1));
+            const yP = y0 * l0 + y1 * l1 + y2 * l2;
+            ctx.lineTo(toScreenX(x), toScreenY(yP));
+          }
+
+          ctx.lineTo(toScreenX(x2), yZero);
+          ctx.closePath();
+          ctx.fill();
+          ctx.stroke();
+
+          // Internal separator at midpoint
+          ctx.strokeStyle = "rgba(168, 85, 247, 0.4)";
+          ctx.beginPath();
+          ctx.moveTo(toScreenX(x1), yZero);
+          ctx.lineTo(toScreenX(x1), toScreenY(y1));
+          ctx.stroke();
+        }
+      }
+
+      // Draw continuous true function curve
+      ctx.strokeStyle = "#f8fafc";
+      ctx.lineWidth = 2.2;
+      ctx.beginPath();
+      for (let i = 0; i <= samples; i++) {
+        const x = a + (i / samples) * (b - a);
+        const y = f(x);
+        const px = toScreenX(x);
+        const py = toScreenY(y);
+        if (i === 0) ctx.moveTo(px, py);
+        else ctx.lineTo(px, py);
+      }
+      ctx.stroke();
+
+      // Draw evaluation nodes
+      for (let i = 0; i <= N; i++) {
+        const x = a + i * h;
+        const y = f(x);
+        ctx.fillStyle = "#ef4444";
+        ctx.beginPath();
+        ctx.arc(toScreenX(x), toScreenY(y), 3.5, 0, 2 * Math.PI);
+        ctx.fill();
+      }
+
+      // Axis labels
+      ctx.fillStyle = "#94a3b8";
+      ctx.font = "10px monospace";
+      ctx.fillText(`a = ${a.toFixed(2)}`, pad.left - 5, height - 10);
+      ctx.fillText(`b = ${b.toFixed(2)}`, width - pad.right - 45, height - 10);
+      ctx.fillText(yMax.toFixed(2), 5, pad.top + 10);
+      ctx.fillText("0.0", 15, yZero + 3);
+    }
+
+    // Convergence & Bathtub curve visualization
+    function drawConvergence() {
+      const canvas = document.getElementById("convCanvas");
+      const { ctx, width, height } = setupCanvas(canvas);
+      const { f, a, b, exact } = FUNCTIONS[currentFuncKey];
+      const isF32 = (currentPrecision === "f32");
+
+      const pad = { left: 55, right: 25, top: 20, bottom: 35 };
+      const plotW = width - pad.left - pad.right;
+      const plotH = height - pad.top - pad.bottom;
+
+      ctx.clearRect(0, 0, width, height);
+
+      // Sweep N exponentially: 2^1 to 2^20
+      const minLogN = 1; // 2^1 = 2
+      const maxLogN = 19; // 2^19 = 524,288
+      const minLogErr = isF32 ? -8 : -16;
+      const maxLogErr = 1;
+
+      const toScreenX = (log2N) => pad.left + ((log2N - minLogN) / (maxLogN - minLogN)) * plotW;
+      const toScreenY = (log10E) => pad.top + plotH - ((log10E - minLogErr) / (maxLogErr - minLogErr)) * plotH;
+
+      // Draw background grid
+      ctx.strokeStyle = "#1e293b";
+      ctx.lineWidth = 1;
+      ctx.beginPath();
+      for (let logE = minLogErr; logE <= maxLogErr; logE += 2) {
+        const py = toScreenY(logE);
+        ctx.moveTo(pad.left, py);
+        ctx.lineTo(width - pad.right, py);
+      }
+      for (let logN = 2; logN <= maxLogN; logN += 2) {
+        const px = toScreenX(logN);
+        ctx.moveTo(px, pad.top);
+        ctx.lineTo(px, height - pad.bottom);
+      }
+      ctx.stroke();
+
+      // Theoretical slope guides
+      ctx.strokeStyle = "#334155";
+      ctx.setLineDash([4, 4]);
+      ctx.beginPath();
+      // O(h^2) slope guide
+      ctx.moveTo(toScreenX(2), toScreenY(0));
+      ctx.lineTo(toScreenX(10), toScreenY(-4.8));
+      // O(h^4) slope guide
+      ctx.moveTo(toScreenX(2), toScreenY(0));
+      ctx.lineTo(toScreenX(7), toScreenY(-6.0));
+      ctx.stroke();
+      ctx.setLineDash([]);
+
+      // Compute actual error trajectories
+      const curveTrap = [];
+      const curveSimp = [];
+      const curveRich = [];
+
+      for (let p = minLogN; p <= maxLogN; p++) {
+        const nSteps = Math.pow(2, p);
+        const errTrap = Math.max(1e-18, Math.abs(integrateTrapezoid(f, a, b, nSteps, isF32) - exact));
+        const errSimp = Math.max(1e-18, Math.abs(integrateSimpson(f, a, b, nSteps, isF32) - exact));
+        const errRich = Math.max(1e-18, Math.abs(integrateRichardson(f, a, b, nSteps, isF32) - exact));
+
+        curveTrap.push({ x: p, y: Math.log10(errTrap) });
+        curveSimp.push({ x: p, y: Math.log10(errSimp) });
+        curveRich.push({ x: p, y: Math.log10(errRich) });
+      }
+
+      function drawPath(data, strokeColor, lineWidth) {
+        ctx.strokeStyle = strokeColor;
+        ctx.lineWidth = lineWidth;
+        ctx.beginPath();
+        for (let i = 0; i < data.length; i++) {
+          const px = toScreenX(data[i].x);
+          const py = Math.min(height - pad.bottom, Math.max(pad.top, toScreenY(data[i].y)));
+          if (i === 0) ctx.moveTo(px, py);
+          else ctx.lineTo(px, py);
+        }
+        ctx.stroke();
+      }
+
+      // Draw series curves
+      drawPath(curveTrap, "#38bdf8", 2.0);
+      drawPath(curveSimp, "#a855f7", 2.0);
+      drawPath(curveRich, "#f59e0b", 1.8);
+
+      // Highlight current N position
+      const currLog2N = Math.log2(currentN);
+      const currTrapErr = Math.max(1e-18, Math.abs(integrateTrapezoid(f, a, b, currentN, isF32) - exact));
+      const currSimpErr = Math.max(1e-18, Math.abs(integrateSimpson(f, a, b, currentN, isF32) - exact));
+
+      const pxCurrent = toScreenX(currLog2N);
+      ctx.strokeStyle = "rgba(239, 68, 68, 0.5)";
+      ctx.setLineDash([2, 3]);
+      ctx.beginPath();
+      ctx.moveTo(pxCurrent, pad.top);
+      ctx.lineTo(pxCurrent, height - pad.bottom);
+      ctx.stroke();
+      ctx.setLineDash([]);
+
+      // Point dots on curves
+      [{ y: currTrapErr }, { y: currSimpErr }].forEach(pt => {
+        const py = toScreenY(Math.log10(pt.y));
+        ctx.fillStyle = "#ef4444";
+        ctx.beginPath();
+        ctx.arc(pxCurrent, py, 4.5, 0, 2 * Math.PI);
+        ctx.fill();
+        ctx.strokeStyle = "#fff";
+        ctx.lineWidth = 1;
+        ctx.stroke();
+      });
+
+      // Axis ticks and labels
+      ctx.fillStyle = "#94a3b8";
+      ctx.font = "10px monospace";
+      for (let logE = minLogErr; logE <= maxLogErr; logE += 3) {
+        const py = toScreenY(logE);
+        ctx.fillText(`1e${logE}`, 10, py + 3);
+      }
+      for (let logN = 2; logN <= maxLogN; logN += 3) {
+        const px = toScreenX(logN);
+        ctx.fillText(`2^${logN}`, px - 10, height - pad.bottom + 16);
+      }
+
+      ctx.fillText("log10 |Error|", 10, pad.top - 5);
+      ctx.fillText("Number of Bins N (log2 scale)", width - pad.right - 145, height - 8);
+
+      // Annotate regimes
+      ctx.fillStyle = "#64748b";
+      ctx.font = "11px sans-serif";
+      ctx.fillText("← Truncation Error Dominated", toScreenX(3), pad.top + 30);
+      ctx.fillText("Roundoff Noise Accumulation →", toScreenX(isF32 ? 11 : 14), pad.top + 30);
+    }
+
+    // Update numbers & telemetry
+    function updateMetrics() {
+      const { f, a, b, exact } = FUNCTIONS[currentFuncKey];
+      const isF32 = (currentPrecision === "f32");
+      const N = currentN;
+
+      const tEst = integrateTrapezoid(f, a, b, N, isF32);
+      const sEst = integrateSimpson(f, a, b, N, isF32);
+      const rEst = integrateRichardson(f, a, b, N, isF32);
+
+      const tErr = Math.abs(tEst - exact);
+      const sErr = Math.abs(sEst - exact);
+      const rErr = Math.abs(rEst - exact);
+
+      document.getElementById("trapReadout").innerHTML = 
+        `${tEst.toFixed(8)} <br><span style="color:#94a3b8; font-size:0.75rem;">|Err|: ${tErr.toExponential(3)}</span>`;
+      
+      document.getElementById("simpReadout").innerHTML = 
+        `${sEst.toFixed(8)} <br><span style="color:#94a3b8; font-size:0.75rem;">|Err|: ${sErr.toExponential(3)}</span>`;
+
+      document.getElementById("richReadout").innerHTML = 
+        `${rEst.toFixed(8)} <br><span style="color:#94a3b8; font-size:0.75rem;">|Err|: ${rErr.toExponential(3)}</span>`;
+
+      // Check if user is entering the roundoff regime
+      const isRoundoffRegime = (isF32 && N >= 512) || (!isF32 && N >= 131072);
+      roundoffAlert.style.display = isRoundoffRegime ? "block" : "none";
+    }
+
+    function updateAll() {
+      updateMetrics();
+      drawGeometry();
+      drawConvergence();
+    }
+
+    // Initial render & handle window resizing
+    window.addEventListener("resize", () => {
+      drawGeometry();
+      drawConvergence();
+    });
+    updateAll();
+  </script>
+</body>
+</html>

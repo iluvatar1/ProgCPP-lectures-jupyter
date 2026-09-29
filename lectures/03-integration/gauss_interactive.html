@@ -1,0 +1,837 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gauss-Legendre Quadrature & Domain Transformation</title>
+  <style>
+    :root {
+      --bg: #0b1120;
+      --card-bg: #1e293b;
+      --border: #334155;
+      --text: #f8fafc;
+      --text-muted: #94a3b8;
+      --accent-gauss: #10b981;
+      --accent-map: #38bdf8;
+      --accent-trap: #f59e0b;
+      --accent-simp: #a855f7;
+      --exact-color: #22c55e;
+      --broken-color: #ef4444;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      background-color: var(--bg);
+      color: var(--text);
+      padding: 14px;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+    .header {
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 10px;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+    }
+    .header h1 { font-size: 1.25rem; font-weight: 700; color: var(--accent-gauss); }
+    .header p { font-size: 0.8rem; color: var(--text-muted); }
+    
+    .dashboard {
+      display: grid;
+      grid-template-columns: 320px 1fr;
+      gap: 14px;
+    }
+    @media (max-width: 960px) {
+      .dashboard { grid-template-columns: 1fr; }
+    }
+    
+    .panel {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 14px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+    
+    .control-group {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+    label {
+      font-size: 0.74rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--text-muted);
+    }
+    select, input[type="range"], input[type="number"] {
+      width: 100%;
+      background: #0f172a;
+      border: 1px solid var(--border);
+      color: var(--text);
+      padding: 6px 8px;
+      border-radius: 4px;
+      font-size: 0.86rem;
+      outline: none;
+    }
+    .interval-inputs {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 8px;
+    }
+    .slider-row {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .slider-val {
+      min-width: 40px;
+      font-weight: 700;
+      color: var(--accent-gauss);
+      text-align: right;
+      font-family: monospace;
+      font-size: 0.95rem;
+    }
+
+    .math-callout {
+      background: #0f172a;
+      border: 1px solid var(--border);
+      border-left: 3px solid var(--accent-map);
+      padding: 8px 10px;
+      border-radius: 4px;
+      font-size: 0.78rem;
+      line-height: 1.4;
+      font-family: monospace;
+    }
+
+    .exactness-badge {
+      padding: 6px 8px;
+      border-radius: 4px;
+      font-size: 0.78rem;
+      font-weight: 600;
+      text-align: center;
+      transition: all 0.2s;
+    }
+    .exactness-badge.exact {
+      background: rgba(34, 197, 94, 0.15);
+      border: 1px solid rgba(34, 197, 94, 0.4);
+      color: #86efac;
+    }
+    .exactness-badge.approx {
+      background: rgba(239, 68, 68, 0.15);
+      border: 1px solid rgba(239, 68, 68, 0.4);
+      color: #fca5a5;
+    }
+
+    .metrics-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 8px;
+    }
+    .metric-card {
+      background: #0f172a;
+      padding: 8px 10px;
+      border-radius: 6px;
+      border-left: 3px solid var(--accent-gauss);
+    }
+    .metric-title { font-size: 0.68rem; color: var(--text-muted); text-transform: uppercase; }
+    .metric-val { font-family: monospace; font-size: 0.88rem; font-weight: bold; margin-top: 2px; }
+
+    .canvas-container {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+    .canvas-box {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 10px;
+      position: relative;
+    }
+    .canvas-title {
+      font-size: 0.78rem;
+      font-weight: 600;
+      color: var(--text-muted);
+      margin-bottom: 6px;
+      display: flex;
+      justify-content: space-between;
+    }
+    canvas {
+      width: 100%;
+      display: block;
+      background: #070d17;
+      border-radius: 4px;
+    }
+    .legend {
+      display: flex;
+      gap: 14px;
+      font-size: 0.72rem;
+      margin-top: 6px;
+      flex-wrap: wrap;
+    }
+    .legend-item { display: flex; align-items: center; gap: 5px; }
+    .legend-dot { width: 10px; height: 10px; border-radius: 2px; }
+  </style>
+</head>
+<body>
+
+  <div class="header">
+    <div>
+      <h1>Gauss-Legendre Quadrature & Domain Transformation</h1>
+      <p>Roots of Pₙ(ξ), affine scaling [-1, 1] ↦ [a, b], and spectral exponential convergence</p>
+    </div>
+  </div>
+
+  <div class="dashboard">
+    <!-- Controls Sidebar -->
+    <div class="panel">
+      <div class="control-group">
+        <label for="funcSelect">Test Function f(x)</label>
+        <select id="funcSelect">
+          <option value="poly">Polynomial f(x) = xᵏ (Degree of exactness test)</option>
+          <option value="analytic">Analytic: f(x) = exp(x)·cos(x)</option>
+          <option value="runge">Runge Function: f(x) = 1/(1 + 25x²)</option>
+          <option value="sing">C⁰ Singularity: f(x) = |x| (Non-smooth)</option>
+        </select>
+      </div>
+
+      <div class="control-group" id="polyDegGroup">
+        <label for="degSlider">Polynomial Degree (k)</label>
+        <div class="slider-row">
+          <input type="range" id="degSlider" min="0" max="15" value="3">
+          <span class="slider-val" id="degVal">3</span>
+        </div>
+      </div>
+
+      <div class="control-group">
+        <label>Integration Domain [a, b]</label>
+        <div class="interval-inputs">
+          <div>
+            <span style="font-size:0.7rem; color:var(--text-muted);">Lower (a)</span>
+            <input type="number" id="inputA" value="-1" step="0.5">
+          </div>
+          <div>
+            <span style="font-size:0.7rem; color:var(--text-muted);">Upper (b)</span>
+            <input type="number" id="inputB" value="1" step="0.5">
+          </div>
+        </div>
+      </div>
+
+      <div class="control-group">
+        <label for="nSlider">Gauss Points (n)</label>
+        <div class="slider-row">
+          <input type="range" id="nSlider" min="1" max="16" value="3">
+          <span class="slider-val" id="nVal">3</span>
+        </div>
+        <p style="font-size:0.68rem; color:var(--text-muted);">
+          Degree of exactness: <strong style="color:var(--text);" id="exactnessDeg">2n - 1 = 5</strong>
+        </p>
+      </div>
+
+      <div id="exactnessBadge" class="exactness-badge exact">
+        Polynomial Integrated Exactly
+      </div>
+
+      <!-- Domain Mapping Formula Card -->
+      <div class="math-callout" id="mappingFormula">
+        <strong>Affine Transformation:</strong><br>
+        x(ξ) = ((b-a)/2)·ξ + (a+b)/2<br>
+        Wᵢ = ((b-a)/2)·wᵢ
+      </div>
+
+      <!-- Readouts -->
+      <div class="metrics-grid">
+        <div class="metric-card" style="border-color: var(--accent-gauss);">
+          <div class="metric-title">Gauss-Legendre Approximation</div>
+          <div class="metric-val" id="gaussReadout">--</div>
+        </div>
+        <div class="metric-card" style="border-color: #64748b;">
+          <div class="metric-title">Analytical / High-Precision Reference</div>
+          <div class="metric-val" id="refReadout">--</div>
+        </div>
+        <div class="metric-card" style="border-color: var(--broken-color);">
+          <div class="metric-title">Absolute Error |I - Iₙ|</div>
+          <div class="metric-val" id="errReadout">--</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Plots Column -->
+    <div class="canvas-container">
+      
+      <!-- Canvas 1: The Coordinate Mapping Diagram -->
+      <div class="canvas-box">
+        <div class="canvas-title">
+          <span>Coordinate Mapping: Reference Space ξ ∈ [-1, 1] ↦ Physical Space x ∈ [a, b]</span>
+          <span style="font-family: monospace;" id="jacobianText">J = (b - a)/2 = 1.0</span>
+        </div>
+        <canvas id="mappingCanvas" style="height: 180px;"></canvas>
+        <div class="legend">
+          <div class="legend-item"><div class="legend-dot" style="background:#94a3b8;"></div> Reference roots ξᵢ</div>
+          <div class="legend-item"><div class="legend-dot" style="background:var(--accent-gauss);"></div> Physical nodes xᵢ</div>
+          <div class="legend-item"><div class="legend-dot" style="background:rgba(56, 189, 248, 0.4); border:1px solid #38bdf8;"></div> Mapping trajectories</div>
+        </div>
+      </div>
+
+      <!-- Canvas 2: Physical Quadrature Geometry -->
+      <div class="canvas-box">
+        <div class="canvas-title">
+          <span>Physical Function f(x) and Quadrature Node Weights Wᵢ</span>
+          <span>Sampled values: f(xᵢ)</span>
+        </div>
+        <canvas id="physCanvas" style="height: 220px;"></canvas>
+        <div class="legend">
+          <div class="legend-item"><div class="legend-dot" style="background:#f8fafc;"></div> f(x)</div>
+          <div class="legend-item"><div class="legend-dot" style="background:var(--accent-gauss); border-radius:50%;"></div> Sample points (xᵢ, f(xᵢ))</div>
+          <div class="legend-item"><div class="legend-dot" style="background:rgba(16, 185, 129, 0.3); border:1px solid #10b981;"></div> Weighted bars (width = Wᵢ)</div>
+        </div>
+      </div>
+
+      <!-- Canvas 3: Spectral Convergence Comparison -->
+      <div class="canvas-box">
+        <div class="canvas-title">
+          <span>Convergence vs Function Evaluations (Semi-Log: Log₁₀ |Error| vs Evaluations)</span>
+          <span style="color:var(--accent-gauss); font-weight: bold;">Exponential Spectral Rate</span>
+        </div>
+        <canvas id="convCanvas" style="height: 230px;"></canvas>
+        <div class="legend">
+          <div class="legend-item"><div class="legend-dot" style="background:var(--accent-gauss);"></div> Gauss-Legendre (n evaluations)</div>
+          <div class="legend-item"><div class="legend-dot" style="background:var(--accent-trap);"></div> Composite Trapezoid (n panels)</div>
+          <div class="legend-item"><div class="legend-dot" style="background:var(--accent-simp);"></div> Composite Simpson (n panels)</div>
+          <div class="legend-item"><div class="legend-dot" style="background:#ef4444; border-radius:50%;"></div> Current n position</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <script>
+    // High-precision Legendre roots & weights using Newton-Raphson
+    function getGaussLegendre(n) {
+      const nodes = new Float64Array(n);
+      const weights = new Float64Array(n);
+      const m = Math.floor((n + 1) / 2);
+      
+      for (let i = 0; i < m; i++) {
+        // Initial asymptotic guess for i-th root of P_n(x)
+        let z = Math.cos(Math.PI * (i + 0.75) / (n + 0.5));
+        let pp = 0;
+        let iter = 0;
+        
+        while (iter < 100) {
+          let p1 = 1.0;
+          let p2 = 0.0;
+          // Bonnet recurrence: (j+1)*P_{j+1} = (2j+1)*x*P_j - j*P_{j-1}
+          for (let j = 0; j < n; j++) {
+            let p3 = p2;
+            p2 = p1;
+            p1 = ((2.0 * j + 1.0) * z * p2 - j * p3) / (j + 1.0);
+          }
+          // P_n'(z) = n*(z*P_n - P_{n-1}) / (z^2 - 1)
+          pp = n * (z * p1 - p2) / (z * z - 1.0);
+          let z1 = z;
+          z = z1 - p1 / pp;
+          if (Math.abs(z - z1) < 1e-15) break;
+          iter++;
+        }
+        
+        // Legendre roots are symmetric about 0
+        nodes[i] = -z;
+        nodes[n - 1 - i] = z;
+        const w = 2.0 / ((1.0 - z * z) * pp * pp);
+        weights[i] = w;
+        weights[n - 1 - i] = w;
+      }
+      return { nodes, weights };
+    }
+
+    // Canvas scaling helper
+    function setupCanvas(canvas) {
+      const dpr = window.devicePixelRatio || 1;
+      const rect = canvas.getBoundingClientRect();
+      canvas.width = rect.width * dpr;
+      canvas.height = rect.height * dpr;
+      const ctx = canvas.getContext("2d");
+      ctx.resetTransform();
+      ctx.scale(dpr, dpr);
+      return { ctx, width: rect.width, height: rect.height };
+    }
+
+    // State
+    let currentN = 3;
+    let currentPolyDeg = 3;
+    let aVal = -1.0;
+    let bVal = 1.0;
+    let currentFunc = "poly";
+
+    // UI elements
+    const nSlider = document.getElementById("nSlider");
+    const nVal = document.getElementById("nVal");
+    const degSlider = document.getElementById("degSlider");
+    const degVal = document.getElementById("degVal");
+    const polyDegGroup = document.getElementById("polyDegGroup");
+    const funcSelect = document.getElementById("funcSelect");
+    const inputA = document.getElementById("inputA");
+    const inputB = document.getElementById("inputB");
+    const exactnessBadge = document.getElementById("exactnessBadge");
+    const exactnessDeg = document.getElementById("exactnessDeg");
+
+    nSlider.addEventListener("input", (e) => {
+      currentN = parseInt(e.target.value);
+      nVal.textContent = currentN;
+      exactnessDeg.textContent = `2n - 1 = ${2 * currentN - 1}`;
+      updateAll();
+    });
+
+    degSlider.addEventListener("input", (e) => {
+      currentPolyDeg = parseInt(e.target.value);
+      degVal.textContent = currentPolyDeg;
+      updateAll();
+    });
+
+    funcSelect.addEventListener("change", (e) => {
+      currentFunc = e.target.value;
+      polyDegGroup.style.display = (currentFunc === "poly") ? "flex" : "none";
+      updateAll();
+    });
+
+    inputA.addEventListener("change", (e) => {
+      aVal = parseFloat(e.target.value);
+      if (aVal >= bVal) bVal = aVal + 0.5;
+      inputB.value = bVal;
+      updateAll();
+    });
+
+    inputB.addEventListener("change", (e) => {
+      bVal = parseFloat(e.target.value);
+      if (bVal <= aVal) aVal = bVal - 0.5;
+      inputA.value = aVal;
+      updateAll();
+    });
+
+    // Function definitions and analytic integrals
+    function evaluateF(x) {
+      switch (currentFunc) {
+        case "poly":
+          return Math.pow(x, currentPolyDeg);
+        case "analytic":
+          return Math.exp(x) * Math.cos(x);
+        case "runge":
+          return 1.0 / (1.0 + 25.0 * x * x);
+        case "sing":
+          return Math.abs(x);
+      }
+    }
+
+    function evaluateExactIntegral(a, b) {
+      switch (currentFunc) {
+        case "poly":
+          const k = currentPolyDeg;
+          return (Math.pow(b, k + 1) - Math.pow(a, k + 1)) / (k + 1);
+        case "analytic":
+          // Integral of e^x cos(x) dx = (e^x / 2) * (sin(x) + cos(x))
+          const anti = (x) => 0.5 * Math.exp(x) * (Math.sin(x) + Math.cos(x));
+          return anti(b) - anti(a);
+        case "runge":
+          // Integral of 1 / (1 + 25x^2) dx = (1/5) * atan(5x)
+          const antiR = (x) => (1.0 / 5.0) * Math.atan(5.0 * x);
+          return antiR(b) - antiR(a);
+        case "sing":
+          const antiS = (x) => (x >= 0 ? 0.5 * x * x : -0.5 * x * x);
+          return antiS(b) - antiS(a);
+      }
+    }
+
+    // Quadrature routines
+    function integrateGauss(n, a, b) {
+      const { nodes, weights } = getGaussLegendre(n);
+      const halfL = (b - a) * 0.5;
+      const mid = (a + b) * 0.5;
+      let sum = 0.0;
+      for (let i = 0; i < n; i++) {
+        const xPhys = halfL * nodes[i] + mid;
+        sum += weights[i] * evaluateF(xPhys);
+      }
+      return halfL * sum;
+    }
+
+    function integrateTrapezoid(n, a, b) {
+      const h = (b - a) / n;
+      let sum = 0.5 * (evaluateF(a) + evaluateF(b));
+      for (let i = 1; i < n; i++) sum += evaluateF(a + i * h);
+      return sum * h;
+    }
+
+    function integrateSimpson(n, a, b) {
+      if (n % 2 !== 0) n += 1;
+      const h = (b - a) / n;
+      let sum = evaluateF(a) + evaluateF(b);
+      for (let i = 1; i < n; i++) {
+        sum += (i % 2 === 1 ? 4.0 : 2.0) * evaluateF(a + i * h);
+      }
+      return (sum * h) / 3.0;
+    }
+
+    // Drawing Canvas 1: Mapping
+    function drawMapping() {
+      const canvas = document.getElementById("mappingCanvas");
+      const { ctx, width, height } = setupCanvas(canvas);
+      ctx.clearRect(0, 0, width, height);
+
+      const pad = { left: 45, right: 45 };
+      const plotW = width - pad.left - pad.right;
+      
+      const yRef = 40;
+      const yPhys = height - 45;
+
+      const halfL = (bVal - aVal) * 0.5;
+      const mid = (aVal + bVal) * 0.5;
+
+      document.getElementById("jacobianText").textContent = 
+        `J = (b - a)/2 = ${halfL.toFixed(3)} | Midpoint = ${mid.toFixed(3)}`;
+
+      const toScreenRef = (xi) => pad.left + ((xi - (-1.0)) / 2.0) * plotW;
+      const toScreenPhys = (x) => pad.left + ((x - aVal) / (bVal - aVal)) * plotW;
+
+      // Draw Rails
+      ctx.strokeStyle = "#475569";
+      ctx.lineWidth = 2;
+      
+      // Reference rail
+      ctx.beginPath();
+      ctx.moveTo(pad.left, yRef);
+      ctx.lineTo(width - pad.right, yRef);
+      ctx.stroke();
+
+      // Physical rail
+      ctx.beginPath();
+      ctx.moveTo(pad.left, yPhys);
+      ctx.lineTo(width - pad.right, yPhys);
+      ctx.stroke();
+
+      // Rail Titles
+      ctx.fillStyle = "#94a3b8";
+      ctx.font = "11px monospace";
+      ctx.fillText("Reference Space ξ ∈ [-1, 1]", pad.left, yRef - 16);
+      ctx.fillText(`Physical Space x ∈ [${aVal}, ${bVal}]`, pad.left, yPhys + 28);
+
+      // Boundaries markers
+      ctx.fillStyle = "#cbd5e1";
+      ctx.fillText("-1", toScreenRef(-1) - 6, yRef + 16);
+      ctx.fillText("+1", toScreenRef(1) - 6, yRef + 16);
+      ctx.fillText(`a = ${aVal}`, toScreenPhys(aVal) - 15, yPhys - 10);
+      ctx.fillText(`b = ${bVal}`, toScreenPhys(bVal) - 15, yPhys - 10);
+
+      // Boundary projection lines
+      ctx.strokeStyle = "#334155";
+      ctx.setLineDash([3, 3]);
+      ctx.beginPath();
+      ctx.moveTo(toScreenRef(-1), yRef);
+      ctx.lineTo(toScreenPhys(aVal), yPhys);
+      ctx.moveTo(toScreenRef(1), yRef);
+      ctx.lineTo(toScreenPhys(bVal), yPhys);
+      ctx.stroke();
+      ctx.setLineDash([]);
+
+      // Gauss Nodes & Connecting Beziers
+      const { nodes, weights } = getGaussLegendre(currentN);
+      for (let i = 0; i < currentN; i++) {
+        const xi = nodes[i];
+        const xPhys = halfL * xi + mid;
+
+        const pRefX = toScreenRef(xi);
+        const pPhysX = toScreenPhys(xPhys);
+
+        // Spline connecting reference node to physical node
+        ctx.strokeStyle = "rgba(56, 189, 248, 0.4)";
+        ctx.lineWidth = 1.5;
+        ctx.beginPath();
+        ctx.moveTo(pRefX, yRef);
+        ctx.bezierCurveTo(pRefX, yRef + 40, pPhysX, yPhys - 40, pPhysX, yPhys);
+        ctx.stroke();
+
+        // Reference dot
+        ctx.fillStyle = "#94a3b8";
+        ctx.beginPath();
+        ctx.arc(pRefX, yRef, 4, 0, 2 * Math.PI);
+        ctx.fill();
+
+        // Physical dot
+        ctx.fillStyle = "#10b981";
+        ctx.beginPath();
+        ctx.arc(pPhysX, yPhys, 5, 0, 2 * Math.PI);
+        ctx.fill();
+        ctx.strokeStyle = "#0b1120";
+        ctx.lineWidth = 1;
+        ctx.stroke();
+
+        // Weight text
+        ctx.fillStyle = "#6ee7b7";
+        ctx.font = "9px monospace";
+        ctx.fillText(`w=${weights[i].toFixed(2)}`, pRefX - 16, yRef - 6);
+      }
+    }
+
+    // Drawing Canvas 2: Physical function & weighted bars
+    function drawPhysical() {
+      const canvas = document.getElementById("physCanvas");
+      const { ctx, width, height } = setupCanvas(canvas);
+      ctx.clearRect(0, 0, width, height);
+
+      const pad = { left: 55, right: 35, top: 15, bottom: 30 };
+      const plotW = width - pad.left - pad.right;
+      const plotH = height - pad.top - pad.bottom;
+
+      // Determine y range
+      const samples = 200;
+      let yMin = 0, yMax = -Infinity;
+      for (let i = 0; i <= samples; i++) {
+        const x = aVal + (i / samples) * (bVal - aVal);
+        const y = evaluateF(x);
+        if (y > yMax) yMax = y;
+        if (y < yMin) yMin = y;
+      }
+      yMax = Math.max(yMax * 1.15, 0.5);
+      if (yMin > 0) yMin = 0;
+      else yMin *= 1.15;
+
+      const toScreenX = (x) => pad.left + ((x - aVal) / (bVal - aVal)) * plotW;
+      const toScreenY = (y) => pad.top + plotH - ((y - yMin) / (yMax - yMin)) * plotH;
+      const yZero = toScreenY(0);
+
+      // Grid
+      ctx.strokeStyle = "#1e293b";
+      ctx.lineWidth = 1;
+      ctx.beginPath();
+      for (let i = 0; i <= 4; i++) {
+        const yVal = yMin + (i / 4) * (yMax - yMin);
+        const py = toScreenY(yVal);
+        ctx.moveTo(pad.left, py);
+        ctx.lineTo(width - pad.right, py);
+      }
+      ctx.stroke();
+
+      // Zero axis
+      ctx.strokeStyle = "#475569";
+      ctx.lineWidth = 1.5;
+      ctx.beginPath();
+      ctx.moveTo(pad.left, yZero);
+      ctx.lineTo(width - pad.right, yZero);
+      ctx.stroke();
+
+      // Draw Gauss weighted contribution rectangles
+      const { nodes, weights } = getGaussLegendre(currentN);
+      const halfL = (bVal - aVal) * 0.5;
+      const mid = (aVal + bVal) * 0.5;
+
+      for (let i = 0; i < currentN; i++) {
+        const xi = nodes[i];
+        const wi = weights[i];
+        const xPhys = halfL * xi + mid;
+        const yPhys = evaluateF(xPhys);
+        const wPhys = halfL * wi; // Physical weight W_i
+
+        const rectX = toScreenX(xPhys - wPhys * 0.5);
+        const rectW = (wPhys / (bVal - aVal)) * plotW;
+        const rectY = toScreenY(Math.max(0, yPhys));
+        const rectH = Math.abs(toScreenY(yPhys) - yZero);
+
+        ctx.fillStyle = "rgba(16, 185, 129, 0.22)";
+        ctx.fillRect(rectX, rectY, rectW, rectH);
+        ctx.strokeStyle = "rgba(16, 185, 129, 0.7)";
+        ctx.lineWidth = 1;
+        ctx.strokeRect(rectX, rectY, rectW, rectH);
+
+        // Center line & node dot
+        ctx.strokeStyle = "#10b981";
+        ctx.beginPath();
+        ctx.moveTo(toScreenX(xPhys), yZero);
+        ctx.lineTo(toScreenX(xPhys), toScreenY(yPhys));
+        ctx.stroke();
+
+        ctx.fillStyle = "#10b981";
+        ctx.beginPath();
+        ctx.arc(toScreenX(xPhys), toScreenY(yPhys), 4.5, 0, 2 * Math.PI);
+        ctx.fill();
+        ctx.strokeStyle = "#fff";
+        ctx.stroke();
+      }
+
+      // Draw continuous function curve f(x)
+      ctx.strokeStyle = "#f8fafc";
+      ctx.lineWidth = 2.2;
+      ctx.beginPath();
+      for (let i = 0; i <= samples; i++) {
+        const x = aVal + (i / samples) * (bVal - aVal);
+        const y = evaluateF(x);
+        const px = toScreenX(x);
+        const py = toScreenY(y);
+        if (i === 0) ctx.moveTo(px, py);
+        else ctx.lineTo(px, py);
+      }
+      ctx.stroke();
+
+      // Labels
+      ctx.fillStyle = "#94a3b8";
+      ctx.font = "10px monospace";
+      ctx.fillText(aVal.toFixed(2), pad.left - 10, height - 10);
+      ctx.fillText(bVal.toFixed(2), width - pad.right - 10, height - 10);
+      ctx.fillText(yMax.toFixed(2), 10, pad.top + 10);
+      ctx.fillText(yMin.toFixed(2), 10, height - pad.bottom);
+    }
+
+    // Drawing Canvas 3: Spectral Convergence
+    function drawConvergence() {
+      const canvas = document.getElementById("convCanvas");
+      const { ctx, width, height } = setupCanvas(canvas);
+      ctx.clearRect(0, 0, width, height);
+
+      const pad = { left: 55, right: 35, top: 20, bottom: 35 };
+      const plotW = width - pad.left - pad.right;
+      const plotH = height - pad.top - pad.bottom;
+
+      const exact = evaluateExactIntegral(aVal, bVal);
+
+      const minN = 1;
+      const maxN = 16;
+      const minLogE = -16;
+      const maxLogE = 2;
+
+      const toScreenX = (n) => pad.left + ((n - minN) / (maxN - minN)) * plotW;
+      const toScreenY = (logE) => pad.top + plotH - ((logE - minLogE) / (maxLogE - minLogE)) * plotH;
+
+      // Grid
+      ctx.strokeStyle = "#1e293b";
+      ctx.lineWidth = 1;
+      ctx.beginPath();
+      for (let logE = minLogE; logE <= maxLogE; logE += 2) {
+        const py = toScreenY(logE);
+        ctx.moveTo(pad.left, py);
+        ctx.lineTo(width - pad.right, py);
+      }
+      for (let n = 2; n <= maxN; n += 2) {
+        const px = toScreenX(n);
+        ctx.moveTo(px, pad.top);
+        ctx.lineTo(px, height - pad.bottom);
+      }
+      ctx.stroke();
+
+      // Compute trajectories
+      const curveGauss = [];
+      const curveTrap = [];
+      const curveSimp = [];
+
+      for (let n = minN; n <= maxN; n++) {
+        const gEst = integrateGauss(n, aVal, bVal);
+        const tEst = integrateTrapezoid(n, aVal, bVal);
+        const sEst = integrateSimpson(n, aVal, bVal);
+
+        const gErr = Math.max(1e-16, Math.abs(gEst - exact));
+        const tErr = Math.max(1e-16, Math.abs(tEst - exact));
+        const sErr = Math.max(1e-16, Math.abs(sEst - exact));
+
+        curveGauss.push({ x: n, y: Math.log10(gErr) });
+        curveTrap.push({ x: n, y: Math.log10(tErr) });
+        curveSimp.push({ x: n, y: Math.log10(sErr) });
+      }
+
+      function drawPath(data, color, lineW) {
+        ctx.strokeStyle = color;
+        ctx.lineWidth = lineW;
+        ctx.beginPath();
+        for (let i = 0; i < data.length; i++) {
+          const px = toScreenX(data[i].x);
+          const py = Math.min(height - pad.bottom, Math.max(pad.top, toScreenY(data[i].y)));
+          if (i === 0) ctx.moveTo(px, py);
+          else ctx.lineTo(px, py);
+        }
+        ctx.stroke();
+      }
+
+      drawPath(curveTrap, "#f59e0b", 1.8);
+      drawPath(curveSimp, "#a855f7", 1.8);
+      drawPath(curveGauss, "#10b981", 2.5);
+
+      // Marker at current n
+      const currentGaussErr = Math.max(1e-16, Math.abs(integrateGauss(currentN, aVal, bVal) - exact));
+      const pxCurrent = toScreenX(currentN);
+      const pyCurrent = toScreenY(Math.log10(currentGaussErr));
+
+      ctx.strokeStyle = "rgba(239, 68, 68, 0.4)";
+      ctx.setLineDash([2, 2]);
+      ctx.beginPath();
+      ctx.moveTo(pxCurrent, pad.top);
+      ctx.lineTo(pxCurrent, height - pad.bottom);
+      ctx.stroke();
+      ctx.setLineDash([]);
+
+      ctx.fillStyle = "#ef4444";
+      ctx.beginPath();
+      ctx.arc(pxCurrent, pyCurrent, 5, 0, 2 * Math.PI);
+      ctx.fill();
+      ctx.strokeStyle = "#fff";
+      ctx.lineWidth = 1;
+      ctx.stroke();
+
+      // Axis text
+      ctx.fillStyle = "#94a3b8";
+      ctx.font = "10px monospace";
+      for (let logE = minLogE; logE <= maxLogE; logE += 4) {
+        ctx.fillText(`1e${logE}`, 10, toScreenY(logE) + 3);
+      }
+      for (let n = minN; n <= maxN; n += 2) {
+        ctx.fillText(`n=${n}`, toScreenX(n) - 8, height - pad.bottom + 16);
+      }
+      ctx.fillText("log10 |Error|", 10, pad.top - 6);
+      ctx.fillText("Number of Function Evaluations (n)", width - pad.right - 180, height - 10);
+    }
+
+    // Telemetry and Exactness Check
+    function updateTelemetry() {
+      const exact = evaluateExactIntegral(aVal, bVal);
+      const approx = integrateGauss(currentN, aVal, bVal);
+      const err = Math.abs(approx - exact);
+
+      document.getElementById("gaussReadout").textContent = approx.toFixed(10);
+      document.getElementById("refReadout").textContent = exact.toFixed(10);
+      document.getElementById("errReadout").innerHTML = 
+        `${err.toExponential(3)} ${err < 1e-13 ? '<span style="color:#22c55e;">(Machine ε)</span>' : ''}`;
+
+      if (currentFunc === "poly") {
+        const maxExactDeg = 2 * currentN - 1;
+        const isExact = currentPolyDeg <= maxExactDeg;
+        exactnessBadge.className = `exactness-badge ${isExact ? 'exact' : 'approx'}`;
+        if (isExact) {
+          exactnessBadge.textContent = `✓ Exact! Degree ${currentPolyDeg} ≤ ${maxExactDeg} (2n - 1)`;
+        } else {
+          exactnessBadge.textContent = `✗ Approximation: Degree ${currentPolyDeg} > ${maxExactDeg} (Truncation error appears)`;
+        }
+      } else {
+        exactnessBadge.className = "exactness-badge exact";
+        exactnessBadge.textContent = `Analytical Function Quadrature`;
+      }
+    }
+
+    function updateAll() {
+      updateTelemetry();
+      drawMapping();
+      drawPhysical();
+      drawConvergence();
+    }
+
+    window.addEventListener("resize", () => {
+      drawMapping();
+      drawPhysical();
+      drawConvergence();
+    });
+
+    updateAll();
+  </script>
+</body>
+</html>
